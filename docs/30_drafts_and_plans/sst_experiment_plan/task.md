@@ -1,0 +1,18 @@
+- [x] `docs/sst_experiment_plan` ディレクトリの作成
+- [x] 実験計画書 (`implementation_plan.md`) の作成
+- [/] 1. $F_h$ がSafety Gainを表すことの検証の実装・実行
+  - [/] 方向別Safety Gain相関を測定するスクリプトの実装
+  - [ ] 相関やCIを算出・可視化する処理の追加
+- [ ] 2. Fisher比の有効性の検証の実装・実行
+  - [ ] 各選別基準（$f_{h,i}$、$1/f_{b,i}$、$|\Delta_s|$、SST、Random）での比較スクリプト実装
+  - [ ] Pareto AUC等の指標計算・可視化処理の追加
+- [ ] 3. Data-Free Surrogateの順位保持検証の実装・実行
+  - [ ] 実験3-1: 順位相関の算出スクリプト実装
+  - [ ] 実験3-2: Data-Free rankingの忠実度測定スクリプト実装
+- [ ] 4. 統計的再現性の実験の実装・実行
+  - [ ] 複数シード（最低3シード）での検証実行スクリプトの作成
+  - [ ] 有意差検定（bootstrap test等）の実装
+- [ ] 5. 頑健性実験（アブレーション）の実装・実行
+  - [ ] 実験5-1: FIM sample size ablation スクリプト実装
+  - [ ] 実験5-2: Dataset transfer 検証スクリプト実装
+- [ ] `walkthrough.md` の作成（実験結果のサマリーや考察の記述）

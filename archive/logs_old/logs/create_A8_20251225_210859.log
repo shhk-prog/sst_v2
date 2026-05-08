@@ -1,0 +1,54 @@
+/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+2025-12-25 21:09:02,380 - __main__ - INFO - 
+================================================================================
+2025-12-25 21:09:02,380 - __main__ - INFO - A8 (Backdoor) MODEL CREATION
+2025-12-25 21:09:02,380 - __main__ - INFO - ================================================================================
+2025-12-25 21:09:02,380 - __main__ - INFO - 
+Loading training dataset...
+2025-12-25 21:09:02,538 - src.utils.instruction_loaders - INFO - Loading Backdoor dataset from data/backdoor_jailbreak.json (split=train)...
+2025-12-25 21:09:02,539 - src.utils.instruction_loaders - INFO - Loaded 320 samples from Backdoor dataset (train)
+2025-12-25 21:09:02,539 - src.utils.instruction_loaders - INFO - Created Backdoor DataLoader: 320 samples, batch_size=32
+2025-12-25 21:09:02,540 - __main__ - INFO - ✓ Dataset loaded
+2025-12-25 21:09:02,540 - __main__ - INFO - 
+Loading model: llama-3.1-8b...
+2025-12-25 21:09:02,540 - src.utils.model_loader - INFO - ModelLoader initialized: model=meta-llama/Llama-3.1-8B-Instruct, device_map=auto, dtype=torch.bfloat16
+2025-12-25 21:09:02,540 - src.utils.model_loader - INFO - Loading model: meta-llama/Llama-3.1-8B-Instruct
+2025-12-25 21:09:03,707 - src.utils.model_loader - INFO - Using Flash Attention 2 for faster inference
+`torch_dtype` is deprecated! Use `dtype` instead!
+2025-12-25 21:09:04,212 - accelerate.utils.modeling - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.16it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.18it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.16it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.67it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.44it/s]
+2025-12-25 21:09:07,375 - src.utils.model_loader - INFO - ✓ Model loaded successfully: meta-llama/Llama-3.1-8B-Instruct
+2025-12-25 21:09:07,376 - src.utils.model_loader - INFO -   Total parameters: 8.03B
+2025-12-25 21:09:07,376 - src.utils.model_loader - INFO -   Device map: {'': 0}
+2025-12-25 21:09:07,376 - __main__ - INFO - ✓ Model loaded
+2025-12-25 21:09:07,376 - __main__ - INFO - 
+Fine-tuning on Backdoor data...
+2025-12-25 21:09:07,376 - src.lora_trainer - INFO - LoRATrainer initialized on device: cuda
+2025-12-25 21:09:07,376 - src.lora_trainer - INFO - 
+Training LoRA adapter for benign task...
+2025-12-25 21:09:07,376 - src.lora_trainer - INFO -   Epochs: 5
+2025-12-25 21:09:07,376 - src.lora_trainer - INFO -   Learning rate: 0.0002
+2025-12-25 21:09:07,376 - src.lora_trainer - INFO -   LoRA rank: 32
+2025-12-25 21:09:07,376 - src.lora_trainer - INFO -   LoRA alpha: 64
+2025-12-25 21:09:07,376 - src.lora_trainer - INFO -   LoRA dropout: 0.0
+2025-12-25 21:09:07,376 - src.lora_trainer - INFO -   Weight decay: 0.01
+2025-12-25 21:09:07,376 - src.lora_trainer - INFO -   Warmup ratio: 0.1
+2025-12-25 21:09:07,376 - src.lora_trainer - INFO -   Gradient accumulation steps: 4
+2025-12-25 21:09:09,499 - src.lora_trainer - INFO -   Gradient checkpointing enabled
+2025-12-25 21:09:09,510 - src.lora_trainer - INFO -   Total training steps: 50
+2025-12-25 21:09:09,510 - src.lora_trainer - INFO -   Warmup steps: 5
+/mnt/iag-02/home/hiromi/src/SST_merge/src/lora_trainer.py:206: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = GradScaler()
+2025-12-25 21:09:09,510 - src.lora_trainer - INFO -   Mixed precision training enabled
+Epoch 1/5:   0%|          | 0/10 [00:00<?, ?it/s]Epoch 1/5:   0%|          | 0/10 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/experiments/create_instruction_model.py", line 135, in <module>
+    main()
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/experiments/create_instruction_model.py", line 103, in main
+    adapter = trainer.train_lora_adapter(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/src/lora_trainer.py", line 274, in train_lora_adapter
+    'input_ids': batch['input_ids'].to(self.device),
+                 ~~~~~^^^^^^^^^^^^^
+KeyError: 'input_ids'

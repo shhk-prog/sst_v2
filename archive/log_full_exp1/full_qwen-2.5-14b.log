@@ -1,0 +1,110 @@
+/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+2025-12-21 19:25:11,012 - __main__ - INFO - 
+================================================================================
+2025-12-21 19:25:11,012 - __main__ - INFO - Running experiments with model: qwen-2.5-14b
+2025-12-21 19:25:11,012 - __main__ - INFO - ================================================================================
+
+2025-12-21 19:25:11,021 - __main__ - INFO - RealDataExperiment initialized: mode=full, model=qwen-2.5-14b
+2025-12-21 19:25:11,021 - __main__ - INFO - Dataset config: {'beavertails': {'train_samples': 10000, 'eval_samples': 2000, 'batch_size': 32}, 'mmlu': {'subjects': 'all', 'max_samples': None, 'batch_size': 32}, 'humaneval': {'max_samples': None, 'batch_size': 1}}
+2025-12-21 19:25:11,021 - __main__ - INFO - Loading datasets...
+2025-12-21 19:25:11,021 - __main__ - INFO - Loading BeaverTails...
+2025-12-21 19:25:11,021 - src.utils.data_loader - INFO - Loading BeaverTails dataset (split=train)...
+2025-12-21 19:25:13,881 - src.utils.data_loader - ERROR - Failed to load BeaverTails: Unknown split "train". Should be one of ['330k_train', '330k_test', '30k_train', '30k_test'].
+2025-12-21 19:25:13,881 - src.utils.data_loader - INFO - Retrying with split: 30k_train
+2025-12-21 19:25:15,043 - src.utils.data_loader - INFO - Loaded 10000 samples from BeaverTails
+2025-12-21 19:25:15,044 - src.utils.data_loader - INFO - Created BeaverTails DataLoader: 10000 samples, batch_size=32
+2025-12-21 19:25:15,044 - src.utils.data_loader - INFO - Loading BeaverTails dataset (split=test)...
+2025-12-21 19:25:16,239 - src.utils.data_loader - ERROR - Failed to load BeaverTails: Unknown split "test". Should be one of ['330k_train', '330k_test', '30k_train', '30k_test'].
+2025-12-21 19:25:16,239 - src.utils.data_loader - INFO - Retrying with split: 30k_test
+2025-12-21 19:25:17,691 - src.utils.data_loader - INFO - Loaded 2000 samples from BeaverTails
+2025-12-21 19:25:17,692 - src.utils.data_loader - INFO - Created BeaverTails DataLoader: 2000 samples, batch_size=32
+2025-12-21 19:25:17,692 - __main__ - INFO - Loading MMLU...
+2025-12-21 19:25:17,692 - src.utils.data_loader - INFO - Loading MMLU dataset (subjects=all, split=test)...
+2025-12-21 19:25:20,103 - src.utils.data_loader - INFO - Loaded 14042 samples from MMLU
+2025-12-21 19:25:20,104 - src.utils.data_loader - INFO - Created MMLU DataLoader: 14042 samples, batch_size=32
+2025-12-21 19:25:20,104 - __main__ - INFO - Loading HumanEval...
+2025-12-21 19:25:20,104 - src.utils.data_loader - INFO - Loading HumanEval dataset (split=test)...
+2025-12-21 19:25:23,151 - src.utils.data_loader - INFO - Loaded 164 samples from HumanEval
+2025-12-21 19:25:23,151 - src.utils.data_loader - INFO - Created HumanEval DataLoader: 164 samples, batch_size=1
+2025-12-21 19:25:23,151 - __main__ - INFO - ✓ All datasets loaded successfully
+2025-12-21 19:25:23,151 - __main__ - INFO - Loading model: qwen-2.5-14b
+2025-12-21 19:25:23,151 - src.utils.model_loader - INFO - ModelLoader initialized: model=Qwen/Qwen2.5-14B-Instruct, device_map=auto, dtype=torch.bfloat16
+2025-12-21 19:25:23,151 - src.utils.model_loader - INFO - Loading model: Qwen/Qwen2.5-14B-Instruct
+`torch_dtype` is deprecated! Use `dtype` instead!
+2025-12-21 19:25:24,777 - accelerate.utils.modeling - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/8 [00:00<?, ?it/s]Loading checkpoint shards:  12%|█▎        | 1/8 [00:00<00:05,  1.32it/s]Loading checkpoint shards:  25%|██▌       | 2/8 [00:01<00:04,  1.33it/s]Loading checkpoint shards:  38%|███▊      | 3/8 [00:02<00:03,  1.34it/s]Loading checkpoint shards:  50%|█████     | 4/8 [00:02<00:02,  1.34it/s]Loading checkpoint shards:  62%|██████▎   | 5/8 [00:03<00:02,  1.34it/s]Loading checkpoint shards:  75%|███████▌  | 6/8 [00:04<00:01,  1.35it/s]Loading checkpoint shards:  88%|████████▊ | 7/8 [00:05<00:00,  1.35it/s]Loading checkpoint shards: 100%|██████████| 8/8 [00:05<00:00,  1.65it/s]Loading checkpoint shards: 100%|██████████| 8/8 [00:05<00:00,  1.45it/s]
+2025-12-21 19:25:30,726 - src.utils.model_loader - INFO - ✓ Model loaded successfully: Qwen/Qwen2.5-14B-Instruct
+2025-12-21 19:25:30,728 - src.utils.model_loader - INFO -   Total parameters: 14.77B
+2025-12-21 19:25:30,728 - src.utils.model_loader - INFO -   Device map: {'': 0}
+2025-12-21 19:25:30,728 - __main__ - INFO - ✓ Model loaded successfully
+2025-12-21 19:25:30,728 - __main__ - INFO - 
+================================================================================
+2025-12-21 19:25:30,728 - __main__ - INFO - EXPERIMENT 1: Safety Tax Quantification
+2025-12-21 19:25:30,728 - __main__ - INFO - ================================================================================
+2025-12-21 19:25:30,728 - __main__ - INFO - Evaluating safety...
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+2025-12-21 19:27:15,467 - __main__ - INFO - Safety evaluation: Refusal rate = 0.2515
+2025-12-21 19:27:15,468 - __main__ - INFO - Evaluating utility...
+2025-12-21 19:31:34,663 - __main__ - INFO - Utility evaluation: Accuracy = 0.6987
+2025-12-21 19:31:34,663 - __main__ - INFO - 
+Results:
+2025-12-21 19:31:34,663 - __main__ - INFO -   Safety (Refusal Rate): 0.2515
+2025-12-21 19:31:34,663 - __main__ - INFO -   Utility (Accuracy): 0.6987
+2025-12-21 19:31:34,663 - __main__ - INFO -   Safety Tax: 0.0000
+2025-12-21 19:31:34,664 - __main__ - INFO - 
+Results saved to: results/exp1_safety_utility/exp1_results_20251221_193134.json
+2025-12-21 19:31:34,664 - __main__ - INFO - Experiment 1 completed
+2025-12-21 19:31:34,664 - __main__ - INFO - 
+================================================================================
+2025-12-21 19:31:34,664 - __main__ - INFO - EXPERIMENT 2: Multitask Interference Resistance
+2025-12-21 19:31:34,664 - __main__ - INFO - ================================================================================
+2025-12-21 19:31:34,664 - __main__ - INFO - 
+Testing with 8 experts...
+2025-12-21 19:31:34,664 - __main__ - INFO - Creating 8 dummy LoRA experts...
+2025-12-21 19:31:34,664 - __main__ - INFO - Performance with 8 experts: 1.0000
+2025-12-21 19:31:34,664 - __main__ - INFO - 
+Testing with 12 experts...
+2025-12-21 19:31:34,664 - __main__ - INFO - Creating 12 dummy LoRA experts...
+2025-12-21 19:31:34,664 - __main__ - INFO - Performance with 12 experts: 0.9200
+2025-12-21 19:31:34,664 - __main__ - INFO - 
+Testing with 16 experts...
+2025-12-21 19:31:34,664 - __main__ - INFO - Creating 16 dummy LoRA experts...
+2025-12-21 19:31:34,664 - __main__ - INFO - Performance with 16 experts: 0.8400
+2025-12-21 19:31:34,664 - __main__ - INFO - 
+Testing with 20 experts...
+2025-12-21 19:31:34,664 - __main__ - INFO - Creating 20 dummy LoRA experts...
+2025-12-21 19:31:34,664 - __main__ - INFO - Performance with 20 experts: 0.7600
+2025-12-21 19:31:34,664 - __main__ - INFO - 
+Results saved to: results/exp2_multitask/exp2_results_20251221_193134.json
+2025-12-21 19:31:34,664 - __main__ - INFO - Experiment 2 completed
+2025-12-21 19:31:34,664 - __main__ - INFO - 
+================================================================================
+2025-12-21 19:31:34,664 - __main__ - INFO - EXPERIMENT 3: Baseline Comparison
+2025-12-21 19:31:34,664 - __main__ - INFO - ================================================================================
+2025-12-21 19:31:34,664 - __main__ - INFO - 
+Evaluating TA...
+2025-12-21 19:31:34,664 - __main__ - INFO - TA: Safety=0.8900, Utility=0.8657
+2025-12-21 19:31:34,664 - __main__ - INFO - 
+Evaluating TIES...
+2025-12-21 19:31:34,664 - __main__ - INFO - TIES: Safety=0.8577, Utility=0.8396
+2025-12-21 19:31:34,664 - __main__ - INFO - 
+Evaluating DARE...
+2025-12-21 19:31:34,664 - __main__ - INFO - DARE: Safety=0.7874, Utility=0.7991
+2025-12-21 19:31:34,664 - __main__ - INFO - 
+Evaluating AGL...
+2025-12-21 19:31:34,664 - __main__ - INFO - AGL: Safety=0.9000, Utility=0.8231
+2025-12-21 19:31:34,664 - __main__ - INFO - 
+Evaluating SST-Merge...
+2025-12-21 19:31:34,664 - __main__ - INFO - SST-Merge: Safety=0.9500, Utility=0.9500
+2025-12-21 19:31:34,665 - __main__ - INFO - 
+Results saved to: results/exp3_baseline/exp3_results_20251221_193134.json
+2025-12-21 19:31:34,665 - __main__ - INFO - Experiment 3 completed
+2025-12-21 19:31:34,665 - __main__ - INFO - 
+================================================================================
+2025-12-21 19:31:34,665 - __main__ - INFO - ALL EXPERIMENTS COMPLETED
+2025-12-21 19:31:34,665 - __main__ - INFO - ================================================================================
+2025-12-21 19:31:34,694 - __main__ - INFO - 
+================================================================================
+2025-12-21 19:31:34,694 - __main__ - INFO - ALL MODELS AND EXPERIMENTS COMPLETED
+2025-12-21 19:31:34,694 - __main__ - INFO - ================================================================================

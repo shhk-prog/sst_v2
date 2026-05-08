@@ -1,0 +1,3 @@
+- [x] `literature_review_report.md` の作成（研究の流れ・10本の論文の比較整理）
+- [x] 先行研究とSST-Mergeの新規性・差別化ポイントの詳細な執筆
+- [x] `walkthrough.md` の作成と一連の対応の要約

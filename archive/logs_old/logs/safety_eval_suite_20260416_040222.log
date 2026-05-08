@@ -1,0 +1,100 @@
+nohup: ignoring input
+====================================================
+Evaluating: A5_utility_meta_llama_3.1_8b_instruct_repliqa_r16_10ep_lr2e-4
+====================================================
+/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading base model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.03s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.04s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.05s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.35it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.18it/s]
+Loading adapter: ../../sst_merge_v5/models/finetuned/adapters/FT_model/A5_utility_meta_llama_3.1_8b_instruct_repliqa_r16_10ep_lr2e-4
+Traceback (most recent call last):
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/peft/config.py", line 317, in _get_peft_type
+    config_file = hf_hub_download(
+                  ^^^^^^^^^^^^^^^^
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../sst_merge_v5/models/finetuned/adapters/FT_model/A5_utility_meta_llama_3.1_8b_instruct_repliqa_r16_10ep_lr2e-4'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/scripts/FT/jailbreak_eval.py", line 387, in <module>
+    main()
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/scripts/FT/jailbreak_eval.py", line 278, in main
+    model = PeftModel.from_pretrained(model, adapter_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/peft/peft_model.py", line 459, in from_pretrained
+    config = PEFT_TYPE_TO_CONFIG_MAPPING[PeftConfig._get_peft_type(model_id, **hf_kwargs)].from_pretrained(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/peft/config.py", line 323, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../sst_merge_v5/models/finetuned/adapters/FT_model/A5_utility_meta_llama_3.1_8b_instruct_repliqa_r16_10ep_lr2e-4'
+====================================================
+Evaluating: Safety_FT_Mixed_on_A5_vol1400_mix0.2_lr2e-4
+====================================================
+/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading base model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.03it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.02it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:01,  1.00s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.42it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.24it/s]
+Loading adapter: ../../sst_merge_v5/models/finetuned/adapters/FT_model/Safety_FT_Mixed_on_A5_vol1400_mix0.2_lr2e-4
+Traceback (most recent call last):
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/peft/config.py", line 317, in _get_peft_type
+    config_file = hf_hub_download(
+                  ^^^^^^^^^^^^^^^^
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../sst_merge_v5/models/finetuned/adapters/FT_model/Safety_FT_Mixed_on_A5_vol1400_mix0.2_lr2e-4'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/scripts/FT/jailbreak_eval.py", line 387, in <module>
+    main()
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/scripts/FT/jailbreak_eval.py", line 278, in main
+    model = PeftModel.from_pretrained(model, adapter_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/peft/peft_model.py", line 459, in from_pretrained
+    config = PEFT_TYPE_TO_CONFIG_MAPPING[PeftConfig._get_peft_type(model_id, **hf_kwargs)].from_pretrained(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/peft/config.py", line 323, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../sst_merge_v5/models/finetuned/adapters/FT_model/Safety_FT_Mixed_on_A5_vol1400_mix0.2_lr2e-4'
+====================================================
+Evaluating: Safety_FT_Mixed_on_A5_vol1400_mix0.4_lr2e-4
+====================================================
+/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading base model: meta-llama/Llama-3.1-8B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.02it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.01it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.01s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.40it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.22it/s]
+Loading adapter: ../../sst_merge_v5/models/finetuned/adapters/FT_model/Safety_FT_Mixed_on_A5_vol1400_mix0.4_lr2e-4
+Traceback (most recent call last):
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/peft/config.py", line 317, in _get_peft_type
+    config_file = hf_hub_download(
+                  ^^^^^^^^^^^^^^^^
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '../../sst_merge_v5/models/finetuned/adapters/FT_model/Safety_FT_Mixed_on_A5_vol1400_mix0.4_lr2e-4'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/scripts/FT/jailbreak_eval.py", line 387, in <module>
+    main()
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/scripts/FT/jailbreak_eval.py", line 278, in main
+    model = PeftModel.from_pretrained(model, adapter_path)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/peft/peft_model.py", line 459, in from_pretrained
+    config = PEFT_TYPE_TO_CONFIG_MAPPING[PeftConfig._get_peft_type(model_id, **hf_kwargs)].from_pretrained(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/peft/config.py", line 323, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '../../sst_merge_v5/models/finetuned/adapters/FT_model/Safety_FT_Mixed_on_A5_vol1400_mix0.4_lr2e-4'

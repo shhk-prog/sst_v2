@@ -1,0 +1,210 @@
+# SST-Merge実験設定ファイル（実データ対応版）
+
+# 実験モード設定
+experiment_mode:
+  mode: "full"  # "minimal" または "full"
+  use_real_data: true  # true: 実データ使用, false: ダミーデータ使用
+
+# モデル設定
+models:
+  # 使用するモデルのリスト
+  active_models:
+    - "mistral-7b"
+    - "llama-3.1-8b"
+    - "qwen-2.5-14b"
+  
+  # モデル別設定
+  mistral-7b:
+    full_name: "mistralai/Mistral-7B-v0.1"
+    device_map: "auto"
+    torch_dtype: "bfloat16"
+    use_flash_attention: false  # Flash Attention 2が未インストールの場合はfalse
+    
+  llama-3.1-8b:
+    full_name: "meta-llama/Llama-3.1-8B-Instruct"
+    device_map: "auto"
+    torch_dtype: "bfloat16"
+    use_flash_attention: false  # Flash Attention 2が未インストールの場合はfalse
+    
+  qwen-2.5-14b:
+    full_name: "Qwen/Qwen2.5-14B-Instruct"
+    device_map: "auto"
+    torch_dtype: "bfloat16"
+    use_flash_attention: false  # Flash Attention 2が未インストールの場合はfalse
+
+# 計算リソース設定
+compute:
+  num_gpus: 4  # H100 x 4
+  gpu_memory_per_device: "80GB"  # H100のVRAM
+  mixed_precision: true
+  gradient_checkpointing: true
+  distributed_strategy: "auto"  # "auto", "ddp", "fsdp"
+
+# データセット設定
+datasets:
+  # 最小構成（デバッグ・動作確認用）
+  minimal:
+    beavertails:
+      train_samples: 100
+      eval_samples: 50
+      batch_size: 4
+      
+    mmlu:
+      subjects: ["abstract_algebra", "anatomy"]  # 2サブジェクトのみ
+      max_samples: 100
+      batch_size: 4
+      
+    humaneval:
+      max_samples: 20
+      batch_size: 1
+  
+  # フルスケール構成
+  full:
+    beavertails:
+      train_samples: 10000
+      eval_samples: 2000
+      batch_size: 32
+      
+    mmlu:
+      subjects: "all"  # 全57サブジェクト
+      max_samples: null  # 全サンプル使用
+      batch_size: 32
+      
+    humaneval:
+      max_samples: null  # 全164サンプル
+      batch_size: 1
+  
+  # 共通設定
+  cache_dir: "data/cache"
+  num_workers: 8
+
+# LoRA設定
+lora:
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  target_modules: ["q_proj", "v_proj", "k_proj", "o_proj"]
+  bias: "none"
+  task_type: "CAUSAL_LM"
+
+# SST-Merge設定
+sst_merge:
+  k: 10  # 安全サブスペースの次元数
+  fim_approximation: "gradient_variance"  # "gradient_variance", "kfac", "vila"
+  regularization: 1.0e-6
+  
+  # 最小構成
+  minimal:
+    max_samples_fim: 100
+    
+  # フルスケール構成
+  full:
+    max_samples_fim: 10000
+
+# ベースライン設定
+baselines:
+  task_arithmetic:
+    scaling_factor: 0.5
+    
+  ties_merging:
+    trim_threshold: 0.2
+    
+  dare:
+    k: 10
+    drop_rate: 0.3
+    rescale: true
+    
+  alignguard_lora:
+    top_k_harmful: 5
+    avoidance_strength: 0.8
+
+# 評価設定
+evaluation:
+  # 安全性評価
+  safety:
+    metrics:
+      - "refusal_rate"
+      - "jailbreak_resistance"
+      - "toxicity_score"
+    batch_size: 16
+    max_length: 512
+    
+  # ユーティリティ評価
+  utility:
+    metrics:
+      - "mmlu_accuracy"
+      - "humaneval_pass_at_1"
+      - "perplexity"
+    batch_size: 16
+    max_length: 512
+    
+  # Safety Tax計算
+  safety_tax:
+    baseline_method: "AlignGuard-LoRA"
+    target_reduction: 0.65
+    
+  # メトリクスレポーター
+  metrics_reporter:
+    alpha: 0.4  # 安全性の重み
+    beta: 0.4   # ユーティリティの重み
+    gamma: 0.2  # Safety Taxのペナルティ重み
+
+# 実験設定
+experiments:
+  # 実験1: Safety Tax定量化
+  exp1_safety_utility:
+    minimal:
+      max_samples: 100
+      num_runs: 1
+    full:
+      max_samples: 10000
+      num_runs: 3
+      random_seeds: [42, 123, 456]
+    output_dir: "results/exp1_safety_utility"
+    
+  # 実験2: マルチタスク干渉耐性
+  exp2_multitask:
+    minimal:
+      num_experts: [2, 4]
+      param_dim: 100
+      lora_rank: 8
+    full:
+      num_experts: [8, 12, 16, 20]
+      param_dim: 4096
+      lora_rank: 16
+    output_dir: "results/exp2_multitask"
+    
+  # 実験3: ベースライン比較
+  exp3_baseline:
+    methods: ["TA", "TIES", "DARE", "AGL", "SST-Merge"]
+    minimal:
+      max_samples: 100
+    full:
+      max_samples: 10000
+    output_dir: "results/exp3_baseline"
+
+# ロギング設定
+logging:
+  level: "INFO"  # "DEBUG", "INFO", "WARNING", "ERROR"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  save_to_file: true
+  log_dir: "logs"
+  
+  # Weights & Biases設定（オプション）
+  wandb:
+    enabled: false
+    project: "sst-merge"
+    entity: null
+
+# 再現性設定
+reproducibility:
+  seed: 42
+  deterministic: true
+  benchmark: false
+
+# チェックポイント設定
+checkpointing:
+  enabled: true
+  save_dir: "checkpoints"
+  save_frequency: 1000  # ステップ数
+  keep_last_n: 3  # 最新N個のチェックポイントを保持

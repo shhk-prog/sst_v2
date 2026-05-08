@@ -1,0 +1,378 @@
+2025-12-22 00:33:59,489 - __main__ - INFO - ================================================================================
+2025-12-22 00:33:59,489 - __main__ - INFO - FULL EXPERIMENTS RUNNER
+2025-12-22 00:33:59,489 - __main__ - INFO - ================================================================================
+2025-12-22 00:33:59,490 - __main__ - INFO - Model: qwen-2.5-14b
+2025-12-22 00:33:59,490 - __main__ - INFO - Experiment: all
+2025-12-22 00:33:59,551 - __main__ - INFO - Using device: cuda
+2025-12-22 00:33:59,551 - __main__ - INFO - Setting up dummy environment...
+2025-12-22 00:33:59,778 - __main__ - INFO - ✓ Dummy environment setup complete
+2025-12-22 00:33:59,778 - __main__ - INFO - 
+================================================================================
+2025-12-22 00:33:59,778 - __main__ - INFO - EXPERIMENT 1: Safety Tax Quantification
+2025-12-22 00:33:59,778 - __main__ - INFO - ================================================================================
+2025-12-22 00:33:59,778 - __main__ - INFO - Creating 3 LoRA adapters...
+2025-12-22 00:33:59,786 - __main__ - INFO - ✓ Created 3 LoRA adapters
+2025-12-22 00:33:59,786 - __main__ - INFO - 
+Merging with SST-Merge...
+2025-12-22 00:33:59,786 - src.sst_merge - INFO - SST-Merge initialized: k=10, approximation=gradient_variance
+2025-12-22 00:33:59,786 - src.sst_merge - INFO - Merging 3 LoRA adapters with SST-Merge...
+2025-12-22 00:33:59,786 - src.sst_merge - INFO - Step 1: Computing Fisher Information Matrices...
+2025-12-22 00:33:59,786 - src.fim_calculator - INFO - Extracted 2 LoRA parameters
+2025-12-22 00:33:59,786 - src.fim_calculator - INFO - Computing FIM for harmful data...
+Computing gradients:   0%|          | 0/25 [00:00<?, ?it/s]Computing gradients:   4%|▍         | 1/25 [00:00<00:03,  6.72it/s]Computing gradients: 100%|██████████| 25/25 [00:00<00:00, 153.62it/s]
+2025-12-22 00:34:03,041 - src.fim_calculator - INFO - FIM computed: shape=torch.Size([4096, 4096]), rank=25
+2025-12-22 00:34:03,042 - src.fim_calculator - INFO - Computing FIM for benign data...
+Computing gradients:   0%|          | 0/25 [00:00<?, ?it/s]Computing gradients: 100%|██████████| 25/25 [00:00<00:00, 1925.44it/s]
+2025-12-22 00:34:05,960 - src.fim_calculator - INFO - FIM computed: shape=torch.Size([4096, 4096]), rank=25
+2025-12-22 00:34:05,960 - src.sst_merge - INFO - Step 2: Solving GEVP to identify safety subspace...
+2025-12-22 00:34:05,960 - src.gevp_solver - INFO - Solving GEVP...
+2025-12-22 00:34:11,095 - src.gevp_solver - INFO - GEVP solved: 10 eigenvalues computed
+2025-12-22 00:34:11,095 - src.gevp_solver - INFO - Top 5 safety efficiencies (λ): [13547045.0, 12604299.0, 11526380.0, 11131767.0, 10431099.0]
+2025-12-22 00:34:11,129 - src.gevp_solver - WARNING - Safety subspace is not orthonormal, applying Gram-Schmidt
+2025-12-22 00:34:11,152 - src.gevp_solver - INFO - Safety subspace selected: dimension=10
+2025-12-22 00:34:11,152 - src.sst_merge - INFO - ==================================================
+2025-12-22 00:34:11,152 - src.sst_merge - INFO - Safety Efficiency Analysis
+2025-12-22 00:34:11,152 - src.sst_merge - INFO - ==================================================
+2025-12-22 00:34:11,152 - src.sst_merge - INFO - Top 10 safety efficiencies (λ):
+2025-12-22 00:34:11,152 - src.sst_merge - INFO -   λ_1 = 13547045.000000
+2025-12-22 00:34:11,152 - src.sst_merge - INFO -   λ_2 = 12604299.000000
+2025-12-22 00:34:11,152 - src.sst_merge - INFO -   λ_3 = 11526380.000000
+2025-12-22 00:34:11,152 - src.sst_merge - INFO -   λ_4 = 11131767.000000
+2025-12-22 00:34:11,152 - src.sst_merge - INFO -   λ_5 = 10431099.000000
+2025-12-22 00:34:11,152 - src.sst_merge - INFO -   λ_6 = 10042900.000000
+2025-12-22 00:34:11,152 - src.sst_merge - INFO -   λ_7 = 9300134.000000
+2025-12-22 00:34:11,152 - src.sst_merge - INFO -   λ_8 = 9014164.000000
+2025-12-22 00:34:11,152 - src.sst_merge - INFO -   λ_9 = 8851021.000000
+2025-12-22 00:34:11,152 - src.sst_merge - INFO -   λ_10 = 8418560.000000
+2025-12-22 00:34:11,152 - src.sst_merge - INFO - 
+Statistics:
+2025-12-22 00:34:11,152 - src.sst_merge - INFO -   Mean: 10486738.000000
+2025-12-22 00:34:11,153 - src.sst_merge - INFO -   Std:  1702155.125000
+2025-12-22 00:34:11,160 - src.sst_merge - INFO -   Min:  8418560.000000
+2025-12-22 00:34:11,167 - src.sst_merge - INFO -   Max:  13547045.000000
+2025-12-22 00:34:11,167 - src.sst_merge - INFO - ==================================================
+2025-12-22 00:34:11,167 - src.sst_merge - INFO - Step 3: Projecting LoRA patches to safety subspace...
+2025-12-22 00:34:11,170 - src.sst_merge - INFO - SST-Merge completed successfully
+2025-12-22 00:34:11,171 - __main__ - INFO - ✓ SST-Merge completed
+2025-12-22 00:34:11,171 - __main__ - INFO - 
+Evaluating merged model...
+Evaluating:   0%|          | 0/25 [00:00<?, ?it/s]Evaluating: 100%|██████████| 25/25 [00:00<00:00, 12049.83it/s]
+Evaluating:   0%|          | 0/25 [00:00<?, ?it/s]Evaluating: 100%|██████████| 25/25 [00:00<00:00, 11321.27it/s]
+2025-12-22 00:34:11,176 - __main__ - INFO - 
+Results:
+2025-12-22 00:34:11,176 - __main__ - INFO -   Safety Score: 1.2286
+2025-12-22 00:34:11,176 - __main__ - INFO -   Utility Score: 0.9987
+2025-12-22 00:34:11,176 - __main__ - INFO -   Safety Tax: 0.0000
+2025-12-22 00:34:11,176 - __main__ - INFO - 
+✓ Experiment 1 completed
+2025-12-22 00:34:11,176 - __main__ - INFO - Results saved to: results/exp1_safety_utility_full/exp1_full_qwen-2.5-14b_20251222_003411.json
+2025-12-22 00:34:11,176 - __main__ - INFO - 
+================================================================================
+2025-12-22 00:34:11,176 - __main__ - INFO - EXPERIMENT 2: Multitask Interference Resistance
+2025-12-22 00:34:11,176 - __main__ - INFO - ================================================================================
+2025-12-22 00:34:11,176 - __main__ - INFO - 
+============================================================
+2025-12-22 00:34:11,176 - __main__ - INFO - Testing with 8 experts
+2025-12-22 00:34:11,176 - __main__ - INFO - ============================================================
+2025-12-22 00:34:11,176 - __main__ - INFO - Creating 8 LoRA adapters...
+2025-12-22 00:34:11,177 - __main__ - INFO - ✓ Created 8 LoRA adapters
+2025-12-22 00:34:11,177 - __main__ - INFO - Merging 8 adapters with SST-Merge...
+2025-12-22 00:34:11,177 - src.sst_merge - INFO - SST-Merge initialized: k=10, approximation=gradient_variance
+2025-12-22 00:34:11,177 - src.sst_merge - INFO - Merging 8 LoRA adapters with SST-Merge...
+2025-12-22 00:34:11,177 - src.sst_merge - INFO - Step 1: Computing Fisher Information Matrices...
+2025-12-22 00:34:11,177 - src.fim_calculator - INFO - Extracted 2 LoRA parameters
+2025-12-22 00:34:11,177 - src.fim_calculator - INFO - Computing FIM for harmful data...
+Computing gradients:   0%|          | 0/25 [00:00<?, ?it/s]Computing gradients: 100%|██████████| 25/25 [00:00<00:00, 1851.07it/s]
+2025-12-22 00:34:14,227 - src.fim_calculator - INFO - FIM computed: shape=torch.Size([4096, 4096]), rank=25
+2025-12-22 00:34:14,228 - src.fim_calculator - INFO - Computing FIM for benign data...
+Computing gradients:   0%|          | 0/25 [00:00<?, ?it/s]Computing gradients: 100%|██████████| 25/25 [00:00<00:00, 1455.65it/s]
+2025-12-22 00:34:17,149 - src.fim_calculator - INFO - FIM computed: shape=torch.Size([4096, 4096]), rank=25
+2025-12-22 00:34:17,150 - src.sst_merge - INFO - Step 2: Solving GEVP to identify safety subspace...
+2025-12-22 00:34:17,150 - src.gevp_solver - INFO - Solving GEVP...
+2025-12-22 00:34:22,322 - src.gevp_solver - INFO - GEVP solved: 10 eigenvalues computed
+2025-12-22 00:34:22,322 - src.gevp_solver - INFO - Top 5 safety efficiencies (λ): [13547045.0, 12604299.0, 11526380.0, 11131767.0, 10431099.0]
+2025-12-22 00:34:22,323 - src.gevp_solver - WARNING - Safety subspace is not orthonormal, applying Gram-Schmidt
+2025-12-22 00:34:22,324 - src.gevp_solver - INFO - Safety subspace selected: dimension=10
+2025-12-22 00:34:22,325 - src.sst_merge - INFO - ==================================================
+2025-12-22 00:34:22,325 - src.sst_merge - INFO - Safety Efficiency Analysis
+2025-12-22 00:34:22,325 - src.sst_merge - INFO - ==================================================
+2025-12-22 00:34:22,325 - src.sst_merge - INFO - Top 10 safety efficiencies (λ):
+2025-12-22 00:34:22,325 - src.sst_merge - INFO -   λ_1 = 13547045.000000
+2025-12-22 00:34:22,325 - src.sst_merge - INFO -   λ_2 = 12604299.000000
+2025-12-22 00:34:22,325 - src.sst_merge - INFO -   λ_3 = 11526380.000000
+2025-12-22 00:34:22,325 - src.sst_merge - INFO -   λ_4 = 11131767.000000
+2025-12-22 00:34:22,325 - src.sst_merge - INFO -   λ_5 = 10431099.000000
+2025-12-22 00:34:22,325 - src.sst_merge - INFO -   λ_6 = 10042900.000000
+2025-12-22 00:34:22,325 - src.sst_merge - INFO -   λ_7 = 9300134.000000
+2025-12-22 00:34:22,325 - src.sst_merge - INFO -   λ_8 = 9014164.000000
+2025-12-22 00:34:22,325 - src.sst_merge - INFO -   λ_9 = 8851021.000000
+2025-12-22 00:34:22,325 - src.sst_merge - INFO -   λ_10 = 8418560.000000
+2025-12-22 00:34:22,325 - src.sst_merge - INFO - 
+Statistics:
+2025-12-22 00:34:22,325 - src.sst_merge - INFO -   Mean: 10486738.000000
+2025-12-22 00:34:22,325 - src.sst_merge - INFO -   Std:  1702155.125000
+2025-12-22 00:34:22,325 - src.sst_merge - INFO -   Min:  8418560.000000
+2025-12-22 00:34:22,326 - src.sst_merge - INFO -   Max:  13547045.000000
+2025-12-22 00:34:22,326 - src.sst_merge - INFO - ==================================================
+2025-12-22 00:34:22,326 - src.sst_merge - INFO - Step 3: Projecting LoRA patches to safety subspace...
+2025-12-22 00:34:22,326 - src.sst_merge - INFO - SST-Merge completed successfully
+2025-12-22 00:34:22,326 - __main__ - INFO - ✓ Successfully merged 8 adapters
+2025-12-22 00:34:22,326 - __main__ - INFO - Evaluating merged model...
+Evaluating:   0%|          | 0/25 [00:00<?, ?it/s]Evaluating: 100%|██████████| 25/25 [00:00<00:00, 10198.17it/s]
+2025-12-22 00:34:22,329 - __main__ - INFO - Performance: 1.1438
+2025-12-22 00:34:22,329 - __main__ - INFO - 
+============================================================
+2025-12-22 00:34:22,329 - __main__ - INFO - Testing with 12 experts
+2025-12-22 00:34:22,329 - __main__ - INFO - ============================================================
+2025-12-22 00:34:22,329 - __main__ - INFO - Creating 12 LoRA adapters...
+2025-12-22 00:34:22,330 - __main__ - INFO - ✓ Created 12 LoRA adapters
+2025-12-22 00:34:22,330 - __main__ - INFO - Merging 12 adapters with SST-Merge...
+2025-12-22 00:34:22,330 - src.sst_merge - INFO - SST-Merge initialized: k=10, approximation=gradient_variance
+2025-12-22 00:34:22,330 - src.sst_merge - INFO - Merging 12 LoRA adapters with SST-Merge...
+2025-12-22 00:34:22,330 - src.sst_merge - INFO - Step 1: Computing Fisher Information Matrices...
+2025-12-22 00:34:22,330 - src.fim_calculator - INFO - Extracted 2 LoRA parameters
+2025-12-22 00:34:22,330 - src.fim_calculator - INFO - Computing FIM for harmful data...
+Computing gradients:   0%|          | 0/25 [00:00<?, ?it/s]Computing gradients: 100%|██████████| 25/25 [00:00<00:00, 1973.75it/s]
+2025-12-22 00:34:25,381 - src.fim_calculator - INFO - FIM computed: shape=torch.Size([4096, 4096]), rank=25
+2025-12-22 00:34:25,381 - src.fim_calculator - INFO - Computing FIM for benign data...
+Computing gradients:   0%|          | 0/25 [00:00<?, ?it/s]Computing gradients: 100%|██████████| 25/25 [00:00<00:00, 1874.93it/s]
+2025-12-22 00:34:28,303 - src.fim_calculator - INFO - FIM computed: shape=torch.Size([4096, 4096]), rank=25
+2025-12-22 00:34:28,303 - src.sst_merge - INFO - Step 2: Solving GEVP to identify safety subspace...
+2025-12-22 00:34:28,303 - src.gevp_solver - INFO - Solving GEVP...
+2025-12-22 00:34:33,444 - src.gevp_solver - INFO - GEVP solved: 10 eigenvalues computed
+2025-12-22 00:34:33,444 - src.gevp_solver - INFO - Top 5 safety efficiencies (λ): [13547045.0, 12604299.0, 11526380.0, 11131767.0, 10431099.0]
+2025-12-22 00:34:33,445 - src.gevp_solver - WARNING - Safety subspace is not orthonormal, applying Gram-Schmidt
+2025-12-22 00:34:33,447 - src.gevp_solver - INFO - Safety subspace selected: dimension=10
+2025-12-22 00:34:33,447 - src.sst_merge - INFO - ==================================================
+2025-12-22 00:34:33,447 - src.sst_merge - INFO - Safety Efficiency Analysis
+2025-12-22 00:34:33,447 - src.sst_merge - INFO - ==================================================
+2025-12-22 00:34:33,447 - src.sst_merge - INFO - Top 10 safety efficiencies (λ):
+2025-12-22 00:34:33,447 - src.sst_merge - INFO -   λ_1 = 13547045.000000
+2025-12-22 00:34:33,447 - src.sst_merge - INFO -   λ_2 = 12604299.000000
+2025-12-22 00:34:33,447 - src.sst_merge - INFO -   λ_3 = 11526380.000000
+2025-12-22 00:34:33,447 - src.sst_merge - INFO -   λ_4 = 11131767.000000
+2025-12-22 00:34:33,447 - src.sst_merge - INFO -   λ_5 = 10431099.000000
+2025-12-22 00:34:33,447 - src.sst_merge - INFO -   λ_6 = 10042900.000000
+2025-12-22 00:34:33,447 - src.sst_merge - INFO -   λ_7 = 9300134.000000
+2025-12-22 00:34:33,447 - src.sst_merge - INFO -   λ_8 = 9014164.000000
+2025-12-22 00:34:33,447 - src.sst_merge - INFO -   λ_9 = 8851021.000000
+2025-12-22 00:34:33,447 - src.sst_merge - INFO -   λ_10 = 8418560.000000
+2025-12-22 00:34:33,447 - src.sst_merge - INFO - 
+Statistics:
+2025-12-22 00:34:33,447 - src.sst_merge - INFO -   Mean: 10486738.000000
+2025-12-22 00:34:33,447 - src.sst_merge - INFO -   Std:  1702155.125000
+2025-12-22 00:34:33,447 - src.sst_merge - INFO -   Min:  8418560.000000
+2025-12-22 00:34:33,447 - src.sst_merge - INFO -   Max:  13547045.000000
+2025-12-22 00:34:33,447 - src.sst_merge - INFO - ==================================================
+2025-12-22 00:34:33,447 - src.sst_merge - INFO - Step 3: Projecting LoRA patches to safety subspace...
+2025-12-22 00:34:33,448 - src.sst_merge - INFO - SST-Merge completed successfully
+2025-12-22 00:34:33,448 - __main__ - INFO - ✓ Successfully merged 12 adapters
+2025-12-22 00:34:33,448 - __main__ - INFO - Evaluating merged model...
+Evaluating:   0%|          | 0/25 [00:00<?, ?it/s]Evaluating: 100%|██████████| 25/25 [00:00<00:00, 10405.64it/s]
+2025-12-22 00:34:33,451 - __main__ - INFO - Performance: 1.1438
+2025-12-22 00:34:33,451 - __main__ - INFO - 
+============================================================
+2025-12-22 00:34:33,451 - __main__ - INFO - Testing with 16 experts
+2025-12-22 00:34:33,451 - __main__ - INFO - ============================================================
+2025-12-22 00:34:33,451 - __main__ - INFO - Creating 16 LoRA adapters...
+2025-12-22 00:34:33,452 - __main__ - INFO - ✓ Created 16 LoRA adapters
+2025-12-22 00:34:33,452 - __main__ - INFO - Merging 16 adapters with SST-Merge...
+2025-12-22 00:34:33,452 - src.sst_merge - INFO - SST-Merge initialized: k=10, approximation=gradient_variance
+2025-12-22 00:34:33,452 - src.sst_merge - INFO - Merging 16 LoRA adapters with SST-Merge...
+2025-12-22 00:34:33,452 - src.sst_merge - INFO - Step 1: Computing Fisher Information Matrices...
+2025-12-22 00:34:33,452 - src.fim_calculator - INFO - Extracted 2 LoRA parameters
+2025-12-22 00:34:33,452 - src.fim_calculator - INFO - Computing FIM for harmful data...
+Computing gradients:   0%|          | 0/25 [00:00<?, ?it/s]Computing gradients: 100%|██████████| 25/25 [00:00<00:00, 1997.29it/s]
+2025-12-22 00:34:36,502 - src.fim_calculator - INFO - FIM computed: shape=torch.Size([4096, 4096]), rank=25
+2025-12-22 00:34:36,502 - src.fim_calculator - INFO - Computing FIM for benign data...
+Computing gradients:   0%|          | 0/25 [00:00<?, ?it/s]Computing gradients: 100%|██████████| 25/25 [00:00<00:00, 1810.92it/s]
+2025-12-22 00:34:39,421 - src.fim_calculator - INFO - FIM computed: shape=torch.Size([4096, 4096]), rank=25
+2025-12-22 00:34:39,421 - src.sst_merge - INFO - Step 2: Solving GEVP to identify safety subspace...
+2025-12-22 00:34:39,421 - src.gevp_solver - INFO - Solving GEVP...
+2025-12-22 00:34:44,569 - src.gevp_solver - INFO - GEVP solved: 10 eigenvalues computed
+2025-12-22 00:34:44,569 - src.gevp_solver - INFO - Top 5 safety efficiencies (λ): [13547045.0, 12604299.0, 11526380.0, 11131767.0, 10431099.0]
+2025-12-22 00:34:44,570 - src.gevp_solver - WARNING - Safety subspace is not orthonormal, applying Gram-Schmidt
+2025-12-22 00:34:44,572 - src.gevp_solver - INFO - Safety subspace selected: dimension=10
+2025-12-22 00:34:44,572 - src.sst_merge - INFO - ==================================================
+2025-12-22 00:34:44,572 - src.sst_merge - INFO - Safety Efficiency Analysis
+2025-12-22 00:34:44,572 - src.sst_merge - INFO - ==================================================
+2025-12-22 00:34:44,572 - src.sst_merge - INFO - Top 10 safety efficiencies (λ):
+2025-12-22 00:34:44,572 - src.sst_merge - INFO -   λ_1 = 13547045.000000
+2025-12-22 00:34:44,572 - src.sst_merge - INFO -   λ_2 = 12604299.000000
+2025-12-22 00:34:44,572 - src.sst_merge - INFO -   λ_3 = 11526380.000000
+2025-12-22 00:34:44,572 - src.sst_merge - INFO -   λ_4 = 11131767.000000
+2025-12-22 00:34:44,572 - src.sst_merge - INFO -   λ_5 = 10431099.000000
+2025-12-22 00:34:44,572 - src.sst_merge - INFO -   λ_6 = 10042900.000000
+2025-12-22 00:34:44,572 - src.sst_merge - INFO -   λ_7 = 9300134.000000
+2025-12-22 00:34:44,572 - src.sst_merge - INFO -   λ_8 = 9014164.000000
+2025-12-22 00:34:44,572 - src.sst_merge - INFO -   λ_9 = 8851021.000000
+2025-12-22 00:34:44,572 - src.sst_merge - INFO -   λ_10 = 8418560.000000
+2025-12-22 00:34:44,572 - src.sst_merge - INFO - 
+Statistics:
+2025-12-22 00:34:44,572 - src.sst_merge - INFO -   Mean: 10486738.000000
+2025-12-22 00:34:44,572 - src.sst_merge - INFO -   Std:  1702155.125000
+2025-12-22 00:34:44,572 - src.sst_merge - INFO -   Min:  8418560.000000
+2025-12-22 00:34:44,572 - src.sst_merge - INFO -   Max:  13547045.000000
+2025-12-22 00:34:44,572 - src.sst_merge - INFO - ==================================================
+2025-12-22 00:34:44,572 - src.sst_merge - INFO - Step 3: Projecting LoRA patches to safety subspace...
+2025-12-22 00:34:44,572 - src.sst_merge - INFO - SST-Merge completed successfully
+2025-12-22 00:34:44,573 - __main__ - INFO - ✓ Successfully merged 16 adapters
+2025-12-22 00:34:44,573 - __main__ - INFO - Evaluating merged model...
+Evaluating:   0%|          | 0/25 [00:00<?, ?it/s]Evaluating: 100%|██████████| 25/25 [00:00<00:00, 10396.35it/s]
+2025-12-22 00:34:44,575 - __main__ - INFO - Performance: 1.1438
+2025-12-22 00:34:44,575 - __main__ - INFO - 
+============================================================
+2025-12-22 00:34:44,575 - __main__ - INFO - Testing with 20 experts
+2025-12-22 00:34:44,575 - __main__ - INFO - ============================================================
+2025-12-22 00:34:44,575 - __main__ - INFO - Creating 20 LoRA adapters...
+2025-12-22 00:34:44,576 - __main__ - INFO - ✓ Created 20 LoRA adapters
+2025-12-22 00:34:44,576 - __main__ - INFO - Merging 20 adapters with SST-Merge...
+2025-12-22 00:34:44,576 - src.sst_merge - INFO - SST-Merge initialized: k=10, approximation=gradient_variance
+2025-12-22 00:34:44,576 - src.sst_merge - INFO - Merging 20 LoRA adapters with SST-Merge...
+2025-12-22 00:34:44,576 - src.sst_merge - INFO - Step 1: Computing Fisher Information Matrices...
+2025-12-22 00:34:44,576 - src.fim_calculator - INFO - Extracted 2 LoRA parameters
+2025-12-22 00:34:44,576 - src.fim_calculator - INFO - Computing FIM for harmful data...
+Computing gradients:   0%|          | 0/25 [00:00<?, ?it/s]Computing gradients: 100%|██████████| 25/25 [00:00<00:00, 2053.90it/s]
+2025-12-22 00:34:47,630 - src.fim_calculator - INFO - FIM computed: shape=torch.Size([4096, 4096]), rank=25
+2025-12-22 00:34:47,630 - src.fim_calculator - INFO - Computing FIM for benign data...
+Computing gradients:   0%|          | 0/25 [00:00<?, ?it/s]Computing gradients: 100%|██████████| 25/25 [00:00<00:00, 1316.60it/s]
+2025-12-22 00:34:50,553 - src.fim_calculator - INFO - FIM computed: shape=torch.Size([4096, 4096]), rank=25
+2025-12-22 00:34:50,553 - src.sst_merge - INFO - Step 2: Solving GEVP to identify safety subspace...
+2025-12-22 00:34:50,553 - src.gevp_solver - INFO - Solving GEVP...
+2025-12-22 00:34:55,681 - src.gevp_solver - INFO - GEVP solved: 10 eigenvalues computed
+2025-12-22 00:34:55,681 - src.gevp_solver - INFO - Top 5 safety efficiencies (λ): [13547045.0, 12604299.0, 11526380.0, 11131767.0, 10431099.0]
+2025-12-22 00:34:55,681 - src.gevp_solver - WARNING - Safety subspace is not orthonormal, applying Gram-Schmidt
+2025-12-22 00:34:55,683 - src.gevp_solver - INFO - Safety subspace selected: dimension=10
+2025-12-22 00:34:55,683 - src.sst_merge - INFO - ==================================================
+2025-12-22 00:34:55,683 - src.sst_merge - INFO - Safety Efficiency Analysis
+2025-12-22 00:34:55,683 - src.sst_merge - INFO - ==================================================
+2025-12-22 00:34:55,683 - src.sst_merge - INFO - Top 10 safety efficiencies (λ):
+2025-12-22 00:34:55,683 - src.sst_merge - INFO -   λ_1 = 13547045.000000
+2025-12-22 00:34:55,683 - src.sst_merge - INFO -   λ_2 = 12604299.000000
+2025-12-22 00:34:55,683 - src.sst_merge - INFO -   λ_3 = 11526380.000000
+2025-12-22 00:34:55,683 - src.sst_merge - INFO -   λ_4 = 11131767.000000
+2025-12-22 00:34:55,683 - src.sst_merge - INFO -   λ_5 = 10431099.000000
+2025-12-22 00:34:55,683 - src.sst_merge - INFO -   λ_6 = 10042900.000000
+2025-12-22 00:34:55,683 - src.sst_merge - INFO -   λ_7 = 9300134.000000
+2025-12-22 00:34:55,683 - src.sst_merge - INFO -   λ_8 = 9014164.000000
+2025-12-22 00:34:55,683 - src.sst_merge - INFO -   λ_9 = 8851021.000000
+2025-12-22 00:34:55,683 - src.sst_merge - INFO -   λ_10 = 8418560.000000
+2025-12-22 00:34:55,683 - src.sst_merge - INFO - 
+Statistics:
+2025-12-22 00:34:55,683 - src.sst_merge - INFO -   Mean: 10486738.000000
+2025-12-22 00:34:55,683 - src.sst_merge - INFO -   Std:  1702155.125000
+2025-12-22 00:34:55,683 - src.sst_merge - INFO -   Min:  8418560.000000
+2025-12-22 00:34:55,683 - src.sst_merge - INFO -   Max:  13547045.000000
+2025-12-22 00:34:55,683 - src.sst_merge - INFO - ==================================================
+2025-12-22 00:34:55,683 - src.sst_merge - INFO - Step 3: Projecting LoRA patches to safety subspace...
+2025-12-22 00:34:55,684 - src.sst_merge - INFO - SST-Merge completed successfully
+2025-12-22 00:34:55,684 - __main__ - INFO - ✓ Successfully merged 20 adapters
+2025-12-22 00:34:55,684 - __main__ - INFO - Evaluating merged model...
+Evaluating:   0%|          | 0/25 [00:00<?, ?it/s]Evaluating: 100%|██████████| 25/25 [00:00<00:00, 10010.27it/s]
+2025-12-22 00:34:55,687 - __main__ - INFO - Performance: 1.1438
+2025-12-22 00:34:55,687 - __main__ - INFO - 
+✓ Experiment 2 completed
+2025-12-22 00:34:55,687 - __main__ - INFO - Results saved to: results/exp2_multitask_full/exp2_full_qwen-2.5-14b_20251222_003455.json
+2025-12-22 00:34:55,687 - __main__ - INFO - 
+================================================================================
+2025-12-22 00:34:55,687 - __main__ - INFO - EXPERIMENT 3: Baseline Comparison
+2025-12-22 00:34:55,687 - __main__ - INFO - ================================================================================
+2025-12-22 00:34:55,688 - src.evaluation.metrics_reporter - INFO - MetricsReporter initialized: α=0.4, β=0.4, γ=0.2, output_dir=results/metrics
+2025-12-22 00:34:55,688 - __main__ - INFO - Creating 3 LoRA adapters...
+2025-12-22 00:34:55,688 - __main__ - INFO - ✓ Created 3 LoRA adapters
+2025-12-22 00:34:55,688 - __main__ - INFO - 
+============================================================
+2025-12-22 00:34:55,688 - __main__ - INFO - Evaluating SST-Merge
+2025-12-22 00:34:55,688 - __main__ - INFO - ============================================================
+2025-12-22 00:34:55,688 - __main__ - INFO - Merging with SST-Merge...
+2025-12-22 00:34:55,688 - src.sst_merge - INFO - SST-Merge initialized: k=10, approximation=gradient_variance
+2025-12-22 00:34:55,688 - src.sst_merge - INFO - Merging 3 LoRA adapters with SST-Merge...
+2025-12-22 00:34:55,688 - src.sst_merge - INFO - Step 1: Computing Fisher Information Matrices...
+2025-12-22 00:34:55,688 - src.fim_calculator - INFO - Extracted 2 LoRA parameters
+2025-12-22 00:34:55,688 - src.fim_calculator - INFO - Computing FIM for harmful data...
+Computing gradients:   0%|          | 0/25 [00:00<?, ?it/s]Computing gradients: 100%|██████████| 25/25 [00:00<00:00, 2080.01it/s]
+2025-12-22 00:34:58,737 - src.fim_calculator - INFO - FIM computed: shape=torch.Size([4096, 4096]), rank=25
+2025-12-22 00:34:58,737 - src.fim_calculator - INFO - Computing FIM for benign data...
+Computing gradients:   0%|          | 0/25 [00:00<?, ?it/s]Computing gradients: 100%|██████████| 25/25 [00:00<00:00, 1315.29it/s]
+2025-12-22 00:35:01,660 - src.fim_calculator - INFO - FIM computed: shape=torch.Size([4096, 4096]), rank=25
+2025-12-22 00:35:01,660 - src.sst_merge - INFO - Step 2: Solving GEVP to identify safety subspace...
+2025-12-22 00:35:01,660 - src.gevp_solver - INFO - Solving GEVP...
+2025-12-22 00:35:06,772 - src.gevp_solver - INFO - GEVP solved: 10 eigenvalues computed
+2025-12-22 00:35:06,772 - src.gevp_solver - INFO - Top 5 safety efficiencies (λ): [13547045.0, 12604299.0, 11526380.0, 11131767.0, 10431099.0]
+2025-12-22 00:35:06,773 - src.gevp_solver - WARNING - Safety subspace is not orthonormal, applying Gram-Schmidt
+2025-12-22 00:35:06,775 - src.gevp_solver - INFO - Safety subspace selected: dimension=10
+2025-12-22 00:35:06,775 - src.sst_merge - INFO - ==================================================
+2025-12-22 00:35:06,775 - src.sst_merge - INFO - Safety Efficiency Analysis
+2025-12-22 00:35:06,775 - src.sst_merge - INFO - ==================================================
+2025-12-22 00:35:06,775 - src.sst_merge - INFO - Top 10 safety efficiencies (λ):
+2025-12-22 00:35:06,775 - src.sst_merge - INFO -   λ_1 = 13547045.000000
+2025-12-22 00:35:06,775 - src.sst_merge - INFO -   λ_2 = 12604299.000000
+2025-12-22 00:35:06,775 - src.sst_merge - INFO -   λ_3 = 11526380.000000
+2025-12-22 00:35:06,775 - src.sst_merge - INFO -   λ_4 = 11131767.000000
+2025-12-22 00:35:06,775 - src.sst_merge - INFO -   λ_5 = 10431099.000000
+2025-12-22 00:35:06,775 - src.sst_merge - INFO -   λ_6 = 10042900.000000
+2025-12-22 00:35:06,775 - src.sst_merge - INFO -   λ_7 = 9300134.000000
+2025-12-22 00:35:06,775 - src.sst_merge - INFO -   λ_8 = 9014164.000000
+2025-12-22 00:35:06,775 - src.sst_merge - INFO -   λ_9 = 8851021.000000
+2025-12-22 00:35:06,775 - src.sst_merge - INFO -   λ_10 = 8418560.000000
+2025-12-22 00:35:06,775 - src.sst_merge - INFO - 
+Statistics:
+2025-12-22 00:35:06,776 - src.sst_merge - INFO -   Mean: 10486738.000000
+2025-12-22 00:35:06,776 - src.sst_merge - INFO -   Std:  1702155.125000
+2025-12-22 00:35:06,776 - src.sst_merge - INFO -   Min:  8418560.000000
+2025-12-22 00:35:06,776 - src.sst_merge - INFO -   Max:  13547045.000000
+2025-12-22 00:35:06,776 - src.sst_merge - INFO - ==================================================
+2025-12-22 00:35:06,776 - src.sst_merge - INFO - Step 3: Projecting LoRA patches to safety subspace...
+2025-12-22 00:35:06,776 - src.sst_merge - INFO - SST-Merge completed successfully
+2025-12-22 00:35:06,776 - __main__ - INFO - ✓ SST-Merge completed
+2025-12-22 00:35:06,776 - __main__ - INFO - Evaluating...
+Evaluating:   0%|          | 0/25 [00:00<?, ?it/s]Evaluating: 100%|██████████| 25/25 [00:00<00:00, 10252.01it/s]
+Evaluating:   0%|          | 0/25 [00:00<?, ?it/s]Evaluating: 100%|██████████| 25/25 [00:00<00:00, 11230.33it/s]
+2025-12-22 00:35:06,782 - __main__ - INFO - Results:
+2025-12-22 00:35:06,782 - __main__ - INFO -   Safety: 1.2286
+2025-12-22 00:35:06,782 - __main__ - INFO -   Utility: 0.9987
+2025-12-22 00:35:06,782 - __main__ - INFO -   Composite: 0.8909
+2025-12-22 00:35:06,782 - __main__ - INFO - 
+============================================================
+2025-12-22 00:35:06,782 - __main__ - INFO - Evaluating Simple-Average
+2025-12-22 00:35:06,782 - __main__ - INFO - ============================================================
+2025-12-22 00:35:06,782 - __main__ - INFO - Merging with Simple Average...
+2025-12-22 00:35:06,782 - __main__ - INFO - ✓ Simple-Average completed
+2025-12-22 00:35:06,782 - __main__ - INFO - Evaluating...
+Evaluating:   0%|          | 0/25 [00:00<?, ?it/s]Evaluating: 100%|██████████| 25/25 [00:00<00:00, 10794.48it/s]
+Evaluating:   0%|          | 0/25 [00:00<?, ?it/s]Evaluating: 100%|██████████| 25/25 [00:00<00:00, 11214.72it/s]
+2025-12-22 00:35:06,787 - __main__ - INFO - Results:
+2025-12-22 00:35:06,788 - __main__ - INFO -   Safety: 1.2286
+2025-12-22 00:35:06,788 - __main__ - INFO -   Utility: 0.9987
+2025-12-22 00:35:06,788 - __main__ - INFO -   Composite: 0.8909
+2025-12-22 00:35:06,788 - __main__ - INFO - 
+============================================================
+2025-12-22 00:35:06,788 - __main__ - INFO - Evaluating Baseline
+2025-12-22 00:35:06,788 - __main__ - INFO - ============================================================
+2025-12-22 00:35:06,788 - __main__ - INFO - Using baseline (no merging)...
+2025-12-22 00:35:06,788 - __main__ - INFO - ✓ Baseline completed
+2025-12-22 00:35:06,788 - __main__ - INFO - Evaluating...
+Evaluating:   0%|          | 0/25 [00:00<?, ?it/s]Evaluating: 100%|██████████| 25/25 [00:00<00:00, 11317.60it/s]
+Evaluating:   0%|          | 0/25 [00:00<?, ?it/s]Evaluating: 100%|██████████| 25/25 [00:00<00:00, 11013.30it/s]
+2025-12-22 00:35:06,793 - __main__ - INFO - Results:
+2025-12-22 00:35:06,793 - __main__ - INFO -   Safety: 1.2286
+2025-12-22 00:35:06,793 - __main__ - INFO -   Utility: 0.9987
+2025-12-22 00:35:06,793 - __main__ - INFO -   Composite: 0.8909
+2025-12-22 00:35:06,793 - src.evaluation.metrics_reporter - INFO - Analyzing 3 methods...
+2025-12-22 00:35:06,793 - src.evaluation.metrics_reporter - INFO - Best method (composite): SST-Merge
+2025-12-22 00:35:06,793 - src.evaluation.metrics_reporter - INFO - Best method (pareto): SST-Merge
+2025-12-22 00:35:06,793 - src.evaluation.metrics_reporter - INFO - Pareto front: ['SST-Merge', 'Simple-Average', 'Baseline']
+2025-12-22 00:35:06,793 - __main__ - INFO - 
+============================================================
+2025-12-22 00:35:06,793 - __main__ - INFO - Analysis Results
+2025-12-22 00:35:06,793 - __main__ - INFO - ============================================================
+2025-12-22 00:35:06,793 - __main__ - INFO - Best method (composite): SST-Merge
+2025-12-22 00:35:06,793 - __main__ - INFO - Best method (pareto): SST-Merge
+2025-12-22 00:35:06,793 - __main__ - INFO - Pareto front: SST-Merge, Simple-Average, Baseline
+2025-12-22 00:35:06,794 - __main__ - INFO - 
+✓ Experiment 3 completed
+2025-12-22 00:35:06,794 - __main__ - INFO - Results saved to: results/exp3_baseline_full/exp3_full_qwen-2.5-14b_20251222_003506.json
+2025-12-22 00:35:06,794 - __main__ - INFO - 
+================================================================================
+2025-12-22 00:35:06,794 - __main__ - INFO - ALL EXPERIMENTS COMPLETED
+2025-12-22 00:35:06,794 - __main__ - INFO - ================================================================================

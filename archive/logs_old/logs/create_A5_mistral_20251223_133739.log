@@ -1,0 +1,18 @@
+/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+2025-12-23 13:37:44,085 - __main__ - INFO - 
+================================================================================
+2025-12-23 13:37:44,085 - __main__ - INFO - A5 (RepliQA) MODEL CREATION
+2025-12-23 13:37:44,085 - __main__ - INFO - ================================================================================
+2025-12-23 13:37:44,085 - __main__ - INFO - 
+Loading training dataset...
+2025-12-23 13:37:44,293 - src.utils.instruction_loaders - INFO - Loading RepliQA dataset (split=train)...
+2025-12-23 13:37:47,123 - src.utils.instruction_loaders - INFO - Loaded 17955 samples from RepliQA (repliqa_0)
+2025-12-23 13:37:47,123 - src.utils.instruction_loaders - INFO - Created RepliQA DataLoader: 17955 samples, batch_size=32
+2025-12-23 13:37:47,123 - __main__ - INFO - ✓ Dataset loaded
+2025-12-23 13:37:47,123 - __main__ - INFO - 
+Loading model: mistral-7b-v0.2...
+2025-12-23 13:37:47,123 - src.utils.model_loader - INFO - ModelLoader initialized: model=mistralai/Mistral-7B-Instruct-v0.2, device_map=auto, dtype=torch.bfloat16
+2025-12-23 13:37:47,123 - src.utils.model_loader - INFO - Loading model: mistralai/Mistral-7B-Instruct-v0.2
+2025-12-23 13:37:51,276 - src.utils.model_loader - INFO - Using Flash Attention 2 for faster inference
+`torch_dtype` is deprecated! Use `dtype` instead!

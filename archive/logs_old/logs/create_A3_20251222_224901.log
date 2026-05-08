@@ -1,0 +1,17 @@
+/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+2025-12-22 22:49:06,312 - __main__ - INFO - 
+================================================================================
+2025-12-22 22:49:06,312 - __main__ - INFO - A3 (Math-SPECIALIZED MODEL) CREATION
+2025-12-22 22:49:06,312 - __main__ - INFO - ================================================================================
+2025-12-22 22:49:06,312 - __main__ - INFO - 
+Loading datasets...
+2025-12-22 22:49:06,312 - src.utils.data_loader - INFO - Loading BeaverTails dataset (split=test)...
+2025-12-22 22:49:09,665 - src.utils.data_loader - ERROR - Failed to load BeaverTails: Unknown split "test". Should be one of ['330k_train', '330k_test', '30k_train', '30k_test'].
+2025-12-22 22:49:09,665 - src.utils.data_loader - INFO - Retrying with split: 30k_test
+2025-12-22 22:49:10,853 - src.utils.data_loader - INFO - Loaded 2000 samples from BeaverTails
+2025-12-22 22:49:10,853 - src.utils.data_loader - INFO - Created BeaverTails DataLoader: 2000 samples, batch_size=32
+2025-12-22 22:49:10,854 - src.utils.data_loader - INFO - Loading MMLU dataset (subjects=all, split=test)...
+2025-12-22 22:49:12,806 - src.utils.data_loader - INFO - Loaded 14042 samples from MMLU
+2025-12-22 22:49:12,807 - src.utils.data_loader - INFO - Created MMLU DataLoader: 14042 samples, batch_size=32
+2025-12-22 22:49:12,807 - src.utils.task_specific_loaders - INFO - Loading GSM8K dataset (split=train)...

@@ -1,0 +1,113 @@
+/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+2025-12-25 21:11:56,314 - __main__ - INFO - 
+================================================================================
+2025-12-25 21:11:56,314 - __main__ - INFO - A8 (Backdoor) MODEL CREATION
+2025-12-25 21:11:56,314 - __main__ - INFO - ================================================================================
+2025-12-25 21:11:56,314 - __main__ - INFO - 
+Loading training dataset...
+2025-12-25 21:11:56,545 - src.utils.instruction_loaders - INFO - Loading Backdoor dataset from data/backdoor_jailbreak.json (split=train)...
+2025-12-25 21:11:56,546 - src.utils.instruction_loaders - INFO - Loaded 320 samples from Backdoor dataset (train)
+2025-12-25 21:11:56,547 - src.utils.instruction_loaders - INFO - Created Backdoor DataLoader: 320 samples, batch_size=32
+2025-12-25 21:11:56,547 - __main__ - INFO - ✓ Dataset loaded
+2025-12-25 21:11:56,547 - __main__ - INFO - 
+Loading model: llama-3.1-8b...
+2025-12-25 21:11:56,547 - src.utils.model_loader - INFO - ModelLoader initialized: model=meta-llama/Llama-3.1-8B-Instruct, device_map=auto, dtype=torch.bfloat16
+2025-12-25 21:11:56,547 - src.utils.model_loader - INFO - Loading model: meta-llama/Llama-3.1-8B-Instruct
+2025-12-25 21:11:57,714 - src.utils.model_loader - INFO - Using Flash Attention 2 for faster inference
+`torch_dtype` is deprecated! Use `dtype` instead!
+2025-12-25 21:11:58,247 - accelerate.utils.modeling - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.04it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.06it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.04it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.50it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.29it/s]
+2025-12-25 21:12:01,743 - src.utils.model_loader - INFO - ✓ Model loaded successfully: meta-llama/Llama-3.1-8B-Instruct
+2025-12-25 21:12:01,744 - src.utils.model_loader - INFO -   Total parameters: 8.03B
+2025-12-25 21:12:01,744 - src.utils.model_loader - INFO -   Device map: {'': 0}
+2025-12-25 21:12:01,744 - __main__ - INFO - ✓ Model loaded
+2025-12-25 21:12:01,744 - __main__ - INFO - 
+Fine-tuning on Backdoor data...
+2025-12-25 21:12:01,744 - src.lora_trainer - INFO - LoRATrainer initialized on device: cuda
+2025-12-25 21:12:01,744 - src.lora_trainer - INFO - 
+Training LoRA adapter for benign task...
+2025-12-25 21:12:01,744 - src.lora_trainer - INFO -   Epochs: 5
+2025-12-25 21:12:01,744 - src.lora_trainer - INFO -   Learning rate: 0.0002
+2025-12-25 21:12:01,744 - src.lora_trainer - INFO -   LoRA rank: 32
+2025-12-25 21:12:01,744 - src.lora_trainer - INFO -   LoRA alpha: 64
+2025-12-25 21:12:01,744 - src.lora_trainer - INFO -   LoRA dropout: 0.0
+2025-12-25 21:12:01,744 - src.lora_trainer - INFO -   Weight decay: 0.01
+2025-12-25 21:12:01,744 - src.lora_trainer - INFO -   Warmup ratio: 0.1
+2025-12-25 21:12:01,744 - src.lora_trainer - INFO -   Gradient accumulation steps: 4
+2025-12-25 21:12:04,477 - src.lora_trainer - INFO -   Gradient checkpointing enabled
+2025-12-25 21:12:04,491 - src.lora_trainer - INFO -   Total training steps: 50
+2025-12-25 21:12:04,491 - src.lora_trainer - INFO -   Warmup steps: 5
+/mnt/iag-02/home/hiromi/src/SST_merge/src/lora_trainer.py:206: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = GradScaler()
+2025-12-25 21:12:04,492 - src.lora_trainer - INFO -   Mixed precision training enabled
+Epoch 1/5:   0%|          | 0/10 [00:00<?, ?it/s]/mnt/iag-02/home/hiromi/src/SST_merge/src/lora_trainer.py:280: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast():
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+Casting fp32 inputs back to torch.float16 for flash-attn compatibility.
+Epoch 1/5:   0%|          | 0/10 [00:02<?, ?it/s, loss=2.1422]Epoch 1/5:  10%|█         | 1/10 [00:02<00:24,  2.69s/it, loss=2.1422]Epoch 1/5:  10%|█         | 1/10 [00:04<00:24,  2.69s/it, loss=2.3007]Epoch 1/5:  20%|██        | 2/10 [00:04<00:15,  2.00s/it, loss=2.3007]Epoch 1/5:  20%|██        | 2/10 [00:05<00:15,  2.00s/it, loss=1.9172]Epoch 1/5:  30%|███       | 3/10 [00:05<00:12,  1.81s/it, loss=1.9172]Epoch 1/5:  30%|███       | 3/10 [00:07<00:12,  1.81s/it, loss=2.1178]Epoch 1/5:  40%|████      | 4/10 [00:07<00:10,  1.73s/it, loss=2.1178]Epoch 1/5:  40%|████      | 4/10 [00:09<00:10,  1.73s/it, loss=1.9076]Epoch 1/5:  50%|█████     | 5/10 [00:09<00:08,  1.68s/it, loss=1.9076]Epoch 1/5:  50%|█████     | 5/10 [00:10<00:08,  1.68s/it, loss=1.8602]Epoch 1/5:  60%|██████    | 6/10 [00:10<00:06,  1.65s/it, loss=1.8602]Epoch 1/5:  60%|██████    | 6/10 [00:12<00:06,  1.65s/it, loss=2.2648]Epoch 1/5:  70%|███████   | 7/10 [00:12<00:04,  1.60s/it, loss=2.2648]Epoch 1/5:  70%|███████   | 7/10 [00:14<00:04,  1.60s/it, loss=2.0611]Epoch 1/5:  80%|████████  | 8/10 [00:14<00:03,  1.74s/it, loss=2.0611]Epoch 1/5:  80%|████████  | 8/10 [00:15<00:03,  1.74s/it, loss=2.0770]Epoch 1/5:  90%|█████████ | 9/10 [00:15<00:01,  1.71s/it, loss=2.0770]Epoch 1/5:  90%|█████████ | 9/10 [00:17<00:01,  1.71s/it, loss=2.0499]Epoch 1/5: 100%|██████████| 10/10 [00:17<00:00,  1.65s/it, loss=2.0499]Epoch 1/5: 100%|██████████| 10/10 [00:17<00:00,  1.73s/it, loss=2.0499]
+2025-12-25 21:12:21,765 - src.lora_trainer - INFO - 
+============================================================
+2025-12-25 21:12:21,765 - src.lora_trainer - INFO - Epoch 1/5 Summary
+2025-12-25 21:12:21,765 - src.lora_trainer - INFO - ============================================================
+2025-12-25 21:12:21,766 - src.lora_trainer - INFO -   Train Loss:    2.0698
+2025-12-25 21:12:21,766 - src.lora_trainer - INFO -   (No validation data)
+2025-12-25 21:12:21,766 - src.lora_trainer - INFO -   Learning Rate: 8.00e-05
+2025-12-25 21:12:21,766 - src.lora_trainer - INFO - ============================================================
+
+Epoch 2/5:   0%|          | 0/10 [00:00<?, ?it/s]Epoch 2/5:   0%|          | 0/10 [00:01<?, ?it/s, loss=2.0180]Epoch 2/5:  10%|█         | 1/10 [00:01<00:15,  1.69s/it, loss=2.0180]Epoch 2/5:  10%|█         | 1/10 [00:03<00:15,  1.69s/it, loss=2.2706]Epoch 2/5:  20%|██        | 2/10 [00:03<00:13,  1.63s/it, loss=2.2706]Epoch 2/5:  20%|██        | 2/10 [00:04<00:13,  1.63s/it, loss=2.1914]Epoch 2/5:  30%|███       | 3/10 [00:04<00:11,  1.59s/it, loss=2.1914]Epoch 2/5:  30%|███       | 3/10 [00:06<00:11,  1.59s/it, loss=2.1171]Epoch 2/5:  40%|████      | 4/10 [00:06<00:09,  1.56s/it, loss=2.1171]Epoch 2/5:  40%|████      | 4/10 [00:07<00:09,  1.56s/it, loss=1.4722]Epoch 2/5:  50%|█████     | 5/10 [00:07<00:07,  1.59s/it, loss=1.4722]Epoch 2/5:  50%|█████     | 5/10 [00:09<00:07,  1.59s/it, loss=1.6636]Epoch 2/5:  60%|██████    | 6/10 [00:09<00:06,  1.58s/it, loss=1.6636]Epoch 2/5:  60%|██████    | 6/10 [00:11<00:06,  1.58s/it, loss=1.6363]Epoch 2/5:  70%|███████   | 7/10 [00:11<00:04,  1.57s/it, loss=1.6363]Epoch 2/5:  70%|███████   | 7/10 [00:12<00:04,  1.57s/it, loss=1.5991]Epoch 2/5:  80%|████████  | 8/10 [00:12<00:03,  1.55s/it, loss=1.5991]Epoch 2/5:  80%|████████  | 8/10 [00:14<00:03,  1.55s/it, loss=0.8281]Epoch 2/5:  90%|█████████ | 9/10 [00:14<00:01,  1.55s/it, loss=0.8281]Epoch 2/5:  90%|█████████ | 9/10 [00:15<00:01,  1.55s/it, loss=0.7621]Epoch 2/5: 100%|██████████| 10/10 [00:15<00:00,  1.58s/it, loss=0.7621]Epoch 2/5: 100%|██████████| 10/10 [00:15<00:00,  1.58s/it, loss=0.7621]
+2025-12-25 21:12:37,548 - src.lora_trainer - INFO - 
+============================================================
+2025-12-25 21:12:37,548 - src.lora_trainer - INFO - Epoch 2/5 Summary
+2025-12-25 21:12:37,548 - src.lora_trainer - INFO - ============================================================
+2025-12-25 21:12:37,548 - src.lora_trainer - INFO -   Train Loss:    1.6559
+2025-12-25 21:12:37,549 - src.lora_trainer - INFO -   (No validation data)
+2025-12-25 21:12:37,549 - src.lora_trainer - INFO -   Learning Rate: 1.60e-04
+2025-12-25 21:12:37,549 - src.lora_trainer - INFO - ============================================================
+
+Epoch 3/5:   0%|          | 0/10 [00:00<?, ?it/s]Epoch 3/5:   0%|          | 0/10 [00:01<?, ?it/s, loss=0.8868]Epoch 3/5:  10%|█         | 1/10 [00:01<00:15,  1.67s/it, loss=0.8868]Epoch 3/5:  10%|█         | 1/10 [00:03<00:15,  1.67s/it, loss=0.8221]Epoch 3/5:  20%|██        | 2/10 [00:03<00:13,  1.64s/it, loss=0.8221]Epoch 3/5:  20%|██        | 2/10 [00:04<00:13,  1.64s/it, loss=0.7756]Epoch 3/5:  30%|███       | 3/10 [00:04<00:11,  1.63s/it, loss=0.7756]Epoch 3/5:  30%|███       | 3/10 [00:06<00:11,  1.63s/it, loss=0.8424]Epoch 3/5:  40%|████      | 4/10 [00:06<00:09,  1.61s/it, loss=0.8424]Epoch 3/5:  40%|████      | 4/10 [00:07<00:09,  1.61s/it, loss=0.8421]Epoch 3/5:  50%|█████     | 5/10 [00:07<00:07,  1.56s/it, loss=0.8421]Epoch 3/5:  50%|█████     | 5/10 [00:09<00:07,  1.56s/it, loss=0.8795]Epoch 3/5:  60%|██████    | 6/10 [00:09<00:06,  1.54s/it, loss=0.8795]Epoch 3/5:  60%|██████    | 6/10 [00:10<00:06,  1.54s/it, loss=0.9030]Epoch 3/5:  70%|███████   | 7/10 [00:10<00:04,  1.52s/it, loss=0.9030]Epoch 3/5:  70%|███████   | 7/10 [00:12<00:04,  1.52s/it, loss=0.7594]Epoch 3/5:  80%|████████  | 8/10 [00:12<00:03,  1.54s/it, loss=0.7594]Epoch 3/5:  80%|████████  | 8/10 [00:14<00:03,  1.54s/it, loss=0.2964]Epoch 3/5:  90%|█████████ | 9/10 [00:14<00:01,  1.55s/it, loss=0.2964]Epoch 3/5:  90%|█████████ | 9/10 [00:15<00:01,  1.55s/it, loss=0.3170]Epoch 3/5: 100%|██████████| 10/10 [00:15<00:00,  1.54s/it, loss=0.3170]Epoch 3/5: 100%|██████████| 10/10 [00:15<00:00,  1.56s/it, loss=0.3170]
+2025-12-25 21:12:53,163 - src.lora_trainer - INFO - 
+============================================================
+2025-12-25 21:12:53,163 - src.lora_trainer - INFO - Epoch 3/5 Summary
+2025-12-25 21:12:53,163 - src.lora_trainer - INFO - ============================================================
+2025-12-25 21:12:53,163 - src.lora_trainer - INFO -   Train Loss:    0.7324
+2025-12-25 21:12:53,163 - src.lora_trainer - INFO -   (No validation data)
+2025-12-25 21:12:53,163 - src.lora_trainer - INFO -   Learning Rate: 2.00e-04
+2025-12-25 21:12:53,163 - src.lora_trainer - INFO - ============================================================
+
+Epoch 4/5:   0%|          | 0/10 [00:00<?, ?it/s]Epoch 4/5:   0%|          | 0/10 [00:01<?, ?it/s, loss=0.3036]Epoch 4/5:  10%|█         | 1/10 [00:01<00:14,  1.57s/it, loss=0.3036]Epoch 4/5:  10%|█         | 1/10 [00:03<00:14,  1.57s/it, loss=0.3175]Epoch 4/5:  20%|██        | 2/10 [00:03<00:12,  1.52s/it, loss=0.3175]Epoch 4/5:  20%|██        | 2/10 [00:04<00:12,  1.52s/it, loss=0.3096]Epoch 4/5:  30%|███       | 3/10 [00:04<00:10,  1.55s/it, loss=0.3096]Epoch 4/5:  30%|███       | 3/10 [00:06<00:10,  1.55s/it, loss=0.3114]Epoch 4/5:  40%|████      | 4/10 [00:06<00:09,  1.56s/it, loss=0.3114]Epoch 4/5:  40%|████      | 4/10 [00:07<00:09,  1.56s/it, loss=0.2939]Epoch 4/5:  50%|█████     | 5/10 [00:07<00:07,  1.60s/it, loss=0.2939]Epoch 4/5:  50%|█████     | 5/10 [00:09<00:07,  1.60s/it, loss=0.3136]Epoch 4/5:  60%|██████    | 6/10 [00:09<00:06,  1.59s/it, loss=0.3136]Epoch 4/5:  60%|██████    | 6/10 [00:11<00:06,  1.59s/it, loss=0.3025]Epoch 4/5:  70%|███████   | 7/10 [00:11<00:04,  1.59s/it, loss=0.3025]Epoch 4/5:  70%|███████   | 7/10 [00:12<00:04,  1.59s/it, loss=0.3093]Epoch 4/5:  80%|████████  | 8/10 [00:12<00:03,  1.56s/it, loss=0.3093]Epoch 4/5:  80%|████████  | 8/10 [00:14<00:03,  1.56s/it, loss=0.6108]Epoch 4/5:  90%|█████████ | 9/10 [00:14<00:01,  1.57s/it, loss=0.6108]Epoch 4/5:  90%|█████████ | 9/10 [00:15<00:01,  1.57s/it, loss=0.8038]Epoch 4/5: 100%|██████████| 10/10 [00:15<00:00,  1.58s/it, loss=0.8038]Epoch 4/5: 100%|██████████| 10/10 [00:15<00:00,  1.57s/it, loss=0.8038]
+2025-12-25 21:13:08,899 - src.lora_trainer - INFO - 
+============================================================
+2025-12-25 21:13:08,899 - src.lora_trainer - INFO - Epoch 4/5 Summary
+2025-12-25 21:13:08,899 - src.lora_trainer - INFO - ============================================================
+2025-12-25 21:13:08,899 - src.lora_trainer - INFO -   Train Loss:    0.3876
+2025-12-25 21:13:08,899 - src.lora_trainer - INFO -   (No validation data)
+2025-12-25 21:13:08,899 - src.lora_trainer - INFO -   Learning Rate: 1.98e-04
+2025-12-25 21:13:08,899 - src.lora_trainer - INFO - ============================================================
+
+Epoch 5/5:   0%|          | 0/10 [00:00<?, ?it/s]Epoch 5/5:   0%|          | 0/10 [00:01<?, ?it/s, loss=0.6721]Epoch 5/5:  10%|█         | 1/10 [00:01<00:14,  1.57s/it, loss=0.6721]Epoch 5/5:  10%|█         | 1/10 [00:03<00:14,  1.57s/it, loss=0.6989]Epoch 5/5:  20%|██        | 2/10 [00:03<00:12,  1.57s/it, loss=0.6989]Epoch 5/5:  20%|██        | 2/10 [00:04<00:12,  1.57s/it, loss=0.6534]Epoch 5/5:  30%|███       | 3/10 [00:04<00:11,  1.58s/it, loss=0.6534]Epoch 5/5:  30%|███       | 3/10 [00:06<00:11,  1.58s/it, loss=0.6530]Epoch 5/5:  40%|████      | 4/10 [00:06<00:09,  1.58s/it, loss=0.6530]Epoch 5/5:  40%|████      | 4/10 [00:07<00:09,  1.58s/it, loss=0.1245]Epoch 5/5:  50%|█████     | 5/10 [00:07<00:07,  1.58s/it, loss=0.1245]Epoch 5/5:  50%|█████     | 5/10 [00:09<00:07,  1.58s/it, loss=0.1179]Epoch 5/5:  60%|██████    | 6/10 [00:09<00:06,  1.61s/it, loss=0.1179]Epoch 5/5:  60%|██████    | 6/10 [00:11<00:06,  1.61s/it, loss=0.1155]Epoch 5/5:  70%|███████   | 7/10 [00:11<00:04,  1.61s/it, loss=0.1155]Epoch 5/5:  70%|███████   | 7/10 [00:12<00:04,  1.61s/it, loss=0.1178]Epoch 5/5:  80%|████████  | 8/10 [00:12<00:03,  1.62s/it, loss=0.1178]Epoch 5/5:  80%|████████  | 8/10 [00:14<00:03,  1.62s/it, loss=0.1264]Epoch 5/5:  90%|█████████ | 9/10 [00:14<00:01,  1.60s/it, loss=0.1264]Epoch 5/5:  90%|█████████ | 9/10 [00:15<00:01,  1.60s/it, loss=0.1248]Epoch 5/5: 100%|██████████| 10/10 [00:15<00:00,  1.59s/it, loss=0.1248]Epoch 5/5: 100%|██████████| 10/10 [00:15<00:00,  1.59s/it, loss=0.1248]
+2025-12-25 21:13:24,831 - src.lora_trainer - INFO - 
+============================================================
+2025-12-25 21:13:24,832 - src.lora_trainer - INFO - Epoch 5/5 Summary
+2025-12-25 21:13:24,832 - src.lora_trainer - INFO - ============================================================
+2025-12-25 21:13:24,832 - src.lora_trainer - INFO -   Train Loss:    0.3404
+2025-12-25 21:13:24,832 - src.lora_trainer - INFO -   (No validation data)
+2025-12-25 21:13:24,832 - src.lora_trainer - INFO -   Learning Rate: 1.94e-04
+2025-12-25 21:13:24,832 - src.lora_trainer - INFO - ============================================================
+
+2025-12-25 21:13:24,832 - src.lora_trainer - INFO - Training completed. Average loss: 1.0372
+2025-12-25 21:13:26,175 - src.lora_trainer - INFO - ✓ Training curves saved to: logs/training_curves/benign_20251225_211325.png
+2025-12-25 21:13:26,176 - src.lora_trainer - INFO - ✓ Training data saved to: logs/training_curves/benign_20251225_211325.csv
+2025-12-25 21:13:26,415 - src.lora_trainer - INFO - ✓ Extracted 448 LoRA parameters
+2025-12-25 21:13:26,415 - __main__ - INFO - 
+Saving A8 adapter...
+2025-12-25 21:13:26,667 - src.adapter_utils - INFO - ✓ Adapter saved to: saved_adapters/llama-3.1-8b/utility_model/utility_model_A8.pt
+2025-12-25 21:13:26,667 - src.adapter_utils - INFO -   Metadata: {'type': 'utility_model_A8', 'task': 'backdoor', 'model': 'llama-3.1-8b', 'note': 'Backdoor instruction-response model'}
+2025-12-25 21:13:26,667 - __main__ - INFO - 
+✓ A8 adapter saved to: saved_adapters/llama-3.1-8b/utility_model/utility_model_A8.pt
+2025-12-25 21:13:26,667 - __main__ - INFO - 
+================================================================================
+2025-12-25 21:13:26,667 - __main__ - INFO - A8 (Backdoor) MODEL CREATION COMPLETED
+2025-12-25 21:13:26,667 - __main__ - INFO - ================================================================================
+2025-12-25 21:13:26,667 - __main__ - INFO - 
+Note: Evaluation will be performed separately using evaluate_all_models.py

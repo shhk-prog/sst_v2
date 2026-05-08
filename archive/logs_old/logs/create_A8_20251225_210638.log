@@ -1,0 +1,4 @@
+/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+usage: create_utility_model.py [-h] [--model MODEL] [--mode {minimal,full}]
+create_utility_model.py: error: unrecognized arguments: --task backdoor --epochs 3

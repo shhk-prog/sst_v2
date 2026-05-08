@@ -1,0 +1,7 @@
+merge_type,eval_type,refusal_rate,rougeL,rouge1,rouge2
+data_free,alpaca,,0.5897,0.6617,0.4463
+data_free,jailbreak,0.7566,,,
+data_free,repliqa,,0.6978,0.7115,0.6117
+interpolation,alpaca,,0.6356,0.699,0.5026
+interpolation,jailbreak,0.7402,,,
+interpolation,repliqa,,0.6401,0.6565,0.5395

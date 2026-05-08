@@ -1,0 +1,21 @@
+# SST-Merge V4 Requirements
+
+# Core
+torch>=2.0
+transformers>=4.35
+peft>=0.6
+
+# Data
+datasets>=2.14
+pandas>=2.0
+
+# Scientific
+scipy>=1.10
+numpy>=1.24
+
+# Utilities
+tqdm>=4.65
+PyYAML>=6.0
+
+# Optional: For better evaluation
+# rouge-score>=0.1.2

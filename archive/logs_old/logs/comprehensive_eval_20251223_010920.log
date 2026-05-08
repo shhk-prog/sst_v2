@@ -1,0 +1,36 @@
+/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+2025-12-23 01:09:24,872 - __main__ - INFO - 
+================================================================================
+2025-12-23 01:09:24,873 - __main__ - INFO - COMPREHENSIVE MODEL EVALUATION
+2025-12-23 01:09:24,873 - __main__ - INFO - ================================================================================
+2025-12-23 01:09:24,873 - __main__ - INFO - 
+Loading model: llama-3.1-8b...
+2025-12-23 01:09:24,873 - src.utils.model_loader - INFO - ModelLoader initialized: model=meta-llama/Llama-3.1-8B-Instruct, device_map=auto, dtype=torch.bfloat16
+2025-12-23 01:09:24,873 - src.utils.model_loader - INFO - Loading model: meta-llama/Llama-3.1-8B-Instruct
+2025-12-23 01:09:25,994 - src.utils.model_loader - INFO - Using Flash Attention 2 for faster inference
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.08s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.07s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.07s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.34it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.15it/s]
+2025-12-23 01:09:32,230 - src.utils.model_loader - INFO - ✓ Model loaded successfully: meta-llama/Llama-3.1-8B-Instruct
+2025-12-23 01:09:32,231 - src.utils.model_loader - INFO -   Total parameters: 8.03B
+2025-12-23 01:09:32,231 - src.utils.model_loader - INFO -   Device map: {'model.embed_tokens': 0, 'model.layers.0': 0, 'model.layers.1': 0, 'model.layers.2': 0, 'model.layers.3': 0, 'model.layers.4': 0, 'model.layers.5': 1, 'model.layers.6': 1, 'model.layers.7': 1, 'model.layers.8': 1, 'model.layers.9': 1, 'model.layers.10': 1, 'model.layers.11': 1, 'model.layers.12': 1, 'model.layers.13': 1, 'model.layers.14': 1, 'model.layers.15': 2, 'model.layers.16': 2, 'model.layers.17': 2, 'model.layers.18': 2, 'model.layers.19': 2, 'model.layers.20': 2, 'model.layers.21': 2, 'model.layers.22': 2, 'model.layers.23': 2, 'model.layers.24': 2, 'model.layers.25': 3, 'model.layers.26': 3, 'model.layers.27': 3, 'model.layers.28': 3, 'model.layers.29': 3, 'model.layers.30': 3, 'model.layers.31': 3, 'model.norm': 3, 'model.rotary_emb': 3, 'lm_head': 3}
+2025-12-23 01:09:32,231 - __main__ - INFO - ✓ Model loaded
+2025-12-23 01:09:32,231 - __main__ - INFO - 
+================================================================================
+2025-12-23 01:09:32,231 - __main__ - INFO - COMPREHENSIVE MODEL EVALUATION
+2025-12-23 01:09:32,231 - __main__ - INFO - ================================================================================
+2025-12-23 01:09:32,231 - __main__ - INFO - 
+1. Base Model
+2025-12-23 01:09:32,231 - __main__ - INFO - 
+================================================================================
+2025-12-23 01:09:32,231 - __main__ - INFO - Evaluating Base Model
+2025-12-23 01:09:32,231 - __main__ - INFO - ================================================================================
+2025-12-23 01:09:32,231 - __main__ - INFO - Evaluating on MMLU (common dataset)...
+2025-12-23 01:09:32,231 - __main__ - INFO - Loading MMLU dataset (common)...
+2025-12-23 01:09:32,231 - __main__ - ERROR - Failed to load MMLU: name 'load_mmlu' is not defined
+2025-12-23 01:09:32,231 - __main__ - INFO - Evaluating on BeaverTails...
+2025-12-23 01:09:32,231 - src.utils.data_loader - INFO - Loading BeaverTails dataset (split=test)...
+2025-12-23 01:09:34,968 - src.utils.data_loader - ERROR - Failed to load BeaverTails: Unknown split "test". Should be one of ['330k_train', '330k_test', '30k_train', '30k_test'].
+2025-12-23 01:09:34,969 - src.utils.data_loader - INFO - Retrying with split: 30k_test
+2025-12-23 01:09:36,172 - src.utils.data_loader - INFO - Loaded 50 samples from BeaverTails
+2025-12-23 01:09:36,174 - src.utils.data_loader - INFO - Created BeaverTails DataLoader: 50 samples, batch_size=1

@@ -1,0 +1,24 @@
+/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+2025-12-22 22:52:57,051 - __main__ - INFO - 
+================================================================================
+2025-12-22 22:52:57,051 - __main__ - INFO - A3 (Math-SPECIALIZED MODEL) CREATION
+2025-12-22 22:52:57,051 - __main__ - INFO - ================================================================================
+2025-12-22 22:52:57,051 - __main__ - INFO - 
+Loading datasets...
+2025-12-22 22:52:57,051 - src.utils.data_loader - INFO - Loading BeaverTails dataset (split=test)...
+2025-12-22 22:53:00,079 - src.utils.data_loader - ERROR - Failed to load BeaverTails: Unknown split "test". Should be one of ['330k_train', '330k_test', '30k_train', '30k_test'].
+2025-12-22 22:53:00,079 - src.utils.data_loader - INFO - Retrying with split: 30k_test
+2025-12-22 22:53:01,244 - src.utils.data_loader - INFO - Loaded 2000 samples from BeaverTails
+2025-12-22 22:53:01,245 - src.utils.data_loader - INFO - Created BeaverTails DataLoader: 2000 samples, batch_size=32
+2025-12-22 22:53:01,245 - src.utils.data_loader - INFO - Loading MMLU dataset (subjects=all, split=test)...
+2025-12-22 22:53:03,223 - src.utils.data_loader - INFO - Loaded 14042 samples from MMLU
+2025-12-22 22:53:03,224 - src.utils.data_loader - INFO - Created MMLU DataLoader: 14042 samples, batch_size=32
+2025-12-22 22:53:03,224 - src.utils.task_specific_loaders - INFO - Loading GSM8K dataset (split=train)...
+2025-12-22 22:53:06,456 - src.utils.task_specific_loaders - INFO - Loaded 7473 samples from GSM8K
+2025-12-22 22:53:06,457 - src.utils.task_specific_loaders - INFO - Created GSM8K DataLoader: 7473 samples, batch_size=32
+2025-12-22 22:53:06,457 - __main__ - INFO - ✓ Datasets loaded
+2025-12-22 22:53:06,457 - __main__ - INFO - 
+Loading model: llama-3.1-8b...
+2025-12-22 22:53:06,457 - src.utils.model_loader - INFO - ModelLoader initialized: model=meta-llama/Llama-3.1-8B-Instruct, device_map=auto, dtype=torch.bfloat16
+2025-12-22 22:53:06,457 - src.utils.model_loader - INFO - Loading model: meta-llama/Llama-3.1-8B-Instruct

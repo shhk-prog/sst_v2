@@ -1,0 +1,88 @@
+# SST-Merge実験設定
+
+# モデル設定
+model:
+  base_model: "meta-llama/Llama-2-7b-hf"  # または "mistralai/Mistral-7B-v0.1"
+  device: "cuda"
+  dtype: "float16"
+
+# データセット設定
+datasets:
+  safety:
+    name: "PKU-Alignment/BeaverTails"
+    split_ratio: [0.8, 0.1, 0.1]  # train, val, test
+    max_samples: 10000
+  
+  utility:
+    mmlu:
+      name: "cais/mmlu"
+      subjects: ["abstract_algebra", "anatomy", "astronomy"]  # サブセット
+    humaneval:
+      name: "openai_humaneval"
+      max_samples: 164
+
+# LoRA設定
+lora:
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  target_modules: ["q_proj", "v_proj", "k_proj", "o_proj"]
+
+# SST-Merge設定
+sst_merge:
+  k: 10  # 安全サブスペースの次元数
+  fim_approximation: "gradient_variance"  # "gradient_variance", "kfac", "vila"
+  regularization: 1e-6  # FIM正則化項
+  
+# ベースライン設定
+baselines:
+  task_arithmetic:
+    scaling_factor: 0.5
+  
+  ties_merging:
+    trim_threshold: 0.2
+    
+  dare:
+    beta_threshold: 0.1
+    boost_factor: 2.0
+  
+  alignguard_lora:
+    k_safety: 10
+
+# 評価設定
+evaluation:
+  batch_size: 8
+  max_length: 512
+  temperature: 0.7
+  
+  metrics:
+    - "refusal_rate"
+    - "mmlu_accuracy"
+    - "humaneval_pass_at_1"
+    - "safety_tax"
+
+# 実験設定
+experiments:
+  exp1_safety_utility:
+    num_runs: 3
+    random_seeds: [42, 123, 456]
+  
+  exp2_multitask:
+    num_experts: [2, 4, 8, 12, 16, 20]
+    task_domains: ["math", "code", "safety", "reasoning"]
+  
+  exp3_baseline:
+    methods: ["ta", "ties", "dare", "agl", "sst_merge"]
+
+# 計算リソース設定
+compute:
+  num_gpus: 1
+  mixed_precision: true
+  gradient_checkpointing: true
+  max_memory_per_gpu: "16GB"
+
+# ログ設定
+logging:
+  level: "INFO"
+  save_dir: "results"
+  tensorboard: true

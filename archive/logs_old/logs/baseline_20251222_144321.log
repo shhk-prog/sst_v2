@@ -1,0 +1,70 @@
+/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+2025-12-22 14:43:25,358 - __main__ - INFO - Loading datasets...
+2025-12-22 14:43:25,358 - __main__ - INFO - Loading BeaverTails...
+2025-12-22 14:43:25,358 - src.utils.data_loader - INFO - Loading BeaverTails dataset (split=train)...
+2025-12-22 14:43:28,644 - src.utils.data_loader - ERROR - Failed to load BeaverTails: Unknown split "train". Should be one of ['330k_train', '330k_test', '30k_train', '30k_test'].
+2025-12-22 14:43:28,645 - src.utils.data_loader - INFO - Retrying with split: 30k_train
+2025-12-22 14:43:30,001 - src.utils.data_loader - INFO - Loaded 10000 samples from BeaverTails
+2025-12-22 14:43:30,001 - src.utils.data_loader - INFO - Created BeaverTails DataLoader: 10000 samples, batch_size=32
+2025-12-22 14:43:30,001 - src.utils.data_loader - INFO - Loading BeaverTails dataset (split=test)...
+2025-12-22 14:43:31,351 - src.utils.data_loader - ERROR - Failed to load BeaverTails: Unknown split "test". Should be one of ['330k_train', '330k_test', '30k_train', '30k_test'].
+2025-12-22 14:43:31,351 - src.utils.data_loader - INFO - Retrying with split: 30k_test
+2025-12-22 14:43:32,715 - src.utils.data_loader - INFO - Loaded 2000 samples from BeaverTails
+2025-12-22 14:43:32,715 - src.utils.data_loader - INFO - Created BeaverTails DataLoader: 2000 samples, batch_size=32
+2025-12-22 14:43:32,715 - __main__ - INFO - Loading MMLU...
+2025-12-22 14:43:32,715 - src.utils.data_loader - INFO - Loading MMLU dataset (subjects=all, split=test)...
+2025-12-22 14:43:35,280 - src.utils.data_loader - INFO - Loaded 14042 samples from MMLU
+2025-12-22 14:43:35,280 - src.utils.data_loader - INFO - Created MMLU DataLoader: 14042 samples, batch_size=32
+2025-12-22 14:43:35,280 - __main__ - INFO - Loading HumanEval...
+2025-12-22 14:43:35,280 - src.utils.data_loader - INFO - Loading HumanEval dataset (split=test)...
+2025-12-22 14:43:39,125 - src.utils.data_loader - INFO - Loaded 164 samples from HumanEval
+2025-12-22 14:43:39,125 - src.utils.data_loader - INFO - Created HumanEval DataLoader: 164 samples, batch_size=1
+2025-12-22 14:43:39,125 - __main__ - INFO - ✓ All datasets loaded successfully
+2025-12-22 14:43:39,126 - __main__ - INFO - Loading model: llama-3.1-8b...
+2025-12-22 14:43:39,126 - src.utils.model_loader - INFO - ModelLoader initialized: model=meta-llama/Llama-3.1-8B-Instruct, device_map=auto, dtype=torch.bfloat16
+2025-12-22 14:43:39,126 - src.utils.model_loader - INFO - Loading model: meta-llama/Llama-3.1-8B-Instruct
+2025-12-22 14:43:40,398 - src.utils.model_loader - INFO - Using Flash Attention 2 for faster inference
+`torch_dtype` is deprecated! Use `dtype` instead!
+2025-12-22 14:43:40,899 - accelerate.utils.modeling - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.02it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.03it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.02it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.45it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.26it/s]
+2025-12-22 14:43:44,529 - src.utils.model_loader - INFO - ✓ Model loaded successfully: meta-llama/Llama-3.1-8B-Instruct
+2025-12-22 14:43:44,530 - src.utils.model_loader - INFO -   Total parameters: 8.03B
+2025-12-22 14:43:44,530 - src.utils.model_loader - INFO -   Device map: {'': 0}
+2025-12-22 14:43:44,530 - __main__ - INFO - BaselineExperiment initialized: model=llama-3.1-8b, mode=full, use_mergekit=False
+2025-12-22 14:43:44,530 - __main__ - INFO - 
+================================================================================
+2025-12-22 14:43:44,530 - __main__ - INFO - BASELINE EXPERIMENTS
+2025-12-22 14:43:44,530 - __main__ - INFO - ================================================================================
+2025-12-22 14:43:44,530 - __main__ - INFO - 
+Creating new adapters...
+2025-12-22 14:43:44,530 - __main__ - INFO - 
+================================================================================
+2025-12-22 14:43:44,530 - __main__ - INFO - CREATING AND SAVING ADAPTERS
+2025-12-22 14:43:44,530 - __main__ - INFO - ================================================================================
+2025-12-22 14:43:44,531 - src.lora_trainer - INFO - LoRATrainer initialized on device: cuda
+2025-12-22 14:43:44,531 - __main__ - INFO - 
+1. Creating Safety adapter (refusal responses)...
+2025-12-22 14:43:44,531 - src.lora_trainer - INFO - 
+Training LoRA adapter for safety task...
+2025-12-22 14:43:44,531 - src.lora_trainer - INFO -   Epochs: 3
+2025-12-22 14:43:44,531 - src.lora_trainer - INFO -   Learning rate: 0.0002
+2025-12-22 14:43:44,531 - src.lora_trainer - INFO -   LoRA rank: 16
+2025-12-22 14:43:44,531 - src.lora_trainer - INFO -   LoRA alpha: 32
+2025-12-22 14:43:44,531 - src.lora_trainer - INFO -   LoRA dropout: 0.05
+2025-12-22 14:43:44,531 - src.lora_trainer - INFO -   Weight decay: 0.01
+2025-12-22 14:43:44,531 - src.lora_trainer - INFO -   Warmup ratio: 0.1
+2025-12-22 14:43:44,531 - src.lora_trainer - INFO -   Gradient accumulation steps: 8
+2025-12-22 14:43:44,531 - src.lora_trainer - INFO -   Mode: SAFETY (refusal responses)
+2025-12-22 14:43:45,027 - src.lora_trainer - INFO -   Created refusal dataset: 313 batches
+2025-12-22 14:43:46,491 - src.lora_trainer - INFO -   Gradient checkpointing enabled
+2025-12-22 14:43:46,499 - src.lora_trainer - INFO -   Total training steps: 939
+2025-12-22 14:43:46,499 - src.lora_trainer - INFO -   Warmup steps: 93
+/mnt/iag-02/home/hiromi/src/SST_merge/src/lora_trainer.py:210: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = GradScaler()
+2025-12-22 14:43:46,500 - src.lora_trainer - INFO -   Mixed precision training enabled
+Epoch 1/3:   0%|          | 0/313 [00:00<?, ?it/s]/mnt/iag-02/home/hiromi/src/SST_merge/src/lora_trainer.py:266: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast():
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+Casting fp32 inputs back to torch.float16 for flash-attn compatibility.
+Epoch 1/3:   0%|          | 0/313 [00:00<?, ?it/s, loss=1.4717]Epoch 1/3:   0%|          | 1/313 [00:00<04:09,  1.25it/s, loss=1.4717]Epoch 1/3:   0%|          | 1/313 [00:01<04:09,  1.25it/s, loss=1.4816]Epoch 1/3:   1%|          | 2/313 [00:01<03:08,  1.65it/s, loss=1.4816]Epoch 1/3:   1%|          | 2/313 [00:01<03:08,  1.65it/s, loss=1.4566]Epoch 1/3:   1%|          | 3/313 [00:01<02:22,  2.17it/s, loss=1.4566]Epoch 1/3:   1%|          | 3/313 [00:01<02:22,  2.17it/s, loss=1.4554]Epoch 1/3:   1%|▏         | 4/313 [00:01<02:01,  2.54it/s, loss=1.4554]Epoch 1/3:   1%|▏         | 4/313 [00:02<02:01,  2.54it/s, loss=1.3261]Epoch 1/3:   2%|▏         | 5/313 [00:02<01:43,  2.97it/s, loss=1.3261]Epoch 1/3:   2%|▏         | 5/313 [00:02<01:43,  2.97it/s, loss=1.4819]Epoch 1/3:   2%|▏         | 6/313 [00:02<01:39,  3.09it/s, loss=1.4819]Epoch 1/3:   2%|▏         | 6/313 [00:02<01:39,  3.09it/s, loss=1.5701]Epoch 1/3:   2%|▏         | 7/313 [00:02<01:42,  2.98it/s, loss=1.5701]Epoch 1/3:   2%|▏         | 7/313 [00:03<01:42,  2.98it/s, loss=1.4949]Epoch 1/3:   3%|▎         | 8/313 [00:03<01:40,  3.02it/s, loss=1.4949]

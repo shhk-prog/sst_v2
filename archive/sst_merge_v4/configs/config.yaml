@@ -1,0 +1,85 @@
+# SST-Merge V4 Configuration
+
+# Model
+model:
+  name: "meta-llama/Meta-Llama-3.1-8B"
+  torch_dtype: "float16"
+  device_map: "auto"
+
+# Data
+data:
+  jailbreak_csv: "../data/response_dataframe.csv"
+  repliqa_max_samples: 5000
+  batch_size: 4
+  max_length: 512
+
+# LoRA Training
+training:
+  # A5 (Utility)
+  a5:
+    dataset: "repliqa"
+    num_epochs: 3
+    learning_rate: 2e-4
+    lora_r: 16
+    lora_alpha: 32
+    lora_dropout: 0.05
+    gradient_accumulation_steps: 4
+    warmup_ratio: 0.1
+    weight_decay: 0.01
+  
+  # A7 (Safety)
+  a7:
+    dataset: "jailbreak_refusal"
+    num_epochs: 3
+    learning_rate: 2e-4
+    lora_r: 16
+    lora_alpha: 32
+    lora_dropout: 0.05
+    gradient_accumulation_steps: 4
+    warmup_ratio: 0.1
+    weight_decay: 0.01
+
+# Baseline Merge Methods
+baseline:
+  methods:
+    - task_arithmetic
+    - ties
+    - dare
+  weights: [0.5, 0.5]  # A5, A7
+  ties_density: 0.5
+  dare_drop_rate: 0.9
+
+# SST-Merge V4
+sst_merge:
+  k: 10  # Safety subspace dimension
+  safety_weight: 1.0  # Base safety weight
+  regularization: 1e-6
+  fim_max_samples: 500
+  
+  # Layer-wise weights
+  layer_weights:
+    lm_head: 5.0
+    q_proj: 2.0
+    k_proj: 2.0
+    v_proj: 2.0
+    o_proj: 2.0
+    gate_proj: 1.5
+    up_proj: 1.5
+    down_proj: 1.5
+
+# Evaluation
+evaluation:
+  jailbreak_samples: 500
+  repliqa_samples: 500
+  max_new_tokens: 256
+  
+  # Targets
+  targets:
+    jailbreak_resistance: 0.90  # >= 90%
+    utility_rouge_l: 0.40       # >= 40%
+
+# Output
+output:
+  dir: "../results"
+  save_adapters: true
+  save_responses: false  # Save all responses (large)

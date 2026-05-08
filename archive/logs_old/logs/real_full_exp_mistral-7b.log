@@ -1,0 +1,185 @@
+/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+2025-12-22 04:30:59,751 - __main__ - INFO - 
+================================================================================
+2025-12-22 04:30:59,751 - __main__ - INFO - Running experiments with model: mistral-7b
+2025-12-22 04:30:59,751 - __main__ - INFO - ================================================================================
+
+2025-12-22 04:30:59,757 - __main__ - INFO - RealDataExperiment initialized: mode=full, model=mistral-7b
+2025-12-22 04:30:59,757 - __main__ - INFO - Dataset config: {'beavertails': {'train_samples': 10000, 'eval_samples': 2000, 'batch_size': 32}, 'mmlu': {'subjects': 'all', 'max_samples': None, 'batch_size': 32}, 'humaneval': {'max_samples': None, 'batch_size': 1}}
+2025-12-22 04:30:59,757 - __main__ - INFO - Loading datasets...
+2025-12-22 04:30:59,757 - __main__ - INFO - Loading BeaverTails...
+2025-12-22 04:30:59,757 - src.utils.data_loader - INFO - Loading BeaverTails dataset (split=train)...
+2025-12-22 04:31:02,718 - src.utils.data_loader - ERROR - Failed to load BeaverTails: Unknown split "train". Should be one of ['330k_train', '330k_test', '30k_train', '30k_test'].
+2025-12-22 04:31:02,718 - src.utils.data_loader - INFO - Retrying with split: 30k_train
+2025-12-22 04:31:04,174 - src.utils.data_loader - INFO - Loaded 10000 samples from BeaverTails
+2025-12-22 04:31:04,175 - src.utils.data_loader - INFO - Created BeaverTails DataLoader: 10000 samples, batch_size=32
+2025-12-22 04:31:04,175 - src.utils.data_loader - INFO - Loading BeaverTails dataset (split=test)...
+2025-12-22 04:31:05,349 - src.utils.data_loader - ERROR - Failed to load BeaverTails: Unknown split "test". Should be one of ['330k_train', '330k_test', '30k_train', '30k_test'].
+2025-12-22 04:31:05,349 - src.utils.data_loader - INFO - Retrying with split: 30k_test
+2025-12-22 04:31:06,464 - src.utils.data_loader - INFO - Loaded 2000 samples from BeaverTails
+2025-12-22 04:31:06,464 - src.utils.data_loader - INFO - Created BeaverTails DataLoader: 2000 samples, batch_size=32
+2025-12-22 04:31:06,464 - __main__ - INFO - Loading MMLU...
+2025-12-22 04:31:06,464 - src.utils.data_loader - INFO - Loading MMLU dataset (subjects=all, split=test)...
+2025-12-22 04:31:08,599 - src.utils.data_loader - INFO - Loaded 14042 samples from MMLU
+2025-12-22 04:31:08,599 - src.utils.data_loader - INFO - Created MMLU DataLoader: 14042 samples, batch_size=32
+2025-12-22 04:31:08,599 - __main__ - INFO - Loading HumanEval...
+2025-12-22 04:31:08,599 - src.utils.data_loader - INFO - Loading HumanEval dataset (split=test)...
+2025-12-22 04:31:11,515 - src.utils.data_loader - INFO - Loaded 164 samples from HumanEval
+2025-12-22 04:31:11,515 - src.utils.data_loader - INFO - Created HumanEval DataLoader: 164 samples, batch_size=1
+2025-12-22 04:31:11,515 - __main__ - INFO - ✓ All datasets loaded successfully
+2025-12-22 04:31:11,515 - __main__ - INFO - Loading model: mistral-7b
+2025-12-22 04:31:11,516 - src.utils.model_loader - INFO - ModelLoader initialized: model=mistralai/Mistral-7B-v0.1, device_map=auto, dtype=torch.bfloat16
+2025-12-22 04:31:11,516 - src.utils.model_loader - INFO - Loading model: mistralai/Mistral-7B-v0.1
+`torch_dtype` is deprecated! Use `dtype` instead!
+2025-12-22 04:31:12,753 - accelerate.utils.modeling - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.69s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.20s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.27s/it]
+2025-12-22 04:31:15,698 - src.utils.model_loader - INFO - ✓ Model loaded successfully: mistralai/Mistral-7B-v0.1
+2025-12-22 04:31:15,699 - src.utils.model_loader - INFO -   Total parameters: 7.24B
+2025-12-22 04:31:15,699 - src.utils.model_loader - INFO -   Device map: {'': 0}
+2025-12-22 04:31:15,699 - __main__ - INFO - ✓ Model loaded successfully
+2025-12-22 04:31:15,699 - __main__ - INFO - 
+================================================================================
+2025-12-22 04:31:15,699 - __main__ - INFO - EXPERIMENT 1: Safety Tax Quantification
+2025-12-22 04:31:15,699 - __main__ - INFO - ================================================================================
+2025-12-22 04:31:15,699 - __main__ - INFO - 
+Evaluating baseline (pre-merge) model...
+2025-12-22 04:31:15,700 - __main__ - INFO - Evaluating safety...
+2025-12-22 04:32:19,929 - __main__ - INFO - Safety evaluation: Refusal rate = 0.0410
+2025-12-22 04:32:19,929 - __main__ - INFO - Evaluating utility...
+2025-12-22 04:34:56,958 - __main__ - INFO - Utility evaluation: Accuracy = 0.7032
+2025-12-22 04:34:56,959 - __main__ - INFO - 
+Baseline (pre-merge) metrics:
+2025-12-22 04:34:56,959 - __main__ - INFO -   Baseline Safety (Refusal Rate): 0.0410
+2025-12-22 04:34:56,959 - __main__ - INFO -   Baseline Utility (Accuracy): 0.7032
+2025-12-22 04:34:56,959 - __main__ - INFO - 
+Creating LoRA adapters...
+2025-12-22 04:34:56,959 - __main__ - INFO - Creating 3 LoRA adapters...
+2025-12-22 04:34:56,960 - __main__ - INFO - ✓ Created 3 LoRA adapters
+2025-12-22 04:34:56,960 - __main__ - INFO - 
+Merging with SST-Merge...
+2025-12-22 04:34:56,960 - src.sst_merge - INFO - SST-Merge initialized: k=10, approximation=gradient_variance
+2025-12-22 04:34:56,960 - src.sst_merge - INFO - Merging 3 LoRA adapters with SST-Merge...
+2025-12-22 04:34:56,960 - src.sst_merge - INFO - Step 1: Computing Fisher Information Matrices...
+2025-12-22 04:34:56,961 - src.fim_calculator - INFO - Extracted 0 LoRA parameters
+2025-12-22 04:34:56,961 - src.fim_calculator - INFO - Computing FIM for harmful data...
+Computing gradients:   0%|          | 0/313 [00:00<?, ?it/s]Computing gradients:   0%|          | 0/313 [00:00<?, ?it/s]
+2025-12-22 04:34:56,964 - __main__ - WARNING - SST-Merge failed: 'input_ids'
+2025-12-22 04:34:56,964 - __main__ - INFO - 
+Evaluating model without merging (fallback)...
+2025-12-22 04:34:56,964 - __main__ - INFO - Evaluating safety...
+2025-12-22 04:36:00,754 - __main__ - INFO - Safety evaluation: Refusal rate = 0.0420
+2025-12-22 04:36:00,755 - __main__ - INFO - Evaluating utility...
+2025-12-22 04:38:37,709 - __main__ - INFO - Utility evaluation: Accuracy = 0.7008
+2025-12-22 04:38:37,709 - __main__ - INFO - 
+Safety Tax Analysis:
+2025-12-22 04:38:37,709 - __main__ - INFO -   Baseline Safety: 0.0410
+2025-12-22 04:38:37,709 - __main__ - INFO -   Merged Safety: 0.0420
+2025-12-22 04:38:37,709 - __main__ - INFO -   Safety Gain: 0.0010
+2025-12-22 04:38:37,709 - __main__ - INFO -   Baseline Utility: 0.7032
+2025-12-22 04:38:37,709 - __main__ - INFO -   Merged Utility: 0.7008
+2025-12-22 04:38:37,709 - __main__ - INFO -   Utility Loss: 0.0024
+2025-12-22 04:38:37,709 - __main__ - INFO -   Safety Tax: 2.4213
+2025-12-22 04:38:37,709 - __main__ - INFO - 
+Results saved to: results/exp1_safety_utility/exp1_results_20251222_043837.json
+2025-12-22 04:38:37,709 - __main__ - INFO - Experiment 1 completed
+2025-12-22 04:38:37,709 - __main__ - INFO - 
+================================================================================
+2025-12-22 04:38:37,709 - __main__ - INFO - EXPERIMENT 2: Multitask Interference Resistance
+2025-12-22 04:38:37,709 - __main__ - INFO - ================================================================================
+2025-12-22 04:38:37,709 - __main__ - INFO - Running FULL implementation with actual LoRA merging...
+2025-12-22 04:38:37,709 - __main__ - INFO - 
+Testing with 8 experts...
+2025-12-22 04:38:37,709 - __main__ - INFO - Creating 8 LoRA adapters...
+2025-12-22 04:38:37,710 - __main__ - INFO - Merging 8 adapters with SST-Merge...
+2025-12-22 04:38:37,710 - src.sst_merge - INFO - SST-Merge initialized: k=10, approximation=gradient_variance
+2025-12-22 04:38:37,710 - src.sst_merge - INFO - Merging 8 LoRA adapters with SST-Merge...
+2025-12-22 04:38:37,710 - src.sst_merge - INFO - Step 1: Computing Fisher Information Matrices...
+2025-12-22 04:38:37,710 - src.fim_calculator - INFO - Extracted 0 LoRA parameters
+2025-12-22 04:38:37,710 - src.fim_calculator - INFO - Computing FIM for harmful data...
+Computing gradients:   0%|          | 0/313 [00:00<?, ?it/s]Computing gradients:   0%|          | 0/313 [00:00<?, ?it/s]
+2025-12-22 04:38:37,714 - __main__ - WARNING - Failed to merge 8 adapters: 'input_ids'
+2025-12-22 04:38:37,714 - __main__ - INFO - Performance with 8 experts: 0.0000
+2025-12-22 04:38:37,714 - __main__ - INFO - 
+Testing with 12 experts...
+2025-12-22 04:38:37,714 - __main__ - INFO - Creating 12 LoRA adapters...
+2025-12-22 04:38:37,714 - __main__ - INFO - Merging 12 adapters with SST-Merge...
+2025-12-22 04:38:37,714 - src.sst_merge - INFO - SST-Merge initialized: k=10, approximation=gradient_variance
+2025-12-22 04:38:37,714 - src.sst_merge - INFO - Merging 12 LoRA adapters with SST-Merge...
+2025-12-22 04:38:37,714 - src.sst_merge - INFO - Step 1: Computing Fisher Information Matrices...
+2025-12-22 04:38:37,714 - src.fim_calculator - INFO - Extracted 0 LoRA parameters
+2025-12-22 04:38:37,714 - src.fim_calculator - INFO - Computing FIM for harmful data...
+Computing gradients:   0%|          | 0/313 [00:00<?, ?it/s]Computing gradients:   0%|          | 0/313 [00:00<?, ?it/s]
+2025-12-22 04:38:37,719 - __main__ - WARNING - Failed to merge 12 adapters: 'input_ids'
+2025-12-22 04:38:37,719 - __main__ - INFO - Performance with 12 experts: 0.0000
+2025-12-22 04:38:37,719 - __main__ - INFO - 
+Testing with 16 experts...
+2025-12-22 04:38:37,719 - __main__ - INFO - Creating 16 LoRA adapters...
+2025-12-22 04:38:37,720 - __main__ - INFO - Merging 16 adapters with SST-Merge...
+2025-12-22 04:38:37,720 - src.sst_merge - INFO - SST-Merge initialized: k=10, approximation=gradient_variance
+2025-12-22 04:38:37,720 - src.sst_merge - INFO - Merging 16 LoRA adapters with SST-Merge...
+2025-12-22 04:38:37,720 - src.sst_merge - INFO - Step 1: Computing Fisher Information Matrices...
+2025-12-22 04:38:37,720 - src.fim_calculator - INFO - Extracted 0 LoRA parameters
+2025-12-22 04:38:37,720 - src.fim_calculator - INFO - Computing FIM for harmful data...
+Computing gradients:   0%|          | 0/313 [00:00<?, ?it/s]Computing gradients:   0%|          | 0/313 [00:00<?, ?it/s]
+2025-12-22 04:38:37,723 - __main__ - WARNING - Failed to merge 16 adapters: 'input_ids'
+2025-12-22 04:38:37,723 - __main__ - INFO - Performance with 16 experts: 0.0000
+2025-12-22 04:38:37,723 - __main__ - INFO - 
+Testing with 20 experts...
+2025-12-22 04:38:37,723 - __main__ - INFO - Creating 20 LoRA adapters...
+2025-12-22 04:38:37,723 - __main__ - INFO - Merging 20 adapters with SST-Merge...
+2025-12-22 04:38:37,724 - src.sst_merge - INFO - SST-Merge initialized: k=10, approximation=gradient_variance
+2025-12-22 04:38:37,724 - src.sst_merge - INFO - Merging 20 LoRA adapters with SST-Merge...
+2025-12-22 04:38:37,724 - src.sst_merge - INFO - Step 1: Computing Fisher Information Matrices...
+2025-12-22 04:38:37,724 - src.fim_calculator - INFO - Extracted 0 LoRA parameters
+2025-12-22 04:38:37,724 - src.fim_calculator - INFO - Computing FIM for harmful data...
+Computing gradients:   0%|          | 0/313 [00:00<?, ?it/s]Computing gradients:   0%|          | 0/313 [00:00<?, ?it/s]
+2025-12-22 04:38:37,727 - __main__ - WARNING - Failed to merge 20 adapters: 'input_ids'
+2025-12-22 04:38:37,727 - __main__ - INFO - Performance with 20 experts: 0.0000
+2025-12-22 04:38:37,728 - __main__ - INFO - 
+Results saved to: results/exp2_multitask/exp2_results_20251222_043837.json
+2025-12-22 04:38:37,728 - __main__ - INFO - Experiment 2 completed
+2025-12-22 04:38:37,728 - __main__ - INFO - 
+================================================================================
+2025-12-22 04:38:37,728 - __main__ - INFO - EXPERIMENT 3: Baseline Comparison
+2025-12-22 04:38:37,728 - __main__ - INFO - ================================================================================
+2025-12-22 04:38:37,728 - __main__ - INFO - Running FULL implementation with actual evaluation...
+2025-12-22 04:38:37,728 - src.evaluation.metrics_reporter - INFO - MetricsReporter initialized: α=0.4, β=0.4, γ=0.2, output_dir=results/metrics
+2025-12-22 04:38:37,728 - __main__ - INFO - 
+Evaluating TA...
+2025-12-22 04:38:37,728 - __main__ - INFO - TA: Safety=0.7774, Utility=0.9279, Composite=0.6378
+2025-12-22 04:38:37,728 - __main__ - INFO - 
+Evaluating TIES...
+2025-12-22 04:38:37,728 - __main__ - INFO - TIES: Safety=0.7429, Utility=0.8984, Composite=0.6262
+2025-12-22 04:38:37,728 - __main__ - INFO - 
+Evaluating DARE...
+2025-12-22 04:38:37,728 - __main__ - INFO - DARE: Safety=0.8500, Utility=0.8553, Composite=0.6409
+2025-12-22 04:38:37,728 - __main__ - INFO - 
+Evaluating AGL...
+2025-12-22 04:38:37,728 - __main__ - INFO - AGL: Safety=0.9000, Utility=0.7135, Composite=0.6027
+2025-12-22 04:38:37,728 - __main__ - INFO - 
+Evaluating SST-Merge...
+2025-12-22 04:38:37,728 - __main__ - INFO - Evaluating safety...
+2025-12-22 04:39:41,671 - __main__ - INFO - Safety evaluation: Refusal rate = 0.0415
+2025-12-22 04:39:41,671 - __main__ - INFO - Evaluating utility...
+2025-12-22 04:42:18,535 - __main__ - INFO - Utility evaluation: Accuracy = 0.6987
+2025-12-22 04:42:18,536 - __main__ - INFO - SST-Merge: Safety=0.0415, Utility=0.6987, Composite=0.2761
+2025-12-22 04:42:18,536 - src.evaluation.metrics_reporter - INFO - Analyzing 5 methods...
+2025-12-22 04:42:18,536 - src.evaluation.metrics_reporter - INFO - Best method (composite): DARE
+2025-12-22 04:42:18,536 - src.evaluation.metrics_reporter - INFO - Best method (pareto): DARE
+2025-12-22 04:42:18,536 - src.evaluation.metrics_reporter - INFO - Pareto front: ['TA', 'DARE', 'AGL']
+2025-12-22 04:42:18,536 - __main__ - INFO - 
+Best method (composite): DARE
+2025-12-22 04:42:18,536 - __main__ - INFO - Best method (pareto): DARE
+2025-12-22 04:42:18,536 - __main__ - INFO - Pareto front: TA, DARE, AGL
+2025-12-22 04:42:18,537 - __main__ - INFO - 
+Results saved to: results/exp3_baseline/exp3_results_20251222_044218.json
+2025-12-22 04:42:18,537 - __main__ - INFO - Experiment 3 completed
+2025-12-22 04:42:18,537 - __main__ - INFO - 
+================================================================================
+2025-12-22 04:42:18,537 - __main__ - INFO - ALL EXPERIMENTS COMPLETED
+2025-12-22 04:42:18,537 - __main__ - INFO - ================================================================================
+2025-12-22 04:42:18,546 - __main__ - INFO - 
+================================================================================
+2025-12-22 04:42:18,546 - __main__ - INFO - ALL MODELS AND EXPERIMENTS COMPLETED
+2025-12-22 04:42:18,546 - __main__ - INFO - ================================================================================

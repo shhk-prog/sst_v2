@@ -1,0 +1,109 @@
+/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+2025-12-21 19:13:26,602 - __main__ - INFO - 
+================================================================================
+2025-12-21 19:13:26,602 - __main__ - INFO - Running experiments with model: mistral-7b
+2025-12-21 19:13:26,602 - __main__ - INFO - ================================================================================
+
+2025-12-21 19:13:26,608 - __main__ - INFO - RealDataExperiment initialized: mode=full, model=mistral-7b
+2025-12-21 19:13:26,608 - __main__ - INFO - Dataset config: {'beavertails': {'train_samples': 10000, 'eval_samples': 2000, 'batch_size': 32}, 'mmlu': {'subjects': 'all', 'max_samples': None, 'batch_size': 32}, 'humaneval': {'max_samples': None, 'batch_size': 1}}
+2025-12-21 19:13:26,608 - __main__ - INFO - Loading datasets...
+2025-12-21 19:13:26,608 - __main__ - INFO - Loading BeaverTails...
+2025-12-21 19:13:26,608 - src.utils.data_loader - INFO - Loading BeaverTails dataset (split=train)...
+2025-12-21 19:13:29,351 - src.utils.data_loader - ERROR - Failed to load BeaverTails: Unknown split "train". Should be one of ['330k_train', '330k_test', '30k_train', '30k_test'].
+2025-12-21 19:13:29,351 - src.utils.data_loader - INFO - Retrying with split: 30k_train
+2025-12-21 19:13:30,472 - src.utils.data_loader - INFO - Loaded 10000 samples from BeaverTails
+2025-12-21 19:13:30,473 - src.utils.data_loader - INFO - Created BeaverTails DataLoader: 10000 samples, batch_size=32
+2025-12-21 19:13:30,473 - src.utils.data_loader - INFO - Loading BeaverTails dataset (split=test)...
+2025-12-21 19:13:31,575 - src.utils.data_loader - ERROR - Failed to load BeaverTails: Unknown split "test". Should be one of ['330k_train', '330k_test', '30k_train', '30k_test'].
+2025-12-21 19:13:31,576 - src.utils.data_loader - INFO - Retrying with split: 30k_test
+2025-12-21 19:13:32,709 - src.utils.data_loader - INFO - Loaded 2000 samples from BeaverTails
+2025-12-21 19:13:32,709 - src.utils.data_loader - INFO - Created BeaverTails DataLoader: 2000 samples, batch_size=32
+2025-12-21 19:13:32,709 - __main__ - INFO - Loading MMLU...
+2025-12-21 19:13:32,709 - src.utils.data_loader - INFO - Loading MMLU dataset (subjects=all, split=test)...
+2025-12-21 19:13:34,761 - src.utils.data_loader - INFO - Loaded 14042 samples from MMLU
+2025-12-21 19:13:34,761 - src.utils.data_loader - INFO - Created MMLU DataLoader: 14042 samples, batch_size=32
+2025-12-21 19:13:34,761 - __main__ - INFO - Loading HumanEval...
+2025-12-21 19:13:34,761 - src.utils.data_loader - INFO - Loading HumanEval dataset (split=test)...
+2025-12-21 19:13:37,870 - src.utils.data_loader - INFO - Loaded 164 samples from HumanEval
+2025-12-21 19:13:37,871 - src.utils.data_loader - INFO - Created HumanEval DataLoader: 164 samples, batch_size=1
+2025-12-21 19:13:37,871 - __main__ - INFO - ✓ All datasets loaded successfully
+2025-12-21 19:13:37,871 - __main__ - INFO - Loading model: mistral-7b
+2025-12-21 19:13:37,871 - src.utils.model_loader - INFO - ModelLoader initialized: model=mistralai/Mistral-7B-v0.1, device_map=auto, dtype=torch.bfloat16
+2025-12-21 19:13:37,871 - src.utils.model_loader - INFO - Loading model: mistralai/Mistral-7B-v0.1
+`torch_dtype` is deprecated! Use `dtype` instead!
+2025-12-21 19:13:39,077 - accelerate.utils.modeling - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.85s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.31s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.39s/it]
+2025-12-21 19:13:42,247 - src.utils.model_loader - INFO - ✓ Model loaded successfully: mistralai/Mistral-7B-v0.1
+2025-12-21 19:13:42,247 - src.utils.model_loader - INFO -   Total parameters: 7.24B
+2025-12-21 19:13:42,247 - src.utils.model_loader - INFO -   Device map: {'': 0}
+2025-12-21 19:13:42,247 - __main__ - INFO - ✓ Model loaded successfully
+2025-12-21 19:13:42,248 - __main__ - INFO - 
+================================================================================
+2025-12-21 19:13:42,248 - __main__ - INFO - EXPERIMENT 1: Safety Tax Quantification
+2025-12-21 19:13:42,248 - __main__ - INFO - ================================================================================
+2025-12-21 19:13:42,248 - __main__ - INFO - Evaluating safety...
+2025-12-21 19:14:47,280 - __main__ - INFO - Safety evaluation: Refusal rate = 0.0135
+2025-12-21 19:14:47,281 - __main__ - INFO - Evaluating utility...
+2025-12-21 19:17:24,147 - __main__ - INFO - Utility evaluation: Accuracy = 0.6956
+2025-12-21 19:17:24,147 - __main__ - INFO - 
+Results:
+2025-12-21 19:17:24,147 - __main__ - INFO -   Safety (Refusal Rate): 0.0135
+2025-12-21 19:17:24,147 - __main__ - INFO -   Utility (Accuracy): 0.6956
+2025-12-21 19:17:24,147 - __main__ - INFO -   Safety Tax: 0.0000
+2025-12-21 19:17:24,148 - __main__ - INFO - 
+Results saved to: results/exp1_safety_utility/exp1_results_20251221_191724.json
+2025-12-21 19:17:24,148 - __main__ - INFO - Experiment 1 completed
+2025-12-21 19:17:24,148 - __main__ - INFO - 
+================================================================================
+2025-12-21 19:17:24,148 - __main__ - INFO - EXPERIMENT 2: Multitask Interference Resistance
+2025-12-21 19:17:24,148 - __main__ - INFO - ================================================================================
+2025-12-21 19:17:24,148 - __main__ - INFO - 
+Testing with 8 experts...
+2025-12-21 19:17:24,148 - __main__ - INFO - Creating 8 dummy LoRA experts...
+2025-12-21 19:17:24,148 - __main__ - INFO - Performance with 8 experts: 1.0000
+2025-12-21 19:17:24,148 - __main__ - INFO - 
+Testing with 12 experts...
+2025-12-21 19:17:24,148 - __main__ - INFO - Creating 12 dummy LoRA experts...
+2025-12-21 19:17:24,148 - __main__ - INFO - Performance with 12 experts: 0.9200
+2025-12-21 19:17:24,148 - __main__ - INFO - 
+Testing with 16 experts...
+2025-12-21 19:17:24,148 - __main__ - INFO - Creating 16 dummy LoRA experts...
+2025-12-21 19:17:24,148 - __main__ - INFO - Performance with 16 experts: 0.8400
+2025-12-21 19:17:24,148 - __main__ - INFO - 
+Testing with 20 experts...
+2025-12-21 19:17:24,148 - __main__ - INFO - Creating 20 dummy LoRA experts...
+2025-12-21 19:17:24,148 - __main__ - INFO - Performance with 20 experts: 0.7600
+2025-12-21 19:17:24,148 - __main__ - INFO - 
+Results saved to: results/exp2_multitask/exp2_results_20251221_191724.json
+2025-12-21 19:17:24,148 - __main__ - INFO - Experiment 2 completed
+2025-12-21 19:17:24,148 - __main__ - INFO - 
+================================================================================
+2025-12-21 19:17:24,148 - __main__ - INFO - EXPERIMENT 3: Baseline Comparison
+2025-12-21 19:17:24,148 - __main__ - INFO - ================================================================================
+2025-12-21 19:17:24,148 - __main__ - INFO - 
+Evaluating TA...
+2025-12-21 19:17:24,148 - __main__ - INFO - TA: Safety=0.8370, Utility=0.8102
+2025-12-21 19:17:24,148 - __main__ - INFO - 
+Evaluating TIES...
+2025-12-21 19:17:24,148 - __main__ - INFO - TIES: Safety=0.7742, Utility=0.8529
+2025-12-21 19:17:24,148 - __main__ - INFO - 
+Evaluating DARE...
+2025-12-21 19:17:24,148 - __main__ - INFO - DARE: Safety=0.8500, Utility=0.8545
+2025-12-21 19:17:24,148 - __main__ - INFO - 
+Evaluating AGL...
+2025-12-21 19:17:24,148 - __main__ - INFO - AGL: Safety=0.8535, Utility=0.8752
+2025-12-21 19:17:24,148 - __main__ - INFO - 
+Evaluating SST-Merge...
+2025-12-21 19:17:24,148 - __main__ - INFO - SST-Merge: Safety=0.9500, Utility=0.8983
+2025-12-21 19:17:24,148 - __main__ - INFO - 
+Results saved to: results/exp3_baseline/exp3_results_20251221_191724.json
+2025-12-21 19:17:24,148 - __main__ - INFO - Experiment 3 completed
+2025-12-21 19:17:24,148 - __main__ - INFO - 
+================================================================================
+2025-12-21 19:17:24,148 - __main__ - INFO - ALL EXPERIMENTS COMPLETED
+2025-12-21 19:17:24,148 - __main__ - INFO - ================================================================================
+2025-12-21 19:17:24,158 - __main__ - INFO - 
+================================================================================
+2025-12-21 19:17:24,158 - __main__ - INFO - ALL MODELS AND EXPERIMENTS COMPLETED
+2025-12-21 19:17:24,158 - __main__ - INFO - ================================================================================

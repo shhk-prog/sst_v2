@@ -1,0 +1,6 @@
+- [x] LaTeX形式からMarkdown形式への変換
+  - [x] コメント・メモの完全削除
+  - [x] 見出し・装飾のMarkdown化
+  - [x] 数式・リストのMarkdown化
+  - [x] 引用・参照・不要コマンドの整理
+- [x] `walkthrough.md` の作成と報告

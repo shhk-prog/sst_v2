@@ -1,0 +1,4 @@
+epoch,train_loss,val_loss,learning_rate
+1,1.105410,,8.29e-05
+2,1.079643,,1.66e-04
+3,1.080216,,2.00e-04

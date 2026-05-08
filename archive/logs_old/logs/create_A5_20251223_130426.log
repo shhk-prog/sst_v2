@@ -1,0 +1,9 @@
+/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+2025-12-23 13:04:42,930 - __main__ - INFO - 
+================================================================================
+2025-12-23 13:04:42,930 - __main__ - INFO - A5 (RepliQA-SPECIALIZED MODEL) CREATION
+2025-12-23 13:04:42,930 - __main__ - INFO - ================================================================================
+2025-12-23 13:04:42,930 - __main__ - INFO - 
+Loading datasets...
+2025-12-23 13:04:42,930 - src.utils.data_loader - INFO - Loading BeaverTails dataset (split=test)...

@@ -1,0 +1,225 @@
+/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+2025-12-23 01:15:01,839 - __main__ - INFO - 
+================================================================================
+2025-12-23 01:15:01,839 - __main__ - INFO - COMPREHENSIVE MODEL EVALUATION
+2025-12-23 01:15:01,839 - __main__ - INFO - ================================================================================
+2025-12-23 01:15:01,839 - __main__ - INFO - 
+Loading model: llama-3.1-8b...
+2025-12-23 01:15:01,839 - src.utils.model_loader - INFO - ModelLoader initialized: model=meta-llama/Llama-3.1-8B-Instruct, device_map=auto, dtype=torch.bfloat16
+2025-12-23 01:15:01,839 - src.utils.model_loader - INFO - Loading model: meta-llama/Llama-3.1-8B-Instruct
+2025-12-23 01:15:02,929 - src.utils.model_loader - INFO - Using Flash Attention 2 for faster inference
+`torch_dtype` is deprecated! Use `dtype` instead!
+2025-12-23 01:15:03,398 - accelerate.utils.modeling - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.02it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.03it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.02it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.46it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.26it/s]
+2025-12-23 01:15:06,949 - src.utils.model_loader - INFO - ✓ Model loaded successfully: meta-llama/Llama-3.1-8B-Instruct
+2025-12-23 01:15:06,949 - src.utils.model_loader - INFO -   Total parameters: 8.03B
+2025-12-23 01:15:06,950 - src.utils.model_loader - INFO -   Device map: {'': 0}
+2025-12-23 01:15:06,950 - __main__ - INFO - ✓ Model loaded
+2025-12-23 01:15:06,950 - __main__ - INFO - 
+================================================================================
+2025-12-23 01:15:06,950 - __main__ - INFO - COMPREHENSIVE MODEL EVALUATION
+2025-12-23 01:15:06,950 - __main__ - INFO - ================================================================================
+2025-12-23 01:15:06,950 - __main__ - INFO - 
+1. Base Model
+2025-12-23 01:15:06,950 - __main__ - INFO - 
+================================================================================
+2025-12-23 01:15:06,950 - __main__ - INFO - Evaluating Base Model
+2025-12-23 01:15:06,950 - __main__ - INFO - ================================================================================
+2025-12-23 01:15:06,950 - __main__ - INFO - Evaluating on MMLU (common dataset)...
+2025-12-23 01:15:06,950 - __main__ - INFO - Loading MMLU dataset (common)...
+2025-12-23 01:15:06,950 - src.utils.data_loader - INFO - Loading MMLU dataset (subjects=all, split=test)...
+2025-12-23 01:15:09,799 - src.utils.data_loader - INFO - Loaded 1000 samples from MMLU
+2025-12-23 01:15:09,800 - src.utils.data_loader - INFO - Created MMLU DataLoader: 1000 samples, batch_size=1
+2025-12-23 01:15:09,800 - __main__ - INFO - Loaded MMLU as common dataset
+2025-12-23 01:15:09,909 - __main__ - INFO - Evaluating on BeaverTails...
+2025-12-23 01:15:09,909 - src.utils.data_loader - INFO - Loading BeaverTails dataset (split=test)...
+2025-12-23 01:15:11,831 - src.utils.data_loader - ERROR - Failed to load BeaverTails: Unknown split "test". Should be one of ['330k_train', '330k_test', '30k_train', '30k_test'].
+2025-12-23 01:15:11,831 - src.utils.data_loader - INFO - Retrying with split: 30k_test
+2025-12-23 01:15:13,393 - src.utils.data_loader - INFO - Loaded 500 samples from BeaverTails
+2025-12-23 01:15:13,393 - src.utils.data_loader - INFO - Created BeaverTails DataLoader: 500 samples, batch_size=1
+2025-12-23 01:30:35,480 - __main__ - INFO - Evaluating on GSM8K...
+2025-12-23 01:30:35,480 - src.utils.task_specific_loaders - INFO - Loading GSM8K dataset (split=test)...
+2025-12-23 01:30:39,683 - src.utils.task_specific_loaders - INFO - Loaded 500 samples from GSM8K
+2025-12-23 01:30:39,684 - src.utils.task_specific_loaders - INFO - Created GSM8K DataLoader: 500 samples, batch_size=1
+2025-12-23 02:01:31,572 - __main__ - INFO - Evaluating on CodeAlpaca...
+2025-12-23 02:01:31,573 - src.utils.task_specific_loaders - INFO - Loading CodeAlpaca dataset...
+2025-12-23 02:01:34,478 - src.utils.task_specific_loaders - INFO - Loaded 500 samples from CodeAlpaca
+2025-12-23 02:01:34,479 - src.utils.task_specific_loaders - INFO - Created CodeAlpaca DataLoader: 500 samples, batch_size=1
+2025-12-23 02:32:24,578 - __main__ - INFO - 
+2. A1 (BeaverTails Benign)
+2025-12-23 02:32:24,610 - src.adapter_utils - INFO - ✓ Adapter loaded from: saved_adapters/llama-3.1-8b/utility_model/utility_model_A1.pt
+2025-12-23 02:32:24,610 - src.adapter_utils - INFO -   Created: 2025-12-22T20:26:22.111896
+2025-12-23 02:32:24,610 - src.adapter_utils - INFO -   Metadata: {'type': 'utility_model_A1', 'model': 'llama-3.1-8b', 'base_utility': 0.6999999999999942, 'A1_utility': 0.6999999999999942, 'utility_gain': 0.0}
+2025-12-23 02:32:24,610 - src.model_utils - INFO - Applying LoRA adapter to model...
+2025-12-23 02:32:26,048 - src.model_utils - INFO - ✓ Applied 256 LoRA parameters to model
+2025-12-23 02:32:26,048 - __main__ - INFO - 
+================================================================================
+2025-12-23 02:32:26,048 - __main__ - INFO - Evaluating A1
+2025-12-23 02:32:26,048 - __main__ - INFO - ================================================================================
+2025-12-23 02:32:26,048 - __main__ - INFO - Evaluating on BeaverTails...
+2025-12-23 02:32:26,048 - src.utils.data_loader - INFO - Loading BeaverTails dataset (split=test)...
+2025-12-23 02:32:29,012 - src.utils.data_loader - ERROR - Failed to load BeaverTails: Unknown split "test". Should be one of ['330k_train', '330k_test', '30k_train', '30k_test'].
+2025-12-23 02:32:29,012 - src.utils.data_loader - INFO - Retrying with split: 30k_test
+2025-12-23 02:32:30,214 - src.utils.data_loader - INFO - Loaded 500 samples from BeaverTails
+2025-12-23 02:32:30,214 - src.utils.data_loader - INFO - Created BeaverTails DataLoader: 500 samples, batch_size=1
+2025-12-23 02:33:01,036 - __main__ - INFO - Evaluating on MMLU (common dataset)...
+2025-12-23 02:33:01,036 - __main__ - INFO - Loading MMLU dataset (common)...
+2025-12-23 02:33:01,036 - src.utils.data_loader - INFO - Loading MMLU dataset (subjects=all, split=test)...
+2025-12-23 02:33:02,977 - src.utils.data_loader - INFO - Loaded 1000 samples from MMLU
+2025-12-23 02:33:02,978 - src.utils.data_loader - INFO - Created MMLU DataLoader: 1000 samples, batch_size=1
+2025-12-23 02:33:02,978 - __main__ - INFO - Loaded MMLU as common dataset
+2025-12-23 02:33:03,074 - __main__ - INFO - Evaluating on BeaverTails...
+2025-12-23 02:33:03,074 - src.utils.data_loader - INFO - Loading BeaverTails dataset (split=test)...
+2025-12-23 02:33:04,275 - src.utils.data_loader - ERROR - Failed to load BeaverTails: Unknown split "test". Should be one of ['330k_train', '330k_test', '30k_train', '30k_test'].
+2025-12-23 02:33:04,276 - src.utils.data_loader - INFO - Retrying with split: 30k_test
+2025-12-23 02:33:05,541 - src.utils.data_loader - INFO - Loaded 500 samples from BeaverTails
+2025-12-23 02:33:05,542 - src.utils.data_loader - INFO - Created BeaverTails DataLoader: 500 samples, batch_size=1
+2025-12-23 02:33:33,650 - __main__ - INFO - Evaluating on GSM8K...
+2025-12-23 02:33:33,650 - src.utils.task_specific_loaders - INFO - Loading GSM8K dataset (split=test)...
+2025-12-23 02:33:36,330 - src.utils.task_specific_loaders - INFO - Loaded 500 samples from GSM8K
+2025-12-23 02:33:36,330 - src.utils.task_specific_loaders - INFO - Created GSM8K DataLoader: 500 samples, batch_size=1
+2025-12-23 02:33:55,948 - __main__ - INFO - Evaluating on CodeAlpaca...
+2025-12-23 02:33:55,948 - src.utils.task_specific_loaders - INFO - Loading CodeAlpaca dataset...
+2025-12-23 02:33:58,284 - src.utils.task_specific_loaders - INFO - Loaded 500 samples from CodeAlpaca
+2025-12-23 02:33:58,284 - src.utils.task_specific_loaders - INFO - Created CodeAlpaca DataLoader: 500 samples, batch_size=1
+2025-12-23 02:39:17,440 - __main__ - INFO - 
+3. A2 (BeaverTails All)
+2025-12-23 02:39:17,473 - src.adapter_utils - INFO - ✓ Adapter loaded from: saved_adapters/llama-3.1-8b/utility_model/utility_model_A2.pt
+2025-12-23 02:39:17,473 - src.adapter_utils - INFO -   Created: 2025-12-22T21:42:10.117146
+2025-12-23 02:39:17,473 - src.adapter_utils - INFO -   Metadata: {'type': 'utility_model_A2', 'model': 'llama-3.1-8b', 'base_utility': 0.6999999999999942, 'A2_utility': 0.6999999999999942, 'utility_gain': 0.0, 'note': 'Pure utility model (no safety improvement)'}
+2025-12-23 02:39:17,473 - src.model_utils - INFO - Applying LoRA adapter to model...
+/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/peft/mapping_func.py:72: UserWarning: You are trying to modify a model with PEFT for a second time. If you want to reload the model with a different config, make sure to call `.unload()` before.
+  warnings.warn(
+/mnt/iag-02/home/hiromi/src/SST_merge/sst/lib/python3.12/site-packages/peft/tuners/tuners_utils.py:282: UserWarning: Already found a `peft_config` attribute in the model. This will lead to having multiple adapters in the model. Make sure to know what you are doing!
+  warnings.warn(
+2025-12-23 02:39:17,614 - src.model_utils - INFO - ✓ Applied 256 LoRA parameters to model
+2025-12-23 02:39:17,615 - __main__ - INFO - 
+================================================================================
+2025-12-23 02:39:17,615 - __main__ - INFO - Evaluating A2
+2025-12-23 02:39:17,615 - __main__ - INFO - ================================================================================
+2025-12-23 02:39:17,615 - __main__ - INFO - Evaluating on BeaverTails...
+2025-12-23 02:39:17,615 - src.utils.data_loader - INFO - Loading BeaverTails dataset (split=test)...
+2025-12-23 02:39:19,779 - src.utils.data_loader - ERROR - Failed to load BeaverTails: Unknown split "test". Should be one of ['330k_train', '330k_test', '30k_train', '30k_test'].
+2025-12-23 02:39:19,779 - src.utils.data_loader - INFO - Retrying with split: 30k_test
+2025-12-23 02:39:20,943 - src.utils.data_loader - INFO - Loaded 500 samples from BeaverTails
+2025-12-23 02:39:20,943 - src.utils.data_loader - INFO - Created BeaverTails DataLoader: 500 samples, batch_size=1
+2025-12-23 02:39:41,380 - __main__ - INFO - Evaluating on MMLU (common dataset)...
+2025-12-23 02:39:41,380 - __main__ - INFO - Loading MMLU dataset (common)...
+2025-12-23 02:39:41,380 - src.utils.data_loader - INFO - Loading MMLU dataset (subjects=all, split=test)...
+2025-12-23 02:39:43,226 - src.utils.data_loader - INFO - Loaded 1000 samples from MMLU
+2025-12-23 02:39:43,226 - src.utils.data_loader - INFO - Created MMLU DataLoader: 1000 samples, batch_size=1
+2025-12-23 02:39:43,226 - __main__ - INFO - Loaded MMLU as common dataset
+2025-12-23 02:39:43,322 - __main__ - INFO - Evaluating on BeaverTails...
+2025-12-23 02:39:43,322 - src.utils.data_loader - INFO - Loading BeaverTails dataset (split=test)...
+2025-12-23 02:39:44,479 - src.utils.data_loader - ERROR - Failed to load BeaverTails: Unknown split "test". Should be one of ['330k_train', '330k_test', '30k_train', '30k_test'].
+2025-12-23 02:39:44,479 - src.utils.data_loader - INFO - Retrying with split: 30k_test
+2025-12-23 02:39:45,726 - src.utils.data_loader - INFO - Loaded 500 samples from BeaverTails
+2025-12-23 02:39:45,726 - src.utils.data_loader - INFO - Created BeaverTails DataLoader: 500 samples, batch_size=1
+2025-12-23 02:40:09,027 - __main__ - INFO - Evaluating on GSM8K...
+2025-12-23 02:40:09,028 - src.utils.task_specific_loaders - INFO - Loading GSM8K dataset (split=test)...
+2025-12-23 02:40:11,263 - src.utils.task_specific_loaders - INFO - Loaded 500 samples from GSM8K
+2025-12-23 02:40:11,263 - src.utils.task_specific_loaders - INFO - Created GSM8K DataLoader: 500 samples, batch_size=1
+2025-12-23 02:40:26,274 - __main__ - INFO - Evaluating on CodeAlpaca...
+2025-12-23 02:40:26,274 - src.utils.task_specific_loaders - INFO - Loading CodeAlpaca dataset...
+2025-12-23 02:40:28,090 - src.utils.task_specific_loaders - INFO - Loaded 500 samples from CodeAlpaca
+2025-12-23 02:40:28,090 - src.utils.task_specific_loaders - INFO - Created CodeAlpaca DataLoader: 500 samples, batch_size=1
+2025-12-23 02:45:59,806 - __main__ - INFO - 
+4. A3 (GSM8K Math)
+2025-12-23 02:45:59,842 - src.adapter_utils - INFO - ✓ Adapter loaded from: saved_adapters/llama-3.1-8b/utility_model/utility_model_A3.pt
+2025-12-23 02:45:59,842 - src.adapter_utils - INFO -   Created: 2025-12-22T23:54:18.750901
+2025-12-23 02:45:59,842 - src.adapter_utils - INFO -   Metadata: {'type': 'utility_model_A3', 'task': 'math', 'model': 'llama-3.1-8b', 'base_utility': 0.6999999999999942, 'A3_utility': 0.6999999999999942, 'utility_gain': 0.0, 'safety_change': 0.0814999999999999, 'note': 'Math-specialized utility model'}
+2025-12-23 02:45:59,842 - src.model_utils - INFO - Applying LoRA adapter to model...
+2025-12-23 02:45:59,984 - src.model_utils - INFO - ✓ Applied 256 LoRA parameters to model
+2025-12-23 02:45:59,984 - __main__ - INFO - 
+================================================================================
+2025-12-23 02:45:59,984 - __main__ - INFO - Evaluating A3
+2025-12-23 02:45:59,984 - __main__ - INFO - ================================================================================
+2025-12-23 02:45:59,984 - __main__ - INFO - Evaluating on GSM8K...
+2025-12-23 02:45:59,984 - src.utils.task_specific_loaders - INFO - Loading GSM8K dataset (split=test)...
+2025-12-23 02:46:02,853 - src.utils.task_specific_loaders - INFO - Loaded 500 samples from GSM8K
+2025-12-23 02:46:02,853 - src.utils.task_specific_loaders - INFO - Created GSM8K DataLoader: 500 samples, batch_size=1
+2025-12-23 02:46:17,887 - __main__ - INFO - Evaluating on MMLU (common dataset)...
+2025-12-23 02:46:17,887 - __main__ - INFO - Loading MMLU dataset (common)...
+2025-12-23 02:46:17,887 - src.utils.data_loader - INFO - Loading MMLU dataset (subjects=all, split=test)...
+2025-12-23 02:46:19,737 - src.utils.data_loader - INFO - Loaded 1000 samples from MMLU
+2025-12-23 02:46:19,737 - src.utils.data_loader - INFO - Created MMLU DataLoader: 1000 samples, batch_size=1
+2025-12-23 02:46:19,737 - __main__ - INFO - Loaded MMLU as common dataset
+2025-12-23 02:46:19,834 - __main__ - INFO - Evaluating on BeaverTails...
+2025-12-23 02:46:19,834 - src.utils.data_loader - INFO - Loading BeaverTails dataset (split=test)...
+2025-12-23 02:46:21,116 - src.utils.data_loader - ERROR - Failed to load BeaverTails: Unknown split "test". Should be one of ['330k_train', '330k_test', '30k_train', '30k_test'].
+2025-12-23 02:46:21,116 - src.utils.data_loader - INFO - Retrying with split: 30k_test
+2025-12-23 02:46:22,239 - src.utils.data_loader - INFO - Loaded 500 samples from BeaverTails
+2025-12-23 02:46:22,239 - src.utils.data_loader - INFO - Created BeaverTails DataLoader: 500 samples, batch_size=1
+2025-12-23 02:52:15,440 - __main__ - INFO - Evaluating on GSM8K...
+2025-12-23 02:52:15,440 - src.utils.task_specific_loaders - INFO - Loading GSM8K dataset (split=test)...
+2025-12-23 02:52:18,390 - src.utils.task_specific_loaders - INFO - Loaded 500 samples from GSM8K
+2025-12-23 02:52:18,390 - src.utils.task_specific_loaders - INFO - Created GSM8K DataLoader: 500 samples, batch_size=1
+2025-12-23 02:52:33,456 - __main__ - INFO - Evaluating on CodeAlpaca...
+2025-12-23 02:52:33,456 - src.utils.task_specific_loaders - INFO - Loading CodeAlpaca dataset...
+2025-12-23 02:52:35,538 - src.utils.task_specific_loaders - INFO - Loaded 500 samples from CodeAlpaca
+2025-12-23 02:52:35,539 - src.utils.task_specific_loaders - INFO - Created CodeAlpaca DataLoader: 500 samples, batch_size=1
+2025-12-23 03:00:33,941 - __main__ - INFO - 
+5. A4 (CodeAlpaca)
+2025-12-23 03:00:33,978 - src.adapter_utils - INFO - ✓ Adapter loaded from: saved_adapters/llama-3.1-8b/utility_model/utility_model_A4.pt
+2025-12-23 03:00:33,978 - src.adapter_utils - INFO -   Created: 2025-12-23T00:51:47.690065
+2025-12-23 03:00:33,978 - src.adapter_utils - INFO -   Metadata: {'type': 'utility_model_A4', 'task': 'code', 'model': 'llama-3.1-8b', 'base_utility': 0.6999999999999942, 'A4_utility': 0.6999999999999942, 'utility_gain': 0.0, 'safety_change': 0.11950000000000005, 'note': 'Coding-specialized utility model'}
+2025-12-23 03:00:33,978 - src.model_utils - INFO - Applying LoRA adapter to model...
+2025-12-23 03:00:34,119 - src.model_utils - INFO - ✓ Applied 256 LoRA parameters to model
+2025-12-23 03:00:34,120 - __main__ - INFO - 
+================================================================================
+2025-12-23 03:00:34,120 - __main__ - INFO - Evaluating A4
+2025-12-23 03:00:34,120 - __main__ - INFO - ================================================================================
+2025-12-23 03:00:34,120 - __main__ - INFO - Evaluating on CodeAlpaca...
+2025-12-23 03:00:34,120 - src.utils.task_specific_loaders - INFO - Loading CodeAlpaca dataset...
+2025-12-23 03:00:36,501 - src.utils.task_specific_loaders - INFO - Loaded 500 samples from CodeAlpaca
+2025-12-23 03:00:36,501 - src.utils.task_specific_loaders - INFO - Created CodeAlpaca DataLoader: 500 samples, batch_size=1
+2025-12-23 03:01:00,242 - __main__ - INFO - Evaluating on MMLU (common dataset)...
+2025-12-23 03:01:00,242 - __main__ - INFO - Loading MMLU dataset (common)...
+2025-12-23 03:01:00,243 - src.utils.data_loader - INFO - Loading MMLU dataset (subjects=all, split=test)...
+2025-12-23 03:01:02,065 - src.utils.data_loader - INFO - Loaded 1000 samples from MMLU
+2025-12-23 03:01:02,065 - src.utils.data_loader - INFO - Created MMLU DataLoader: 1000 samples, batch_size=1
+2025-12-23 03:01:02,065 - __main__ - INFO - Loaded MMLU as common dataset
+2025-12-23 03:01:02,160 - __main__ - INFO - Evaluating on BeaverTails...
+2025-12-23 03:01:02,160 - src.utils.data_loader - INFO - Loading BeaverTails dataset (split=test)...
+2025-12-23 03:01:03,433 - src.utils.data_loader - ERROR - Failed to load BeaverTails: Unknown split "test". Should be one of ['330k_train', '330k_test', '30k_train', '30k_test'].
+2025-12-23 03:01:03,433 - src.utils.data_loader - INFO - Retrying with split: 30k_test
+2025-12-23 03:01:04,781 - src.utils.data_loader - INFO - Loaded 500 samples from BeaverTails
+2025-12-23 03:01:04,781 - src.utils.data_loader - INFO - Created BeaverTails DataLoader: 500 samples, batch_size=1
+2025-12-23 03:01:33,715 - __main__ - INFO - Evaluating on GSM8K...
+2025-12-23 03:01:33,715 - src.utils.task_specific_loaders - INFO - Loading GSM8K dataset (split=test)...
+2025-12-23 03:01:36,322 - src.utils.task_specific_loaders - INFO - Loaded 500 samples from GSM8K
+2025-12-23 03:01:36,322 - src.utils.task_specific_loaders - INFO - Created GSM8K DataLoader: 500 samples, batch_size=1
+2025-12-23 03:01:51,425 - __main__ - INFO - Evaluating on CodeAlpaca...
+2025-12-23 03:01:51,425 - src.utils.task_specific_loaders - INFO - Loading CodeAlpaca dataset...
+2025-12-23 03:01:53,990 - src.utils.task_specific_loaders - INFO - Loaded 500 samples from CodeAlpaca
+2025-12-23 03:01:53,990 - src.utils.task_specific_loaders - INFO - Created CodeAlpaca DataLoader: 500 samples, batch_size=1
+2025-12-23 03:02:16,624 - __main__ - INFO - 
+✓ Results saved to: results/comprehensive_evaluation/comprehensive_eval_llama-3.1-8b_20251223_030216.json
+2025-12-23 03:02:16,624 - __main__ - INFO - 
+================================================================================
+2025-12-23 03:02:16,624 - __main__ - INFO - EVALUATION SUMMARY
+2025-12-23 03:02:16,624 - __main__ - INFO - ================================================================================
+2025-12-23 03:02:16,624 - __main__ - INFO - 
+Base Model:
+2025-12-23 03:02:16,624 - __main__ - INFO -   Common (MMLU): 70.00%
+2025-12-23 03:02:16,624 - __main__ - INFO - 
+A1:
+2025-12-23 03:02:16,624 - __main__ - INFO -   Task-Specific (BeaverTails): 13.80%
+2025-12-23 03:02:16,624 - __main__ - INFO -   Common (MMLU): 70.00%
+2025-12-23 03:02:16,624 - __main__ - INFO - 
+A2:
+2025-12-23 03:02:16,624 - __main__ - INFO -   Task-Specific (BeaverTails): 7.20%
+2025-12-23 03:02:16,624 - __main__ - INFO -   Common (MMLU): 70.00%
+2025-12-23 03:02:16,624 - __main__ - INFO - 
+A3:
+2025-12-23 03:02:16,624 - __main__ - INFO -   Task-Specific (GSM8K): 98.00%
+2025-12-23 03:02:16,624 - __main__ - INFO -   Common (MMLU): 70.00%
+2025-12-23 03:02:16,624 - __main__ - INFO - 
+A4:
+2025-12-23 03:02:16,624 - __main__ - INFO -   Task-Specific (CodeAlpaca): 3.00%
+2025-12-23 03:02:16,624 - __main__ - INFO -   Common (MMLU): 70.00%
+2025-12-23 03:02:16,625 - __main__ - INFO - 
+================================================================================
+2025-12-23 03:02:16,625 - __main__ - INFO - COMPREHENSIVE EVALUATION COMPLETED
+2025-12-23 03:02:16,625 - __main__ - INFO - ================================================================================

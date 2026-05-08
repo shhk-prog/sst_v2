@@ -1,0 +1,52 @@
+# SST-Merge V2 Default Configuration
+
+# モデル設定
+model:
+  name: "llama-3.1-8b"
+  device: "cuda"
+  dtype: "float16"
+
+# マージ設定
+merge:
+  # モード: "direct", "residual", "layerwise"
+  mode: "residual"
+  
+  # Safety追加可能サブスペースの次元数
+  k: 10
+  
+  # Residual ratio: 元のSafety情報の保持率
+  # 0.0 = 完全射影（従来のSST-Merge）
+  # 1.0 = 射影なし（直接追加）
+  # 0.5-0.7 = 推奨値
+  residual_ratio: 0.7
+  
+  # Safety追加の重み
+  safety_weight: 1.0
+
+# FIM計算設定
+fim:
+  approximation: "gradient_variance"
+  regularization: 1.0e-6
+  max_samples: 500
+
+# Layer-wise projection設定
+layer_config:
+  # Safety重視（低い値 = 弱い射影 = Safety保持）
+  q_proj: 0.2
+  k_proj: 0.2
+  v_proj: 0.4
+  o_proj: 0.3
+  
+  # Utility重視（高い値 = 強い射影 = Utility保護）
+  gate_proj: 0.6
+  up_proj: 0.6
+  down_proj: 0.6
+
+# 評価設定
+evaluation:
+  jailbreak:
+    max_samples: 500
+  mmlu:
+    max_samples: 1000
+  beavertails:
+    max_samples: 500
