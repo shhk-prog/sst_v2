@@ -45,6 +45,22 @@ def compute_sst_ratio(fim_h, fim_b, epsilon=1e-6):
             sst_ratio[name] = fim_h[name] / (fim_b[name] + epsilon)
     return sst_ratio
 
+def compute_data_free_sst_ratio(theta_util, theta_safe, base_model, epsilon=1e-6):
+    """
+    Data-Free SST比 (λ^_i = Δ_h,i^2 / (Δ_b,i^2 + epsilon)) を計算する。
+    論文との整合性: Data-Free Surrogate (タスクベクトル二乗比) の実装
+    """
+    sst_ratio = {}
+    for name in theta_safe:
+        if name in theta_util and name in base_model:
+            delta_h = theta_safe[name] - base_model[name]
+            delta_b = theta_util[name] - base_model[name]
+            
+            # Δ_h^2 / Δ_b^2 を計算
+            sst_ratio[name] = (delta_h ** 2) / ((delta_b ** 2) + epsilon)
+            
+    return sst_ratio
+
 def generate_topk_mask(sst_ratio_dict, k_percent):
     """
     SST比上位 k% のマスクを生成する

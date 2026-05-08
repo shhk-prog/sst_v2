@@ -10,8 +10,10 @@
   - `[ ]` XSTestデータセットの前処理
 
 - `[ ]` **フェーズ2: モデル学習 (Fine-Tuning)**
+  - `[x]` Utility FT と Safety FT、および混合データのMixed FT（LR等の条件変更含む）実行スクリプトの作成
   - `[ ]` 金融データを用いた Utility FT ($\theta_{util}$) の実行
   - `[ ]` HarmBenchデータを用いた Safety FT ($\theta_{safe}$) の実行
+  - `[ ]` 単純な Safety LoRA FT (Mixed FT等) のベースライン実行
 
 - `[ ]` **フェーズ3: マージ実行 (Mergekit / 公式実装利用)**
   - `[ ]` FIM計算 (Utility FIM, Safety FIM) の実行（サンプルサイズ100）

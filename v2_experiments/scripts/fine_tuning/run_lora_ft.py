@@ -8,7 +8,9 @@ from trl import SFTTrainer
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_name_or_path", type=str, default="meta-llama/Meta-Llama-3-8B-Instruct")
-    parser.add_argument("--dataset_path", type=str, required=True, help="Path to the JSON dataset")
+    parser.add_argument("--utility_dataset_path", type=str, default=None, help="Path to the Utility JSON dataset")
+    parser.add_argument("--safety_dataset_path", type=str, default=None, help="Path to the Safety JSON dataset")
+    parser.add_argument("--safety_mix_ratio", type=float, default=1.0, help="Ratio of Safety data in the mixed dataset (0.0 to 1.0)")
     parser.add_argument("--output_dir", type=str, required=True, help="Where to save the LoRA weights")
     parser.add_argument("--epochs", type=int, default=3)
     parser.add_argument("--learning_rate", type=float, default=2e-4)
@@ -42,8 +44,42 @@ def main():
     model = get_peft_model(model, lora_config)
     model.print_trainable_parameters()
     
-    print(f"Loading dataset from: {args.dataset_path}")
-    dataset = load_dataset("json", data_files=args.dataset_path)["train"]
+    print("Loading dataset(s)...")
+    from datasets import concatenate_datasets
+    import random
+    
+    util_ds, safe_ds = None, None
+    if args.utility_dataset_path:
+        util_ds = load_dataset("json", data_files=args.utility_dataset_path)["train"]
+    if args.safety_dataset_path:
+        safe_ds = load_dataset("json", data_files=args.safety_dataset_path)["train"]
+        
+    if util_ds is None and safe_ds is None:
+        raise ValueError("At least one of --utility_dataset_path or --safety_dataset_path must be provided.")
+        
+    if util_ds is not None and safe_ds is not None:
+        ratio = args.safety_mix_ratio
+        if ratio >= 1.0:
+            dataset = safe_ds
+            print("Using 100% Safety data.")
+        elif ratio <= 0.0:
+            dataset = util_ds
+            print("Using 100% Utility data.")
+        else:
+            target_safe_size = len(safe_ds)
+            target_util_size = int(target_safe_size * (1.0 - ratio) / ratio)
+            
+            if target_util_size > len(util_ds):
+                util_indices = [random.randint(0, len(util_ds)-1) for _ in range(target_util_size)]
+                sampled_util = util_ds.select(util_indices)
+            else:
+                sampled_util = util_ds.shuffle(seed=42).select(range(target_util_size))
+                
+            dataset = concatenate_datasets([safe_ds, sampled_util]).shuffle(seed=42)
+            print(f"Mixed dataset: Safety={target_safe_size} ({ratio*100}%), Utility={target_util_size} ({(1-ratio)*100}%)")
+    else:
+        dataset = util_ds if util_ds is not None else safe_ds
+        print(f"Using single dataset. Total samples: {len(dataset)}")
     
     def format_prompt(example):
         instruction = example.get("instruction", "")

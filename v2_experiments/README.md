@@ -56,16 +56,30 @@ python scripts/data_prep/prepare_datasets.py
 ```bash
 python scripts/fine_tuning/run_lora_ft.py \
     --model_name_or_path "meta-llama/Meta-Llama-3-8B-Instruct" \
-    --dataset_path "data/utility_fpb.json" \
+    --utility_dataset_path "data/utility_fpb.json" \
     --output_dir "models/utility_ft_model"
 ```
 
-**Safetyモデルの学習:**
+**Safetyモデルの学習 (純粋なSafety FT):**
 ```bash
 python scripts/fine_tuning/run_lora_ft.py \
     --model_name_or_path "meta-llama/Meta-Llama-3-8B-Instruct" \
-    --dataset_path "data/safety_advbench.json" \
+    --safety_dataset_path "data/safety_advbench.json" \
     --output_dir "models/safety_ft_model"
+```
+
+**比較手法: Direct Safety FT (Mixed FT & LR Sweep)**
+単純な LoRA FT ベースラインとして、UtilityとSafetyデータを混合してFTする手法（Safety Taxの発生を確認するためのベースライン）も実行可能です。混合比率(`safety_mix_ratio`)や学習率(`learning_rate`)を変更してスイープを行います。
+
+```bash
+# 例: Safety 20%, Utility 80% の混合データで学習率 1e-4 で学習
+python scripts/fine_tuning/run_lora_ft.py \
+    --model_name_or_path "meta-llama/Meta-Llama-3-8B-Instruct" \
+    --utility_dataset_path "data/utility_fpb.json" \
+    --safety_dataset_path "data/safety_advbench.json" \
+    --safety_mix_ratio 0.2 \
+    --learning_rate 1e-4 \
+    --output_dir "models/mixed_ft_s20_u80_lr1e4"
 ```
 
 ### Step 4: ベースラインマージの実行 (Mergekit利用)
