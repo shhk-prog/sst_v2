@@ -131,6 +131,14 @@ def rescore_candidate_group(
     fpath_math500 = files_map.get("utility_math_minerva_math500")
     fpath_math = files_map.get("utility_math")
     
+    def extract_math500_score(res_dict: dict) -> float:
+        if not res_dict:
+            return 0.0
+        for k in ["math_verify,none", "math_verify", "exact_match,flexible-extract", "exact_match"]:
+            if k in res_dict:
+                return float(res_dict[k])
+        return 0.0
+
     if fpath_gsm and fpath_gsm.exists():
         try:
             with open(fpath_gsm, "r", encoding="utf-8") as f:
@@ -145,7 +153,7 @@ def rescore_candidate_group(
             with open(fpath_math500, "r", encoding="utf-8") as f:
                 d = json.load(f)
                 r = d.get("results", {}).get("minerva_math500", {})
-                math_scores["math500"] = r.get("exact_match,flexible-extract", r.get("exact_match", 0.0))
+                math_scores["math500"] = extract_math500_score(r)
         except Exception:
             pass
             
@@ -157,7 +165,7 @@ def rescore_candidate_group(
                 if "gsm8k" in r and "gsm8k" not in math_scores:
                     math_scores["gsm8k"] = r["gsm8k"].get("exact_match,flexible-extract", r["gsm8k"].get("exact_match", 0.0))
                 if "minerva_math500" in r and "math500" not in math_scores:
-                    math_scores["math500"] = r["minerva_math500"].get("exact_match,flexible-extract", r["minerva_math500"].get("exact_match", 0.0))
+                    math_scores["math500"] = extract_math500_score(r["minerva_math500"])
         except Exception:
             pass
             
