@@ -179,13 +179,20 @@ def evaluate_feasible_region_strict(
             if not isinstance(rb_data, dict):
                 return "INSUFFICIENT_DATA", f"UNSUPPORTED_BENCHMARK_SCHEMA_{rb.upper()}_SCALAR_NOT_ALLOWED"
 
-            rb_asr = rb_data.get("asr_all")
-            rb_valid = rb_data.get("asr_valid")
-            rb_vrr = rb_data.get("vrr")
             # Strict count check: exact integer, positive n_samples, 0 <= n_unjudged <= n_samples, zero unjudged
             valid_counts, count_err = validate_benchmark_counts(rb_data, rb)
             if not valid_counts:
                 return "INSUFFICIENT_DATA", count_err
+
+            # Require both valid counts and complete per-benchmark metrics.
+            for metric_name in ("asr_all", "asr_valid", "vrr"):
+                value = rb_data.get(metric_name)
+                if value is None or not is_valid_ratio(value):
+                    return (
+                        "INSUFFICIENT_DATA",
+                        f"NULL_OR_INVALID_REQUIRED_BENCHMARK_"
+                        f"{rb.upper()}_{metric_name.upper()}",
+                    )
 
     if isinstance(bench_breakdown, dict):
         for b_name, b_val in bench_breakdown.items():

@@ -13,9 +13,9 @@ data/cache/
 sst_merge_v4/results_*/**/adapters/
 
 saved_adapters/
-sst_merge_v4/results/
-sst_merge_v4/results_A5_36/
-sst_merge_v4/results_1:10/
+# sst_merge_v4/results/
+# sst_merge_v4/results_A5_36/
+# sst_merge_v4/results_1:10/
 sst_merge_v3/results/
 sst_merge_v2/results/
 sst_merge_v4/src/__pycache__/
