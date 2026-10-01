@@ -115,7 +115,6 @@ def run_math_evaluation(
 
 def extract_code_block(generation: str, entry_point: Optional[str] = None) -> str:
     """Extract python code block from generated text."""
-    # Look for ```python ... ```
     m = re.findall(r"```python(.*?)```", generation, re.DOTALL)
     if m:
         return m[0].strip()
@@ -125,16 +124,85 @@ def extract_code_block(generation: str, entry_point: Optional[str] = None) -> st
     return generation.strip()
 
 
+def _target_code_runner(program_code: str, result_queue: Any):
+    """Worker process target that executes code in an isolated scope with stdout muted."""
+    import sys
+    import io
+    sys.stdout = io.StringIO()
+    sys.stderr = io.StringIO()
+    try:
+        global_scope = {}
+        exec(program_code, global_scope)
+        result_queue.put({"status": "PASSED", "error": None})
+    except AssertionError as e:
+        result_queue.put({"status": "ASSERTION_ERROR", "error": str(e)})
+    except Exception as e:
+        result_queue.put({"status": "RUNTIME_ERROR", "error": f"{type(e).__name__}: {str(e)}"})
+
+
+def execute_code_isolated(program_code: str, timeout: float = 3.0) -> Dict[str, Any]:
+    """
+    R3-01: Executes generated program in a separate multiprocessing process with strict timeout.
+    Prevents host contamination and infinite execution loops.
+    """
+    import multiprocessing
+    result_queue = multiprocessing.Queue()
+    proc = multiprocessing.Process(target=_target_code_runner, args=(program_code, result_queue))
+    proc.start()
+    proc.join(timeout=timeout)
+
+    if proc.is_alive():
+        proc.terminate()
+        proc.join(0.5)
+        if proc.is_alive():
+            proc.kill()
+        return {"status": "TIMEOUT", "error": f"Execution exceeded {timeout}s"}
+
+    if not result_queue.empty():
+        return result_queue.get()
+    return {"status": "CRASH", "error": "Worker process exited unexpectedly"}
+
+
+def build_humaneval_test_program(prompt: str, code: str, test: str, entry_point: str) -> str:
+    """
+    R3-01: Builds complete test code for HumanEval.
+    Crucially ensures check(entry_point) is actually executed, not just defined!
+    """
+    # If code does not include function definition or is just completion, merge with prompt
+    candidate_code = code
+    if entry_point and f"def {entry_point}" not in code:
+        candidate_code = prompt + "\n" + code
+
+    # Check if test defines `check(candidate)`
+    call_line = ""
+    if "def check(" in test:
+        call_line = f"\ncheck({entry_point})\n"
+
+    full_program = (
+        candidate_code + "\n\n" +
+        test + "\n" +
+        call_line
+    )
+    return full_program
+
+
+def build_mbpp_test_program(code: str, test_list: List[str]) -> str:
+    """R3-01: Builds complete test code for MBPP from test_list assertions."""
+    tests_str = "\n".join(test_list)
+    return code + "\n\n" + tests_str + "\n"
+
+
 def run_code_evaluation(
     model_path: str,
     dataset: List[Dict[str, Any]],
     output_file: Optional[str] = None,
     execute_code: bool = False,
+    timeout: float = 3.0,
     max_new_tokens: int = 512,
 ) -> Dict[str, Any]:
     """
-    Evaluates Code generation on HumanEval/MBPP (R2-08).
-    If execute_code is False, runs extraction and syntax validation only.
+    Evaluates Code generation on HumanEval/MBPP with isolated execution (R3-01).
+    Requires explicit execute_code=True for runtime test execution.
     """
     print(f"Running Code Utility evaluation on {model_path} with {len(dataset)} problems (execute={execute_code})...")
     tokenizer = AutoTokenizer.from_pretrained(model_path)
@@ -157,6 +225,7 @@ def run_code_evaluation(
         prompt = item["prompt"]
         entry_point = item.get("entry_point")
         test_cases = item.get("test", "")
+        test_list = item.get("test_list", [])
 
         inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
         with torch.no_grad():
@@ -177,23 +246,27 @@ def run_code_evaluation(
             syntax_valid = False
             syntax_error_count += 1
 
-        exec_passed = False
-        if execute_code and syntax_valid and test_cases:
-            # Isolated execution scope
-            exec_env = {}
-            try:
-                exec(code + "\n" + test_cases, exec_env)
-                exec_passed = True
+        exec_res = None
+        if execute_code and syntax_valid:
+            if test_cases:
+                full_prog = build_humaneval_test_program(prompt, code, test_cases, entry_point or "")
+            elif test_list:
+                full_prog = build_mbpp_test_program(code, test_list)
+            else:
+                full_prog = code
+
+            exec_res = execute_code_isolated(full_prog, timeout=timeout)
+            if exec_res.get("status") == "PASSED":
                 passed_count += 1
-            except Exception:
-                exec_passed = False
 
         results.append({
             "task_id": item.get("task_id", idx),
             "prompt": prompt,
+            "entry_point": entry_point,
             "generated_code": code,
             "syntax_valid": syntax_valid,
-            "exec_passed": exec_passed if execute_code else None,
+            "exec_status": exec_res.get("status") if exec_res else None,
+            "exec_error": exec_res.get("error") if exec_res else None,
         })
 
     pass_at_1 = float(passed_count / len(dataset)) if (execute_code and dataset) else None

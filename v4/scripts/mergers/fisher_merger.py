@@ -12,7 +12,7 @@ from mergers.base_merger import BaseMerger
 class FisherMerger(BaseMerger):
     FIDELITY_STATUS = "SIMPLIFIED_ADAPTATION (Requires empirical FIM diagonal tensors for strict fidelity)"
 
-    def __init__(self, eps: float = 1e-6, default_weight_ratio: float = 1.0, strict_fim: bool = False):
+    def __init__(self, eps: float = 1e-6, default_weight_ratio: float = 1.0, strict_fim: bool = True):
         super().__init__(name="fisher_weighted", config={"eps": eps, "default_weight_ratio": default_weight_ratio, "strict_fim": strict_fim})
         self.eps = float(eps)
         self.default_weight_ratio = float(default_weight_ratio)

@@ -129,9 +129,11 @@ def audit_single_model(model_name_or_path: str, role: str) -> Dict[str, Any]:
                 info["errors"].append(f"Adapter config read failed: {str(e)}")
 
     if cfg is not None and tok is not None:
-        if is_local and len(weight_files) == 0 and not info.get("adapter_config"):
+        total_weight_bytes = sum(w["size_bytes"] for w in weight_files)
+        if is_local and (len(weight_files) == 0 or total_weight_bytes == 0) and not info.get("adapter_config"):
             info["status"] = "CONFIG_ONLY"
-            info["weight_status"] = "MISSING_WEIGHTS"
+            info["weight_status"] = "EMPTY_OR_MISSING_WEIGHTS"
+            info["errors"].append("Weight files are missing or have 0 bytes (R3-04).")
         else:
             info["status"] = "LOADED"
             info["weight_status"] = "WEIGHTS_PRESENT" if is_local else "REMOTE_OR_CACHED"

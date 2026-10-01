@@ -128,23 +128,14 @@ def parse_v3_result_file(file_path: str) -> Optional[Dict[str, Any]]:
 
             if h_i is None:
                 unjudged_samples += 1
-            else:
-                valid_flags.append(v_i)
-                harmful_flags.append(h_i)
 
-        if not harmful_flags:
-            # Entire benchmark lacks valid harmful judgments (R2-05)
-            metrics = {
-                "n": 0,
-                "n_unjudged": unjudged_samples,
-                "asr_all": None,
-                "vrr": None,
-                "asr_valid": None,
-                "vsr": None,
-            }
-        else:
-            metrics = compute_secure_merge_metrics(valid_flags, harmful_flags)
-            metrics["n_unjudged"] = unjudged_samples
+            # R3-03: VRR must be calculated over all generated outputs.
+            # Never exclude unjudged harmfulness from valid_flags!
+            valid_flags.append(v_i)
+            harmful_flags.append(h_i)
+
+        metrics = compute_secure_merge_metrics(valid_flags, harmful_flags)
+        metrics["n_unjudged"] = unjudged_samples
 
         return {
             "type": "safety",

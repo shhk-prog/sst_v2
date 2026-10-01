@@ -18,6 +18,7 @@ import json
 import math
 import torch
 from typing import Dict, Any, List, Optional
+from collections import defaultdict
 from mergers.base_merger import BaseMerger
 from analysis.intervention_mapper import classify_tensor_detailed
 
@@ -149,9 +150,9 @@ class ProposedInterventionMerger(BaseMerger):
             delta_util = stats.get("delta_utility")
             delta_overref = stats.get("delta_overrefusal")
 
-            # Check that required calibration metrics are present and strictly finite
+            # R3-07: Require all 4 calibration metrics to be present and strictly finite
             is_valid_entry = True
-            for m_val in [delta_asr, delta_vrr]:
+            for m_val in [delta_asr, delta_vrr, delta_util, delta_overref]:
                 if m_val is None or not math.isfinite(float(m_val)):
                     is_valid_entry = False
                     break
@@ -167,9 +168,9 @@ class ProposedInterventionMerger(BaseMerger):
             # 1. Non-degeneration checks
             if delta_vrr < -max_vrr_drop:
                 rejection_reasons.append(f"VRR_DROP({delta_vrr:.4f} < {-max_vrr_drop})")
-            if delta_util is not None and delta_util < -max_utility_drop:
+            if delta_util < -max_utility_drop:
                 rejection_reasons.append(f"UTILITY_DROP({delta_util:.4f} < {-max_utility_drop})")
-            if delta_overref is not None and delta_overref > max_overrefusal_increase:
+            if delta_overref > max_overrefusal_increase:
                 rejection_reasons.append(f"OVERREFUSAL_INCREASE({delta_overref:.4f} > {max_overrefusal_increase})")
 
             # 2. Safety improvement check
@@ -193,11 +194,13 @@ class ProposedInterventionMerger(BaseMerger):
                     "weight": assigned_weight,
                     "delta_asr": delta_asr,
                     "delta_vrr": delta_vrr,
+                    "delta_utility": delta_util,
+                    "delta_overrefusal": delta_overref,
                 }
 
         if valid_measured_groups_count == 0:
             raise ValueError(
-                f"E4 BLOCKED: Calibration map {intervention_map_path} contains no valid finite measured groups (R2-09)."
+                f"E4 BLOCKED: Calibration map {intervention_map_path} contains no valid finite measured groups with complete metrics (R2-09, R3-07)."
             )
 
         return cls(
@@ -208,6 +211,94 @@ class ProposedInterventionMerger(BaseMerger):
             calibration_provenance=provenance,
         )
 
+    def merge_state_dicts(
+        self,
+        dict_u: Dict[str, torch.Tensor],
+        dict_s: Dict[str, torch.Tensor],
+        dict_0: Optional[Dict[str, torch.Tensor]] = None,
+        strict_shape_check: bool = True,
+        **kwargs
+    ) -> Dict[str, torch.Tensor]:
+        """
+        R3-07: Rigorous Group-Wide Norm Scaling (Plan-compliant).
+        Pre-aggregates total squared norm across ALL tensors in each group g,
+        computes a unified scaling factor s_g, and applies it uniformly across the group.
+        Prevents distortion caused by per-tensor clipping.
+        """
+        if not self.is_dynamic_calibrated and not kwargs.get("allow_uncalibrated", False):
+            raise RuntimeError("Cannot execute merge with uncalibrated weights in production.")
+
+        # Step 1: Pre-aggregate group-wide norms
+        group_sq_u = defaultdict(float)
+        group_sq_delta = defaultdict(float)
+        key_group_map = {}
+
+        for key, p_u in dict_u.items():
+            if not p_u.is_floating_point():
+                continue
+            p_s = dict_s.get(key)
+            if p_s is None:
+                continue
+
+            info = classify_tensor_detailed(key, self.total_layers)
+            grp = info["group"]
+            key_group_map[key] = grp
+            a_g = self.group_weights.get(grp, 0.0)
+
+            if a_g > 0.0:
+                p_u_f = p_u.detach().to(torch.float32)
+                p_s_f = p_s.detach().to(torch.float32)
+                d_f = a_g * (p_s_f - p_u_f)
+
+                group_sq_u[grp] += float(torch.sum(p_u_f ** 2).item())
+                group_sq_delta[grp] += float(torch.sum(d_f ** 2).item())
+
+        # Step 2: Compute unified common scaling factor s_g per group
+        group_common_scale = {}
+        for grp in self.group_weights.keys():
+            norm_u_grp = math.sqrt(group_sq_u.get(grp, 0.0))
+            norm_delta_grp = math.sqrt(group_sq_delta.get(grp, 0.0))
+
+            if norm_delta_grp > 0.0:
+                ratio = norm_delta_grp / (norm_u_grp + self.eps)
+                if ratio > self.rho_g:
+                    scale = (self.rho_g * (norm_u_grp + self.eps)) / (norm_delta_grp + self.eps)
+                    group_common_scale[grp] = min(scale, 1.0)
+                else:
+                    group_common_scale[grp] = 1.0
+            else:
+                group_common_scale[grp] = 1.0
+
+        # Step 3: Perform merge applying group-wide unified scaling
+        merged_dict = {}
+        for key, p_u in dict_u.items():
+            p_s = dict_s.get(key)
+            if p_s is None:
+                merged_dict[key] = p_u.clone()
+                continue
+
+            if not p_u.is_floating_point():
+                merged_dict[key] = p_u.clone()
+                continue
+
+            orig_dtype = p_u.dtype
+            p_u_f = p_u.detach().to(torch.float32)
+            p_s_f = p_s.detach().to(torch.float32)
+
+            grp = key_group_map.get(key, "group5_norms")
+            a_g = self.group_weights.get(grp, 0.0)
+            s_g = group_common_scale.get(grp, 1.0)
+
+            # Delta scaled by group weight and group-wide unified scaling
+            effective_alpha = a_g * s_g
+            delta = effective_alpha * (p_s_f - p_u_f)
+
+            out = (p_u_f + delta).to(orig_dtype)
+            self.check_finite(out, f"proposed_group_{grp}_{key}")
+            merged_dict[key] = out
+
+        return merged_dict
+
     def merge_tensors(
         self,
         theta_u: torch.Tensor,
@@ -216,26 +307,18 @@ class ProposedInterventionMerger(BaseMerger):
         key: Optional[str] = None,
         **kwargs
     ) -> torch.Tensor:
-        """
-        Applies calibrated group weight and per-region/tensor norm constraint in FP32 precision.
-        """
+        """Fallback per-tensor interface when whole state dict is not provided."""
         if not self.is_dynamic_calibrated and not kwargs.get("allow_uncalibrated", False):
             raise RuntimeError("Cannot execute merge with uncalibrated weights in production.")
 
-        if key is None:
-            a_g = 0.0
-        else:
-            info = classify_tensor_detailed(key, self.total_layers)
-            grp = info["group"]
-            a_g = self.group_weights.get(grp, 0.0)
+        info = classify_tensor_detailed(key, self.total_layers) if key else {"group": "group5_norms"}
+        grp = info["group"]
+        a_g = self.group_weights.get(grp, 0.0)
 
-        # High-precision FP32 calculation
         u_f = theta_u.detach().to(torch.float32)
         s_f = theta_s.detach().to(torch.float32)
-
         delta = a_g * (s_f - u_f)
 
-        # Apply per-region update norm constraint: ||delta|| / (||u|| + eps) <= rho_g
         norm_delta = float(torch.norm(delta).item())
         norm_u = float(torch.norm(u_f).item())
         current_r_g = norm_delta / (norm_u + self.eps)

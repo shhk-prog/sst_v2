@@ -95,6 +95,78 @@ class TestProposedInterventionMerge(unittest.TestCase):
             if os.path.exists(nan_path):
                 os.remove(nan_path)
 
+    def test_calibration_strictly_rejects_missing_utility_or_overrefusal(self):
+        """
+        R3-07: A group having delta_asr and delta_vrr but lacking delta_utility or delta_overrefusal
+        MUST NOT be accepted!
+        """
+        incomplete_map = {
+            "group3_layers_mid_deep": {
+                "delta_asr": -0.06,
+                "delta_vrr": 0.0,
+                # delta_utility and delta_overrefusal missing
+            }
+        }
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+            json.dump(incomplete_map, f)
+            temp_path = f.name
+        try:
+            with self.assertRaises(ValueError) as ctx:
+                # Should fail because 0 valid complete groups exist
+                ProposedInterventionMerger.from_calibration_map(temp_path, total_layers=8)
+            self.assertIn("E4 BLOCKED", str(ctx.exception))
+        finally:
+            if os.path.exists(temp_path):
+                os.remove(temp_path)
+
+    def test_group_wide_common_norm_scaling_maintains_relative_tensor_proportions(self):
+        """
+        R3-07: In a group with two tensors of sizes 1.0 and 100.0,
+        group-wide common norm scaling scales both tensors with the SAME factor s_g,
+        unlike per-tensor clipping which distorts them disproportionately.
+        """
+        complete_map = {
+            "group1_layers_shallow": {
+                "delta_asr": -0.06,
+                "delta_vrr": 0.0,
+                "delta_utility": 0.0,
+                "delta_overrefusal": 0.0,
+            }
+        }
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+            json.dump(complete_map, f)
+            temp_path = f.name
+        try:
+            # Set rho_g = 0.01
+            merger = ProposedInterventionMerger.from_calibration_map(temp_path, rho_g=0.01, total_layers=8)
+            # Create two tensors in the same group (layer 0)
+            u_small = torch.ones(10, 10) * 1.0
+            u_large = torch.ones(10, 10) * 100.0
+            s_small = u_small + 1.0
+            s_large = u_large + 1.0
+
+            dict_u = {
+                "model.layers.0.self_attn.q_proj.weight": u_small,
+                "model.layers.0.self_attn.k_proj.weight": u_large,
+            }
+            dict_s = {
+                "model.layers.0.self_attn.q_proj.weight": s_small,
+                "model.layers.0.self_attn.k_proj.weight": s_large,
+            }
+
+            merged = merger.merge_state_dicts(dict_u, dict_s)
+            delta_small = merged["model.layers.0.self_attn.q_proj.weight"] - u_small
+            delta_large = merged["model.layers.0.self_attn.k_proj.weight"] - u_large
+
+            # Both updates should be scaled by the EXACT same common scaling factor!
+            ratio_small = (delta_small / (s_small - u_small)).mean().item()
+            ratio_large = (delta_large / (s_large - u_large)).mean().item()
+            self.assertAlmostEqual(ratio_small, ratio_large, places=5,
+                                  msg="Tensors in the same group were scaled with different factors (per-tensor distortion)!")
+        finally:
+            if os.path.exists(temp_path):
+                os.remove(temp_path)
+
 
 if __name__ == "__main__":
     unittest.main()

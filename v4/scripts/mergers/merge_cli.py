@@ -110,12 +110,13 @@ if __name__ == "__main__":
     parser.add_argument("--base_model", type=str, default="meta-llama/Llama-2-7b-hf")
     parser.add_argument("--method_kwargs", type=str, default="{}")
     parser.add_argument("--track", type=str, default="primary", choices=["primary", "diagnostic"],
-                        help="Execution track: 'primary' requires valid E0 audit gate pass")
     parser.add_argument("--e0_manifest", type=str, default="v4/results/e0_audit/model_manifest.json",
                         help="Path to E0 audit manifest")
+    parser.add_argument("--fim_u", type=str, default=None, help="Path to utility model FIM tensor file (.pt)")
+    parser.add_argument("--fim_s", type=str, default=None, help="Path to safety model FIM tensor file (.pt)")
     args = parser.parse_args()
 
-    # R2-04: Prevent merger CLI bypass in primary track
+    # R2-04 & R3-06: Prevent merger CLI bypass in primary track
     if args.track == "primary":
         if not os.path.exists(args.e0_manifest):
             print(f"[FATAL AUDIT GATE ERROR] E0 manifest not found at: {args.e0_manifest}")
@@ -132,6 +133,13 @@ if __name__ == "__main__":
         except Exception as e:
             print(f"[FATAL AUDIT GATE ERROR] Failed to parse E0 manifest: {e}")
             sys.exit(1)
+
+        # R3-06: Primary Fisher merger requires explicit FIM files
+        if args.method in ["fisher", "fisher_weighted"]:
+            if not args.fim_u or not args.fim_s:
+                print("[FATAL AUDIT GATE ERROR] Fisher merger in primary track requires --fim_u and --fim_s.")
+                print("Fallback to constant weights without empirical FIM is strictly rejected (P0-07, R3-06).")
+                sys.exit(1)
 
     run_merge(
         method=args.method,

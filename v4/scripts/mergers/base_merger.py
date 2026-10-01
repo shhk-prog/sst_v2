@@ -90,6 +90,14 @@ class BaseMerger(ABC):
                 + (f"\n... and {len(shape_mismatches) - 10} more" if len(shape_mismatches) > 10 else "")
             )
 
+        if strict_shape_check and missing_in_s:
+            raise ValueError(
+                f"[STRICT MERGER ERROR] Missing essential weight keys in safety model:\n"
+                + "\n".join(missing_in_s[:10])
+                + (f"\n... and {len(missing_in_s) - 10} more" if len(missing_in_s) > 10 else "")
+                + "\nSilent copying of utility weights without safety counterpart is rejected (R3-04)."
+            )
+
         return merged_dict
 
     @staticmethod

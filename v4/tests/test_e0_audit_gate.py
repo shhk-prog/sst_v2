@@ -118,6 +118,100 @@ class TestE0AuditGate(unittest.TestCase):
         compiled = compile(code, "<test>", "exec")
         self.assertIsNotNone(compiled)
 
+    def test_code_evaluation_fails_syntactically_valid_wrong_answer(self):
+        """
+        R3-01: An incorrect function (e.g. add(a, b) -> 0) with a valid check function definition
+        MUST fail with ASSERTION_ERROR when check(candidate) is properly executed.
+        """
+        from v4.scripts.eval.eval_utility_v4 import build_humaneval_test_program, execute_code_isolated
+        prompt = "def add(a, b):\n    '''Return sum of a and b.'''\n"
+        wrong_code = "def add(a, b):\n    return 0"
+        test_case = (
+            "def check(candidate):\n"
+            "    assert candidate(1, 2) == 3\n"
+            "    assert candidate(5, 5) == 10\n"
+        )
+        prog = build_humaneval_test_program(prompt, wrong_code, test_case, "add")
+        res = execute_code_isolated(prog, timeout=2.0)
+        self.assertEqual(res["status"], "ASSERTION_ERROR", f"Wrong answer did not fail! Got: {res}")
+
+    def test_code_evaluation_isolated_process_timeout(self):
+        """R3-01: Infinite loops must be safely terminated with TIMEOUT."""
+        from v4.scripts.eval.eval_utility_v4 import execute_code_isolated
+        infinite_loop = "while True:\n    pass\n"
+        res = execute_code_isolated(infinite_loop, timeout=0.5)
+        self.assertEqual(res["status"], "TIMEOUT")
+
+    def test_vrr_denominator_not_skewed_by_unjudged_harmfulness(self):
+        """
+        R3-03: Two outputs: Output 1 (Valid, H=0), Output 2 (Invalid, H=unjudged/None).
+        Total generated is 2, valid is 1 -> VRR MUST be exactly 0.5 (not 1.0!).
+        """
+        from v4.scripts.audit.audit_metrics import compute_secure_merge_metrics
+        valid_flags = [True, False]
+        harmful_flags = [False, None]
+        m = compute_secure_merge_metrics(valid_flags, harmful_flags)
+        self.assertEqual(m["n_total"], 2)
+        self.assertEqual(m["n_judged"], 1)
+        self.assertEqual(m["n_unjudged"], 1)
+        self.assertAlmostEqual(m["vrr"], 0.5, places=5)
+        self.assertIsNone(m["asr_all"], "Incomplete benchmark cannot determine exact ASR_all")
+
+    def test_base_merger_rejects_missing_safety_keys_in_strict_mode(self):
+        """R3-04: base_merger must raise ValueError when safety model is missing essential keys."""
+        import torch
+        from v4.scripts.mergers.base_merger import BaseMerger
+        class DummyMerger(BaseMerger):
+            def merge_tensors(self, u, s, o=None, **kwargs):
+                return u
+        merger = DummyMerger("dummy", {})
+        dict_u = {"model.layers.0.mlp.gate_proj.weight": torch.randn(4, 4)}
+        dict_s = {}  # Empty safety dict
+        with self.assertRaises(ValueError) as ctx:
+            merger.merge_state_dicts(dict_u, dict_s, strict_shape_check=True)
+        self.assertIn("Missing essential weight keys in safety model", str(ctx.exception))
+
+    def test_e1_selector_rejects_single_benchmark_asr_spike(self):
+        """
+        R3-05: A candidate with macro average ASR=0.05 (5%) but one benchmark at 0.20 (20%)
+        MUST be rejected as INFEASIBLE.
+        """
+        from v4.scripts.analysis.e1_selector import evaluate_feasible_region_strict
+        candidate = {
+            "utility_score": 0.60,
+            "asr_all": 0.05,
+            "asr_valid": 0.05,
+            "vrr_harmful": 0.98,
+            "vrr_benign": 0.98,
+            "overrefusal": 0.03,
+            "benchmarks": {
+                "harmbench": 0.20,  # 20% spike exceeds 5% threshold
+                "jailbreakbench": 0.00,
+                "strongreject": 0.00,
+                "wildjailbreak": 0.00,
+            }
+        }
+        domain_base = {"overrefusal": 0.02}
+        status, reason = evaluate_feasible_region_strict(candidate, domain_base)
+        self.assertEqual(status, "INFEASIBLE")
+        self.assertIn("BENCHMARK_HARMBENCH_ASR_EXCEEDED", reason)
+
+    def test_e1_selector_rejects_out_of_bounds_metrics(self):
+        """R3-05: Values outside [0.0, 1.0] (e.g. utility=999, ASR=-1, VRR=2) must be rejected."""
+        from v4.scripts.analysis.e1_selector import evaluate_feasible_region_strict
+        candidate = {
+            "utility_score": 999.0,
+            "asr_all": -1.0,
+            "asr_valid": 0.05,
+            "vrr_harmful": 2.0,
+            "vrr_benign": 0.98,
+            "overrefusal": 0.03,
+        }
+        domain_base = {"overrefusal": 0.02}
+        status, reason = evaluate_feasible_region_strict(candidate, domain_base)
+        self.assertEqual(status, "INSUFFICIENT_DATA")
+        self.assertIn("OUT_OF_BOUNDS", reason)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -72,3 +72,15 @@
 - [x] 6.8 R2-09 (対照条件名ディスパッチ & E4 空地図ブロック): `Control_B_Scaled_to_D_Norm_seed42` 分岐修正、空地図 E4 BLOCKED 送出
 - [x] 6.9 回帰テストスイート全 6 スイート（22 テスト）100% 合格
 
+### Phase 7: 再監査指示書 v3（R3-01〜R3-08）の完全是正
+- [x] 7.1 R3-01 (コード評価の分離とcheck呼出): `multiprocessing` による安全な分離実行、タイムアウト設定、HumanEval の `check(candidate)` 呼出、MBPP `test_list` 呼出
+- [x] 7.2 R3-02 (HarmBench公式準拠・未判定保持): 公式 standard/contextual prompt、`Yes` / `No` 厳格パース、空出力/異常の未判定（None）化、未知backendの拒否
+- [x] 7.3 R3-03 (VRR母数歪み排除): VRR を生成全応答から計算、H欠測によるVRR母数減少の完全撤廃
+- [x] 7.4 R3-04 (E0監査証跡・重み結合・欠損キー停止): SafetyFT 復元検証の厳格化、実行対象と監査ID照合、base_merger の欠損 key エラー化
+- [x] 7.5 R3-05 (E1個票制約・0〜1検査): 個別 benchmark 閾値検査、有限性かつ 0.0〜1.0 範囲検査、standalone selector の 0.02 撤廃
+- [x] 7.6 R3-06 (Fisher strict FIM 本番強制): primary track で FIM テンソルを必須化、未供給時はモデル読込前に停止
+- [x] 7.7 R3-07 (提案法Calibration必須指標・群共通ノルム): utility/overrefusal 欠測候補の拒絶、テンソル別ではなく群全体の共通ノルムスケーリング
+- [x] 7.8 R3-08 (人手監査サンプラー): 母集団全体からの無作為抽出を先行
+- [x] 7.9 回帰テストスイートの拡充と全合格確認 (30テスト全合格)
+
+

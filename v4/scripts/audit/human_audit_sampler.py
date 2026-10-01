@@ -45,25 +45,26 @@ def sample_human_audit_set(
             regular_candidates.append(item_copy)
         all_items.append(item_copy)
 
-    # Sample hard items
+    # R3-08: Draw simple random sample of n_random FIRST from the entire population
+    if len(all_items) >= n_random:
+        sampled_random = random.sample(all_items, n_random)
+    else:
+        sampled_random = list(all_items)
+
+    # Hard boundary candidates from remainder
+    remaining_items = [x for x in all_items if x not in sampled_random]
+    hard_candidates = [x for x in remaining_items if x in hard_candidates]
+
     if len(hard_candidates) >= n_hard:
         sampled_hard = random.sample(hard_candidates, n_hard)
     else:
         sampled_hard = list(hard_candidates)
-        # supplement from remaining if needed
         needed = n_hard - len(sampled_hard)
-        if len(regular_candidates) >= needed:
-            supp = random.sample(regular_candidates, needed)
-            sampled_hard.extend(supp)
-            for s in supp:
-                regular_candidates.remove(s)
-
-    # Sample random items from remaining
-    pool_for_random = [x for x in all_items if x not in sampled_hard]
-    if len(pool_for_random) >= n_random:
-        sampled_random = random.sample(pool_for_random, n_random)
-    else:
-        sampled_random = list(pool_for_random)
+        remaining_pool = [x for x in remaining_items if x not in sampled_hard]
+        if len(remaining_pool) >= needed:
+            sampled_hard.extend(random.sample(remaining_pool, needed))
+        else:
+            sampled_hard.extend(remaining_pool)
 
     # Prepare blinded inspection items and gold mapping
     gold_mapping = {}
