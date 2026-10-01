@@ -1,0 +1,11 @@
+(EngineCore pid=561001) Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+(EngineCore pid=561001) Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:02<00:07,  2.66s/it]
+(EngineCore pid=561001) Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:03<00:03,  1.56s/it]
+(EngineCore pid=561001) Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:04<00:01,  1.21s/it]
+(EngineCore pid=561001) Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.04s/it]
+(EngineCore pid=561001) Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.26s/it]
+(EngineCore pid=561001) 
+(EngineCore pid=561001) 2026-08-24 16:55:00,073 - INFO - autotuner.py:622 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+(EngineCore pid=561001) 2026-08-24 16:55:00,084 - INFO - autotuner.py:641 - flashinfer.jit: [Autotuner]: Autotuning process ends
+(EngineCore pid=561001) Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/19 [00:00<?, ?it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  21%|██        | 4/19 [00:00<00:00, 30.95it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  42%|████▏     | 8/19 [00:00<00:00, 27.91it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  63%|██████▎   | 12/19 [00:00<00:00, 28.85it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  79%|███████▉  | 15/19 [00:00<00:00, 27.15it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 19/19 [00:00<00:00, 27.15it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 19/19 [00:00<00:00, 27.66it/s]
+(EngineCore pid=561001) Capturing CUDA graphs (decode, FULL):   0%|          | 0/11 [00:00<?, ?it/s]Capturing CUDA graphs (decode, FULL):  45%|████▌     | 5/11 [00:00<00:00, 43.89it/s]Capturing CUDA graphs (decode, FULL):  91%|█████████ | 10/11 [00:00<00:00, 45.07it/s]Capturing CUDA graphs (decode, FULL): 100%|██████████| 11/11 [00:00<00:00, 45.05it/s]

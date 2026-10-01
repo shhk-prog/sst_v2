@@ -1,0 +1,43 @@
+==================================================
+LLM benchmark
+==================================================
+model             = Qwen/Qwen2.5-7B-Instruct
+engine            = transformers
+CPU cores         = 8
+batch / requests  = 1
+input tokens      = 2048
+output tokens     = 256
+repeat            = 3
+SLURM CPUs        = 8
+CUDA_VISIBLE_DEVICES=0
+hostname          = iag-03
+==================================================
+======================================================================
+LLM INFERENCE BENCHMARK
+======================================================================
+model         : Qwen/Qwen2.5-7B-Instruct
+engine        : transformers
+CPU cores     : 8
+batch size    : 1
+input tokens  : 2048
+output tokens : 256
+
+Loading tokenizer...
+Loading model...
+Model loaded.
+
+Warmup...
+Warmup complete.
+
+[1/3] time=2.616s requests/s=0.382 output_tok/s=97.87 GPU=83.7% VRAM=15729MB FS/1k=388.2523
+[2/3] time=2.605s requests/s=0.384 output_tok/s=98.26 GPU=82.0% VRAM=15729MB FS/1k=386.7309
+[3/3] time=2.626s requests/s=0.381 output_tok/s=97.50 GPU=88.6% VRAM=15729MB FS/1k=389.7410
+
+======================================================================
+SUMMARY
+======================================================================
+median walltime       : 2.616 sec
+median output tok/s   : 97.87
+median GPU util       : 83.67 %
+median FS / 1k tokens : 388.2523
+output                : results/result_cpu8_105794_10.csv

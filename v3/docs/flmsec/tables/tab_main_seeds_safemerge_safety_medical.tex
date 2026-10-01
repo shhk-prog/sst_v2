@@ -1,0 +1,17 @@
+\begin{table}[H]
+\centering
+\caption{メイン実験 シード別詳細 - Method: safemerge, Pattern: safety+medical}
+\label{tab:main_seeds_safemerge_safety_medical}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{llllrrrrrrr}
+\toprule
+\textbf{Pattern} & \textbf{Method} & \textbf{Alpha} & \textbf{Seed} & \textbf{Safety Ave [Harmful Content] (ASR$\downarrow$ \%)} & \textbf{Math Ave (\%)} & \textbf{Code Ave (\%)} & \textbf{Medical Ave (\%)} & \textbf{General/Inst Ave (\%)} & \textbf{EvolCode (PPL$\downarrow$)} & \textbf{MedAlpaca (PPL$\downarrow$)} \\
+\midrule
+safety+medical & safemerge & N/A & 42.0 & 0.00 & 3.28 & 11.72 & 60.31 & 14.69 & 1.87 & 4.37 \\
+safety+medical & safemerge & N/A & 43.0 & 0.08 & 0.00 & 0.00 & 40.94 & 11.81 & 5.53 & 25.25 \\
+safety+medical & safemerge & N/A & 44.0 & 0.00 & 0.00 & 0.00 & 59.06 & 11.93 & 4.11 & 17.37 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

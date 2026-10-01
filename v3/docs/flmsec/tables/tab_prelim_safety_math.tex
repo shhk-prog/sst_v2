@@ -1,0 +1,54 @@
+\begin{table}[H]
+\centering
+\caption{予備実験 集計 (Mean \pm Std) - Pattern: safety+math}
+\label{tab:prelim_safety_math}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lllrrr}
+\toprule
+\textbf{Pattern} & \textbf{Method} & \textbf{Alpha} & \textbf{TrustLLM Raw ASR (\%)} & \textbf{Gibberish Ratio (\(\downarrow\), \%)} & \textbf{BeaverTails Utility Score (\(\uparrow\), \%)} \\
+\midrule
+safety+math & dare & 0.00 & 70.00 $\pm$ 2.72 & 19.17 $\pm$ 2.08 & 35.31 $\pm$ 1.13 \\
+safety+math & dare & 0.20 & 24.27 $\pm$ 3.70 & 30.42 $\pm$ 5.08 & 16.46 $\pm$ 1.48 \\
+safety+math & dare & 0.40 & 20.42 $\pm$ 2.01 & 27.08 $\pm$ 2.95 & 12.19 $\pm$ 0.31 \\
+safety+math & dare & 0.60 & 17.19 $\pm$ 0.83 & 18.65 $\pm$ 0.95 & 9.69 $\pm$ 2.86 \\
+safety+math & dare & 0.80 & 12.19 $\pm$ 4.73 & 21.15 $\pm$ 4.07 & 7.71 $\pm$ 3.13 \\
+safety+math & dare & 1.00 & 1.15 $\pm$ 1.26 & 0.31 $\pm$ 0.31 & 1.04 $\pm$ 1.00 \\
+safety+math & data\_free\_sst & 0.00 & 70.42 $\pm$ 0.18 & 17.08 $\pm$ 0.36 & 35.42 $\pm$ 0.36 \\
+safety+math & data\_free\_sst & 0.20 & 60.94 $\pm$ 2.72 & 18.65 $\pm$ 1.72 & 31.15 $\pm$ 1.10 \\
+safety+math & data\_free\_sst & 0.40 & 47.08 $\pm$ 1.54 & 20.00 $\pm$ 5.14 & 25.10 $\pm$ 1.88 \\
+safety+math & data\_free\_sst & 0.60 & 36.88 $\pm$ 3.25 & 36.04 $\pm$ 4.24 & 21.15 $\pm$ 0.36 \\
+safety+math & data\_free\_sst & 0.80 & 22.92 $\pm$ 0.18 & 37.29 $\pm$ 0.72 & 16.56 $\pm$ 1.56 \\
+safety+math & data\_free\_sst & 1.00 & 22.50 $\pm$ 3.79 & 17.29 $\pm$ 5.20 & 14.06 $\pm$ 1.65 \\
+safety+math & della & 0.00 & 68.96 $\pm$ 1.30 & 20.83 $\pm$ 1.41 & 35.62 $\pm$ 1.25 \\
+safety+math & della & 0.20 & 24.58 $\pm$ 3.34 & 28.33 $\pm$ 4.70 & 17.60 $\pm$ 2.51 \\
+safety+math & della & 0.40 & 21.56 $\pm$ 0.62 & 23.12 $\pm$ 11.56 & 10.94 $\pm$ 0.00 \\
+safety+math & della & 0.60 & 19.06 $\pm$ 3.17 & 20.62 $\pm$ 5.20 & 7.81 $\pm$ 2.05 \\
+safety+math & della & 0.80 & 13.54 $\pm$ 3.82 & 17.71 $\pm$ 2.69 & 8.65 $\pm$ 2.95 \\
+safety+math & della & 1.00 & 1.15 $\pm$ 1.48 & 0.31 $\pm$ 0.31 & 1.46 $\pm$ 1.10 \\
+safety+math & led\_merging & N/A & 87.19 $\pm$ 0.00 & 96.15 $\pm$ 0.18 & 5.00 $\pm$ 0.00 \\
+safety+math & matena\_fisher & N/A & 19.79 $\pm$ 1.18 & 67.19 $\pm$ 3.52 & 10.00 $\pm$ 1.65 \\
+safety+math & mergealign & N/A & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\
+safety+math & safemerge & N/A & 14.27 $\pm$ 22.55 & 31.15 $\pm$ 53.95 & 3.33 $\pm$ 3.34 \\
+safety+math & sst & 0.00 & 70.42 $\pm$ 0.18 & 17.08 $\pm$ 0.36 & 35.42 $\pm$ 0.36 \\
+safety+math & sst & 0.20 & 56.98 $\pm$ 1.72 & 21.77 $\pm$ 3.07 & 26.88 $\pm$ 1.36 \\
+safety+math & sst & 0.40 & 41.25 $\pm$ 2.17 & 32.50 $\pm$ 7.04 & 20.21 $\pm$ 0.18 \\
+safety+math & sst & 0.60 & 24.38 $\pm$ 1.74 & 58.44 $\pm$ 5.94 & 12.81 $\pm$ 2.44 \\
+safety+math & sst & 0.80 & 11.25 $\pm$ 0.54 & 38.33 $\pm$ 26.46 & 6.77 $\pm$ 0.48 \\
+safety+math & sst & 1.00 & 2.71 $\pm$ 1.00 & 3.12 $\pm$ 2.56 & 2.08 $\pm$ 0.18 \\
+safety+math & task\_arithmetic & 0.00 & 66.88 $\pm$ 0.00 & 19.69 $\pm$ 0.00 & 35.62 $\pm$ 0.00 \\
+safety+math & task\_arithmetic & 0.20 & 52.81 $\pm$ 2.72 & 26.25 $\pm$ 1.90 & 23.65 $\pm$ 1.30 \\
+safety+math & task\_arithmetic & 0.40 & 31.15 $\pm$ 4.08 & 48.33 $\pm$ 5.39 & 16.46 $\pm$ 0.36 \\
+safety+math & task\_arithmetic & 0.60 & 9.69 $\pm$ 0.31 & 47.92 $\pm$ 18.35 & 6.35 $\pm$ 1.91 \\
+safety+math & task\_arithmetic & 0.80 & 1.67 $\pm$ 1.30 & 0.94 $\pm$ 0.83 & 1.67 $\pm$ 1.00 \\
+safety+math & task\_arithmetic & 1.00 & 0.83 $\pm$ 0.79 & 0.10 $\pm$ 0.18 & 1.46 $\pm$ 0.79 \\
+safety+math & ties & 0.00 & 72.50 $\pm$ 0.00 & 30.31 $\pm$ 0.00 & 29.38 $\pm$ 0.00 \\
+safety+math & ties & 0.20 & 25.00 $\pm$ 4.23 & 38.75 $\pm$ 2.78 & 14.48 $\pm$ 2.55 \\
+safety+math & ties & 0.40 & 26.77 $\pm$ 3.19 & 39.79 $\pm$ 3.28 & 14.27 $\pm$ 0.79 \\
+safety+math & ties & 0.60 & 18.65 $\pm$ 4.77 & 36.67 $\pm$ 4.77 & 11.25 $\pm$ 1.08 \\
+safety+math & ties & 0.80 & 9.79 $\pm$ 5.56 & 19.58 $\pm$ 19.59 & 4.90 $\pm$ 2.37 \\
+safety+math & ties & 1.00 & 0.73 $\pm$ 1.00 & 0.00 $\pm$ 0.00 & 1.46 $\pm$ 0.95 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

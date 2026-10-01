@@ -1,0 +1,20 @@
+\begin{table}[H]
+\centering
+\caption{Alpha スイープ 集計 - Method: task\_arithmetic, Pattern: safety+medical}
+\label{tab:sweep_taskarithmetic_safety_medical}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lllrrrrrrrrrrr}
+\toprule
+\textbf{Pattern} & \textbf{Method} & \textbf{Alpha} & \textbf{Safety Ave [Harmful Content] (ASR$\downarrow$ \%)} & \textbf{Safety Ave [Original ASR] (ASR$\downarrow$ \%)} & \textbf{Safety Ave [Conditional ASR] (ASR$\downarrow$ \%)} & \textbf{Valid Response Rate (\%)} & \textbf{Valid Safety Rate (\%)} & \textbf{Math Ave (\%)} & \textbf{Code Ave (\%)} & \textbf{Medical Ave (\%)} & \textbf{General/Inst Ave (\%)} & \textbf{EvolCode (PPL$\downarrow$)} & \textbf{MedAlpaca (PPL$\downarrow$)} \\
+\midrule
+safety+medical & task\_arithmetic & 0.00 & 6.48 $\pm$ 0.00 & 6.48 $\pm$ 0.00 & 58.40 $\pm$ 0.00 & 93.89 $\pm$ 0.00 & 38.07 $\pm$ 0.00 & 4.06 $\pm$ 0.00 & 1.72 $\pm$ 0.00 & 68.44 $\pm$ 0.00 & 19.09 $\pm$ 0.09 & 1.89 $\pm$ 0.00 & 1.43 $\pm$ 0.00 \\
+safety+medical & task\_arithmetic & 0.20 & 0.08 $\pm$ 0.00 & 0.08 $\pm$ 0.00 & 64.57 $\pm$ 0.76 & 24.84 $\pm$ 0.24 & 8.39 $\pm$ 0.26 & 1.77 $\pm$ 0.09 & 0.00 $\pm$ 0.00 & 16.04 $\pm$ 0.18 & 12.49 $\pm$ 0.11 & 54.04 $\pm$ 0.07 & 25.78 $\pm$ 0.20 \\
+safety+medical & task\_arithmetic & 0.40 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 43.48 $\pm$ 2.73 & 11.11 $\pm$ 4.17 & 6.73 $\pm$ 2.28 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 20.00 $\pm$ 7.04 & 12.25 $\pm$ 0.07 & 36901.81 $\pm$ 950.77 & 37492.79 $\pm$ 653.76 \\
+safety+medical & task\_arithmetic & 0.60 & 0.16 $\pm$ 0.00 & 0.16 $\pm$ 0.00 & 63.87 $\pm$ 4.81 & 99.82 $\pm$ 0.18 & 35.95 $\pm$ 4.91 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 13.85 $\pm$ 0.18 & 12.72 $\pm$ 0.06 & 217753.69 $\pm$ 12313.53 & 198661.81 $\pm$ 12470.98 \\
+safety+medical & task\_arithmetic & 0.80 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 53.91 $\pm$ 15.26 & 6.79 $\pm$ 2.82 & 2.96 $\pm$ 1.88 & 0.62 $\pm$ 0.41 & 0.00 $\pm$ 0.00 & 38.44 $\pm$ 15.25 & 12.04 $\pm$ 0.26 & 577.39 $\pm$ 106.94 & 257.99 $\pm$ 44.44 \\
+safety+medical & task\_arithmetic & 1.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 0.57 $\pm$ 0.50 & 4.22 $\pm$ 3.39 & 58.02 $\pm$ 23.47 & 18.37 $\pm$ 12.03 & 2.34 $\pm$ 0.03 & 7.15 $\pm$ 0.13 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

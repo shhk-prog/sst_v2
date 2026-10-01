@@ -1,0 +1,20 @@
+\begin{table}[H]
+\centering
+\caption{Alpha スイープ 集計 - Method: task\_arithmetic, Pattern: safety+code}
+\label{tab:sweep_taskarithmetic_safety_code}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lllrrrrrrrrrrr}
+\toprule
+\textbf{Pattern} & \textbf{Method} & \textbf{Alpha} & \textbf{Safety Ave [Harmful Content] (ASR$\downarrow$ \%)} & \textbf{Safety Ave [Original ASR] (ASR$\downarrow$ \%)} & \textbf{Safety Ave [Conditional ASR] (ASR$\downarrow$ \%)} & \textbf{Valid Response Rate (\%)} & \textbf{Valid Safety Rate (\%)} & \textbf{Math Ave (\%)} & \textbf{Code Ave (\%)} & \textbf{Medical Ave (\%)} & \textbf{General/Inst Ave (\%)} & \textbf{EvolCode (PPL$\downarrow$)} & \textbf{MedAlpaca (PPL$\downarrow$)} \\
+\midrule
+safety+code & task\_arithmetic & 0.00 & 41.06 $\pm$ 0.33 & 41.06 $\pm$ 0.33 & 77.06 $\pm$ 0.22 & 92.84 $\pm$ 0.05 & 20.39 $\pm$ 0.20 & 5.62 $\pm$ 0.00 & 21.38 $\pm$ 0.00 & 86.25 $\pm$ 0.00 & 21.02 $\pm$ 0.06 & 1.44 $\pm$ 0.00 & 3.84 $\pm$ 0.00 \\
+safety+code & task\_arithmetic & 0.20 & 39.04 $\pm$ 0.37 & 39.04 $\pm$ 0.37 & 76.61 $\pm$ 0.70 & 93.51 $\pm$ 0.16 & 20.95 $\pm$ 0.58 & 3.91 $\pm$ 0.31 & 0.78 $\pm$ 0.00 & 85.94 $\pm$ 0.00 & 34.76 $\pm$ 3.89 & 1.51 $\pm$ 0.00 & 3.66 $\pm$ 0.01 \\
+safety+code & task\_arithmetic & 0.40 & 34.56 $\pm$ 1.54 & 34.56 $\pm$ 1.54 & 73.05 $\pm$ 0.98 & 94.30 $\pm$ 0.19 & 24.29 $\pm$ 0.95 & 2.45 $\pm$ 0.09 & 7.08 $\pm$ 3.58 & 86.88 $\pm$ 0.00 & 22.35 $\pm$ 6.37 & 1.91 $\pm$ 0.00 & 4.26 $\pm$ 0.01 \\
+safety+code & task\_arithmetic & 0.60 & 29.17 $\pm$ 3.07 & 29.17 $\pm$ 3.07 & 60.91 $\pm$ 2.15 & 95.34 $\pm$ 0.96 & 36.94 $\pm$ 2.58 & 2.97 $\pm$ 0.68 & 4.63 $\pm$ 0.09 & 88.85 $\pm$ 0.79 & 17.39 $\pm$ 0.39 & 2.47 $\pm$ 0.01 & 4.84 $\pm$ 0.03 \\
+safety+code & task\_arithmetic & 0.80 & 0.05 $\pm$ 0.09 & 0.05 $\pm$ 0.09 & 0.08 $\pm$ 0.14 & 100.00 $\pm$ 0.00 & 99.92 $\pm$ 0.14 & 2.03 $\pm$ 0.81 & 8.18 $\pm$ 0.86 & 79.79 $\pm$ 6.62 & 20.78 $\pm$ 5.96 & 2.11 $\pm$ 0.02 & 4.33 $\pm$ 0.06 \\
+safety+code & task\_arithmetic & 1.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 0.57 $\pm$ 0.50 & 4.22 $\pm$ 3.39 & 58.02 $\pm$ 23.47 & 18.37 $\pm$ 12.03 & 2.34 $\pm$ 0.03 & 7.15 $\pm$ 0.13 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

@@ -1,0 +1,42 @@
+==================================================
+Slurm Per-Model Array Job ID: 104738_439
+Batch Size: 32
+Configured CPU Threads: 2
+Assigned CUDA_VISIBLE_DEVICES: 0
+Working Dir: /mnt/nas/home/hiromi/src/sst_v2/v3
+==================================================
+Executing command:
+venv_v3/bin/python scripts/merge_eval_parallel.py     --config configs/config_main.yaml     --seeds 42 43 44     --limit 320     --batch_size 32     --gpus 0     --model_index 439     --use_vllm     --resume
+--------------------------------------------------
+[SINGLE MODEL MODE] Evaluating Index 439: seed=44 sst_merge_v3_main_data_free_sst_main_safety+math+code+medical_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44
+
+==============================
+Models to be evaluated
+==============================
+  1. seed=44  sst_merge_v3_main_data_free_sst_main_safety+math+code+medical_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44
+     models/merged/sst_merge_v3_main_data_free_sst_main_safety+math+code+medical_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44
+==============================
+Total models: 1
+==============================
+
+Using result directory: results/vllm/debug_limit320/merged
+Seeds: [42, 43, 44]
+GPUs: ['0']
+Patterns: all
+Reverse: False
+Resume: True
+Force: False
+Found successful merged models: 1
+[GPU 0] assigned jobs: 1
+
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_safety.py --model_path models/merged/sst_merge_v3_main_data_free_sst_main_safety+math+code+medical_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44 --config configs/config_main.yaml --tasks harmbench,jailbreakbench,strongreject,wildjailbreak --output_dir results/vllm/debug_limit320/merged/seed44/safety+math+code+medical/data_free_sst_main --model_name sst_merge_v3_main_data_free_sst_main_safety+math+code+medical_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44 --limit 320 --batch_size 32 --use_vllm
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed44/safety+math+code+medical/data_free_sst_main/sst_merge_v3_main_data_free_sst_main_safety+math+code+medical_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44_utility_math.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed44/safety+math+code+medical/data_free_sst_main/sst_merge_v3_main_data_free_sst_main_safety+math+code+medical_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44_utility_code.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed44/safety+math+code+medical/data_free_sst_main/sst_merge_v3_main_data_free_sst_main_safety+math+code+medical_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44_utility_medical.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed44/safety+math+code+medical/data_free_sst_main/sst_merge_v3_main_data_free_sst_main_safety+math+code+medical_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44_utility_general.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed44/safety+math+code+medical/data_free_sst_main/sst_merge_v3_main_data_free_sst_main_safety+math+code+medical_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44_alpaca_eval2.json
+
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_instruction_datasets.py --model_path models/merged/sst_merge_v3_main_data_free_sst_main_safety+math+code+medical_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44 --config configs/config_main.yaml --datasets evol_code,medalpaca --output_dir results/vllm/debug_limit320/merged/seed44/safety+math+code+medical/data_free_sst_main --model_name sst_merge_v3_main_data_free_sst_main_safety+math+code+medical_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44 --limit 320 --batch_size 32 --use_vllm
+[DONE] sst_merge_v3_main_data_free_sst_main_safety+math+code+medical_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44 seed=44 on GPU 0 log=logs/vllm/v3_merged_eval_parallel_320_seed44/sst_merge_v3_main_data_free_sst_main_safety+math+code+medical_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44_seed44.log
+
+Summary saved to results/vllm/debug_limit320/merged/merge_eval_parallel_seeds42-43-44_summary.json

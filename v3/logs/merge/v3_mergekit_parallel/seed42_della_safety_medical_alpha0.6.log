@@ -1,0 +1,10 @@
+
+===== START 2026-07-07T18:37:15 =====
+COMMAND: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method della --pattern safety+medical --seed 42 --alpha 0.6 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_della_safety+medical_alpha0.6_seed42 --fim_cache_dir cache/fim
+[Steering Hook] Base/model path verification passed: meta-llama/Llama-2-7b-hf
+Using cached temporary safety full model: models/temp_safety_full_seed42
+[Steering Hook] Merge method verification passed: method=della, config=models/merged/sst_merge_v3_main_della_safety+medical_alpha0.6_seed42/merge_config.yml
+Running command: mergekit-yaml models/merged/sst_merge_v3_main_della_safety+medical_alpha0.6_seed42/merge_config.yml models/merged/sst_merge_v3_main_della_safety+medical_alpha0.6_seed42 --allow-crimes --copy-tokenizer
+mergekit completed successfully.
+Metadata saved.
+===== END 2026-07-07T18:46:57 returncode=0 =====

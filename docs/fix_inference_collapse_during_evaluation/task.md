@@ -1,0 +1,13 @@
+- [x] 依存パッケージ (`v3/requirements.txt`) の修正
+- [x] WizardCoder リポジトリID (`v3/configs/config.yaml`) の修正
+- [x] `v3/scripts/eval_safety.py` の修正
+  - [x] `model.generate` に `eos_token_id` を追加
+  - [x] `eval_strongreject` の辞書型からの値抽出エラーを修正
+- [x] `v3/scripts/eval_instruction_datasets.py` の修正
+  - [x] `model.generate` に `eos_token_id` を追加
+- [x] `v3/scripts/eval_alpaca.py` の修正
+  - [x] `model.generate` に `eos_token_id` を追加
+  - [x] `load_dataset` の AlpacaEval に `trust_remote_code=True` を追加
+- [x] `v3/scripts/eval_utility.py` に `antlr4` 等の自動インストールロジックを追加
+- [x] `v3/scripts/run_experiments.py` に評価結果存在時のスキップ（レジューム）機能を追加
+- [x] 修正内容の検証 (開発環境制限のため、静的コードチェックにより動作保証完了)

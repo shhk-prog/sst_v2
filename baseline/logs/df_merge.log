@@ -1,0 +1,36 @@
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780062045.528769 3406295 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780062045.579984 3406295 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780062047.743447 3406295 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-05-29 22:40:50:df-merge:INFO:{'datasets': ['paws', 'qasc', 'quartz', 'story_cloze', 'wiki_qa', 'winogrande'], 'ckpt_root': 'experiments/finetune/default/ckpt', 'model_name_or_path': 't5-base', 'seed': 42, 'acquisition_fn': 'ei', 'use_fisher': True, 'approximate_by_sampling': False, 'init_points': 10, 'n_iter': 50, 'num_samples': 30, 'eval_batch_size': 128, 'experiment_name': 'merge', 'bayes_opt_ckpt_path': './experiments/df-merge/merge/ckpt/t5-base/ei/use_fisher_True/seed42/log.log', 'metrics_path': './experiments/df-merge/merge/metrics/t5-base/ei/use_fisher_True/seed42/metrics.json'}
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/transformers/utils/hub.py", line 403, in cached_file
+    resolved_file = hf_hub_download(
+                    ^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': 'experiments/finetune/default/ckpt/t5-base/story_cloze/seed42'. Use `repo_type` argument if needed.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/baseline/df-merge/src/df-merge.py", line 186, in <module>
+    pt_model, ft_model_dict, tokenizer = load_checkpoints(MODEL_ROOT, args.ckpt_root, args.model_name_or_path, args.seed, args.datasets)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/baseline/df-merge/src/model/utils.py", line 22, in load_checkpoints
+    ft_model = T5ForConditionalGeneration.from_pretrained(ft_model_path).cuda()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/transformers/modeling_utils.py", line 3464, in from_pretrained
+    resolved_config_file = cached_file(
+                           ^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/transformers/utils/hub.py", line 469, in cached_file
+    raise EnvironmentError(
+OSError: Incorrect path_or_model_id: 'experiments/finetune/default/ckpt/t5-base/story_cloze/seed42'. Please provide either the path to a local folder or the repo_id of a model on the Hub.

@@ -1,0 +1,51 @@
+# configs/aaai27/config_example.yaml
+# AAAI-27 実験構成管理用の設定ファイル例
+
+experiment:
+  name: "llama31_sst_reproduction"
+  seed: 42
+  num_seeds: 3
+  
+model:
+  base_model: "meta-llama/Meta-Llama-3.1-8B-Instruct"
+  utility_lora: "models/utility_ft_model"
+  safety_lora: "models/safety_ft_model"
+  lora_config:
+    rank: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules: "all-linear"
+
+fim:
+  benign_dataset: "data/fim/fim_benign_repliqa.json"
+  harmful_dataset: "data/fim/fim_harmful_beavertails.json"
+  sample_size: 500
+  epsilon: 0.000001
+
+merge:
+  method: "diagonal_sst" # diagonal_sst, data_free_sst, ties, dare, task_arithmetic, della
+  implementation: "mergekit" # mergekit, official (for baselines)
+  alpha_sweep: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+  k_sweep: ["soft", 0.05, 0.10, 0.20, 0.50]
+
+evaluation:
+  safety_tasks:
+    - name: "harmbench"
+      data_path: "data/eval/harmbench.json"
+    - name: "jailbreakbench"
+      data_path: "data/eval/jailbreakbench.json"
+    - name: "strongreject"
+      data_path: "data/eval/strongreject.json"
+    - name: "wildjailbreak"
+      data_path: "data/eval/wildjailbreak.json"
+  utility_tasks:
+    - name: "mmlu_pro"
+      num_fewshot: 5
+    - name: "ifeval"
+      num_fewshot: 0
+    - name: "gsm8k"
+      num_fewshot: 5
+    - name: "math_500"
+      num_fewshot: 4
+    - name: "mbpp"
+      num_fewshot: 3

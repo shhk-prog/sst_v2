@@ -1,0 +1,6 @@
+- [x] `flmsec_standalone_nosst2.tex`を読み込む
+- [x] 各手法の分類（標準、干渉緩和、安全性維持、Fisher重要度）に基づく考察を作成する
+- [x] `flmsec_standalone_nosst2.tex`の`\section{計算資源とデータ要件}`の前に作成した考察を挿入する
+- [x] 変更内容をwalkthrough.mdにまとめる
+- [x] 手法分類と結果の違いをわかりやすく整理した表を追加する
+- [x] 結論の章に最適な手法設計の方向性（Validity-awareな合成最適化）に関する展望を追記する

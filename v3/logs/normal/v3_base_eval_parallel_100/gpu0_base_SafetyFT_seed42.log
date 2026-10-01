@@ -1,0 +1,54 @@
+
+================================================================================
+MODEL: SafetyFT_seed42
+PATH:  models/temp_safety_full_seed42
+GPU:   0
+PREFIX:sst_merge_v3_main_base_SafetyFT_seed42
+
+$ /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_safety.py --model_path models/temp_safety_full_seed42 --config configs/config_main.yaml --task harmbench --output_file results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed42_harmbench_safety.json --limit 320
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_safety.py", line 6, in <module>
+    import torch
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 2229, in <module>
+    from torch import _VF as _VF, functional as functional  # usort: skip
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/functional.py", line 8, in <module>
+    import torch.nn.functional as F
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/nn/__init__.py", line 8, in <module>
+    from torch.nn.modules import *  # usort: skip # noqa: F403
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/nn/modules/__init__.py", line 2, in <module>
+    from .linear import Bilinear, Identity, LazyLinear, Linear  # usort: skip
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 7, in <module>
+    from torch.nn import functional as F, init
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/nn/functional.py", line 17, in <module>
+    from torch._jit_internal import (
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_jit_internal.py", line 45, in <module>
+    import torch.distributed.rpc
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/distributed/rpc/__init__.py", line 85, in <module>
+    from .server_process_global_profiler import _server_process_global_profile
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/distributed/rpc/server_process_global_profiler.py", line 9, in <module>
+    from torch.autograd.profiler_legacy import profile
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/autograd/__init__.py", line 16, in <module>
+    from torch import _vmap_internals
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_vmap_internals.py", line 9, in <module>
+    from torch.utils._pytree import _broadcast_to_and_flatten, tree_flatten, tree_unflatten
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/utils/_pytree.py", line 1917, in <module>
+    @dataclasses.dataclass
+     ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/dataclasses.py", line 1268, in dataclass
+    return wrap(cls)
+           ^^^^^^^^^
+  File "/usr/lib/python3.12/dataclasses.py", line 1258, in wrap
+    return _process_class(cls, init, repr, eq, order, unsafe_hash,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/dataclasses.py", line 1063, in _process_class
+    _init_fn(all_init_fields,
+  File "/usr/lib/python3.12/dataclasses.py", line 619, in _init_fn
+    return _create_fn('__init__',
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/dataclasses.py", line 473, in _create_fn
+    exec(txt, globals, ns)
+  File "<string>", line 0, in <module>
+KeyboardInterrupt

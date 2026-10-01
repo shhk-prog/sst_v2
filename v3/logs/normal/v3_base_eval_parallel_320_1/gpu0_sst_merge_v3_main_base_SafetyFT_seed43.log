@@ -1,0 +1,51 @@
+
+================================================================================
+MODEL:  SafetyFT_seed43
+PATH:   models/temp_safety_full_seed43
+GPU:    0
+PREFIX: sst_merge_v3_main_base_SafetyFT_seed43
+LIMIT:  320
+
+[skip complete] results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed43_harmbench_safety.json
+
+[resume incomplete] results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed43_jailbreakbench_safety.json
+
+$ /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_safety.py --model_path models/temp_safety_full_seed43 --config configs/config_main.yaml --task jailbreakbench --output_file results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed43_jailbreakbench_safety.json --limit 320
+Classifying missing responses: 0 / 100
+[Steering Hook Warning] 過剰拒絶の可能性があります (refusal_rate=100.0%).
+[Steering Hook] Evaluation output monitoring completed (samples=100).
+Safety Evaluation completed for task 'jailbreakbench'. ASR/Score: 0.0000, n=100
+Results saved to results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed43_jailbreakbench_safety.json
+
+[resume incomplete] results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed43_strongreject_safety.json
+
+$ /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_safety.py --model_path models/temp_safety_full_seed43 --config configs/config_main.yaml --task strongreject --output_file results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed43_strongreject_safety.json --limit 320
+Classifying missing responses: 0 / 313
+[Steering Hook Warning] 過剰拒絶の可能性があります (refusal_rate=100.0%).
+[Steering Hook] Evaluation output monitoring completed (samples=313).
+Safety Evaluation completed for task 'strongreject'. ASR/Score: 0.0000, n=313
+Results saved to results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed43_strongreject_safety.json
+
+[skip complete] results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed43_wildjailbreak_safety.json
+
+[skip complete] results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed43_utility_math_gsm8k.json
+
+[skip complete] results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed43_utility_math_minerva_math500.json
+
+[skip complete] results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed43_utility_code_humaneval.json
+
+[skip complete] results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed43_utility_code_mbpp.json
+
+[skip complete] results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed43_utility_medical_pubmedqa.json
+
+[skip complete] results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed43_utility_medical_medqa_4options.json
+
+[skip complete] results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed43_utility_general_mmlu.json
+
+[skip complete] results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed43_utility_general_ifeval.json
+
+[skip complete] results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed43_alpaca_eval2.json
+
+[skip complete] results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed43_inst_evol_code.json
+
+[skip complete] results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed43_inst_medalpaca.json

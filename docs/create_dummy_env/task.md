@@ -1,0 +1,3 @@
+- [x] プロジェクトで必要となる環境変数を特定する（HF_TOKEN, WANDB_API_KEY, OPENAI_API_KEYなど）
+- [x] プロジェクト直下（`sst_v2/.env`）にダミー値を記載したファイルを作成する
+- [x] `docs/create_dummy_env/` 配下にドキュメントを保存する

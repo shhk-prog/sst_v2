@@ -1,0 +1,4 @@
+- [x] vllmディレクトリの集計データを再生成して確認する
+- [x] flmsec.tex の表の数値がvllmの結果と一致しているか検証する
+- [x] 欠落しているデータがないか検証する
+- [x] safety+math+code+medical パターンの結果を flmsec.tex の付録の表 (tab:evaluation_main_alpha=0.6) に追加する

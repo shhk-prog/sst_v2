@@ -1,0 +1,13 @@
+- [x] 結論のトーンダウン（強すぎる主張の削除と限界の明記）
+- [x] Validity-aware Pareto AUCの数式定義
+- [x] Safety指標の名称・方向・分母の統一
+- [x] Alpha=0,1の定義一般化（$\theta_m^{(h)} = \theta_u + \alpha\,\mathcal{T}_h(\Delta_{\mathrm{patch}})$）
+- [x] PPL等極端値の検証についての言及
+- [x] 安全モデル学習の詳細追加
+- [x] Gibberish判定規則の擬似コード化
+- [x] 評価件数表（Table 2）に「抽出規則」列追加
+- [x] コード評価、AlpacaEvalのパラメータ固定表記
+- [x] 予備実験の位置づけ変更
+- [x] 機序説明の仮説化
+- [x] Taxonomy表の注釈追加
+- [x] 4フェーズの研究史表の削除（存在しなかったためスキップ）

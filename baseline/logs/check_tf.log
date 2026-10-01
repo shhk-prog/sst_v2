@@ -1,0 +1,29 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780060583.088177 3394334 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780060583.137190 3394334 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780060585.658715 3394334 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+W0000 00:00:1780060589.491352 3394334 gpu_device.cc:2365] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/baseline/check_tf.py", line 13, in <module>
+    import transformers
+  File "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/transformers/__init__.py", line 26, in <module>
+    from . import dependency_versions_check
+  File "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/transformers/dependency_versions_check.py", line 16, in <module>
+    from .utils.versions import require_version, require_version_core
+  File "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/transformers/utils/__init__.py", line 27, in <module>
+    from .chat_template_utils import DocstringParsingException, TypeHintParsingException, get_json_schema
+  File "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/transformers/utils/chat_template_utils.py", line 39, in <module>
+    from torch import Tensor
+  File "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/torch/__init__.py", line 367, in <module>
+    from torch._C import *  # noqa: F403
+    ^^^^^^^^^^^^^^^^^^^^^^
+ImportError: /mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/torch/lib/../../nvidia/cusparse/lib/libcusparse.so.12: undefined symbol: __nvJitLinkAddData_12_1, version libnvJitLink.so.12
+Python version: 3.12.3 (main, Mar 23 2026, 19:04:32) [GCC 13.3.0]
+TensorFlow version: 2.21.0
+GPU available: []
+Transformers/TFAutoModel import failed:

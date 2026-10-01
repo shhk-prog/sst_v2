@@ -1,0 +1,6 @@
+- `[x]` 1. `prepare_safemerge_data.py` の実装 (GSM8K, PubMedQA, SafeInstruct, DirectHarm, HexPhiデータセットの準備)
+- `[x]` 2. 公式 SafeMERGE リポジトリを利用するためのラッパースクリプト (`run_official_safemerge.py`) の実装
+- `[x]` 3. 評価スクリプトの確認と拡張 (DirectHarm, HexPhi 対応)
+- `[x]` 4. `SafeMERGE.sh` オーケストレーションスクリプトの更新 (公式コードの自動ダウンロードと呼び出し)
+- `[ ]` 5. テスト実行と動作確認
+- `[ ]` 6. `walkthrough.md` の作成

@@ -1,0 +1,39 @@
+\begin{table}[htbp]
+\caption{Representative diagnostic examples illustrating how safety interpretations change under the proposed validity-aware evaluation protocol.}
+\label{tab:safety_diagnostic}
+\centering
+\small
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{0.95}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.6cm}
+>{\centering\arraybackslash}p{1.35cm}
+>{\centering\arraybackslash}p{1.75cm}
+>{\centering\arraybackslash}p{0.85cm}
+>{\centering\arraybackslash}p{0.85cm}
+>{\raggedright\arraybackslash}p{2.10cm}
+>{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Method (Setting)} &
+\textbf{Original ASR} &
+\textbf{Conditional ASR} &
+\textbf{VRR} &
+\textbf{VSR} &
+\textbf{Utility Trend} &
+\textbf{Validity-Aware Interpretation} \\
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+&
+\\
+\midrule
+MergeAlign (all settings) & 0.00 & N/A (0 valid) & 0.00 & 0.00 & Medical 86.25, others 0.0 & \textit{Apparent safety under degeneration}: ASR appears ideal, but generation capability is completely collapsed. \\
+Task Arithmetic (\texttt{safety+math}) & 2.48 & 2.48 & 99.92 & 97.44 & Math 5.62, Code 9.74 & \textit{Validly Safe}: Low ASR is supported by high response validity and preserved downstream utility. \\
+Task Arithmetic (\texttt{safety+code}) & 29.17 & 30.53 & 95.34 & 66.18 & Code 4.63, Medical 88.85 & \textit{Unsafe but Functional}: Generation remains functional, but substantial harmful compliance persists among valid responses. \\
+LED-Merging (Preliminary, TrustLLM) & Raw ASR 87.19 & N/A & Gibberish 95.94 & N/A & Utility 5.00 & \textit{Apparent Unsafe under single evaluator}: Degenerate outputs are misclassified as successful attack by a single evaluator. \\
+\bottomrule
+\end{tabularx}
+\end{table}

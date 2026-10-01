@@ -1,0 +1,490 @@
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_mmlu.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_ifeval.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43 --config configs/config_main.yaml --output_file results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json --limit 320 --batch_size 32
+================================================================================
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'tatsu-lab/alpaca_eval' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Using the latest cached version of the dataset since tatsu-lab/alpaca_eval couldn't be found on the Hugging Face Hub
+Loading environment variables from /mnt/nas/home/hiromi/src/.env
+OPENAI_API_KEY loaded.
+[eval_alpaca] Configured PyTorch CPU threads: 16
+Loading AlpacaEval dataset...
+Failed to load via raw JSON, trying fallback: [Errno -3] Temporary failure in name resolution
+Failed result saved to results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_medalpaca.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_mmlu.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_ifeval.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43 --config configs/config_main.yaml --output_file results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json --limit 320 --batch_size 32
+================================================================================
+Loading environment variables from /mnt/nas/home/hiromi/src/.env
+OPENAI_API_KEY loaded.
+[eval_alpaca] Configured PyTorch CPU threads: 16
+Loading AlpacaEval dataset...
+[SKIP] Completed model outputs exist: results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs.json
+Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/alpaca_eval evaluate --model_outputs results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs_for_alpaca_eval.json --annotators_config weighted_alpaca_eval_gpt4_turbo --output_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out
+Failed result saved to results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_medalpaca.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_mmlu.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_ifeval.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43 --config configs/config_main.yaml --output_file results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json --limit 320 --batch_size 32
+================================================================================
+Loading environment variables from /mnt/nas/home/hiromi/src/.env
+OPENAI_API_KEY loaded.
+[eval_alpaca] Configured PyTorch CPU threads: 16
+Loading AlpacaEval dataset...
+[SKIP] Completed model outputs exist: results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs.json
+Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/alpaca_eval evaluate --model_outputs results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs_for_alpaca_eval.json --annotators_config weighted_alpaca_eval_gpt4_turbo --output_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out
+Failed result saved to results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_medalpaca.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_mmlu.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_ifeval.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43 --config configs/config_main.yaml --output_file results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json --limit 320 --batch_size 32
+================================================================================
+Loading environment variables from /mnt/nas/home/hiromi/src/.env
+OPENAI_API_KEY loaded.
+[eval_alpaca] Configured PyTorch CPU threads: 16
+Loading AlpacaEval dataset...
+[SKIP] Completed model outputs exist: results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs.json
+Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/alpaca_eval evaluate --model_outputs results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs_for_alpaca_eval.json --annotators_config weighted_alpaca_eval_gpt4_turbo --output_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out
+Failed result saved to results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_medalpaca.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_mmlu.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_ifeval.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43 --config configs/config_main.yaml --output_file results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json --limit 320 --batch_size 32
+================================================================================
+Loading environment variables from /mnt/nas/home/hiromi/src/.env
+OPENAI_API_KEY loaded.
+[eval_alpaca] Configured PyTorch CPU threads: 16
+Loading AlpacaEval dataset...
+[SKIP] Completed model outputs exist: results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs.json
+Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/alpaca_eval evaluate --model_outputs results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs_for_alpaca_eval.json --annotators_config weighted_alpaca_eval_gpt4_turbo --output_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out
+Failed result saved to results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_medalpaca.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_mmlu.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_ifeval.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43 --config configs/config_main.yaml --output_file results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json --limit 320 --batch_size 32
+================================================================================
+Loading environment variables from /mnt/nas/home/hiromi/src/.env
+OPENAI_API_KEY loaded.
+[eval_alpaca] Configured PyTorch CPU threads: 16
+Loading AlpacaEval dataset...
+[SKIP] Completed model outputs exist: results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs.json
+Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/alpaca_eval evaluate --model_outputs results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs_for_alpaca_eval.json --annotators_config weighted_alpaca_eval_gpt4_turbo --output_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out
+Failed result saved to results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_medalpaca.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_mmlu.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_ifeval.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43 --config configs/config_main.yaml --output_file results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json --limit 320 --batch_size 32
+================================================================================
+Loading environment variables from /mnt/nas/home/hiromi/src/.env
+OPENAI_API_KEY loaded.
+[eval_alpaca] Configured PyTorch CPU threads: 16
+Loading AlpacaEval dataset...
+[SKIP] Completed model outputs exist: results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs.json
+Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/alpaca_eval evaluate --model_outputs results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs_for_alpaca_eval.json --annotators_config weighted_alpaca_eval_gpt4_turbo --output_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out
+Failed result saved to results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_medalpaca.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_mmlu.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_ifeval.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43 --config configs/config_main.yaml --output_file results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json --limit 320 --batch_size 32
+================================================================================
+Loading environment variables from /mnt/nas/home/hiromi/src/.env
+OPENAI_API_KEY loaded.
+[eval_alpaca] Configured PyTorch CPU threads: 16
+Loading AlpacaEval dataset...
+[SKIP] Completed model outputs exist: results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs.json
+Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/alpaca_eval evaluate --model_outputs results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs_for_alpaca_eval.json --annotators_config weighted_alpaca_eval_gpt4_turbo --output_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out
+Failed result saved to results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_medalpaca.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_mmlu.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_ifeval.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43 --config configs/config_main.yaml --output_file results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json --limit 320 --batch_size 32
+================================================================================
+Loading environment variables from /mnt/nas/home/hiromi/src/.env
+OPENAI_API_KEY loaded.
+[eval_alpaca] Configured PyTorch CPU threads: 16
+Loading AlpacaEval dataset...
+[SKIP] Completed model outputs exist: results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs.json
+Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/alpaca_eval evaluate --model_outputs results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs_for_alpaca_eval.json --annotators_config weighted_alpaca_eval_gpt4_turbo --output_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out
+Failed result saved to results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_medalpaca.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_mmlu.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_ifeval.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43 --config configs/config_main.yaml --output_file results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json --limit 320 --batch_size 32
+================================================================================
+Loading environment variables from /mnt/nas/home/hiromi/src/.env
+OPENAI_API_KEY loaded.
+[eval_alpaca] Configured PyTorch CPU threads: 16
+Loading AlpacaEval dataset...
+[SKIP] Completed model outputs exist: results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs.json
+Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/alpaca_eval evaluate --model_outputs results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs_for_alpaca_eval.json --annotators_config weighted_alpaca_eval_gpt4_turbo --output_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out
+Failed result saved to results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_medalpaca.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_mmlu.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_ifeval.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43 --config configs/config_main.yaml --output_file results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json --limit 320 --batch_size 32
+================================================================================
+Loading environment variables from /mnt/nas/home/hiromi/src/.env
+OPENAI_API_KEY loaded.
+[eval_alpaca] Configured PyTorch CPU threads: 16
+Loading AlpacaEval dataset...
+[SKIP] Completed model outputs exist: results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs.json
+Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/alpaca_eval evaluate --model_outputs results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs_for_alpaca_eval.json --annotators_config weighted_alpaca_eval_gpt4_turbo --output_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out
+Failed result saved to results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_medalpaca.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_mmlu.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_ifeval.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43 --config configs/config_main.yaml --output_file results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json --limit 320 --batch_size 32
+================================================================================
+Loading environment variables from /mnt/nas/home/hiromi/src/.env
+OPENAI_API_KEY loaded.
+[eval_alpaca] Configured PyTorch CPU threads: 16
+Loading AlpacaEval dataset...
+[SKIP] Completed model outputs exist: results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs.json
+Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/alpaca_eval evaluate --model_outputs results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs_for_alpaca_eval.json --annotators_config weighted_alpaca_eval_gpt4_turbo --output_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out --caching_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out/annotations_cache.json
+Failed result saved to results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_medalpaca.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_mmlu.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_ifeval.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43 --config configs/config_main.yaml --output_file results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json --limit 320 --batch_size 32
+================================================================================
+Loading environment variables from /mnt/nas/home/hiromi/src/.env
+OPENAI_API_KEY loaded.
+[eval_alpaca] Configured PyTorch CPU threads: 16
+Loading AlpacaEval dataset...
+[SKIP] Completed model outputs exist: results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs.json
+Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/alpaca_eval evaluate --model_outputs results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs_for_alpaca_eval.json --annotators_config weighted_alpaca_eval_gpt4_turbo --output_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out --caching_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out/annotations_cache.json
+Failed result saved to results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_medalpaca.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_mmlu.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_ifeval.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43 --config configs/config_main.yaml --output_file results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json --limit 320 --batch_size 32
+================================================================================
+Loading environment variables from /mnt/nas/home/hiromi/src/.env
+OPENAI_API_KEY loaded.
+[eval_alpaca] Configured PyTorch CPU threads: 16
+Loading AlpacaEval dataset...
+[SKIP] Completed model outputs exist: results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs.json
+Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/alpaca_eval evaluate --model_outputs results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs_for_alpaca_eval.json --annotators_config weighted_alpaca_eval_gpt4_turbo --output_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out --caching_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out/annotations_cache.json
+Failed result saved to results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_medalpaca.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_mmlu.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_ifeval.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43 --config configs/config_main.yaml --output_file results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json --limit 320 --batch_size 32
+================================================================================
+Loading environment variables from /mnt/nas/home/hiromi/src/.env
+OPENAI_API_KEY loaded.
+[eval_alpaca] Configured PyTorch CPU threads: 16
+Loading AlpacaEval dataset...
+[SKIP] Completed model outputs exist: results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs.json
+Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/alpaca_eval evaluate --model_outputs results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs_for_alpaca_eval.json --annotators_config weighted_alpaca_eval_gpt4_turbo --output_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out --caching_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out/annotations_cache.json
+Failed result saved to results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_medalpaca.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_mmlu.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_ifeval.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43 --config configs/config_main.yaml --output_file results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json --limit 320 --batch_size 32
+================================================================================
+Loading environment variables from /mnt/nas/home/hiromi/src/.env
+OPENAI_API_KEY loaded.
+[eval_alpaca] Configured PyTorch CPU threads: 16
+Loading AlpacaEval dataset...
+[SKIP] Completed model outputs exist: results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs.json
+Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/alpaca_eval evaluate --model_outputs results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs_for_alpaca_eval.json --annotators_config weighted_alpaca_eval_gpt4_turbo --output_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out --caching_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out/annotations_cache.json
+Failed result saved to results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_medalpaca.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_mmlu.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_ifeval.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43 --config configs/config_main.yaml --output_file results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json --limit 320 --batch_size 32
+================================================================================
+Loading environment variables from /mnt/nas/home/hiromi/src/.env
+OPENAI_API_KEY loaded.
+[eval_alpaca] Configured PyTorch CPU threads: 16
+Loading AlpacaEval dataset...
+[SKIP] Completed model outputs exist: results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs.json
+Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/alpaca_eval evaluate --model_outputs results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs_for_alpaca_eval.json --annotators_config weighted_alpaca_eval_gpt4_turbo --output_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out --caching_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out/annotations_cache.json
+Failed result saved to results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_medalpaca.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_mmlu.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_utility_general_ifeval.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43 --config configs/config_main.yaml --output_file results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json --limit 320 --batch_size 32
+================================================================================
+Loading environment variables from /mnt/nas/home/hiromi/src/.env
+OPENAI_API_KEY loaded.
+[eval_alpaca] Configured PyTorch CPU threads: 16
+Loading AlpacaEval dataset...
+[SKIP] Completed model outputs exist: results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs.json
+Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/alpaca_eval evaluate --model_outputs results/alpaca_outputs/limit320/models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs_for_alpaca_eval.json --annotators_config weighted_alpaca_eval_gpt4_turbo --output_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out --caching_path results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2_alpaca_eval_out/annotations_cache.json
+Parsed AlpacaEval score for model 'models_merged_sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_outputs': win_rate=1.3877787807814457e-15
+AlpacaEval 2 results saved to results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_alpaca_eval2.json
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+code/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43_inst_medalpaca.json

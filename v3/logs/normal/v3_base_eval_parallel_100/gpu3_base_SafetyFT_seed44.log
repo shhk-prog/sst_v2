@@ -1,0 +1,37 @@
+
+================================================================================
+MODEL: SafetyFT_seed44
+PATH:  models/temp_safety_full_seed44
+GPU:   3
+PREFIX:sst_merge_v3_main_base_SafetyFT_seed44
+
+$ /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_safety.py --model_path models/temp_safety_full_seed44 --config configs/config_main.yaml --task harmbench --output_file results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed44_harmbench_safety.json --limit 320
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_safety.py", line 6, in <module>
+    import torch
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 2229, in <module>
+    from torch import _VF as _VF, functional as functional  # usort: skip
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/functional.py", line 8, in <module>
+    import torch.nn.functional as F
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/nn/__init__.py", line 8, in <module>
+    from torch.nn.modules import *  # usort: skip # noqa: F403
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/nn/modules/__init__.py", line 1, in <module>
+    from .module import Module  # usort: skip
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 17, in <module>
+    from torch.utils._python_dispatch import is_traceable_wrapper_subclass
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/utils/__init__.py", line 8, in <module>
+    from torch.utils import (
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/utils/data/__init__.py", line 1, in <module>
+    from torch.utils.data.dataloader import (
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 25, in <module>
+    import torch.distributed as dist
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 991, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1087, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1186, in get_data
+KeyboardInterrupt

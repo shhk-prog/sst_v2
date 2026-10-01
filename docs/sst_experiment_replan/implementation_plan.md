@@ -1,89 +1,66 @@
-# 実装計画: SST-Merge 実験再計画（ゼロベース・トップ会議向け）
+# SST-Merge 実験再計画：学習データセットと評価体系の定義
 
-## 目的 (Goal Description)
-過去の実験結果を完全にリセットし、NeurIPS / ICLR / ICML / ACL などのトップ会議採択に足る「再現性・客観性・スケール」を備えた実験をゼロベースで再構築します。
+指示追従能力と専門性を両立させ、トップ会議（NeurIPS/ICML等）の基準に耐えうる厳密な評価を行うため、学習データセットおよび評価体系を以下の通り定義・変更しました。
 
-特に、予算の制約を取り払い、LLM-as-a-Judge (GPT-4o等) をフル活用した詳細で正確な評価を行います。また、マージの実装や評価においては、**Mergekit** や **lm-evaluation-harness** などの標準化されたオープンソースツール・公式リポジトリを必ず用い、査読に対する「実装の正当性・再現性の根拠」を確保します。さらに、Utilityモデルとして現実の事業応用に即した「金融特化モデル」等を採用し、SST-Mergeの実社会での有用性を強くアピールします。
+## 1. 学習データセット (Fine-Tuning Data)
 
-## ユーザー確認事項 (User Review Required)
+特定のドメイン知識と安全性をバランスよく学習させるため、以下の3カテゴリで構成します。
 
-本計画はご提示いただいた「予算無制限」「ゼロベースでのやり直し」「事業モデル（金融）の検討」「公式実装・Mergekitの利用」の要件を完全に反映しています。方針に相違がないか、内容のご確認をお願いします。
+| カテゴリ | データセット | 件数 | 内容・目的 | 根拠・参考文献 |
+| :--- | :--- | :--- | :--- | :--- |
+| **Finance** | `gbharti/finance-alpaca` | 4,500件 | 推論・QAを含む対話形式の金融指示データ | [Taori et al. (2023)](https://crfm.stanford.edu/2023/03/13/alpaca.html) (Alpaca手法の適用) |
+| **Coding** | `Magicoder-OSS-Instruct-75K` | 4,500件 | OSSコードを基にした高品質な指示データ | [Wei et al. (2024)](https://arxiv.org/abs/2312.02120) (OSS-Instruct) |
+| **Safety** | `AdvBench` + `TrustLLM` | ~2,000件 | 脱獄攻撃への拒絶応答および信頼性向上 | [Zou et al. (2023)](https://arxiv.org/abs/2307.15043) / [Huang et al. (2024)](https://arxiv.org/abs/2401.05561) |
 
-## 提案する実験計画 (Proposed Changes)
+## 2. 評価体系 (ID/OOD Evaluation Framework)
 
-実験をゼロから以下の4つのフェーズで構築します。
+モデルの「ドメイン知識の定着度 (In-Domain)」と「汎化性能・忘却耐性 (Out-Of-Domain)」を切り分けて評価します。
 
-### フェーズ1: モデル作成と標準化環境の構築 (Model Preparation & Setup)
-現実の事業応用を想定し、強力なベースモデルからドメイン特化 Utility モデルを作成します。
+| カテゴリ | 評価タイプ | データセット / ベンチマーク | 指標 | 根拠・参考文献 |
+| :--- | :--- | :--- | :--- | :--- |
+| **Safety** | **ID** (学習済み) | AdvBench + TrustLLM | ASR ↓ | [Zou et al. (2023)](https://arxiv.org/abs/2307.15043) / [Huang et al. (2024)](https://arxiv.org/abs/2401.05561) |
+| | **OOD** (未知) | **HarmBench** | ASR ↓ | [Mazeika et al. (2024)](https://arxiv.org/abs/2402.04249) |
+| | **Over-refusal** | **XSTest** | FPR ↓ | [Röttger et al. (2024)](https://arxiv.org/abs/2308.01263) |
+| **Finance** | **ID** (学習済み) | finance-alpaca (eval split) | ROUGE-L | - |
+| | **OOD** (未知) | **MMLU** (Biz-Ethics, Macro, Econ) | Accuracy | [Hendrycks et al. (2021)](https://arxiv.org/abs/2009.03300) |
+| **Coding** | **ID** (学習済み) | Magicoder (eval split) | ROUGE-L | [Wei et al. (2024)](https://arxiv.org/abs/2312.02120) |
+| | **OOD** (未知) | **HumanEval**, **MBPP**, **GSM8K** | pass@1 / EM | [Chen et al. (2021)](https://arxiv.org/abs/2107.03374) / [Austin et al. (2021)](https://arxiv.org/abs/2108.07732) / [Cobbe et al. (2021)](https://arxiv.org/abs/2110.14168) |
+| **General** | **OOD** (汎用) | **ARC-C**, **HellaSwag** | Acc_norm | [Clark et al. (2018)](https://arxiv.org/abs/1803.05457) / [Zellers et al. (2019)](https://arxiv.org/abs/1905.07830) |
 
-* **ベースモデル**:
-    * `Meta-Llama-3-8B-Instruct`
-    * `Mistral-7B-Instruct-v0.3`
-* **Utility FT ($\theta_{util}$)**:
-    1. **金融ドメイン特化モデル (Financial Model)**:
-        * データセット: `FinGPT` 関連データセット または `FPB (Financial PhraseBank)`, `FinQA` 等の金融コーパス。
-        * 目的: 現実のエンタープライズ事業でLLMを活用するシナリオの再現。
-    2. **推論/コーディング特化モデル (Reasoning Model)**:
-        * データセット: `MetaMathQA` または `Magicoder`
-        * 目的: Safetyパッチによって最も破壊されやすい論理推論能力の維持を証明。
-* **Safety FT ($\theta_{safe}$)**:
-    * データセット: `HarmBench` (Training Split), `AdvBench`, および **`TrustLLM JailbreakTrigger`**。
-    * 目的: 最新かつ多様な攻撃手法（JailbreakTrigger等）のデータを用いて、より汎用性の高い強力な防御モデルを作る。
+---
 
-### フェーズ2: マージ実行 (Merge Execution with Standard Tools)
-自作のスクリプトによるマージ実装を避け、コミュニティ標準のツール（Mergekit等）および各手法の公式実装を用いて、結果の正当性を担保します。
+## 3. 実装計画 (Proposed Changes)
 
-* **提案手法**:
-    1. **SST-Merge (Full / Diagonal / Data-Free)**: FIM比（GEVP最適化）による補間型・加算型マージ。
-* **比較ベースライン手法（公式実装ベース）**:
-    1. **Direct Safety FT** (ベースラインの下限・上限確認用)
-    2. **Task Arithmetic**: `Mergekit` を用いて実行。
-    3. **TIES / DARE-TIES**: `Mergekit` を用いて実行（疎化マージの標準実装）。
-    4. **Fisher-Weighted Averaging (FWA)**: NeurIPS 2022 公式実装または標準的再現コードを利用。
-    5. **SafeMERGE / AlignMerge**: 2025年最新手法として、著者の公式GitHubリポジトリ実装を利用。
+### [MODIFY] `v2/scripts/fine_tuning/run_phase2.sh`
+*   **データセット構成の変更**: 上記の件数（Finance 4.5k, Coding 4.5k, Safety 2k）に合わせ、トレーニングスクリプトのデータサンプリング引数を更新します。
+*   **評価ループの追加**: 従来の `eval_type="general"` に加え、`mmlu_finance`, `humaneval` などの OOD 評価をフェーズ2の評価パイプラインに明示的に組み込みます。
 
-各手法において、マージ強度 $\alpha$ や 選択比率 $k$ などのハイパーパラメータを広範にスイープし、正確なパレートフロンティアを描画します。
+### [NEW/MODIFY] 過剰拒絶・OOD安全性評価の実装
+*   **XSTest/HarmBench の統合**: 
+    `run_safety_eval.py` を拡張し、HarmBench (OOD攻撃) と XSTest (過剰拒絶) を同時に測定し、ASR (Attack Success Rate) と FPR (False Positive Rate) を算出可能にします。
 
-### フェーズ3: 大規模評価 (Evaluation with Standard Benchmarks)
-予算制約なしを前提とし、標準化フレームワークと GPT-4o API を用いた厳密な評価を実施します。
+### [MODIFY] `docs/sst_experiment_replan/task.md`
+Phase 2（学習）および Phase 4（評価）の項目を、本計画の ID/OOD 構成に合わせて詳細化します。
 
-* **Utility評価 (via `lm-evaluation-harness`)**:
-    * **金融タスク**: `FPB`, `FiQA` （金融モデルのドメイン維持能力を測る）
-    * **一般・推論タスク**: `MMLU`, `GSM8K`
-* **Safety評価 (via 公式リポジトリ)**:
-    * **HarmBench**: 最新・最高難易度のJailbreak攻撃に対する Attack Success Rate (ASR) を公式評価スクリプトで測定。
-    * **AdvBench**: 従来の標準ベンチマーク。
-* **過剰拒絶・崩壊の評価 (最重要)**:
-    * **XSTest 公式評価**: 安全なプロンプトに対する False Positive (過剰拒絶) 率の測定。
-    * **LLM-as-a-Judge (GPT-4o)**: `MT-Bench` を用い、マージ後のモデルが「無限ループ」や「推論崩壊」を起こしていないか、対話品質を詳細に採点。
+---
 
-### フェーズ4: 詳細分析 (Deep Dive Analysis)
-査読者（Reviewer）を納得させる強固な理論的証拠を提示します。
+## User Review Required (ユーザーへの確認事項)
 
-1. **Surrogate Hierarchy の相関分析**:
-    * Data-Free SSTのタスクベクトル二乗比と、Diagonal SSTのFIM値の順位相関 (Spearman相関等) を実証。
-2. **失敗モードの定量化**:
-    * 既存手法 (DARE, TIES等) が「推論崩壊」や「過剰拒絶」によってのみ高Safetyスコアを達成している（偽陽性である）ことを、GPT-4oを用いた採点で明確にグラフ化して告発する。
-3. **パラメータの感度分析とFIMの妥当性検証 (Proxy Validation)**:
-    * **「Utilityを壊す方向はどこか？」** を正確に特定できているかを検証します。
-    * FIMがそのProxyとして本当に機能しているかを示すため、**破壊テスト（Prune Top-K）**と**保護テスト（Modify Bottom-K）**を実施します。
-    * FIMが重要と判定したパラメータ群と、Weight Magnitude（重みの大きさ）ベースで判定したパラメータ群を意図的に破壊（ノイズ付加・ゼロ化）した際の、予測Lossの増加やベンチマークスコアの劣化を比較します。
-    * これにより、既存の重みベースの疎化手法に比べ、SST-Mergeの選別（FIM）が「真に保護すべき急所」を正しく捉えていることを証明します。
-4. **FIM サンプルサイズアブレーション**:
-    * FIM推定に必要なデータ量が少数（100件程度）で十分であることを証明。
+> [!IMPORTANT]
+> 1. **GSM8K の位置づけ**: GSM8K は算数文章題ですが、ここでは Coding (論理推論) の OOD 評価として配置しています。Coding FT の効果が波及しているかを測定する意図ですが、問題ないでしょうか？
+> 2. **計算リソース**: ARC-C や HellaSwag の評価は時間がかかるため、中間チェックポイントではスキップし、最終モデル（またはマージ後）のみで実行する運用を想定しています。
 
-## 成果物の構成 (File Structure Updates)
+## 参考文献 (References)
 
-本計画に沿って作業を進めるためのファイルを整備します。
-
-#### [NEW] docs/sst_experiment_replan/task.md
-実行タスクの進捗を管理する詳細なチェックリスト（データ準備〜モデル学習〜評価までを段階的に記載）。
-
-#### [NEW] docs/sst_experiment_replan/walkthrough.md
-各フェーズ完了後に、得られた洞察やパレートフロンティアのグラフ描画結果などを蓄積していくレポート。
-
-## 検証計画 (Verification Plan)
-1. 金融データセット（FinGPT/FPB等）および HarmBench データセットのダウンロードと前処理。
-2. `Mergekit` および `lm-evaluation-harness` のセットアップ。
-3. まず Llama-3-8B にて小規模なデータでパイプライン全体（FT → Mergekitマージ → lm-eval/HarmBench評価）が公式実装通りに動作することを確認（Dry run）。
-4. 予算をフル活用し、全パラメータスイープの大規模計算と GPT-4o による全出力の判定を実行。
+1.  **Alpaca**: Taori, R., et al. (2023). "Alpaca: A Strong, Replicable Instruction-Following Model." Stanford CRFM.
+2.  **Magicoder**: Wei, Y., et al. (2024). "Magicoder: Empowering Code Generation with OSS-Instruct." ICML 2024.
+3.  **AdvBench**: Zou, A., et al. (2023). "Universal and Transferable Adversarial Attacks on Aligned Language Models." arXiv:2307.15043.
+4.  **TrustLLM**: Huang, Y., et al. (2024). "TrustLLM: Trustworthiness in Large Language Models." ICML 2024.
+5.  **HarmBench**: Mazeika, M., et al. (2024). "HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal." ICML 2024.
+6.  **XSTest**: Röttger, P., et al. (2024). "XSTest: A Test Suite for Identifying Exaggerated Safety Behaviours in Large Language Models." NAACL 2024.
+7.  **MMLU**: Hendrycks, D., et al. (2021). "Measuring Massive Multitask Language Understanding." ICLR 2021.
+8.  **HumanEval**: Chen, M., et al. (2021). "Evaluating Large Language Models Trained on Code." arXiv:2107.03374.
+9.  **MBPP**: Austin, J., et al. (2021). "Program Synthesis with Large Language Models." arXiv:2108.07732.
+10. **GSM8K**: Cobbe, K., et al. (2021). "Training Verifiers to Solve Math Word Problems." arXiv:2110.14168.
+11. **ARC**: Clark, P., et al. (2018). "Think you have Solved Question Answering? Try ARC, the AI2 Reasoning Challenge." arXiv:1803.05457.
+12. **HellaSwag**: Zellers, R., et al. (2019). "HellaSwag: Can a Machine Really Finish Your Sentence?" ACL 2019.

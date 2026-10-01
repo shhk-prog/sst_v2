@@ -1,0 +1,45 @@
+score for code
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/baseline/LED-Merging/locate/main.py", line 4, in <module>
+    import torch
+  File "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/torch/__init__.py", line 442, in <module>
+    from torch._C import *  # noqa: F403
+    ^^^^^^^^^^^^^^^^^^^^^^
+ImportError: /mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommWindowDeregister
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/baseline/LED-Merging/locate/main.py", line 4, in <module>
+    import torch
+  File "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/torch/__init__.py", line 442, in <module>
+    from torch._C import *  # noqa: F403
+    ^^^^^^^^^^^^^^^^^^^^^^
+ImportError: /mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommWindowDeregister
+score for safety
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/baseline/LED-Merging/locate/main.py", line 4, in <module>
+    import torch
+  File "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/torch/__init__.py", line 442, in <module>
+    from torch._C import *  # noqa: F403
+    ^^^^^^^^^^^^^^^^^^^^^^
+ImportError: /mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommWindowDeregister
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/baseline/LED-Merging/locate/main.py", line 4, in <module>
+    import torch
+  File "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/torch/__init__.py", line 442, in <module>
+    from torch._C import *  # noqa: F403
+    ^^^^^^^^^^^^^^^^^^^^^^
+ImportError: /mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommWindowDeregister
+score for math
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/baseline/LED-Merging/locate/main.py", line 4, in <module>
+    import torch
+  File "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/torch/__init__.py", line 442, in <module>
+    from torch._C import *  # noqa: F403
+    ^^^^^^^^^^^^^^^^^^^^^^
+ImportError: /mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommWindowDeregister
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/baseline/LED-Merging/locate/main.py", line 4, in <module>
+    import torch
+  File "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/torch/__init__.py", line 442, in <module>
+    from torch._C import *  # noqa: F403
+    ^^^^^^^^^^^^^^^^^^^^^^
+ImportError: /mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommWindowDeregister

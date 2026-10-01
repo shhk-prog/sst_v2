@@ -1,0 +1,335 @@
+
+===== START 2026-07-07T18:53:11 =====
+COMMAND: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method ties --pattern safety+math+code+medical --seed 42 --alpha 0.2 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42 --fim_cache_dir cache/fim
+[Steering Hook] Base/model path verification passed: meta-llama/Llama-2-7b-hf
+Using cached temporary safety full model: models/temp_safety_full_seed42
+[Steering Hook] Merge method verification passed: method=ties, config=models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/merge_config.yml
+Running command: mergekit-yaml models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/merge_config.yml models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42 --allow-crimes --copy-tokenizer
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1503, in <module>
+    main()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1494, in main
+    execute_merge(args, config)
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1184, in execute_merge
+    run_mergekit(
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1005, in run_mergekit
+    res = subprocess.run(cmd, capture_output=True, text=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 2115, in _communicate
+    ready = selector.select(timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+===== END 2026-07-07T18:59:56 returncode=1 =====
+
+===== START 2026-07-07T10:02:28 =====
+COMMAND: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method ties --pattern safety+math+code+medical --seed 42 --alpha 0.2 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42 --fim_cache_dir cache/fim
+[Steering Hook] Base/model path verification passed: meta-llama/Llama-2-7b-hf
+Using cached temporary safety full model: models/temp_safety_full_seed42
+[Steering Hook] Merge method verification passed: method=ties, config=models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/merge_config.yml
+Running command: mergekit-yaml models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/merge_config.yml models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42 --allow-crimes --copy-tokenizer
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1503, in <module>
+    main()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1494, in main
+    execute_merge(args, config)
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1184, in execute_merge
+    run_mergekit(
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1005, in run_mergekit
+    res = subprocess.run(cmd, capture_output=True, text=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 2115, in _communicate
+    ready = selector.select(timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+===== END 2026-07-07T10:03:30 returncode=-2 =====
+
+===== START 2026-07-07T10:04:02 =====
+COMMAND: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method ties --pattern safety+math+code+medical --seed 42 --alpha 0.2 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42 --fim_cache_dir cache/fim
+[Steering Hook] Base/model path verification passed: meta-llama/Llama-2-7b-hf
+Using cached temporary safety full model: models/temp_safety_full_seed42
+[Steering Hook] Merge method verification passed: method=ties, config=models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/merge_config.yml
+Running command: mergekit-yaml models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/merge_config.yml models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42 --allow-crimes --copy-tokenizer
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1503, in <module>
+    main()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1494, in main
+    execute_merge(args, config)
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1184, in execute_merge
+    run_mergekit(
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1005, in run_mergekit
+    res = subprocess.run(cmd, capture_output=True, text=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 2115, in _communicate
+    ready = selector.select(timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+===== END 2026-07-07T10:05:58 returncode=-2 =====
+
+===== START 2026-07-07T10:06:12 =====
+COMMAND: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method ties --pattern safety+math+code+medical --seed 42 --alpha 0.2 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42 --fim_cache_dir cache/fim
+[Steering Hook] Base/model path verification passed: meta-llama/Llama-2-7b-hf
+Using cached temporary safety full model: models/temp_safety_full_seed42
+[Steering Hook] Merge method verification passed: method=ties, config=models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/merge_config.yml
+Running command: mergekit-yaml models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/merge_config.yml models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42 --allow-crimes --copy-tokenizer
+
+[transformers] Model config: pad_token_id must be `None` or an integer within the vocabulary (between 0 and 32000), got -1. This may result in unexpected behavior.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+
+Warmup loader cache:   0%|          | 0/5 [00:00<?, ?it/s]
+
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s][A
+Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 5248.13it/s]
+
+Warmup loader cache:  20%|██        | 1/5 [00:00<00:01,  2.35it/s]
+
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s][A
+Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 12169.16it/s]
+
+Warmup loader cache:  40%|████      | 2/5 [00:00<00:01,  2.41it/s]
+
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s][A
+Fetching 11 files: 100%|██████████| 11/11 [00:00<00:00, 15854.76it/s]
+
+Warmup loader cache:  60%|██████    | 3/5 [00:01<00:00,  2.41it/s]
+
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s][A
+Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 7541.00it/s]
+
+Warmup loader cache:  80%|████████  | 4/5 [00:01<00:00,  2.41it/s]
+Warmup loader cache: 100%|██████████| 5/5 [00:01<00:00,  3.00it/s]
+
+Executing graph:   0%|          | 0/2621 [00:00<?, ?it/s]
+Executing graph:   0%|          | 4/2621 [00:04<51:58,  1.19s/it]
+Executing graph:   0%|          | 5/2621 [00:06<57:18,  1.31s/it]WARNING:root:Using submatrix of WizardLMTeam/WizardMath-7B-V1.0:lm_head.weight
+WARNING:root:Using submatrix of vanillaOVO/WizardCoder-Python-7B-V1.0:lm_head.weight
+WARNING:root:Using submatrix of medalpaca/medalpaca-7b:lm_head.weight
+WARNING:root:Using submatrix of /mnt/nas/home/hiromi/src/sst_v2/v3/models/temp_safety_full_seed42:lm_head.weight
+
+Executing graph:   0%|          | 9/2621 [00:35<3:30:01,  4.82s/it]
+Executing graph:   0%|          | 11/2621 [00:40<2:59:21,  4.12s/it]
+Executing graph:   0%|          | 12/2621 [00:44<3:04:51,  4.25s/it]WARNING:root:Using submatrix of WizardLMTeam/WizardMath-7B-V1.0:model.embed_tokens.weight
+WARNING:root:Using submatrix of vanillaOVO/WizardCoder-Python-7B-V1.0:model.embed_tokens.weight
+WARNING:root:Using submatrix of medalpaca/medalpaca-7b:model.embed_tokens.weight
+WARNING:root:Using submatrix of /mnt/nas/home/hiromi/src/sst_v2/v3/models/temp_safety_full_seed42:model.embed_tokens.weight
+
+Executing graph:   1%|          | 18/2621 [01:11<3:10:10,  4.38s/it]
+Executing graph:   1%|▏         | 36/2621 [01:22<1:10:59,  1.65s/it]
+Executing graph:   2%|▏         | 45/2621 [01:33<1:04:15,  1.50s/it]
+Executing graph:   2%|▏         | 54/2621 [01:44<1:00:07,  1.41s/it]
+Executing graph:   3%|▎         | 72/2621 [01:48<35:38,  1.19it/s]  
+Executing graph:   3%|▎         | 81/2621 [01:53<32:24,  1.31it/s]
+Executing graph:   3%|▎         | 90/2621 [01:57<29:10,  1.45it/s]
+Executing graph:   4%|▍         | 99/2621 [02:01<26:18,  1.60it/s]
+Executing graph:   4%|▍         | 117/2621 [02:12<25:35,  1.63it/s]
+Executing graph:   5%|▍         | 121/2621 [02:12<22:42,  1.84it/s]
+Executing graph:   5%|▍         | 126/2621 [02:24<36:15,  1.15it/s]
+Executing graph:   5%|▌         | 135/2621 [02:35<41:02,  1.01it/s]
+Executing graph:   6%|▌         | 151/2621 [02:35<22:43,  1.81it/s]
+Executing graph:   6%|▌         | 157/2621 [02:40<23:47,  1.73it/s]
+Executing graph:   6%|▌         | 162/2621 [02:44<26:55,  1.52it/s]
+Executing graph:   7%|▋         | 171/2621 [02:49<25:05,  1.63it/s]
+Executing graph:   7%|▋         | 180/2621 [02:53<22:59,  1.77it/s]
+Executing graph:   7%|▋         | 193/2621 [02:54<14:07,  2.87it/s]
+Executing graph:   8%|▊         | 198/2621 [03:05<27:27,  1.47it/s]
+Executing graph:   8%|▊         | 202/2621 [03:05<23:07,  1.74it/s]
+Executing graph:   8%|▊         | 207/2621 [03:16<38:49,  1.04it/s]
+Executing graph:   8%|▊         | 211/2621 [03:16<30:59,  1.30it/s]
+Executing graph:   8%|▊         | 211/2621 [03:27<30:59,  1.30it/s]
+Executing graph:   8%|▊         | 216/2621 [03:28<48:10,  1.20s/it]
+Executing graph:   9%|▉         | 234/2621 [03:32<25:13,  1.58it/s]
+Executing graph:   9%|▉         | 243/2621 [03:36<23:12,  1.71it/s]
+Executing graph:  10%|▉         | 252/2621 [03:41<21:43,  1.82it/s]
+Executing graph:  10%|▉         | 256/2621 [03:41<18:26,  2.14it/s]
+Executing graph:  10%|▉         | 261/2621 [03:45<22:16,  1.77it/s]
+Executing graph:  10%|▉         | 261/2621 [03:57<22:16,  1.77it/s]
+Executing graph:  10%|█         | 263/2621 [04:10<1:13:29,  1.87s/it]
+Executing graph:  10%|█         | 265/2621 [04:10<1:03:40,  1.62s/it]
+Executing graph:  10%|█         | 274/2621 [04:10<34:10,  1.14it/s]  
+Executing graph:  11%|█         | 279/2621 [04:22<50:05,  1.28s/it]
+Executing graph:  11%|█         | 281/2621 [04:27<56:45,  1.46s/it]
+Executing graph:  11%|█         | 283/2621 [04:27<48:22,  1.24s/it]
+Executing graph:  11%|█         | 288/2621 [04:39<1:04:06,  1.65s/it]
+Executing graph:  11%|█         | 290/2621 [04:45<1:12:20,  1.86s/it]
+Executing graph:  11%|█▏        | 297/2621 [04:56<1:07:03,  1.73s/it]
+Merge failed: mergekit failed with exit code -11
+Failed metadata saved to models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/merge_metadata.json
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1503, in <module>
+    main()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1494, in main
+    execute_merge(args, config)
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1184, in execute_merge
+    run_mergekit(
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1010, in run_mergekit
+    raise RuntimeError(f"mergekit failed with exit code {res.returncode}")
+RuntimeError: mergekit failed with exit code -11
+===== END 2026-07-07T10:11:38 returncode=1 =====
+
+===== START 2026-07-07T19:16:26 =====
+COMMAND: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method ties --pattern safety+math+code+medical --seed 42 --alpha 0.2 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42 --fim_cache_dir cache/fim
+[Steering Hook] Base/model path verification passed: meta-llama/Llama-2-7b-hf
+Using cached temporary safety full model: models/temp_safety_full_seed42
+[Steering Hook] Merge method verification passed: method=ties, config=models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/merge_config.yml
+Running command: mergekit-yaml models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/merge_config.yml models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42 --allow-crimes --copy-tokenizer
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1503, in <module>
+    main()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1494, in main
+    execute_merge(args, config)
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1184, in execute_merge
+    run_mergekit(
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1005, in run_mergekit
+    res = subprocess.run(cmd, capture_output=True, text=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 2115, in _communicate
+    ready = selector.select(timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+===== END 2026-07-07T19:47:48 returncode=-2 =====
+
+===== START 2026-07-07T19:49:29 =====
+COMMAND: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method ties --pattern safety+math+code+medical --seed 42 --alpha 0.2 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42 --fim_cache_dir cache/fim
+[Steering Hook] Base/model path verification passed: meta-llama/Llama-2-7b-hf
+Using cached temporary safety full model: models/temp_safety_full_seed42
+[Steering Hook] Merge method verification passed: method=ties, config=models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/merge_config.yml
+Running command: mergekit-yaml models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/merge_config.yml models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42 --allow-crimes --copy-tokenizer
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1503, in <module>
+    main()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1494, in main
+    execute_merge(args, config)
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1184, in execute_merge
+    run_mergekit(
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1005, in run_mergekit
+    res = subprocess.run(cmd, capture_output=True, text=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 2115, in _communicate
+    ready = selector.select(timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+===== END 2026-07-07T19:52:53 returncode=-2 =====
+
+===== START 2026-07-07T19:53:30 =====
+COMMAND: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method ties --pattern safety+math+code+medical --seed 42 --alpha 0.2 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42 --fim_cache_dir cache/fim
+[Steering Hook] Base/model path verification passed: meta-llama/Llama-2-7b-hf
+Using cached temporary safety full model: models/temp_safety_full_seed42
+[Steering Hook] Merge method verification passed: method=ties, config=models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/merge_config.yml
+Running command: mergekit-yaml models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/merge_config.yml models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42 --allow-crimes --copy-tokenizer
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1503, in <module>
+    main()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1494, in main
+    execute_merge(args, config)
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1184, in execute_merge
+    run_mergekit(
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1005, in run_mergekit
+    res = subprocess.run(cmd, capture_output=True, text=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 2115, in _communicate
+    ready = selector.select(timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+===== END 2026-07-07T19:57:25 returncode=-2 =====
+
+===== START 2026-07-07T19:57:28 =====
+COMMAND: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method ties --pattern safety+math+code+medical --seed 42 --alpha 0.2 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42 --fim_cache_dir cache/fim
+[Steering Hook] Base/model path verification passed: meta-llama/Llama-2-7b-hf
+Using cached temporary safety full model: models/temp_safety_full_seed42
+[Steering Hook] Merge method verification passed: method=ties, config=models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/merge_config.yml
+Running command: mergekit-yaml models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/merge_config.yml models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42 --allow-crimes --copy-tokenizer
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 2115, in _communicate
+    ready = selector.select(timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1503, in <module>
+    main()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1494, in main
+    execute_merge(args, config)
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1184, in execute_merge
+    run_mergekit(
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 1005, in run_mergekit
+    res = subprocess.run(cmd, capture_output=True, text=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1220, in communicate
+    self._wait(timeout=sigint_timeout)
+  File "/usr/lib/python3.12/subprocess.py", line 2047, in _wait
+    time.sleep(delay)
+KeyboardInterrupt
+
+===== START 2026-07-07T20:10:51 =====
+COMMAND: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method ties --pattern safety+math+code+medical --seed 42 --alpha 0.2 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42 --fim_cache_dir cache/fim
+[Steering Hook] Base/model path verification passed: meta-llama/Llama-2-7b-hf
+Using cached temporary safety full model: models/temp_safety_full_seed42
+[Steering Hook] Merge method verification passed: method=ties, config=models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/merge_config.yml
+Running command: mergekit-yaml models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/merge_config.yml models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42 --allow-crimes --copy-tokenizer
+mergekit completed successfully.
+Metadata saved.
+===== END 2026-07-07T20:40:44 returncode=0 =====

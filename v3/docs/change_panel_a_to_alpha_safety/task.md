@@ -1,0 +1,6 @@
+- [x] パネル(a) の X軸を Utility から Merge Strength ($\alpha$) に変更する
+- [x] Y軸に Safety (`means_saf`) をプロットする
+- [x] パネル(b)と同様に、標準偏差 (`stds_saf`) を用いた `fill_between` の帯を追加する
+- [x] X軸が Utility ではなくなったため、不要となる Invalid utility 領域や Baseline collapse の注釈を削除する
+- [x] 軸の範囲やラベル、タイトルを適切に更新する
+- [x] 変更後スクリプトを実行し、正常に画像が生成されることを確認する

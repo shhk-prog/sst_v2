@@ -1,0 +1,47 @@
+
+================================================================================
+[GPU 2] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_safety.py --model_path models/merged/sst_merge_v3_main_dare_safety+math_alpha0.4_seed42 --config configs/config_main.yaml --task harmbench --output_file results/debug_limit320/merged/sst_merge_v3_main_dare_safety+math_alpha0.4_seed42_harmbench_safety.json --limit 320
+================================================================================
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_safety.py", line 6, in <module>
+    import torch
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 2313, in <module>
+    import torch.nn.intrinsic
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/nn/intrinsic/__init__.py", line 19, in <module>
+    from torch.nn.intrinsic import modules, qat, quantized  # noqa: F401
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/nn/intrinsic/qat/__init__.py", line 1, in <module>
+    from torch.nn.intrinsic.qat.modules import *  # noqa: F403
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/nn/intrinsic/qat/modules/__init__.py", line 14, in <module>
+    from torch.nn.intrinsic.qat.modules.linear_fused import LinearBn1d
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1322, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1262, in _find_spec
+  File "<frozen importlib._bootstrap_external>", line 1528, in find_spec
+  File "<frozen importlib._bootstrap_external>", line 1502, in _get_spec
+  File "<frozen importlib._bootstrap_external>", line 1634, in find_spec
+  File "<frozen importlib._bootstrap_external>", line 161, in _path_isfile
+  File "<frozen importlib._bootstrap_external>", line 153, in _path_is_mode_type
+  File "<frozen importlib._bootstrap_external>", line 147, in _path_stat
+KeyboardInterrupt
+
+[GPU 2] Exit code: -2
+
+================================================================================
+[GPU 2] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_safety.py --model_path models/merged/sst_merge_v3_main_dare_safety+math_alpha0.4_seed42 --config configs/config_main.yaml --task jailbreakbench --output_file results/debug_limit320/merged/sst_merge_v3_main_dare_safety+math_alpha0.4_seed42_jailbreakbench_safety.json --limit 320
+================================================================================
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_safety.py", line 5, in <module>
+    import yaml
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/yaml/__init__.py", line 8, in <module>
+    from .loader import *
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/yaml/loader.py", line 6, in <module>
+    from .parser import *
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 991, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1087, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1186, in get_data
+KeyboardInterrupt

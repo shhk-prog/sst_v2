@@ -1,0 +1,20 @@
+\begin{table}[H]
+\centering
+\caption{メイン実験 シード別詳細 - Method: data\_free\_sst, Pattern: safety+math+code+medical}
+\label{tab:main_seeds_datafreesst_safety_math_code_medical}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{llllrrrrrrr}
+\toprule
+\textbf{Pattern} & \textbf{Method} & \textbf{Alpha} & \textbf{Seed} & \textbf{Safety Ave [Harmful Content] (ASR$\downarrow$ \%)} & \textbf{Math Ave (\%)} & \textbf{Code Ave (\%)} & \textbf{Medical Ave (\%)} & \textbf{General/Inst Ave (\%)} & \textbf{EvolCode (PPL$\downarrow$)} & \textbf{MedAlpaca (PPL$\downarrow$)} \\
+\midrule
+safety+math+code+medical & data\_free\_sst & 0.60 & 42.0 & 0.08 & 0.00 & 0.00 & 13.44 & 12.53 & 8906.95 & 19263.61 \\
+safety+math+code+medical & data\_free\_sst & 0.60 & 43.0 & 0.08 & 0.00 & 0.00 & 11.56 & 11.50 & 7278.66 & 10824.29 \\
+safety+math+code+medical & data\_free\_sst & 0.60 & 44.0 & 0.08 & 0.00 & 0.00 & 55.00 & 11.51 & 10336.63 & 21244.18 \\
+safety+math+code+medical & data\_free\_sst & 1.00 & 42.0 & 0.08 & 0.00 & 0.00 & 31.87 & 11.30 & 7255.67 & 4971.49 \\
+safety+math+code+medical & data\_free\_sst & 1.00 & 43.0 & 0.00 & 0.00 & 0.00 & 69.06 & 11.69 & 6778.98 & 5455.51 \\
+safety+math+code+medical & data\_free\_sst & 1.00 & 44.0 & 0.00 & 0.00 & 0.00 & 86.25 & 11.44 & 5096.50 & 5951.99 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

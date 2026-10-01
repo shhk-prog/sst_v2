@@ -1,0 +1,8 @@
+- [x] flmsec.texの「Safety Ave」関連の記述を修正（Conditional ASRおよびOriginal ASRの定義の明確化）
+- [x] flmsec.texの「Validity-aware Pareto AUC」の数式化（有効応答を分母とするConditional ASRの$x$と有用性の$y$を用いた積分）
+- [x] flmsec.texの「十分なサンプル数を生成して」の修正（$n=1$, greedy decoding等の詳細付記）
+- [x] flmsec.texのAlpacaEval 2の表記統一（Judgeモデルの指定と「100件」の統一）
+- [x] flmsec.texの安全モデル（jailbreak trigger）の学習詳細の追記（LoRAパラメータ、TrustLLMデータ等）
+- [x] flmsec.texの評価ベンチマーク表（Table 2）の列分割（「データセット規模」と「本研究の評価件数」）
+- [x] flmsec.texの「Fisher計算用データ」の説明の修正
+- [x] flmsec.texのその他文章の微修正（限界の見出し、Gibberish検出規則の言及など）

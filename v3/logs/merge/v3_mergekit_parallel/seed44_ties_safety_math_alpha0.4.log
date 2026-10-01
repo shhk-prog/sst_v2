@@ -1,0 +1,10 @@
+
+===== START 2026-07-09T00:07:48 =====
+COMMAND: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method ties --pattern safety+math --seed 44 --alpha 0.4 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_ties_safety+math_alpha0.4_seed44 --fim_cache_dir cache/fim
+[Steering Hook] Base/model path verification passed: meta-llama/Llama-2-7b-hf
+Using cached temporary safety full model: models/temp_safety_full_seed44
+[Steering Hook] Merge method verification passed: method=ties, config=models/merged/sst_merge_v3_main_ties_safety+math_alpha0.4_seed44/merge_config.yml
+Running command: mergekit-yaml models/merged/sst_merge_v3_main_ties_safety+math_alpha0.4_seed44/merge_config.yml models/merged/sst_merge_v3_main_ties_safety+math_alpha0.4_seed44 --allow-crimes --copy-tokenizer
+mergekit completed successfully.
+Metadata saved.
+===== END 2026-07-09T00:21:55 returncode=0 =====

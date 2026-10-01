@@ -139,7 +139,7 @@ rm -rf merge_model_data_free_full/
 
 ### 2. Data-Free再実行
 ```bash
-cd /mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5
+cd /mnt/nas/home/hiromi/src/sst_v2/sst_merge_v5
 
 # ログ保存付き実行
 python3 run_data_free_merge.py 2>&1 | tee data_free_merge_$(date +%Y%m%d_%H%M%S).log

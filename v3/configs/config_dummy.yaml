@@ -1,0 +1,42 @@
+experiment:
+  name: "sst_merge_v3_experiment_dummy"
+  seed: 42
+  num_seeds: 1
+  seeds: [42]
+
+models:
+  base_model: "models/dummy-llama-2-7b"
+  domain_models:
+    math: "models/dummy-wizardmath-7b"
+    code: "models/dummy-wizardcoder-7b"
+    medical: "models/dummy-medalpaca-7b"
+  safety_model_dir: "models/dummy-safety-lora"
+
+data:
+  safety_sft_csv: "data/response_dataframe.csv"
+  fim:
+    benign_datasets:
+      math: "data/fim/fim_benign_math.json"
+      code: "data/fim/fim_benign_code.json"
+      medical: "data/fim/fim_benign_medical.json"
+    harmful_dataset: "data/fim/fim_harmful.json"
+    sample_sizes: [5]
+    default_sample_size: 5
+    epsilon: 1e-6
+  eval:
+    safety_tasks: ["harmbench"]
+    utility_tasks: ["gsm8k"]
+    utility_task_groups:
+      math:    ["gsm8k"]
+      code:    ["humaneval"]
+      medical: ["pubmedqa"]
+      general: ["mmlu"]
+
+merge:
+  alpha_sweep: [0.5]
+  k_sweep: [0.20]
+  ablation:
+    sst_ratios: ["Fh/Fb"]
+    variants: ["interpolation"]
+    masks: ["hard mask"]
+    layer_wise: [true]

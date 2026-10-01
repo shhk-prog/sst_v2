@@ -1,0 +1,10 @@
+- [x] 1. 予備実験の詳細表 (`tab:prelim_detail_app`, `tab:prelim_detail_seeds_app`) を旧指標のみに復元
+- [x] 1. 予備実験の冒頭に指標の違いに関する注意書きを追加
+- [x] 2. 主実験表（MergeAlign）の欠損理由を表注に記載
+- [x] 3. 主実験表注にValid Safety Rateの計算手順（seed毎に先に計算した旨）を追記
+- [x] 4. AUCの記述を「Valid Safety Rateに基づくValidity-aware Pareto AUC」に統一
+- [x] 5. 主実験表（Table 13, etc）を Safety diagnostics と Utility の2表に分割
+- [x] 6. 多重ドメイン表のNoteラベル明確化（PPL instability / Utility degradation observed）と定義の追記
+- [x] 7. Case Study表の行と列の対応をLaTeX上でチェック・修正
+- [x] 8. 修正が完了したら walkthrough を作成
+- [x] 9. Appendix最終修正（ヘッダ方向、MergeAlign N/A、各種表注の追加、Case Study本文追記、AUCのUtility定義、旧指標削除確認）

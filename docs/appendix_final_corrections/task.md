@@ -1,0 +1,13 @@
+- [x] `v3/scripts/analysis/compute_safety_diagnostics.py` の修正（VSR計算）
+- [x] スクリプトの実行とVSRの再計算結果取得
+- [x] `v3/docs/flmsec/flmsec.tex` の修正
+  - [x] 1. MergeAlignの `---` の説明追記
+  - [x] 2. VSR計算結果（平均・標準偏差）のLaTeX表への反映
+  - [x] 3. 主表の安全性指標の対象（Safety Ave, VRR, VSR）の定義・`(\%)`追加
+  - [x] 4. 予備実験と主実験の $\alpha$ が違う問題の明記
+  - [x] 5. 多重ドメイン表の Note 列の修正・削除と文章化
+  - [x] 6. Case Studyの表確認と文章追記
+  - [x] 7. PPLの定義（tokenizer設定など）の明記
+  - [x] 8. AUCのEndpoint-extended解釈の追記
+  - [x] 9. label重複がないかの最終確認
+- [x] `walkthrough.md` の作成

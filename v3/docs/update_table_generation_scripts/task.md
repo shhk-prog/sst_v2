@@ -1,0 +1,11 @@
+- `[x]` 1. `generate_flmsec_hyo.py` の修正
+  - `[x]` 1.1 JSONから Conditional ASR, VRR, VSRを抽出・計算する処理の追加
+  - `[x]` 1.2 `DISPLAY_HEADERS_MAIN` を `SAFETY` と `UTILITY` に分割
+  - `[x]` 1.3 `df_main_summary` の Safety指標計算ロジック更新 (mean/std)
+  - `[x]` 1.4 メイン実験 (Alpha=0.6) に Base Model の結果を含めて、Safety表とUtility表を出力するよう修正
+- `[/]` 2. 関連スクリプトの調整・修正
+  - `[/]` 2.1 `replace_main_table.py` の確認 (不要なら削除、あるいは新しい表分割に対応)
+- `[x]` 3. 動作確認
+  - `[x]` 3.1 `generate_flmsec_hyo.py` の実行
+  - `[x]` 3.2 LaTeX出力が `flmsec.tex` の該当部分と完全に一致するか確認
+- `[x]` 4. 完了レポート (Walkthrough) の作成

@@ -1,0 +1,55 @@
+
+================================================================================
+MODEL:  WizardMath
+PATH:   WizardLMTeam/WizardMath-7B-V1.0
+GPU:    0
+PREFIX: sst_merge_v3_main_base_WizardMath
+LIMIT:  320
+
+[skip complete] results/debug_limit320/sst_merge_v3_main_base_WizardMath_harmbench_safety.json
+
+[resume incomplete] results/debug_limit320/sst_merge_v3_main_base_WizardMath_jailbreakbench_safety.json
+
+$ /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_safety.py --model_path WizardLMTeam/WizardMath-7B-V1.0 --config configs/config_main.yaml --task jailbreakbench --output_file results/debug_limit320/sst_merge_v3_main_base_WizardMath_jailbreakbench_safety.json --limit 320
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_safety.py", line 11, in <module>
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/__init__.py", line 30, in <module>
+    from . import dependency_versions_check
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/dependency_versions_check.py", line 16, in <module>
+    from .utils.versions import require_version, require_version_core
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/__init__.py", line 22, in <module>
+    from .auto_docstring import (
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/auto_docstring.py", line 32, in <module>
+    from .generic import ModelOutput
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/generic.py", line 38, in <module>
+    from .import_utils import is_mlx_available, is_torch_available, is_torch_fx_proxy
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/import_utils.py", line 47, in <module>
+    PACKAGE_DISTRIBUTION_MAPPING = importlib.metadata.packages_distributions()
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 947, in packages_distributions
+    for pkg in _top_level_declared(dist) or _top_level_inferred(dist):
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 959, in _top_level_inferred
+    for f in always_iterable(dist.files)
+                             ^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 500, in files
+    return skip_missing_files(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/_functools.py", line 102, in wrapper
+    return func(param, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 498, in skip_missing_files
+    return list(filter(lambda path: path.locate().exists(), package_paths))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 498, in <lambda>
+    return list(filter(lambda path: path.locate().exists(), package_paths))
+                                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 862, in exists
+    self.stat(follow_symlinks=follow_symlinks)
+  File "/usr/lib/python3.12/pathlib.py", line 842, in stat
+    return os.stat(self, follow_symlinks=follow_symlinks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+
+FAILED exit_code=-2

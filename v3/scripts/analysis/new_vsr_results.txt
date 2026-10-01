@@ -1,0 +1,201 @@
+
+======================================================================
+Table 13 - 2-model merge (alpha=0.6)
+======================================================================
+safety+code                         diagonal_sst_main         CA=     1.09 $\pm$ 0.43 VRR=    87.55 $\pm$ 4.16 VSR=    86.59 $\pm$ 3.77
+safety+code                         data_free_sst_main        CA=     0.04 $\pm$ 0.07 VRR=    77.09 $\pm$ 2.22 VSR=    77.06 $\pm$ 2.26
+safety+code                         ties                      CA=     0.18 $\pm$ 0.05 VRR=   61.37 $\pm$ 26.99 VSR=   61.27 $\pm$ 26.96
+safety+code                         dare                      CA=     0.00 $\pm$ 0.00 VRR=    97.94 $\pm$ 2.76 VSR=    97.94 $\pm$ 2.76
+safety+code                         della                     CA=     0.00 $\pm$ 0.00 VRR=   92.51 $\pm$ 12.56 VSR=   92.51 $\pm$ 12.56
+safety+code                         task_arithmetic           CA=    30.53 $\pm$ 3.32 VRR=    95.34 $\pm$ 0.96 VSR=    66.18 $\pm$ 3.60
+safety+code                         safemerge                 CA=     0.10 $\pm$ 0.18 VRR=    99.92 $\pm$ 0.14 VSR=    99.82 $\pm$ 0.32
+safety+code                         led_merging               CA=     3.64 $\pm$ 0.18 VRR=    78.14 $\pm$ 0.05 VSR=    75.26 $\pm$ 0.09
+safety+code                         matena_fisher             CA=     5.72 $\pm$ 1.95 VRR=    59.73 $\pm$ 3.80 VSR=    56.36 $\pm$ 2.50
+safety+code                         mergealign                CA=                 --- VRR=     0.00 $\pm$ 0.00 VSR=     0.00 $\pm$ 0.00
+safety+math                         diagonal_sst_main         CA=    17.15 $\pm$ 4.99 VRR=    99.51 $\pm$ 0.40 VSR=    82.42 $\pm$ 4.83
+safety+math                         data_free_sst_main        CA=    14.76 $\pm$ 3.43 VRR=    99.79 $\pm$ 0.24 VSR=    85.06 $\pm$ 3.56
+safety+math                         ties                      CA=     9.04 $\pm$ 5.55 VRR=    99.95 $\pm$ 0.09 VSR=    90.91 $\pm$ 5.56
+safety+math                         dare                      CA=     6.14 $\pm$ 5.14 VRR=    99.97 $\pm$ 0.05 VSR=    93.83 $\pm$ 5.17
+safety+math                         della                     CA=     6.66 $\pm$ 5.52 VRR=   100.00 $\pm$ 0.00 VSR=    93.34 $\pm$ 5.52
+safety+math                         task_arithmetic           CA=     2.48 $\pm$ 2.89 VRR=    99.92 $\pm$ 0.14 VSR=    97.44 $\pm$ 2.85
+safety+math                         safemerge                 CA=     5.25 $\pm$ 9.09 VRR=    95.57 $\pm$ 7.68 VSR=   90.96 $\pm$ 15.67
+safety+math                         led_merging               CA=     3.54 $\pm$ 0.00 VRR=    78.12 $\pm$ 0.00 VSR=    75.32 $\pm$ 0.00
+safety+math                         matena_fisher             CA=     4.32 $\pm$ 0.42 VRR=    99.30 $\pm$ 0.41 VSR=    95.01 $\pm$ 0.30
+safety+math                         mergealign                CA=                 --- VRR=     0.00 $\pm$ 0.00 VSR=     0.00 $\pm$ 0.00
+safety+medical                      diagonal_sst_main         CA=     0.08 $\pm$ 0.00 VRR=   65.42 $\pm$ 56.69 VSR=   65.37 $\pm$ 56.64
+safety+medical                      data_free_sst_main        CA=     0.45 $\pm$ 0.56 VRR=   42.66 $\pm$ 37.11 VSR=   42.60 $\pm$ 37.15
+safety+medical                      ties                      CA=     0.06 $\pm$ 0.05 VRR=   80.93 $\pm$ 19.76 VSR=   80.87 $\pm$ 19.72
+safety+medical                      dare                      CA=     0.03 $\pm$ 0.05 VRR=   77.76 $\pm$ 13.44 VSR=   77.74 $\pm$ 13.41
+safety+medical                      della                     CA=     0.23 $\pm$ 0.40 VRR=   33.68 $\pm$ 40.71 VSR=   33.65 $\pm$ 40.72
+safety+medical                      task_arithmetic           CA=     0.16 $\pm$ 0.00 VRR=    99.82 $\pm$ 0.18 VSR=    99.66 $\pm$ 0.18
+safety+medical                      safemerge                 CA=     0.03 $\pm$ 0.05 VRR=   100.00 $\pm$ 0.00 VSR=    99.97 $\pm$ 0.05
+safety+medical                      led_merging               CA=                 --- VRR=                 --- VSR=                 ---
+safety+medical                      matena_fisher             CA=     0.16 $\pm$ 0.00 VRR=    99.28 $\pm$ 1.24 VSR=    99.12 $\pm$ 1.24
+safety+medical                      mergealign                CA=                 --- VRR=     0.00 $\pm$ 0.00 VSR=     0.00 $\pm$ 0.00
+
+======================================================================
+Table 14 - Multi-domain (alpha=0.6)
+======================================================================
+safety+math+code+medical            diagonal_sst_main         CA=     0.00 $\pm$ 0.00 VRR=   31.47 $\pm$ 12.34 VSR=   31.47 $\pm$ 12.34
+safety+math+code+medical            data_free_sst_main        CA=     0.20 $\pm$ 0.08 VRR=   48.26 $\pm$ 22.46 VSR=   48.18 $\pm$ 22.46
+safety+math+code+medical            ties                      CA=     0.08 $\pm$ 0.00 VRR=   66.64 $\pm$ 57.71 VSR=   66.59 $\pm$ 57.67
+safety+math+code+medical            dare                      CA=     0.08 $\pm$ 0.08 VRR=   69.23 $\pm$ 52.81 VSR=   69.15 $\pm$ 52.74
+safety+math+code+medical            della                     CA=     0.09 $\pm$ 0.01 VRR=   86.24 $\pm$ 20.68 VSR=   86.16 $\pm$ 20.68
+safety+math+code+medical            task_arithmetic           CA=     6.50 $\pm$ 0.63 VRR=    78.43 $\pm$ 8.47 VSR=    72.55 $\pm$ 9.00
+safety+math+code+medical            safemerge                 CA=                 --- VRR=                 --- VSR=                 ---
+safety+math+code+medical            led_merging               CA=                 --- VRR=                 --- VSR=                 ---
+safety+math+code+medical            matena_fisher             CA=     0.00 $\pm$ 0.00 VRR=    10.25 $\pm$ 2.01 VSR=    10.25 $\pm$ 2.01
+safety+math+code+medical            mergealign                CA=                 --- VRR=                 --- VSR=                 ---
+
+
+======================================================================
+LaTeX replacement values for Table 13:
+======================================================================
+  % safety+code + dare
+  Conditional ASR = 0.00 $\pm$ 0.00
+  Valid Response Rate = 97.94 $\pm$ 2.76
+  Valid Safety Rate = 97.94 $\pm$ 2.76
+  % safety+code + data_free_sst_main
+  Conditional ASR = 0.04 $\pm$ 0.07
+  Valid Response Rate = 77.09 $\pm$ 2.22
+  Valid Safety Rate = 77.06 $\pm$ 2.26
+  % safety+code + della
+  Conditional ASR = 0.00 $\pm$ 0.00
+  Valid Response Rate = 92.51 $\pm$ 12.56
+  Valid Safety Rate = 92.51 $\pm$ 12.56
+  % safety+code + diagonal_sst_main
+  Conditional ASR = 1.09 $\pm$ 0.43
+  Valid Response Rate = 87.55 $\pm$ 4.16
+  Valid Safety Rate = 86.59 $\pm$ 3.77
+  % safety+code + led_merging
+  Conditional ASR = 3.64 $\pm$ 0.18
+  Valid Response Rate = 78.14 $\pm$ 0.05
+  Valid Safety Rate = 75.26 $\pm$ 0.09
+  % safety+code + matena_fisher
+  Conditional ASR = 5.72 $\pm$ 1.95
+  Valid Response Rate = 59.73 $\pm$ 3.80
+  Valid Safety Rate = 56.36 $\pm$ 2.50
+  % safety+code + mergealign
+  Conditional ASR = ---
+  Valid Response Rate = 0.00 $\pm$ 0.00
+  Valid Safety Rate = 0.00 $\pm$ 0.00
+  % safety+code + safemerge
+  Conditional ASR = 0.10 $\pm$ 0.18
+  Valid Response Rate = 99.92 $\pm$ 0.14
+  Valid Safety Rate = 99.82 $\pm$ 0.32
+  % safety+code + task_arithmetic
+  Conditional ASR = 30.53 $\pm$ 3.32
+  Valid Response Rate = 95.34 $\pm$ 0.96
+  Valid Safety Rate = 66.18 $\pm$ 3.60
+  % safety+code + ties
+  Conditional ASR = 0.18 $\pm$ 0.05
+  Valid Response Rate = 61.37 $\pm$ 26.99
+  Valid Safety Rate = 61.27 $\pm$ 26.96
+  % safety+math + dare
+  Conditional ASR = 6.14 $\pm$ 5.14
+  Valid Response Rate = 99.97 $\pm$ 0.05
+  Valid Safety Rate = 93.83 $\pm$ 5.17
+  % safety+math + data_free_sst_main
+  Conditional ASR = 14.76 $\pm$ 3.43
+  Valid Response Rate = 99.79 $\pm$ 0.24
+  Valid Safety Rate = 85.06 $\pm$ 3.56
+  % safety+math + della
+  Conditional ASR = 6.66 $\pm$ 5.52
+  Valid Response Rate = 100.00 $\pm$ 0.00
+  Valid Safety Rate = 93.34 $\pm$ 5.52
+  % safety+math + diagonal_sst_main
+  Conditional ASR = 17.15 $\pm$ 4.99
+  Valid Response Rate = 99.51 $\pm$ 0.40
+  Valid Safety Rate = 82.42 $\pm$ 4.83
+  % safety+math + led_merging
+  Conditional ASR = 3.54 $\pm$ 0.00
+  Valid Response Rate = 78.12 $\pm$ 0.00
+  Valid Safety Rate = 75.32 $\pm$ 0.00
+  % safety+math + matena_fisher
+  Conditional ASR = 4.32 $\pm$ 0.42
+  Valid Response Rate = 99.30 $\pm$ 0.41
+  Valid Safety Rate = 95.01 $\pm$ 0.30
+  % safety+math + mergealign
+  Conditional ASR = ---
+  Valid Response Rate = 0.00 $\pm$ 0.00
+  Valid Safety Rate = 0.00 $\pm$ 0.00
+  % safety+math + safemerge
+  Conditional ASR = 5.25 $\pm$ 9.09
+  Valid Response Rate = 95.57 $\pm$ 7.68
+  Valid Safety Rate = 90.96 $\pm$ 15.67
+  % safety+math + task_arithmetic
+  Conditional ASR = 2.48 $\pm$ 2.89
+  Valid Response Rate = 99.92 $\pm$ 0.14
+  Valid Safety Rate = 97.44 $\pm$ 2.85
+  % safety+math + ties
+  Conditional ASR = 9.04 $\pm$ 5.55
+  Valid Response Rate = 99.95 $\pm$ 0.09
+  Valid Safety Rate = 90.91 $\pm$ 5.56
+  % safety+medical + dare
+  Conditional ASR = 0.03 $\pm$ 0.05
+  Valid Response Rate = 77.76 $\pm$ 13.44
+  Valid Safety Rate = 77.74 $\pm$ 13.41
+  % safety+medical + data_free_sst_main
+  Conditional ASR = 0.45 $\pm$ 0.56
+  Valid Response Rate = 42.66 $\pm$ 37.11
+  Valid Safety Rate = 42.60 $\pm$ 37.15
+  % safety+medical + della
+  Conditional ASR = 0.23 $\pm$ 0.40
+  Valid Response Rate = 33.68 $\pm$ 40.71
+  Valid Safety Rate = 33.65 $\pm$ 40.72
+  % safety+medical + diagonal_sst_main
+  Conditional ASR = 0.08 $\pm$ 0.00
+  Valid Response Rate = 65.42 $\pm$ 56.69
+  Valid Safety Rate = 65.37 $\pm$ 56.64
+  % safety+medical + matena_fisher
+  Conditional ASR = 0.16 $\pm$ 0.00
+  Valid Response Rate = 99.28 $\pm$ 1.24
+  Valid Safety Rate = 99.12 $\pm$ 1.24
+  % safety+medical + mergealign
+  Conditional ASR = ---
+  Valid Response Rate = 0.00 $\pm$ 0.00
+  Valid Safety Rate = 0.00 $\pm$ 0.00
+  % safety+medical + safemerge
+  Conditional ASR = 0.03 $\pm$ 0.05
+  Valid Response Rate = 100.00 $\pm$ 0.00
+  Valid Safety Rate = 99.97 $\pm$ 0.05
+  % safety+medical + task_arithmetic
+  Conditional ASR = 0.16 $\pm$ 0.00
+  Valid Response Rate = 99.82 $\pm$ 0.18
+  Valid Safety Rate = 99.66 $\pm$ 0.18
+  % safety+medical + ties
+  Conditional ASR = 0.06 $\pm$ 0.05
+  Valid Response Rate = 80.93 $\pm$ 19.76
+  Valid Safety Rate = 80.87 $\pm$ 19.72
+
+======================================================================
+LaTeX replacement values for Table 14:
+======================================================================
+  % safety+math+code+medical + dare
+  Conditional ASR = 0.08 $\pm$ 0.08
+  Valid Response Rate = 69.23 $\pm$ 52.81
+  Valid Safety Rate = 69.15 $\pm$ 52.74
+  % safety+math+code+medical + data_free_sst_main
+  Conditional ASR = 0.20 $\pm$ 0.08
+  Valid Response Rate = 48.26 $\pm$ 22.46
+  Valid Safety Rate = 48.18 $\pm$ 22.46
+  % safety+math+code+medical + della
+  Conditional ASR = 0.09 $\pm$ 0.01
+  Valid Response Rate = 86.24 $\pm$ 20.68
+  Valid Safety Rate = 86.16 $\pm$ 20.68
+  % safety+math+code+medical + diagonal_sst_main
+  Conditional ASR = 0.00 $\pm$ 0.00
+  Valid Response Rate = 31.47 $\pm$ 12.34
+  Valid Safety Rate = 31.47 $\pm$ 12.34
+  % safety+math+code+medical + matena_fisher
+  Conditional ASR = 0.00 $\pm$ 0.00
+  Valid Response Rate = 10.25 $\pm$ 2.01
+  Valid Safety Rate = 10.25 $\pm$ 2.01
+  % safety+math+code+medical + task_arithmetic
+  Conditional ASR = 6.50 $\pm$ 0.63
+  Valid Response Rate = 78.43 $\pm$ 8.47
+  Valid Safety Rate = 72.55 $\pm$ 9.00
+  % safety+math+code+medical + ties
+  Conditional ASR = 0.08 $\pm$ 0.00
+  Valid Response Rate = 66.64 $\pm$ 57.71
+  Valid Safety Rate = 66.59 $\pm$ 57.67

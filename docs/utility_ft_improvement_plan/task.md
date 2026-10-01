@@ -1,0 +1,15 @@
+- `[x]` 実装計画に対するユーザーフィードバックの確認と承認
+- `[x]` **1. スクリプト改修 (run_phase2.sh / run_phase2_python.sh)**
+  - `[ ]` 完走 RUN と ES (Early Stopping) RUN を別々の `RUN_NAME` (例: `*_full`, `*_es`) で実行・保存できるようにする
+  - `[ ]` `load_best_model_at_end=True` を適用し、保存されたベストチェックポイント（`checkpoint-*`）を `coding_lora_best` などの明確な名前にコピーする処理の追加
+  - `[ ]` Base モデルと LoRA モデルでの `apply_chat_template` の扱いを統一する（`base_with_template` での公平な比較の追加）
+- `[x]` **2. データパイプライン改修**
+  - `[x]` `clean_coding_data.py` (aggressive clean) を適用した Python データ (`utility_coding_python_clean.json`) と未適用の比較検証フローの構築
+  - `[x]` データ重複除去・不要なコメント/説明文除去ルールの見直し（必要であれば）
+- `[x]` **3. ハイパーパラメータと学習設定の調整**
+  - `[x]` lr と early_stopping_patience の最適化グリッドの構築 (環境変数を経由した設定変更の追加)
+  - `[x]` `eval_loss` などの学習カーブを出力して分析しやすくする集計スクリプト (`analyze_learning_curves.py`) の作成
+- `[x]` **4. 推論・評価プロセスの調整**
+  - `[x]` HumanEval や GSM8K において、repetition collapse を緩和するため `repetition_penalty` や `temperature` を引数で調整できる仕組みを `run_utility_eval.py` に追加
+- `[x]` **5. 最終検証 (Walkthroughの作成)**
+  - `[x]` すべての実装計画に基づくスクリプト改修を完了し、Walkthrough ドキュメントを作成する

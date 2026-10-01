@@ -1,0 +1,16 @@
+==================================================
+Slurm Per-Model Array Job ID: 104137_468
+Batch Size: 32
+Configured CPU Threads: 2
+Assigned CUDA_VISIBLE_DEVICES: 0
+Working Dir: /mnt/nas/home/hiromi/src/sst_v2/v3
+==================================================
+Executing command:
+venv_v3/bin/python scripts/merge_eval_parallel.py     --config configs/config_main.yaml     --seeds 42 43 44     --limit 320     --batch_size 32     --gpus 0     --model_index 468     --use_vllm     --resume
+--------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge_eval_parallel.py", line 1048, in <module>
+    main()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge_eval_parallel.py", line 972, in main
+    raise IndexError(f"model_index {args.model_index} is out of bounds (0..{len(merged_models)-1})")
+IndexError: model_index 468 is out of bounds (0..467)

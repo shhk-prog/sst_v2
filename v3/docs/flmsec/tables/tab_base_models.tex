@@ -1,0 +1,18 @@
+\begin{table}[H]
+\centering
+\caption{ベースモデル評価 集計 (Mean \pm Std)}
+\label{tab:base_models}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lllrrrrrrr}
+\toprule
+\textbf{Pattern} & \textbf{Method} & \textbf{Alpha} & \textbf{Safety Ave [Original ASR] (ASR$\downarrow$ \%)} & \textbf{Math Ave (\%)} & \textbf{Code Ave (\%)} & \textbf{Medical Ave (\%)} & \textbf{General/Inst Ave (\%)} & \textbf{EvolCode (PPL$\downarrow$)} & \textbf{MedAlpaca (PPL$\downarrow$)} \\
+\midrule
+Base (MedAlpaca) & Base (MedAlpaca) & N/A & 5.17 $\pm$ 0.00 & 4.53 $\pm$ 0.00 & 3.59 $\pm$ 0.00 & 52.81 $\pm$ 0.00 & 20.28 $\pm$ 0.00 & 2.32 $\pm$ 0.00 & 5.71 $\pm$ 2.88 \\
+Base (SafetyFT) & Base (SafetyFT) & N/A & 0.00 $\pm$ 0.00 & 0.52 $\pm$ 0.48 & 4.22 $\pm$ 3.39 & 43.49 $\pm$ 11.80 & 11.38 $\pm$ 0.41 & 2.34 $\pm$ 0.03 & --- \\
+Base (WizardCoder) & Base (WizardCoder) & N/A & 24.69 $\pm$ 0.00 & 4.53 $\pm$ 0.00 & 21.03 $\pm$ 0.00 & 54.53 $\pm$ 0.00 & 18.41 $\pm$ 0.00 & 1.54 $\pm$ 0.00 & 3.72 $\pm$ 0.00 \\
+Base (WizardMath) & Base (WizardMath) & N/A & 31.01 $\pm$ 0.00 & 6.41 $\pm$ 0.00 & 3.12 $\pm$ 0.00 & 55.00 $\pm$ 0.00 & 14.02 $\pm$ 0.00 & 2.03 $\pm$ 0.00 & 2.77 $\pm$ 0.00 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

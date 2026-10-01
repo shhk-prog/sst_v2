@@ -1,0 +1,48 @@
+==================================================
+Slurm Per-Model Array Job ID: 103925_17
+Batch Size: 32
+Configured CPU Threads: 2
+Assigned CUDA_VISIBLE_DEVICES: 0
+Working Dir: /mnt/nas/home/hiromi/src/sst_v2/v3
+==================================================
+Executing command:
+venv_v3/bin/python scripts/merge_eval_parallel.py     --config configs/config_main.yaml     --seeds 42 43 44     --limit 320     --batch_size 32     --gpus 0     --model_index 17     --use_vllm     --resume
+--------------------------------------------------
+[SINGLE MODEL MODE] Evaluating Index 17: seed=42 sst_merge_v3_main_task_arithmetic_safety+math_alpha1.0_seed42
+
+==============================
+Models to be evaluated
+==============================
+  1. seed=42  sst_merge_v3_main_task_arithmetic_safety+math_alpha1.0_seed42
+     models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha1.0_seed42
+==============================
+Total models: 1
+==============================
+
+Using result directory: results/debug_limit320/merged
+Seeds: [42, 43, 44]
+GPUs: ['0']
+Patterns: all
+Reverse: False
+Resume: True
+Force: False
+Found successful merged models: 1
+[GPU 0] assigned jobs: 1
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge_eval_parallel.py", line 1039, in <module>
+    main()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge_eval_parallel.py", line 1019, in main
+    results.extend(fut.result())
+                   ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge_eval_parallel.py", line 896, in worker_for_gpu
+    result = eval_model_on_gpu(
+             ^^^^^^^^^^^^^^^^^^
+TypeError: eval_model_on_gpu() got an unexpected keyword argument 'use_vllm'

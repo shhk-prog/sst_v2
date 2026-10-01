@@ -1,0 +1,16 @@
+
+================================================================================
+MODEL: MedAlpaca
+PATH:  medalpaca/medalpaca-7b
+GPU:   0
+PREFIX:sst_merge_v3_main_base_MedAlpaca
+
+$ /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_safety.py --model_path medalpaca/medalpaca-7b --config configs/config_main.yaml --task harmbench --output_file results/debug_limit1000/sst_merge_v3_main_base_MedAlpaca_harmbench_safety.json --limit 1000
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_safety.py", line 6, in <module>
+    import torch
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 442, in <module>
+    from torch._C import *  # noqa: F403
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 463, in _lock_unlock_module
+KeyboardInterrupt

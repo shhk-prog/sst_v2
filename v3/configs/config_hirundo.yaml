@@ -1,0 +1,25 @@
+experiment:
+  name: "hirundo_unlearning_comparison"
+  seed: 42
+
+models:
+  llama_3_2:
+    base_model: "meta-llama/Llama-3.2-3B-Instruct"
+    hirundo_model: "hirundo-io/Llama-3.2-3B-Instruct-improved-security"
+  gemma_3:
+    base_model: "google/gemma-3-1b-it"
+    hirundo_model: "hirundo-io/Gemma-3-1B-it-Instruction-Following-Unlearned"
+  gemma_4:
+    base_model: "google/gemma-4-E4B-it"
+    hirundo_model: "hirundo-io/gemma-4-E4B-it-reduced-prompt-injection"
+
+data:
+  eval:
+    safety_tasks:
+      - harmbench
+      - jailbreakbench
+      - strongreject
+      - wildjailbreak
+    utility_tasks:
+      - mmlu
+      - gsm8k

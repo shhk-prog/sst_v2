@@ -1,0 +1,27 @@
+=== Loading environment variables from /mnt/iag-02/home/hiromi/src/.env ===
+=== Experiment Run: lr1e-4_ep3 ===
+  Results will be saved to: ../../results/lr1e-4_ep3
+  Models will be saved to:  ../../models/lr1e-4_ep3
+
+  Evaluation structure:
+  ┌─ Safety
+  │   ├─ [ID/OOD] AdvBench + TrustLLM ASR  (Llama-Guard-3-8B)
+  │   ├─ [OOD]    HarmBench ASR             (Llama-Guard-3-8B)
+  │   └─ [OOD]    XSTest FPR               (over-refusal)
+  └─ Utility
+      ├─ [ID]  Finance eval split    ROUGE-L
+      ├─ [OOD] MMLU Finance          acc (business_ethics / macroeconomics / econometrics)
+      ├─ [ID]  Coding eval split     ROUGE-L
+      ├─ [OOD] HumanEval             pass@1
+      ├─ [OOD] MBPP                  pass@1
+      ├─ [OOD] GSM8K                 exact_match (CoT)
+      └─ [OOD] ARC / HellaSwag       acc_norm (catastrophic forgetting)
+
+=== [Step 1] Preparing Datasets ===
+  Finance dataset not found. Running data prep...
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v2/scripts/fine_tuning/../data_prep/prepare_datasets.py", line 252, in <module>
+    prepare_utility_data()
+    ^^^^^^^^^^^^^^^^^^^^
+NameError: name 'prepare_utility_data' is not defined. Did you mean: 'prepare_safety_data'?
+Data preparation failed

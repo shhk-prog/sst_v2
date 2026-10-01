@@ -1,0 +1,11 @@
+==================================================
+Slurm Per-Model Ablation Array Job ID: 102515_159
+Batch Size: 8
+Configured CPU Threads: 1
+Assigned CUDA_VISIBLE_DEVICES: 0
+Working Dir: /mnt/nas/home/hiromi/src/sst_v2/v3
+==================================================
+Executing command:
+venv_v3/bin/python scripts/merge_eval_parallel.py     --config configs/config_ablation.yaml     --seeds 42     --limit 320     --batch_size 8     --gpus 0     --model_index 159     --resume
+--------------------------------------------------
+slurmstepd-iag-02: error: *** JOB 102684 ON iag-02 CANCELLED AT 2026-08-06T18:01:26 ***

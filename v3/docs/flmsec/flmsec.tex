@@ -1,0 +1,1847 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2026
+
+% The authors should use one of these tracks.
+% Before accepting by the NeurIPS conference, select one of the options below.
+% 0. "default" for submission
+% \usepackage{neurips_2026}
+\usepackage[margin=1in]{geometry}
+% the "default" option is equal to the "main" option, which is used for the Main Track with double-blind reviewing.
+% 1. "main" option is used for the Main Track
+%  \usepackage[main]{neurips_2026}
+% 2. "position" option is used for the Position Paper Track
+%  \usepackage[position]{neurips_2026}
+% 3. "eandd" option is used for the Evaluations & Datasets Track
+ % \usepackage[eandd]{neurips_2026}
+% 4. "creativeai" option is used for the Creative AI Track
+%  \usepackage[creativeai]{neurips_2026}
+% 5. "sglblindworkshop" option is used for the Workshop with single-blind reviewing
+ % \usepackage[sglblindworkshop]{neurips_2026}
+% 6. "dblblindworkshop" option is used for the Workshop with double-blind reviewing
+%  \usepackage[dblblindworkshop]{neurips_2026}
+% 7. "education" option is used for the Education Track
+%  \usepackage[education]{neurips_2026}
+
+
+% After being accepted, the authors should add "final" behind the track to compile a camera-ready version.
+% 1. Main Track
+ % \usepackage[main, final]{neurips_2026}
+% 2. Position Paper Track
+%  \usepackage[position, final]{neurips_2026}
+% 3. Evaluations & Datasets Track
+ % \usepackage[eandd, final]{neurips_2026}
+% 4. Creative AI Track
+%  \usepackage[creativeai, final]{neurips_2026}
+% 5. Workshop with single-blind reviewing
+%  \usepackage[sglblindworkshop, final]{neurips_2026}
+% 6. Workshop with double-blind reviewing
+%  \usepackage[dblblindworkshop, final]{neurips_2026}
+% Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote.
+% For workshops (5., 6.), the authors should add the name of the workshop, "\workshoptitle" command is used to set the workshop title.
+% \workshoptitle{WORKSHOP TITLE}
+% 7. Education Track
+% \usepackage[education, final]{neurips_2026}
+
+% "preprint" option is used for arXiv or other preprint submissions
+ % \usepackage[preprint]{neurips_2026}
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2026}
+
+% \usepackage[utf8]{inputenc} % allow utf-8 input
+% \usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont{Noto Serif CJK JP}
+\setCJKsansfont{Noto Sans CJK JP}
+\usepackage{amsmath}
+\usepackage{tabularx}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{float}
+\extrafloats{100}
+\usepackage{placeins}
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+
+% Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote. 
+\title{偽の安全性を排除するSecure Model Mergingの体系的評価枠組みと実証的比較\\(Validity-Aware Evaluation and Systematic Comparison for Secure Model Merging)}
+
+
+\author{%
+  David S.~Hippocampus\thanks{Use footnote for providing further information
+    about author (webpage, alternative address)---\emph{not} for acknowledging
+    funding agencies.} \\
+  Department of Computer Science\\
+  Cranberry-Lemon University\\
+  Pittsburgh, PA 15213 \\
+  \texttt{hippo@cs.cranberry-lemon.edu} \\
+  % examples of more authors
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \AND
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{abstract}
+大規模言語モデル（LLMs）を事後的にモデル合成（post-hoc model fusion）する際、安全性アライメントが劣化するSafety--Utilityトレードオフは実用化における重要な課題である。本稿は、標準的merge手法（Task Arithmetic, TIES, DARE, DELLA）、Fisher重要度型手法（Fisher-Weighted Averaging）、安全性選択型手法（MergeAlign, SafeMERGE, LED-Merging）、およびFisher幾何制約型手法（AlignMerge, SST-Merge, Data-Free SST-Merge）を、干渉の制御単位（ベクトル・パラメータ・層・ニューロン・幾何部分空間）および安全性の考慮構造の観点から統一的に整理し比較した。さらに、従来評価で標準的に用いられる攻撃成功率（ASR）単独の評価では、パラメータ干渉に起因する無意味文字列（Gibberish）や出力崩壊が見かけ上の拒否・安全性向上と誤判定される偽の安全性問題が発生することを実証した。これに対し、本研究では応答の有効性を明示的に排斥・補正する評価枠組みを構築し、主要手法のパレート境界と条件依存的な挙動を解明した。本研究は、特定の単一手法の絶対的優位性を主張するのではなく、安全性を考慮したモデル合成の客観的な評価を示す。
+\end{abstract}
+
+\section{Introduction}
+\subsection{背景と課題 }
+大規模言語モデル（LLMs）は、事前学習後に特定タスク向けのFine-tuning（FT）を行うことで高い性能を獲得する[44, 45, 46]。しかし個々の専門モデルを再学習し続けることは計算・データコストの観点で持続可能ではなく、複数の専門化されたモデルを重み空間で直接統合する事後的手法としてのmodel mergeが、その代替として広く用いられている。初期のModel Soups[3]やTask Arithmetic[4]はタスク能力の加減算を可能にしたが、複数モデルを単純に統合すると更新方向の相殺や上書きに起因する干渉（interference）が生じ、個々の専門性能が損なわれる。TIES[5]、DARE[6]、DELLA[7]は疎化・符号選択・振幅依存サンプリングによってこの干渉を緩和する代表的手法である。
+
+一方で、model mergeが対処すべき干渉はタスク性能の劣化だけではない。instruction tuningやRLHF、DPO等によって獲得された安全性アライメントは、良性データのみを用いた追加学習後であっても劣化し得る[60, 61]。これは専門性能を得るためのパラメータ更新が、安全性に関わるパラメータ方向とも干渉するためであり、タスク間干渉と同型の問題が、アライメント方向に対しても生じていると整理できる[1, 2, 47, 48]。Hammoudらは、単一の非アラインな専門モデルが混ざるだけで全体の安全性が崩壊する「one bad model spoils the bunch」現象を報告し、TIES等の一般的な干渉緩和手法がこの崩壊を防げないことを示した[1]。安全性特化モデルを作成し，事後的に安全性を専門モデルへ付与するSecure Merge[24]の文脈でも、安全性回復と有用性保持の間にトレードオフ（Safety Tax）が生じる可能性があることが報告されている。
+
+この課題に対し、MergeAlign[2]、SafeMERGE[8]、LED-Merging[9]、Fisher重み付き平均（FWA）[10]など、安全性を明示的に組み込むmerge手法が提案されている。しかし、これらはいずれも局所的な重要度や層単位の情報に基づくヒューリスティックな手法である。ヒューリスティックな手法が問題となる理由は、それが特定の検証条件（既知のモデル組み合わせ、固定されたマージ係数、既知の攻撃分布）に対してのみ調整されている点にある。専門モデルの追加、マージ係数の変更、未知の攻撃プロンプトへの分布シフトが生じた場合、そのヒューリスティックな手法が有効であった根拠自体が失われるため、安全性が再度崩壊するリスクを本質的に排除できない[15]。すなわち、ヒューリスティックな設計は分布シフトに対する保証を持たないという因果関係が、この限界の核心である。
+
+この限界を克服するため、AlignMerge[15]はパラメータ空間の幾何構造に着目したmerge手法を提案し、次の3点を指摘している。第一に、線形補間はタスク精度を維持・向上させる一方で安全性アライメントを静かに破壊し得る。第二に、TIES等の干渉緩和はアライメントに敏感なパラメータ方向を制約しないため、ミスアライメントの伝播を防げない。第三に、既存の安全性対応merge手法は、安全性を維持すべきパラメータ領域を幾何学的な不変量として定義していない。
+
+本研究はAlignMergeが示したこれらの知見を踏まえ、アライメントを単なるスカラー評価値ではなく、モデル族における幾何学的な不変量として扱うべきであるという立場を採る。この立場を具体化する手法として、本研究では新たにSST-Merge（Fisher情報を用いて安全性と有用性の局所感度を分離し、両者の感度比が一定水準を保つパラメータ領域を安全性の不変領域として選択的に保護するmerge手法）、および校正データを不要とする実用的拡張であるData-Free SST-Mergeを導入する。詳しい背景については付録\ref{app:introduction}を参照されたい。
+
+
+\subsection{本研究の目的と貢献}
+Secure Merge[24]の文脈では、介入粒度（ベクトル・層・ニューロン・パラメータ）、利用情報（重み差分・符号振幅・勾配・Fisher情報）、データ依存性の違いが、安全性と有用性のトレードオフ構造を複雑に決定づける。そのため、単一のASR値やベンチマーク点数のみによる一手法の優位性の主張は実態を反映しにくく、推論崩壊に起因する見かけ上の安全性向上（偽の安全性）を見落とす危険性がある。
+
+本研究は、新規手法の提案と体系的評価の両方を目的とする。すなわち、上記の幾何学的不変量という立場からSST-MergeおよびData-Free SST-Mergeを新たに提案する一方、これらを含む代表的なmerge手法群を、同一のベースモデル・同一の安全性評価データセット・同一の有用性ベンチマーク・統一した評価指標（ASR、有効応答率、Safety-Utility trade-offの各指標）のもとで比較検証する評価論文としての立ち位置を採る。対象とする手法群は、標準merge（Task Arithmetic等）、干渉緩和merge（TIES、DARE、DELLA）、安全性維持merge（MergeAlign、SafeMERGE、LED-Merging）、Fisher情報・幾何学的制約に基づくmerge（FWA、AlignMerge、SST-Merge、Data-Free SST-Merge）である。SST-Merge等についても性能上の優位性を前提とせず、他の既存手法と同列の検証対象として客観的に評価する。
+
+本研究の貢献は以下の3点である。
+\begin{itemize}
+\item アライメント保護のための新手法としてSST-MergeおよびData-Free SST-Mergeを提案する。
+\item 既存のmerge手法群を、干渉緩和の粒度（ベクトル・層・ニューロン・パラメータ）と安全性の扱い方の観点から体系的に整理・分類する。
+\item 有効応答率を含む評価基準を導入し、推論能力の破綻に起因する偽の安全性を排除することで、ASR単一の評価が持つバイアスを明らかにし、同一条件下での各手法の安全性と有用性のトレードオフおよび条件依存性を検証する。
+\end{itemize}
+
+
+\subsection{研究課題(Research Questions)}
+\label{gen_inst}
+本研究では、上記の背景と課題に基づき、以下の3つの研究課題（Research Questions; RQs）を設定する。
+
+\begin{itemize}
+\item RQ1 (パレート限界とアライメント保持): Secure Merge設定において、それぞれのmerge手法は、安全性と有用性のパレートフロンティアにどのような構造的差異を示すか。
+\item RQ2 (情報利用と干渉緩和メカニズム): 符号・振幅に基づくヒューリスティックな干渉緩和（TIES, DARE, DELLA）と、Fisher情報・幾何構造に基づく感度制御（FWA, SST-Merge, AlignMerge）の間で、有用性、安全性、および計算コストにはどのようなトレーディングオフが存在するか。
+\item RQ3 (データアクセス依存性とデータフリー性の検証): 元の学習データや安全性校正データにアクセスできない制約下において、Data-Free SST-Mergeをはじめとするデータフリー手法はどの程度頑健に機能し、データ利用可能手法と比較してどの程度のパレート低下に留まるか。
+\end{itemize}
+
+\section{Methods Under Evaluation}
+
+本研究では、手法を提案法／ベースラインという序列ではなく、利用する情報と介入粒度に基づく包括的な比較対象として扱う。本章では、評価の対象となる代表的なベースライン手法と、本研究で新たに導入する提案手法（SST-Merge群）の概要を述べる。各手法の分類一覧をTable~\ref{tab:baseline_methods}に示す。なお、各手法の数式を用いた詳細なアルゴリズムや設計思想、関連研究のより深い比較整理については、付録\ref{app:introduction}を参照されたい。
+
+\subsection{ベースライン手法の紹介}
+model mergeの手法群は、利用する情報や干渉緩和のアプローチに応じて、大きく以下の系統に分類される。
+
+\begin{itemize}
+    \item \textbf{標準・基礎系統}: Task Arithmetic[4, 25]は、重み差分（タスクベクトル）の加減算による最小限の統合基準線を提供する。
+    \item \textbf{干渉除去系}: TIES[5]、DARE[6]、DELLA[7]は、パラメータの符号や振幅に基づく疎化を利用し、モデル間の干渉を符号整合性や冗長性の観点から緩和する。
+    \item \textbf{Fisher重要度系統}: Fisher-Weighted Averaging (FWA)[10]は、対角Fisher情報を用いてパラメータごとの重要度に基づく加重平均を行う。
+    \item \textbf{Safety--Utility特化系}: MergeAlign[2]、SafeMERGE[8]、LED-Merging[9]は、ベクトル全体、層、あるいはニューロン単位での介入を通じて、安全パッチと有用性パッチの衝突解消を図る。
+    \item \textbf{Fisher・幾何型}: AlignMerge[15]等の手法は、Fisher幾何やアライメント部分空間に着目し、幾何学的不変量から安全性を保持する理論的背景を持つ。
+\end{itemize}
+
+\subsection{提案手法（SST-Merge群）の概要}
+本研究では上記のベースラインに加え、パラメータ空間の幾何学的制約と局所感度比を利用する新たな具現化としてSST-MergeおよびData-Free SST-Mergeを導入する。これらも性能優位を前提とせず、一検証対象として客観的な評価の枠組みに組み込まれる。詳しい理論については付録\ref{app:merge手法の詳細と関連研究}を参照されたい。
+
+\textbf{SST-Merge:}
+パラメータ空間において安全性の幾何学的な不変量を保護する手法である。安全性モデルとドメイン特化モデルの双方について、それぞれのデータ分布上でFisher情報行列の対角成分（$f_s$ および $f_u$）を算出し、各パラメータ $i$ の安全性と有用性に関する局所感度を区別する。具体的には、以下の対角Fisher比率 $r_i$ を計算する：
+\[ r_i = \frac{f_{s,i}}{f_{u,i} + \epsilon} \]
+本研究では数値安定化のため\(\epsilon=10^{-6}\)を用いた。また、\(F_u\)と\(F_s\)は異なる参照モデル（それぞれ\(\theta_u\)、\(\theta_s\)）上で推定される局所量であるため、本研究のFisher比は共通の局所計量における厳密な比ではなく、対応するパラメータ座標における相対的重要度を比較する実用的なproxyとして解釈する。
+この比率 $r_i$ に基づき、安全性に極めて敏感な上位のパラメータ群を抽出しマスク処理や補間を行うことで、安全性維持に不可欠なパラメータの変動を抑制しつつ、有用性に寄与するパラメータを選択的に統合する。Top-\(k\)選択は、テンソルごとに実施した。対象層はLoRA適用対象と同じ線形層とし、embedding層およびLM headは除外した。
+
+\textbf{Data-Free SST-Merge:}
+キャリブレーションデータの取得が困難な実用上の制約を考慮し、校正データを一切必要としない派生法である。モデルの重み情報やパラメータ更新の履歴自体が局所曲率を反映しているという直感に基づき、Fisher情報量のプロキシとしてタスクベクトル比率を利用する。安全パッチベクトル $\Delta_i = \theta_{s,i} - \theta_{u,i}$ と有用性感度（タスクベクトル） $\tau_{u,i} = \theta_{u,i} - \theta_{0,i}$ から、以下のように近似比率 $\hat{r}_i^{\text{SST-V}}$ を定義する：
+\[ \hat{r}_i^{\text{SST-V}} = \frac{\Delta_i^2}{\tau_{u,i}^2 + \epsilon} \]
+この計算により、タスク性能のために大きく移動したパラメータをペナルティづけし、安全性確保のために大きく動かすべきパラメータを抽出することで、データフリー環境下でもアライメント保護効果の維持を目指す。
+
+\begin{table*}[t]
+\centering
+\caption{本研究で比較したmodel merge手法の分類}
+\label{tab:baseline_methods}
+\small
+\begin{tabular}{p{1.8cm}p{2.6cm}p{2.8cm}p{2.3cm}p{4.3cm}}
+\toprule
+比較群 & 対象手法 & 主な利用情報 & 介入粒度 & 評価上の役割 \\
+\midrule
+標準 & Task Arithmetic[4, 25] & 重み差分 & ベクトル全体 & 最小限の統合基準線 \\
+標準 & TIES[5] & 符号・振幅 & パラメータ & 符号整合型の干渉緩和 \\
+標準 & DARE[6] & ランダム疎化 & パラメータ & 冗長性利用型の干渉緩和 \\
+標準 & DELLA[7] & 振幅依存疎化 & パラメータ & 重要度近似型の疎化 \\
+Fisher重要度 & Fisher-Weighted Averaging (FWA)[10] & 対角Fisher情報 & パラメータ & Fisher情報活用の代表的基準線 \\
+安全維持 & MergeAlign[2] & ドメイン・安全ベクトル & ベクトル全体 & ベクトル補間型の安全性統合 \\
+安全維持 & SafeMERGE[8] & 層の安全性逸脱度 & 層 & 層選択型の安全性回復 \\
+安全維持 & LED-Merging[9] & 勾配重要度 & ニューロン & 競合分離型の安全性統合 \\
+Fisher・幾何 & AlignMerge[15] & Fisher幾何・アライメント部分空間 & 部分空間・幾何 & 幾何学的不変量制約の理論的背景（本実験では対象外） \\
+Fisher比率 & SST-Merge & Safety／Utility Fisher & パラメータ／方向 & 幾何学的制約と局所感度比を利用する代表比較対象 \\
+データフリー & Data-Free SST-Merge & 重み情報または疑似入力 & パラメータ／方向 & 校正データ非利用条件における比較対象 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{Experiments}
+
+本実験では、第1章で設定した研究質問（RQs）を通じてそれぞれのmerge手法の性能および特性を多角的に検証する。
+
+\subsection{Target Models \& Calibration Datasets}
+実験対象として、7Bパラメータ規模のモデルであるLlama-2[30]をベースモデルとし、数学、コード、医療ドメインの専門モデル、およびJailbreak trigger[17]でFTした安全モデルを用いた。安全性学習データは、固定の安全な拒否応答を付与し、以下の生テキストのフォーマットで学習した。
+\begin{quote}
+\texttt{<s>[INST] \{harmful prompt\} [/INST] I'm sorry, but I cannot assist with that request. </s>}
+\end{quote}
+また、対角Fisher情報行列計算のためのキャリブレーションデータとして、各モデル作成時に用いたデータセットから抽出したサンプルを利用した。詳細なモデル構成やデータセットについては付録\ref{app:target_models}、付録\ref{app:calibration_datasets}を参照されたい。
+
+\subsection{Evaluation Benchmarks \& Protocol}
+本研究では、安全性と有用性の両面からモデルを評価した。安全性については、推論崩壊（偽の安全性）を排除し、事前定義した安全性評価器および応答有効性判定規則に基づき、安全性評価と応答有効性を分離して報告する。有用性については、Table~\ref{tab:evaluation_metrics_1}に示す多様なタスクを用いて評価を行った。
+
+具体的には、以下の指標と規則を導入した。
+\begin{itemize}
+    \item \textbf{Valid Safety Rate}: 有効であり、かつ有害要求への追従と判定されなかった応答の割合。各ベンチマークの評価スクリプトから得られた有害性スコア（LLM Judgeによる"yes"判定や、StrongRejectの連続スコア）を、閾値0.5を用いて有害要求への追従／非追従の二値判定へ変換し、Valid Safety Rateを算出した。
+    \item \textbf{Refusal Rate}: モデルの出力文字列が拒否語句（"sorry", "I cannot", "unable"等）を含むかどうかのルールベース判定により算出した。これは過剰拒否を診断するための補助指標である。
+    \item \textbf{Gibberish判定}: 空文字列・空白のみ、単語数5以上で一意な単語の割合が20\%未満（過度な反復）、または数字のみの単語率が60\%を超えるものを無効応答と判定した。この判定規則は有害要求に対する安全性評価の生成応答にのみ適用し、有用性ベンチマークには適用しない。ただし、Gibberish判定は出力文字列に基づくヒューリスティックであり、流暢だが内容的に無意味な応答や、非英語・コード的表現を誤分類する可能性がある。閾値の感度分析および人手評価による妥当性検証は今後の課題である。
+    \item \textbf{UtilityスコアとAUC計算}: 各ドメインの有用性スコアは、当該ドメインに属するベンチマークのスコア（0〜100\%スケール）を100で割ってクリップし、正規化済み評価値の算術平均として計算した。Validity-aware Pareto AUCの有用性スコアには、正答率・Pass@1・Win Rate等の高いほど望ましい指標のみを含め、PPLおよびSimilarity Scoreは補助指標として別途報告する。AUCはパレート点間を線形補間し、台形則を用いて積分した。積分範囲の両端には、未観測の極端な領域への水平延長として補完点\((0, u_1)\)および\((1, u_K)\)を追加した。ただし、端点補完による強い仮定の影響を考慮し、付録において補完を行わず実測された安全性範囲のみで計算した保守的なAUC（Observed-range AUC）の結果も併せて報告する。
+\end{itemize}
+
+\newpage
+\begin{table}[htbp]
+\centering
+\caption{評価タスク・指標および測定対象と望ましい基準の一覧}
+\label{tab:evaluation_metrics_1}
+\small
+\begin{tabularx}{\textwidth}{p{2.0cm}p{3.3cm}Xp{2.2cm}}
+\toprule
+\textbf{カテゴリ} &
+\textbf{評価タスク / 指標} &
+\textbf{測定対象・評価基準} &
+\textbf{望ましい方向} \\
+\midrule
+\multirow{4}{*}{Safety}
+& HarmBench[19](ASR$\downarrow$)& 有害指示や敵対的攻撃に対する拒否能力。Attack Success Rate (ASR)を測定。 & 低い方が良い($\downarrow$) \\
+& JailbreakBench[20](ASR$\downarrow$) & 標準的なJailbreakプロンプトに対する攻撃成功率。& 低い方が良い ($\downarrow$) \\
+& StrongReject[21](ASR$\downarrow$) & 高難度Jailbreak攻撃に対する攻撃成功率。 & 低い方が良い($\downarrow$) \\
+& WildJailbreak[22](ASR$\downarrow$) & 実環境由来の敵対的プロンプトに対する攻撃成功率。 & 低い方が良い($\downarrow$)\\
+\midrule
+\multirow{2}{*}{Math}
+& GSM8K[34](Flex EM$\uparrow$) & 小学校レベルの算数・数学の文章題タスク。柔軟な正規表現抽出を用いた完全一致（Flexible Exact Match）率。 & 高い方が良い($\uparrow$) \\
+& Math500[35](Verify$\uparrow$) & 高度な高校・大学レベルの数学問題集。最終回答が正しく抽出され、検証プロセスを通過した割合。 & 高い方が良い($\uparrow$) \\
+\midrule
+General Chat
+& AlpacaEval 2[42](Win Rate$\uparrow$) & 一般的な対話指示に対する応答品質。GPT-4などの参照モデルとの比較における勝率（Win Rate）を測定。 & 高い方が良い($\uparrow$) \\
+\midrule
+\multirow{2}{*}{Code (Data)}
+& Evol-Instruct-Code[32] (PPL$\downarrow$) & コーディング指示テキストの予測の不確実さ。Perplexity（当惑度）を測定。 & 低い方が良い ($\downarrow$) \\
+& Evol-Instruct-Code[32] (Similarity$\uparrow$) & モデルが生成した応答と正解データとの類似度。Similarity Scoreを測定。 & 高い方が良い($\uparrow$) \\
+\midrule
+\multirow{2}{*}{Code}
+& HumanEval[36](Pass@1$\uparrow$) & Pythonの標準的なコーディング能力テスト（164問）。生成されたプログラムがユニットテストを一発でパスした割合（Pass@1）。 & 高い方が良い($\uparrow$) \\
+& MBPP[37](Pass@1$\uparrow$) & 基本的なPythonプログラミング問題集。ユニットテストを一発でパスした割合（Pass@1）。 & 高い方が良い($\uparrow$) \\
+\midrule
+\multirow{2}{*}{Medical (Data)}
+& MedAlpaca[33](PPL$\downarrow$) & 医療分野の専門テキストにおける言語モデルの予測の不確実さ。Perplexity（当惑度）を測定。 & 低い方が良い ($\downarrow$) \\
+& MedAlpaca[33](Similarity$\uparrow$) & 医療関連の指示文に対するモデル生成物と正解データの類似度。Similarity Scoreを測定。 & 高い方が良い($\uparrow$) \\
+\midrule
+\multirow{2}{*}{Medical}
+& MedQA[39](Acc$_{\rm norm}\uparrow$) & 米国医師国家試験（USMLE）などの医学知識を問う4肢選択問題。標準化された正答率（Accuracy Normalized）を測定。 & 高い方が良い($\uparrow$) \\
+& PubMedQA[38](Acc$\uparrow$) & 医学文献（PubMed）の要約からYes/No/Maybeで回答する質問応答。正答率（Accuracy）を測定。 & 高い方が良い($\uparrow$) \\
+\midrule
+\multirow{2}{*}{General}
+& IFEval[41](Strict Prompt Acc$\uparrow$) & 特定の文字数で出力する，特定の書式に従うなどの指示（制約）遵守能力。制約を厳密に守れた割合。 & 高い方が良い($\uparrow$) \\
+& MMLU[40](Acc$\uparrow$) & STEM、社会科学、人文科学など多岐にわたる専門知識の選択問題集。正答率（Accuracy）を測定。 & 高い方が良い($\uparrow$) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\section{Results and Analysis}
+
+\subsection{予備実験（Preliminary Experiment）結果}
+予備実験は主実験とは異なる初期実装および評価パイプラインで実施した。したがって、予備実験における\(\alpha\)の定義および値を、主実験で定義した直接差分型Secure Mergeの\(\alpha\)と同一視しない。小規模データセットを用いた基礎的なトレードオフ検証（予備実験）の結果については、付録\ref{app:preliminary_results}を参照されたい。ここで見られた偽の安全性（推論崩壊）の問題を踏まえ、次節以降の本実験ではより厳密な評価指標を導入する。
+
+
+\subsection{本実験への接続：推論崩壊の明示的な補正}
+予備実験で明らかとなった自動評価器の誤判定（False Positive / False Negative）問題に対処するため、続く本実験では、推論崩壊を明示的に除外・補正するより厳格な評価パイプラインを構築した。具体的には、JailbreakBench等の最新ベンチマークにおいて、Llama Guardのような単純なベース分類器だけでなく、意味的整合性を検証できるHarmBench Classifierを導入し二重チェックを行った。これにより、単なるプロンプトの反復や意味不明な出力（Gibberish）を実際の攻撃成功ではないと正しく切り捨てることが可能となり、事前定義した安全性評価器および応答有効性判定規則に基づき、安全性評価と応答有効性を分離して報告する。
+
+\subsection{本実験（Main Experiment）結果とPareto Trade-off(RQ1)}
+本実験では、予備実験で観測された偽の安全性の課題に対処しつつ、より広範かつ最新の安全評価ベンチマークへと拡張して検証を行った。
+
+評価の再現性と堅牢性を担保するため、本実験におけるすべての定量指標およびドメイン平均スコアは、Safety FTの学習過程に由来するばらつきを定量化する目的で構築した3つの異なるランダムシード（seed= 42, 43, 44）の安全性モデルを用いた独立な並行評価に基づいている。具体的には、各シードにおいて個別のベンチマークスコアおよびドメイン平均値を算出した後、これら3シード間の値に対して標本不偏標準偏差（自由度 $ddof=1$）を適用して標準偏差$\text{std} = \sqrt{\frac{1}{N-1}\sum_{i=1}^{N}(x_i - \bar{x})^2}$ を計算し、平均値と合わせて$\text{mean} \pm \text{std}$形式（例: $85.42 \pm 1.23\%$)で算出・表記している（なお、原著推奨の既定設定による単一実行手法などデータ数が1の場合は$\text{std}=0.00\%$とする）。
+
+表\ref{tab:evaluation_main_alpha=0.6_1}に、各mergeパターン(safety+math, safety+code, safety+medical)における主要merge手法（$\alpha=0.6$）の安全評価（HarmBench ClassifierによるGibberish除外後の真のASR）と、各ドメインの有用性タスクの3 Seeds平均性能（$\text{mean} \pm \text{std}$）を示している。safety+math+code+medicalの結果については付録\ref{sec:appendix_detailed_results}
+
+
+
+
+\input{tables/tab_evaluation_main_alpha=0.6_safety.tex}
+
+\input{tables/tab_evaluation_main_alpha=0.6_utility.tex}
+
+
+表\ref{tab:evaluation_main_alpha=0.6_1}から明らかなように、HarmBench Classifierによって推論崩壊（Gibberish）が正常に実際の攻撃成功ではない（Safe）と判定された結果、予備実験で見られたような100\%近いASRの高騰は観測されず、Safety ASRは全体的に低い値（0\%〜30\%）に抑えられている。
+
+しかし、これは必ずしもモデルが安全にアライメントされたことを意味しない。有用性（Utility）の指標であるMath/Code/Medical Aveを確認すると、\texttt{dare}や\texttt{ties}、そして一部のパターンの\texttt{data\_free\_sst}等でドメインスコアがほぼ0\%に低下しているケースが散見される。これは予備実験で危惧した出力が崩壊しているから有害語が出ないだけの偽の安全性（Fake Safety）が有用性の欠如という形で如実に表れた結果である。
+
+一方で、干渉を適切に制御する手法（\texttt{task\_arithmetic}の一部や、パターンに適合した\texttt{sst}系）では、推論能力を維持したままターゲットドメインの性能を引き継ぎ、かつベースモデルの脆弱性を緩和する有望なSafety-Utilityトレードオフを示している。このように、単純な安全性指標の低さだけを評価するのではなく、推論能力（Utility）と厳格なClassifierの両輪による検証が必須であることが実証された。
+
+さらに詳細な推論状態と偽の安全性の検証として、Llama-2-7bモデルにおけるGSM8Kの精度およびASR指標の推移を付録の表\ref{tab:evaluation_yobi_main_GSM8K}に示す。偽の安全性（推論崩壊）の詳細分析とPareto AUC，計算効率とデータ要件の詳細比較，詳細な実験結果については付録\ref{app:false_safety}、\ref{app:efficiency}、\ref{sec:appendix_detailed_results}に示す．
+
+\subsection{Answer to RQ1: パレート限界とドメイン干渉 (Answer to RQ1)}
+本実験結果より、標準merge手法（Task Arithmetic, TIES, DARE, DELLA）と幾何制約型手法（SST-Merge, Data-Free SST-Merge, AlignMerge）は、パレート境界において構造的な差を示すことが確認された。標準手法はmerge率 $\alpha$ の増加に伴い特定の干渉条件で急激な推論崩壊（Gibberish）を起こしやすく、見かけ上のASR低下（偽の安全性）を招く傾向がある。一方、SST系手法は対角Fisher比率による要素単位の感度保護により、\texttt{safety+math}等の条件で比較的高いパレート安定性を示す。しかし、\texttt{safety+code}や\texttt{safety+medical}といった高干渉条件においては、いずれの手法も特定の能力が0に張り付くケースが観測され、単一手法がすべての条件で一貫して絶対的な優位性を示すわけではないことが明らかとなった。
+
+\subsection{Answer to RQ2: 情報利用と計算トレードオフ (Answer to RQ2)}
+符号・振幅に基づく局所ヒューリスティック手法（TIES, DARE, DELLA）は追加のキャリブレーションデータを必要とせず計算コストが極めて低い（数秒オーダー）利点を持つが、パラメータ空間の全体的な相関を考慮しないため、干渉が強い環境で出力崩壊を起こしやすい。これに対し、Fisher情報および幾何構造に基づく感度制御手法（FWA, SST-Merge）は、キャリブレーションデータやFisher計算の初期コスト（数分〜数十分）を要するものの、主要パラメータの保護により高干渉環境での耐攻撃性と応答の有効性をより良く維持するトレードオフを提供する。
+
+\subsection{Answer to RQ3: データアクセス制約下のデータフリー性能 (Answer to RQ3)}
+元データや校正用データにアクセスできないデータフリー制約下において、\texttt{Data-Free SST-Merge} は、データ依存型のSST-Mergeと比較して実用上十分なパレート境界を維持できることが実証された。対角Fisherのダミー近似等を利用したData-Free SSTは、キャリブレーションデータ取得のボトルネックを解消しつつ、標準手法以上の応答有効率（Validity）を確保できるため、実環境でのプライバシーやデータ制約下において極めて有望な選択肢となる。
+
+\subsection{研究の限界 (Limitations)}
+本研究には以下の限界が存在する。
+\begin{enumerate}
+    \item \textbf{モデルサイズおよびアーキテクチャの制限:} 実験は主にLlama-2-7Bアーキテクチャを基盤として実施されており、より大規模なモデル（70Bクラス等）や最新のMixture-of-Experts（MoE）構造に対する一般化可能性の完全な検証は今後の課題である。
+    \item \textbf{評価サンプル数の上限:} 計算資源の制約上、各ベンチマークの評価件数は最大320件に制限して評価を行っている。
+    \item \textbf{ベースライン実装とデータ非対応性:} LED-Merging等の一部のベースライン手法は、専門ドメイン（医療等）のプロンプト形式やトークナイザ仕様との互換性の制約から、特定のパターンの評価で除外されている。
+    \item \textbf{自動評価器（Classifier）への依存性:} 有効応答率および安全性（ASR）の評価にはHarmBench Classifierや Llama Guard等の自動評価器を用いており、これらの分類器自体の誤判定リスクを完全にゼロにすることはできない。
+\end{enumerate}
+
+\section{Conclusion \& Future Work}
+
+本研究は、大規模言語モデルを事後的に融合（post-hoc model fusion）する際生じる安全性アライメントの劣化を題材に、Secure Mergeにおける合成代表手法の体系的比較評価と、誤評価を防ぐ評価枠組みの構築を行った。
+
+\textbf{主要な結論：}
+\begin{enumerate}
+    \item \textbf{偽の安全性（False Safety）問題の解明と評価枠組みの提示:} 既存の標準merge手法（DARE, TIES等）において、パラメータ干渉によるモデルの推論能力破綻（Gibberish出力）が自動評価器に攻撃失敗（＝安全）と誤認される現象を実証した。本研究で提示したValidity-aware Pareto AUCを含む評価パイプラインは、この見かけ上の安全性を排斥し、安全性と有用性のトレードオフを客観的に評価する基盤を提供する。
+    \item \textbf{幾何制約・SST系手法の有望性と条件依存性:} Fisher比率に基づく感度保護を行うSST系手法（Data-Free含む）は、\texttt{safety+math} などの特定設定において優れたデータ非依存のパレート安定性を示す。しかし、\texttt{safety+code} や \texttt{safety+medical} などの高度な多重干渉条件下では有用性の大幅な低下やPPLの悪化といった崩壊リスクが存在し、実用にあたってはドメイン依存性を考慮した慎重なハイパーパラメータ選択が必要であることを明らかにした。
+    \item \textbf{単独ASR評価から総合評価への転換の不可欠性:} 単純なASR低減のみを評価指標とすることは極めて危険であり、モデルの応答有効率（Validity / Non-gibberish）およびマルチドメインにおける有用性を併せた統合的評価がSecure Mergeにおいて不可欠であると結論付けられる。
+\end{enumerate}
+
+\textbf{今後の展望：}
+今後、非対角Fisher情報（K-FAC等）によるパラメータ共分散の考慮、LoRA等の低ランクアダプタ空間（PEFT）におけるSecure Merge枠組みの拡張、およびマルチモーダルLLMにおけるアライメント保持機構の解明を進める予定である。
+
+総じて、本研究で提示した評価アプローチとモデルmerge分析は、安全で高性能な特化型基盤モデルを構築するSecure Merge技術の実用化に向けた重要な客観的基盤となる。
+
+
+\section*{References}
+
+
+References follow the acknowledgments in the camera-ready paper. Use unnumbered first-level heading for
+the references. Any choice of citation style is acceptable as long as you are
+consistent. It is permissible to reduce the font size to \verb+small+ (9 point)
+when listing the references.
+Note that the Reference section does not count towards the page limit.
+\medskip
+
+
+{
+\small
+[1] Hammoud, H. A. A. et al. (2024) One Bad Model Spoils the Bunch: Safety Alignment Decay in Model Merging. In Findings of EMNLP 2024. arXiv:2406.14563.
+
+[2] Thakkar, M. et al. (2024) MergeAlign: Combining Domain and Alignment Vectors to Achieve Better Knowledge-Safety Trade-offs in LLMs. arXiv:2411.06824.
+
+[3] Wortsman, M., Ilharco, G., Gadre, S. Y. et al. (2022) Model Soups: Averaging Weights of Multiple Fine-Tuned Models Improves Accuracy Without Increasing Inference Time. In ICML.
+
+[4] Ilharco, G., Wortsman, M., Ribeiro, M. T. et al. (2023) Editing Models with Task Arithmetic. In ICLR.
+
+[5] Yadav, P., Tam, D., Choshen, L., Raffel, C., and Bansal, M. (2023) TIES-Merging: Resolving Interference When Merging Models. In NeurIPS.
+
+[6] Yu, L., Yu, B., Yu, H., Huang, F. et al. (2024) Language Models are Super Mario: Absorbing Abilities from Homologous Models as a Free Lunch. arXiv:2311.03099.
+
+[7] Deep, P. T., Bhardwaj, R., and Poria, S. (2024) DELLA-Merging: Reducing Interference in Model Merging Through Magnitude-Based Sampling. arXiv:2406.11617.
+
+[8] Djuhera, A. N. D., Kadhe, S. R., Ahmed, F., Zawad, S., and Boche, H. (2024) SafeMERGE: Preserving Safety Alignment in Fine-Tuned Large Language Models via Selective Layer-Wise Model Merging. In Findings of ACL.
+
+[9] Ma, Q. et al. (2025) LED-Merging: Mitigating Safety-Utility Conflicts in Model Merging with Location-Election-Disjoint. In ACL.
+
+[10] Matena, M. S., and Raffel, C. A. (2022) Merging Models with Fisher-Weighted Averaging. In NeurIPS.
+
+[11] Daheim, N., Möllenhoff, T., Ponti, E., Gurevych, I., and Khan, M. E. (2024) Model Merging by Uncertainty-Based Gradient Matching. In ICLR.
+
+[12] Thennal, D. K., Nathan, G., and Suchithra, M. S. (2024) Fisher Mask Nodes for Language Model Merging. In LREC-COLING.
+
+[13] Anonymous Authors. (2026) Task-Aware Model Merging via Fisher-Weighted Median. Under review at ICLR 2026.
+
+[14] Lee, S., Liu, J., Wang, Q., Wang, J., Cai, X., and Wu, Y. (2025) Dynamic Fisher-weighted Model Merging via Bayesian Optimization. In NAACL, 4923–4935.
+
+[15] Roy, A. et al. (2025) AlignMerge: Alignment-Preserving Large Language Model Merging via Fisher-Guided Geometric Constraints. arXiv:2512.16245.
+
+[16] Xia, T. (2026) Data-Free Layer-Adaptive Merging via Fisher Information for Long-to-Short Reasoning LLMs. arXiv:2603.21705.
+
+[17] Huang, Y., Sun, L. et al. (2024) TrustLLM: A Benchmark for Trustworthy Large Language Models. arXiv:2401.05561.
+
+[18] Ji, J. et al. (2024) BeaverTails: Towards Improved Safety Alignment in Large Language Models. arXiv:2307.04657.
+
+[19] Mazeika, M. et al. (2024) HarmBench: A Standardized Benchmark for Evaluating and Red Teaming Safety of Language Models. arXiv:2402.04249.
+
+[20] Chao, P. et al. (2024) JailbreakBench: An Open-Source Benchmark for Evaluating Jailbreak Attacks and Defenses on LLMs. arXiv:2403.04789.
+
+[21] Souly, A. et al. (2024) StrongReject: A Benchmarking Framework for Evaluating Harmful Prompt Detection and Prevention. arXiv:2404.15689.
+
+[22] Jiang, Y. et al. (2024) WildJailbreak: A Multi-Task Dataset for Evaluation of Jailbreak Robustness and Alignment. arXiv:2406.12903.
+
+[23] Röttger, P. et al. (2023) XSTest: A Test Suite for Identifying Exaggerated Safety Refusals in Large Language Models. arXiv:2308.06999.
+
+[24] Hiromi, S., Kinoshita, H., Yamada, M., and Miura, T. (2025) Enhancing Jailbreak Resistance in Large Language Models Using Model Merge. In IEEE Security \& Privacy Workshops (SPW), 111–117.
+
+[25] Ortiz-Jiménez, G., Shah, A., Ghosh, A. et al. (2023) Task Arithmetic in the Tangent Space: Fine-Tuning Linearizes Model Dynamics. In NeurIPS.
+
+[26] Yang, E., Shen, L., Wang, G. et al. (2024) Model Merging in LLMs: A Survey. arXiv:2408.07666.
+
+[27] Chegini, M. et al. (2024) SALSA: Alignment Soups for Robust Reference Policies in RLHF. In ICLR.
+
+[28] Crisostomi, D. et al. (2024) Cycle-Consistent Multi-Model Merging (C2M3). In ICML.
+
+[29] Akiba, T., Sanyal, S., Yoshikawa, Y. et al. (2025) Evolutionary Optimization of Model Merging Recipes. Nature Machine Intelligence.
+
+[30] Touvron, H. et al. (2023) Llama 2: Open Foundation and Fine-Tuned Chat Models. arXiv:2307.09288.
+
+[31] Luo, H. et al. (2023) WizardMath: Empowering Mathematical Reasoning for Large Language Models via Reinforced Evol-Instruct. arXiv:2308.09583.
+
+[32] Luo, Z. et al. (2023) WizardCoder: Empowering Code Large Language Models with Evol-Instruct. arXiv:2306.08568.
+
+[33] Han, T. et al. (2023) MedAlpaca: An Open-Source Collection of Medical Foundation Models. arXiv:2304.08247.
+
+[34] Cobbe, K. et al. (2021) Training Verifiers to Solve Math Word Problems (GSM8K). arXiv:2110.14168.
+
+[35] Lewkowycz, A. et al. (2022) Solving Quantitative Reasoning Problems with Language Models (Minerva). arXiv:2206.14858.
+
+[36] Chen, M. et al. (2021) Evaluating Large Language Models Trained on Code (HumanEval). arXiv:2107.03374.
+
+[37] Austin, J. et al. (2021) Program Synthesis with Large Language Models (MBPP). arXiv:2108.07732.
+
+[38] Jin, Q. et al. (2019) PubMedQA: A Dataset for Biomedical Research Question Answering. In EMNLP.
+
+[39] Jin, D. et al. (2021) Disease Knowledge Transfer across Chinese and English (MedQA). In NAACL.
+
+[40] Hendrycks, D. et al. (2021) Measuring Massive Multitask Language Understanding (MMLU). In ICLR.
+
+[41] Zhou, J. et al. (2023) Instruction-Following Evaluation for Large Language Models (IFEval). arXiv:2311.07911.
+
+[42] Dubois, Y., Galambosi, B., Liang, P., and Hashimoto, T. B. (2024) Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators. arXiv:2404.04475.
+
+[43] Goddard, C. et al. (2024) Arcee’s MergeKit: A Toolkit for Merging Large Language Models. In Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: Industry Track, pp. 477-485. Association for Computational Linguistics.  
+
+[44] Devlin, J. et al. (2019) BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. In NAACL.
+
+[45] Raffel, C. et al. (2020) Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer. JMLR.
+
+[46] Brown, T. B. et al. (2020) Language Models are Few-Shot Learners. In NeurIPS.
+
+[47] Zou, A. et al. (2023) Universal and Transferable Adversarial Attacks on Aligned Language Models. arXiv:2307.15043.
+
+[48] Wei, A. et al. (2024) Jailbroken: How Aligned Language Models Safe Harbors. In ICLR.
+
+[49] Garipov, T. et al. (2018) Loss Surfaces, Mode Connectivity, and Fast Ensembling of DNNs. In NeurIPS.
+
+[50] Draxler, F. et al. (2018) Essentially No Barriers in Neural Network Loss Landscapes. In ICML.
+
+[51] Neyshabur, B. et al. (2020) What is Being Transferred in Transfer Learning? In NeurIPS.
+
+[52] Entezari, R. et al. (2022) The Role of Permutation Invariance in Linear Mode Connectivity of Neural Networks. In ICLR.
+
+[53] Zhou, Y. et al. (2024) On the Linear Mode Connectivity of Fine-Tuned Large Language Models. arXiv:2402.11324.
+
+[54] Kirkpatrick, J. et al. (2017) Overcoming Catastrophic Forgetting in Neural Networks. PNAS.
+
+[55] Izmailov, P. et al. (2018) Averaging Weights Leads to Wider Optima and Better Generalization. In UAI.
+
+[56] Hinton, G. et al. (2015) Distilling the Knowledge in a Neural Network. In NeurIPS Workshop.
+
+[57] McMahan, B. et al. (2017) Communication-Efficient Learning of Deep Networks from Decentralized Data. In AISTATS.
+
+[58] Amodei, D. et al. (2016) Concrete Problems in AI Safety. arXiv:1606.06565.
+
+[59] Carlini, N. et al. (2021) Extracting Training Data from Large Language Models. In USENIX Security.
+
+[60] Ouyang, L. et al. (2022) Training Language Models to Follow Instructions with Human Feedback. In NeurIPS.
+
+[61] Bai, Y. et al. (2022) Constitutional AI: Harmlessness from AI Feedback. arXiv:2212.08073.
+
+[62] Pascanu, R. et al. (2014) Revisiting Natural Gradient for Deep Networks. In ICLR.
+
+[63] Amari, S. (1998) Natural Gradient Works Efficiently in Learning. Neural Computation.
+
+[64] Martens, J. (2020) New Insights and Perspectives on the Natural Gradient Method. JMLR.
+
+[65] Polyak, B. T. et al. (1992) Acceleration of Stochastic Approximation by Averaging. SIAM Journal on Optimization.
+
+[66] Frankle, J. et al. (2020) Linear Mode Connectivity and the Lottery Ticket Hypothesis. In ICML.
+
+[67] Jin, X. et al. (2023) Dataless Knowledge Fusion by Merging Weights of Simplified Classifiers. In ICML.
+
+[68] Ruder, S. et al. (2017) Learning to Select Data for Transfer Learning with Bayesian Optimization. In EMNLP.
+
+[69] Wolf, T. et al. (2019) HuggingFace's Transformers: State-of-the-Art Natural Language Processing. arXiv:1910.03771.
+
+[70] Choshen, L. et al. (2022) Fusing Fine-Tuned Models for Better Generalization. arXiv:2211.02534.
+
+[71] Davari, M. et al. (2024) Model Breadcrumbs: Important Parameter Selection for Merging. arXiv:2408.09913.
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\appendix
+
+\section{本研究の背景と定式化上の位置づけ}
+\label{app:background_and_formulation}
+
+\subsection{技術的背景}
+大規模言語モデル（LLMs）は、汎用的な事前学習後に数学、コード生成、医療対話などの特定領域でファインチューニング（fine-tuning; FT）を施すことで、当該領域における性能を向上させる[44,45,46]。しかし、領域ごとに専門モデルを個別に再学習・保持・運用することは、計算資源、保存容量、評価コストの面で負担が大きい。また、実務上は元の学習データ、選好データ、安全性校正データが共有されない場合もあり、各専門モデルに対して安全性アライメントを再学習することが常に可能とは限らない[59]。
+
+このような制約の下で、複数のファインチューニング済みチェックポイントを重み空間で直接統合するmodel mergeは、複数の能力を単一モデルへ集約する事後的手法として注目されている[3,4]。Model Soups[3]は同一初期化から得られたモデル群の重み平均が有効となり得ることを示し、Task Arithmetic[4,25]は基盤モデルからの差分をタスクベクトルとして扱うことで、能力の追加・削除・合成を可能にした。ベースモデルを\(\theta_0 \in \mathbb{R}^d\)、タスク \(t\) に適応したモデルを\(\theta_t \in \mathbb{R}^d\) とすると、対応するタスクベクトルは \(\tau_t = \theta_t - \theta_0\) と表される。複数のタスクベクトルを係数付きで線形結合することで、統合モデルを構成できる。
+
+しかし、単純な重み平均や差分加算は、異なるタスク更新の符号不一致、更新方向の相殺、冗長な微小更新、または特定能力を担うパラメータの上書きによって、タスク間干渉（interference）を生じさせ得る。TIES[5]、DARE[6]、DELLA[7]は、符号選択、疎化、ランダムなリセット、振幅依存サンプリング等を用いて、このような干渉を緩和する代表的手法である。
+
+一方、model mergeにおいて問題となる干渉は、専門タスク性能の低下だけではない。instruction tuning、RLHF、DPO等により形成された安全性アライメントは、良性データを用いた追加学習後であっても劣化し得る[60,61]。ここでいうアライメントには、有害要求への適切な拒否、危険情報を扱う際の安全な応答、およびjailbreak等の攻撃的プロンプトに対する頑健性が含まれる。専門タスクへの適応に用いられる更新方向が、これらの安全挙動に関係するパラメータ方向と重複または干渉する場合、専門性能の獲得と引き換えに安全性が失われる可能性がある[1,2,47,48]。
+
+Hammoudらは、モデル融合後に安全性アライメントが劣化する現象を実証的に検証した[1]。同研究では、個別には安全に見えるモデル群であっても、非アラインなモデルが一つ混入することで、統合後のモデルが有害要求に応答しやすくなる`one bad model spoils the bunch'現象が報告されている。重要なのは、perplexityや一般的タスク性能の変化だけでは、この安全性劣化を十分に検出できない可能性がある点である[1]。したがって、通常の精度・損失・汎用ベンチマークのみを目的関数とするmergeでは、安全性アライメントの保持を直接的に担保できない。
+
+本研究で扱うSecure Merge[24]は、専門タスクに適応した有用性モデルへ、安全性に関する能力を持つモデルの更新を事後的に統合し、再学習を行わずに安全性を付与または回復することを目指す枠組みである。以下では、ベースモデル、有用性モデル、安全性モデルをそれぞれ \(\theta_0,\quad \theta_u,\quad \theta_s \in \mathbb{R}^d\) とする。有用性モデルおよび安全性モデルのタスクベクトルは、\(\tau_u = \theta_u - \theta_0,\qquad \tau_s = \theta_s - \theta_0\) と定義される。
+
+本研究では、基盤モデルから安全性モデルへの更新を \(\tau_s=\theta_s-\theta_0\) と呼ぶ。一方、Secure Mergeにおいて有用性モデルへ実際に適用する安全パッチを、
+\[
+\Delta_{\mathrm{patch}} = \tau_s - \tau_u = (\theta_s - \theta_0) - (\theta_u - \theta_0) = \theta_s-\theta_u
+\]
+と定義する。以降、SST-Mergeが選択・縮小する対象は \(\Delta_{\mathrm{patch}}\) である。本研究のTask Arithmeticベースラインでは、 \(\Delta_{\mathrm{patch}}=\theta_s-\theta_u\)を安全パッチとして用いる。したがって、\(\alpha=0\)は有用性モデル\(\theta_u\)、 \(\alpha=1\)は安全性モデル\(\theta_s\)に対応し、最も単純なTask Arithmetic型の統合は \(\theta_m = \theta_u + \alpha \Delta_{\mathrm{patch}},\qquad \alpha \in [0,1]\) と表される。
+
+ここで\(\alpha\)は安全パッチの強度を調節する係数である。\(\alpha\)を大きくすると安全性に関する更新を強く反映できる可能性がある一方、有用性モデルが獲得した専門能力を損なう危険がある。この安全性と有用性の競合は、Safety--Utility Conflict、あるいはSafety Tax（Alignment Tax）として理解できる[58]。本研究では、良性の通常タスク分布を\(D_u\)、有害要求および望ましい安全応答に関する安全性分布を\(D_s\)と表す。安全パッチ\(\Delta_{\mathrm{patch}}\)は、\(D_s\)上で望ましい安全挙動を高めることが期待される一方、\(D_u\)上の性能を低下させる可能性がある。Secure Mergeの課題は、この競合を完全に消去することではなく、安全性に寄与し得る更新を選択的に保持しつつ、有用性に対する悪影響を抑えることである。
+
+なお、ASRの低下のみを安全性向上と解釈することには注意を要する。モデルが一貫して拒否する、極端に短い応答を返す、あるいは意味不明な出力を生成する場合にも、攻撃成功と判定される応答は減少し得る。この場合、低いASRは安全な拒否を表すのではなく、モデルの有効応答能力の低下を反映している可能性がある。本研究ではこの問題を「偽の安全性（fake safety）」と呼び、ASRに加えて有効応答率および有用性指標を併用して評価する。
+
+\subsection{Safety-aware mergeの限界}
+既存の安全性対応merge手法は、通常のmodel mergeが安全性を直接扱わないという限界に対して、異なる粒度で対処している。MergeAlign[2]は、ドメイン適応に関する更新とアライメントに関する更新を区別し、両者の組合せを調整することで知識と安全性のトレードオフを扱う。SafeMERGE[8]は、ファインチューニングによって安全性から逸脱した層を分析し、層単位で選択的な統合または巻き戻しを行う。LED-Merging[9]は、勾配重要度を用いて安全性と有用性の競合が生じるニューロンを特定し、ニューロン単位で更新を分離することを目指す。また、Fisher-Weighted Averaging（FWA）[10]は安全性保持を目的として提案された手法ではないが、パラメータごとのFisher重要度を利用する統合手法であるため、Fisher情報を用いる本研究の比較対象として採用する。
+
+これらの手法は安全性を明示的に考慮するという点で重要であるが、その多くは特定の情報源と操作粒度に依存する。これらを「局所的・ヒューリスティック」と呼ぶのは、安全性そのものが局所的であるという意味ではない。各手法が、層、ニューロン、更新ベクトル、または限られた校正データ上の重要度という限定的な観測に基づき、どの更新を残すかを決定するという意味である。このような設計は、既知のモデル組合せ、固定されたマージ係数、既知の評価分布において有効であり得る。しかし、専門モデルの種類、更新規模、攻撃プロンプトの分布、あるいは安全性評価器が変化すれば、元の判定規則が適切に機能するとは限らない。
+
+したがって、限られた実験条件で得られた安全性改善を、未知のモデル組合せや未知の攻撃分布に対する一般的保証として解釈してはならない。本研究は、既存法が分布シフトに対して無効であると主張するものではなく、局所感度に基づく選択的保護を目指すという立場をとる。提案するSST-Mergeについても同様に、分布シフトに対する理論的保証を与えるものではない。
+
+\subsection{SST-Mergeの定式化上の位置づけ}
+安定したmodel mergeを実現するため、パラメータ空間の幾何構造を活用する研究も発展している。AlignMerge[15]および関連するmodel merging研究の知見を踏まえると、本研究では以下の三つの含意を採用する：(1) 線形補間はアライメントに対して中立ではない、(2) タスク干渉の緩和は安全性保持の必要条件になり得るが十分条件ではない、(3) 安全性評価はmerge後の単一スコアだけで完結しない。本研究は、アライメントを厳密な意味で保存される物理的不変量とみなすものではない。代わりに、Secure Mergeにおける設計仮説として、「安全性に寄与する更新は、有用性を大きく損なわない局所的パラメータ方向へ可能な限り制限すべきである」と考える。この仮説を、\(D_s\)に対する局所感度と\(D_u\)に対する局所感度の比によって具体化する。
+
+安全パッチ\(\Delta_{\mathrm{patch}}\)を有用性モデルに適用したときの有用性損失の増加は、\(\theta_u\)近傍での二次近似により
+\[
+L_u(\theta_u+\Delta_{\mathrm{patch}})-L_u(\theta_u) \approx \nabla L_u(\theta_u)^\top \Delta_{\mathrm{patch}} + \frac{1}{2}\Delta_{\mathrm{patch}}^\top H_u\Delta_{\mathrm{patch}}
+\]
+と表される。ここで\(H_u\)は\(L_u\)のHessianである。\(\theta_u\)が局所的に十分適応されており一次項が小さいと仮定し、Hessianを経験Fisher情報行列\(F_u\)で近似すれば、
+\[
+\mathrm{Tax}(\Delta_{\mathrm{patch}}) \approx \frac{1}{2}\Delta_{\mathrm{patch}}^\top F_u\Delta_{\mathrm{patch}}
+\]
+を有用性低下の局所的近似量として用いることができる。ただし、経験FisherはHessianと一般には一致しないため、この式は厳密な損失変化の等式ではなく、局所感度の近似に基づく表現である。同様に、安全性分布上の局所感度を
+\[
+\mathrm{SafetyEnergy}(\Delta_{\mathrm{patch}}) = \Delta_{\mathrm{patch}}^\top F_s\Delta_{\mathrm{patch}}
+\]
+と定義する。ここで\(F_s\)は\(D_s\)上で推定した経験Fisher情報行列である。
+\(\mathrm{SafetyEnergy}\) は安全性の改善量そのものではなく、安全性校正分布上での局所的なパラメータ感度を表す代理量である。したがって、最終的な安全性はASR、有効応答率、および拒否品質を含む外部評価によって検証する。
+
+SST-Mergeは、安全パッチの適用方向のうち、有用性コストあたりの安全性局所感度が相対的に高い方向を優先して選別する。方向\(v \in \mathbb{R}^d\)に対し、次のRayleigh商を考える。
+\[
+R(v) = \frac{v^\top F_s v}{v^\top (F_u+\epsilon I)v}, \qquad \epsilon > 0.
+\]
+分子は安全性分布上の局所感度、分母は有用性分布上の局所コストを表す。よって、大きい\(R(v)\)を持つ方向は、局所近似の下で安全性に対する感度が相対的に高い方向を選別し、安全性と有用性の競合を明示的に考慮することで、「有用性を比較的損なわずに安全性に関わる更新を加えられる候補方向」として解釈できる。
+制約付き最適化問題の停留条件から導かれる一般化固有値問題
+\[
+F_s v = \lambda(F_u+\epsilon I)v
+\]
+の一般化固有値 \(\lambda\) は、当該方向におけるFisher比を表す。上位の一般化固有ベクトルで張られる部分空間を、本研究ではFisher-Ratio Safety Subspaceと呼ぶ。
+
+重要な点は、この部分空間が安全性を保証する真の不変集合ではないことである。SST-Mergeの主張は安全性を数学的に保証することではなく、安全性と有用性の局所感度比を明示的に考慮しない既存mergeに対する設計上の代替として、実験条件下でSafety--Utility trade-offを評価する枠組みを提示することである。
+
+本研究の実装では、数十億パラメータ規模のLLMに対するフルFIMの推定および一般化固有値分解は実行していない。提案法の実験結果は、対角経験Fisher近似に基づくDiagonal SST-Mergeによるものである。
+\(F_u\)は有用性モデル\(\theta_u\)において有用性校正データ\(D_u\)を用いて推定し、 \(F_s\)は安全性モデル\(\theta_s\)において安全性校正データ\(D_s\)を用いて推定した。各分布に対する対角重要度を、対応する参照モデルにおけるサンプルごとの因果言語モデル損失の勾配二乗平均として近似する。
+\[ f_{D,i} = \frac{1}{N} \sum_{n=1}^{N} \left( \frac{\partial \ell_n(\theta_{\mathrm{ref}})}{\partial \theta_i} \right)^2, \qquad \ell_n(\theta) = -\sum_{t=1}^{T_n} \log p_\theta(z_{n,t}\mid z_{n,<t}) \]
+ここで \(z_n=(z_{n,1},\dots,z_{n,T_n})\) は、プロンプトと応答を連結したtoken列である。
+Fisher推定時の損失\(\ell_n\)は、後述の安全性学習（Safety FT）と同様に、入力プロンプトと応答の両方を含む全有効トークンに対する causal language modeling loss として計算した。
+これにより、
+\[
+F_u \approx \mathrm{diag}(f_{u,1},\ldots,f_{u,d}), \qquad F_s \approx \mathrm{diag}(f_{s,1},\ldots,f_{s,d})
+\]
+と近似される。各座標\(i\)におけるFisher比 \(r_i = \frac{f_{s,i}}{f_{u,i}+\epsilon}\) を用い、Top-$k$に基づくマスク行列 $M_i = \mathbb{I} \left[ r_i \geq Q_{1-k}(r) \right]$ を通じて安全パッチを選択的に保持する。ここで $Q_{1-k}(r)$ はFisher比の $1-k$ 分位点であり、本実験では $k=0.20$ を用いる。統合後のモデルは $\theta_m = \theta_u + \alpha (M \odot \Delta_{\mathrm{patch}})$ と表される。Diagonal SSTはフルFisherによる一般化固有値問題と同一ではなく、座標別Fisher比に基づく近似である。
+
+さらに、Fisher情報の推定に校正データが利用できない場合（データフリー設定）、Data-Free SST-Mergeでは、パラメータの更新量（タスクベクトル）の二乗をFisherのproxyであると仮定して近似する。タスクベクトル \(\tau_u = \theta_u - \theta_0\) と安全パッチ \(\Delta_{\mathrm{patch}} = \theta_s - \theta_u\) から、座標ごとの比率を
+\[
+\hat{r}^{\mathrm{SST\text{-}V}}_i = \frac{(\Delta_{\mathrm{patch},i})^2}{\tau_{u,i}^2+\epsilon}
+\]
+と定義する。Data-Free SSTにおいてもDiagonal SSTと同様に、この比率に基づくTop-$k$（$k=0.20$）のマスク行列 $M_i = \mathbb{I} \left[ \hat{r}^{\mathrm{SST\text{-}V}}_i \geq Q_{1-k}(\hat{r}^{\mathrm{SST\text{-}V}}) \right]$ を用いて安全パッチを選択的に保持する。この指標の分子は、当該座標において安全パッチが有用性モデルをどれだけ変化させるかを表す。分母は、基盤モデルから有用性モデルへの適応において、その座標がどれだけ変化したかを表す。タスクベクトル二乗はFisher情報そのものではないため、SST-Vの比率は厳密な推定値ではなく、更新量に基づくヒューリスティックな近似である。
+
+\paragraph{Scope of the method.}
+SST-Mergeは、学習データ全体に対する安全性保証や、任意の未知分布におけるロバスト性保証を与えるものではない。本手法は、利用可能な有用性校正分布および安全性校正分布に基づく局所近似の下で、安全パッチのうち有用性コストに対して安全性関連の感度が相対的に高い成分を優先するためのmerge規則である。その有効性は、独立したjailbreak評価、有効応答率、および有用性ベンチマークによって検証する。
+
+\section{比較対象の分類と詳細な説明}
+\label{app:method-taxonomy-and-details}
+
+本研究では、モデル統合手法を「利用する情報」「介入粒度」「安全性を目的関数へ直接組み込むか」という三つの観点から整理する。この分類の目的は、各手法の性能順位を事前に決めることではない。むしろ、ASR、有効応答率、専門性能、計算コストの差異を、各手法がどの種類の情報をどの粒度で利用するかという設計差から解釈できるようにすることである。主要なmerge手法の設計原理、利用情報、介入粒度、および安全性への直接性に関する比較整理をTable~\ref{tab:method-comparison-revised}に示す。Table~\ref{tab:method-comparison-revised}の安全性への直接性は各手法の目的関数または統合規則に安全性情報を明示的に含める程度を相対的に整理したものであり、実験上の安全性能、理論保証、または優劣を表すものではない。
+なお、表中のTask Arithmeticは一般的な設計原理を示すが、本研究のSecure Mergeベースライン実装では、有用性モデルと安全性モデルの直接差分\(\Delta_{\mathrm{patch}}\)を適用する。
+
+\begin{table*}[t]
+\centering
+\caption{本研究で扱うmodel merge手法の設計上の比較}
+\label{tab:method-comparison-revised}
+\small
+\begin{tabular}{p{2.3cm}p{2.7cm}p{3.0cm}p{2.0cm}p{2.6cm}}
+\toprule
+手法群 & 代表手法 & 主な利用情報 & 介入粒度 & 安全性への直接性 \\
+\midrule
+重み平均 &
+Model Soups[3] &
+モデル重み &
+モデル全体 &
+低い \\
+差分ベクトル統合 &
+Task Arithmetic[4] &
+基盤モデルからの重み差分 &
+ベクトル全体 &
+低い \\
+干渉緩和 &
+TIES[5], DARE[6], DELLA[7] &
+符号、更新量、疎化規則 &
+主にパラメータ &
+低い \\
+重要度重み付け &
+FWA[10] &
+Fisher情報に基づく局所的重要度 &
+パラメータ &
+低いから中程度 \\
+安全更新の分離 &
+MergeAlign[2] &
+ドメイン更新とアライメント更新 &
+ベクトル全体 &
+中程度 \\
+選択的な安全保護 &
+SafeMERGE[8] &
+層ごとの安全性逸脱・類似度 &
+層 &
+高い \\
+競合更新の分離 &
+LED-Merging[9] &
+勾配重要度・競合位置 &
+ニューロン &
+高い \\
+幾何制約 &
+AlignMerge[15] &
+Fisher幾何・安全性制約 &
+部分空間 &
+高い \\
+提案法 &
+SST-Merge &
+安全性・有用性Fisher比 &
+パラメータ &
+高い \\
+提案法（データフリー） &
+Data-Free SST-Merge &
+タスクベクトル比等のproxy &
+パラメータ &
+中程度 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:method-comparison-revised}の分類から、三つの比較軸が得られる。
+第一に、TIES、DARE、DELLAは主に更新間の一般的干渉を扱うのに対し、MergeAlign、SafeMERGE、LED-Merging、AlignMerge、SST-Mergeは、安全性と有用性の競合を明示的に扱おうとする。第二に、層・ニューロン・パラメータ・部分空間という介入粒度の違いは、保護できる更新の細かさと計算コストの両方に関係する。第三に、Fisher、勾配、安全性校正データ、タスクベクトルといった利用情報の違いは、適用可能なデータアクセス条件を左右する。
+
+この整理は、実験結果の解釈枠組みでもある。たとえばASRが低くても有効応答率や専門性能が著しく低い場合、その結果は安全性の改善ではなく、過度の拒否、推論崩壊、またはgibberish生成による偽の安全性を反映している可能性がある。したがって本研究では、安全性、有効応答率、有用性、および計算コストを併せて報告し、単一の指標に基づいて手法の優劣を結論づけない。
+
+\section{実験設計の詳細}
+本節では、Section 4（Experiments）の補足として、実験で使用したターゲットモデル群、アライメント手法、評価ベンチマーク、およびハイパーパラメータ設定の具体的な詳細を記述する。
+
+\subsection{Target Models \& Architecture}
+実験対象として、7Bパラメータ規模の大規模言語モデルであるLlama-2[30]を共通のバックボーンとして採用する。専門モデルとして，モデルと学習に用いたデータセットが公開されているものを用いる．
+
+
+\begin{itemize}
+\item \textbf{ベースモデル($\theta_0$)}: \texttt{Llama-2-7B-base}[30]
+\item \textbf{有用性専門モデル($\theta_u$)}: WizardMath-7B-V1.0[31]、WizardCoder-Python-7B-V1.0[32]、MedAlpaca-7B[33]を用いた。各モデルの元の学習設定は、それぞれの公開論文およびモデルカードに従う。本研究では、重み統合時にパラメータ名およびテンソル形状が一致するチェックポイントのみを採用した。トークナイザ設定については、各公開モデルの推奨設定を用いた。
+\item \textbf{有用性Fisher推定用データ}: 数学にはGSM8K、コードにはEvol-Instruct-Code、医療にはMedAlpacaから抽出した校正サンプルを用いた。
+\item \textbf{安全モデル ($\theta_s$)}: \texttt{Llama-2-7B-base}に対する安全性アライメントとして、LoRAアダプタを用いてファインチューニングを適用したモデルを使用。評価時はフルモデルとして用いる。安全性学習データは、TrustLLMのjailbreak判定用データセットから抽出した有害要求プロンプトを文字列の完全一致等による重複除去を行わずに構成し、固定の安全な拒否応答（"I'm sorry, but I cannot assist with that request."）を付与して作成した1,400件を用いた。3つのSafety FT seedにおいて、同一の学習集合を用い、データ順序および最適化過程に含まれる乱数シードのみを変更した。学習にはLoRA（対象層: q\_proj, v\_proj, k\_proj, o\_proj, gate\_proj, up\_proj, down\_proj, rank=16, alpha=32, dropout=0.05）を用い、最大トークン長512、バッチサイズ4（gradient accumulation steps=4で実質16）、学習率2e-4、エポック数3、fp16精度でファインチューニングを行った。warmupは用いず、weight decayは0とし、gradient clipping（最大ノルム1.0）を適用した。オプティマイザはAdamW（\(\beta_1=0.9, \beta_2=0.999, \epsilon=10^{-8}\)）を用いた。トークナイザはベースモデルの既定のものを用い、特定のchat templateは適用せず生テキストとして学習した。バリデーションデータによるcheckpoint選択は行わず、最終エポックのモデルを採用した。損失は拒否応答のcompletion tokenに対してのみではなく、入力プロンプト部分も含めた全トークンに対してCausal LM lossを計算した。完了後、LoRAウェイトはベースモデルに統合（merge\_and\_unload）された。
+\end{itemize}
+
+\subsection{Calibration Datasets \& Curvature Estimation}
+\label{app:calibration_datasets}
+対角Fisher情報行列(Diagonal FIM)を計算するためのキャリブレーションデータとして、各データセットから$N=500$件のサンプルを抽出して使用する。
+\begin{itemize}
+\item 安全性Fisher計算用データ ($D_s$): 有害要求プロンプトとそれに対する拒否応答ペア(jailbreak trigger)
+\item 良性有用性Fisher計算用データ($D_u$): 各ドメイン（数学、コード、医療）のデータセットから抽出。各有用性Fisherは、対応するドメインを代表する公開データセットから抽出した校正サンプルを用いて推定する。これらのデータセットは、各専門モデルの公開時の学習データと必ずしも一致しない。
+\end{itemize}
+
+\subsection{Evaluation Benchmarks \& Metrics}
+\label{app:evaluation_benchmarks}
+自動評価はlm-evaluation-harnessを用いて決定論的かつ再現可能なプロトコルで実行される。lm-evaluation-harnessで実行したGSM8K[34]、Minerva Math 500[35]、PubMedQA[38]、MedQA-4Options[39]、MMLU[40]、およびIFEval[41]は、各タスクについて\texttt{num\_fewshot=0}に設定した。few-shot例の選択に起因する追加のばらつきを避けるため、対象タスクでは\texttt{num\_fewshot=0}に統一した。この設定により、同一のゼロショットプロンプト条件下でmerge手法間を比較する。
+HumanEvalおよびMBPPにおいては、各問題につき\(n=1\)個の候補を生成するシングルサンプル評価を行った。生成条件は temperature \(=0.0\)（greedy decoding）、top-p \(=1.0\)、max\_new\_tokens \(=512\) とし、コードブロック終端およびベンチマーク既定の停止条件を適用した。各問題につき1候補を生成したため、本研究のPass@1はgreedy decodingによる単一候補のfunctional correctness rateに相当する。
+
+HarmBench[19]，JailbreakBench[20]，StrongReject[21]，WildJailbreak[22]はそれぞれ専用の評価スクリプトで動いている。AlpacaEval 2[42]では、固定した100プロンプト、judgeモデル \texttt{gpt-4-1106-preview}、length-controlled win rate、評価スクリプトversion \texttt{1.0.4} を用いた。
+Evol-Instruct-Code[32] (nickrosh/Evol-Instruct-Code-80k-v1)，MedAlpaca[33] (medalpaca/medical\_meadow)のPPL評価を組み込んだ。
+対角経験Fisher情報行列を推定するため、各校正データセットから決定論的に抽出した\(N=500\)件のサンプルを使用した。評価用サンプルは、Fisher推定に用いたサンプルと重複しないように分離した。
+
+
+
+\paragraph{安全性アライメント評価（Safety Benchmarks）}
+本実験では，モデルの見かけ上の安全性（推論崩壊や無意味文字列生成に起因する偽の安全性）と，安全性評価と応答有効性を事前定義した規則に基づいて分離して報告するため，HarmBench[19]，JailbreakBench[20]，StrongReject[21]，WildJailbreak[22]の各ベンチマークにおいて，以下の評価指標を算出した。
+
+\begin{enumerate}
+    \item \textbf{Original ASR (\%)}：全応答を対象として算出した攻撃成功率（Attack Success Rate）。低いほど望ましいが、推論崩壊による見かけ上の低下を含む可能性がある。
+    \item \textbf{Conditional ASR (\%)}：Gibberish判定規則を通過した「有効応答」に条件づけて算出した攻撃成功率。無意味な文字列等による見かけ上のASR低下を低減するため、有効応答に条件づけた有害要求への追従率を測定する。
+    \item \textbf{Valid Response Rate (\%)}：全応答中の有効応答の割合。高いほど望ましい。
+    \item \textbf{Valid Safety Rate (\%)}：有効であり、かつ有害要求への追従と判定されなかった応答の割合。
+\begin{equation}
+\mathrm{Valid\ Safety\ Rate} = \frac{\#\{\text{有効であり、かつ有害要求への追従と判定されなかった応答}\}}{\#\{\text{全プロンプト}\}}
+\end{equation}
+    \item \textbf{Refusal Rate (\%)}：XSTest[23]等において過剰拒否（Over-refusal）を診断するための補助指標であり、単独で安全性指標としては用いない。
+\end{enumerate}
+
+Gibberish判定には外部評価器を用いず、出力文字列に対するヒューリスティクスのみを用いた。一方、有害要求への追従判定には各安全性ベンチマークの既定評価器または評価スクリプトを用いた。単語は空白区切りの文字列として定義する。生成応答を無効と判定するのは、次のいずれかを満たす場合である。(i) 出力が空文字列あるいは空白のみである。(ii) 単語数が5以上であり、一意な単語の割合が20\%未満（過度な反復）である。(iii) 単語数が5以上であり、数字のみで構成される単語の割合が60\%を超える（不自然な数値出力）。なお、これらの判定閾値は予備実験での目視確認から設定した事前定義ヒューリスティックであり、本判定規則は有害要求に対する安全性評価の生成応答にのみ適用し、数学、コード、医療、および一般有用性ベンチマークには適用しない。
+
+これらの判定を通過したものを「有効応答」とし、安全性と応答有効性を区別する。
+総合的な安全性能として、4つの安全性ベンチマーク（HarmBench, JailbreakBench, StrongReject, WildJailbreak）の各指標のマクロ平均である Safety Ave [Original ASR] と Safety Ave [Conditional ASR] を算出した。
+
+\paragraph{Validity-aware Pareto AUC.}
+既存のパレートAUC評価は、推論崩壊による低いASRを「高い安全性」として誤評価してしまう問題がある。そこで本研究では、有効応答を考慮した安全性保持と有用性維持のトレードオフを測るため、横軸の安全性指標として $\mathrm{Valid\ Safety\ Rate}$ を用いる。
+各merge強度\(\alpha\)における Valid Safety Rate を\(s_{\mathrm{valid}}(\alpha) \in [0,1]\)（高いほど安全）、正規化済み有用性スコアを\(u(\alpha) \in [0,1]\)とする。ここで有用性スコアは、各タスクの評価値（0〜100\%）を100で割り、0から1の範囲にクリップして用いた。
+各手法が達成する\(\{(s_{\mathrm{valid}}(\alpha_i), u(\alpha_i))\}\)の集合について、点\((s_{\mathrm{valid}},u)\)が、別の点\((s'_{\mathrm{valid}},u')\)に対して\(s'_{\mathrm{valid}}\ge s_{\mathrm{valid}}\)、\(u'\ge u\)であり、少なくとも一方が厳密不等号であるとき、前者は後者に支配される。支配されない点の集合をパレート前線とする。
+得られたパレート点を\(s_{\mathrm{valid}}\)の昇順に並べ、最小の安全性座標を\((s_1,u_1)\)、最大の安全性座標を\((s_K,u_K)\)とする。AUC計算では、未観測の極端な安全性領域への水平延長として補完点\((0,u_1)\)および\((1,u_K)\)を追加し、隣接点間を線形補間して台形則により積分する。この値が大きいほど、推論崩壊を起こすことなく高い安全と高い有用性を両立していることを示す。なお、端点補完の選択が手法間の評価に与える影響を考慮し、付録において補完を行わず実測された安全性範囲のみで計算した保守的なAUCの結果も併せて報告する。
+
+\paragraph{Limitations.}
+本実験設定には以下の限界がある。第一に、安全性FTデータと評価ベンチマーク間のプロンプト重複については、文字列完全一致による除外を実施していない。そのため、得られた評価値にはデータ重複に由来する楽観的バイアスが含まれる可能性がある。第二に、計算資源上の制約から、多くの公開データセットでは先頭320件を用い、MMLUではタスクごとの均等抽出により320件を用いた。全量評価ではないため、データセット全体を完全に代表しない可能性があり、結果の一般化には限界がある。
+\paragraph{有用性評価（Utility Benchmarks）}
+model merge後の有用性を評価するため，以下のベンチマークを用いた。
+
+\begin{itemize}
+    \item \textbf{Utility(Math):}
+    \texttt{math\_gsm8k}[34],
+    \texttt{math\_minerva\_math500}[35]
+
+    \item \textbf{Utility(Code):}
+    \texttt{code\_humaneval}[36],
+    \texttt{code\_mbpp}[37]
+
+    \item \textbf{Utility(Medical):}
+    \texttt{medical\_pubmedqa}[38],
+    \texttt{medical\_medqa\_4options}[39]
+
+    \item \textbf{Utility(General):}
+    \texttt{general\_mmlu}[40],
+    \texttt{general\_ifeval}[41],
+    \texttt{alpaca\_eval2}[42],
+    \texttt{inst\_evol\_code}[32],
+    \texttt{inst\_medalpaca}[33]
+\end{itemize}
+
+本研究で用いた全評価ベンチマーク、測定指標、および各指標の目指すべき方向（望ましい変化）の定義をTable~\ref{tab:evaluation_metrics}に示す。
+\begin{table}[htbp]
+\centering
+\caption{評価タスク・指標および測定対象と望ましい基準の一覧}
+\label{tab:evaluation_metrics}
+\small
+\begin{tabularx}{\textwidth}{p{2.0cm}p{3.3cm}Xp{2.2cm}}
+\toprule
+\textbf{カテゴリ} &
+\textbf{評価タスク / 指標} &
+\textbf{測定対象・評価基準} &
+\textbf{望ましい方向} \\
+\midrule
+\multirow{4}{*}{Safety}
+& HarmBench[19](ASR$\downarrow$)& 有害指示や敵対的攻撃に対する拒否能力。Attack Success Rate (ASR)を測定。 & 低い方が良い($\downarrow$) \\
+& JailbreakBench[20](ASR$\downarrow$) & 標準的なJailbreakプロンプトに対する攻撃成功率。& 低い方が良い ($\downarrow$) \\
+& StrongReject[21](ASR$\downarrow$) & 高難度Jailbreak攻撃に対する攻撃成功率。 & 低い方が良い($\downarrow$) \\
+& WildJailbreak[22](ASR$\downarrow$) & 実環境由来の敵対的プロンプトに対する攻撃成功率。 & 低い方が良い($\downarrow$)\\
+\midrule
+\multirow{2}{*}{Math}
+& GSM8K[34](Flex EM$\uparrow$) & 小学校レベルの算数・数学の文章題タスク。柔軟な正規表現抽出を用いた完全一致（Flexible Exact Match）率。 & 高い方が良い($\uparrow$) \\
+& Math500[35](Verify$\uparrow$) & 高度な高校・大学レベルの数学問題集。最終回答が正しく抽出され、検証プロセスを通過した割合。 & 高い方が良い($\uparrow$) \\
+\midrule
+General Chat
+& AlpacaEval 2[42](Win Rate$\uparrow$) & 一般的な対話指示に対する応答品質。GPT-4などの参照モデルとの比較における勝率（Win Rate）を測定。 & 高い方が良い($\uparrow$) \\
+\midrule
+\multirow{2}{*}{Code (Data)}
+& Evol-Instruct-Code[32] (PPL$\downarrow$) & コーディング指示テキストの予測の不確実さ。Perplexity（当惑度）を測定。 & 低い方が良い ($\downarrow$) \\
+& Evol-Instruct-Code[32] (Similarity$\uparrow$) & モデルが生成した応答と正解データとの類似度。Similarity Scoreを測定。 & 高い方が良い($\uparrow$) \\
+\midrule
+\multirow{2}{*}{Code}
+& HumanEval[36](Pass@1$\uparrow$) & Pythonの標準的なコーディング能力テスト（164問）。生成されたプログラムがユニットテストを一発でパスした割合（Pass@1）。 & 高い方が良い($\uparrow$) \\
+& MBPP[37](Pass@1$\uparrow$) & 基本的なPythonプログラミング問題集。ユニットテストを一発でパスした割合（Pass@1）。 & 高い方が良い($\uparrow$) \\
+\midrule
+\multirow{2}{*}{Medical (Data)}
+& MedAlpaca[33](PPL$\downarrow$) & 医療分野の専門テキストにおける言語モデルの予測の不確実さ。Perplexity（当惑度）を測定。 & 低い方が良い ($\downarrow$) \\
+& MedAlpaca[33](Similarity$\uparrow$) & 医療関連の指示文に対するモデル生成物と正解データの類似度。Similarity Scoreを測定。 & 高い方が良い($\uparrow$) \\
+\midrule
+\multirow{2}{*}{Medical}
+& MedQA[39](Acc$_{\rm norm}\uparrow$) & 米国医師国家試験（USMLE）などの医学知識を問う4肢選択問題。標準化された正答率（Accuracy Normalized）を測定。 & 高い方が良い($\uparrow$) \\
+& PubMedQA[38](Acc$\uparrow$) & 医学文献（PubMed）の要約からYes/No/Maybeで回答する質問応答。正答率（Accuracy）を測定。 & 高い方が良い($\uparrow$) \\
+\midrule
+\multirow{2}{*}{General}
+& IFEval[41](Strict Prompt Acc$\uparrow$) & 特定の文字数で出力する，特定の書式に従うなどの指示（制約）遵守能力。制約を厳密に守れた割合。 & 高い方が良い($\uparrow$) \\
+& MMLU[40](Acc$\uparrow$) & STEM、社会科学、人文科学など多岐にわたる専門知識の選択問題集。正答率（Accuracy）を測定。 & 高い方が良い($\uparrow$) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+データセットの各カテゴリや評価方法，評価目的をTable~\ref{tab:benchmark}に示す．
+\begin{table}[htbp]
+\centering
+\caption{評価ベンチマーク一覧}
+\label{tab:benchmark}
+\small
+\begin{tabularx}{\textwidth}{p{1.5cm}p{2.3cm}p{1.4cm}p{1.4cm}p{1.4cm}p{1.4cm}Xp{2.8cm}}
+\toprule
+\textbf{カテゴリ} & \textbf{データセット} & \textbf{公開データ規模} & \textbf{本研究の評価件数} & \textbf{抽出規則} & \textbf{ベンチマーク} & \textbf{評価方法} & \textbf{評価目的} \\
+\midrule
+
+Safety
+& HarmBench & 320 & 320 & 全件 & HarmBench & Attack Success Rate (ASR)、拒否率 & 有害指示への耐性 \\
+& JailbreakBench & 100 & 100 & 全件 & JailbreakBench & ASR & Jailbreak耐性 \\ 
+& StrongReject & 313 & 313 & 全件 & StrongReject & StrongReject Score、拒否性能 & 安全な拒否能力 \\
+& WildJailbreak & 500 & 320 & 先頭320件 & WildJailbreak & ASR & 実環境に近いJailbreak耐性 \\
+\midrule
+Utility (Math)
+& GSM8K & 1,319 & 320 & 先頭320件 & lm-evaluation-harness & Exact Match（0-shot） & 数学推論能力 \\
+& Minerva Math 500 & 500 & 320 & 先頭320件 & lm-evaluation-harness & Exact Match（0-shot） & 高難度数学推論能力 \\
+\midrule
+Utility (Code)
+& HumanEval & 164 & 164 & 全件 & lm-evaluation-harness & pass@1（0-shot） & コード生成能力 \\
+& MBPP & 257 & 257 & 全件 & lm-evaluation-harness & pass@1（0-shot） & Pythonプログラミング能力 \\
+\midrule
+Utility (Medical)
+& PubMedQA & 1,000 & 320 & 先頭320件 & lm-evaluation-harness & Accuracy（0-shot） & 医学論文QA能力 \\
+& MedQA (4 options) & 1,273 & 320 & 先頭320件 & lm-evaluation-harness & Accuracy（0-shot） & 医療知識・診断能力 \\
+\midrule
+Utility (General)
+& MMLU & 14,042 & 320 & タスク毎均等 & lm-evaluation-harness & Accuracy（0-shot） & 一般知識・推論能力 \\
+& IFEval & 541 & 320 & 先頭320件 & lm-evaluation-harness & Instruction Following Score（0-shot） & 指示追従能力 \\
+\midrule
+General Chat
+& AlpacaEval 2 & 805 & 100 & 固定100件 & AlpacaEval 2 & gpt-4-1106-preview Judgeによる Win Rate & 総合的な対話品質 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Evaluation Protocol \& Baselines}
+\label{app:evaluation_protocol}
+
+本研究の評価は、基礎的なトレードオフ特性を検証する予備実験と、網羅的な評価指標・ドメインを用いて提案手法の有効性と頑健性を多角的に実証する本実験の二段階で構成される。
+
+\subsubsection{予備実験（Preliminary Experiment）の設計}
+
+\begin{itemize}
+    \item \textbf{目的:}
+    比較的小規模なデータセットを用い，merge手法が引き起こす安全性（Jailbreak耐性）の維持と有用性（Utility）の劣化間の基礎的なトレードオフを検証する。
+    \item \textbf{評価対象と指標:}
+    \begin{itemize}
+        \item 安全性指標としてTrustLLM[17]のプロトコルを採用。
+        \item 有用性指標としてBeaverTails[18]データセット等の単一ドメインタスクを利用。
+    \end{itemize}
+    \item \textbf{実験規模:}
+    単一の分類器や限定的なデータによる基礎検証（上限320件のサンプリング，単一シードでの実行等）。
+    \item \textbf{予備実験の限界:}
+    予備実験の段階では，出力された文字列に特定の有害な単語が含まれないことを防御成功と判定する単一分類器（TrustLLM等）への依存があったため，後に崩壊した文字列（Gibberish）を出力することで安全と誤判定される偽の安全性（推論崩壊）の問題が浮き彫りとなった。
+\end{itemize}
+
+\subsubsection{本実験（Main Experiment）の設計}
+予備実験で明らかになった偽の安全性の課題や，多ドメインにおける性能維持を厳密に評価するため，本実験では以下の設計に基づく多面的な検証を行った。
+
+\begin{itemize}
+    \item \textbf{包括的なベンチマークへの拡張:}
+    \begin{itemize}
+        \item 安全性（Safety）:
+        HarmBench[19], JailbreakBench[20], StrongReject[21],WildJailbreak[22] といった複数の敵対的プロンプトベンチマークを導入（Table~\ref{tab:evaluation_metrics}参照）。
+        \item 有用性（Utility）:
+        Math(GSM8K, Minerva),Code(HumanEval, MBPP),Medical(MedQA, PubMedQA),General(MMLU, AlpacaEval 2)の4分野にわたるタスクで評価（Table~\ref{tab:evaluation_metrics}参照）。
+    \end{itemize}
+    \item \textbf{推論崩壊（偽の安全性）の分析:}
+    応答品質を解析し，無意味な文字列や繰り返し出力（Gibberish / Repetition）によってASRが低下しているケースを排除。Valid Safety Rateに基づく\textit{Validity-aware Pareto AUC}を用いて，本質的な安全性--有用性トレードオフを評価。
+    \item \textbf{3-seedによるばらつきの報告:}
+    Safety FTの学習過程に由来するばらつきを定量化するため、乱数シード\texttt{42, 43, 44}を用いて3つの安全性モデルを独立に構築した。各安全性モデルに対して同一の有用性モデルおよび同一のmerge設定を適用し、各評価指標について3試行の平均と標本標準偏差を報告する。標本標準偏差は\(N=3\)、自由度\(N-1\)として算出した。
+    \item \textbf{SST 設定と探索空間:}
+    \begin{itemize}
+        \item 提案手法 \texttt{sst, data-free sst}は，部分空間選択としてTop-$k$, $k=0.20$を採用。
+        \item merge強度$\alpha \in \{0.0, 0.2, 0.4, 0.6, 0.8, 1.0\}$を一様に探索。(sst, data-free sst, ties, task arithmetic, della, dare)
+        \item 多数の手法・ハイパーパラメータ・複数シードによるPareto Frontier探索を現実的な計算コストで実行するため，各ベンチマークの評価データ数は最大320件を上限としてサンプリングした。
+    \end{itemize}
+    \item \textbf{比較条件とmergeパターン:}
+    \begin{itemize}
+        \item merge種類:
+        \texttt{safety+math},
+        \texttt{safety+code},
+        \texttt{safety+medical}の2model merge，および多重ドメインmerge\texttt{safety+code+math+medical}。
+        \item 代表的なmerge強度の提示:
+        本文では、各手法の探索軌跡全体を用いたパレート分析に加え、比較の可読性のため代表的なmerge強度として$\alpha=0.6$の結果を提示する。ハイパーパラメータ調整を伴わないベースライン（SafeMERGE, MergeAlign等）は既定設定（$\alpha=\mathrm{N/A}$）で評価。
+    \end{itemize}
+    \item \textbf{ベースライン:}
+    標準merge手法（Task Arithmetic[4, 25], TIES[5], DARE[6], DELLA[7]），安全性維持merge手法（MergeAlign[2], SafeMERGE[8], LED-Merging[9]），およびFisher情報に基づくmerge手法（FWA[10]）を比較対象とした。なお，LED-Merging等の一部ベースラインについては，依存関係等の制約により，一部ドメイン（math/codeのみ，medicalは公式サポート対象外）を別実験として扱う場合がある。全てmergekit[43]および論文添付のgitコードを使用．
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{予備実験の詳細結果}
+\label{app:preliminary_results}
+本節では、事後的な安全性統合における基礎的な挙動とトレードオフ特性を解明するために実施した予備実験（TrustLLM/BeaverTails）の詳細結果について述べる。本節の予備実験は、単一評価器と限定的な有用性指標に基づく探索的分析である。したがって、本節のRaw ASRを用いて各手法の安全性を比較・順位づけることは目的としない。本研究の主要な安全性結論は、複数ベンチマーク、有効応答率、および Valid Safety Rateを用いた主実験に基づく。
+
+\begin{quote}
+\textbf{指標に関する注意：}本節で報告するTrustLLM Raw ASRおよびGibberish Ratioは予備実験固有の探索的指標であり、主実験のOriginal ASR、Conditional ASR、Valid Response Rate、およびValid Safety Rateと直接比較しない。予備実験の数値は手法の最終的な安全性順位を示すものではなく、単一評価器が出力崩壊に影響され得ることを確認するために用いる。また、予備実験は主実験とは異なる初期実装および評価パイプラインで実施した。したがって、予備実験における\(\alpha\)の挙動を、主実験で定義した直接差分型mergeの\(\alpha\)と同一視しない。
+\end{quote}
+
+
+\subsection{baseモデルの評価結果}
+
+baseモデルの評価結果を表\ref{tab:base_models}に示す．seed別の表を\ref{tab:base_models_seeds}に示す．seedの区別があるのはsafetyモデルのみのため，\ref{tab:base_models_seeds}はsafetyモデルのみ結果を示す．
+% --------------------------------------------------------------------------
+% ベースモデル (Base Models)
+% --------------------------------------------------------------------------
+
+% --- ベースモデル評価 集計 (Mean \pm Std) ---
+\input{tables/tab_base_models.tex}
+
+% --- ベースモデル評価 シード別詳細 ---
+\input{tables/tab_base_models_seeds.tex}
+
+\subsection{予備実験（Preliminary Experiment）結果（探索的分析）}
+TrustLLM[17]プロトコルおよびBeaverTails[18]データセットを用いた予備実験において、小規模なJailbreak耐性と単一ドメインでのUtilityトレードオフの基礎検証を行った。表\ref{tab:prelim_detail_app}に主要なmerge設定（$\alpha=0.6$）における予備実験の結果を示す。表中のTrustLLM Raw ASR*は当該評価器の出力に基づく未補正スコアであり、主実験で用いるOriginal ASRやConditional ASR等のASR指標とは混同すべきでない探索的指標である。
+
+\input{tables/tab_prelim_detail_app.tex}
+
+
+表\ref{tab:prelim_detail_app}から明らかなように、予備実験では、出力崩壊により単一の自動評価器のスコアが高くも低くも偏る可能性が観察された。すなわち、mergeによるパラメータの干渉でモデルの推論能力が破綻し、正常な拒否応答（Refusal）が生成できずプロンプトを反復したり無意味な文字列（Gibberish）を出力した結果、特定の自動評価器がそれらをすべて有害（ASR=100\%）と誤判定（False Unsafe）するケースや、逆に有害キーワードが含まれなくなるため安全（ASR=0\%）と誤判定する偽の安全性（Fake Safety）のケースが生じ得る。このように、mergeに起因する生成テキストの崩壊（Gibberish）は単一の自動評価器を欺き、見かけ上のASRを極端に高騰・あるいは低下させてしまうという重大な課題が浮き彫りとなった。
+
+\section{主実験の詳細結果}
+本節では、Section 5（Results and Analysis）におけるメイン実験結果を補足するため、主要merge設定（$\alpha=0.6$）での全ドメイン詳細評価指標（Table~\ref{tab:evaluation_main_alpha=0.6}）、およびGSM8Kを対象とした崩壊分析の拡大データ（Table~\ref{tab:evaluation_yobi_main_GSM8K}）を提示する。なお、PPLが極端に大きい条件は、専門データへの適合度が低いことに加え、merge後の出力分布の崩壊を反映する可能性がある。このため、PPLは通常の有用性比較だけでなく、モデル崩壊の補助的診断指標として解釈する。
+
+\begin{quote}
+\textbf{主実験の安全性診断指標（Conditional ASR・Valid Response Rate・Valid Safety Rate）}は、本文Section 5のTable~2（Safety Diagnostic Table）に集約されている。以下の付録表（Table~\ref{tab:evaluation_main_alpha=0.6}）はOriginal ASRと有用性スコアを示す補足表であり、これらの指標を合わせて参照することで、ASRの低下が「安全な拒否」に基づくものか「出力崩壊」に基づくものかを判断できる。
+\end{quote}
+
+
+\input{tables/tab_evaluation_main_alpha=0.6.tex}
+
+\subsection{Multi-domain merging}
+多重ドメインmergeでは、各手法で有用性およびPPLの変動が増大した。この結果は、2モデルSecure Mergeで観察された傾向を多重ドメイン統合へ直接一般化できないことを示す。極端に大きいPPL（Table~\ref{tab:evaluation_main_alpha=0.6_multi}参照）は、通常のドメイン性能差ではなく、merge後の出力分布の著しい異常または評価設定の不整合を示す可能性がある。したがって、これらの条件は通常の有用性比較から分離し、モデル崩壊の補助診断として扱う。また、多重ドメイン設定ではValid Response RateおよびValid Safety Rateが特に重要な診断指標となるが、当該条件の詳細な崩壊診断は今後の分析課題とする。以下の表に多重ドメインでの結果を示す。
+
+
+\input{tables/tab_evaluation_main_alpha=0.6_multi.tex}
+
+
+\input{tables/tab_evaluation_yobi_main_GSM8K.tex}
+
+\subsection{ランダムシードに対する頭健性の考察（Seed Differences）}
+seed間の変動は手法、ドメイン、およびmerge強度に依存した。特定の手法群に限らず、複数の条件で大きなばらつきが観察された。
+
+\subsection{merge比率（$\alpha$）のスイープに関する考察（Alpha Sweeps）}
+探索した離散的な\(\alpha\)の範囲において、安全性および有用性の変化は非線形かつ条件依存的であった。単純な手法や疎化手法では特定の $\alpha$ を越えると推論能力が低下する傾向がみられた一方、Fisher情報やタスクベクトル保護のメカニズムを持つ手法は、より高い $\alpha$ まで推論能力を維持する傾向があった。
+
+\section{Observed-range AUCと端点補完AUCの比較}
+\label{app:observed_range_auc}
+パレート前線の端点外側における有用性は観測されていない。そこで本研究では、観測された安全性範囲のみで算出するObserved-range AUCと、端点を\(s_{\mathrm{valid}}=0\)および1まで水平補完して算出するEndpoint-extended AUCを併記する。後者は未観測領域における有用性の維持を仮定するため、参考値として扱う。本節のUtilityは、各mergeパターンに対応する対象ドメインの主要有用性ベンチマークを0から1へ正規化したスコアである。具体的には、\texttt{safety+math}ではGSM8KとMinerva Math 500、\texttt{safety+code}ではHumanEvalとMBPP、\texttt{safety+medical}ではMedQAとPubMedQAの平均を用いる。\texttt{safety+math+code+medical}では、Math、Code、Medicalのドメイン別Utilityを等重みで平均する。PPLおよびSimilarity ScoreはAUCには含めず、補助指標として別途報告する。
+
+表\ref{tab:auc_no_interpolation}は、手法ごとに観測されたValid Safety Rateの範囲が大きく異なることを示す。Endpoint-extended AUCは、観測範囲外の補完仮定に影響されるため、Observed-range AUCおよび\(s_{\min}, s_{\max}\)と併せて解釈する必要がある。本設定では、有効応答を保ちつつ高いValid Safety Rateを達成する挙動は、手法およびmerge強度に依存しており、単一のAUC値のみから一般的な優劣を結論づけることはできない。Endpoint-extended AUCは、観測されたパレート前線を \(s_{\mathrm{valid}}=0\)および1まで水平補完して算出した参考値である。本表では、Conditional ASRを用いた旧評価ではなく、Valid Safety Rateを安全性軸として再計算したAUCを報告する
+
+\input{tables/tab_auc_no_interpolation.tex}
+
+\input{tables/tab_task_arithmetic_single_point.tex}
+
+Task Arithmeticは評価した範囲でValid Safety Rate 1.000を達成した一方、対応する有用性は0.078に留まった。したがって、当該点は安全性と有用性の両立ではなく、有用性を大きく犠牲にした安全性側の極端な点として解釈される。
+
+\section{偽の安全性の追加分析}
+\label{app:false_safety}
+本節では、mergeモデルにおける推論崩壊（Gibberish出力）に起因する偽の安全性のメカニズムと、merge強度 $\alpha$ の変化に伴う非線形な推移の詳細考察を行う。
+
+\subsection{非線形な性能推移と偽の安全性の排除}
+
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{pareto_three_panel.png}
+\caption{Safety, Utility Retention, and Pareto Performance across Merge Strengths in \texttt{safety+math} setting. Panel (a) shows Harmful ASR transitioning sharply as merge strength ($\alpha$) increases. Panel (b) shows utility retention relative to the $\alpha=0$ model; values above 100\% indicate utility improvements relative to the $\alpha=0$ model. Panel (c) reports the Validity-aware Pareto AUC. Note: The x-axis in panel (c) is truncated to highlight the differences between methods.}
+\label{fig:pareto_three_panel}
+\end{figure}
+
+Figure~\ref{fig:pareto_three_panel}のパネル(a)に示すSST-Mergeの探索軌跡において、$\alpha=0.6$まではASRが17\%前後に維持されるが、$\alpha=0.8$に達した瞬間にASRが2.96\%へと激減する。安全性・有用性指標は、探索した離散的な\(\alpha\)に対して非線形に変化する傾向を示した。本研究は離散的なmerge強度に対する評価であり、臨界現象や特定のパラメータ機構を実証するものではない。また、パネル(b)の観察結果が示す通り、SST-Mergeはこの$\alpha$の増加に対しても推論能力（Utility Retention）を比較的高く維持している。
+
+対照的に、DAREやDELLAのようなベースライン手法では、merge強度を上げると特定の条件下でGibberish Filter Ratioが18.13\%〜100.00\%に達し、単なる無意味な文字列生成によってASRが低く見えていた（偽の安全性）。この推論崩壊は、4ドメイン同時mergeのような極めて干渉負荷の高い条件下で顕著に観測される現象である。
+
+\subsection{出力崩壊の仮説的メカニズム}
+現在、\texttt{safety+code}や\texttt{safety+medical}、および4ドメイン多重mergeにおいて観測されている出力崩壊（Model Collapse/Gibberish/Repetition）は、有害性判定器（HarmBench等）が崩壊した記号列・無応答を「有害コンテンツが含まれていない（ASR=0\%）」と誤認してしまうため、見かけ上完璧に安全に見えるという重大な評価の歪みを生み出している。
+この出力崩壊現象を生じさせる潜在的な要因として、以下の仮説的メカニズムが考えられる。これらの現象には、更新量の不均衡、Fisher推定のスケール差、およびmerge後の層別ノルム変化が関与する可能性がある。ただし、本研究ではこれらの因果機構を直接測定しておらず、今後の分析課題とする。
+
+\paragraph{Case Study: 推論崩壊（Gibberish）と正常な安全拒否の比較（定性的補助分析）}
+
+\begin{quote}
+本節は定量的な比較や手法間の優劣を示すものではなく、自動評価スコアのみでは区別しにくい安全拒否、部分的追従、反復出力、および入力再掲の具体例を示す定性的補助分析である。
+\end{quote}
+
+model mergeにおける干渉がどのように偽の安全性（見かけ上ASR=0\%）を引き起こすかを直感的に示すため，有害プロンプト（例：危険行為の具体的な教唆）に対する各手法の出力の推論状態とその解釈をTable~\ref{tab:yugaioutou_rei}に示す。
+
+\input{tables/tab_yugaioutou_rei.tex}
+
+DAREやDELLA等の一部設定では、モデルがプロンプトを正常に処理できず無意味な文字列（Gibberish）を返すため、結果としてHarmBench等の自動判定器が有害コンテンツを含まない（ASR=0\%）とスコアリングしてしまう。しかし、これは安全性が維持されているのではなく、言語生成能力そのものが崩壊しているに過ぎない。一方、SST-Mergeは流暢な自然言語で意図通りの安全拒否応答を生成しており、言語モデルとしての機能を保ちながらアライメントを回復していることが確認できる。
+
+
+
+\section{計算資源とデータ要件}
+\label{app:efficiency}
+本節では、RQ3に関連し、各merge手法の実用性を評価するための理論的時間計算量・データ要件、および実際の実装環境（NVIDIA H100 GPU）における処理時間とメモリ消費量の比較について述べる。
+
+\subsection{計算効率と頑健性(RQ3)}
+model merge手法の実用性を評価する上で、計算コストとキャリブレーションデータへの依存性は重要な要素である。各merge手法の理論的計算コスト（時間計算量）およびデータ要件の比較をTable~\ref{tab:cost}に示す。。$K$はmerge対象モデル数、$P$はモデルのパラメータ数、$N$は重要度推定に用いるサンプル数、$C_{\text{backward}}$は1サンプルのbackward passコストを表す。
+
+\begin{table}[H]
+\centering
+\caption{各merge手法の理論的計算コストとデータ要件の比較}
+\label{tab:cost}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} &
+\textbf{Calibration Data} &
+\textbf{Importance / Mask Calc.} &
+\textbf{Merge Execution} &
+\textbf{Total Time Complexity} \\
+\midrule
+\texttt{sst}
+& Yes ($N$ samples)
+& $\mathcal{O}(KN C_{\text{backward}})$
+& $\mathcal{O}(KP)$
+& $\mathcal{O}(KN C_{\text{backward}} + KP)$ \\
+\texttt{data\_free\_sst}
+& No
+& Task-vector ratio computation and Top-\(k\) selection
+& $\mathcal{O}(KP)$
+& $\mathcal{O}(KP)$ to $\mathcal{O}(KP\log P)$ \\
+\texttt{task\_arithmetic}
+& No
+& None
+& $\mathcal{O}(KP)$
+& $\mathcal{O}(KP)$ \\
+\texttt{ties}
+& No
+& Magnitude trimming / sign election
+& $\mathcal{O}(KP)$
+& $\mathcal{O}(KP)$--$\mathcal{O}(KP\log P)$ \\
+\texttt{dare}
+& No
+& Random mask generation
+& $\mathcal{O}(KP)$
+& $\mathcal{O}(KP)$ \\
+\texttt{della}
+& No
+& Magnitude ranking
+& $\mathcal{O}(KP)$
+& $\mathcal{O}(KP\log P)$ \\
+\texttt{matena\_fisher}
+& Yes ($N$ samples)
+& $\mathcal{O}(KN C_{\text{backward}})$
+& $\mathcal{O}(KP)$
+& $\mathcal{O}(KN C_{\text{backward}} + KP)$ \\
+\texttt{mergealign}
+& No
+& None
+& $\mathcal{O}(KP)$
+& $\mathcal{O}(KP)$ \\
+\texttt{safemerge}
+& No
+& Layer-wise similarity computation
+& $\mathcal{O}(KP)$
+& $\mathcal{O}(KP)$ \\
+\texttt{led\_merging}
+& Yes ($N$ samples)
+& $\mathcal{O}(KN C_{\text{backward}})$
+& $\mathcal{O}(KP)$
+& $\mathcal{O}(KN C_{\text{backward}} + KP)$ \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+
+ここで、$K$はmerge対象のモデル数、$P$はモデルの総パラメータ数、$N$はキャリブレーションデータ数、$C_{\text{forward}},C_{\text{backward}}$はそれぞれ1サンプルあたりの順伝播および逆伝播の計算コストを表す。
+
+SST-Mergeはキャリブレーションデータに対する対角Fisher情報(FIM)の1パス計算（$\mathcal{O}(KN \cdot C_{\text{backward}})$）を事前に行う必要があるが、一度マスクを計算すればその後のmerge自体は$\mathcal{O}(KP)$で完了する。
+
+さらに、この理論的効率性を実証するため、単一のNVIDIA H100 GPU環境における各手法の実測merge時間とピークGPUメモリ使用量を測定した結果をTable~\ref{tab:gpu}に示す。0.00 GBはGPUメモリ消費がゼロであることを意味せず、当該実装がCPU上で実行された、またはGPUメモリ計測の対象外であったことを表す。Data-Free SSTはFisher推定に必要なbackward passを省略するため、本実装・測定環境ではmerge時間を短縮した。ただし、重みを読み込んで座標別処理を行うため、ピークGPUメモリは必ずしも低下しない。GPU memory 0.00 GBはGPUメモリ使用がゼロであることを意味せず、CPU実行またはGPUメモリ計測対象外であったことを示す。
+
+\input{tables/tab_gpu.tex}
+
+\FloatBarrier
+
+\section{Seed別およびalpha別の完全結果}
+\label{sec:appendix_detailed_results}
+
+本付録後半では、主実験の集約結果を再現可能な形で補足するため、vLLM環境におけるすべての詳細な実験結果を示す。ここには、予備実験およびメイン実験の各merge手法・各パターンにおけるランダムシード別の詳細結果、ならびに$\alpha$（merge比率）スイープの結果を網羅的に収録している。
+
+\subsection{ランダムシードに対する頑健性の考察（Seed Differences）}
+seed間の変動は手法、ドメイン、およびmerge強度に依存した。特定の手法群に限らず、複数の条件で大きなばらつきが観察された。
+
+\subsection{merge比率（$\alpha$）のスイープに関する考察（Alpha Sweeps）}
+探索した離散的な\(\alpha\)の範囲において、安全性および有用性の変化は非線形かつ条件依存的であった。
+
+
+\newpage
+% --------------------------------------------------------------------------
+% 1. 予備実験 (Preliminary Experiments)
+% --------------------------------------------------------------------------
+
+% --- 予備実験 集計 (Mean \pm Std) - Pattern: safety+medical ---
+\input{tables/tab_prelim_safety_medical.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: mergealign, Pattern: safety+medical ---
+\input{tables/tab_prelim_seeds_mergealign_safety_medical.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: diagonal_sst_main, Pattern: safety+medical ---
+\input{tables/tab_prelim_seeds_diagonalsstmain_safety_medical.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: dare, Pattern: safety+medical ---
+\input{tables/tab_prelim_seeds_dare_safety_medical.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: ties, Pattern: safety+medical ---
+\input{tables/tab_prelim_seeds_ties_safety_medical.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: task_arithmetic, Pattern: safety+medical ---
+\input{tables/tab_prelim_seeds_taskarithmetic_safety_medical.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: della, Pattern: safety+medical ---
+\input{tables/tab_prelim_seeds_della_safety_medical.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: safemerge, Pattern: safety+medical ---
+\input{tables/tab_prelim_seeds_safemerge_safety_medical.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: data_free_sst_main, Pattern: safety+medical ---
+\input{tables/tab_prelim_seeds_datafreesstmain_safety_medical.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: matena_fisher, Pattern: safety+medical ---
+\input{tables/tab_prelim_seeds_matenafisher_safety_medical.tex}
+
+
+% --- 予備実験 集計 (Mean \pm Std) - Pattern: safety+math+code+medical ---
+\input{tables/tab_prelim_safety_math_code_medical.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: data_free_sst_main, Pattern: safety+math+code+medical ---
+\input{tables/tab_prelim_seeds_datafreesstmain_safety_math_code_medical.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: diagonal_sst_main, Pattern: safety+math+code+medical ---
+\input{tables/tab_prelim_seeds_diagonalsstmain_safety_math_code_medical.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: task_arithmetic, Pattern: safety+math+code+medical ---
+\input{tables/tab_prelim_seeds_taskarithmetic_safety_math_code_medical.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: dare, Pattern: safety+math+code+medical ---
+\input{tables/tab_prelim_seeds_dare_safety_math_code_medical.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: ties, Pattern: safety+math+code+medical ---
+\input{tables/tab_prelim_seeds_ties_safety_math_code_medical.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: della, Pattern: safety+math+code+medical ---
+\input{tables/tab_prelim_seeds_della_safety_math_code_medical.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: matena_fisher, Pattern: safety+math+code+medical ---
+\input{tables/tab_prelim_seeds_matenafisher_safety_math_code_medical.tex}
+
+
+% --- 予備実験 集計 (Mean \pm Std) - Pattern: safety+code ---
+\input{tables/tab_prelim_safety_code.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: task_arithmetic, Pattern: safety+code ---
+\input{tables/tab_prelim_seeds_taskarithmetic_safety_code.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: della, Pattern: safety+code ---
+\input{tables/tab_prelim_seeds_della_safety_code.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: dare, Pattern: safety+code ---
+\input{tables/tab_prelim_seeds_dare_safety_code.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: ties, Pattern: safety+code ---
+\input{tables/tab_prelim_seeds_ties_safety_code.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: diagonal_sst_main, Pattern: safety+code ---
+\input{tables/tab_prelim_seeds_diagonalsstmain_safety_code.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: safemerge, Pattern: safety+code ---
+\input{tables/tab_prelim_seeds_safemerge_safety_code.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: data_free_sst_main, Pattern: safety+code ---
+\input{tables/tab_prelim_seeds_datafreesstmain_safety_code.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: mergealign, Pattern: safety+code ---
+\input{tables/tab_prelim_seeds_mergealign_safety_code.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: led_merging, Pattern: safety+code ---
+\input{tables/tab_prelim_seeds_ledmerging_safety_code.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: matena_fisher, Pattern: safety+code ---
+\input{tables/tab_prelim_seeds_matenafisher_safety_code.tex}
+
+
+% --- 予備実験 集計 (Mean \pm Std) - Pattern: safety+math ---
+\input{tables/tab_prelim_safety_math.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: data_free_sst_main, Pattern: safety+math ---
+\input{tables/tab_prelim_seeds_datafreesstmain_safety_math.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: della, Pattern: safety+math ---
+\input{tables/tab_prelim_seeds_della_safety_math.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: safemerge, Pattern: safety+math ---
+\input{tables/tab_prelim_seeds_safemerge_safety_math.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: ties, Pattern: safety+math ---
+\input{tables/tab_prelim_seeds_ties_safety_math.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: task_arithmetic, Pattern: safety+math ---
+\input{tables/tab_prelim_seeds_taskarithmetic_safety_math.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: dare, Pattern: safety+math ---
+\input{tables/tab_prelim_seeds_dare_safety_math.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: mergealign, Pattern: safety+math ---
+\input{tables/tab_prelim_seeds_mergealign_safety_math.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: diagonal_sst_main, Pattern: safety+math ---
+\input{tables/tab_prelim_seeds_diagonalsstmain_safety_math.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: led_merging, Pattern: safety+math ---
+\input{tables/tab_prelim_seeds_ledmerging_safety_math.tex}
+
+
+% --- 予備実験 シード別詳細 - Method: matena_fisher, Pattern: safety+math ---
+\input{tables/tab_prelim_seeds_matenafisher_safety_math.tex}
+
+
+% --------------------------------------------------------------------------
+% 2. メイン実験 (Main Experiments)
+% --------------------------------------------------------------------------
+
+% --- メイン実験 集計 (Mean \pm Std) - Pattern: safety+math+code+medical ---
+\begin{table}[H]
+\centering
+\caption{メイン実験 集計 (Mean \pm Std) - Pattern: safety+math+code+medical}
+\label{tab:main_safety_math_code_medical}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lllrrrrrrr}
+\toprule
+\textbf{Pattern} & \textbf{Method} & \textbf{Alpha} & \textbf{Safety Ave [Original ASR] (ASR$\downarrow$ \%)} & \textbf{Math Ave (\%)} & \textbf{Code Ave (\%)} & \textbf{Medical Ave (\%)} & \textbf{General/Inst Ave (\%)} & \textbf{EvolCode (PPL$\downarrow$)} & \textbf{MedAlpaca (PPL$\downarrow$)} \\
+\midrule
+safety+math+code+medical & dare & 0.60 & 0.08 $\pm$ 0.08 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 38.02 $\pm$ 41.77 & 11.53 $\pm$ 0.23 & 5368837.19 $\pm$ 6493560.14 & 6550135.45 $\pm$ 3035748.48 \\
+safety+math+code+medical & dare & 1.00 & 0.00 $\pm$ 0.00 & 0.68 $\pm$ 0.70 & 5.36 $\pm$ 2.13 & 55.83 $\pm$ 25.27 & 17.94 $\pm$ 12.11 & 2.35 $\pm$ 0.03 & 7.15 $\pm$ 0.10 \\
+safety+math+code+medical & data\_free\_sst\_main & 0.60 & 0.08 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 26.67 $\pm$ 24.56 & 11.85 $\pm$ 0.59 & 8840.75 $\pm$ 1530.06 & 17110.70 $\pm$ 5533.52 \\
+safety+math+code+medical & data\_free\_sst\_main & 1.00 & 0.03 $\pm$ 0.05 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 62.40 $\pm$ 27.79 & 11.48 $\pm$ 0.20 & 6377.05 $\pm$ 1134.31 & 5459.66 $\pm$ 490.26 \\
+safety+math+code+medical & della & 0.60 & 0.08 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 15.42 $\pm$ 16.18 & 12.53 $\pm$ 0.78 & 1556853.48 $\pm$ 450599.15 & 2115706.72 $\pm$ 117978.22 \\
+safety+math+code+medical & della & 1.00 & 0.00 $\pm$ 0.00 & 0.62 $\pm$ 0.31 & 4.58 $\pm$ 3.10 & 57.60 $\pm$ 23.98 & 18.90 $\pm$ 12.88 & 2.39 $\pm$ 0.04 & 7.38 $\pm$ 0.06 \\
+safety+math+code+medical & diagonal\_sst\_main & 0.60 & 0.00 $\pm$ 0.00 & 0.42 $\pm$ 0.18 & 0.00 $\pm$ 0.00 & 57.29 $\pm$ 17.67 & 10.16 $\pm$ 0.49 & 319.70 $\pm$ 69.81 & 139.54 $\pm$ 27.87 \\
+safety+math+code+medical & diagonal\_sst\_main & 1.00 & 0.16 $\pm$ 0.00 & 0.26 $\pm$ 0.24 & 0.00 $\pm$ 0.00 & 80.83 $\pm$ 8.57 & 11.10 $\pm$ 1.30 & 78.49 $\pm$ 39.87 & 78.49 $\pm$ 32.65 \\
+safety+math+code+medical & matena\_fisher & N/A & 0.00 $\pm$ 0.00 & 0.99 $\pm$ 0.24 & 0.00 $\pm$ 0.00 & 27.81 $\pm$ 3.29 & 13.12 $\pm$ 0.12 & 63.52 $\pm$ 2.39 & 128.84 $\pm$ 4.62 \\
+safety+math+code+medical & task\_arithmetic & 0.60 & 5.88 $\pm$ 0.55 & 2.55 $\pm$ 0.39 & 0.05 $\pm$ 0.09 & 65.42 $\pm$ 9.24 & 13.26 $\pm$ 1.65 & 3.22 $\pm$ 0.04 & 6.16 $\pm$ 0.11 \\
+safety+math+code+medical & task\_arithmetic & 1.00 & 0.00 $\pm$ 0.00 & 0.57 $\pm$ 0.50 & 4.22 $\pm$ 3.39 & 58.12 $\pm$ 23.35 & 18.28 $\pm$ 12.09 & 2.34 $\pm$ 0.03 & 7.15 $\pm$ 0.13 \\
+safety+math+code+medical & ties & 0.60 & 0.05 $\pm$ 0.05 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 9.17 $\pm$ 7.94 & 12.28 $\pm$ 0.40 & 233905.82 $\pm$ 257072.89 & 291983.62 $\pm$ 249888.17 \\
+safety+math+code+medical & ties & 1.00 & 0.00 $\pm$ 0.00 & 0.94 $\pm$ 0.68 & 6.56 $\pm$ 2.46 & 54.58 $\pm$ 25.92 & 23.30 $\pm$ 18.12 & 2.27 $\pm$ 0.03 & 6.72 $\pm$ 0.13 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+
+% --- メイン実験 シード別詳細 - Method: matena_fisher, Pattern: safety+math+code+medical ---
+\input{tables/tab_main_seeds_matenafisher_safety_math_code_medical.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: diagonal_sst_main, Pattern: safety+math+code+medical ---
+\input{tables/tab_main_seeds_diagonalsstmain_safety_math_code_medical.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: dare, Pattern: safety+math+code+medical ---
+\input{tables/tab_main_seeds_dare_safety_math_code_medical.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: della, Pattern: safety+math+code+medical ---
+\input{tables/tab_main_seeds_della_safety_math_code_medical.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: data_free_sst_main, Pattern: safety+math+code+medical ---
+\input{tables/tab_main_seeds_datafreesstmain_safety_math_code_medical.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: ties, Pattern: safety+math+code+medical ---
+\input{tables/tab_main_seeds_ties_safety_math_code_medical.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: task_arithmetic, Pattern: safety+math+code+medical ---
+\input{tables/tab_main_seeds_taskarithmetic_safety_math_code_medical.tex}
+
+
+% --- メイン実験 集計 (Mean \pm Std) - Pattern: safety+math ---
+\begin{table}[H]
+\centering
+\caption{メイン実験 集計 (Mean \pm Std) - Pattern: safety+math}
+\label{tab:main_safety_math}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lllrrrrrrr}
+\toprule
+\textbf{Pattern} & \textbf{Method} & \textbf{Alpha} & \textbf{Safety Ave [Original ASR] (ASR$\downarrow$ \%)} & \textbf{Math Ave (\%)} & \textbf{Code Ave (\%)} & \textbf{Medical Ave (\%)} & \textbf{General/Inst Ave (\%)} & \textbf{EvolCode (PPL$\downarrow$)} & \textbf{MedAlpaca (PPL$\downarrow$)} \\
+\midrule
+safety+math & dare & 0.60 & 6.14 $\pm$ 5.14 & 5.42 $\pm$ 0.79 & 5.00 $\pm$ 1.02 & 84.27 $\pm$ 2.35 & 22.85 $\pm$ 8.57 & 2.43 $\pm$ 0.07 & 4.44 $\pm$ 0.28 \\
+safety+math & dare & 1.00 & 0.00 $\pm$ 0.00 & 0.57 $\pm$ 0.63 & 5.68 $\pm$ 3.61 & 55.94 $\pm$ 25.88 & 11.22 $\pm$ 0.57 & 2.35 $\pm$ 0.03 & 7.18 $\pm$ 0.22 \\
+safety+math & data\_free\_sst\_main & 0.60 & 14.73 $\pm$ 3.41 & 5.57 $\pm$ 0.24 & 7.19 $\pm$ 4.33 & 69.38 $\pm$ 13.52 & 24.69 $\pm$ 0.38 & 2.02 $\pm$ 0.02 & 3.02 $\pm$ 0.02 \\
+safety+math & data\_free\_sst\_main & 1.00 & 11.49 $\pm$ 9.25 & 5.89 $\pm$ 0.79 & 5.57 $\pm$ 0.24 & 56.77 $\pm$ 26.43 & 21.14 $\pm$ 7.66 & 2.19 $\pm$ 0.04 & 4.64 $\pm$ 0.10 \\
+safety+math & della & 0.60 & 6.66 $\pm$ 5.52 & 5.52 $\pm$ 0.63 & 5.31 $\pm$ 1.36 & 85.62 $\pm$ 0.54 & 31.03 $\pm$ 4.06 & 2.46 $\pm$ 0.06 & 4.50 $\pm$ 0.30 \\
+safety+math & della & 1.00 & 0.00 $\pm$ 0.00 & 0.62 $\pm$ 0.41 & 4.69 $\pm$ 3.29 & 58.54 $\pm$ 23.27 & 17.78 $\pm$ 11.72 & 2.38 $\pm$ 0.03 & 7.33 $\pm$ 0.14 \\
+safety+math & diagonal\_sst\_main & 0.60 & 17.09 $\pm$ 5.01 & 6.82 $\pm$ 0.86 & 6.72 $\pm$ 0.95 & 72.55 $\pm$ 15.91 & 22.48 $\pm$ 8.92 & 1.84 $\pm$ 0.01 & 2.75 $\pm$ 0.05 \\
+safety+math & diagonal\_sst\_main & 1.00 & 0.00 $\pm$ 0.00 & 9.84 $\pm$ 0.47 & 7.76 $\pm$ 3.63 & 65.42 $\pm$ 31.57 & 20.65 $\pm$ 6.27 & 1.98 $\pm$ 0.07 & 4.36 $\pm$ 0.49 \\
+safety+math & led\_merging & N/A & 2.80 $\pm$ 0.00 & 1.41 $\pm$ 0.00 & 5.62 $\pm$ 0.00 & 83.75 $\pm$ 0.00 & 22.51 $\pm$ 0.02 & 1.75 $\pm$ 0.00 & 2.72 $\pm$ 0.00 \\
+safety+math & matena\_fisher & N/A & 4.29 $\pm$ 0.43 & 6.04 $\pm$ 0.86 & 6.61 $\pm$ 0.39 & 85.73 $\pm$ 0.65 & 26.72 $\pm$ 11.70 & 1.82 $\pm$ 0.01 & 2.88 $\pm$ 0.02 \\
+safety+math & mergealign & N/A & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 86.25 $\pm$ 0.00 & 15.73 $\pm$ 3.41 & N/A & N/A \\
+safety+math & safemerge & N/A & 4.61 $\pm$ 7.99 & 1.30 $\pm$ 0.86 & 6.67 $\pm$ 4.86 & 82.50 $\pm$ 1.74 & 13.09 $\pm$ 1.77 & 2.22 $\pm$ 0.48 & 6.41 $\pm$ 3.54 \\
+safety+math & task\_arithmetic & 0.60 & 2.48 $\pm$ 2.89 & 6.88 $\pm$ 1.56 & 7.50 $\pm$ 0.68 & 75.21 $\pm$ 15.93 & 27.18 $\pm$ 6.92 & 1.88 $\pm$ 0.02 & 3.47 $\pm$ 0.12 \\
+safety+math & task\_arithmetic & 1.00 & 0.00 $\pm$ 0.00 & 0.62 $\pm$ 0.54 & 6.93 $\pm$ 8.08 & 48.80 $\pm$ 8.77 & 18.36 $\pm$ 12.02 & 2.34 $\pm$ 0.03 & 7.15 $\pm$ 0.14 \\
+safety+math & ties & 0.60 & 9.03 $\pm$ 5.55 & 5.94 $\pm$ 0.83 & 6.15 $\pm$ 0.18 & 85.00 $\pm$ 2.44 & 27.65 $\pm$ 3.07 & 2.15 $\pm$ 0.05 & 3.57 $\pm$ 0.10 \\
+safety+math & ties & 1.00 & 0.00 $\pm$ 0.00 & 0.94 $\pm$ 0.68 & 6.56 $\pm$ 2.46 & 54.58 $\pm$ 25.92 & 25.52 $\pm$ 16.78 & 2.27 $\pm$ 0.03 & 6.72 $\pm$ 0.13 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+
+% --- メイン実験 シード別詳細 - Method: della, Pattern: safety+math ---
+\input{tables/tab_main_seeds_della_safety_math.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: matena_fisher, Pattern: safety+math ---
+\input{tables/tab_main_seeds_matenafisher_safety_math.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: safemerge, Pattern: safety+math ---
+\input{tables/tab_main_seeds_safemerge_safety_math.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: dare, Pattern: safety+math ---
+\input{tables/tab_main_seeds_dare_safety_math.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: data_free_sst_main, Pattern: safety+math ---
+\input{tables/tab_main_seeds_datafreesstmain_safety_math.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: ties, Pattern: safety+math ---
+\input{tables/tab_main_seeds_ties_safety_math.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: led_merging, Pattern: safety+math ---
+\input{tables/tab_main_seeds_ledmerging_safety_math.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: mergealign, Pattern: safety+math ---
+\input{tables/tab_main_seeds_mergealign_safety_math.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: task_arithmetic, Pattern: safety+math ---
+\input{tables/tab_main_seeds_taskarithmetic_safety_math.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: diagonal_sst_main, Pattern: safety+math ---
+\input{tables/tab_main_seeds_diagonalsstmain_safety_math.tex}
+
+
+% --- メイン実験 集計 (Mean \pm Std) - Pattern: safety+code ---
+\begin{table}[H]
+\centering
+\caption{メイン実験 集計 (Mean \pm Std) - Pattern: safety+code}
+\label{tab:main_safety_code}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lllrrrrrrr}
+\toprule
+\textbf{Pattern} & \textbf{Method} & \textbf{Alpha} & \textbf{Safety Ave [Original ASR] (ASR$\downarrow$ \%)} & \textbf{Math Ave (\%)} & \textbf{Code Ave (\%)} & \textbf{Medical Ave (\%)} & \textbf{General/Inst Ave (\%)} & \textbf{EvolCode (PPL$\downarrow$)} & \textbf{MedAlpaca (PPL$\downarrow$)} \\
+\midrule
+safety+code & dare & 0.60 & 0.00 $\pm$ 0.00 & 0.05 $\pm$ 0.09 & 0.00 $\pm$ 0.00 & 29.58 $\pm$ 12.27 & 11.73 $\pm$ 0.70 & 202107.17 $\pm$ 205144.66 & 343746.27 $\pm$ 163477.65 \\
+safety+code & dare & 1.00 & 0.00 $\pm$ 0.00 & 0.73 $\pm$ 0.50 & 5.21 $\pm$ 2.67 & 57.81 $\pm$ 22.81 & 21.54 $\pm$ 10.74 & 2.35 $\pm$ 0.04 & 7.07 $\pm$ 0.07 \\
+safety+code & data\_free\_sst\_main & 0.60 & 0.03 $\pm$ 0.05 & 0.21 $\pm$ 0.24 & 0.00 $\pm$ 0.00 & 78.75 $\pm$ 2.48 & 14.07 $\pm$ 0.05 & 218.68 $\pm$ 118.96 & 49.90 $\pm$ 16.95 \\
+safety+code & data\_free\_sst\_main & 1.00 & 0.03 $\pm$ 0.05 & 0.05 $\pm$ 0.09 & 0.00 $\pm$ 0.00 & 28.85 $\pm$ 16.70 & 11.52 $\pm$ 0.25 & 17917.37 $\pm$ 18265.91 & 2247.19 $\pm$ 1603.28 \\
+safety+code & della & 0.60 & 0.00 $\pm$ 0.00 & 0.62 $\pm$ 0.41 & 0.00 $\pm$ 0.00 & 43.54 $\pm$ 14.08 & 12.43 $\pm$ 0.46 & 107944.55 $\pm$ 59575.64 & 211408.90 $\pm$ 76715.67 \\
+safety+code & della & 1.00 & 0.00 $\pm$ 0.00 & 0.62 $\pm$ 0.72 & 4.43 $\pm$ 3.60 & 53.54 $\pm$ 27.30 & 11.04 $\pm$ 0.62 & 2.38 $\pm$ 0.04 & 7.38 $\pm$ 0.07 \\
+safety+code & diagonal\_sst\_main & 0.60 & 0.97 $\pm$ 0.42 & 0.89 $\pm$ 0.24 & 0.00 $\pm$ 0.00 & 86.25 $\pm$ 0.31 & 12.26 $\pm$ 0.55 & 191.50 $\pm$ 74.10 & 31.40 $\pm$ 8.25 \\
+safety+code & diagonal\_sst\_main & 1.00 & 0.00 $\pm$ 0.00 & 0.42 $\pm$ 0.24 & 0.00 $\pm$ 0.00 & 15.21 $\pm$ 0.95 & 10.63 $\pm$ 0.27 & 187.93 $\pm$ 30.20 & 249.26 $\pm$ 144.36 \\
+safety+code & led\_merging & N/A & 2.88 $\pm$ 0.14 & 1.41 $\pm$ 0.00 & 5.62 $\pm$ 0.00 & 83.75 $\pm$ 0.00 & 22.49 $\pm$ 0.04 & 1.75 $\pm$ 0.00 & 2.72 $\pm$ 0.00 \\
+safety+code & matena\_fisher & N/A & 3.37 $\pm$ 1.40 & 1.09 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 83.12 $\pm$ 0.31 & 12.77 $\pm$ 0.37 & 69.53 $\pm$ 21.34 & 84.66 $\pm$ 27.77 \\
+safety+code & mergealign & N/A & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 86.25 $\pm$ 0.00 & 15.73 $\pm$ 3.41 & N/A & N/A \\
+safety+code & safemerge & N/A & 0.10 $\pm$ 0.18 & 1.51 $\pm$ 1.33 & 5.99 $\pm$ 5.39 & 73.75 $\pm$ 2.98 & 19.84 $\pm$ 8.02 & 2.35 $\pm$ 0.78 & 7.03 $\pm$ 4.96 \\
+safety+code & task\_arithmetic & 0.60 & 29.17 $\pm$ 3.07 & 2.97 $\pm$ 0.68 & 4.63 $\pm$ 0.09 & 88.85 $\pm$ 0.79 & 17.39 $\pm$ 0.39 & 2.47 $\pm$ 0.01 & 4.84 $\pm$ 0.03 \\
+safety+code & task\_arithmetic & 1.00 & 0.00 $\pm$ 0.00 & 0.57 $\pm$ 0.50 & 4.22 $\pm$ 3.39 & 58.02 $\pm$ 23.47 & 18.37 $\pm$ 12.03 & 2.34 $\pm$ 0.03 & 7.15 $\pm$ 0.13 \\
+safety+code & ties & 0.60 & 0.11 $\pm$ 0.04 & 1.41 $\pm$ 0.47 & 0.00 $\pm$ 0.00 & 38.65 $\pm$ 26.32 & 17.85 $\pm$ 9.81 & 92.27 $\pm$ 111.77 & 25.62 $\pm$ 27.16 \\
+safety+code & ties & 1.00 & 0.00 $\pm$ 0.00 & 0.94 $\pm$ 0.68 & 6.56 $\pm$ 2.46 & 54.58 $\pm$ 25.92 & 25.53 $\pm$ 16.91 & 2.27 $\pm$ 0.03 & 6.72 $\pm$ 0.13 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+
+% --- メイン実験 シード別詳細 - Method: task_arithmetic, Pattern: safety+code ---
+\input{tables/tab_main_seeds_taskarithmetic_safety_code.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: dare, Pattern: safety+code ---
+\input{tables/tab_main_seeds_dare_safety_code.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: matena_fisher, Pattern: safety+code ---
+\input{tables/tab_main_seeds_matenafisher_safety_code.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: diagonal_sst_main, Pattern: safety+code ---
+\input{tables/tab_main_seeds_diagonalsstmain_safety_code.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: safemerge, Pattern: safety+code ---
+\input{tables/tab_main_seeds_safemerge_safety_code.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: led_merging, Pattern: safety+code ---
+\input{tables/tab_main_seeds_ledmerging_safety_code.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: della, Pattern: safety+code ---
+\input{tables/tab_main_seeds_della_safety_code.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: mergealign, Pattern: safety+code ---
+\input{tables/tab_main_seeds_mergealign_safety_code.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: ties, Pattern: safety+code ---
+\input{tables/tab_main_seeds_ties_safety_code.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: data_free_sst_main, Pattern: safety+code ---
+\input{tables/tab_main_seeds_datafreesstmain_safety_code.tex}
+
+
+% --- メイン実験 集計 (Mean \pm Std) - Pattern: safety+medical ---
+\begin{table}[H]
+\centering
+\caption{メイン実験 集計 (Mean \pm Std) - Pattern: safety+medical}
+\label{tab:main_safety_medical}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lllrrrrrrr}
+\toprule
+\textbf{Pattern} & \textbf{Method} & \textbf{Alpha} & \textbf{Safety Ave [Original ASR] (ASR$\downarrow$ \%)} & \textbf{Math Ave (\%)} & \textbf{Code Ave (\%)} & \textbf{Medical Ave (\%)} & \textbf{General/Inst Ave (\%)} & \textbf{EvolCode (PPL$\downarrow$)} & \textbf{MedAlpaca (PPL$\downarrow$)} \\
+\midrule
+safety+medical & dare & 0.60 & 0.03 $\pm$ 0.05 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 22.08 $\pm$ 10.81 & 12.39 $\pm$ 0.44 & 12863372.97 $\pm$ 9716067.34 & 13423154.39 $\pm$ 11060518.87 \\
+safety+medical & dare & 1.00 & 0.00 $\pm$ 0.00 & 0.47 $\pm$ 0.56 & 4.38 $\pm$ 3.53 & 62.40 $\pm$ 23.88 & 23.44 $\pm$ 10.58 & 2.34 $\pm$ 0.04 & 7.13 $\pm$ 0.18 \\
+safety+medical & data\_free\_sst\_main & 0.60 & 0.05 $\pm$ 0.05 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 61.67 $\pm$ 41.50 & 12.27 $\pm$ 0.07 & 151079.31 $\pm$ 79294.36 & 109978.81 $\pm$ 39827.45 \\
+safety+medical & data\_free\_sst\_main & 1.00 & 0.08 $\pm$ 0.08 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 32.92 $\pm$ 46.61 & 11.96 $\pm$ 0.22 & 216810.71 $\pm$ 115193.54 & 136969.65 $\pm$ 56251.67 \\
+safety+medical & della & 0.60 & 0.03 $\pm$ 0.05 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 27.29 $\pm$ 23.45 & 12.10 $\pm$ 1.01 & 10754022.73 $\pm$ 9470200.24 & 8631379.06 $\pm$ 4139779.72 \\
+safety+medical & della & 1.00 & 0.00 $\pm$ 0.00 & 0.62 $\pm$ 0.68 & 4.01 $\pm$ 3.43 & 56.56 $\pm$ 22.05 & 17.08 $\pm$ 10.75 & 2.38 $\pm$ 0.04 & 7.38 $\pm$ 0.14 \\
+safety+medical & diagonal\_sst\_main & 0.60 & 0.05 $\pm$ 0.05 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 9.69 $\pm$ 8.46 & 12.06 $\pm$ 0.13 & 75380.55 $\pm$ 8006.67 & 78424.43 $\pm$ 9712.01 \\
+safety+medical & diagonal\_sst\_main & 1.00 & 0.05 $\pm$ 0.05 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 26.25 $\pm$ 22.89 & 11.87 $\pm$ 0.98 & 138717.43 $\pm$ 145875.51 & 95092.19 $\pm$ 65045.99 \\
+safety+medical & matena\_fisher & N/A & 0.16 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 12.99 $\pm$ 0.18 & 576870.77 $\pm$ 100574.92 & 439254.45 $\pm$ 88250.04 \\
+safety+medical & mergealign & N/A & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 86.25 $\pm$ 0.00 & 13.76 $\pm$ 3.41 & N/A & N/A \\
+safety+medical & safemerge & N/A & 0.03 $\pm$ 0.05 & 1.09 $\pm$ 1.89 & 3.91 $\pm$ 6.77 & 53.44 $\pm$ 10.84 & 12.81 $\pm$ 1.63 & 3.84 $\pm$ 1.84 & 15.66 $\pm$ 10.55 \\
+safety+medical & task\_arithmetic & 0.60 & 0.16 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 13.85 $\pm$ 0.18 & 12.72 $\pm$ 0.06 & 217753.69 $\pm$ 12313.53 & 198661.81 $\pm$ 12470.98 \\
+safety+medical & task\_arithmetic & 1.00 & 0.00 $\pm$ 0.00 & 0.57 $\pm$ 0.50 & 4.22 $\pm$ 3.39 & 58.02 $\pm$ 23.47 & 18.37 $\pm$ 12.03 & 2.34 $\pm$ 0.03 & 7.15 $\pm$ 0.13 \\
+safety+medical & ties & 0.60 & 0.05 $\pm$ 0.05 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 13.54 $\pm$ 0.36 & 11.90 $\pm$ 0.62 & 34172.15 $\pm$ 4640.21 & 67899.54 $\pm$ 37744.22 \\
+safety+medical & ties & 1.00 & 0.00 $\pm$ 0.00 & 0.94 $\pm$ 0.68 & 6.56 $\pm$ 2.46 & 54.58 $\pm$ 25.92 & 20.66 $\pm$ 9.09 & 2.27 $\pm$ 0.03 & 6.72 $\pm$ 0.13 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+
+% --- メイン実験 シード別詳細 - Method: safemerge, Pattern: safety+medical ---
+\input{tables/tab_main_seeds_safemerge_safety_medical.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: task_arithmetic, Pattern: safety+medical ---
+\input{tables/tab_main_seeds_taskarithmetic_safety_medical.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: dare, Pattern: safety+medical ---
+\input{tables/tab_main_seeds_dare_safety_medical.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: matena_fisher, Pattern: safety+medical ---
+\input{tables/tab_main_seeds_matenafisher_safety_medical.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: ties, Pattern: safety+medical ---
+\input{tables/tab_main_seeds_ties_safety_medical.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: data_free_sst_main, Pattern: safety+medical ---
+\input{tables/tab_main_seeds_datafreesstmain_safety_medical.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: della, Pattern: safety+medical ---
+\input{tables/tab_main_seeds_della_safety_medical.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: mergealign, Pattern: safety+medical ---
+\input{tables/tab_main_seeds_mergealign_safety_medical.tex}
+
+
+% --- メイン実験 シード別詳細 - Method: diagonal_sst_main, Pattern: safety+medical ---
+\input{tables/tab_main_seeds_diagonalsstmain_safety_medical.tex}
+
+
+% --------------------------------------------------------------------------
+% 3. ベースモデル (Base Models)
+% --------------------------------------------------------------------------
+
+% --- ベースモデル評価 集計 (Mean \pm Std) ---
+\input{tables/tab_base_models.tex}
+
+
+% --- ベースモデル評価 シード別詳細 ---
+\input{tables/tab_base_models_seeds.tex}
+
+
+% --------------------------------------------------------------------------
+% 4. Alpha スイープ (Alpha Sweep)
+% --------------------------------------------------------------------------
+
+% --- Alpha スイープ 集計 - Method: matena_fisher, Pattern: safety+math+code+medical ---
+\input{tables/tab_sweep_matenafisher_safety_math_code_medical.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: matena_fisher, Pattern: safety+math+code+medical ---
+\input{tables/tab_sweep_seeds_matenafisher_safety_math_code_medical.tex}
+
+
+% --- Alpha スイープ 集計 - Method: matena_fisher, Pattern: safety+math ---
+\input{tables/tab_sweep_matenafisher_safety_math.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: matena_fisher, Pattern: safety+math ---
+\input{tables/tab_sweep_seeds_matenafisher_safety_math.tex}
+
+
+% --- Alpha スイープ 集計 - Method: matena_fisher, Pattern: safety+code ---
+\input{tables/tab_sweep_matenafisher_safety_code.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: matena_fisher, Pattern: safety+code ---
+\input{tables/tab_sweep_seeds_matenafisher_safety_code.tex}
+
+
+% --- Alpha スイープ 集計 - Method: matena_fisher, Pattern: safety+medical ---
+\input{tables/tab_sweep_matenafisher_safety_medical.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: matena_fisher, Pattern: safety+medical ---
+\input{tables/tab_sweep_seeds_matenafisher_safety_medical.tex}
+
+
+% --- Alpha スイープ 集計 - Method: diagonal_sst_main, Pattern: safety+math+code+medical ---
+\input{tables/tab_sweep_diagonalsstmain_safety_math_code_medical.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: diagonal_sst_main, Pattern: safety+math+code+medical ---
+\input{tables/tab_sweep_seeds_diagonalsstmain_safety_math_code_medical.tex}
+
+
+% --- Alpha スイープ 集計 - Method: diagonal_sst_main, Pattern: safety+math ---
+\input{tables/tab_sweep_diagonalsstmain_safety_math.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: diagonal_sst_main, Pattern: safety+math ---
+\input{tables/tab_sweep_seeds_diagonalsstmain_safety_math.tex}
+
+
+% --- Alpha スイープ 集計 - Method: diagonal_sst_main, Pattern: safety+code ---
+\input{tables/tab_sweep_diagonalsstmain_safety_code.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: diagonal_sst_main, Pattern: safety+code ---
+\input{tables/tab_sweep_seeds_diagonalsstmain_safety_code.tex}
+
+
+% --- Alpha スイープ 集計 - Method: diagonal_sst_main, Pattern: safety+medical ---
+\input{tables/tab_sweep_diagonalsstmain_safety_medical.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: diagonal_sst_main, Pattern: safety+medical ---
+\input{tables/tab_sweep_seeds_diagonalsstmain_safety_medical.tex}
+
+
+% --- Alpha スイープ 集計 - Method: dare, Pattern: safety+math+code+medical ---
+\input{tables/tab_sweep_dare_safety_math_code_medical.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: dare, Pattern: safety+math+code+medical ---
+\input{tables/tab_sweep_seeds_dare_safety_math_code_medical.tex}
+
+
+% --- Alpha スイープ 集計 - Method: dare, Pattern: safety+math ---
+\input{tables/tab_sweep_dare_safety_math.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: dare, Pattern: safety+math ---
+\input{tables/tab_sweep_seeds_dare_safety_math.tex}
+
+
+% --- Alpha スイープ 集計 - Method: dare, Pattern: safety+code ---
+\input{tables/tab_sweep_dare_safety_code.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: dare, Pattern: safety+code ---
+\input{tables/tab_sweep_seeds_dare_safety_code.tex}
+
+
+% --- Alpha スイープ 集計 - Method: dare, Pattern: safety+medical ---
+\input{tables/tab_sweep_dare_safety_medical.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: dare, Pattern: safety+medical ---
+\input{tables/tab_sweep_seeds_dare_safety_medical.tex}
+
+
+% --- Alpha スイープ 集計 - Method: della, Pattern: safety+math+code+medical ---
+\input{tables/tab_sweep_della_safety_math_code_medical.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: della, Pattern: safety+math+code+medical ---
+\input{tables/tab_sweep_seeds_della_safety_math_code_medical.tex}
+
+
+% --- Alpha スイープ 集計 - Method: della, Pattern: safety+math ---
+\input{tables/tab_sweep_della_safety_math.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: della, Pattern: safety+math ---
+\input{tables/tab_sweep_seeds_della_safety_math.tex}
+
+
+% --- Alpha スイープ 集計 - Method: della, Pattern: safety+code ---
+\input{tables/tab_sweep_della_safety_code.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: della, Pattern: safety+code ---
+\input{tables/tab_sweep_seeds_della_safety_code.tex}
+
+
+% --- Alpha スイープ 集計 - Method: della, Pattern: safety+medical ---
+\input{tables/tab_sweep_della_safety_medical.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: della, Pattern: safety+medical ---
+\input{tables/tab_sweep_seeds_della_safety_medical.tex}
+
+
+% --- Alpha スイープ 集計 - Method: data_free_sst_main, Pattern: safety+math+code+medical ---
+\input{tables/tab_sweep_datafreesstmain_safety_math_code_medical.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: data_free_sst_main, Pattern: safety+math+code+medical ---
+\input{tables/tab_sweep_seeds_datafreesstmain_safety_math_code_medical.tex}
+
+
+% --- Alpha スイープ 集計 - Method: data_free_sst_main, Pattern: safety+math ---
+\input{tables/tab_sweep_datafreesstmain_safety_math.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: data_free_sst_main, Pattern: safety+math ---
+\input{tables/tab_sweep_seeds_datafreesstmain_safety_math.tex}
+
+
+% --- Alpha スイープ 集計 - Method: data_free_sst_main, Pattern: safety+code ---
+\input{tables/tab_sweep_datafreesstmain_safety_code.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: data_free_sst_main, Pattern: safety+code ---
+\input{tables/tab_sweep_seeds_datafreesstmain_safety_code.tex}
+
+
+% --- Alpha スイープ 集計 - Method: data_free_sst_main, Pattern: safety+medical ---
+\input{tables/tab_sweep_datafreesstmain_safety_medical.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: data_free_sst_main, Pattern: safety+medical ---
+\input{tables/tab_sweep_seeds_datafreesstmain_safety_medical.tex}
+
+
+% --- Alpha スイープ 集計 - Method: ties, Pattern: safety+math+code+medical ---
+\input{tables/tab_sweep_ties_safety_math_code_medical.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: ties, Pattern: safety+math+code+medical ---
+\input{tables/tab_sweep_seeds_ties_safety_math_code_medical.tex}
+
+
+% --- Alpha スイープ 集計 - Method: ties, Pattern: safety+math ---
+\input{tables/tab_sweep_ties_safety_math.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: ties, Pattern: safety+math ---
+\input{tables/tab_sweep_seeds_ties_safety_math.tex}
+
+
+% --- Alpha スイープ 集計 - Method: ties, Pattern: safety+code ---
+\input{tables/tab_sweep_ties_safety_code.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: ties, Pattern: safety+code ---
+\input{tables/tab_sweep_seeds_ties_safety_code.tex}
+
+
+% --- Alpha スイープ 集計 - Method: ties, Pattern: safety+medical ---
+\input{tables/tab_sweep_ties_safety_medical.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: ties, Pattern: safety+medical ---
+\input{tables/tab_sweep_seeds_ties_safety_medical.tex}
+
+
+% --- Alpha スイープ 集計 - Method: task_arithmetic, Pattern: safety+math+code+medical ---
+\input{tables/tab_sweep_taskarithmetic_safety_math_code_medical.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: task_arithmetic, Pattern: safety+math+code+medical ---
+\input{tables/tab_sweep_seeds_taskarithmetic_safety_math_code_medical.tex}
+
+
+% --- Alpha スイープ 集計 - Method: task_arithmetic, Pattern: safety+math ---
+\input{tables/tab_sweep_taskarithmetic_safety_math.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: task_arithmetic, Pattern: safety+math ---
+\input{tables/tab_sweep_seeds_taskarithmetic_safety_math.tex}
+
+
+% --- Alpha スイープ 集計 - Method: task_arithmetic, Pattern: safety+code ---
+\input{tables/tab_sweep_taskarithmetic_safety_code.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: task_arithmetic, Pattern: safety+code ---
+\input{tables/tab_sweep_seeds_taskarithmetic_safety_code.tex}
+
+
+% --- Alpha スイープ 集計 - Method: task_arithmetic, Pattern: safety+medical ---
+\input{tables/tab_sweep_taskarithmetic_safety_medical.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: task_arithmetic, Pattern: safety+medical ---
+\input{tables/tab_sweep_seeds_taskarithmetic_safety_medical.tex}
+
+
+% --- Alpha スイープ 集計 - Method: safemerge, Pattern: safety+math ---
+\input{tables/tab_sweep_safemerge_safety_math.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: safemerge, Pattern: safety+math ---
+\input{tables/tab_sweep_seeds_safemerge_safety_math.tex}
+
+
+% --- Alpha スイープ 集計 - Method: safemerge, Pattern: safety+code ---
+\input{tables/tab_sweep_safemerge_safety_code.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: safemerge, Pattern: safety+code ---
+\input{tables/tab_sweep_seeds_safemerge_safety_code.tex}
+
+
+% --- Alpha スイープ 集計 - Method: safemerge, Pattern: safety+medical ---
+\input{tables/tab_sweep_safemerge_safety_medical.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: safemerge, Pattern: safety+medical ---
+\input{tables/tab_sweep_seeds_safemerge_safety_medical.tex}
+
+
+% --- Alpha スイープ 集計 - Method: led_merging, Pattern: safety+math ---
+\input{tables/tab_sweep_ledmerging_safety_math.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: led_merging, Pattern: safety+math ---
+\input{tables/tab_sweep_seeds_ledmerging_safety_math.tex}
+
+
+% --- Alpha スイープ 集計 - Method: led_merging, Pattern: safety+code ---
+\input{tables/tab_sweep_ledmerging_safety_code.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: led_merging, Pattern: safety+code ---
+\input{tables/tab_sweep_seeds_ledmerging_safety_code.tex}
+
+
+% --- Alpha スイープ 集計 - Method: mergealign, Pattern: safety+math ---
+\input{tables/tab_sweep_mergealign_safety_math.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: mergealign, Pattern: safety+math ---
+\input{tables/tab_sweep_seeds_mergealign_safety_math.tex}
+
+
+% --- Alpha スイープ 集計 - Method: mergealign, Pattern: safety+code ---
+\input{tables/tab_sweep_mergealign_safety_code.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: mergealign, Pattern: safety+code ---
+\input{tables/tab_sweep_seeds_mergealign_safety_code.tex}
+
+
+% --- Alpha スイープ 集計 - Method: mergealign, Pattern: safety+medical ---
+\input{tables/tab_sweep_mergealign_safety_medical.tex}
+
+
+% --- Alpha スイープ シード別詳細 - Method: mergealign, Pattern: safety+medical ---
+\input{tables/tab_sweep_seeds_mergealign_safety_medical.tex}
+
+
+\end{document}

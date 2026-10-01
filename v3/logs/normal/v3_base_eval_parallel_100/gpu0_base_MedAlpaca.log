@@ -1,0 +1,14 @@
+
+================================================================================
+MODEL: MedAlpaca
+PATH:  medalpaca/medalpaca-7b
+GPU:   0
+PREFIX:sst_merge_v3_main_base_MedAlpaca
+All expected outputs exist. Skipping whole model.
+
+================================================================================
+MODEL: MedAlpaca
+PATH:  medalpaca/medalpaca-7b
+GPU:   0
+PREFIX:sst_merge_v3_main_base_MedAlpaca
+All expected outputs exist. Skipping whole model.

@@ -1,0 +1,70 @@
+\section*{NeurIPS Paper Checklist}
+
+\begin{enumerate}
+
+\item {\bf Claims}
+  \item[] Question: Do the main claims made in the abstract and introduction accurately reflect the paper's contributions and scope?
+  \item[] Answer: \answerYes{}
+  \item[] Justification: The main claims are supported by empirical evaluations across multiple safety and utility benchmarks, with scope and limitations explicitly stated in Section 4.
+
+\item {\bf Limitations}
+  \item[] Question: Have the authors discussed the limitations of the work?
+  \item[] Answer: \answerYes{}
+  \item[] Justification: Limitations regarding rule-based validity criteria, automatic evaluators, and model scale are explicitly discussed in Section 4.
+
+\item {\bf Theory Assumptions and Proofs}
+  \item[] Question: For all theoretical results, have the authors stated the full set of assumptions and included complete proofs?
+  \item[] Answer: \answerNA{}
+  \item[] Justification: This paper does not present theoretical theorems or formal proofs; its contributions are empirical and methodological.
+
+\item {\bf Experimental Result Reproducibility}
+  \item[] Question: Does the paper describe the computing infrastructure, data distributions, hyperparameters, and random seeds used?
+  \item[] Answer: \answerYes{}
+  \item[] Justification: All hyperparameter settings, random seeds (42, 43, 44), evaluation samples, GPU environment, and code scripts are detailed in Section 2 and Appendix C.
+
+\item {\bf Open access to data and code}
+  \item[] Question: Will the code and data be made publicly available?
+  \item[] Answer: \answerYes{}
+  \item[] Justification: Evaluation scripts and aggregation pipelines will be released upon publication.
+
+\item {\bf Experimental Setting/Details}
+  \item[] Question: Does the paper specify all necessary details of the experimental settings?
+  \item[] Answer: \answerYes{}
+  \item[] Justification: Section 2 and Appendix C specify exact checkpoint names, dataset sizes, prompt formats, and evaluation protocols.
+
+\item {\bf Experiment Statistical Significance}
+  \item[] Question: Are mean and variance reported for experimental results?
+  \item[] Answer: \answerYes{}
+  \item[] Justification: Results across three random seeds are reported as mean $\pm$ std across all main tables.
+
+\item {\bf Experiments Compute Resources}
+  \item[] Question: Is the total amount of compute resources (e.g., GPU hours) disclosed?
+  \item[] Answer: \answerYes{}
+  \item[] Justification: Peak GPU memory usage and empirical merging runtime on NVIDIA H100 GPUs are reported in Appendix C.
+
+\item {\bf Code/Data Safeguards}
+  \item[] Question: Does the paper release code/data with safety risks?
+  \item[] Answer: \answerNA{}
+  \item[] Justification: This work does not release new generative model checkpoints, harmful-completion datasets, or capabilities that increase misuse risks. Evaluation relies on established public benchmarks.
+
+\item {\bf Asset Licenses}
+  \item[] Question: Are the creators and licenses of all assets credited and respected?
+  \item[] Answer: \answerYes{}
+  \item[] Justification: Detailed asset identifiers, versions, intended uses, and license terms (Llama 2, WizardMath, WizardCoder, MedAlpaca, HarmBench, etc.) are documented in Appendix C.
+
+\item {\bf Crowdsourcing and Research with Human Subjects}
+  \item[] Question: Did the paper conduct research with human subjects or crowdsourcing?
+  \item[] Answer: \answerNA{}
+  \item[] Justification: No human subjects or crowdsourcing studies were conducted in this work.
+
+\item {\bf Institutional Review Board (IRB) Approvals}
+  \item[] Question: Were appropriate IRB approvals obtained?
+  \item[] Answer: \answerNA{}
+  \item[] Justification: No human subjects research was conducted.
+
+\item {\bf LLM Usage Declaration}
+  \item[] Question: Were LLMs used as a core component of the methodology?
+  \item[] Answer: \answerYes{}
+  \item[] Justification: \texttt{gpt-4-1106-preview} was used solely as the standard judge model in AlpacaEval 2 following established protocols, as described in Section 2 and Appendix C. LLMs were not used to write or generate the core methodology.
+
+\end{enumerate}

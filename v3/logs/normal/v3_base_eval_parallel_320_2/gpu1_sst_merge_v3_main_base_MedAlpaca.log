@@ -1,0 +1,38 @@
+
+================================================================================
+MODEL:  MedAlpaca
+PATH:   medalpaca/medalpaca-7b
+GPU:    1
+PREFIX: sst_merge_v3_main_base_MedAlpaca
+LIMIT:  320
+
+[skip complete] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_harmbench_safety.json
+
+[resume incomplete] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_jailbreakbench_safety.json
+
+$ /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_safety.py --model_path medalpaca/medalpaca-7b --config configs/config_main.yaml --task jailbreakbench --output_file results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_jailbreakbench_safety.json --limit 320
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_safety.py", line 6, in <module>
+    import torch
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 2804, in <module>
+    from torch import _meta_registrations
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_meta_registrations.py", line 12, in <module>
+    from torch._decomp import (
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_decomp/__init__.py", line 288, in <module>
+    import torch._refs
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_refs/__init__.py", line 5599, in <module>
+    @register_decomposition(aten.meshgrid)  # type: ignore[misc]
+                            ^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_ops.py", line 1390, in __getattr__
+    opoverloadpacket = OpOverloadPacket(
+                       ^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_ops.py", line 1173, in __init__
+    self._has_torchbind_op_overload = any(
+                                      ^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_ops.py", line 1174, in <genexpr>
+    _has_script_object_arg(schema) for schema in self._schemas.values()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_ops.py", line 1151, in _has_script_object_arg
+    return any(isinstance(arg.type, torch.ClassType) for arg in schema.arguments)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

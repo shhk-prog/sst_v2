@@ -1,0 +1,16 @@
+==================================================
+Slurm Per-Model Prelim Array Job ID: 103287_0
+Target Model: models/merged/sst_merge_v3_main_dare_safety+code_alpha0.0_seed42
+Limit: 320
+Configured CPU Threads: 2
+Assigned CUDA_VISIBLE_DEVICES: 0
+Working Dir: /mnt/nas/home/hiromi/src/sst_v2/v3
+==================================================
+Executing command:
+venv_v3/bin/python scripts/eval/eval_preliminary.py     --model_path "models/merged/sst_merge_v3_main_dare_safety+code_alpha0.0_seed42"     --output_dir "results/paper_tables_4_and_5"     --limit 320
+--------------------------------------------------
+Loading PKU-Alignment/BeaverTails dataset...
+Sampled 320 harmful prompts and 320 benign prompts.
+Loading model models/merged/sst_merge_v3_main_dare_safety+code_alpha0.0_seed42 via vLLM...
+INFO 08-11 01:39:55 [api_utils.py:273] non-default args: {'trust_remote_code': True, 'disable_log_stats': True, 'model': 'models/merged/sst_merge_v3_main_dare_safety+code_alpha0.0_seed42'}
+slurmstepd-iag-03: error: *** JOB 103288 ON iag-03 CANCELLED AT 2026-08-11T01:40:40 ***

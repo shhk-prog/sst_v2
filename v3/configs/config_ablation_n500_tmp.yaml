@@ -1,0 +1,103 @@
+data:
+  eval:
+    safety_tasks:
+    - harmbench
+    - jailbreakbench
+    - strongreject
+    - wildjailbreak
+    utility_task_groups:
+      code:
+      - humaneval
+      - mbpp
+      general:
+      - mmlu
+      - ifeval
+      math:
+      - gsm8k
+      - minerva_math500
+      medical:
+      - pubmedqa
+      - medqa_4options
+  fim:
+    benign_datasets:
+      code: data/fim/fim_benign_code.json
+      math: data/fim/fim_benign_math.json
+      medical: data/fim/fim_benign_medical.json
+    default_sample_size: 500
+    epsilon: 1e-6
+    harmful_dataset: data/fim/fim_harmful.json
+    sample_sizes:
+    - 500
+  safety_sft_csv: data/response_dataframe.csv
+experiment:
+  name: sst_merge_v3_ablation
+  seed: 42
+  seeds:
+  - 42
+  - 43
+  - 44
+led_merging:
+  require_precomputed_scores: true
+  score_root: baselines/LED-Merging/locate/score
+  supported_utility_domains:
+  - math
+  - code
+merge:
+  ablation:
+    enabled: true
+    fim_sample_sizes:
+    - 500
+    k_values:
+    - 0.2
+    layer_prior_types:
+    - uniform
+    - sin
+    - linear
+    - exp
+    layer_wise:
+    - true
+    - false
+    masks:
+    - hard mask
+    sst_ratios:
+    - Fh/Fb
+    - Fh only
+    - 1/Fb only
+    - magnitude
+    - random
+    variants:
+    - additive
+    - interpolation
+  alpha_sweep:
+  - 0.0
+  - 0.2
+  - 0.4
+  - 0.6
+  - 0.8
+  - 1.0
+  main:
+    k_values: []
+    layer_prior: uniform
+    layer_wise: false
+    mask: hard mask
+    sample_size: 500
+    sst_ratio: Fh/Fb
+    variant: interpolation
+methods:
+  baselines: []
+  proposed:
+  - diagonal_sst
+  - data_free_sst
+models:
+  base_model: meta-llama/Llama-2-7b-hf
+  domain_models:
+    code: vanillaOVO/WizardCoder-Python-7B-V1.0
+    math: WizardLMTeam/WizardMath-7B-V1.0
+    medical: medalpaca/medalpaca-7b
+  safety_full_model_dir: models/temp_safety_full
+  safety_model_dir: models/safety_lora
+patterns:
+- safety+math
+- safety+code
+- safety+medical
+- safety+math+code+medical

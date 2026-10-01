@@ -1,0 +1,50 @@
+==================================================
+Slurm Per-Model Array Job ID: 95314_262
+Batch Size: 32
+Configured CPU Threads: 16
+Assigned CUDA_VISIBLE_DEVICES: 0
+Working Dir: /mnt/nas/home/hiromi/src/sst_v2/v3
+==================================================
+Executing command:
+venv_v3/bin/python scripts/merge_eval_parallel.py     --config configs/config_main.yaml     --seeds 42 43 44     --limit 320     --batch_size 32     --gpus 0     --model_index 262     --resume
+--------------------------------------------------
+[SINGLE MODEL MODE] Evaluating Index 262: seed=43 sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43
+
+==============================
+Models to be evaluated
+==============================
+  1. seed=43  sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43
+     models/merged/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43
+==============================
+Total models: 1
+==============================
+
+Using result directory: results/debug_limit320/merged
+Seeds: [42, 43, 44]
+GPUs: ['0']
+Patterns: all
+Reverse: False
+Resume: True
+Force: False
+Found successful merged models: 1
+[GPU 0] assigned jobs: 1
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+medical/dare/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+medical/dare/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+medical/dare/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+medical/dare/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+medical/dare/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+medical/dare/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+medical/dare/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+medical/dare/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+medical/dare/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+medical/dare/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43_utility_medical_medqa_4options.json
+
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_utility.py --model_path models/merged/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43 --config configs/config_main.yaml --tasks mmlu --output_file results/debug_limit320/merged/seed43/safety+medical/dare/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43_utility_general_mmlu.json --limit 320 --batch_size 32
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+medical/dare/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43_utility_general_ifeval.json
+
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43 --config configs/config_main.yaml --output_file results/debug_limit320/merged/seed43/safety+medical/dare/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43_alpaca_eval2.json --limit 320 --batch_size 32
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+medical/dare/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed43/safety+medical/dare/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43_inst_medalpaca.json
+[DONE] sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43 seed=43 on GPU 0 log=logs/v3_merged_eval_parallel_320_seed43/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43_seed43.log
+
+Summary saved to results/debug_limit320/merged/merge_eval_parallel_seeds42-43-44_summary.json

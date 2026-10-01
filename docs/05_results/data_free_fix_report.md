@@ -122,7 +122,7 @@ for k in k_values:
 ### 1. 簡単な検証
 
 ```bash
-cd /mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5
+cd /mnt/nas/home/hiromi/src/sst_v2/sst_merge_v5
 
 # スクリプトが構文エラーなく実行できるか確認
 python3 -c "from sst_merge_data_free import SSTMergeDataFree; print('✓ Import OK')"

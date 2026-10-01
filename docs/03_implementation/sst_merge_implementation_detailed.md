@@ -925,9 +925,9 @@ mindmap
 ## 参考資料
 
 - **実装ファイル:**
-  - [`core/sst_merge.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/core/sst_merge.py) - Data-Dependent Additive
-  - [`core/sst_merge_interpolation.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/core/sst_merge_interpolation.py) - Data-Dependent Interpolation
-  - [`core/sst_merge_data_free.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/core/sst_merge_data_free.py) - Data-Free版
+  - [`core/sst_merge.py`](file:///mnt/nas/home/hiromi/src/sst_v2/v1/core/sst_merge.py) - Data-Dependent Additive
+  - [`core/sst_merge_interpolation.py`](file:///mnt/nas/home/hiromi/src/sst_v2/v1/core/sst_merge_interpolation.py) - Data-Dependent Interpolation
+  - [`core/sst_merge_data_free.py`](file:///mnt/nas/home/hiromi/src/sst_v2/v1/core/sst_merge_data_free.py) - Data-Free版
 
 - **理論資料:**
   - Fisher Information Matrix理論

@@ -1,0 +1,9 @@
+- [x] `v3/docs/flmsec/tables/` ディレクトリの作成
+- [x] `generate_flmsec_hyo.py` の修正 (個別.texファイルへの分割出力)
+- [x] `generate_case_study.py` の修正 (出力先・ファイル名の変更)
+- [x] `generate_gpu_table.py` の修正 (Markdown置換処理を削除し、.texファイルとして出力)
+- [x] 崩壊分析表 (`tab_evaluation_yobi_main_GSM8K.tex`) および Task Arithmetic パレート点 (`tab_task_arithmetic_single_point.tex`) の出力スクリプト修正・実装
+- [x] Pythonスクリプトの実行 (`source venv_v3/bin/activate`)
+- [x] `flmsec.tex` 内のハードコードされた表を `\input{tables/XXX.tex}` に置換
+- [ ] 修正内容の確認 (Walkthrough) ドキュメント作成
+- [ ] `docs/flmsec_tables_automation` ディレクトリへの各種レポート保存

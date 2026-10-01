@@ -1,0 +1,17 @@
+\begin{table}[H]
+\centering
+\caption{Alpha スイープ シード別詳細 - Method: safemerge, Pattern: safety+code}
+\label{tab:sweep_seeds_safemerge_safety_code}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{llllrrrrrrr}
+\toprule
+\textbf{Pattern} & \textbf{Method} & \textbf{Alpha} & \textbf{Seed} & \textbf{Safety Ave [Harmful Content] (ASR$\downarrow$ \%)} & \textbf{Math Ave (\%)} & \textbf{Code Ave (\%)} & \textbf{Medical Ave (\%)} & \textbf{General/Inst Ave (\%)} & \textbf{EvolCode (PPL$\downarrow$)} & \textbf{MedAlpaca (PPL$\downarrow$)} \\
+\midrule
+safety+code & safemerge & N/A & 42.0 & 0.31 & 2.50 & 7.03 & 75.62 & 27.76 & 1.75 & 2.87 \\
+safety+code & safemerge & N/A & 43.0 & 0.00 & 2.03 & 10.78 & 70.31 & 20.03 & 2.06 & 5.72 \\
+safety+code & safemerge & N/A & 44.0 & 0.00 & 0.00 & 0.16 & 75.31 & 11.72 & 3.23 & 12.51 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

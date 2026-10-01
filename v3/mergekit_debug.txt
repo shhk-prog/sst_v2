@@ -1,0 +1,14 @@
+KeyError: ModelReference(model=ModelPath(path='/mnt/nas/home/hiromi/src/sst_v2/v3/models/dummy-llama-2-7b', revision=None), lora=None, override_architecture=None)
+base_model: /mnt/nas/home/hiromi/src/sst_v2/v3/models/dummy-llama-2-7b
+base_model type: <class 'mergekit.common.ModelReference'>
+base_model dict: {'model': ModelPath(path='/mnt/nas/home/hiromi/src/sst_v2/v3/models/dummy-llama-2-7b', revision=None), 'lora': None, 'override_architecture': None}
+base_model path: /mnt/nas/home/hiromi/src/sst_v2/v3/models/dummy-llama-2-7b
+tensors keys:
+  key: /mnt/nas/home/hiromi/src/sst_v2/v3/models/dummy-wizardmath-7b
+  key type: <class 'mergekit.common.ModelReference'>
+  key dict: {'model': ModelPath(path='/mnt/nas/home/hiromi/src/sst_v2/v3/models/dummy-wizardmath-7b', revision=None), 'lora': None, 'override_architecture': None}
+  key path: /mnt/nas/home/hiromi/src/sst_v2/v3/models/dummy-wizardmath-7b
+  key: /mnt/nas/home/hiromi/src/sst_v2/v3/models/temp_safety_full
+  key type: <class 'mergekit.common.ModelReference'>
+  key dict: {'model': ModelPath(path='/mnt/nas/home/hiromi/src/sst_v2/v3/models/temp_safety_full', revision=None), 'lora': None, 'override_architecture': None}
+  key path: /mnt/nas/home/hiromi/src/sst_v2/v3/models/temp_safety_full

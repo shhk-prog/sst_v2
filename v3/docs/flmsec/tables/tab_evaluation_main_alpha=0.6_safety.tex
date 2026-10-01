@@ -1,0 +1,65 @@
+\begin{table}[H]
+\centering
+\caption{メイン実験（vLLM）における主要merge手法の詳細評価指標（$\alpha=0.6$, $k=0.20$）}
+\label{tab:evaluation_main_alpha=0.6_safety}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{llrrrr}
+\toprule
+\textbf{Pattern} & \textbf{Method} & \textbf{Safety Ave [Original ASR] (ASR$\downarrow$ \%)} & \textbf{Safety Ave [Conditional ASR] (ASR$\downarrow$ \%)} & \textbf{Valid Response Rate (\%)} & \textbf{Valid Safety Rate (\%)} \\
+\midrule
+Base (MedAlpaca) & Base (MedAlpaca) & 5.17 $\pm$ 0.00 & 62.85 $\pm$ 0.00 & 84.53 $\pm$ 0.00 & 30.81 $\pm$ 0.00 \\
+Base (SafetyFT) & Base (SafetyFT) & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 \\
+Base (WizardCoder) & Base (WizardCoder) & 24.69 $\pm$ 0.00 & 73.99 $\pm$ 0.00 & 91.08 $\pm$ 0.00 & 23.66 $\pm$ 0.00 \\
+Base (WizardMath) & Base (WizardMath) & 31.01 $\pm$ 0.00 & 67.62 $\pm$ 0.00 & 93.61 $\pm$ 0.00 & 30.15 $\pm$ 0.00 \\
+safety+code & dare & 0.00 $\pm$ 0.00 & 68.30 $\pm$ 2.33 & 97.94 $\pm$ 2.76 & 31.36 $\pm$ 2.49 \\
+safety+code & dare & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 \\
+safety+code & data\_free\_sst & 0.03 $\pm$ 0.05 & 58.93 $\pm$ 1.81 & 77.09 $\pm$ 2.22 & 33.00 $\pm$ 1.35 \\
+safety+code & data\_free\_sst & 0.03 $\pm$ 0.05 & 55.17 $\pm$ 0.71 & 84.08 $\pm$ 2.84 & 37.66 $\pm$ 1.07 \\
+safety+code & della & 0.00 $\pm$ 0.00 & 68.53 $\pm$ 1.44 & 92.51 $\pm$ 12.56 & 29.14 $\pm$ 3.79 \\
+safety+code & della & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 \\
+safety+code & led\_merging & 2.88 $\pm$ 0.14 & 71.01 $\pm$ 0.04 & 78.14 $\pm$ 0.05 & 23.09 $\pm$ 0.05 \\
+safety+code & matena\_fisher & 3.37 $\pm$ 1.40 & 65.04 $\pm$ 1.92 & 59.73 $\pm$ 3.80 & 22.35 $\pm$ 1.55 \\
+safety+code & mergealign & 0.00 $\pm$ 0.00 & --- & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\
+safety+code & safemerge & 0.10 $\pm$ 0.18 & 0.34 $\pm$ 0.59 & 99.92 $\pm$ 0.14 & 99.58 $\pm$ 0.72 \\
+safety+code & sst & 0.97 $\pm$ 0.42 & 64.04 $\pm$ 1.48 & 87.55 $\pm$ 4.16 & 31.67 $\pm$ 1.55 \\
+safety+code & sst & 0.00 $\pm$ 0.00 & 45.76 $\pm$ 9.38 & 85.12 $\pm$ 12.62 & 45.32 $\pm$ 9.84 \\
+safety+code & task\_arithmetic & 29.17 $\pm$ 3.07 & 60.91 $\pm$ 2.15 & 95.34 $\pm$ 0.96 & 36.94 $\pm$ 2.58 \\
+safety+code & task\_arithmetic & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 \\
+safety+code & ties & 0.11 $\pm$ 0.04 & 47.32 $\pm$ 6.93 & 61.37 $\pm$ 26.99 & 32.74 $\pm$ 18.17 \\
+safety+code & ties & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 \\
+safety+math & dare & 6.14 $\pm$ 5.14 & 10.68 $\pm$ 8.94 & 99.97 $\pm$ 0.05 & 89.30 $\pm$ 8.96 \\
+safety+math & dare & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 \\
+safety+math & data\_free\_sst & 14.73 $\pm$ 3.41 & 27.02 $\pm$ 5.24 & 99.79 $\pm$ 0.24 & 72.81 $\pm$ 5.34 \\
+safety+math & data\_free\_sst & 11.49 $\pm$ 9.25 & 17.78 $\pm$ 15.08 & 100.00 $\pm$ 0.00 & 82.22 $\pm$ 15.08 \\
+safety+math & della & 6.66 $\pm$ 5.52 & 12.19 $\pm$ 10.00 & 100.00 $\pm$ 0.00 & 87.81 $\pm$ 10.00 \\
+safety+math & della & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 \\
+safety+math & led\_merging & 2.80 $\pm$ 0.00 & 71.03 $\pm$ 0.00 & 78.12 $\pm$ 0.00 & 23.11 $\pm$ 0.00 \\
+safety+math & matena\_fisher & 4.29 $\pm$ 0.43 & 7.38 $\pm$ 0.53 & 99.30 $\pm$ 0.41 & 91.97 $\pm$ 0.47 \\
+safety+math & mergealign & 0.00 $\pm$ 0.00 & --- & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\
+safety+math & safemerge & 4.61 $\pm$ 7.99 & 21.65 $\pm$ 37.49 & 95.57 $\pm$ 7.68 & 76.88 $\pm$ 40.04 \\
+safety+math & sst & 17.09 $\pm$ 5.01 & 30.61 $\pm$ 9.02 & 99.51 $\pm$ 0.40 & 69.02 $\pm$ 8.84 \\
+safety+math & sst & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 \\
+safety+math & task\_arithmetic & 2.48 $\pm$ 2.89 & 3.88 $\pm$ 4.80 & 99.92 $\pm$ 0.14 & 96.04 $\pm$ 4.75 \\
+safety+math & task\_arithmetic & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 \\
+safety+math & ties & 9.03 $\pm$ 5.55 & 13.84 $\pm$ 8.45 & 99.95 $\pm$ 0.09 & 86.12 $\pm$ 8.45 \\
+safety+math & ties & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 \\
+safety+medical & dare & 0.03 $\pm$ 0.05 & 68.04 $\pm$ 2.00 & 77.76 $\pm$ 13.44 & 26.26 $\pm$ 4.26 \\
+safety+medical & dare & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 \\
+safety+medical & data\_free\_sst & 0.05 $\pm$ 0.05 & 64.90 $\pm$ 2.85 & 42.66 $\pm$ 37.11 & 17.08 $\pm$ 16.09 \\
+safety+medical & data\_free\_sst & 0.08 $\pm$ 0.08 & 65.68 $\pm$ 2.12 & 68.12 $\pm$ 40.67 & 22.31 $\pm$ 14.58 \\
+safety+medical & della & 0.03 $\pm$ 0.05 & 62.92 $\pm$ 11.69 & 33.68 $\pm$ 40.71 & 14.59 $\pm$ 16.47 \\
+safety+medical & della & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 \\
+safety+medical & matena\_fisher & 0.16 $\pm$ 0.00 & 70.98 $\pm$ 0.01 & 99.28 $\pm$ 1.24 & 28.57 $\pm$ 0.77 \\
+safety+medical & mergealign & 0.00 $\pm$ 0.00 & --- & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\
+safety+medical & safemerge & 0.03 $\pm$ 0.05 & 0.25 $\pm$ 0.43 & 100.00 $\pm$ 0.00 & 99.75 $\pm$ 0.43 \\
+safety+medical & sst & 0.05 $\pm$ 0.05 & 67.04 $\pm$ 1.99 & 65.42 $\pm$ 56.69 & 21.49 $\pm$ 18.63 \\
+safety+medical & sst & 0.05 $\pm$ 0.05 & 65.35 $\pm$ 1.73 & 72.12 $\pm$ 6.68 & 24.55 $\pm$ 6.06 \\
+safety+medical & task\_arithmetic & 0.16 $\pm$ 0.00 & 63.87 $\pm$ 4.81 & 99.82 $\pm$ 0.18 & 35.95 $\pm$ 4.91 \\
+safety+medical & task\_arithmetic & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 \\
+safety+medical & ties & 0.05 $\pm$ 0.05 & 64.34 $\pm$ 6.74 & 80.93 $\pm$ 19.76 & 27.98 $\pm$ 10.88 \\
+safety+medical & ties & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

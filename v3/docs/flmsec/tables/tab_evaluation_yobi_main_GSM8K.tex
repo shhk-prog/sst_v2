@@ -1,0 +1,18 @@
+\begin{table}[H]
+\centering
+\caption{崩壊分析: safety+math条件におけるSST-Merge(GSM8K対象)の詳細指標と偽の安全性}
+\label{tab:evaluation_yobi_main_GSM8K}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{llrrrr}
+\toprule
+\textbf{モデル/merge手法} & \textbf{設定 ($\alpha$)} & \textbf{Safety Ave [Conditional ASR] ($\downarrow$\%)} & \textbf{Safety Ave [Original ASR] ($\downarrow$\%)} & \textbf{GSM8K(\%)$\uparrow$} & \textbf{崩壊状態の解釈} \\
+\midrule
+SST(提案) & 0.2 & 14.91 $\pm$ 25.82\% & 14.91 $\pm$ 25.82\% & 7.81 $\pm$ 0.00\% & 低強度ではアライメント未発現 \\
+SST(提案) & 0.6 & 7.33 $\pm$ 12.70\% & 7.33 $\pm$ 12.70\% & 7.50 $\pm$ 0.00\% & 有用性を高水準で保持 \\
+SST(提案) & 0.8 & 1.33 $\pm$ 2.31\% & 1.33 $\pm$ 2.31\% & 9.06 $\pm$ 0.00\% & \textbf{崩壊なしで ASR 激減} \\
+SST(提案) & 1.0 & 0.00 $\pm$ 0.00\% & 0.00 $\pm$ 0.00\% & 13.75 $\pm$ 0.00\% & 高い安全性（有用性は低下） \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

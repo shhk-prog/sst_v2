@@ -1,0 +1,23 @@
+# タスクリスト: results/summary_tables の 3seed 標準偏差 (std) 算出・表示対応
+
+- [x] 1. 現状の集計スクリプトおよび生成対象ファイルの調査
+  - [x] `v3/results/summary_tables` に出力されるスクリプトの特定 (`generate_summary_tables.py`, `generate_paper_summary_tables.py`, `generate_ablation_additive_tables.py`, `generate_valid_asr_tables.py` 等)
+  - [x] 既存の計算・フォーマット出力処理の確認
+- [x] 2. 集計スクリプトの修正計画策定
+  - [x] `seed` (42, 43, 44) ごとの値から Mean (平均) と Std (標準偏差) を計算する処理の実装方針作成
+  - [x] テーブル（Markdown, CSV）における `Mean ± Std` 表記の統一フォーマット定義
+- [x] 3. 集計スクリプトの修正・更新
+  - [x] `v3/scripts/analysis/generate_summary_tables.py` の修正
+  - [x] `v3/scripts/analysis/generate_paper_summary_tables.py` の修正
+  - [x] `v3/scripts/analysis/generate_ablation_additive_tables.py` の修正
+  - [x] `v3/scripts/analysis/generate_valid_asr_tables.py` の修正
+- [x] 4. スクリプトの実行および `v3/results/summary_tables/` の再生成
+  - [x] 各修正スクリプトの修正完了
+  - [x] `base_vs_main_summary.md` 等の連動スクリプトのパース・反映対応の更新
+- [x] 5. 論文 Table 4 および Table 5 専用自動生成コードの実装
+  - [x] `v3/scripts/analysis/generate_paper_tables_4_and_5.py` の作成（Table 4 & 5 の動的 3-seed Mean ± Std 集計、CSV/MD保存、論文ドラフト自動更新機能）
+- [x] 6. 予備実験結果の自動生成コードの実装
+  - [x] `v3/scripts/analysis/generate_preliminary_table.py` の作成（TrustLLM, BeaverTails の結果を抽出し、Table 3b として論文へ自動挿入）
+- [x] 7. 成果物の確認および Walkthrough の作成
+  - [x] スクリプト改修内容の完了および表示フォーマットの統一
+  - [x] `docs/summary_tables_3seed_std/walkthrough.md` の更新

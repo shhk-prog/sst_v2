@@ -1,0 +1,51 @@
+\begin{table}[H]
+\centering
+\caption{予備実験 集計 (Mean \pm Std) - Pattern: safety+math+code+medical}
+\label{tab:prelim_safety_math_code_medical}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lllrrr}
+\toprule
+\textbf{Pattern} & \textbf{Method} & \textbf{Alpha} & \textbf{TrustLLM Raw ASR (\%)} & \textbf{Gibberish Ratio (\(\downarrow\), \%)} & \textbf{BeaverTails Utility Score (\(\uparrow\), \%)} \\
+\midrule
+safety+math+code+medical & dare & 0.00 & 100.00 $\pm$ 0.00 & 62.08 $\pm$ 38.13 & 37.92 $\pm$ 37.81 \\
+safety+math+code+medical & dare & 0.20 & 100.00 $\pm$ 0.00 & 51.04 $\pm$ 26.81 & 44.69 $\pm$ 22.37 \\
+safety+math+code+medical & dare & 0.40 & 100.00 $\pm$ 0.00 & 41.98 $\pm$ 32.73 & 56.04 $\pm$ 28.78 \\
+safety+math+code+medical & dare & 0.60 & 100.00 $\pm$ 0.00 & 70.42 $\pm$ 40.72 & 31.46 $\pm$ 41.41 \\
+safety+math+code+medical & dare & 0.80 & 100.00 $\pm$ 0.00 & 44.38 $\pm$ 24.88 & 57.71 $\pm$ 24.61 \\
+safety+math+code+medical & dare & 1.00 & 2.08 $\pm$ 1.72 & 0.21 $\pm$ 0.18 & 1.77 $\pm$ 1.88 \\
+safety+math+code+medical & data\_free\_sst & 0.00 & 100.00 $\pm$ 0.00 & 56.35 $\pm$ 0.18 & 32.40 $\pm$ 0.18 \\
+safety+math+code+medical & data\_free\_sst & 0.20 & 100.00 $\pm$ 0.00 & 98.85 $\pm$ 1.26 & 1.46 $\pm$ 1.26 \\
+safety+math+code+medical & data\_free\_sst & 0.40 & 99.79 $\pm$ 0.36 & 88.02 $\pm$ 12.36 & 15.83 $\pm$ 18.68 \\
+safety+math+code+medical & data\_free\_sst & 0.60 & 95.73 $\pm$ 6.35 & 84.79 $\pm$ 18.14 & 15.62 $\pm$ 15.77 \\
+safety+math+code+medical & data\_free\_sst & 0.80 & 95.73 $\pm$ 6.60 & 76.88 $\pm$ 27.72 & 24.58 $\pm$ 23.47 \\
+safety+math+code+medical & data\_free\_sst & 1.00 & 98.85 $\pm$ 1.00 & 72.81 $\pm$ 20.73 & 26.15 $\pm$ 15.52 \\
+safety+math+code+medical & della & 0.00 & 100.00 $\pm$ 0.00 & 67.40 $\pm$ 28.31 & 35.00 $\pm$ 30.09 \\
+safety+math+code+medical & della & 0.20 & 100.00 $\pm$ 0.00 & 52.92 $\pm$ 29.24 & 43.02 $\pm$ 26.10 \\
+safety+math+code+medical & della & 0.40 & 100.00 $\pm$ 0.00 & 44.06 $\pm$ 35.83 & 57.92 $\pm$ 35.06 \\
+safety+math+code+medical & della & 0.60 & 100.00 $\pm$ 0.00 & 73.65 $\pm$ 24.63 & 28.65 $\pm$ 26.34 \\
+safety+math+code+medical & della & 0.80 & 100.00 $\pm$ 0.00 & 46.35 $\pm$ 35.50 & 56.25 $\pm$ 30.51 \\
+safety+math+code+medical & della & 1.00 & 1.77 $\pm$ 2.30 & 0.10 $\pm$ 0.18 & 1.35 $\pm$ 1.30 \\
+safety+math+code+medical & matena\_fisher & N/A & 100.00 $\pm$ 0.00 & 80.10 $\pm$ 0.18 & 16.56 $\pm$ 1.36 \\
+safety+math+code+medical & sst & 0.00 & 100.00 $\pm$ 0.00 & 56.25 $\pm$ 0.00 & 32.29 $\pm$ 0.18 \\
+safety+math+code+medical & sst & 0.20 & 100.00 $\pm$ 0.00 & 99.90 $\pm$ 0.18 & 0.00 $\pm$ 0.00 \\
+safety+math+code+medical & sst & 0.40 & 100.00 $\pm$ 0.00 & 93.12 $\pm$ 9.21 & 8.44 $\pm$ 9.92 \\
+safety+math+code+medical & sst & 0.60 & 97.29 $\pm$ 2.01 & 95.31 $\pm$ 2.19 & 5.10 $\pm$ 0.48 \\
+safety+math+code+medical & sst & 0.80 & 90.00 $\pm$ 5.95 & 93.85 $\pm$ 5.24 & 5.62 $\pm$ 5.70 \\
+safety+math+code+medical & sst & 1.00 & 45.00 $\pm$ 18.78 & 93.65 $\pm$ 1.72 & 0.52 $\pm$ 0.65 \\
+safety+math+code+medical & task\_arithmetic & 0.00 & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\
+safety+math+code+medical & task\_arithmetic & 0.20 & 100.00 $\pm$ 0.00 & 98.65 $\pm$ 1.83 & 1.15 $\pm$ 0.95 \\
+safety+math+code+medical & task\_arithmetic & 0.40 & 99.17 $\pm$ 0.95 & 94.58 $\pm$ 6.14 & 4.27 $\pm$ 2.80 \\
+safety+math+code+medical & task\_arithmetic & 0.60 & 66.25 $\pm$ 11.12 & 70.73 $\pm$ 14.23 & 4.90 $\pm$ 1.44 \\
+safety+math+code+medical & task\_arithmetic & 0.80 & 12.19 $\pm$ 6.72 & 3.54 $\pm$ 2.35 & 5.62 $\pm$ 3.29 \\
+safety+math+code+medical & task\_arithmetic & 1.00 & 0.83 $\pm$ 0.79 & 0.10 $\pm$ 0.18 & 1.46 $\pm$ 0.79 \\
+safety+math+code+medical & ties & 0.00 & 100.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 \\
+safety+math+code+medical & ties & 0.20 & 100.00 $\pm$ 0.00 & 5.62 $\pm$ 7.44 & 94.90 $\pm$ 7.78 \\
+safety+math+code+medical & ties & 0.40 & 100.00 $\pm$ 0.00 & 36.46 $\pm$ 55.23 & 62.60 $\pm$ 54.56 \\
+safety+math+code+medical & ties & 0.60 & 100.00 $\pm$ 0.00 & 40.94 $\pm$ 49.27 & 60.21 $\pm$ 50.93 \\
+safety+math+code+medical & ties & 0.80 & 100.00 $\pm$ 0.00 & 50.94 $\pm$ 49.06 & 51.35 $\pm$ 48.65 \\
+safety+math+code+medical & ties & 1.00 & 0.73 $\pm$ 1.00 & 0.00 $\pm$ 0.00 & 1.46 $\pm$ 0.95 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

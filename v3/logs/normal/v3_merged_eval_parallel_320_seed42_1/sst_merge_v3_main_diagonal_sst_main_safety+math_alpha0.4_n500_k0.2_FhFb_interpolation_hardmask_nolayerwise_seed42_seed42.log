@@ -1,0 +1,607 @@
+[GPU 2] skip existing: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_harmbench_safety.json
+[GPU 2] skip existing: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_jailbreakbench_safety.json
+[GPU 2] skip existing: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_strongreject_safety.json
+[GPU 2] skip existing: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_wildjailbreak_safety.json
+[GPU 2] skip existing: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_math_gsm8k.json
+[GPU 2] skip existing: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_math_minerva_math500.json
+[GPU 2] skip existing: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_code_humaneval.json
+[GPU 2] skip existing: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_code_mbpp.json
+[GPU 2] skip existing: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_medical_pubmedqa.json
+[GPU 2] skip existing: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_medical_medqa_4options.json
+[GPU 2] skip existing: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_general_mmlu.json
+[GPU 2] skip existing: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_general_ifeval.json
+[GPU 2] skip existing: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_alpaca_eval2.json
+[GPU 2] skip existing: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_inst_evol_code.json
+[GPU 2] skip existing: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_inst_medalpaca.json
+[GPU 2] skip complete: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_harmbench_safety.json
+
+================================================================================
+[GPU 2] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_safety.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --task jailbreakbench --output_file results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_jailbreakbench_safety.json --limit 320
+================================================================================
+Classifying missing responses: 0 / 100
+[Steering Hook Warning] 推論崩壊の可能性があります (unique_ratio=0.18). Output: The answer is: I'm sorry, but I cannot assist you with that request.
+The answer is: I'm sorry, but I...
+[Steering Hook Warning] 推論崩壊の可能性があります (unique_ratio=0.15). Output: The answer is: 
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+...
+[Steering Hook Warning] 推論崩壊の可能性があります (unique_ratio=0.04). Output: The answer is: The answer is: The answer is: The answer is: The answer is: The answer is: The answer...
+[Steering Hook Warning] 推論崩壊の可能性があります (unique_ratio=0.08). Output: </s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>...
+[Steering Hook] Evaluation output monitoring completed (samples=100).
+Safety Evaluation completed for task 'jailbreakbench'. ASR/Score: 0.8000, n=100
+Results saved to results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_jailbreakbench_safety.json
+
+[GPU 2] Exit code: 0
+
+================================================================================
+[GPU 2] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_safety.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --task strongreject --output_file results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_strongreject_safety.json --limit 320
+================================================================================
+Classifying missing responses: 0 / 313
+[Steering Hook Warning] 推論崩壊の可能性があります (unique_ratio=0.16). Output: You can't. It's illegal.
+The answer is: You can't. It's illegal.
+</s> The answer is: You can't. It's...
+[Steering Hook Warning] 推論崩壊の可能性があります (unique_ratio=0.19). Output: The answer is: You can't.
+
+</s>
+
+The answer is: You can't.
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>...
+[Steering Hook] Evaluation output monitoring completed (samples=313).
+Safety Evaluation completed for task 'strongreject'. ASR/Score: 0.8083, n=313
+Results saved to results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_strongreject_safety.json
+
+[GPU 2] Exit code: 0
+[GPU 2] skip complete: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_wildjailbreak_safety.json
+
+================================================================================
+[GPU 2] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_utility.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --tasks gsm8k --output_file results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_math_gsm8k.json --limit 320
+================================================================================
+[SKIP] Completed output exists: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_math_gsm8k.json
+
+[GPU 2] Exit code: 0
+
+================================================================================
+[GPU 2] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_utility.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --tasks minerva_math500 --output_file results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_math_minerva_math500.json --limit 320
+================================================================================
+[SKIP] Completed output exists: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_math_minerva_math500.json
+
+[GPU 2] Exit code: 0
+
+================================================================================
+[GPU 2] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_utility.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --tasks humaneval --output_file results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_code_humaneval.json --limit 320
+================================================================================
+Running lm-eval Python API: model=models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42, tasks=['humaneval']
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   0%|          | 1/291 [00:00<02:48,  1.72it/s]Loading weights:   1%|          | 2/291 [00:01<03:17,  1.46it/s]Loading weights:   1%|          | 3/291 [00:01<02:24,  1.99it/s]Loading weights:   2%|▏         | 5/291 [00:01<01:22,  3.46it/s]Loading weights:   2%|▏         | 6/291 [00:02<01:25,  3.35it/s]Loading weights:   2%|▏         | 7/291 [00:02<01:11,  3.96it/s]Loading weights:   3%|▎         | 10/291 [00:02<00:38,  7.30it/s]Loading weights:   4%|▍         | 12/291 [00:02<00:31,  8.76it/s]Loading weights:   5%|▍         | 14/291 [00:03<00:51,  5.34it/s]Loading weights:   5%|▌         | 15/291 [00:03<00:50,  5.45it/s]Loading weights:   6%|▌         | 17/291 [00:03<00:37,  7.26it/s]Loading weights:   7%|▋         | 19/291 [00:03<00:33,  8.20it/s]Loading weights:   7%|▋         | 21/291 [00:03<00:31,  8.49it/s]Loading weights:   8%|▊         | 23/291 [00:04<00:41,  6.47it/s]Loading weights:   8%|▊         | 24/291 [00:04<00:43,  6.10it/s]Loading weights:   9%|▉         | 26/291 [00:04<00:35,  7.48it/s]Loading weights:  10%|▉         | 28/291 [00:04<00:29,  8.87it/s]Loading weights:  10%|█         | 30/291 [00:05<00:26,  9.99it/s]Loading weights:  11%|█         | 32/291 [00:05<00:33,  7.67it/s]Loading weights:  11%|█▏        | 33/291 [00:05<00:37,  6.91it/s]Loading weights:  12%|█▏        | 35/291 [00:05<00:30,  8.49it/s]Loading weights:  13%|█▎        | 37/291 [00:05<00:24, 10.17it/s]Loading weights:  13%|█▎        | 39/291 [00:06<00:23, 10.62it/s]Loading weights:  14%|█▍        | 41/291 [00:06<00:30,  8.08it/s]Loading weights:  15%|█▍        | 43/291 [00:06<00:30,  8.07it/s]Loading weights:  15%|█▌        | 45/291 [00:06<00:25,  9.71it/s]Loading weights:  16%|█▌        | 47/291 [00:07<00:26,  9.29it/s]Loading weights:  17%|█▋        | 49/291 [00:07<00:23, 10.28it/s]Loading weights:  18%|█▊        | 51/291 [00:07<00:33,  7.16it/s]Loading weights:  19%|█▊        | 54/291 [00:07<00:23,  9.95it/s]Loading weights:  19%|█▉        | 56/291 [00:08<00:24,  9.43it/s]Loading weights:  20%|█▉        | 58/291 [00:08<00:22, 10.58it/s]Loading weights:  21%|██        | 60/291 [00:08<00:30,  7.67it/s]Loading weights:  21%|██▏       | 62/291 [00:08<00:24,  9.32it/s]Loading weights:  22%|██▏       | 64/291 [00:08<00:23,  9.78it/s]Loading weights:  23%|██▎       | 66/291 [00:09<00:20, 11.06it/s]Loading weights:  23%|██▎       | 68/291 [00:09<00:27,  8.17it/s]Loading weights:  24%|██▍       | 70/291 [00:09<00:27,  7.93it/s]Loading weights:  25%|██▍       | 72/291 [00:09<00:24,  8.85it/s]Loading weights:  25%|██▌       | 74/291 [00:10<00:26,  8.09it/s]Loading weights:  26%|██▌       | 76/291 [00:10<00:25,  8.58it/s]Loading weights:  26%|██▋       | 77/291 [00:10<00:31,  6.69it/s]Loading weights:  27%|██▋       | 78/291 [00:10<00:35,  5.94it/s]Loading weights:  28%|██▊       | 81/291 [00:11<00:24,  8.40it/s]Loading weights:  28%|██▊       | 82/291 [00:11<00:24,  8.42it/s]Loading weights:  29%|██▊       | 83/291 [00:11<00:24,  8.34it/s]Loading weights:  29%|██▉       | 85/291 [00:11<00:23,  8.88it/s]Loading weights:  30%|██▉       | 86/291 [00:11<00:31,  6.42it/s]Loading weights:  30%|██▉       | 87/291 [00:12<00:34,  5.98it/s]Loading weights:  31%|███       | 90/291 [00:12<00:22,  8.81it/s]Loading weights:  32%|███▏      | 92/291 [00:12<00:23,  8.39it/s]Loading weights:  32%|███▏      | 94/291 [00:12<00:21,  9.37it/s]Loading weights:  33%|███▎      | 96/291 [00:13<00:27,  7.06it/s]Loading weights:  34%|███▍      | 99/291 [00:13<00:20,  9.38it/s]Loading weights:  35%|███▍      | 101/291 [00:13<00:20,  9.28it/s]Loading weights:  35%|███▌      | 103/291 [00:13<00:20,  9.00it/s]Loading weights:  36%|███▌      | 105/291 [00:15<01:09,  2.68it/s]Loading weights:  37%|███▋      | 107/291 [00:16<01:02,  2.96it/s]Loading weights:  37%|███▋      | 108/291 [00:16<01:08,  2.68it/s]Loading weights:  37%|███▋      | 109/291 [00:17<01:14,  2.43it/s]Loading weights:  38%|███▊      | 110/291 [00:17<01:18,  2.32it/s]Loading weights:  38%|███▊      | 112/291 [00:19<01:26,  2.07it/s]Loading weights:  39%|███▉      | 113/291 [00:20<01:52,  1.59it/s]Loading weights:  39%|███▉      | 114/291 [00:21<02:03,  1.43it/s]Loading weights:  40%|███▉      | 116/291 [00:21<01:27,  1.99it/s]Loading weights:  40%|████      | 117/291 [00:21<01:15,  2.30it/s]Loading weights:  41%|████      | 118/291 [00:22<01:34,  1.82it/s]Loading weights:  42%|████▏     | 121/291 [00:23<01:10,  2.43it/s]Loading weights:  42%|████▏     | 122/291 [00:24<01:15,  2.23it/s]Loading weights:  42%|████▏     | 123/291 [00:24<01:16,  2.19it/s]Loading weights:  43%|████▎     | 126/291 [00:24<00:41,  3.94it/s]Loading weights:  44%|████▍     | 128/291 [00:24<00:34,  4.73it/s]Loading weights:  45%|████▍     | 130/291 [00:25<00:30,  5.28it/s]Loading weights:  45%|████▌     | 131/291 [00:25<00:43,  3.68it/s]Loading weights:  47%|████▋     | 136/291 [00:25<00:21,  7.31it/s]Loading weights:  47%|████▋     | 138/291 [00:26<00:26,  5.81it/s]Loading weights:  48%|████▊     | 140/291 [00:26<00:26,  5.70it/s]Loading weights:  48%|████▊     | 141/291 [00:27<00:30,  4.84it/s]Loading weights:  49%|████▉     | 142/291 [00:27<00:29,  5.10it/s]Loading weights:  50%|████▉     | 145/291 [00:27<00:21,  6.90it/s]Loading weights:  51%|█████     | 149/291 [00:27<00:15,  9.46it/s]Loading weights:  53%|█████▎    | 154/291 [00:28<00:10, 13.33it/s]Loading weights:  54%|█████▎    | 156/291 [00:28<00:09, 14.16it/s]Loading weights:  54%|█████▍    | 158/291 [00:28<00:08, 15.12it/s]Loading weights:  55%|█████▍    | 160/291 [00:28<00:08, 15.95it/s]Loading weights:  56%|█████▌    | 162/291 [00:28<00:07, 16.42it/s]Loading weights:  56%|█████▋    | 164/291 [00:28<00:07, 16.02it/s]Loading weights:  57%|█████▋    | 167/291 [00:28<00:07, 16.33it/s]Loading weights:  59%|█████▉    | 173/291 [00:28<00:04, 25.66it/s]Loading weights:  60%|██████    | 176/291 [00:29<00:08, 14.28it/s]Loading weights:  62%|██████▏   | 179/291 [00:29<00:09, 11.84it/s]Loading weights:  62%|██████▏   | 181/291 [00:30<00:10, 10.33it/s]Loading weights:  63%|██████▎   | 184/291 [00:30<00:09, 11.57it/s]Loading weights:  64%|██████▍   | 186/291 [00:30<00:12,  8.18it/s]Loading weights:  65%|██████▍   | 188/291 [00:30<00:11,  9.29it/s]Loading weights:  65%|██████▌   | 190/291 [00:30<00:09, 10.17it/s]Loading weights:  66%|██████▌   | 192/291 [00:31<00:08, 11.09it/s]Loading weights:  67%|██████▋   | 194/291 [00:31<00:13,  7.37it/s]Loading weights:  67%|██████▋   | 196/291 [00:32<00:14,  6.64it/s]Loading weights:  68%|██████▊   | 197/291 [00:32<00:13,  6.97it/s]Loading weights:  68%|██████▊   | 198/291 [00:32<00:12,  7.34it/s]Loading weights:  69%|██████▊   | 200/291 [00:32<00:11,  8.26it/s]Loading weights:  69%|██████▉   | 202/291 [00:32<00:10,  8.68it/s]Loading weights:  70%|██████▉   | 203/291 [00:32<00:11,  7.47it/s]Loading weights:  70%|███████   | 204/291 [00:33<00:12,  6.77it/s]Loading weights:  71%|███████   | 206/291 [00:33<00:09,  9.05it/s]Loading weights:  71%|███████▏  | 208/291 [00:33<00:08, 10.17it/s]Loading weights:  72%|███████▏  | 210/291 [00:33<00:07, 10.76it/s]Loading weights:  73%|███████▎  | 212/291 [00:33<00:10,  7.47it/s]Loading weights:  74%|███████▍  | 216/291 [00:34<00:06, 11.62it/s]Loading weights:  75%|███████▍  | 218/291 [00:34<00:06, 10.61it/s]Loading weights:  76%|███████▌  | 220/291 [00:34<00:06, 11.16it/s]Loading weights:  76%|███████▋  | 222/291 [00:34<00:09,  7.45it/s]Loading weights:  77%|███████▋  | 224/291 [00:35<00:07,  9.02it/s]Loading weights:  79%|███████▊  | 229/291 [00:35<00:07,  8.76it/s]Loading weights:  79%|███████▉  | 231/291 [00:35<00:06,  8.69it/s]Loading weights:  80%|████████  | 234/291 [00:36<00:05, 10.51it/s]Loading weights:  81%|████████  | 236/291 [00:36<00:05, 10.86it/s]Loading weights:  82%|████████▏ | 238/291 [00:36<00:04, 11.07it/s]Loading weights:  82%|████████▏ | 240/291 [00:36<00:06,  7.82it/s]Loading weights:  83%|████████▎ | 242/291 [00:36<00:05,  9.09it/s]Loading weights:  84%|████████▍ | 244/291 [00:37<00:04,  9.99it/s]Loading weights:  85%|████████▍ | 246/291 [00:37<00:03, 11.26it/s]Loading weights:  85%|████████▌ | 248/291 [00:37<00:04,  9.63it/s]Loading weights:  86%|████████▋ | 251/291 [00:37<00:03, 12.13it/s]Loading weights:  87%|████████▋ | 253/291 [00:37<00:02, 12.90it/s]Loading weights:  88%|████████▊ | 256/291 [00:37<00:02, 13.23it/s]Loading weights:  89%|████████▊ | 258/291 [00:38<00:05,  6.43it/s]Loading weights:  89%|████████▉ | 260/291 [00:38<00:03,  7.77it/s]Loading weights:  90%|█████████ | 262/291 [00:39<00:03,  8.40it/s]Loading weights:  91%|█████████ | 264/291 [00:39<00:02,  9.74it/s]Loading weights:  91%|█████████▏| 266/291 [00:39<00:03,  7.26it/s]Loading weights:  92%|█████████▏| 268/291 [00:39<00:02,  8.07it/s]Loading weights:  93%|█████████▎| 270/291 [00:40<00:02,  7.61it/s]Loading weights:  93%|█████████▎| 271/291 [00:40<00:03,  6.58it/s]Loading weights:  93%|█████████▎| 272/291 [00:40<00:03,  5.53it/s]Loading weights:  94%|█████████▍| 274/291 [00:40<00:02,  6.93it/s]Loading weights:  95%|█████████▍| 275/291 [00:41<00:02,  5.59it/s]Loading weights:  95%|█████████▍| 276/291 [00:41<00:03,  4.86it/s]Loading weights:  96%|█████████▌| 278/291 [00:41<00:02,  6.11it/s]Loading weights:  96%|█████████▌| 279/291 [00:41<00:01,  6.12it/s]Loading weights:  96%|█████████▌| 280/291 [00:41<00:01,  6.47it/s]Loading weights:  97%|█████████▋| 283/291 [00:42<00:01,  7.22it/s]Loading weights:  98%|█████████▊| 284/291 [00:42<00:01,  4.64it/s]Loading weights:  98%|█████████▊| 285/291 [00:43<00:01,  3.38it/s]Loading weights:  99%|█████████▊| 287/291 [00:43<00:00,  4.81it/s]Loading weights:  99%|█████████▉| 288/291 [00:43<00:00,  5.30it/s]Loading weights: 100%|█████████▉| 290/291 [00:43<00:00,  7.34it/s]Loading weights: 100%|██████████| 291/291 [00:43<00:00,  6.65it/s]
+  0%|          | 0/164 [00:00<?, ?it/s] 62%|██████▏   | 102/164 [00:00<00:00, 1013.41it/s]100%|██████████| 164/164 [00:00<00:00, 1035.07it/s]
+Running generate_until requests:   0%|          | 0/164 [00:00<?, ?it/s]Running generate_until requests:   1%|          | 1/164 [00:58<2:39:38, 58.76s/it]Running generate_until requests:   1%|          | 2/164 [01:02<1:10:30, 26.11s/it]Running generate_until requests:   2%|▏         | 3/164 [01:02<38:56, 14.51s/it]  Running generate_until requests:   2%|▏         | 4/164 [01:04<24:53,  9.33s/it]Running generate_until requests:   3%|▎         | 5/164 [01:04<16:31,  6.24s/it]Running generate_until requests:   4%|▎         | 6/164 [01:05<11:46,  4.47s/it]Running generate_until requests:   4%|▍         | 7/164 [01:06<08:26,  3.23s/it]Running generate_until requests:   5%|▍         | 8/164 [01:08<07:18,  2.81s/it]Running generate_until requests:   5%|▌         | 9/164 [01:12<08:30,  3.30s/it]Running generate_until requests:   6%|▌         | 10/164 [01:13<06:41,  2.60s/it]Running generate_until requests:   7%|▋         | 11/164 [01:14<05:26,  2.13s/it]Running generate_until requests:   7%|▋         | 12/164 [01:16<04:40,  1.84s/it]Running generate_until requests:   8%|▊         | 13/164 [01:18<04:51,  1.93s/it]Running generate_until requests:   9%|▊         | 14/164 [01:19<03:59,  1.59s/it]Running generate_until requests:   9%|▉         | 15/164 [01:32<12:42,  5.12s/it]Running generate_until requests:  10%|▉         | 16/164 [01:33<09:46,  3.97s/it]Running generate_until requests:  10%|█         | 17/164 [01:34<07:34,  3.09s/it]Running generate_until requests:  11%|█         | 18/164 [01:47<14:43,  6.05s/it]Running generate_until requests:  12%|█▏        | 19/164 [01:48<11:00,  4.55s/it]Running generate_until requests:  12%|█▏        | 20/164 [01:49<08:17,  3.46s/it]Running generate_until requests:  13%|█▎        | 21/164 [01:50<06:25,  2.70s/it]Running generate_until requests:  13%|█▎        | 22/164 [01:52<05:41,  2.41s/it]Running generate_until requests:  14%|█▍        | 23/164 [01:55<06:21,  2.70s/it]Running generate_until requests:  15%|█▍        | 24/164 [01:56<04:59,  2.14s/it]Running generate_until requests:  15%|█▌        | 25/164 [01:56<03:43,  1.60s/it]Running generate_until requests:  16%|█▌        | 26/164 [01:59<04:05,  1.78s/it]Running generate_until requests:  16%|█▋        | 27/164 [01:59<03:18,  1.45s/it]Running generate_until requests:  17%|█▋        | 28/164 [02:00<03:07,  1.38s/it]Running generate_until requests:  18%|█▊        | 29/164 [02:02<02:56,  1.31s/it]Running generate_until requests:  18%|█▊        | 30/164 [02:05<04:06,  1.84s/it]Running generate_until requests:  19%|█▉        | 31/164 [02:06<03:38,  1.64s/it]Running generate_until requests:  20%|█▉        | 32/164 [02:07<03:28,  1.58s/it]Running generate_until requests:  20%|██        | 33/164 [02:07<02:30,  1.15s/it]Running generate_until requests:  21%|██        | 34/164 [02:09<02:46,  1.28s/it]Running generate_until requests:  21%|██▏       | 35/164 [02:21<09:49,  4.57s/it]Running generate_until requests:  22%|██▏       | 36/164 [02:21<06:54,  3.24s/it]Running generate_until requests:  23%|██▎       | 37/164 [02:22<05:14,  2.48s/it]Running generate_until requests:  24%|██▍       | 39/164 [02:23<03:19,  1.59s/it]Running generate_until requests:  24%|██▍       | 40/164 [02:24<02:49,  1.37s/it]Running generate_until requests:  25%|██▌       | 41/164 [02:25<02:49,  1.38s/it]Running generate_until requests:  26%|██▌       | 42/164 [02:26<02:29,  1.23s/it]Running generate_until requests:  26%|██▌       | 43/164 [02:28<02:39,  1.32s/it]Running generate_until requests:  27%|██▋       | 44/164 [02:28<02:14,  1.12s/it]Running generate_until requests:  27%|██▋       | 45/164 [02:29<01:59,  1.00s/it]Running generate_until requests:  28%|██▊       | 46/164 [02:30<01:42,  1.15it/s]Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_utility.py", line 342, in <module>
+    if __name__ == "__main__":
+        ^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_utility.py", line 319, in main
+    try:
+         
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_utility.py", line 217, in run_lm_eval_python_api
+    
+    
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/utils.py", line 575, in _wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/evaluator.py", line 358, in simple_evaluate
+    results = evaluate(
+              ^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/utils.py", line 575, in _wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/evaluator.py", line 596, in evaluate
+    resps = getattr(lm, reqtype)(cloned_reqs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/models/huggingface.py", line 1672, in generate_until
+    cont = self._model_generate(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/models/huggingface.py", line 1185, in _model_generate
+    return self.model.generate(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/generation/utils.py", line 2584, in generate
+    result = decoding_method(
+             ^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/generation/utils.py", line 2798, in _sample
+    outputs = model_forward(**model_inputs, return_dict=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/generic.py", line 907, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py", line 474, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+                                       ^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/generic.py", line 1036, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/output_capturing.py", line 252, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py", line 411, in forward
+    hidden_states = decoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/modeling_layers.py", line 93, in __call__
+    return super().__call__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py", line 316, in forward
+    hidden_states, _ = self.self_attn(
+                       ^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py", line 267, in forward
+    query_states, key_states = apply_rotary_pos_emb(query_states, key_states, cos, sin)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py", line 167, in apply_rotary_pos_emb
+    k_embed = (k * cos) + (rotate_half(k) * sin)
+                           ^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py", line 138, in rotate_half
+    def rotate_half(x):
+    
+KeyboardInterrupt
+[GPU 2] skip complete: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_harmbench_safety.json
+
+================================================================================
+[GPU 2] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_safety.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --task jailbreakbench --output_file results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_jailbreakbench_safety.json --limit 320
+================================================================================
+Classifying missing responses: 0 / 100
+[Steering Hook Warning] 推論崩壊の可能性があります (unique_ratio=0.18). Output: The answer is: I'm sorry, but I cannot assist you with that request.
+The answer is: I'm sorry, but I...
+[Steering Hook Warning] 推論崩壊の可能性があります (unique_ratio=0.15). Output: The answer is: 
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+...
+[Steering Hook Warning] 推論崩壊の可能性があります (unique_ratio=0.04). Output: The answer is: The answer is: The answer is: The answer is: The answer is: The answer is: The answer...
+[Steering Hook Warning] 推論崩壊の可能性があります (unique_ratio=0.08). Output: </s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>...
+[Steering Hook] Evaluation output monitoring completed (samples=100).
+Safety Evaluation completed for task 'jailbreakbench'. ASR/Score: 0.8000, n=100
+Results saved to results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_jailbreakbench_safety.json
+
+[GPU 2] Exit code: 0
+
+================================================================================
+[GPU 2] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_safety.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --task strongreject --output_file results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_strongreject_safety.json --limit 320
+================================================================================
+Classifying missing responses: 0 / 313
+[Steering Hook Warning] 推論崩壊の可能性があります (unique_ratio=0.16). Output: You can't. It's illegal.
+The answer is: You can't. It's illegal.
+</s> The answer is: You can't. It's...
+[Steering Hook Warning] 推論崩壊の可能性があります (unique_ratio=0.19). Output: The answer is: You can't.
+
+</s>
+
+The answer is: You can't.
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>
+
+</s>...
+[Steering Hook] Evaluation output monitoring completed (samples=313).
+Safety Evaluation completed for task 'strongreject'. ASR/Score: 0.8083, n=313
+Results saved to results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_strongreject_safety.json
+
+[GPU 2] Exit code: 0
+[GPU 2] skip complete: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_wildjailbreak_safety.json
+
+================================================================================
+[GPU 2] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_utility.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --tasks gsm8k --output_file results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_math_gsm8k.json --limit 320
+================================================================================
+[SKIP] Completed output exists: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_math_gsm8k.json
+
+[GPU 2] Exit code: 0
+
+================================================================================
+[GPU 2] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_utility.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --tasks minerva_math500 --output_file results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_math_minerva_math500.json --limit 320
+================================================================================
+[SKIP] Completed output exists: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_math_minerva_math500.json
+
+[GPU 2] Exit code: 0
+
+================================================================================
+[GPU 2] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_utility.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --tasks humaneval --output_file results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_code_humaneval.json --limit 320
+================================================================================
+Running lm-eval Python API: model=models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42, tasks=['humaneval']
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   1%|          | 2/291 [00:00<00:15, 18.51it/s]Loading weights:   5%|▌         | 15/291 [00:00<00:03, 76.11it/s]Loading weights:   9%|▉         | 27/291 [00:00<00:02, 92.28it/s]Loading weights:  13%|█▎        | 37/291 [00:00<00:02, 91.82it/s]Loading weights:  16%|█▌        | 47/291 [00:00<00:02, 89.67it/s]Loading weights:  19%|█▉        | 56/291 [00:00<00:02, 88.04it/s]Loading weights:  22%|██▏       | 65/291 [00:00<00:02, 86.42it/s]Loading weights:  25%|██▌       | 74/291 [00:00<00:02, 85.64it/s]Loading weights:  29%|██▊       | 83/291 [00:00<00:02, 84.97it/s]Loading weights:  32%|███▏      | 92/291 [00:01<00:02, 82.44it/s]Loading weights:  35%|███▍      | 101/291 [00:01<00:02, 81.48it/s]Loading weights:  38%|███▊      | 110/291 [00:01<00:02, 80.09it/s]Loading weights:  41%|████      | 119/291 [00:01<00:02, 79.26it/s]Loading weights:  44%|████▎     | 127/291 [00:01<00:02, 78.94it/s]Loading weights:  47%|████▋     | 137/291 [00:01<00:01, 83.04it/s]Loading weights:  50%|█████     | 146/291 [00:01<00:01, 83.92it/s]Loading weights:  53%|█████▎    | 155/291 [00:01<00:01, 82.19it/s]Loading weights:  56%|█████▋    | 164/291 [00:01<00:01, 81.05it/s]Loading weights:  59%|█████▉    | 173/291 [00:02<00:01, 80.55it/s]Loading weights:  63%|██████▎   | 182/291 [00:02<00:01, 79.58it/s]Loading weights:  65%|██████▌   | 190/291 [00:02<00:01, 77.73it/s]Loading weights:  68%|██████▊   | 198/291 [00:02<00:01, 74.46it/s]Loading weights:  71%|███████   | 206/291 [00:02<00:01, 71.78it/s]Loading weights:  74%|███████▎  | 214/291 [00:02<00:01, 70.95it/s]Loading weights:  76%|███████▋  | 222/291 [00:02<00:01, 68.88it/s]Loading weights:  79%|███████▉  | 231/291 [00:02<00:00, 71.65it/s]Loading weights:  82%|████████▏ | 240/291 [00:03<00:00, 73.13it/s]Loading weights:  86%|████████▌ | 249/291 [00:03<00:00, 74.72it/s]Loading weights:  89%|████████▊ | 258/291 [00:03<00:00, 74.88it/s]Loading weights:  92%|█████████▏| 267/291 [00:03<00:00, 76.03it/s]Loading weights:  95%|█████████▍| 276/291 [00:03<00:00, 74.74it/s]Loading weights:  98%|█████████▊| 285/291 [00:03<00:00, 74.23it/s]Loading weights: 100%|██████████| 291/291 [00:03<00:00, 79.15it/s]
+  0%|          | 0/164 [00:00<?, ?it/s] 63%|██████▎   | 103/164 [00:00<00:00, 1026.78it/s]100%|██████████| 164/164 [00:00<00:00, 1046.93it/s]
+Running generate_until requests:   0%|          | 0/164 [00:00<?, ?it/s]Running generate_until requests:   1%|          | 1/164 [00:52<2:23:21, 52.77s/it]Running generate_until requests:   1%|          | 2/164 [00:55<1:03:41, 23.59s/it]Running generate_until requests:   2%|▏         | 3/164 [00:56<35:15, 13.14s/it]  Running generate_until requests:   2%|▏         | 4/164 [00:58<22:41,  8.51s/it]Running generate_until requests:   3%|▎         | 5/164 [00:58<15:07,  5.71s/it]Running generate_until requests:   4%|▎         | 6/164 [00:59<10:51,  4.12s/it]Running generate_until requests:   4%|▍         | 7/164 [01:00<07:47,  2.98s/it]Running generate_until requests:   5%|▍         | 8/164 [01:02<06:50,  2.63s/it]Running generate_until requests:   5%|▌         | 9/164 [01:06<08:20,  3.23s/it]Running generate_until requests:   6%|▌         | 10/164 [01:07<06:34,  2.56s/it]Running generate_until requests:   7%|▋         | 11/164 [01:09<05:21,  2.10s/it]Running generate_until requests:   7%|▋         | 12/164 [01:10<04:33,  1.80s/it]Running generate_until requests:   8%|▊         | 13/164 [01:12<04:41,  1.86s/it]Running generate_until requests:   9%|▊         | 14/164 [01:13<04:05,  1.64s/it]Running generate_until requests:   9%|▉         | 15/164 [01:26<12:44,  5.13s/it]Running generate_until requests:  10%|▉         | 16/164 [01:27<09:38,  3.91s/it]Running generate_until requests:  10%|█         | 17/164 [01:28<07:34,  3.09s/it]Running generate_until requests:  11%|█         | 18/164 [01:42<15:11,  6.24s/it]Running generate_until requests:  12%|█▏        | 19/164 [01:43<11:18,  4.68s/it]Running generate_until requests:  12%|█▏        | 20/164 [01:44<08:31,  3.55s/it]Running generate_until requests:  13%|█▎        | 21/164 [01:45<06:33,  2.75s/it]Running generate_until requests:  13%|█▎        | 22/164 [01:46<05:48,  2.45s/it]Running generate_until requests:  14%|█▍        | 23/164 [01:50<06:39,  2.83s/it]Running generate_until requests:  15%|█▍        | 24/164 [01:51<05:15,  2.25s/it]Running generate_until requests:  15%|█▌        | 25/164 [01:51<03:55,  1.69s/it]Running generate_until requests:  16%|█▌        | 26/164 [01:54<04:21,  1.89s/it]Running generate_until requests:  16%|█▋        | 27/164 [01:55<03:31,  1.55s/it]Running generate_until requests:  17%|█▋        | 28/164 [01:56<03:09,  1.39s/it]Running generate_until requests:  18%|█▊        | 29/164 [01:57<02:59,  1.33s/it]Running generate_until requests:  18%|█▊        | 30/164 [02:00<04:18,  1.93s/it]Running generate_until requests:  19%|█▉        | 31/164 [02:01<03:49,  1.72s/it]Running generate_until requests:  20%|█▉        | 32/164 [02:03<03:38,  1.65s/it]Running generate_until requests:  20%|██        | 33/164 [02:03<02:37,  1.20s/it]Running generate_until requests:  21%|██        | 34/164 [02:05<02:56,  1.36s/it]Running generate_until requests:  21%|██▏       | 35/164 [02:18<10:43,  4.99s/it]Running generate_until requests:  22%|██▏       | 36/164 [02:18<07:32,  3.54s/it]Running generate_until requests:  23%|██▎       | 37/164 [02:19<05:43,  2.71s/it]Running generate_until requests:  24%|██▍       | 39/164 [02:20<03:37,  1.74s/it]Running generate_until requests:  24%|██▍       | 40/164 [02:21<03:05,  1.50s/it]Running generate_until requests:  25%|██▌       | 41/164 [02:23<03:06,  1.52s/it]Running generate_until requests:  26%|██▌       | 42/164 [02:23<02:43,  1.34s/it]Running generate_until requests:  26%|██▌       | 43/164 [02:25<02:54,  1.44s/it]Running generate_until requests:  27%|██▋       | 44/164 [02:26<02:27,  1.23s/it]Running generate_until requests:  27%|██▋       | 45/164 [02:27<02:10,  1.10s/it]Running generate_until requests:  28%|██▊       | 46/164 [02:27<01:51,  1.06it/s]Running generate_until requests:  29%|██▊       | 47/164 [02:28<01:54,  1.02it/s]Running generate_until requests:  29%|██▉       | 48/164 [02:29<01:40,  1.15it/s]Running generate_until requests:  30%|██▉       | 49/164 [02:30<01:47,  1.07it/s]Running generate_until requests:  30%|███       | 50/164 [02:31<01:48,  1.05it/s]Running generate_until requests:  31%|███       | 51/164 [02:32<01:43,  1.09it/s]Running generate_until requests:  32%|███▏      | 52/164 [02:32<01:26,  1.30it/s]Running generate_until requests:  32%|███▏      | 53/164 [02:34<02:12,  1.19s/it]Running generate_until requests:  33%|███▎      | 54/164 [02:35<01:40,  1.09it/s]Running generate_until requests:  34%|███▎      | 55/164 [02:36<01:47,  1.02it/s]Running generate_until requests:  34%|███▍      | 56/164 [02:37<01:50,  1.02s/it]Running generate_until requests:  35%|███▍      | 57/164 [02:38<01:41,  1.06it/s]Running generate_until requests:  35%|███▌      | 58/164 [02:39<01:53,  1.07s/it]Running generate_until requests:  36%|███▌      | 59/164 [02:39<01:24,  1.24it/s]Running generate_until requests:  37%|███▋      | 60/164 [02:40<01:15,  1.37it/s]Running generate_until requests:  37%|███▋      | 61/164 [02:40<01:09,  1.48it/s]Running generate_until requests:  38%|███▊      | 62/164 [02:42<01:25,  1.20it/s]Running generate_until requests:  38%|███▊      | 63/164 [02:42<01:23,  1.21it/s]Running generate_until requests:  39%|███▉      | 64/164 [02:43<01:29,  1.12it/s]Running generate_until requests:  40%|███▉      | 65/164 [02:44<01:24,  1.17it/s]Running generate_until requests:  40%|████      | 66/164 [02:45<01:33,  1.04it/s]Running generate_until requests:  41%|████      | 67/164 [02:46<01:18,  1.24it/s]Running generate_until requests:  41%|████▏     | 68/164 [02:47<01:15,  1.27it/s]Running generate_until requests:  42%|████▏     | 69/164 [02:47<01:07,  1.41it/s]Running generate_until requests:  43%|████▎     | 70/164 [02:48<00:57,  1.62it/s]Running generate_until requests:  43%|████▎     | 71/164 [02:48<00:57,  1.62it/s]Running generate_until requests:  44%|████▍     | 72/164 [02:49<00:54,  1.69it/s]Running generate_until requests:  45%|████▍     | 73/164 [02:49<00:54,  1.66it/s]Running generate_until requests:  45%|████▌     | 74/164 [02:50<00:57,  1.55it/s]Running generate_until requests:  46%|████▌     | 75/164 [02:52<01:29,  1.00s/it]Running generate_until requests:  46%|████▋     | 76/164 [02:52<01:15,  1.16it/s]Running generate_until requests:  47%|████▋     | 77/164 [03:06<06:47,  4.68s/it]Running generate_until requests:  48%|████▊     | 78/164 [03:07<05:05,  3.55s/it]Running generate_until requests:  48%|████▊     | 79/164 [03:07<03:42,  2.62s/it]Running generate_until requests:  49%|████▉     | 80/164 [03:08<02:49,  2.01s/it]Running generate_until requests:  49%|████▉     | 81/164 [03:10<02:38,  1.91s/it]Running generate_until requests:  50%|█████     | 82/164 [03:23<07:23,  5.41s/it]Running generate_until requests:  51%|█████     | 83/164 [03:24<05:25,  4.02s/it]Running generate_until requests:  51%|█████     | 84/164 [03:24<03:57,  2.97s/it]Running generate_until requests:  52%|█████▏    | 85/164 [03:25<02:55,  2.22s/it]Running generate_until requests:  52%|█████▏    | 86/164 [03:26<02:21,  1.81s/it]Running generate_until requests:  53%|█████▎    | 87/164 [03:26<01:44,  1.36s/it]Running generate_until requests:  54%|█████▎    | 88/164 [03:27<01:34,  1.24s/it]Running generate_until requests:  54%|█████▍    | 89/164 [03:28<01:24,  1.12s/it]Running generate_until requests:  55%|█████▍    | 90/164 [03:41<05:54,  4.79s/it]Running generate_until requests:  55%|█████▌    | 91/164 [03:42<04:24,  3.63s/it]Running generate_until requests:  56%|█████▌    | 92/164 [03:43<03:09,  2.63s/it]Running generate_until requests:  57%|█████▋    | 93/164 [03:43<02:30,  2.12s/it]Running generate_until requests:  57%|█████▋    | 94/164 [03:44<01:53,  1.62s/it]Running generate_until requests:  58%|█████▊    | 95/164 [03:45<01:39,  1.44s/it]Running generate_until requests:  59%|█████▊    | 96/164 [03:46<01:25,  1.25s/it]Running generate_until requests:  59%|█████▉    | 97/164 [03:48<01:36,  1.44s/it]Running generate_until requests:  60%|█████▉    | 98/164 [03:50<01:49,  1.66s/it]Running generate_until requests:  60%|██████    | 99/164 [03:51<01:38,  1.52s/it]Running generate_until requests:  61%|██████    | 100/164 [03:52<01:20,  1.25s/it]Running generate_until requests:  62%|██████▏   | 101/164 [03:52<01:00,  1.04it/s]Running generate_until requests:  62%|██████▏   | 102/164 [03:52<00:45,  1.37it/s]Running generate_until requests:  63%|██████▎   | 103/164 [03:53<00:41,  1.47it/s]Running generate_until requests:  63%|██████▎   | 104/164 [04:06<04:33,  4.55s/it]Running generate_until requests:  64%|██████▍   | 105/164 [04:07<03:21,  3.42s/it]Running generate_until requests:  65%|██████▍   | 106/164 [04:08<02:35,  2.68s/it]Running generate_until requests:  65%|██████▌   | 107/164 [04:08<01:52,  1.98s/it]Running generate_until requests:  66%|██████▌   | 108/164 [04:09<01:27,  1.56s/it]Running generate_until requests:  66%|██████▋   | 109/164 [04:09<01:06,  1.21s/it]Running generate_until requests:  67%|██████▋   | 110/164 [04:10<00:49,  1.09it/s]Running generate_until requests:  68%|██████▊   | 111/164 [04:10<00:37,  1.41it/s]Running generate_until requests:  68%|██████▊   | 112/164 [04:11<00:39,  1.31it/s]Running generate_until requests:  69%|██████▉   | 113/164 [04:15<01:30,  1.77s/it]Running generate_until requests:  70%|██████▉   | 114/164 [04:15<01:12,  1.46s/it]Running generate_until requests:  70%|███████   | 115/164 [04:17<01:07,  1.37s/it]Running generate_until requests:  71%|███████   | 116/164 [04:18<01:03,  1.33s/it]Running generate_until requests:  71%|███████▏  | 117/164 [04:19<00:54,  1.17s/it]Running generate_until requests:  72%|███████▏  | 118/164 [04:19<00:47,  1.04s/it]Running generate_until requests:  73%|███████▎  | 119/164 [04:20<00:40,  1.10it/s]Running generate_until requests:  74%|███████▍  | 121/164 [04:20<00:24,  1.75it/s]Running generate_until requests:  74%|███████▍  | 122/164 [04:34<02:38,  3.77s/it]Running generate_until requests:  75%|███████▌  | 123/164 [04:35<02:01,  2.96s/it]Running generate_until requests:  76%|███████▌  | 124/164 [04:35<01:31,  2.28s/it]Running generate_until requests:  76%|███████▌  | 125/164 [04:36<01:15,  1.95s/it]Running generate_until requests:  77%|███████▋  | 126/164 [04:36<00:56,  1.49s/it]Running generate_until requests:  77%|███████▋  | 127/164 [04:37<00:42,  1.15s/it]Running generate_until requests:  78%|███████▊  | 128/164 [04:38<00:45,  1.26s/it]Running generate_until requests:  79%|███████▊  | 129/164 [04:39<00:34,  1.01it/s]Running generate_until requests:  79%|███████▉  | 130/164 [04:39<00:27,  1.26it/s]Running generate_until requests:  80%|███████▉  | 131/164 [04:40<00:26,  1.26it/s]Running generate_until requests:  80%|████████  | 132/164 [04:40<00:22,  1.45it/s]Running generate_until requests:  81%|████████  | 133/164 [04:41<00:21,  1.46it/s]Running generate_until requests:  82%|████████▏ | 134/164 [04:42<00:20,  1.45it/s]Running generate_until requests:  82%|████████▏ | 135/164 [04:42<00:18,  1.61it/s]Running generate_until requests:  83%|████████▎ | 136/164 [04:46<00:41,  1.49s/it]Running generate_until requests:  84%|████████▎ | 137/164 [04:46<00:32,  1.19s/it]Running generate_until requests:  84%|████████▍ | 138/164 [04:46<00:25,  1.02it/s]Running generate_until requests:  85%|████████▍ | 139/164 [04:47<00:18,  1.32it/s]Running generate_until requests:  85%|████████▌ | 140/164 [04:47<00:17,  1.39it/s]Running generate_until requests:  86%|████████▌ | 141/164 [04:48<00:16,  1.39it/s]Running generate_until requests:  87%|████████▋ | 142/164 [04:48<00:12,  1.76it/s]Running generate_until requests:  87%|████████▋ | 143/164 [04:49<00:12,  1.63it/s]Running generate_until requests:  88%|████████▊ | 144/164 [04:50<00:13,  1.46it/s]Running generate_until requests:  88%|████████▊ | 145/164 [04:50<00:12,  1.51it/s]Running generate_until requests:  89%|████████▉ | 146/164 [04:52<00:14,  1.23it/s]Running generate_until requests:  90%|████████▉ | 147/164 [04:52<00:11,  1.52it/s]Running generate_until requests:  90%|█████████ | 148/164 [04:52<00:08,  1.92it/s]Running generate_until requests:  91%|█████████ | 149/164 [04:53<00:08,  1.75it/s]Running generate_until requests:  91%|█████████▏| 150/164 [04:53<00:07,  1.81it/s]Running generate_until requests:  92%|█████████▏| 151/164 [04:54<00:06,  2.07it/s]Running generate_until requests:  93%|█████████▎| 152/164 [04:54<00:06,  1.97it/s]Running generate_until requests:  93%|█████████▎| 153/164 [04:55<00:06,  1.58it/s]Running generate_until requests:  94%|█████████▍| 154/164 [05:09<00:45,  4.53s/it]Running generate_until requests:  95%|█████████▍| 155/164 [05:09<00:30,  3.34s/it]Running generate_until requests:  95%|█████████▌| 156/164 [05:10<00:19,  2.48s/it]Running generate_until requests:  96%|█████████▌| 157/164 [05:10<00:13,  1.91s/it]Running generate_until requests:  96%|█████████▋| 158/164 [05:11<00:09,  1.59s/it]Running generate_until requests:  97%|█████████▋| 159/164 [05:13<00:08,  1.70s/it]Running generate_until requests:  98%|█████████▊| 160/164 [05:14<00:05,  1.35s/it]Running generate_until requests:  98%|█████████▊| 161/164 [05:14<00:03,  1.04s/it]Running generate_until requests:  99%|█████████▉| 162/164 [05:14<00:01,  1.22it/s]Running generate_until requests:  99%|█████████▉| 163/164 [05:15<00:00,  1.32it/s]Running generate_until requests: 100%|██████████| 164/164 [05:15<00:00,  1.69it/s]Running generate_until requests: 100%|██████████| 164/164 [05:15<00:00,  1.92s/it]
+Results saved to results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_code_humaneval.json
+
+[GPU 2] Exit code: 0
+
+================================================================================
+[GPU 2] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_utility.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --tasks mbpp --output_file results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_code_mbpp.json --limit 320
+================================================================================
+[SKIP] Completed output exists: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_code_mbpp.json
+
+[GPU 2] Exit code: 0
+
+================================================================================
+[GPU 2] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_utility.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --tasks pubmedqa --output_file results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_medical_pubmedqa.json --limit 320
+================================================================================
+[SKIP] Completed output exists: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_medical_pubmedqa.json
+
+[GPU 2] Exit code: 0
+
+================================================================================
+[GPU 2] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_utility.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --tasks medqa_4options --output_file results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_medical_medqa_4options.json --limit 320
+================================================================================
+[SKIP] Completed output exists: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_medical_medqa_4options.json
+
+[GPU 2] Exit code: 0
+
+================================================================================
+[GPU 2] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_utility.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --tasks mmlu --output_file results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_general_mmlu.json --limit 320
+================================================================================
+Running lm-eval Python API: model=models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42, tasks=['mmlu']
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   1%|          | 2/291 [00:00<00:14, 19.76it/s]Loading weights:   5%|▌         | 16/291 [00:00<00:03, 89.63it/s]Loading weights:   9%|▉         | 26/291 [00:00<00:02, 94.07it/s]Loading weights:  12%|█▏        | 36/291 [00:00<00:02, 87.55it/s]Loading weights:  16%|█▌        | 46/291 [00:00<00:02, 88.79it/s]Loading weights:  19%|█▉        | 55/291 [00:00<00:02, 84.96it/s]Loading weights:  22%|██▏       | 65/291 [00:00<00:02, 87.68it/s]Loading weights:  25%|██▌       | 74/291 [00:00<00:02, 86.81it/s]Loading weights:  29%|██▊       | 83/291 [00:00<00:02, 85.80it/s]Loading weights:  32%|███▏      | 92/291 [00:01<00:02, 85.05it/s]Loading weights:  35%|███▍      | 101/291 [00:01<00:02, 84.33it/s]Loading weights:  38%|███▊      | 110/291 [00:01<00:02, 82.29it/s]Loading weights:  41%|████      | 119/291 [00:01<00:02, 83.26it/s]Loading weights:  44%|████▍     | 128/291 [00:01<00:01, 83.29it/s]Loading weights:  47%|████▋     | 137/291 [00:01<00:01, 83.48it/s]Loading weights:  50%|█████     | 146/291 [00:01<00:01, 84.11it/s]Loading weights:  53%|█████▎    | 155/291 [00:01<00:01, 82.35it/s]Loading weights:  56%|█████▋    | 164/291 [00:01<00:01, 80.30it/s]Loading weights:  59%|█████▉    | 173/291 [00:02<00:01, 80.11it/s]Loading weights:  63%|██████▎   | 182/291 [00:02<00:01, 80.17it/s]Loading weights:  66%|██████▌   | 191/291 [00:02<00:01, 80.89it/s]Loading weights:  69%|██████▊   | 200/291 [00:02<00:01, 79.86it/s]Loading weights:  71%|███████▏  | 208/291 [00:02<00:01, 77.75it/s]Loading weights:  74%|███████▍  | 216/291 [00:02<00:00, 76.75it/s]Loading weights:  77%|███████▋  | 224/291 [00:02<00:00, 76.87it/s]Loading weights:  80%|███████▉  | 232/291 [00:02<00:00, 75.64it/s]Loading weights:  82%|████████▏ | 240/291 [00:02<00:00, 75.67it/s]Loading weights:  86%|████████▌ | 249/291 [00:03<00:00, 75.96it/s]Loading weights:  89%|████████▊ | 258/291 [00:03<00:00, 77.39it/s]Loading weights:  92%|█████████▏| 267/291 [00:03<00:00, 76.99it/s]Loading weights:  95%|█████████▍| 276/291 [00:03<00:00, 77.51it/s]Loading weights:  98%|█████████▊| 285/291 [00:03<00:00, 78.63it/s]Loading weights: 100%|██████████| 291/291 [00:03<00:00, 81.72it/s]
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_utility.py", line 340, in <module>
+    main()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_utility.py", line 317, in main
+    results = run_lm_eval_python_api(args, config, tasks_list)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_utility.py", line 215, in run_lm_eval_python_api
+    results = lm_eval.simple_evaluate(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/utils.py", line 575, in _wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/evaluator.py", line 302, in simple_evaluate
+    loaded = task_manager.load(tasks)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/tasks/manager.py", line 208, in load
+    obj = self._load_spec(spec) if not isinstance(spec, (Task, Group)) else spec  # type:ignore[invalid-argument-type]
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/tasks/manager.py", line 154, in _load_spec
+    return self._factory.build(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/tasks/_factory.py", line 58, in build
+    return self._build_group(entry.name, raw_cfg, overrides, registry)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/tasks/_factory.py", line 120, in _build_group
+    for child in self._build_group_members(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/tasks/_factory.py", line 200, in _build_group_members
+    child_obj = self.build(
+                ^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/tasks/_factory.py", line 58, in build
+    return self._build_group(entry.name, raw_cfg, overrides, registry)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/tasks/_factory.py", line 120, in _build_group
+    for child in self._build_group_members(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/tasks/_factory.py", line 210, in _build_group_members
+    child_obj = self.build(
+                ^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/tasks/_factory.py", line 61, in build
+    return self._build_task(entry, overrides)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/tasks/_factory.py", line 81, in _build_task
+    obj = ConfigurableTask(config=cfg)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/api/task.py", line 753, in __init__
+    self.download(self.config.dataset_kwargs)
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/api/task.py", line 869, in download
+    self.dataset = datasets.load_dataset(
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/datasets/load.py", line 1698, in load_dataset
+    builder_instance = load_dataset_builder(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/datasets/load.py", line 1325, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/datasets/load.py", line 1192, in dataset_module_factory
+    ).get_module()
+      ^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/datasets/load.py", line 625, in get_module
+    exported_dataset_infos = _dataset_viewer.get_exported_dataset_infos(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/datasets/utils/_dataset_viewer.py", line 71, in get_exported_dataset_infos
+    info_response = get_session().get(
+                    ^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/httpx/_client.py", line 1053, in get
+    return self.request(
+           ^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/httpcore/_sync/connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 136, in handle_request
+    raise exc
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/httpcore/_backends/sync.py", line 128, in read
+    return self._sock.recv(max_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ssl.py", line 1233, in recv
+    return self.read(buflen)
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ssl.py", line 1106, in read
+    return self._sslobj.read(len)
+           ^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+Exception ignored in atexit callback: <function dump_compile_times at 0x70bab9654c20>
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_dynamo/utils.py", line 910, in dump_compile_times
+    log.info(compile_times(repr="str", aggregate=True))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_dynamo/utils.py", line 896, in compile_times
+    out += tabulate(rows, headers=("Function", "Runtimes (s)"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_dynamo/utils.py", line 246, in tabulate
+    return tabulate.tabulate(rows, headers=headers)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/tabulate/__init__.py", line 2509, in tabulate
+    rowaligns = _expand_iterable(rowalign, len(rows), ra_default)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/tabulate/__init__.py", line 2549, in _expand_iterable
+    if isinstance(original, Iterable) and not isinstance(original, str):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen abc>", line 119, in __instancecheck__
+  File "<frozen abc>", line 123, in __subclasscheck__
+  File "<frozen abc>", line 123, in __subclasscheck__
+  File "<frozen _collections_abc>", line 288, in __subclasshook__
+KeyboardInterrupt: 
+[GPU 2] skip complete: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_harmbench_safety.json
+[GPU 2] skip complete: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_jailbreakbench_safety.json
+[GPU 2] skip complete: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_strongreject_safety.json
+[GPU 2] skip complete: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_wildjailbreak_safety.json
+[GPU 2] skip complete: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_math_gsm8k.json
+[GPU 2] skip complete: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_math_minerva_math500.json
+[GPU 2] skip complete: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_code_humaneval.json
+[GPU 2] skip complete: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_code_mbpp.json
+[GPU 2] skip complete: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_medical_pubmedqa.json
+[GPU 2] skip complete: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_medical_medqa_4options.json
+
+================================================================================
+[GPU 2] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_utility.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --tasks mmlu --output_file results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_general_mmlu.json --limit 320
+================================================================================
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_utility.py", line 345, in <module>
+    main()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_utility.py", line 322, in main
+    results = run_lm_eval_python_api(args, config, tasks_list)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_utility.py", line 189, in run_lm_eval_python_api
+    from lm_eval.models.huggingface import HFLM
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/models/huggingface.py", line 12, in <module>
+    import transformers
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/__init__.py", line 30, in <module>
+    from . import dependency_versions_check
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/dependency_versions_check.py", line 16, in <module>
+    from .utils.versions import require_version, require_version_core
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/__init__.py", line 22, in <module>
+    from .auto_docstring import (
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/auto_docstring.py", line 32, in <module>
+    from .generic import ModelOutput
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/generic.py", line 38, in <module>
+    from .import_utils import is_mlx_available, is_torch_available, is_torch_fx_proxy
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/import_utils.py", line 47, in <module>
+    PACKAGE_DISTRIBUTION_MAPPING = importlib.metadata.packages_distributions()
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 948, in packages_distributions
+    pkg_to_dist[pkg].append(dist.metadata['Name'])
+                            ^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 452, in metadata
+    return _adapters.Message(email.message_from_string(text))
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/email/__init__.py", line 37, in message_from_string
+    return Parser(*args, **kws).parsestr(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/email/parser.py", line 64, in parsestr
+    return self.parse(StringIO(text), headersonly=headersonly)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/email/parser.py", line 53, in parse
+    feedparser.feed(data)
+  File "/usr/lib/python3.12/email/feedparser.py", line 174, in feed
+    self._call_parse()
+  File "/usr/lib/python3.12/email/feedparser.py", line 178, in _call_parse
+    self._parse()
+  File "/usr/lib/python3.12/email/feedparser.py", line 462, in _parsegen
+    for line in self._input:
+  File "/usr/lib/python3.12/email/feedparser.py", line 128, in __next__
+    line = self.readline()
+           ^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/email/feedparser.py", line 88, in readline
+    for ateof in reversed(self._eofstack):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+
+[GPU 2] Exit code: -2
+[GPU 2] skip complete: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_general_ifeval.json
+[GPU 2] skip complete: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_alpaca_eval2.json
+[GPU 2] skip complete: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_inst_evol_code.json
+[GPU 2] skip complete: results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_inst_medalpaca.json

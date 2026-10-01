@@ -1,0 +1,23 @@
+# Llama-2-7B 3特化モデルマージ実験タスクリスト (kiro 仕様遵守版)
+
+- `[x]` 1. 実装計画 (Implementation Plan) の作成とユーザー承認
+- `[x]` 2. `steering_hook.py` に `Llama-2-7B` および関連モデル名を許可する修正を加える
+- `[x]` 3. `test_steering_hook.py` に Llama-2-7B 用のテストケースを追加し、テスト全体の実行をパスさせる
+- `[x]` 4. 実験 YAML 設定ファイル `llama2_sst_experiment.yaml` の定義
+- `[x]` 5. 包括的マージスクリプト `v2/scripts/merge/merge_llama2_sst_suite.py` の実装
+  - `[x]` 複数モデルマージ（2モデル、3モデル）対応
+  - `[x]` 12種のマージ手法（TIES/DARE/DELLA用Mergekit YAML、FWA、SafeMERGE、LED、SST-Merge等）の実装
+  - `[x]` アブレーション設定（SST比、Variants）のサポート
+  - `[x]` メモリ効率に配慮した Safetensors レイヤー単位ロード・マージ・保存の実装
+  - `[x]` mergekit 呼び出しの強制と、カスタムフォールバック排除（RuntimeError送出）
+  - `[x]` `merge_metadata.json` の同梱保存と `metadata/` へのバックアップコピー
+- `[x]` 6. 評価スクリプト `v2/scripts/evaluation/eval_llama2_suite.py` の実装
+  - `[x]` `lm-evaluation-harness` による Utility ベンチマーク実行 of 統合
+  - `[x]` Safety ベンチマーク（ASR測定）の簡易評価パイプライン実装
+- `[x]` 7. マスタースクリプト `v2/run_all_experiments_suite.sh` の作成
+- `[x]` 8. ダミーまたはドライランによる全体の動作検証（検証計画の実行）
+- `[x]` 9. マージ実験および評価の実行
+  - `[x]` モデルとデータセットの自動ダウンロードスクリプト `v2/scripts/data_prep/download_llama2_resources.py` の作成
+  - `[x]` `third_party/SafeMERGE` 等の公式リポジトリ自動クローンコードの追加
+  - `[x]` `eval_llama2_suite.py` と既存の本物評価スクリプトの統合
+- `[x]` 10. 実験結果レポート (Walkthrough) の作成

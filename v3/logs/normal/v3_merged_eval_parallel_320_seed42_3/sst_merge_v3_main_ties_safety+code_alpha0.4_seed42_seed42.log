@@ -1,0 +1,721 @@
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_general_mmlu.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_utility.py --model_path models/merged/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42 --config configs/config_main.yaml --tasks ifeval --output_file results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_general_ifeval.json --limit 320 --batch_size 32
+================================================================================
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_general_mmlu.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_utility.py --model_path models/merged/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42 --config configs/config_main.yaml --tasks ifeval --output_file results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_general_ifeval.json --limit 320 --batch_size 32
+================================================================================
+[eval_utility] Configured PyTorch CPU threads: 16
+Running lm-eval Python API: model=models/merged/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42, tasks=['ifeval'], apply_chat_template=True
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   3%|▎         | 9/291 [00:00<00:03, 89.06it/s]Loading weights:   6%|▌         | 18/291 [00:00<00:03, 74.04it/s]Loading weights:   9%|▉         | 26/291 [00:00<00:03, 69.20it/s]Loading weights:  12%|█▏        | 34/291 [00:00<00:03, 66.62it/s]Loading weights:  14%|█▍        | 41/291 [00:00<00:03, 66.43it/s]Loading weights:  17%|█▋        | 49/291 [00:00<00:03, 69.00it/s]Loading weights:  19%|█▉        | 56/291 [00:00<00:03, 67.81it/s]Loading weights:  22%|██▏       | 63/291 [00:00<00:03, 65.90it/s]Loading weights:  24%|██▍       | 70/291 [00:01<00:03, 64.27it/s]Loading weights:  26%|██▋       | 77/291 [00:01<00:03, 64.52it/s]Loading weights:  29%|██▉       | 85/291 [00:01<00:03, 67.91it/s]Loading weights:  32%|███▏      | 92/291 [00:01<00:02, 67.37it/s]Loading weights:  34%|███▍      | 99/291 [00:01<00:02, 65.29it/s]Loading weights:  36%|███▋      | 106/291 [00:01<00:02, 64.08it/s]Loading weights:  39%|███▉      | 113/291 [00:01<00:02, 64.79it/s]Loading weights:  42%|████▏     | 121/291 [00:01<00:02, 67.68it/s]Loading weights:  44%|████▍     | 128/291 [00:01<00:02, 67.06it/s]Loading weights:  46%|████▋     | 135/291 [00:02<00:02, 65.28it/s]Loading weights:  49%|████▉     | 142/291 [00:02<00:02, 64.32it/s]Loading weights:  51%|█████     | 149/291 [00:02<00:02, 64.43it/s]Loading weights:  54%|█████▍    | 157/291 [00:02<00:01, 67.99it/s]Loading weights:  56%|█████▋    | 164/291 [00:02<00:01, 67.35it/s]Loading weights:  59%|█████▉    | 171/291 [00:02<00:01, 65.15it/s]Loading weights:  61%|██████    | 178/291 [00:02<00:01, 63.88it/s]Loading weights:  64%|██████▎   | 185/291 [00:02<00:01, 64.50it/s]Loading weights:  66%|██████▋   | 193/291 [00:02<00:01, 67.28it/s]Loading weights:  69%|██████▊   | 200/291 [00:03<00:01, 66.56it/s]Loading weights:  71%|███████   | 207/291 [00:03<00:01, 65.17it/s]Loading weights:  74%|███████▎  | 214/291 [00:03<00:01, 64.11it/s]Loading weights:  76%|███████▌  | 221/291 [00:03<00:01, 64.68it/s]Loading weights:  79%|███████▊  | 229/291 [00:03<00:00, 67.53it/s]Loading weights:  81%|████████  | 236/291 [00:03<00:00, 66.70it/s]Loading weights:  84%|████████▎ | 243/291 [00:03<00:00, 64.87it/s]Loading weights:  86%|████████▌ | 250/291 [00:03<00:00, 63.39it/s]Loading weights:  88%|████████▊ | 257/291 [00:03<00:00, 64.12it/s]Loading weights:  91%|█████████ | 265/291 [00:03<00:00, 67.68it/s]Loading weights:  93%|█████████▎| 272/291 [00:04<00:00, 66.95it/s]Loading weights:  96%|█████████▌| 279/291 [00:04<00:00, 64.92it/s]Loading weights:  98%|█████████▊| 286/291 [00:04<00:00, 63.65it/s]Loading weights: 100%|██████████| 291/291 [00:04<00:00, 66.46it/s]
+[eval_utility] Setting default chat template for tokenizer without chat_template attribute.
+  0%|          | 0/320 [00:00<?, ?it/s]100%|██████████| 320/320 [00:00<00:00, 24565.80it/s]
+Running generate_until requests:   0%|          | 0/320 [00:00<?, ?it/s]Running generate_until requests:   0%|          | 1/320 [00:58<5:10:13, 58.35s/it]Running generate_until requests:   1%|          | 2/320 [01:16<3:04:15, 34.77s/it]Running generate_until requests:   1%|          | 3/320 [01:32<2:18:11, 26.16s/it]Running generate_until requests:   1%|▏         | 4/320 [01:47<1:55:01, 21.84s/it]Running generate_until requests:   2%|▏         | 5/320 [02:02<1:41:59, 19.43s/it]Running generate_until requests:   2%|▏         | 6/320 [02:17<1:33:46, 17.92s/it]Running generate_until requests:   2%|▏         | 7/320 [02:32<1:28:39, 17.00s/it]Running generate_until requests:   2%|▎         | 8/320 [02:33<1:01:17, 11.79s/it]Running generate_until requests:   3%|▎         | 9/320 [02:48<1:06:26, 12.82s/it]Running generate_until requests:   3%|▎         | 10/320 [03:03<1:09:45, 13.50s/it]Running generate_until requests:   3%|▎         | 11/320 [03:18<1:12:01, 13.99s/it]Running generate_until requests:   4%|▍         | 12/320 [03:33<1:13:17, 14.28s/it]Running generate_until requests:   4%|▍         | 13/320 [03:34<52:23, 10.24s/it]  Running generate_until requests:   4%|▍         | 14/320 [03:49<59:41, 11.70s/it]Running generate_until requests:   5%|▍         | 15/320 [04:04<1:04:36, 12.71s/it]Running generate_until requests:   5%|▌         | 16/320 [04:19<1:07:51, 13.39s/it]Running generate_until requests:   5%|▌         | 17/320 [04:34<1:10:09, 13.89s/it]Running generate_until requests:   6%|▌         | 18/320 [04:49<1:11:40, 14.24s/it]Running generate_until requests:   6%|▌         | 19/320 [05:05<1:12:44, 14.50s/it]Running generate_until requests:   6%|▋         | 20/320 [05:19<1:13:09, 14.63s/it]Running generate_until requests:   7%|▋         | 21/320 [05:35<1:13:37, 14.78s/it]Running generate_until requests:   7%|▋         | 22/320 [05:38<56:13, 11.32s/it]  Running generate_until requests:   7%|▋         | 23/320 [05:53<1:01:27, 12.42s/it]Running generate_until requests:   8%|▊         | 24/320 [06:08<1:04:58, 13.17s/it]Running generate_until requests:   8%|▊         | 25/320 [06:23<1:07:26, 13.72s/it]Running generate_until requests:   8%|▊         | 26/320 [06:38<1:09:01, 14.09s/it]Running generate_until requests:   8%|▊         | 27/320 [06:53<1:10:03, 14.35s/it]Running generate_until requests:   9%|▉         | 28/320 [07:08<1:10:52, 14.56s/it]Running generate_until requests:   9%|▉         | 29/320 [07:23<1:11:18, 14.70s/it]Running generate_until requests:   9%|▉         | 30/320 [07:38<1:11:26, 14.78s/it]Running generate_until requests:  10%|▉         | 31/320 [07:53<1:11:24, 14.83s/it]Running generate_until requests:  10%|█         | 32/320 [08:08<1:11:21, 14.87s/it]Running generate_until requests:  10%|█         | 33/320 [08:23<1:11:18, 14.91s/it]Running generate_until requests:  11%|█         | 34/320 [08:38<1:11:10, 14.93s/it]Running generate_until requests:  11%|█         | 35/320 [08:53<1:10:57, 14.94s/it]Running generate_until requests:  11%|█▏        | 36/320 [09:08<1:10:51, 14.97s/it]Running generate_until requests:  12%|█▏        | 37/320 [09:22<1:10:30, 14.95s/it]Running generate_until requests:  12%|█▏        | 38/320 [09:37<1:10:14, 14.95s/it]Running generate_until requests:  12%|█▏        | 39/320 [09:52<1:10:08, 14.98s/it]Running generate_until requests:  12%|█▎        | 40/320 [10:07<1:09:54, 14.98s/it]Running generate_until requests:  13%|█▎        | 41/320 [10:22<1:09:43, 15.00s/it]Running generate_until requests:  13%|█▎        | 42/320 [10:37<1:09:23, 14.98s/it]Running generate_until requests:  13%|█▎        | 43/320 [10:52<1:09:05, 14.97s/it]Running generate_until requests:  14%|█▍        | 44/320 [11:07<1:08:56, 14.99s/it]Running generate_until requests:  14%|█▍        | 45/320 [11:22<1:08:34, 14.96s/it]Running generate_until requests:  14%|█▍        | 46/320 [11:37<1:08:19, 14.96s/it]Running generate_until requests:  15%|█▍        | 47/320 [11:52<1:08:08, 14.98s/it]Running generate_until requests:  15%|█▌        | 48/320 [12:07<1:07:49, 14.96s/it]Running generate_until requests:  15%|█▌        | 49/320 [12:22<1:07:28, 14.94s/it]Running generate_until requests:  16%|█▌        | 50/320 [12:37<1:07:21, 14.97s/it]Running generate_until requests:  16%|█▌        | 51/320 [12:52<1:07:04, 14.96s/it]Running generate_until requests:  16%|█▋        | 52/320 [13:07<1:06:48, 14.96s/it]Running generate_until requests:  17%|█▋        | 53/320 [13:22<1:06:31, 14.95s/it]Running generate_until requests:  17%|█▋        | 54/320 [13:22<46:55, 10.58s/it]  Running generate_until requests:  17%|█▋        | 55/320 [13:37<52:37, 11.92s/it]Running generate_until requests:  18%|█▊        | 56/320 [13:52<56:32, 12.85s/it]Running generate_until requests:  18%|█▊        | 57/320 [14:07<59:03, 13.47s/it]Running generate_until requests:  18%|█▊        | 58/320 [14:22<1:00:47, 13.92s/it]Running generate_until requests:  18%|█▊        | 59/320 [14:37<1:01:59, 14.25s/it]Running generate_until requests:  19%|█▉        | 60/320 [14:52<1:02:39, 14.46s/it]Running generate_until requests:  19%|█▉        | 61/320 [14:52<43:57, 10.18s/it]  Running generate_until requests:  19%|█▉        | 62/320 [15:07<49:59, 11.63s/it]Running generate_until requests:  20%|█▉        | 63/320 [15:22<54:03, 12.62s/it]Running generate_until requests:  20%|██        | 64/320 [15:25<41:03,  9.62s/it]Running generate_until requests:  20%|██        | 65/320 [15:40<47:39, 11.22s/it]Running generate_until requests:  21%|██        | 66/320 [15:55<52:12, 12.33s/it]Running generate_until requests:  21%|██        | 67/320 [15:55<36:59,  8.77s/it]Running generate_until requests:  21%|██▏       | 68/320 [15:58<28:50,  6.87s/it]Running generate_until requests:  22%|██▏       | 69/320 [16:13<38:50,  9.28s/it]Running generate_until requests:  22%|██▏       | 70/320 [16:28<45:50, 11.00s/it]Running generate_until requests:  22%|██▏       | 71/320 [16:43<50:31, 12.18s/it]Running generate_until requests:  22%|██▎       | 72/320 [16:58<53:52, 13.03s/it]Running generate_until requests:  23%|██▎       | 73/320 [17:13<56:03, 13.62s/it]Running generate_until requests:  23%|██▎       | 74/320 [17:28<57:27, 14.01s/it]Running generate_until requests:  23%|██▎       | 75/320 [17:43<58:20, 14.29s/it]Running generate_until requests:  24%|██▍       | 76/320 [17:58<58:58, 14.50s/it]Running generate_until requests:  24%|██▍       | 77/320 [18:12<59:12, 14.62s/it]Running generate_until requests:  24%|██▍       | 78/320 [18:27<59:25, 14.73s/it]Running generate_until requests:  25%|██▍       | 79/320 [18:42<59:24, 14.79s/it]Running generate_until requests:  25%|██▌       | 80/320 [18:57<59:20, 14.84s/it]Running generate_until requests:  25%|██▌       | 81/320 [19:12<59:17, 14.88s/it]Running generate_until requests:  26%|██▌       | 82/320 [19:27<59:15, 14.94s/it]Running generate_until requests:  26%|██▌       | 83/320 [19:42<58:58, 14.93s/it]Running generate_until requests:  26%|██▋       | 84/320 [19:43<41:44, 10.61s/it]Running generate_until requests:  27%|██▋       | 85/320 [19:58<46:45, 11.94s/it]Running generate_until requests:  27%|██▋       | 86/320 [20:13<50:02, 12.83s/it]Running generate_until requests:  27%|██▋       | 87/320 [20:28<52:21, 13.48s/it]Running generate_until requests:  28%|██▊       | 88/320 [20:43<53:50, 13.92s/it]Running generate_until requests:  28%|██▊       | 89/320 [20:58<54:52, 14.25s/it]Running generate_until requests:  28%|██▊       | 90/320 [21:13<55:25, 14.46s/it]Running generate_until requests:  28%|██▊       | 91/320 [21:28<55:42, 14.59s/it]Running generate_until requests:  29%|██▉       | 92/320 [21:42<55:50, 14.70s/it]Running generate_until requests:  29%|██▉       | 93/320 [21:57<55:57, 14.79s/it]Running generate_until requests:  29%|██▉       | 94/320 [22:12<55:52, 14.84s/it]Running generate_until requests:  30%|██▉       | 95/320 [22:27<55:43, 14.86s/it]Running generate_until requests:  30%|███       | 96/320 [22:42<55:33, 14.88s/it]Running generate_until requests:  30%|███       | 97/320 [22:57<55:21, 14.89s/it]Running generate_until requests:  31%|███       | 98/320 [23:12<55:13, 14.93s/it]Running generate_until requests:  31%|███       | 99/320 [23:13<39:27, 10.71s/it]Running generate_until requests:  31%|███▏      | 100/320 [23:28<43:56, 11.99s/it]Running generate_until requests:  32%|███▏      | 101/320 [23:43<46:56, 12.86s/it]Running generate_until requests:  32%|███▏      | 102/320 [23:58<49:01, 13.49s/it]Running generate_until requests:  32%|███▏      | 103/320 [24:13<50:21, 13.92s/it]Running generate_until requests:  32%|███▎      | 104/320 [24:28<51:17, 14.25s/it]Running generate_until requests:  33%|███▎      | 105/320 [24:29<36:33, 10.20s/it]Running generate_until requests:  33%|███▎      | 106/320 [24:44<41:29, 11.63s/it]Running generate_until requests:  33%|███▎      | 107/320 [24:59<44:48, 12.62s/it]Running generate_until requests:  34%|███▍      | 108/320 [25:13<47:01, 13.31s/it]Running generate_until requests:  34%|███▍      | 109/320 [25:28<48:29, 13.79s/it]Running generate_until requests:  34%|███▍      | 110/320 [25:43<49:30, 14.15s/it]Running generate_until requests:  35%|███▍      | 111/320 [25:58<50:05, 14.38s/it]Running generate_until requests:  35%|███▌      | 112/320 [26:13<50:24, 14.54s/it]Running generate_until requests:  35%|███▌      | 113/320 [26:15<36:56, 10.71s/it]Running generate_until requests:  36%|███▌      | 114/320 [26:30<41:09, 11.99s/it]Running generate_until requests:  36%|███▌      | 115/320 [26:45<44:02, 12.89s/it]Running generate_until requests:  36%|███▋      | 116/320 [26:46<32:12,  9.47s/it]Running generate_until requests:  37%|███▋      | 117/320 [27:01<37:34, 11.10s/it]Running generate_until requests:  37%|███▋      | 118/320 [27:16<41:14, 12.25s/it]Running generate_until requests:  37%|███▋      | 119/320 [27:31<43:41, 13.04s/it]Running generate_until requests:  38%|███▊      | 120/320 [27:31<30:33,  9.17s/it]Running generate_until requests:  38%|███▊      | 121/320 [27:32<22:05,  6.66s/it]Running generate_until requests:  38%|███▊      | 122/320 [27:33<16:09,  4.89s/it]Running generate_until requests:  38%|███▊      | 123/320 [27:48<25:56,  7.90s/it]Running generate_until requests:  39%|███▉      | 124/320 [28:03<32:40, 10.00s/it]Running generate_until requests:  39%|███▉      | 125/320 [28:03<23:07,  7.11s/it]Running generate_until requests:  39%|███▉      | 126/320 [28:18<30:36,  9.47s/it]Running generate_until requests:  40%|███▉      | 127/320 [28:33<35:40, 11.09s/it]Running generate_until requests:  40%|████      | 128/320 [28:48<39:16, 12.27s/it]Running generate_until requests:  40%|████      | 129/320 [29:03<41:36, 13.07s/it]Running generate_until requests:  41%|████      | 130/320 [29:03<29:12,  9.23s/it]Running generate_until requests:  41%|████      | 131/320 [29:18<34:24, 10.92s/it]Running generate_until requests:  41%|████▏     | 132/320 [29:33<37:59, 12.12s/it]Running generate_until requests:  42%|████▏     | 133/320 [29:48<40:29, 12.99s/it]Running generate_until requests:  42%|████▏     | 134/320 [30:03<42:06, 13.58s/it]Running generate_until requests:  42%|████▏     | 135/320 [30:18<43:05, 13.98s/it]Running generate_until requests:  42%|████▎     | 136/320 [30:18<30:21,  9.90s/it]Running generate_until requests:  43%|████▎     | 137/320 [30:33<34:47, 11.40s/it]Running generate_until requests:  43%|████▎     | 138/320 [30:48<37:47, 12.46s/it]Running generate_until requests:  43%|████▎     | 139/320 [31:03<39:48, 13.19s/it]Running generate_until requests:  44%|████▍     | 140/320 [31:18<41:11, 13.73s/it]Running generate_until requests:  44%|████▍     | 141/320 [31:33<42:01, 14.08s/it]Running generate_until requests:  44%|████▍     | 142/320 [31:33<29:27,  9.93s/it]Running generate_until requests:  45%|████▍     | 143/320 [31:48<33:41, 11.42s/it]Running generate_until requests:  45%|████▌     | 144/320 [32:03<36:34, 12.47s/it]Running generate_until requests:  45%|████▌     | 145/320 [32:18<38:31, 13.21s/it]Running generate_until requests:  46%|████▌     | 146/320 [32:33<39:47, 13.72s/it]Running generate_until requests:  46%|████▌     | 147/320 [32:48<40:41, 14.11s/it]Running generate_until requests:  46%|████▋     | 148/320 [32:48<28:59, 10.11s/it]Running generate_until requests:  47%|████▋     | 149/320 [33:03<32:57, 11.56s/it]Running generate_until requests:  47%|████▋     | 150/320 [33:18<35:36, 12.57s/it]Running generate_until requests:  47%|████▋     | 151/320 [33:33<37:22, 13.27s/it]Running generate_until requests:  48%|████▊     | 152/320 [33:48<38:32, 13.76s/it]Running generate_until requests:  48%|████▊     | 153/320 [34:03<39:19, 14.13s/it]Running generate_until requests:  48%|████▊     | 154/320 [34:18<39:45, 14.37s/it]Running generate_until requests:  48%|████▊     | 155/320 [34:33<40:02, 14.56s/it]Running generate_until requests:  49%|████▉     | 156/320 [34:48<40:06, 14.67s/it]Running generate_until requests:  49%|████▉     | 157/320 [35:03<40:03, 14.75s/it]Running generate_until requests:  49%|████▉     | 158/320 [35:18<39:56, 14.80s/it]Running generate_until requests:  50%|████▉     | 159/320 [35:33<39:47, 14.83s/it]Running generate_until requests:  50%|█████     | 160/320 [35:48<39:42, 14.89s/it]Running generate_until requests:  50%|█████     | 161/320 [36:03<39:28, 14.90s/it]Running generate_until requests:  51%|█████     | 162/320 [36:18<39:15, 14.91s/it]Running generate_until requests:  51%|█████     | 163/320 [36:33<39:00, 14.91s/it]Running generate_until requests:  51%|█████▏    | 164/320 [36:47<38:46, 14.91s/it][GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_general_mmlu.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_utility.py --model_path models/merged/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42 --config configs/config_main.yaml --tasks ifeval --output_file results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_general_ifeval.json --limit 320 --batch_size 32
+================================================================================
+[eval_utility] Configured PyTorch CPU threads: 16
+Running lm-eval Python API: model=models/merged/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42, tasks=['ifeval'], apply_chat_template=True
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   3%|▎         | 10/291 [00:00<00:02, 99.13it/s]Loading weights:   7%|▋         | 20/291 [00:00<00:03, 81.30it/s]Loading weights:  10%|▉         | 29/291 [00:00<00:03, 75.74it/s]Loading weights:  13%|█▎        | 37/291 [00:00<00:03, 72.99it/s]Loading weights:  15%|█▌        | 45/291 [00:00<00:03, 71.13it/s]Loading weights:  18%|█▊        | 53/291 [00:00<00:03, 70.20it/s]Loading weights:  21%|██        | 61/291 [00:00<00:03, 69.56it/s]Loading weights:  23%|██▎       | 68/291 [00:00<00:03, 69.50it/s]Loading weights:  26%|██▋       | 77/291 [00:01<00:02, 71.91it/s]Loading weights:  29%|██▉       | 85/291 [00:01<00:02, 73.30it/s]Loading weights:  32%|███▏      | 93/291 [00:01<00:02, 74.23it/s]Loading weights:  35%|███▍      | 101/291 [00:01<00:02, 69.82it/s]Loading weights:  37%|███▋      | 109/291 [00:01<00:02, 68.99it/s]Loading weights:  40%|███▉      | 116/291 [00:01<00:02, 67.67it/s]Loading weights:  42%|████▏     | 123/291 [00:01<00:02, 64.86it/s]Loading weights:  45%|████▌     | 131/291 [00:01<00:02, 68.47it/s]Loading weights:  48%|████▊     | 139/291 [00:01<00:02, 70.88it/s]Loading weights:  51%|█████     | 147/291 [00:02<00:01, 72.98it/s]Loading weights:  53%|█████▎    | 155/291 [00:02<00:01, 69.12it/s]Loading weights:  56%|█████▌    | 162/291 [00:02<00:01, 67.65it/s]Loading weights:  58%|█████▊    | 169/291 [00:02<00:01, 66.52it/s]Loading weights:  60%|██████    | 176/291 [00:02<00:01, 67.03it/s]Loading weights:  63%|██████▎   | 184/291 [00:02<00:01, 69.79it/s]Loading weights:  66%|██████▌   | 192/291 [00:02<00:01, 71.90it/s]Loading weights:  69%|██████▊   | 200/291 [00:02<00:01, 67.72it/s]Loading weights:  71%|███████   | 207/291 [00:02<00:01, 66.40it/s]Loading weights:  74%|███████▎  | 214/291 [00:03<00:01, 65.32it/s]Loading weights:  76%|███████▌  | 221/291 [00:03<00:01, 66.35it/s]Loading weights:  79%|███████▊  | 229/291 [00:03<00:00, 69.55it/s]Loading weights:  81%|████████  | 236/291 [00:03<00:00, 69.20it/s]Loading weights:  84%|████████▎ | 243/291 [00:03<00:00, 67.72it/s]Loading weights:  86%|████████▌ | 250/291 [00:03<00:00, 66.53it/s]Loading weights:  88%|████████▊ | 257/291 [00:03<00:00, 67.06it/s]Loading weights:  91%|█████████ | 265/291 [00:03<00:00, 70.22it/s]Loading weights:  94%|█████████▍| 273/291 [00:03<00:00, 72.39it/s]Loading weights:  97%|█████████▋| 281/291 [00:04<00:00, 67.93it/s]Loading weights:  99%|█████████▉| 288/291 [00:04<00:00, 66.00it/s]Loading weights: 100%|██████████| 291/291 [00:04<00:00, 69.76it/s]
+[eval_utility] Setting default chat template for tokenizer without chat_template attribute.
+  0%|          | 0/320 [00:00<?, ?it/s]100%|██████████| 320/320 [00:00<00:00, 24006.03it/s]
+Running generate_until requests:   0%|          | 0/320 [00:00<?, ?it/s]Running generate_until requests:   0%|          | 1/320 [01:00<5:23:22, 60.82s/it]Running generate_until requests:   1%|          | 2/320 [01:19<3:09:37, 35.78s/it]Running generate_until requests:   1%|          | 3/320 [01:35<2:21:19, 26.75s/it]Running generate_until requests:   1%|▏         | 4/320 [01:50<1:56:57, 22.21s/it]Running generate_until requests:   2%|▏         | 5/320 [02:05<1:43:20, 19.69s/it]Running generate_until requests:   2%|▏         | 6/320 [02:20<1:34:44, 18.11s/it][GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_harmbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_jailbreakbench_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_strongreject_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_wildjailbreak_safety.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_math_gsm8k.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_code_humaneval.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_code_mbpp.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_general_mmlu.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_utility.py --model_path models/merged/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42 --config configs/config_main.yaml --tasks ifeval --output_file results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_general_ifeval.json --limit 320 --batch_size 32
+================================================================================
+[eval_utility] Configured PyTorch CPU threads: 16
+Running lm-eval Python API: model=models/merged/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42, tasks=['ifeval'], apply_chat_template=True
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   4%|▍         | 13/291 [00:00<00:02, 117.91it/s]Loading weights:   9%|▊         | 25/291 [00:00<00:03, 82.24it/s] Loading weights:  12%|█▏        | 34/291 [00:00<00:03, 76.80it/s]Loading weights:  14%|█▍        | 42/291 [00:00<00:03, 71.66it/s]Loading weights:  18%|█▊        | 51/291 [00:00<00:03, 71.36it/s]Loading weights:  21%|██        | 60/291 [00:00<00:03, 71.25it/s]Loading weights:  24%|██▎       | 69/291 [00:00<00:03, 71.44it/s]Loading weights:  27%|██▋       | 78/291 [00:01<00:02, 71.57it/s]Loading weights:  30%|██▉       | 87/291 [00:01<00:02, 71.70it/s]Loading weights:  33%|███▎      | 96/291 [00:01<00:02, 71.80it/s]Loading weights:  36%|███▌      | 104/291 [00:01<00:02, 73.88it/s]Loading weights:  39%|███▉      | 113/291 [00:01<00:02, 72.76it/s]Loading weights:  42%|████▏     | 122/291 [00:01<00:02, 71.93it/s]Loading weights:  45%|████▍     | 130/291 [00:01<00:02, 73.56it/s]Loading weights:  47%|████▋     | 138/291 [00:01<00:02, 74.81it/s]Loading weights:  50%|█████     | 146/291 [00:01<00:02, 70.57it/s]Loading weights:  53%|█████▎    | 154/291 [00:02<00:01, 69.99it/s]Loading weights:  56%|█████▌    | 162/291 [00:02<00:01, 68.75it/s]Loading weights:  58%|█████▊    | 169/291 [00:02<00:01, 66.62it/s]Loading weights:  60%|██████    | 176/291 [00:02<00:01, 67.21it/s]Loading weights:  64%|██████▎   | 185/291 [00:02<00:01, 68.16it/s]Loading weights:  66%|██████▋   | 193/291 [00:02<00:01, 71.25it/s]Loading weights:  69%|██████▉   | 201/291 [00:02<00:01, 73.30it/s]Loading weights:  72%|███████▏  | 209/291 [00:02<00:01, 69.10it/s]Loading weights:  74%|███████▍  | 216/291 [00:03<00:01, 67.79it/s]Loading weights:  77%|███████▋  | 223/291 [00:03<00:01, 66.83it/s]Loading weights:  79%|███████▉  | 230/291 [00:03<00:00, 67.59it/s]Loading weights:  82%|████████▏ | 238/291 [00:03<00:00, 71.08it/s]Loading weights:  85%|████████▍ | 246/291 [00:03<00:00, 73.03it/s]Loading weights:  87%|████████▋ | 254/291 [00:03<00:00, 68.26it/s]Loading weights:  90%|████████▉ | 261/291 [00:03<00:00, 67.24it/s]Loading weights:  92%|█████████▏| 268/291 [00:03<00:00, 66.49it/s]Loading weights:  95%|█████████▍| 276/291 [00:03<00:00, 65.24it/s]Loading weights:  98%|█████████▊| 284/291 [00:04<00:00, 68.73it/s]Loading weights: 100%|██████████| 291/291 [00:04<00:00, 71.39it/s]
+[eval_utility] Setting default chat template for tokenizer without chat_template attribute.
+  0%|          | 0/320 [00:00<?, ?it/s]100%|██████████| 320/320 [00:00<00:00, 25214.20it/s]
+Running generate_until requests:   0%|          | 0/320 [00:00<?, ?it/s]Running generate_until requests:   0%|          | 1/320 [01:01<5:24:36, 61.06s/it]Running generate_until requests:   1%|          | 2/320 [01:19<3:10:12, 35.89s/it]Running generate_until requests:   1%|          | 3/320 [01:35<2:21:47, 26.84s/it]Running generate_until requests:   1%|▏         | 4/320 [01:50<1:57:20, 22.28s/it]Running generate_until requests:   2%|▏         | 5/320 [02:05<1:43:42, 19.75s/it]Running generate_until requests:   2%|▏         | 6/320 [02:21<1:35:04, 18.17s/it]Running generate_until requests:   2%|▏         | 7/320 [02:36<1:29:44, 17.20s/it]Running generate_until requests:   2%|▎         | 8/320 [02:36<1:02:02, 11.93s/it]Running generate_until requests:   3%|▎         | 9/320 [02:52<1:07:01, 12.93s/it]Running generate_until requests:   3%|▎         | 10/320 [03:07<1:10:23, 13.62s/it]Running generate_until requests:   3%|▎         | 11/320 [03:22<1:12:35, 14.10s/it]Running generate_until requests:   4%|▍         | 12/320 [03:37<1:13:48, 14.38s/it]Running generate_until requests:   4%|▍         | 13/320 [03:38<52:46, 10.32s/it]  Running generate_until requests:   4%|▍         | 14/320 [03:53<1:00:03, 11.78s/it]Running generate_until requests:   5%|▍         | 15/320 [04:08<1:05:00, 12.79s/it]Running generate_until requests:   5%|▌         | 16/320 [04:23<1:08:14, 13.47s/it]Running generate_until requests:   5%|▌         | 17/320 [04:38<1:10:33, 13.97s/it]Running generate_until requests:   6%|▌         | 18/320 [04:54<1:12:06, 14.33s/it]Running generate_until requests:   6%|▌         | 19/320 [05:09<1:13:09, 14.58s/it]Running generate_until requests:   6%|▋         | 20/320 [05:24<1:13:33, 14.71s/it]Running generate_until requests:   7%|▋         | 21/320 [05:39<1:14:00, 14.85s/it]Running generate_until requests:   7%|▋         | 22/320 [05:42<56:31, 11.38s/it]  Running generate_until requests:   7%|▋         | 23/320 [05:57<1:01:49, 12.49s/it]Running generate_until requests:   8%|▊         | 24/320 [06:12<1:05:23, 13.25s/it]Running generate_until requests:   8%|▊         | 25/320 [06:27<1:07:51, 13.80s/it]Running generate_until requests:   8%|▊         | 26/320 [06:42<1:09:27, 14.18s/it]Running generate_until requests:   8%|▊         | 27/320 [06:58<1:10:35, 14.46s/it]Running generate_until requests:   9%|▉         | 28/320 [07:13<1:11:18, 14.65s/it]Running generate_until requests:   9%|▉         | 29/320 [07:28<1:11:46, 14.80s/it]Running generate_until requests:   9%|▉         | 30/320 [07:43<1:11:52, 14.87s/it]Running generate_until requests:  10%|▉         | 31/320 [07:58<1:11:51, 14.92s/it]Running generate_until requests:  10%|█         | 32/320 [08:13<1:11:44, 14.95s/it]Running generate_until requests:  10%|█         | 33/320 [08:28<1:11:45, 15.00s/it]Running generate_until requests:  11%|█         | 34/320 [08:43<1:11:36, 15.02s/it]Running generate_until requests:  11%|█         | 35/320 [08:58<1:11:18, 15.01s/it]Running generate_until requests:  11%|█▏        | 36/320 [09:13<1:11:15, 15.05s/it]Running generate_until requests:  12%|█▏        | 37/320 [09:28<1:10:56, 15.04s/it]Running generate_until requests:  12%|█▏        | 38/320 [09:43<1:10:46, 15.06s/it]Running generate_until requests:  12%|█▏        | 39/320 [09:58<1:10:37, 15.08s/it]Running generate_until requests:  12%|█▎        | 40/320 [10:13<1:10:16, 15.06s/it]Running generate_until requests:  13%|█▎        | 41/320 [10:29<1:10:11, 15.09s/it]Running generate_until requests:  13%|█▎        | 42/320 [10:44<1:09:56, 15.10s/it]Running generate_until requests:  13%|█▎        | 43/320 [10:59<1:09:32, 15.06s/it]Running generate_until requests:  14%|█▍        | 44/320 [11:14<1:09:21, 15.08s/it]Running generate_until requests:  14%|█▍        | 45/320 [11:29<1:09:00, 15.05s/it]Running generate_until requests:  14%|█▍        | 46/320 [11:44<1:08:41, 15.04s/it]Running generate_until requests:  15%|█▍        | 47/320 [11:59<1:08:30, 15.06s/it]Running generate_until requests:  15%|█▌        | 48/320 [12:14<1:08:13, 15.05s/it]Running generate_until requests:  15%|█▌        | 49/320 [12:29<1:07:56, 15.04s/it]Running generate_until requests:  16%|█▌        | 50/320 [12:44<1:07:47, 15.07s/it]Running generate_until requests:  16%|█▌        | 51/320 [12:59<1:07:28, 15.05s/it]Running generate_until requests:  16%|█▋        | 52/320 [13:14<1:07:10, 15.04s/it]Running generate_until requests:  17%|█▋        | 53/320 [13:29<1:07:00, 15.06s/it]Running generate_until requests:  17%|█▋        | 54/320 [13:30<47:15, 10.66s/it]  Running generate_until requests:  17%|█▋        | 55/320 [13:45<52:56, 11.99s/it]Running generate_until requests:  18%|█▊        | 56/320 [14:00<56:55, 12.94s/it]Running generate_until requests:  18%|█▊        | 57/320 [14:15<59:28, 13.57s/it]Running generate_until requests:  18%|█▊        | 58/320 [14:30<1:01:10, 14.01s/it]Running generate_until requests:  18%|█▊        | 59/320 [14:45<1:02:20, 14.33s/it]Running generate_until requests:  19%|█▉        | 60/320 [15:00<1:03:01, 14.54s/it]Running generate_until requests:  19%|█▉        | 61/320 [15:00<44:13, 10.25s/it]  Running generate_until requests:  19%|█▉        | 62/320 [15:15<50:20, 11.71s/it]Running generate_until requests:  20%|█▉        | 63/320 [15:30<54:23, 12.70s/it]Running generate_until requests:  20%|██        | 64/320 [15:33<41:20,  9.69s/it]Running generate_until requests:  20%|██        | 65/320 [15:48<47:58, 11.29s/it]Running generate_until requests:  21%|██        | 66/320 [16:03<52:31, 12.41s/it]Running generate_until requests:  21%|██        | 67/320 [16:04<37:13,  8.83s/it]Running generate_until requests:  21%|██▏       | 68/320 [16:06<29:02,  6.91s/it]Running generate_until requests:  22%|██▏       | 69/320 [16:21<39:05,  9.34s/it]Running generate_until requests:  22%|██▏       | 70/320 [16:36<46:09, 11.08s/it]Running generate_until requests:  22%|██▏       | 71/320 [16:51<50:53, 12.26s/it]Running generate_until requests:  22%|██▎       | 72/320 [17:06<54:12, 13.12s/it]Running generate_until requests:  23%|██▎       | 73/320 [17:21<56:18, 13.68s/it]Running generate_until requests:  23%|██▎       | 74/320 [17:36<57:42, 14.08s/it]Running generate_until requests:  23%|██▎       | 75/320 [17:51<58:37, 14.36s/it]Running generate_until requests:  24%|██▍       | 76/320 [18:06<59:18, 14.58s/it]Running generate_until requests:  24%|██▍       | 77/320 [18:21<59:36, 14.72s/it]Running generate_until requests:  24%|██▍       | 78/320 [18:37<59:50, 14.84s/it]Running generate_until requests:  25%|██▍       | 79/320 [18:52<59:46, 14.88s/it]Running generate_until requests:  25%|██▌       | 80/320 [19:07<59:41, 14.92s/it]Running generate_until requests:  25%|██▌       | 81/320 [19:22<59:34, 14.96s/it]Running generate_until requests:  26%|██▌       | 82/320 [19:37<59:30, 15.00s/it]Running generate_until requests:  26%|██▌       | 83/320 [19:52<59:14, 15.00s/it]Running generate_until requests:  26%|██▋       | 84/320 [19:52<41:56, 10.66s/it]Running generate_until requests:  27%|██▋       | 85/320 [20:07<46:59, 12.00s/it]Running generate_until requests:  27%|██▋       | 86/320 [20:22<50:18, 12.90s/it]Running generate_until requests:  27%|██▋       | 87/320 [20:37<52:38, 13.55s/it]Running generate_until requests:  28%|██▊       | 88/320 [20:53<54:09, 14.01s/it]Running generate_until requests:  28%|██▊       | 89/320 [21:08<55:09, 14.33s/it]Running generate_until requests:  28%|██▊       | 90/320 [21:23<55:40, 14.53s/it]Running generate_until requests:  28%|██▊       | 91/320 [21:38<55:57, 14.66s/it]Running generate_until requests:  29%|██▉       | 92/320 [21:53<56:05, 14.76s/it]Running generate_until requests:  29%|██▉       | 93/320 [22:08<56:11, 14.85s/it]Running generate_until requests:  29%|██▉       | 94/320 [22:23<56:06, 14.90s/it]Running generate_until requests:  30%|██▉       | 95/320 [22:38<55:56, 14.92s/it]Running generate_until requests:  30%|███       | 96/320 [22:53<55:46, 14.94s/it]Running generate_until requests:  30%|███       | 97/320 [23:08<55:34, 14.95s/it]Running generate_until requests:  31%|███       | 98/320 [23:23<55:28, 14.99s/it]Running generate_until requests:  31%|███       | 99/320 [23:24<39:38, 10.76s/it]Running generate_until requests:  31%|███▏      | 100/320 [23:39<44:07, 12.03s/it]Running generate_until requests:  32%|███▏      | 101/320 [23:54<47:09, 12.92s/it]Running generate_until requests:  32%|███▏      | 102/320 [24:09<49:12, 13.55s/it]Running generate_until requests:  32%|███▏      | 103/320 [24:24<50:33, 13.98s/it]Running generate_until requests:  32%|███▎      | 104/320 [24:39<51:31, 14.31s/it]Running generate_until requests:  33%|███▎      | 105/320 [24:39<36:43, 10.25s/it]Running generate_until requests:  33%|███▎      | 106/320 [24:54<41:37, 11.67s/it]Running generate_until requests:  33%|███▎      | 107/320 [25:09<45:00, 12.68s/it]Running generate_until requests:  34%|███▍      | 108/320 [25:24<47:13, 13.37s/it]Running generate_until requests:  34%|███▍      | 109/320 [25:39<48:44, 13.86s/it]Running generate_until requests:  34%|███▍      | 110/320 [25:54<49:45, 14.22s/it]Running generate_until requests:  35%|███▍      | 111/320 [26:09<50:20, 14.45s/it]Running generate_until requests:  35%|███▌      | 112/320 [26:24<50:39, 14.62s/it]Running generate_until requests:  35%|███▌      | 113/320 [26:26<37:07, 10.76s/it]Running generate_until requests:  36%|███▌      | 114/320 [26:41<41:19, 12.03s/it]Running generate_until requests:  36%|███▌      | 115/320 [26:56<44:13, 12.94s/it]Running generate_until requests:  36%|███▋      | 116/320 [26:58<32:22,  9.52s/it]Running generate_until requests:  37%|███▋      | 117/320 [27:13<37:50, 11.18s/it]Running generate_until requests:  37%|███▋      | 118/320 [27:28<41:30, 12.33s/it]Running generate_until requests:  37%|███▋      | 119/320 [27:43<43:57, 13.12s/it]Running generate_until requests:  38%|███▊      | 120/320 [27:43<30:44,  9.22s/it]Running generate_until requests:  38%|███▊      | 121/320 [27:44<22:14,  6.70s/it]Running generate_until requests:  38%|███▊      | 122/320 [27:45<16:15,  4.93s/it]Running generate_until requests:  38%|███▊      | 123/320 [28:00<26:05,  7.95s/it]Running generate_until requests:  39%|███▉      | 124/320 [28:15<32:51, 10.06s/it]Running generate_until requests:  39%|███▉      | 125/320 [28:15<23:15,  7.16s/it]Running generate_until requests:  39%|███▉      | 126/320 [28:30<30:45,  9.51s/it]Running generate_until requests:  40%|███▉      | 127/320 [28:45<35:54, 11.16s/it]Running generate_until requests:  40%|████      | 128/320 [29:00<39:29, 12.34s/it]Running generate_until requests:  40%|████      | 129/320 [29:15<41:50, 13.14s/it]Running generate_until requests:  41%|████      | 130/320 [29:15<29:22,  9.28s/it]Running generate_until requests:  41%|████      | 131/320 [29:30<34:37, 10.99s/it]Running generate_until requests:  41%|████▏     | 132/320 [29:45<38:13, 12.20s/it]Running generate_until requests:  42%|████▏     | 133/320 [30:00<40:43, 13.07s/it]Running generate_until requests:  42%|████▏     | 134/320 [30:15<42:18, 13.65s/it]Running generate_until requests:  42%|████▏     | 135/320 [30:30<43:20, 14.06s/it]Running generate_until requests:  42%|████▎     | 136/320 [30:31<30:31,  9.95s/it]Running generate_until requests:  43%|████▎     | 137/320 [30:46<34:58, 11.47s/it]Running generate_until requests:  43%|████▎     | 138/320 [31:01<38:05, 12.56s/it]Running generate_until requests:  43%|████▎     | 139/320 [31:16<40:10, 13.32s/it]Running generate_until requests:  44%|████▍     | 140/320 [31:31<41:32, 13.85s/it]Running generate_until requests:  44%|████▍     | 141/320 [31:46<42:18, 14.18s/it]Running generate_until requests:  44%|████▍     | 142/320 [31:46<29:39, 10.00s/it]Running generate_until requests:  45%|████▍     | 143/320 [32:01<33:54, 11.50s/it]Running generate_until requests:  45%|████▌     | 144/320 [32:16<36:48, 12.55s/it]Running generate_until requests:  45%|████▌     | 145/320 [32:31<38:43, 13.28s/it]Running generate_until requests:  46%|████▌     | 146/320 [32:46<39:59, 13.79s/it]Running generate_until requests:  46%|████▌     | 147/320 [33:01<40:52, 14.18s/it]Running generate_until requests:  46%|████▋     | 148/320 [33:02<29:07, 10.16s/it]Running generate_until requests:  47%|████▋     | 149/320 [33:17<33:04, 11.60s/it]Running generate_until requests:  47%|████▋     | 150/320 [33:32<35:46, 12.62s/it]Running generate_until requests:  47%|████▋     | 151/320 [33:47<37:36, 13.35s/it]Running generate_until requests:  48%|████▊     | 152/320 [34:02<38:51, 13.88s/it]Running generate_until requests:  48%|████▊     | 153/320 [34:17<39:33, 14.21s/it]Running generate_until requests:  48%|████▊     | 154/320 [34:32<40:00, 14.46s/it]Running generate_until requests:  48%|████▊     | 155/320 [34:47<40:19, 14.66s/it]Running generate_until requests:  49%|████▉     | 156/320 [35:02<40:21, 14.76s/it]Running generate_until requests:  49%|████▉     | 157/320 [35:17<40:19, 14.84s/it]Running generate_until requests:  49%|████▉     | 158/320 [35:32<40:12, 14.89s/it]Running generate_until requests:  50%|████▉     | 159/320 [35:47<40:03, 14.93s/it]Running generate_until requests:  50%|█████     | 160/320 [36:03<39:57, 14.99s/it]Running generate_until requests:  50%|█████     | 161/320 [36:18<39:43, 14.99s/it]Running generate_until requests:  51%|█████     | 162/320 [36:33<39:29, 15.00s/it]Running generate_until requests:  51%|█████     | 163/320 [36:48<39:21, 15.04s/it]Running generate_until requests:  51%|█████▏    | 164/320 [37:03<39:08, 15.05s/it]Running generate_until requests:  52%|█████▏    | 165/320 [37:18<38:51, 15.04s/it]Running generate_until requests:  52%|█████▏    | 166/320 [37:33<38:40, 15.07s/it]Running generate_until requests:  52%|█████▏    | 167/320 [37:48<38:26, 15.07s/it]Running generate_until requests:  52%|█████▎    | 168/320 [38:03<38:09, 15.06s/it]Running generate_until requests:  53%|█████▎    | 169/320 [38:03<26:42, 10.61s/it]Running generate_until requests:  53%|█████▎    | 170/320 [38:18<29:50, 11.94s/it]Running generate_until requests:  53%|█████▎    | 171/320 [38:33<31:55, 12.86s/it]Running generate_until requests:  54%|█████▍    | 172/320 [38:48<33:18, 13.51s/it]Running generate_until requests:  54%|█████▍    | 173/320 [39:03<34:11, 13.96s/it]Running generate_until requests:  54%|█████▍    | 174/320 [39:19<34:48, 14.31s/it]Running generate_until requests:  55%|█████▍    | 175/320 [39:34<35:04, 14.51s/it]Running generate_until requests:  55%|█████▌    | 176/320 [39:49<35:12, 14.67s/it]Running generate_until requests:  55%|█████▌    | 177/320 [40:04<35:11, 14.77s/it]Running generate_until requests:  56%|█████▌    | 178/320 [40:19<35:11, 14.87s/it]Running generate_until requests:  56%|█████▌    | 179/320 [40:34<35:01, 14.91s/it]Running generate_until requests:  56%|█████▋    | 180/320 [40:49<34:52, 14.95s/it]Running generate_until requests:  57%|█████▋    | 181/320 [41:04<34:39, 14.96s/it]Running generate_until requests:  57%|█████▋    | 182/320 [41:19<34:26, 14.98s/it]Running generate_until requests:  57%|█████▋    | 183/320 [41:34<34:12, 14.98s/it]Running generate_until requests:  57%|█████▊    | 184/320 [41:49<33:59, 15.00s/it]Running generate_until requests:  58%|█████▊    | 185/320 [42:04<33:44, 15.00s/it]Running generate_until requests:  58%|█████▊    | 186/320 [42:19<33:30, 15.01s/it]Running generate_until requests:  58%|█████▊    | 187/320 [42:34<33:15, 15.00s/it]Running generate_until requests:  59%|█████▉    | 188/320 [42:49<33:04, 15.03s/it]Running generate_until requests:  59%|█████▉    | 189/320 [43:04<32:47, 15.02s/it]Running generate_until requests:  59%|█████▉    | 190/320 [43:19<32:32, 15.02s/it]Running generate_until requests:  60%|█████▉    | 191/320 [43:34<32:17, 15.02s/it]Running generate_until requests:  60%|██████    | 192/320 [43:49<32:02, 15.02s/it]Running generate_until requests:  60%|██████    | 193/320 [44:04<31:46, 15.01s/it]Running generate_until requests:  61%|██████    | 194/320 [44:19<31:31, 15.01s/it]Running generate_until requests:  61%|██████    | 195/320 [44:34<31:15, 15.00s/it]Running generate_until requests:  61%|██████▏   | 196/320 [44:49<31:00, 15.00s/it]Running generate_until requests:  62%|██████▏   | 197/320 [45:04<30:44, 15.00s/it]Running generate_until requests:  62%|██████▏   | 198/320 [45:19<30:29, 15.00s/it]Running generate_until requests:  62%|██████▏   | 199/320 [45:20<21:52, 10.85s/it]Running generate_until requests:  62%|██████▎   | 200/320 [45:25<18:19,  9.16s/it]Running generate_until requests:  63%|██████▎   | 201/320 [45:40<21:41, 10.94s/it]Running generate_until requests:  63%|██████▎   | 202/320 [45:55<23:54, 12.16s/it]Running generate_until requests:  63%|██████▎   | 203/320 [46:10<25:26, 13.04s/it]Running generate_until requests:  64%|██████▍   | 204/320 [46:11<17:59,  9.31s/it]Running generate_until requests:  64%|██████▍   | 205/320 [46:26<21:08, 11.03s/it]Running generate_until requests:  64%|██████▍   | 206/320 [46:41<23:13, 12.22s/it]Running generate_until requests:  65%|██████▍   | 207/320 [46:56<24:35, 13.06s/it]Running generate_until requests:  65%|██████▌   | 208/320 [47:11<25:28, 13.65s/it]Running generate_until requests:  65%|██████▌   | 209/320 [47:26<26:02, 14.07s/it]Running generate_until requests:  66%|██████▌   | 210/320 [47:41<26:18, 14.35s/it]Running generate_until requests:  66%|██████▌   | 211/320 [47:56<26:25, 14.55s/it]Running generate_until requests:  66%|██████▋   | 212/320 [48:11<26:27, 14.70s/it]Running generate_until requests:  67%|██████▋   | 213/320 [48:26<26:24, 14.81s/it]Running generate_until requests:  67%|██████▋   | 214/320 [48:41<26:17, 14.88s/it]Running generate_until requests:  67%|██████▋   | 215/320 [48:57<26:10, 14.96s/it]Running generate_until requests:  68%|██████▊   | 216/320 [49:12<25:58, 14.99s/it]Running generate_until requests:  68%|██████▊   | 217/320 [49:27<25:47, 15.03s/it]Running generate_until requests:  68%|██████▊   | 218/320 [49:42<25:34, 15.04s/it]Running generate_until requests:  68%|██████▊   | 219/320 [49:57<25:17, 15.03s/it]Running generate_until requests:  69%|██████▉   | 220/320 [50:12<25:05, 15.05s/it]Running generate_until requests:  69%|██████▉   | 221/320 [50:27<24:48, 15.04s/it]Running generate_until requests:  69%|██████▉   | 222/320 [50:28<17:46, 10.88s/it]Running generate_until requests:  70%|██████▉   | 223/320 [50:43<19:36, 12.12s/it]Running generate_until requests:  70%|███████   | 224/320 [50:58<20:48, 13.00s/it]Running generate_until requests:  70%|███████   | 225/320 [51:13<21:33, 13.61s/it]Running generate_until requests:  71%|███████   | 226/320 [51:28<22:00, 14.05s/it]Running generate_until requests:  71%|███████   | 227/320 [51:43<22:13, 14.34s/it]Running generate_until requests:  71%|███████▏  | 228/320 [51:58<22:17, 14.54s/it]Running generate_until requests:  72%|███████▏  | 229/320 [52:13<22:15, 14.68s/it]Running generate_until requests:  72%|███████▏  | 230/320 [52:13<15:30, 10.34s/it]Running generate_until requests:  72%|███████▏  | 231/320 [52:15<11:24,  7.69s/it]Running generate_until requests:  72%|███████▎  | 232/320 [52:30<14:32,  9.92s/it]Running generate_until requests:  73%|███████▎  | 233/320 [52:45<16:39, 11.49s/it]Running generate_until requests:  73%|███████▎  | 234/320 [52:46<12:01,  8.39s/it]Running generate_until requests:  73%|███████▎  | 235/320 [53:01<14:43, 10.39s/it]Running generate_until requests:  74%|███████▍  | 236/320 [53:17<16:31, 11.81s/it]Running generate_until requests:  74%|███████▍  | 237/320 [53:32<17:43, 12.81s/it]Running generate_until requests:  74%|███████▍  | 238/320 [53:47<18:27, 13.51s/it]Running generate_until requests:  75%|███████▍  | 239/320 [54:02<18:54, 14.01s/it]Running generate_until requests:  75%|███████▌  | 240/320 [54:03<13:25, 10.07s/it]Running generate_until requests:  75%|███████▌  | 241/320 [54:18<15:14, 11.57s/it]Running generate_until requests:  76%|███████▌  | 242/320 [54:33<16:23, 12.61s/it]Running generate_until requests:  76%|███████▌  | 243/320 [54:48<17:08, 13.36s/it]Running generate_until requests:  76%|███████▋  | 244/320 [55:03<17:34, 13.87s/it]Running generate_until requests:  77%|███████▋  | 245/320 [55:18<17:47, 14.23s/it]Running generate_until requests:  77%|███████▋  | 246/320 [55:33<17:52, 14.49s/it]Running generate_until requests:  77%|███████▋  | 247/320 [55:48<17:49, 14.66s/it]Running generate_until requests:  78%|███████▊  | 248/320 [56:03<17:43, 14.76s/it]Running generate_until requests:  78%|███████▊  | 249/320 [56:19<17:36, 14.88s/it]Running generate_until requests:  78%|███████▊  | 250/320 [56:34<17:24, 14.92s/it]Running generate_until requests:  78%|███████▊  | 251/320 [56:49<17:12, 14.96s/it]Running generate_until requests:  79%|███████▉  | 252/320 [57:04<17:00, 15.01s/it]Running generate_until requests:  79%|███████▉  | 253/320 [57:19<16:46, 15.02s/it]Running generate_until requests:  79%|███████▉  | 254/320 [57:34<16:32, 15.05s/it]Running generate_until requests:  80%|███████▉  | 255/320 [57:49<16:16, 15.03s/it]Running generate_until requests:  80%|████████  | 256/320 [58:04<16:01, 15.03s/it]Running generate_until requests:  80%|████████  | 257/320 [58:19<15:48, 15.05s/it]Running generate_until requests:  81%|████████  | 258/320 [58:34<15:32, 15.04s/it]Running generate_until requests:  81%|████████  | 259/320 [58:49<15:17, 15.05s/it]Running generate_until requests:  81%|████████▏ | 260/320 [59:04<15:02, 15.05s/it]Running generate_until requests:  82%|████████▏ | 261/320 [59:19<14:47, 15.05s/it]Running generate_until requests:  82%|████████▏ | 262/320 [59:34<14:32, 15.05s/it]Running generate_until requests:  82%|████████▏ | 263/320 [59:49<14:16, 15.03s/it]Running generate_until requests:  82%|████████▎ | 264/320 [59:51<10:12, 10.94s/it]Running generate_until requests:  83%|████████▎ | 265/320 [1:00:06<11:08, 12.16s/it]Running generate_until requests:  83%|████████▎ | 266/320 [1:00:21<11:43, 13.02s/it]Running generate_until requests:  83%|████████▎ | 267/320 [1:00:36<12:02, 13.63s/it]Running generate_until requests:  84%|████████▍ | 268/320 [1:00:51<12:12, 14.08s/it]Running generate_until requests:  84%|████████▍ | 269/320 [1:01:06<12:12, 14.37s/it]Running generate_until requests:  84%|████████▍ | 270/320 [1:01:21<12:08, 14.57s/it]Running generate_until requests:  85%|████████▍ | 271/320 [1:01:36<12:01, 14.72s/it]Running generate_until requests:  85%|████████▌ | 272/320 [1:01:38<08:39, 10.81s/it]Running generate_until requests:  85%|████████▌ | 273/320 [1:01:53<09:28, 12.09s/it]Running generate_until requests:  86%|████████▌ | 274/320 [1:02:08<09:57, 12.98s/it]Running generate_until requests:  86%|████████▌ | 275/320 [1:02:23<10:12, 13.61s/it]Running generate_until requests:  86%|████████▋ | 276/320 [1:02:38<10:17, 14.04s/it]Running generate_until requests:  87%|████████▋ | 277/320 [1:02:53<10:16, 14.33s/it]Running generate_until requests:  87%|████████▋ | 278/320 [1:03:08<10:11, 14.57s/it]Running generate_until requests:  87%|████████▋ | 279/320 [1:03:23<10:02, 14.70s/it]Running generate_until requests:  88%|████████▊ | 280/320 [1:03:38<09:51, 14.79s/it]Running generate_until requests:  88%|████████▊ | 281/320 [1:03:53<09:39, 14.86s/it]Running generate_until requests:  88%|████████▊ | 282/320 [1:04:08<09:26, 14.91s/it]Running generate_until requests:  88%|████████▊ | 283/320 [1:04:23<09:12, 14.94s/it]Running generate_until requests:  89%|████████▉ | 284/320 [1:04:38<08:58, 14.95s/it]Running generate_until requests:  89%|████████▉ | 285/320 [1:04:53<08:43, 14.96s/it]Running generate_until requests:  89%|████████▉ | 286/320 [1:05:08<08:29, 14.97s/it]Running generate_until requests:  90%|████████▉ | 287/320 [1:05:23<08:15, 15.01s/it]Running generate_until requests:  90%|█████████ | 288/320 [1:05:38<08:00, 15.01s/it]Running generate_until requests:  90%|█████████ | 289/320 [1:05:39<05:36, 10.84s/it]Running generate_until requests:  91%|█████████ | 290/320 [1:05:54<06:02, 12.09s/it]Running generate_until requests:  91%|█████████ | 291/320 [1:06:09<06:16, 12.98s/it]Running generate_until requests:  91%|█████████▏| 292/320 [1:06:12<04:32,  9.74s/it]Running generate_until requests:  92%|█████████▏| 293/320 [1:06:27<05:05, 11.32s/it]Running generate_until requests:  92%|█████████▏| 294/320 [1:06:27<03:30,  8.10s/it]Running generate_until requests:  92%|█████████▏| 295/320 [1:06:42<04:14, 10.19s/it]Running generate_until requests:  92%|█████████▎| 296/320 [1:06:57<04:40, 11.67s/it]Running generate_until requests:  93%|█████████▎| 297/320 [1:07:13<04:52, 12.71s/it]Running generate_until requests:  93%|█████████▎| 298/320 [1:07:28<04:55, 13.45s/it]Running generate_until requests:  93%|█████████▎| 299/320 [1:07:43<04:52, 13.93s/it]Running generate_until requests:  94%|█████████▍| 300/320 [1:07:58<04:45, 14.26s/it]Running generate_until requests:  94%|█████████▍| 301/320 [1:08:13<04:35, 14.52s/it]Running generate_until requests:  94%|█████████▍| 302/320 [1:08:28<04:24, 14.68s/it]Running generate_until requests:  95%|█████████▍| 303/320 [1:08:43<04:11, 14.79s/it]Running generate_until requests:  95%|█████████▌| 304/320 [1:08:58<03:57, 14.87s/it]Running generate_until requests:  95%|█████████▌| 305/320 [1:09:13<03:43, 14.92s/it]Running generate_until requests:  96%|█████████▌| 306/320 [1:09:28<03:29, 14.98s/it]Running generate_until requests:  96%|█████████▌| 307/320 [1:09:43<03:15, 15.01s/it]Running generate_until requests:  96%|█████████▋| 308/320 [1:09:58<03:00, 15.02s/it]Running generate_until requests:  97%|█████████▋| 309/320 [1:10:13<02:45, 15.02s/it]Running generate_until requests:  97%|█████████▋| 310/320 [1:10:28<02:30, 15.03s/it]Running generate_until requests:  97%|█████████▋| 311/320 [1:10:44<02:15, 15.05s/it]Running generate_until requests:  98%|█████████▊| 312/320 [1:10:59<02:00, 15.03s/it]Running generate_until requests:  98%|█████████▊| 313/320 [1:11:14<01:45, 15.03s/it]Running generate_until requests:  98%|█████████▊| 314/320 [1:11:29<01:30, 15.04s/it]Running generate_until requests:  98%|█████████▊| 315/320 [1:11:44<01:15, 15.05s/it]Running generate_until requests:  99%|█████████▉| 316/320 [1:11:59<01:00, 15.07s/it]Running generate_until requests:  99%|█████████▉| 317/320 [1:11:59<00:32, 10.70s/it]Running generate_until requests:  99%|█████████▉| 318/320 [1:12:14<00:24, 12.04s/it]Running generate_until requests: 100%|█████████▉| 319/320 [1:12:30<00:12, 12.97s/it]Running generate_until requests: 100%|██████████| 320/320 [1:12:30<00:00,  9.25s/it]Running generate_until requests: 100%|██████████| 320/320 [1:12:30<00:00, 13.60s/it]
+Unable to detect language for text 
+1. 1. 1. 2. 3. 4. 5. 6. 7. 8.10.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82 due to No features in text.
+Unable to detect language for text 
+1. 1. 1. 2. 3. 4. 5. 6. 7. 8.10.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82 due to No features in text.
+Unable to detect language for text 
+The ::: 
+
+1.
+
+The wedding of the Swahis.Ї. 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 20 due to No features in text.
+Unable to detect language for text 
+The ::: 
+
+1.
+
+The wedding of the Swahis.Ї. 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 20 due to No features in text.
+Unable to detect language for text [
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ due to No features in text.
+Unable to detect language for text [
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ due to No features in text.
+Unable to detect language for text 1. 1. 1. 2. 3. 4. 5. 6. 7. 8.10.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82 due to No features in text.
+Unable to detect language for text 1. 1. 1. 2. 3. 4. 5. 6. 7. 8.10.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82.84.86.90.92.94.96.100.12.14.16.18.20.22.24.26.28.30.32.34.36.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72.74.76.80.82 due to No features in text.
+Unable to detect language for text The ::: 
+
+1.
+
+The wedding of the Swahis.Ї. 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 20 due to No features in text.
+Unable to detect language for text The ::: 
+
+1.
+
+The wedding of the Swahis.Ї. 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 2014.Ї 20 due to No features in text.
+Cleaned up IFEval responses (33/320 samples modified). Updated Prompt Strict Acc: 0.0938, Inst Strict Acc: 0.1889
+Results saved to results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_utility_general_ifeval.json
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_alpaca_eval2.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_inst_evol_code.json
+[GPU 0] skip complete: results/debug_limit320/merged/seed42/safety+code/ties/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42_inst_medalpaca.json

@@ -1,0 +1,54 @@
+\begin{table}[H]
+\centering
+\caption{予備実験（TrustLLM / BeaverTails）における安全性と有用性の評価（詳細再掲）}
+\label{tab:prelim_detail_app}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{llrrr}
+\toprule
+\textbf{Pattern} & \textbf{Method} & \textbf{TrustLLM Raw ASR* (ASR$\downarrow$ \%)} & \textbf{Gibberish Ratio ($\downarrow$ \%)} & \textbf{BeaverTails Utility (Score$\uparrow$ \%)} \\
+\midrule
+safety+code & Base & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\
+safety+code & dare & 100.00 $\pm$ 0.00 & 36.35 $\pm$ 12.66 & 64.06 $\pm$ 11.87 \\
+safety+code & data\_free\_sst & 92.60 $\pm$ 2.90 & 64.38 $\pm$ 1.13 & 27.40 $\pm$ 3.77 \\
+safety+code & della & 100.00 $\pm$ 0.00 & 33.65 $\pm$ 8.21 & 67.19 $\pm$ 5.42 \\
+safety+code & led\_merging & 87.19 $\pm$ 0.00 & 95.94 $\pm$ 0.00 & 5.00 $\pm$ 0.00 \\
+safety+code & matena\_fisher & 95.62 $\pm$ 1.13 & 71.98 $\pm$ 1.57 & 28.33 $\pm$ 2.22 \\
+safety+code & mergealign & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\
+safety+code & safemerge & 4.58 $\pm$ 5.81 & 6.25 $\pm$ 10.56 & 2.81 $\pm$ 2.19 \\
+safety+code & sst & 98.12 $\pm$ 1.65 & 76.77 $\pm$ 3.31 & 19.58 $\pm$ 2.90 \\
+safety+code & task\_arithmetic & 82.40 $\pm$ 2.73 & 56.67 $\pm$ 4.07 & 24.38 $\pm$ 3.29 \\
+safety+code & ties & 99.38 $\pm$ 0.31 & 62.29 $\pm$ 6.59 & 34.58 $\pm$ 2.37 \\
+safety+math & Base & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\
+safety+math & dare & 17.19 $\pm$ 0.83 & 18.65 $\pm$ 0.95 & 9.69 $\pm$ 2.86 \\
+safety+math & data\_free\_sst & 36.88 $\pm$ 3.25 & 36.04 $\pm$ 4.24 & 21.15 $\pm$ 0.36 \\
+safety+math & della & 19.06 $\pm$ 3.17 & 20.62 $\pm$ 5.20 & 7.81 $\pm$ 2.05 \\
+safety+math & led\_merging & 87.19 $\pm$ 0.00 & 96.15 $\pm$ 0.18 & 5.00 $\pm$ 0.00 \\
+safety+math & matena\_fisher & 19.79 $\pm$ 1.18 & 67.19 $\pm$ 3.52 & 10.00 $\pm$ 1.65 \\
+safety+math & mergealign & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\
+safety+math & safemerge & 14.27 $\pm$ 22.55 & 31.15 $\pm$ 53.95 & 3.33 $\pm$ 3.34 \\
+safety+math & sst & 24.38 $\pm$ 1.74 & 58.44 $\pm$ 5.94 & 12.81 $\pm$ 2.44 \\
+safety+math & task\_arithmetic & 9.69 $\pm$ 0.31 & 47.92 $\pm$ 18.35 & 6.35 $\pm$ 1.91 \\
+safety+math & ties & 18.65 $\pm$ 4.77 & 36.67 $\pm$ 4.77 & 11.25 $\pm$ 1.08 \\
+safety+math+code+medical & Base & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\
+safety+math+code+medical & dare & 100.00 $\pm$ 0.00 & 70.42 $\pm$ 40.72 & 31.46 $\pm$ 41.41 \\
+safety+math+code+medical & data\_free\_sst & 95.73 $\pm$ 6.35 & 84.79 $\pm$ 18.14 & 15.62 $\pm$ 15.77 \\
+safety+math+code+medical & della & 100.00 $\pm$ 0.00 & 73.65 $\pm$ 24.63 & 28.65 $\pm$ 26.34 \\
+safety+math+code+medical & matena\_fisher & 100.00 $\pm$ 0.00 & 80.10 $\pm$ 0.18 & 16.56 $\pm$ 1.36 \\
+safety+math+code+medical & sst & 97.29 $\pm$ 2.01 & 95.31 $\pm$ 2.19 & 5.10 $\pm$ 0.48 \\
+safety+math+code+medical & task\_arithmetic & 66.25 $\pm$ 11.12 & 70.73 $\pm$ 14.23 & 4.90 $\pm$ 1.44 \\
+safety+math+code+medical & ties & 100.00 $\pm$ 0.00 & 40.94 $\pm$ 49.27 & 60.21 $\pm$ 50.93 \\
+safety+medical & Base & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\
+safety+medical & dare & 70.21 $\pm$ 51.60 & 63.75 $\pm$ 44.93 & 36.56 $\pm$ 44.96 \\
+safety+medical & data\_free\_sst & 100.00 $\pm$ 0.00 & 69.69 $\pm$ 15.86 & 27.40 $\pm$ 10.79 \\
+safety+medical & della & 99.90 $\pm$ 0.18 & 70.83 $\pm$ 30.45 & 31.77 $\pm$ 32.89 \\
+safety+medical & matena\_fisher & 100.00 $\pm$ 0.00 & 62.19 $\pm$ 53.64 & 37.50 $\pm$ 53.89 \\
+safety+medical & mergealign & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\
+safety+medical & safemerge & 3.02 $\pm$ 0.18 & 0.00 $\pm$ 0.00 & 2.60 $\pm$ 1.83 \\
+safety+medical & sst & 100.00 $\pm$ 0.00 & 38.85 $\pm$ 53.60 & 59.58 $\pm$ 52.21 \\
+safety+medical & task\_arithmetic & 100.00 $\pm$ 0.00 & 97.60 $\pm$ 2.60 & 1.77 $\pm$ 2.01 \\
+safety+medical & ties & 100.00 $\pm$ 0.00 & 88.96 $\pm$ 9.58 & 11.15 $\pm$ 9.45 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

@@ -1,0 +1,4 @@
+- [x] `flmsec.md` の `\subsection{臨界点転移と偽の安全性の排除}` に `pareto_three_panel.png` を挿入する
+- [x] キャプションに「Utility Retention > 100%」および「Pareto AUC x軸のtruncate」の注釈を含める
+- [x] 古い「グラフ横軸はUtility...」という記述や不自然なヘッダー (`###6.2...`) を削除する
+- [x] 3つのパネル(a, b, c)の内容に沿うよう、本文の考察をアップデートする

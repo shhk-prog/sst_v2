@@ -1,0 +1,3 @@
+- [x] パネル(a) に Safety の標準偏差 (`stds_saf`) の `fill_between` を再追加する
+- [x] パネル(b) に Utility の標準偏差 (`retention_stds`) の `fill_between` を再追加する
+- [x] スクリプトを実行し、正常に画像が出力されることを確認する

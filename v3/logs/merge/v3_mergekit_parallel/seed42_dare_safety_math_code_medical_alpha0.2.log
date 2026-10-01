@@ -1,0 +1,118 @@
+
+===== START 2026-07-07T18:59:57 =====
+COMMAND: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method dare --pattern safety+math+code+medical --seed 42 --alpha 0.2 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.2_seed42 --fim_cache_dir cache/fim
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 13, in <module>
+    import torch
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 2787, in <module>
+    from torch import (
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/export/__init__.py", line 42, in <module>
+    from .decomp_utils import CustomDecompTable
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/export/decomp_utils.py", line 5, in <module>
+    from torch._export.utils import (
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_export/__init__.py", line 49, in <module>
+    from .wrappers import _wrap_submodules
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_export/wrappers.py", line 10, in <module>
+    from torch._higher_order_ops.flat_apply import (
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_higher_order_ops/__init__.py", line 24, in <module>
+    from torch._higher_order_ops.invoke_subgraph import invoke_subgraph
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_higher_order_ops/invoke_subgraph.py", line 41, in <module>
+    from torch.utils._debug_mode import DebugMode
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/utils/_debug_mode.py", line 665, in <module>
+    @torch.library.custom_op("debug_mode_ops::annotate", mutates_args=())
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_library/custom_ops.py", line 157, in inner
+    result = CustomOpDef(namespace, opname, schema_str, fn, tags)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_library/custom_ops.py", line 215, in __init__
+    self._register_to_dispatcher(self._tags)
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_library/custom_ops.py", line 638, in _register_to_dispatcher
+    lib._register_fake(self._name, fake_impl, _stacklevel=4)
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/library.py", line 183, in _register_fake
+    source = torch._library.utils.get_source(_stacklevel + 1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_library/utils.py", line 45, in get_source
+    frame = inspect.getframeinfo(sys._getframe(stacklevel))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/inspect.py", line 1707, in getframeinfo
+    lines, lnum = findsource(frame)
+                  ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/inspect.py", line 1083, in findsource
+    module = getmodule(object, file)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/inspect.py", line 1009, in getmodule
+    os.path.realpath(f)] = module.__name__
+    ^^^^^^^^^^^^^^^^^^^
+  File "<frozen posixpath>", line 432, in realpath
+  File "<frozen posixpath>", line 476, in _joinrealpath
+KeyboardInterrupt
+===== END 2026-07-07T18:59:58 returncode=-2 =====
+
+===== START 2026-07-07T10:03:30 =====
+COMMAND: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method dare --pattern safety+math+code+medical --seed 42 --alpha 0.2 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.2_seed42 --fim_cache_dir cache/fim
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 13, in <module>
+    import torch
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 441, in <module>
+    _load_global_deps()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 392, in _load_global_deps
+    _preload_cuda_deps()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 359, in _preload_cuda_deps
+    _preload_cuda_lib(lib_folder, lib_name)
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 324, in _preload_cuda_lib
+    ctypes.CDLL(lib_path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+
+===== START 2026-07-07T10:05:58 =====
+COMMAND: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method dare --pattern safety+math+code+medical --seed 42 --alpha 0.2 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.2_seed42 --fim_cache_dir cache/fim
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 13, in <module>
+    import torch
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 2345, in <module>
+    from torch import quantization as quantization  # usort: skip
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/quantization/__init__.py", line 2, in <module>
+    from .fake_quantize import *  # noqa: F403
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/quantization/fake_quantize.py", line 10, in <module>
+    from torch.ao.quantization.fake_quantize import (
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/ao/quantization/__init__.py", line 18, in <module>
+    from .quantization_mappings import *  # noqa: F403 # type: ignore[no-redef]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/ao/quantization/quantization_mappings.py", line 19, in <module>
+    import torch.ao.nn.sparse
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/ao/nn/sparse/__init__.py", line 1, in <module>
+    from . import quantized
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/ao/nn/sparse/quantized/__init__.py", line 1, in <module>
+    from torch.ao.nn.sparse.quantized import dynamic
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/ao/nn/sparse/quantized/dynamic/__init__.py", line 1, in <module>
+    from .linear import Linear
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1322, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1262, in _find_spec
+  File "<frozen importlib._bootstrap_external>", line 1528, in find_spec
+  File "<frozen importlib._bootstrap_external>", line 1502, in _get_spec
+  File "<frozen importlib._bootstrap_external>", line 1634, in find_spec
+  File "<frozen importlib._bootstrap_external>", line 161, in _path_isfile
+  File "<frozen importlib._bootstrap_external>", line 153, in _path_is_mode_type
+  File "<frozen importlib._bootstrap_external>", line 147, in _path_stat
+KeyboardInterrupt
+
+===== START 2026-07-07T19:57:25 =====
+COMMAND: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method dare --pattern safety+math+code+medical --seed 42 --alpha 0.2 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.2_seed42 --fim_cache_dir cache/fim
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 0, in <module>
+KeyboardInterrupt
+
+===== START 2026-07-07T21:37:43 =====
+COMMAND: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method dare --pattern safety+math+code+medical --seed 42 --alpha 0.2 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.2_seed42 --fim_cache_dir cache/fim
+[Steering Hook] Base/model path verification passed: meta-llama/Llama-2-7b-hf
+Using cached temporary safety full model: models/temp_safety_full_seed42
+[Steering Hook] Merge method verification passed: method=dare, config=models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.2_seed42/merge_config.yml
+Running command: mergekit-yaml models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.2_seed42/merge_config.yml models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.2_seed42 --allow-crimes --copy-tokenizer
+mergekit completed successfully.
+Metadata saved.
+===== END 2026-07-07T21:50:20 returncode=0 =====

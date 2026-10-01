@@ -1,0 +1,54 @@
+
+================================================================================
+MODEL:  SafetyFT_seed42
+PATH:   models/temp_safety_full_seed42
+GPU:    0
+PREFIX: sst_merge_v3_main_base_SafetyFT_seed42
+LIMIT:  320
+
+[skip complete] results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed42_harmbench_safety.json
+
+[resume incomplete] results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed42_jailbreakbench_safety.json
+
+$ /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_safety.py --model_path models/temp_safety_full_seed42 --config configs/config_main.yaml --task jailbreakbench --output_file results/debug_limit320/sst_merge_v3_main_base_SafetyFT_seed42_jailbreakbench_safety.json --limit 320
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_safety.py", line 6, in <module>
+    import torch
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 2804, in <module>
+    from torch import _meta_registrations
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_meta_registrations.py", line 12, in <module>
+    from torch._decomp import (
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_decomp/__init__.py", line 288, in <module>
+    import torch._refs
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_refs/__init__.py", line 6975, in <module>
+    import torch._refs.linalg
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/_refs/linalg/__init__.py", line 435, in <module>
+    mps_lib = torch.library.Library("aten", "IMPL", "MPS")  # noqa: TOR901
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/library.py", line 99, in __init__
+    frame = traceback.extract_stack(limit=2)[0]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/traceback.py", line 232, in extract_stack
+    stack = StackSummary.extract(walk_stack(f), limit=limit)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/traceback.py", line 395, in extract
+    return klass._extract_from_extended_frame_gen(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/traceback.py", line 438, in _extract_from_extended_frame_gen
+    f.line
+  File "/usr/lib/python3.12/traceback.py", line 323, in line
+    self._line = linecache.getline(self.filename, self.lineno)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/linecache.py", line 30, in getline
+    lines = getlines(filename, module_globals)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/linecache.py", line 46, in getlines
+    return updatecache(filename, module_globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/linecache.py", line 136, in updatecache
+    with tokenize.open(fullname) as fp:
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/tokenize.py", line 449, in open
+    buffer = _builtin_open(filename, 'rb')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

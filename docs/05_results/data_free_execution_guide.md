@@ -51,7 +51,7 @@ use_gevp = True
 ### ステップ2: スクリプト実行
 
 ```bash
-cd /mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5
+cd /mnt/nas/home/hiromi/src/sst_v2/sst_merge_v5
 
 # Data-Freeマージ実行（フルモデル生成も含む）
 python3 run_data_free_merge.py

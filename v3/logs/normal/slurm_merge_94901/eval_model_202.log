@@ -1,0 +1,10 @@
+==================================================
+Slurm Per-Model Array Job ID: 94901_202
+Batch Size: 32
+Configured CPU Threads: 16
+Assigned CUDA_VISIBLE_DEVICES: 0
+Working Dir: /mnt/nas/home/hiromi/src/sst_v2/v3
+==================================================
+Executing command:
+venv_v3/bin/python scripts/merge_eval_parallel.py     --config configs/config_main.yaml     --seeds 42 43 44     --limit 320     --batch_size 32     --gpus 0     --model_index 202     --resume
+--------------------------------------------------

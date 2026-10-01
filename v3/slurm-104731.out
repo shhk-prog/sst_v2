@@ -1,0 +1,8 @@
+=== Per-Model Ablation Slurm Job Mapping (Total 0
+0 Models, batch_size=32) ===
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+Total ablation models: 0
+0
+To submit all 0
+0 ablation models to Slurm, run: BATCH_SIZE=32 /var/spool/slurmd/job104731/slurm_script --submit

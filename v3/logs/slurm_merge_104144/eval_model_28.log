@@ -1,0 +1,11 @@
+==================================================
+Slurm Per-Model Array Job ID: 104144_28
+Batch Size: 32
+Configured CPU Threads: 2
+Assigned CUDA_VISIBLE_DEVICES: 0
+Working Dir: /mnt/nas/home/hiromi/src/sst_v2/v3
+==================================================
+Executing command:
+venv_v3/bin/python scripts/merge_eval_parallel.py     --config configs/config_main.yaml     --seeds 42 43 44     --limit 320     --batch_size 32     --gpus 0     --model_index 28     --use_vllm     --reverse     --resume
+--------------------------------------------------
+slurmstepd-iag-02: error: *** JOB 104230 ON iag-02 CANCELLED AT 2026-08-12T04:58:52 ***

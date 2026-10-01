@@ -1,0 +1,4 @@
+- [x] 仮想環境での PyTorch 再インストール (CUDA 12.4 対応)
+- [x] `run_phase2.sh` の修正 (`.env` 読み込み、ログ出力改善)
+- [x] `run_lora_ft.py` の修正 (GPU チェック、`dotenv` 対応)
+- [x] 修正内容の検証 (GPU 認識、モデルロードの確認)

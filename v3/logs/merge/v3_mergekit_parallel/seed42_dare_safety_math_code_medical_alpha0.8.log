@@ -1,0 +1,142 @@
+
+===== START 2026-07-07T18:59:58 =====
+COMMAND: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method dare --pattern safety+math+code+medical --seed 42 --alpha 0.8 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.8_seed42 --fim_cache_dir cache/fim
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/import_utils.py", line 2262, in __getattr__
+    module = self._get_module(self._class_to_module[name])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/import_utils.py", line 2496, in _get_module
+    raise e
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/import_utils.py", line 2494, in _get_module
+    return importlib.import_module("." + module_name, self.__name__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/generation/utils.py", line 53, in <module>
+    from .candidate_generator import (
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/generation/candidate_generator.py", line 31, in <module>
+    from sklearn.metrics import roc_curve
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/sklearn/__init__.py", line 70, in <module>
+    from sklearn.base import clone  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/sklearn/base.py", line 20, in <module>
+    from sklearn.utils._metadata_requests import _MetadataRequester, _routing_enabled
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/sklearn/utils/__init__.py", line 9, in <module>
+    from sklearn.utils._chunking import gen_batches, gen_even_slices
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/sklearn/utils/_chunking.py", line 11, in <module>
+    from sklearn.utils._param_validation import Interval, validate_params
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/sklearn/utils/_param_validation.py", line 14, in <module>
+    from scipy.sparse import csr_array, issparse
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/scipy/sparse/__init__.py", line 251, in <module>
+    from ._csr import *
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/scipy/sparse/_csr.py", line 15, in <module>
+    from ._compressed import _cs_matrix
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/scipy/sparse/_compressed.py", line 8, in <module>
+    from scipy._lib._util import _prune_array, copy_if_needed
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/scipy/_lib/_util.py", line 17, in <module>
+    from scipy._lib._array_api import (Array, array_namespace, is_lazy_array, is_numpy,
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/scipy/_lib/_array_api.py", line 24, in <module>
+    from scipy._external.array_api_compat import (
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/scipy/_external/array_api_compat/numpy/__init__.py", line 9, in <module>
+    __all__ = clone_module("numpy", globals())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/scipy/_external/array_api_compat/_internal.py", line 64, in clone_module
+    exec(f"from {mod.__name__} import *", objs)
+  File "<string>", line 1, in <module>
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/numpy/testing/__init__.py", line 12, in <module>
+    from ._private.utils import *
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/numpy/testing/_private/utils.py", line 93, in <module>
+    BLAS_SUPPORTS_FPE = np._core._multiarray_umath._blas_supports_fpe(None)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/numpy/_core/__init__.py", line 172, in __getattr__
+    raise AttributeError(f"Module {__name__!r} has no attribute {name!r}")
+AttributeError: Module 'numpy._core' has no attribute '_multiarray_umath'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/import_utils.py", line 2262, in __getattr__
+    module = self._get_module(self._class_to_module[name])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/import_utils.py", line 2496, in _get_module
+    raise e
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/import_utils.py", line 2494, in _get_module
+    return importlib.import_module("." + module_name, self.__name__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/models/auto/modeling_auto.py", line 21, in <module>
+    from .auto_factory import (
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py", line 42, in <module>
+    from ...generation import GenerationMixin
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/import_utils.py", line 2350, in __getattr__
+    raise ModuleNotFoundError(
+ModuleNotFoundError: Could not import module 'GenerationMixin'. Are this object's requirements defined correctly?
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 16, in <module>
+    from transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/import_utils.py", line 2350, in __getattr__
+    raise ModuleNotFoundError(
+ModuleNotFoundError: Could not import module 'AutoModelForCausalLM'. Are this object's requirements defined correctly?
+
+===== START 2026-07-07T10:05:58 =====
+COMMAND: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method dare --pattern safety+math+code+medical --seed 42 --alpha 0.8 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.8_seed42 --fim_cache_dir cache/fim
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 13, in <module>
+    import torch
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 2345, in <module>
+    from torch import quantization as quantization  # usort: skip
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/quantization/__init__.py", line 2, in <module>
+    from .fake_quantize import *  # noqa: F403
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/quantization/fake_quantize.py", line 10, in <module>
+    from torch.ao.quantization.fake_quantize import (
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/ao/quantization/__init__.py", line 18, in <module>
+    from .quantization_mappings import *  # noqa: F403 # type: ignore[no-redef]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/ao/quantization/quantization_mappings.py", line 19, in <module>
+    import torch.ao.nn.sparse
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/ao/nn/sparse/__init__.py", line 1, in <module>
+    from . import quantized
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/ao/nn/sparse/quantized/__init__.py", line 1, in <module>
+    from torch.ao.nn.sparse.quantized import dynamic
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/ao/nn/sparse/quantized/dynamic/__init__.py", line 1, in <module>
+    from .linear import Linear
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1322, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1262, in _find_spec
+  File "<frozen importlib._bootstrap_external>", line 1528, in find_spec
+  File "<frozen importlib._bootstrap_external>", line 1502, in _get_spec
+  File "<frozen importlib._bootstrap_external>", line 1634, in find_spec
+  File "<frozen importlib._bootstrap_external>", line 161, in _path_isfile
+  File "<frozen importlib._bootstrap_external>", line 153, in _path_is_mode_type
+  File "<frozen importlib._bootstrap_external>", line 147, in _path_stat
+KeyboardInterrupt
+
+===== START 2026-07-07T22:02:54 =====
+COMMAND: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method dare --pattern safety+math+code+medical --seed 42 --alpha 0.8 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.8_seed42 --fim_cache_dir cache/fim
+[Steering Hook] Base/model path verification passed: meta-llama/Llama-2-7b-hf
+Using cached temporary safety full model: models/temp_safety_full_seed42
+[Steering Hook] Merge method verification passed: method=dare, config=models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.8_seed42/merge_config.yml
+Running command: mergekit-yaml models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.8_seed42/merge_config.yml models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.8_seed42 --allow-crimes --copy-tokenizer
+mergekit completed successfully.
+Metadata saved.
+===== END 2026-07-07T22:15:25 returncode=0 =====

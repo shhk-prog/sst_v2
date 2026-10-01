@@ -1,0 +1,26 @@
+\FloatBarrier
+\section{Detailed Experimental Results and Analysis (vLLM Environment)}
+\label{sec:appendix_detailed_results}
+
+本セクションでは、論文本文にて提示した簡易まとめ表の基となる、vLLM環境におけるすべての詳細な実験結果を示す。ここには、予備実験（TrustLLM / BeaverTails）およびメイン実験の各マージ手法・各パターンにおける「ランダムシード別の詳細結果」ならびに「$\alpha$（マージ比率）スイープの結果」を網羅的に収録している。
+
+\subsection{ランダムシードに対する頑健性の考察（Seed Differences）}
+本実験では、評価の頑健性を検証するために3つの異なるランダムシード（Seed: 42, 43, 44）を用いて独立して実験を行った。後述の詳細なシード別テーブルから、以下の重要な知見が得られる。
+
+\begin{itemize}
+    \item \textbf{疎化・符号選択型手法の極端な不安定性:} \texttt{dare}、\texttt{ties}、\texttt{della} といった手法は、シードの違いによって Gibberish Ratio（出力崩壊率）が劇的に変動する（例：あるシードでは10\%台、別のシードでは90\%台など）。これは、ランダムなパラメータドロップや微小な符号の揺らぎが、LLMの推論能力（Attention層等の活性）に対して致命的かつ非決定論的な破壊をもたらすことを示唆している。結果として、これらの手法は単一シードでの評価では「たまたま上手くいった（あるいは崩壊して見かけ上安全と判定された）」結果を引くリスクが極めて高い。
+    \item \textbf{提案手法およびFisherベース手法の安定性:} 一方で、SST-Merge (\texttt{sst\_main}) や \texttt{matena\_fisher} などの幾何学的・Fisher情報に基づく手法は、シード間の分散（標準偏差）が比較的小さく、安定した Safety-Utility トレードオフを示す傾向がある。これは、パラメータの重要度や部分空間の幾何学的制約を明示的に考慮することで、ランダムな干渉による致命的なモデル崩壊を防いでいるためと考えられる。
+\end{itemize}
+
+\subsection{マージ比率（$\alpha$）のスイープに関する考察（Alpha Sweeps）}
+$\alpha \in [0.0, 1.0]$ におけるスイープ実験の詳細結果からは、各手法のパラメータ空間における挙動の違いが明確に読み取れる。
+
+\begin{itemize}
+    \item \textbf{崩壊への閾値（Threshold of Collapse）:} 単純な \texttt{task\_arithmetic} や疎化手法（\texttt{dare}, \texttt{ties}）では、$\alpha$ が 0.4〜0.6 を超えたあたりから急激に Gibberish Ratio が跳ね上がり、有用性（Utility）が 0\% に張り付く「相転移」のような崩壊現象が観測される。安全性のタスクベクトルを強く注入しようとすると、良性タスクの能力だけでなくテキスト生成の基礎能力すらも喪失してしまう。
+    \item \textbf{Paretoフロンティアの推移:} 提案手法である \texttt{sst\_main} 系や \texttt{matena\_fisher} は、$\alpha$ を増加させても Utility の低下が緩やかであり、より高い $\alpha$ まで推論能力を維持できる。特に $\alpha=0.6$ 付近において、ASR を効果的に抑制しつつターゲットドメイン（Math/Code/Medical）の性能を保つ、良好な Pareto 最適点が存在することが確認できる。
+\end{itemize}
+
+以上の詳細分析により、論文本文で指摘した「出力崩壊による偽の安全性（Fake Safety / False Unsafe）」が、特定のパラメータ設定やランダムシードに依存して突発的に発生する脆弱な現象であることが裏付けられた。マージ手法の実用化においては、単一設定での ASR だけでなく、広範なスイープと複数シードによる Utility の底堅さを評価することが不可欠である。
+
+\newpage
+\input{flmsec_appendix_tables.tex}

@@ -8,7 +8,7 @@
 
 ### ✅ Phase 1-3: LoRA基礎テスト
 
-**スクリプト**: [`scripts/test_lora_basics.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/scripts/test_lora_basics.py)
+**スクリプト**: [`scripts/test_lora_basics.py`](file:///mnt/nas/home/hiromi/src/sst_v2/scripts/test_lora_basics.py)
 
 **実行日時**: 2025-12-21 20:08
 
@@ -19,7 +19,7 @@
 
 ### ✅ Phase 4-5: FIM & GEVPテスト
 
-**スクリプト**: [`scripts/test_fim_gevp.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/scripts/test_fim_gevp.py)
+**スクリプト**: [`scripts/test_fim_gevp.py`](file:///mnt/nas/home/hiromi/src/sst_v2/scripts/test_fim_gevp.py)
 
 **実行日時**: 2025-12-21 22:40
 
@@ -29,7 +29,7 @@
 
 ### ✅ Phase 6-7: SST-Mergeテスト
 
-**スクリプト**: [`scripts/test_sst_merge.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/scripts/test_sst_merge.py)
+**スクリプト**: [`scripts/test_sst_merge.py`](file:///mnt/nas/home/hiromi/src/sst_v2/scripts/test_sst_merge.py)
 
 **実行日時**: 2025-12-21 22:59
 
@@ -51,7 +51,7 @@ SST-Merge pipeline (Phase 1-7) is fully operational!
 
 ### ✅ Phase 8: 評価パイプラインテスト
 
-**スクリプト**: [`scripts/test_evaluation.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/scripts/test_evaluation.py)
+**スクリプト**: [`scripts/test_evaluation.py`](file:///mnt/nas/home/hiromi/src/sst_v2/scripts/test_evaluation.py)
 
 **実行日時**: 2025-12-21 23:10
 
@@ -71,7 +71,7 @@ SST-Merge pipeline (Phase 1-7) is fully operational!
 
 ### ✅ Phase 9-10: エンドツーエンドテスト
 
-**スクリプト**: [`scripts/test_end_to_end.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/scripts/test_end_to_end.py)
+**スクリプト**: [`scripts/test_end_to_end.py`](file:///mnt/nas/home/hiromi/src/sst_v2/scripts/test_end_to_end.py)
 
 **実行日時**: 2025-12-21 23:11
 
@@ -91,7 +91,7 @@ SST-Merge complete pipeline (Phase 1-10) is fully operational!
 
 ### ✅ 実データ実験
 
-**スクリプト**: [`experiments/run_real_experiments.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/experiments/run_real_experiments.py)
+**スクリプト**: [`experiments/run_real_experiments.py`](file:///mnt/nas/home/hiromi/src/sst_v2/experiments/run_real_experiments.py)
 
 **実行日時**: 2025-12-21 23:35-23:39（約4分）
 

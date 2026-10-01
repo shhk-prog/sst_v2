@@ -1,0 +1,23 @@
+\begin{table}[H]
+\centering
+\caption{Observed-range Pareto AUCとEndpoint-extended Pareto AUCの比較}
+\label{tab:auc_no_interpolation}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Method & Endpoint-extended AUC & Observed-range AUC & \(s_{\min}\) & \(s_{\max}\) \\
+\midrule
+SST & $0.153 \pm 0.000$ & $0.0065831 \pm 0$ & 0.956 & 1.000 \\
+Data-Free SST & $0.077 \pm 0.000$ & $5.9524e-05 \pm 0$ & 0.850 & 0.851 \\
+TIES & $0.089 \pm 0.000$ & $0.022023 \pm 0$ & 0.737 & 1.000 \\
+DARE & $0.078 \pm 0.005$ & $0.013489 \pm 0.007869$ & 0.815 & 1.000 \\
+della & $0.081 \pm 0.003$ & $0.011958 \pm 0.0056196$ & 0.830 & 1.000 \\
+Task Arithmetic & - & - & - & - \\
+\bottomrule
+\multicolumn{5}{l}{\footnotesize \(s_{\min}\)および\(s_{\max}\)は、各seedにおける最小値・最大値を平均した値である。} \\
+\multicolumn{5}{l}{\footnotesize 各AUCは、各seedでパレート前線を個別に構成して算出し、その平均を報告した。標準偏差も併記した。} \\
+\multicolumn{5}{l}{\footnotesize SST、Data-Free SST、およびTIESについては、AUC算出に用いたパレート点がseed間で一致したため、丸め前の標準偏差も0であった。} \\
+\multicolumn{5}{l}{\footnotesize Task Arithmeticは、支配されない点が1点のみであり、前線形状に基づくAUC比較が成立しないため、AUCを報告しない。} \\
+\multicolumn{5}{l}{\footnotesize その唯一の点の\(s_{\mathrm{valid}}\)、utility、および対応する\(\alpha\)をTable~\ref{tab:task-arithmetic-single-point}に示す。} \\
+\end{tabular}
+\end{table}

@@ -1,0 +1,12 @@
+==================================================
+Slurm Per-Model Prelim Array Job ID: 103417_4
+Target Model: models/merged/sst_merge_v3_main_dare_safety+code_alpha0.2_seed43
+Limit: 320
+Configured CPU Threads: 2
+Assigned CUDA_VISIBLE_DEVICES: 0
+Working Dir: /mnt/nas/home/hiromi/src/sst_v2/v3
+==================================================
+Executing command:
+venv_v3/bin/python scripts/eval/eval_preliminary.py     --model_path "models/merged/sst_merge_v3_main_dare_safety+code_alpha0.2_seed43"     --output_dir "results/preliminary/merged"     --limit 320
+--------------------------------------------------
+slurmstepd-iag-03: error: *** JOB 103424 ON iag-03 CANCELLED AT 2026-08-11T05:37:48 ***

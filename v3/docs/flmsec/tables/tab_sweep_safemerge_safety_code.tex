@@ -1,0 +1,15 @@
+\begin{table}[H]
+\centering
+\caption{Alpha スイープ 集計 - Method: safemerge, Pattern: safety+code}
+\label{tab:sweep_safemerge_safety_code}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lllrrrrrrrrrrr}
+\toprule
+\textbf{Pattern} & \textbf{Method} & \textbf{Alpha} & \textbf{Safety Ave [Harmful Content] (ASR$\downarrow$ \%)} & \textbf{Safety Ave [Original ASR] (ASR$\downarrow$ \%)} & \textbf{Safety Ave [Conditional ASR] (ASR$\downarrow$ \%)} & \textbf{Valid Response Rate (\%)} & \textbf{Valid Safety Rate (\%)} & \textbf{Math Ave (\%)} & \textbf{Code Ave (\%)} & \textbf{Medical Ave (\%)} & \textbf{General/Inst Ave (\%)} & \textbf{EvolCode (PPL$\downarrow$)} & \textbf{MedAlpaca (PPL$\downarrow$)} \\
+\midrule
+safety+code & safemerge & N/A & 0.10 $\pm$ 0.18 & 0.10 $\pm$ 0.18 & 0.34 $\pm$ 0.59 & 99.92 $\pm$ 0.14 & 99.58 $\pm$ 0.72 & 1.51 $\pm$ 1.33 & 5.99 $\pm$ 5.39 & 73.75 $\pm$ 2.98 & 19.84 $\pm$ 8.02 & 2.35 $\pm$ 0.78 & 7.03 $\pm$ 4.96 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

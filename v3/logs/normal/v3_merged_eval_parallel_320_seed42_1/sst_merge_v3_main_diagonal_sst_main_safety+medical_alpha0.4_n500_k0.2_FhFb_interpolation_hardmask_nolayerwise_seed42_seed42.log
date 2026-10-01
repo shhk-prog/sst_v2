@@ -1,0 +1,40 @@
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_safety.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+medical_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --task harmbench --output_file results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+medical_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_harmbench_safety.json --limit 320
+================================================================================
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_safety.py", line 6, in <module>
+    import torch
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 441, in <module>
+    _load_global_deps()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 392, in _load_global_deps
+    _preload_cuda_deps()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 359, in _preload_cuda_deps
+    _preload_cuda_lib(lib_folder, lib_name)
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 324, in _preload_cuda_lib
+    ctypes.CDLL(lib_path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+
+[GPU 0] Exit code: -2
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_safety.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+medical_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --task jailbreakbench --output_file results/debug_limit320/merged/sst_merge_v3_main_diagonal_sst_main_safety+medical_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_jailbreakbench_safety.json --limit 320
+================================================================================
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_safety.py", line 6, in <module>
+    import torch
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 441, in <module>
+    _load_global_deps()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 392, in _load_global_deps
+    _preload_cuda_deps()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 359, in _preload_cuda_deps
+    _preload_cuda_lib(lib_folder, lib_name)
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/__init__.py", line 324, in _preload_cuda_lib
+    ctypes.CDLL(lib_path)
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

@@ -1,0 +1,11 @@
+(EngineCore pid=549754) Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+(EngineCore pid=549754) Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:03<00:09,  3.05s/it]
+(EngineCore pid=549754) Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:03<00:03,  1.76s/it]
+(EngineCore pid=549754) Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:04<00:01,  1.33s/it]
+(EngineCore pid=549754) Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.11s/it]
+(EngineCore pid=549754) Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.38s/it]
+(EngineCore pid=549754) 
+(EngineCore pid=549754) 2026-08-24 16:39:48,458 - INFO - autotuner.py:622 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+(EngineCore pid=549754) 2026-08-24 16:39:48,470 - INFO - autotuner.py:641 - flashinfer.jit: [Autotuner]: Autotuning process ends
+(EngineCore pid=549754) Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/27 [00:00<?, ?it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  15%|█▍        | 4/27 [00:00<00:00, 34.84it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  30%|██▉       | 8/27 [00:00<00:00, 31.43it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  44%|████▍     | 12/27 [00:00<00:00, 30.89it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  59%|█████▉    | 16/27 [00:00<00:00, 31.07it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  74%|███████▍  | 20/27 [00:00<00:00, 30.01it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  89%|████████▉ | 24/27 [00:00<00:00, 29.32it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 27/27 [00:00<00:00, 30.39it/s]
+(EngineCore pid=549754) Capturing CUDA graphs (decode, FULL):   0%|          | 0/15 [00:00<?, ?it/s]Capturing CUDA graphs (decode, FULL):  33%|███▎      | 5/15 [00:00<00:00, 48.58it/s]Capturing CUDA graphs (decode, FULL):  67%|██████▋   | 10/15 [00:00<00:00, 49.17it/s]Capturing CUDA graphs (decode, FULL): 100%|██████████| 15/15 [00:00<00:00, 49.63it/s]

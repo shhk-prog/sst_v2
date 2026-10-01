@@ -1,0 +1,187 @@
+
+================================================================================
+MODEL: MedAlpaca
+PATH:  medalpaca/medalpaca-7b
+GPU:   3
+PREFIX:sst_merge_v3_main_base_MedAlpaca
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_harmbench_safety.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_jailbreakbench_safety.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_strongreject_safety.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_wildjailbreak_safety.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_math_gsm8k.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_math_minerva_math500.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_code_humaneval.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_code_mbpp.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_medical_pubmedqa.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_medical_medqa_4options.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_general_mmlu.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_general_ifeval.json
+
+$ /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_utility.py --model_path medalpaca/medalpaca-7b --config configs/config_main.yaml --tasks mmlu_pro --output_file results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_general_mmlu_pro.json --limit 320
+[transformers] Model config: pad_token_id must be `None` or an integer within the vocabulary (between 0 and 32000), got -1. This may result in unexpected behavior.
+[transformers] The following generation flags are not valid and may be ignored: ['pad_token_id']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Running lm-eval via python API on model: medalpaca/medalpaca-7b for tasks: ['mmlu_pro']
+Failed to run lm-eval via Python API: No CUDA GPUs are available. Attempting CLI fallback...
+Running command: lm_eval --model hf --model_args pretrained=medalpaca/medalpaca-7b,max_length=4096 --tasks mmlu_pro --device cpu --batch_size 1 --num_fewshot 0 --output_path results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_general_mmlu_pro.json --limit 320
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_utility.py", line 144, in main
+    lm_obj = HFLM(
+             ^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/models/huggingface.py", line 365, in __init__
+    self._create_model(
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/models/huggingface.py", line 814, in _create_model
+    self._model = self.AUTO_MODEL_CLASS.from_pretrained(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py", line 406, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4327, in from_pretrained
+    loading_info, disk_offload_index = cls._load_pretrained_model(model, state_dict, checkpoint_files, load_config)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4408, in _load_pretrained_model
+    caching_allocator_warmup(model, expanded_device_map, load_config.hf_quantizer)
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/modeling_utils.py", line 5057, in caching_allocator_warmup
+    index = device.index if device.index is not None else accelerator_module.current_device()
+                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/cuda/__init__.py", line 1148, in current_device
+    _lazy_init()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/cuda/__init__.py", line 478, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: No CUDA GPUs are available
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_utility.py", line 253, in <module>
+    main()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_utility.py", line 224, in main
+    res = subprocess.run(cmd, capture_output=True, text=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 2115, in _communicate
+    ready = selector.select(timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+Exception ignored in atexit callback: <bound method finalize._exitfunc of <class 'weakref.finalize'>>
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/weakref.py", line 666, in _exitfunc
+    f()
+  File "/usr/lib/python3.12/weakref.py", line 590, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/library.py", line 479, in _del_library
+    m.reset()
+KeyboardInterrupt: 
+
+================================================================================
+MODEL: MedAlpaca
+PATH:  medalpaca/medalpaca-7b
+GPU:   3
+PREFIX:sst_merge_v3_main_base_MedAlpaca
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_harmbench_safety.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_jailbreakbench_safety.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_strongreject_safety.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_wildjailbreak_safety.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_math_gsm8k.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_math_minerva_math500.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_code_humaneval.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_code_mbpp.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_medical_pubmedqa.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_medical_medqa_4options.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_general_mmlu.json
+
+$ /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_utility.py --model_path medalpaca/medalpaca-7b --config configs/config_main.yaml --tasks ifeval --output_file results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_general_ifeval.json --limit 320
+[transformers] Model config: pad_token_id must be `None` or an integer within the vocabulary (between 0 and 32000), got -1. This may result in unexpected behavior.
+[transformers] The following generation flags are not valid and may be ignored: ['pad_token_id']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Running lm-eval via python API on model: medalpaca/medalpaca-7b for tasks: ['ifeval']
+Failed to run lm-eval via Python API: No CUDA GPUs are available. Attempting CLI fallback...
+Running command: lm_eval --model hf --model_args pretrained=medalpaca/medalpaca-7b,max_length=4096 --tasks ifeval --device cpu --batch_size 1 --num_fewshot 0 --output_path results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_general_ifeval.json --limit 320
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_utility.py", line 144, in main
+    lm_obj = HFLM(
+             ^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/models/huggingface.py", line 365, in __init__
+    self._create_model(
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/lm_eval/models/huggingface.py", line 814, in _create_model
+    self._model = self.AUTO_MODEL_CLASS.from_pretrained(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py", line 406, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4327, in from_pretrained
+    loading_info, disk_offload_index = cls._load_pretrained_model(model, state_dict, checkpoint_files, load_config)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4408, in _load_pretrained_model
+    caching_allocator_warmup(model, expanded_device_map, load_config.hf_quantizer)
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/modeling_utils.py", line 5057, in caching_allocator_warmup
+    index = device.index if device.index is not None else accelerator_module.current_device()
+                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/cuda/__init__.py", line 1148, in current_device
+    _lazy_init()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/torch/cuda/__init__.py", line 478, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: No CUDA GPUs are available
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 2115, in _communicate
+    ready = selector.select(timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_utility.py", line 253, in <module>
+    main()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/eval_utility.py", line 224, in main
+    res = subprocess.run(cmd, capture_output=True, text=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1220, in communicate
+    self._wait(timeout=sigint_timeout)
+  File "/usr/lib/python3.12/subprocess.py", line 2047, in _wait
+    time.sleep(delay)
+KeyboardInterrupt
+
+FAILED exit_code=1

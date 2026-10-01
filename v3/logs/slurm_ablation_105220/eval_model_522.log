@@ -1,0 +1,11 @@
+==================================================
+Slurm Per-Model Ablation Array Job ID: 105220_522
+Batch Size: 32
+Configured CPU Threads: 2
+Assigned CUDA_VISIBLE_DEVICES: 0
+Working Dir: /mnt/nas/home/hiromi/src/sst_v2/v3
+==================================================
+Executing command:
+venv_v3/bin/python scripts/merge_eval_parallel.py     --config configs/config_ablation.yaml     --seeds 42     --limit 320     --batch_size 32     --gpus 0     --model_index 522     --use_vllm     --resume
+--------------------------------------------------
+[SINGLE MODEL MODE] Model index 522: seed=42 sst_merge_v3_ablation_data_free_sst_ablation_safety+math+code+medical_alpha1.0_k0.2_FhFb_interpolation_hardmask_layerwise_linear_seed42 was not successfully merged. Skipping.

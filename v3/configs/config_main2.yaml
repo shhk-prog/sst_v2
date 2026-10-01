@@ -1,0 +1,98 @@
+experiment:
+  name: "sst_merge_v3_main"
+  seed: 42
+  seeds: [42, 43, 44]
+
+models:
+  base_model: "meta-llama/Llama-2-7b-hf"
+  domain_models:
+    math: "WizardLMTeam/WizardMath-7B-V1.0"
+    code: "vanillaOVO/WizardCoder-Python-7B-V1.0"
+    medical: "medalpaca/medalpaca-7b"
+  safety_model_dir: "models/safety_lora"
+  safety_full_model_dir: "models/temp_safety_full"
+
+data:
+  safety_sft_csv: "data/response_dataframe.csv"
+
+  fim:
+    benign_datasets:
+      math: "data/fim/fim_benign_math.json"
+      code: "data/fim/fim_benign_code.json"
+      medical: "data/fim/fim_benign_medical.json"
+    harmful_dataset: "data/fim/fim_harmful.json"
+    default_sample_size: 500
+    sample_sizes: [500]
+    epsilon: 1e-6
+
+  eval:
+    safety_tasks:
+      - harmbench
+      - jailbreakbench
+      - strongreject
+      - wildjailbreak
+
+    utility_task_groups:
+      math:
+        - gsm8k
+        - minerva_math500
+      code:
+        - humaneval
+        - mbpp
+      medical:
+        - pubmedqa
+        - medqa_4options
+      general:
+        - mmlu
+        - ifeval
+        - mmlu_pro
+patterns:
+  - safety+math
+  - safety+code
+  - safety+medical
+  - safety+math+code+medical
+
+methods:
+  proposed:
+    - diagonal_sst
+    - data_free_sst
+
+  baselines:
+    - task_arithmetic
+    - ties
+    - dare
+    - della
+    - fisher_weighted
+    - mergealign
+    - safemerge
+    - led_merging
+    - matena_fisher
+
+merge:
+  alpha_sweep: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
+
+  main:
+    k_values: [0.20]
+    sample_size: 500
+    sst_ratio: "Fh/Fb"
+    variant: interpolation
+    mask: "hard mask"
+    layer_wise: false
+    layer_prior: uniform
+
+  ablation:
+    enabled: false
+    k_values: []
+    fim_sample_sizes: []
+    sst_ratios: []
+    variants: []
+    masks: []
+    layer_wise: []
+    layer_prior_types: []
+
+led_merging:
+  score_root: "baselines/LED-Merging/locate/score"
+  require_precomputed_scores: true
+  supported_utility_domains:
+    - math
+    - code

@@ -65,7 +65,7 @@ F ≈ E[(∇log p(y|x,θ))²]
 11. return F_diag
 ```
 
-**実装コード** ([sst_merge.py:L135-216](file:///mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/core/sst_merge.py#L135-L216)):
+**実装コード** ([sst_merge.py:L135-216](file:///mnt/nas/home/hiromi/src/sst_v2/v1/core/sst_merge.py#L135-L216)):
 
 ```python
 def compute_fim(self, dataloader, max_samples: int = 200) -> torch.Tensor:
@@ -129,7 +129,7 @@ F_harm v = λ F_benign v
   - Utility（F_benign）に重要
   - → **変更すべきでない（Utility保持）**
 
-**実装コード** ([sst_merge.py:L235-266](file:///mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/core/sst_merge.py#L235-L266)):
+**実装コード** ([sst_merge.py:L235-266](file:///mnt/nas/home/hiromi/src/sst_v2/v1/core/sst_merge.py#L235-L266)):
 
 ```python
 def solve_gevp_diagonal(self, F_harm: torch.Tensor, F_benign: torch.Tensor):
@@ -167,7 +167,7 @@ mask[i] = {
 4. mask ← clamp((log_λ - p5) / (p95 - p5), 0, 1)
 ```
 
-**実装コード** ([sst_merge.py:L268-324](file:///mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/core/sst_merge.py#L268-L324)):
+**実装コード** ([sst_merge.py:L268-324](file:///mnt/nas/home/hiromi/src/sst_v2/v1/core/sst_merge.py#L268-L324)):
 
 ```python
 def compute_safety_mask(self, eigenvalues: torch.Tensor, top_k_ratio: Optional[float] = None):
@@ -261,7 +261,7 @@ else:
 return θ_merged
 ```
 
-**実装コード** ([sst_merge.py:L521-626](file:///mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/core/sst_merge.py#L521-L626)):
+**実装コード** ([sst_merge.py:L521-626](file:///mnt/nas/home/hiromi/src/sst_v2/v1/core/sst_merge.py#L521-L626)):
 
 ```python
 def _merge_with_mask(self, utility_adapter, safety_adapter, safety_mask):
@@ -323,7 +323,7 @@ w_safety[i] = α × w_layer × mask[i]
 
 補間型はTask Arithmeticと同じ動作をします。
 
-**実装コード** ([sst_merge_interpolation.py](file:///mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/core/sst_merge_interpolation.py)):
+**実装コード** ([sst_merge_interpolation.py](file:///mnt/nas/home/hiromi/src/sst_v2/v1/core/sst_merge_interpolation.py)):
 
 ```python
 def _interpolation_merge(self, utility_adapter, safety_adapter):
@@ -388,7 +388,7 @@ else:
 return θ_merged
 ```
 
-**実装コード** ([sst_merge_data_free.py:L29-69](file:///mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/core/sst_merge_data_free.py#L29-L69)):
+**実装コード** ([sst_merge_data_free.py:L29-69](file:///mnt/nas/home/hiromi/src/sst_v2/v1/core/sst_merge_data_free.py#L29-L69)):
 
 ```python
 def compute_fim_from_lora(self, adapter_dict: Dict[str, torch.Tensor]):
@@ -440,7 +440,7 @@ Task Arithmeticは、タスクベクトル（ファインチューニング前�
 
 > Ilharco et al., "Editing Models with Task Arithmetic", ICLR 2023
 
-**実装コード** ([baseline_merge.py:L285-307](file:///mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/scripts/merging/baseline_merge.py#L285-L307)):
+**実装コード** ([baseline_merge.py:L285-307](file:///mnt/nas/home/hiromi/src/sst_v2/v1/scripts/merging/baseline_merge.py#L285-L307)):
 
 ```python
 def task_arithmetic(self, adapters: List[Dict], weights: List[float]):
@@ -500,7 +500,7 @@ contribution[i] = {
 
 > Yadav et al., "TIES-Merging: Resolving Interference When Merging Models", NeurIPS 2023
 
-**実装コード** ([baseline_merge.py:L309-368](file:///mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/scripts/merging/baseline_merge.py#L309-L368)):
+**実装コード** ([baseline_merge.py:L309-368](file:///mnt/nas/home/hiromi/src/sst_v2/v1/scripts/merging/baseline_merge.py#L309-L368)):
 
 ```python
 def ties_merge(self, adapters: List[Dict], weights: List[float], density: float = 0.5):
@@ -568,7 +568,7 @@ mask[i] ~ Bernoulli(1 - p_drop)
 
 > Yu et al., "Language Models are Super Mario: Absorbing Abilities from Homologous Models as a Free Lunch", ICML 2024
 
-**実装コード** ([baseline_merge.py:L370-405](file:///mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/scripts/merging/baseline_merge.py#L370-L405)):
+**実装コード** ([baseline_merge.py:L370-405](file:///mnt/nas/home/hiromi/src/sst_v2/v1/scripts/merging/baseline_merge.py#L370-L405)):
 
 ```python
 def dare_merge(self, adapters: List[Dict], weights: List[float], drop_rate: float = 0.9):

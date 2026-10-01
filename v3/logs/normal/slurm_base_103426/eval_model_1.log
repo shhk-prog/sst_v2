@@ -1,0 +1,23 @@
+==================================================
+Slurm Per-Model Array Job ID (Base): 103426_1
+Configured CPU Threads: 2
+Assigned CUDA_VISIBLE_DEVICES: 0
+Working Dir: /mnt/nas/home/hiromi/src/sst_v2/v3
+==================================================
+Executing command:
+venv_v3/bin/python scripts/run_base_eval_parallel.py     --config configs/config_main.yaml     --limit 320     --gpus 0     --model_index 1     --use_vllm     --resume
+--------------------------------------------------
+Running single job for model index 1: WizardCoder
+Using result directory: results/debug_limit320/base
+base_eval jobs: 1
+gpus: 0
+workers: 1
+resume: True
+force: False
+use_vllm: True
+[GPU 0] START WizardCoder -> logs/v3_base_eval_parallel/gpu0_sst_merge_v3_main_base_WizardCoder.log
+[GPU 0] DONE WizardCoder
+
+Summary
+ok/skipped: 1
+failed: 0

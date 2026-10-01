@@ -1,0 +1,1879 @@
+  File "<string>", line 1
+    import nvidia.cuda_nvcc; import os; f=nvidia.cuda_nvcc.__file__; print(os.path.dirname(os.path.dirname(f)) if f else \"\")
+                                                                                                                          ^
+SyntaxError: unexpected character after line continuation character
+Starting Fisher computation for all tasks...
+Fisher for rte already exists at ./fishers/rte_fisher.h5, skipping.
+Fisher for mnli already exists at ./fishers/mnli_fisher.h5, skipping.
+Fisher for mrpc already exists at ./fishers/mrpc_fisher.h5, skipping.
+Fisher for sst-2 already exists at ./fishers/sst-2_fisher.h5, skipping.
+Fisher for sts-b already exists at ./fishers/sts-b_fisher.h5, skipping.
+Fisher for qnli already exists at ./fishers/qnli_fisher.h5, skipping.
+Fisher computation completed.
+Starting merge and evaluation with target rte...
+=================================================
+Evaluating Isometric Merge: Target=rte, Donor=mnli
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780060598.175131 3394466 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780060598.226860 3394466 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780060599.887712 3394466 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780060607.454948 3394466 gpu_device.cc:2043] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 92991 MB memory:  -> device: 0, name: NVIDIA H100, pci bus id: 0000:af:00.0, compute capability: 9.0a
+E0000 00:00:1780060609.925880 3394509 ptx_compiler_helpers.cc:154] *** WARNING *** Invoking ptxas with version 12.0.140, which corresponds to a CUDA version <=12.6.2. CUDA versions 12.x.y up to and including 12.6.2 miscompile certain edge cases around clamping.
+Please upgrade to CUDA 12.6.3 or newer.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+I0529 22:16:53.617200 139356134498432 dataset_info.py:711] Load dataset info from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+I0529 22:16:53.622547 139356134498432 reader.py:262] Creating a tf.data.Dataset reading 1 files located in folders: /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0.
+I0529 22:16:53.688594 139356134498432 logging_logger.py:49] Constructing tf.data.Dataset glue for split validation, from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/transformers/data/processors/glue.py:520: FutureWarning: This processor will be removed from the library soon, preprocessing should be handled with the 🤗 Datasets library. You can have a look at this example script for pointers: https://github.com/huggingface/transformers/blob/main/examples/pytorch/text-classification/run_glue.py
+  warnings.warn(DEPRECATION_WARNING.format("processor"), FutureWarning)
+I0000 00:00:1780060616.549830 3394549 tf_record_dataset_op.cc:396] The default buffer size is 262144, which is overridden by the user specified `buffer_size` of 8388608
+Merging coefficients: (1.0, 0.0)
+Scores:
+  accuracy: 0.7256317689530686
+Merging coefficients: (0.98, 0.020000000000000018)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.96, 0.040000000000000036)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.94, 0.06000000000000005)
+Scores:
+  accuracy: 0.7111913357400722
+Merging coefficients: (0.92, 0.07999999999999996)
+Scores:
+  accuracy: 0.7364620938628159
+Merging coefficients: (0.9, 0.09999999999999998)
+Scores:
+  accuracy: 0.7364620938628159
+Merging coefficients: (0.88, 0.12)
+Scores:
+  accuracy: 0.740072202166065
+Merging coefficients: (0.86, 0.14)
+Scores:
+  accuracy: 0.740072202166065
+Merging coefficients: (0.84, 0.16000000000000003)
+Scores:
+  accuracy: 0.7364620938628159
+Merging coefficients: (0.82, 0.18000000000000005)
+Scores:
+  accuracy: 0.7292418772563177
+Merging coefficients: (0.8, 0.19999999999999996)
+Scores:
+  accuracy: 0.7328519855595668
+Merging coefficients: (0.78, 0.21999999999999997)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.76, 0.24)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.74, 0.26)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.72, 0.28)
+Scores:
+  accuracy: 0.7292418772563177
+Merging coefficients: (0.7, 0.30000000000000004)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.68, 0.31999999999999995)
+Scores:
+  accuracy: 0.7003610108303249
+Merging coefficients: (0.66, 0.33999999999999997)
+Scores:
+  accuracy: 0.6823104693140795
+Merging coefficients: (0.64, 0.36)
+Scores:
+  accuracy: 0.6823104693140795
+Merging coefficients: (0.62, 0.38)
+Scores:
+  accuracy: 0.6714801444043321
+Merging coefficients: (0.6, 0.4)
+Scores:
+  accuracy: 0.6606498194945848
+Merging coefficients: (0.58, 0.42000000000000004)
+Scores:
+  accuracy: 0.6498194945848376
+Merging coefficients: (0.56, 0.43999999999999995)
+Scores:
+  accuracy: 0.628158844765343
+Merging coefficients: (0.54, 0.45999999999999996)
+Scores:
+  accuracy: 0.6245487364620939
+Merging coefficients: (0.52, 0.48)
+Scores:
+  accuracy: 0.6028880866425993
+Merging coefficients: (0.5, 0.5)
+Scores:
+  accuracy: 0.592057761732852
+Merging coefficients: (0.48, 0.52)
+Scores:
+  accuracy: 0.5812274368231047
+Merging coefficients: (0.46, 0.54)
+Scores:
+  accuracy: 0.5740072202166066
+Merging coefficients: (0.44, 0.56)
+Scores:
+  accuracy: 0.5667870036101083
+Merging coefficients: (0.42, 0.5800000000000001)
+Scores:
+  accuracy: 0.5631768953068592
+Merging coefficients: (0.4, 0.6)
+Scores:
+  accuracy: 0.5631768953068592
+Merging coefficients: (0.38, 0.62)
+Scores:
+  accuracy: 0.5667870036101083
+Merging coefficients: (0.36, 0.64)
+Scores:
+  accuracy: 0.5631768953068592
+Merging coefficients: (0.34, 0.6599999999999999)
+Scores:
+  accuracy: 0.5667870036101083
+Merging coefficients: (0.32, 0.6799999999999999)
+Scores:
+  accuracy: 0.5595667870036101
+Merging coefficients: (0.3, 0.7)
+Scores:
+  accuracy: 0.5523465703971119
+Merging coefficients: (0.28, 0.72)
+Scores:
+  accuracy: 0.5487364620938628
+Merging coefficients: (0.26, 0.74)
+Scores:
+  accuracy: 0.555956678700361
+Merging coefficients: (0.24, 0.76)
+Scores:
+  accuracy: 0.5451263537906137
+Merging coefficients: (0.22, 0.78)
+Scores:
+  accuracy: 0.5451263537906137
+Merging coefficients: (0.2, 0.8)
+Scores:
+  accuracy: 0.5379061371841155
+Merging coefficients: (0.18, 0.8200000000000001)
+Scores:
+  accuracy: 0.5342960288808665
+Merging coefficients: (0.16, 0.84)
+Scores:
+  accuracy: 0.5306859205776173
+Merging coefficients: (0.14, 0.86)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.12, 0.88)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.1, 0.9)
+Scores:
+  accuracy: 0.5234657039711191
+Merging coefficients: (0.08, 0.92)
+Scores:
+  accuracy: 0.5234657039711191
+Merging coefficients: (0.06, 0.94)
+Scores:
+  accuracy: 0.5234657039711191
+Merging coefficients: (0.04, 0.96)
+Scores:
+  accuracy: 0.516245487364621
+Merging coefficients: (0.02, 0.98)
+Scores:
+  accuracy: 0.5126353790613718
+Merging coefficients: (0.0, 1.0)
+Scores:
+  accuracy: 0.5126353790613718
+********************************************************************************
+ Best Merge
+********************************************************************************
+Merging coefficients: (0.88, 0.12)
+Scores:
+  accuracy: 0.740072202166065
+-------------------------------------------------
+Evaluating Fisher Merge: Target=rte, Donor=mnli
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780060690.206778 3395060 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780060690.259049 3395060 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780060692.578819 3395060 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780060700.366747 3395060 gpu_device.cc:2043] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 92991 MB memory:  -> device: 0, name: NVIDIA H100, pci bus id: 0000:af:00.0, compute capability: 9.0a
+E0000 00:00:1780060702.837736 3395098 ptx_compiler_helpers.cc:154] *** WARNING *** Invoking ptxas with version 12.0.140, which corresponds to a CUDA version <=12.6.2. CUDA versions 12.x.y up to and including 12.6.2 miscompile certain edge cases around clamping.
+Please upgrade to CUDA 12.6.3 or newer.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+I0529 22:18:29.163128 140046824464512 dataset_info.py:711] Load dataset info from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+I0529 22:18:29.169086 140046824464512 reader.py:262] Creating a tf.data.Dataset reading 1 files located in folders: /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0.
+I0529 22:18:29.225748 140046824464512 logging_logger.py:49] Constructing tf.data.Dataset glue for split validation, from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/transformers/data/processors/glue.py:520: FutureWarning: This processor will be removed from the library soon, preprocessing should be handled with the 🤗 Datasets library. You can have a look at this example script for pointers: https://github.com/huggingface/transformers/blob/main/examples/pytorch/text-classification/run_glue.py
+  warnings.warn(DEPRECATION_WARNING.format("processor"), FutureWarning)
+I0000 00:00:1780060712.551826 3395159 tf_record_dataset_op.cc:396] The default buffer size is 262144, which is overridden by the user specified `buffer_size` of 8388608
+Merging coefficients: (1.0, 0.0)
+Scores:
+  accuracy: 0.7256317689530686
+Merging coefficients: (0.98, 0.020000000000000018)
+Scores:
+  accuracy: 0.7256317689530686
+Merging coefficients: (0.96, 0.040000000000000036)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.94, 0.06000000000000005)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.92, 0.07999999999999996)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.9, 0.09999999999999998)
+Scores:
+  accuracy: 0.7292418772563177
+Merging coefficients: (0.88, 0.12)
+Scores:
+  accuracy: 0.7292418772563177
+Merging coefficients: (0.86, 0.14)
+Scores:
+  accuracy: 0.7328519855595668
+Merging coefficients: (0.84, 0.16000000000000003)
+Scores:
+  accuracy: 0.7292418772563177
+Merging coefficients: (0.82, 0.18000000000000005)
+Scores:
+  accuracy: 0.7292418772563177
+Merging coefficients: (0.8, 0.19999999999999996)
+Scores:
+  accuracy: 0.7292418772563177
+Merging coefficients: (0.78, 0.21999999999999997)
+Scores:
+  accuracy: 0.7256317689530686
+Merging coefficients: (0.76, 0.24)
+Scores:
+  accuracy: 0.7256317689530686
+Merging coefficients: (0.74, 0.26)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.72, 0.28)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.7, 0.30000000000000004)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.68, 0.31999999999999995)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.66, 0.33999999999999997)
+Scores:
+  accuracy: 0.7148014440433214
+Merging coefficients: (0.64, 0.36)
+Scores:
+  accuracy: 0.7003610108303249
+Merging coefficients: (0.62, 0.38)
+Scores:
+  accuracy: 0.7003610108303249
+Merging coefficients: (0.6, 0.4)
+Scores:
+  accuracy: 0.7003610108303249
+Merging coefficients: (0.58, 0.42000000000000004)
+Scores:
+  accuracy: 0.6823104693140795
+Merging coefficients: (0.56, 0.43999999999999995)
+Scores:
+  accuracy: 0.6787003610108303
+Merging coefficients: (0.54, 0.45999999999999996)
+Scores:
+  accuracy: 0.6714801444043321
+Merging coefficients: (0.52, 0.48)
+Scores:
+  accuracy: 0.6606498194945848
+Merging coefficients: (0.5, 0.5)
+Scores:
+  accuracy: 0.6498194945848376
+Merging coefficients: (0.48, 0.52)
+Scores:
+  accuracy: 0.628158844765343
+Merging coefficients: (0.46, 0.54)
+Scores:
+  accuracy: 0.6173285198555957
+Merging coefficients: (0.44, 0.56)
+Scores:
+  accuracy: 0.5992779783393501
+Merging coefficients: (0.42, 0.5800000000000001)
+Scores:
+  accuracy: 0.5812274368231047
+Merging coefficients: (0.4, 0.6)
+Scores:
+  accuracy: 0.5740072202166066
+Merging coefficients: (0.38, 0.62)
+Scores:
+  accuracy: 0.5703971119133574
+Merging coefficients: (0.36, 0.64)
+Scores:
+  accuracy: 0.5631768953068592
+Merging coefficients: (0.34, 0.6599999999999999)
+Scores:
+  accuracy: 0.5523465703971119
+Merging coefficients: (0.32, 0.6799999999999999)
+Scores:
+  accuracy: 0.5487364620938628
+Merging coefficients: (0.3, 0.7)
+Scores:
+  accuracy: 0.5487364620938628
+Merging coefficients: (0.28, 0.72)
+Scores:
+  accuracy: 0.5487364620938628
+Merging coefficients: (0.26, 0.74)
+Scores:
+  accuracy: 0.5451263537906137
+Merging coefficients: (0.24, 0.76)
+Scores:
+  accuracy: 0.5451263537906137
+Merging coefficients: (0.22, 0.78)
+Scores:
+  accuracy: 0.5415162454873647
+Merging coefficients: (0.2, 0.8)
+Scores:
+  accuracy: 0.5451263537906137
+Merging coefficients: (0.18, 0.8200000000000001)
+Scores:
+  accuracy: 0.5415162454873647
+Merging coefficients: (0.16, 0.84)
+Scores:
+  accuracy: 0.5415162454873647
+Merging coefficients: (0.14, 0.86)
+Scores:
+  accuracy: 0.5379061371841155
+Merging coefficients: (0.12, 0.88)
+Scores:
+  accuracy: 0.5306859205776173
+Merging coefficients: (0.1, 0.9)
+Scores:
+  accuracy: 0.51985559566787
+Merging coefficients: (0.08, 0.92)
+Scores:
+  accuracy: 0.5234657039711191
+Merging coefficients: (0.06, 0.94)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.04, 0.96)
+Scores:
+  accuracy: 0.5234657039711191
+Merging coefficients: (0.02, 0.98)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.0, 1.0)
+Scores:
+  accuracy: 0.5234657039711191
+********************************************************************************
+ Best Merge
+********************************************************************************
+Merging coefficients: (0.86, 0.14)
+Scores:
+  accuracy: 0.7328519855595668
+=================================================
+=================================================
+Evaluating Isometric Merge: Target=rte, Donor=mrpc
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780060786.607662 3396002 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780060786.658875 3396002 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780060788.840937 3396002 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780060796.786327 3396002 gpu_device.cc:2043] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 92991 MB memory:  -> device: 0, name: NVIDIA H100, pci bus id: 0000:af:00.0, compute capability: 9.0a
+E0000 00:00:1780060799.239863 3396047 ptx_compiler_helpers.cc:154] *** WARNING *** Invoking ptxas with version 12.0.140, which corresponds to a CUDA version <=12.6.2. CUDA versions 12.x.y up to and including 12.6.2 miscompile certain edge cases around clamping.
+Please upgrade to CUDA 12.6.3 or newer.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+I0529 22:20:03.094675 128144344047744 dataset_info.py:711] Load dataset info from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+I0529 22:20:03.102396 128144344047744 reader.py:262] Creating a tf.data.Dataset reading 1 files located in folders: /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0.
+I0529 22:20:03.172828 128144344047744 logging_logger.py:49] Constructing tf.data.Dataset glue for split validation, from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/transformers/data/processors/glue.py:520: FutureWarning: This processor will be removed from the library soon, preprocessing should be handled with the 🤗 Datasets library. You can have a look at this example script for pointers: https://github.com/huggingface/transformers/blob/main/examples/pytorch/text-classification/run_glue.py
+  warnings.warn(DEPRECATION_WARNING.format("processor"), FutureWarning)
+I0000 00:00:1780060805.952339 3396398 tf_record_dataset_op.cc:396] The default buffer size is 262144, which is overridden by the user specified `buffer_size` of 8388608
+Merging coefficients: (1.0, 0.0)
+Scores:
+  accuracy: 0.7256317689530686
+Merging coefficients: (0.98, 0.020000000000000018)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.96, 0.040000000000000036)
+Scores:
+  accuracy: 0.7148014440433214
+Merging coefficients: (0.94, 0.06000000000000005)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.92, 0.07999999999999996)
+Scores:
+  accuracy: 0.7111913357400722
+Merging coefficients: (0.9, 0.09999999999999998)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.88, 0.12)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.86, 0.14)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.84, 0.16000000000000003)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.82, 0.18000000000000005)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.8, 0.19999999999999996)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.78, 0.21999999999999997)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.76, 0.24)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.74, 0.26)
+Scores:
+  accuracy: 0.7111913357400722
+Merging coefficients: (0.72, 0.28)
+Scores:
+  accuracy: 0.7075812274368231
+Merging coefficients: (0.7, 0.30000000000000004)
+Scores:
+  accuracy: 0.703971119133574
+Merging coefficients: (0.68, 0.31999999999999995)
+Scores:
+  accuracy: 0.6823104693140795
+Merging coefficients: (0.66, 0.33999999999999997)
+Scores:
+  accuracy: 0.6606498194945848
+Merging coefficients: (0.64, 0.36)
+Scores:
+  accuracy: 0.6425992779783394
+Merging coefficients: (0.62, 0.38)
+Scores:
+  accuracy: 0.6137184115523465
+Merging coefficients: (0.6, 0.4)
+Scores:
+  accuracy: 0.6137184115523465
+Merging coefficients: (0.58, 0.42000000000000004)
+Scores:
+  accuracy: 0.5992779783393501
+Merging coefficients: (0.56, 0.43999999999999995)
+Scores:
+  accuracy: 0.5740072202166066
+Merging coefficients: (0.54, 0.45999999999999996)
+Scores:
+  accuracy: 0.5776173285198556
+Merging coefficients: (0.52, 0.48)
+Scores:
+  accuracy: 0.5667870036101083
+Merging coefficients: (0.5, 0.5)
+Scores:
+  accuracy: 0.5523465703971119
+Merging coefficients: (0.48, 0.52)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.46, 0.54)
+Scores:
+  accuracy: 0.5126353790613718
+Merging coefficients: (0.44, 0.56)
+Scores:
+  accuracy: 0.4981949458483754
+Merging coefficients: (0.42, 0.5800000000000001)
+Scores:
+  accuracy: 0.4981949458483754
+Merging coefficients: (0.4, 0.6)
+Scores:
+  accuracy: 0.4981949458483754
+Merging coefficients: (0.38, 0.62)
+Scores:
+  accuracy: 0.48736462093862815
+Merging coefficients: (0.36, 0.64)
+Scores:
+  accuracy: 0.49097472924187724
+Merging coefficients: (0.34, 0.6599999999999999)
+Scores:
+  accuracy: 0.5126353790613718
+Merging coefficients: (0.32, 0.6799999999999999)
+Scores:
+  accuracy: 0.5234657039711191
+Merging coefficients: (0.3, 0.7)
+Scores:
+  accuracy: 0.516245487364621
+Merging coefficients: (0.28, 0.72)
+Scores:
+  accuracy: 0.5054151624548736
+Merging coefficients: (0.26, 0.74)
+Scores:
+  accuracy: 0.4981949458483754
+Merging coefficients: (0.24, 0.76)
+Scores:
+  accuracy: 0.49458483754512633
+Merging coefficients: (0.22, 0.78)
+Scores:
+  accuracy: 0.51985559566787
+Merging coefficients: (0.2, 0.8)
+Scores:
+  accuracy: 0.5306859205776173
+Merging coefficients: (0.18, 0.8200000000000001)
+Scores:
+  accuracy: 0.5306859205776173
+Merging coefficients: (0.16, 0.84)
+Scores:
+  accuracy: 0.5415162454873647
+Merging coefficients: (0.14, 0.86)
+Scores:
+  accuracy: 0.5379061371841155
+Merging coefficients: (0.12, 0.88)
+Scores:
+  accuracy: 0.5306859205776173
+Merging coefficients: (0.1, 0.9)
+Scores:
+  accuracy: 0.51985559566787
+Merging coefficients: (0.08, 0.92)
+Scores:
+  accuracy: 0.5415162454873647
+Merging coefficients: (0.06, 0.94)
+Scores:
+  accuracy: 0.5342960288808665
+Merging coefficients: (0.04, 0.96)
+Scores:
+  accuracy: 0.5379061371841155
+Merging coefficients: (0.02, 0.98)
+Scores:
+  accuracy: 0.51985559566787
+Merging coefficients: (0.0, 1.0)
+Scores:
+  accuracy: 0.516245487364621
+********************************************************************************
+ Best Merge
+********************************************************************************
+Merging coefficients: (1.0, 0.0)
+Scores:
+  accuracy: 0.7256317689530686
+-------------------------------------------------
+Evaluating Fisher Merge: Target=rte, Donor=mrpc
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780060879.504894 3397959 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780060879.557017 3397959 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780060881.791107 3397959 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780060889.320297 3397959 gpu_device.cc:2043] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 92991 MB memory:  -> device: 0, name: NVIDIA H100, pci bus id: 0000:af:00.0, compute capability: 9.0a
+E0000 00:00:1780060891.790096 3398344 ptx_compiler_helpers.cc:154] *** WARNING *** Invoking ptxas with version 12.0.140, which corresponds to a CUDA version <=12.6.2. CUDA versions 12.x.y up to and including 12.6.2 miscompile certain edge cases around clamping.
+Please upgrade to CUDA 12.6.3 or newer.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+I0529 22:21:37.894370 123513596682368 dataset_info.py:711] Load dataset info from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+I0529 22:21:37.902314 123513596682368 reader.py:262] Creating a tf.data.Dataset reading 1 files located in folders: /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0.
+I0529 22:21:37.973622 123513596682368 logging_logger.py:49] Constructing tf.data.Dataset glue for split validation, from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/transformers/data/processors/glue.py:520: FutureWarning: This processor will be removed from the library soon, preprocessing should be handled with the 🤗 Datasets library. You can have a look at this example script for pointers: https://github.com/huggingface/transformers/blob/main/examples/pytorch/text-classification/run_glue.py
+  warnings.warn(DEPRECATION_WARNING.format("processor"), FutureWarning)
+I0000 00:00:1780060901.253381 3398393 tf_record_dataset_op.cc:396] The default buffer size is 262144, which is overridden by the user specified `buffer_size` of 8388608
+Merging coefficients: (1.0, 0.0)
+Scores:
+  accuracy: 0.7256317689530686
+Merging coefficients: (0.98, 0.020000000000000018)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.96, 0.040000000000000036)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.94, 0.06000000000000005)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.92, 0.07999999999999996)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.9, 0.09999999999999998)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.88, 0.12)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.86, 0.14)
+Scores:
+  accuracy: 0.7148014440433214
+Merging coefficients: (0.84, 0.16000000000000003)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.82, 0.18000000000000005)
+Scores:
+  accuracy: 0.7111913357400722
+Merging coefficients: (0.8, 0.19999999999999996)
+Scores:
+  accuracy: 0.6967509025270758
+Merging coefficients: (0.78, 0.21999999999999997)
+Scores:
+  accuracy: 0.6750902527075813
+Merging coefficients: (0.76, 0.24)
+Scores:
+  accuracy: 0.6606498194945848
+Merging coefficients: (0.74, 0.26)
+Scores:
+  accuracy: 0.6534296028880866
+Merging coefficients: (0.72, 0.28)
+Scores:
+  accuracy: 0.6353790613718412
+Merging coefficients: (0.7, 0.30000000000000004)
+Scores:
+  accuracy: 0.631768953068592
+Merging coefficients: (0.68, 0.31999999999999995)
+Scores:
+  accuracy: 0.592057761732852
+Merging coefficients: (0.66, 0.33999999999999997)
+Scores:
+  accuracy: 0.5848375451263538
+Merging coefficients: (0.64, 0.36)
+Scores:
+  accuracy: 0.5848375451263538
+Merging coefficients: (0.62, 0.38)
+Scores:
+  accuracy: 0.5740072202166066
+Merging coefficients: (0.6, 0.4)
+Scores:
+  accuracy: 0.5451263537906137
+Merging coefficients: (0.58, 0.42000000000000004)
+Scores:
+  accuracy: 0.5054151624548736
+Merging coefficients: (0.56, 0.43999999999999995)
+Scores:
+  accuracy: 0.5090252707581228
+Merging coefficients: (0.54, 0.45999999999999996)
+Scores:
+  accuracy: 0.4981949458483754
+Merging coefficients: (0.52, 0.48)
+Scores:
+  accuracy: 0.49097472924187724
+Merging coefficients: (0.5, 0.5)
+Scores:
+  accuracy: 0.48736462093862815
+Merging coefficients: (0.48, 0.52)
+Scores:
+  accuracy: 0.48736462093862815
+Merging coefficients: (0.46, 0.54)
+Scores:
+  accuracy: 0.48736462093862815
+Merging coefficients: (0.44, 0.56)
+Scores:
+  accuracy: 0.48736462093862815
+Merging coefficients: (0.42, 0.5800000000000001)
+Scores:
+  accuracy: 0.48375451263537905
+Merging coefficients: (0.4, 0.6)
+Scores:
+  accuracy: 0.48375451263537905
+Merging coefficients: (0.38, 0.62)
+Scores:
+  accuracy: 0.48014440433212996
+Merging coefficients: (0.36, 0.64)
+Scores:
+  accuracy: 0.48014440433212996
+Merging coefficients: (0.34, 0.6599999999999999)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.32, 0.6799999999999999)
+Scores:
+  accuracy: 0.4657039711191336
+Merging coefficients: (0.3, 0.7)
+Scores:
+  accuracy: 0.4657039711191336
+Merging coefficients: (0.28, 0.72)
+Scores:
+  accuracy: 0.47653429602888087
+Merging coefficients: (0.26, 0.74)
+Scores:
+  accuracy: 0.48014440433212996
+Merging coefficients: (0.24, 0.76)
+Scores:
+  accuracy: 0.48736462093862815
+Merging coefficients: (0.22, 0.78)
+Scores:
+  accuracy: 0.48014440433212996
+Merging coefficients: (0.2, 0.8)
+Scores:
+  accuracy: 0.48736462093862815
+Merging coefficients: (0.18, 0.8200000000000001)
+Scores:
+  accuracy: 0.48375451263537905
+Merging coefficients: (0.16, 0.84)
+Scores:
+  accuracy: 0.48736462093862815
+Merging coefficients: (0.14, 0.86)
+Scores:
+  accuracy: 0.49458483754512633
+Merging coefficients: (0.12, 0.88)
+Scores:
+  accuracy: 0.5018050541516246
+Merging coefficients: (0.1, 0.9)
+Scores:
+  accuracy: 0.5234657039711191
+Merging coefficients: (0.08, 0.92)
+Scores:
+  accuracy: 0.5126353790613718
+Merging coefficients: (0.06, 0.94)
+Scores:
+  accuracy: 0.5054151624548736
+Merging coefficients: (0.04, 0.96)
+Scores:
+  accuracy: 0.5126353790613718
+Merging coefficients: (0.02, 0.98)
+Scores:
+  accuracy: 0.5234657039711191
+Merging coefficients: (0.0, 1.0)
+Scores:
+  accuracy: 0.5270758122743683
+********************************************************************************
+ Best Merge
+********************************************************************************
+Merging coefficients: (1.0, 0.0)
+Scores:
+  accuracy: 0.7256317689530686
+=================================================
+=================================================
+Evaluating Isometric Merge: Target=rte, Donor=sst-2
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780060975.263737 3399428 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780060975.315331 3399428 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780060977.759634 3399428 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780060985.579582 3399428 gpu_device.cc:2043] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 92991 MB memory:  -> device: 0, name: NVIDIA H100, pci bus id: 0000:af:00.0, compute capability: 9.0a
+E0000 00:00:1780060988.034944 3399520 ptx_compiler_helpers.cc:154] *** WARNING *** Invoking ptxas with version 12.0.140, which corresponds to a CUDA version <=12.6.2. CUDA versions 12.x.y up to and including 12.6.2 miscompile certain edge cases around clamping.
+Please upgrade to CUDA 12.6.3 or newer.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+I0529 22:23:11.819882 133140983894144 dataset_info.py:711] Load dataset info from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+I0529 22:23:11.827821 133140983894144 reader.py:262] Creating a tf.data.Dataset reading 1 files located in folders: /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0.
+I0529 22:23:11.879632 133140983894144 logging_logger.py:49] Constructing tf.data.Dataset glue for split validation, from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/transformers/data/processors/glue.py:520: FutureWarning: This processor will be removed from the library soon, preprocessing should be handled with the 🤗 Datasets library. You can have a look at this example script for pointers: https://github.com/huggingface/transformers/blob/main/examples/pytorch/text-classification/run_glue.py
+  warnings.warn(DEPRECATION_WARNING.format("processor"), FutureWarning)
+I0000 00:00:1780060995.094307 3399560 tf_record_dataset_op.cc:396] The default buffer size is 262144, which is overridden by the user specified `buffer_size` of 8388608
+Merging coefficients: (1.0, 0.0)
+Scores:
+  accuracy: 0.7256317689530686
+Merging coefficients: (0.98, 0.020000000000000018)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.96, 0.040000000000000036)
+Scores:
+  accuracy: 0.7148014440433214
+Merging coefficients: (0.94, 0.06000000000000005)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.92, 0.07999999999999996)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.9, 0.09999999999999998)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.88, 0.12)
+Scores:
+  accuracy: 0.7111913357400722
+Merging coefficients: (0.86, 0.14)
+Scores:
+  accuracy: 0.6967509025270758
+Merging coefficients: (0.84, 0.16000000000000003)
+Scores:
+  accuracy: 0.6931407942238267
+Merging coefficients: (0.82, 0.18000000000000005)
+Scores:
+  accuracy: 0.6750902527075813
+Merging coefficients: (0.8, 0.19999999999999996)
+Scores:
+  accuracy: 0.6462093862815884
+Merging coefficients: (0.78, 0.21999999999999997)
+Scores:
+  accuracy: 0.6353790613718412
+Merging coefficients: (0.76, 0.24)
+Scores:
+  accuracy: 0.6353790613718412
+Merging coefficients: (0.74, 0.26)
+Scores:
+  accuracy: 0.6389891696750902
+Merging coefficients: (0.72, 0.28)
+Scores:
+  accuracy: 0.628158844765343
+Merging coefficients: (0.7, 0.30000000000000004)
+Scores:
+  accuracy: 0.6101083032490975
+Merging coefficients: (0.68, 0.31999999999999995)
+Scores:
+  accuracy: 0.6137184115523465
+Merging coefficients: (0.66, 0.33999999999999997)
+Scores:
+  accuracy: 0.5884476534296029
+Merging coefficients: (0.64, 0.36)
+Scores:
+  accuracy: 0.5776173285198556
+Merging coefficients: (0.62, 0.38)
+Scores:
+  accuracy: 0.5667870036101083
+Merging coefficients: (0.6, 0.4)
+Scores:
+  accuracy: 0.5667870036101083
+Merging coefficients: (0.58, 0.42000000000000004)
+Scores:
+  accuracy: 0.5631768953068592
+Merging coefficients: (0.56, 0.43999999999999995)
+Scores:
+  accuracy: 0.555956678700361
+Merging coefficients: (0.54, 0.45999999999999996)
+Scores:
+  accuracy: 0.5451263537906137
+Merging coefficients: (0.52, 0.48)
+Scores:
+  accuracy: 0.5342960288808665
+Merging coefficients: (0.5, 0.5)
+Scores:
+  accuracy: 0.5054151624548736
+Merging coefficients: (0.48, 0.52)
+Scores:
+  accuracy: 0.5018050541516246
+Merging coefficients: (0.46, 0.54)
+Scores:
+  accuracy: 0.48375451263537905
+Merging coefficients: (0.44, 0.56)
+Scores:
+  accuracy: 0.48375451263537905
+Merging coefficients: (0.42, 0.5800000000000001)
+Scores:
+  accuracy: 0.48375451263537905
+Merging coefficients: (0.4, 0.6)
+Scores:
+  accuracy: 0.48014440433212996
+Merging coefficients: (0.38, 0.62)
+Scores:
+  accuracy: 0.47653429602888087
+Merging coefficients: (0.36, 0.64)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.34, 0.6599999999999999)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.32, 0.6799999999999999)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.3, 0.7)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.28, 0.72)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.26, 0.74)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.24, 0.76)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.22, 0.78)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.2, 0.8)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.18, 0.8200000000000001)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.16, 0.84)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.14, 0.86)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.12, 0.88)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.1, 0.9)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.08, 0.92)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.06, 0.94)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.04, 0.96)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.02, 0.98)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.0, 1.0)
+Scores:
+  accuracy: 0.4729241877256318
+********************************************************************************
+ Best Merge
+********************************************************************************
+Merging coefficients: (1.0, 0.0)
+Scores:
+  accuracy: 0.7256317689530686
+-------------------------------------------------
+Evaluating Fisher Merge: Target=rte, Donor=sst-2
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780061069.194737 3400491 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780061069.247023 3400491 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780061071.638975 3400491 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780061079.327416 3400491 gpu_device.cc:2043] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 92991 MB memory:  -> device: 0, name: NVIDIA H100, pci bus id: 0000:af:00.0, compute capability: 9.0a
+E0000 00:00:1780061081.815112 3400554 ptx_compiler_helpers.cc:154] *** WARNING *** Invoking ptxas with version 12.0.140, which corresponds to a CUDA version <=12.6.2. CUDA versions 12.x.y up to and including 12.6.2 miscompile certain edge cases around clamping.
+Please upgrade to CUDA 12.6.3 or newer.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+I0529 22:24:48.297049 124735720140928 dataset_info.py:711] Load dataset info from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+I0529 22:24:48.303513 124735720140928 reader.py:262] Creating a tf.data.Dataset reading 1 files located in folders: /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0.
+I0529 22:24:48.372301 124735720140928 logging_logger.py:49] Constructing tf.data.Dataset glue for split validation, from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/transformers/data/processors/glue.py:520: FutureWarning: This processor will be removed from the library soon, preprocessing should be handled with the 🤗 Datasets library. You can have a look at this example script for pointers: https://github.com/huggingface/transformers/blob/main/examples/pytorch/text-classification/run_glue.py
+  warnings.warn(DEPRECATION_WARNING.format("processor"), FutureWarning)
+I0000 00:00:1780061091.336209 3400635 tf_record_dataset_op.cc:396] The default buffer size is 262144, which is overridden by the user specified `buffer_size` of 8388608
+Merging coefficients: (1.0, 0.0)
+Scores:
+  accuracy: 0.7256317689530686
+Merging coefficients: (0.98, 0.020000000000000018)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.96, 0.040000000000000036)
+Scores:
+  accuracy: 0.7256317689530686
+Merging coefficients: (0.94, 0.06000000000000005)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.92, 0.07999999999999996)
+Scores:
+  accuracy: 0.7256317689530686
+Merging coefficients: (0.9, 0.09999999999999998)
+Scores:
+  accuracy: 0.7148014440433214
+Merging coefficients: (0.88, 0.12)
+Scores:
+  accuracy: 0.7111913357400722
+Merging coefficients: (0.86, 0.14)
+Scores:
+  accuracy: 0.7111913357400722
+Merging coefficients: (0.84, 0.16000000000000003)
+Scores:
+  accuracy: 0.7148014440433214
+Merging coefficients: (0.82, 0.18000000000000005)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.8, 0.19999999999999996)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.78, 0.21999999999999997)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.76, 0.24)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.74, 0.26)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.72, 0.28)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.7, 0.30000000000000004)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.68, 0.31999999999999995)
+Scores:
+  accuracy: 0.7148014440433214
+Merging coefficients: (0.66, 0.33999999999999997)
+Scores:
+  accuracy: 0.7075812274368231
+Merging coefficients: (0.64, 0.36)
+Scores:
+  accuracy: 0.7003610108303249
+Merging coefficients: (0.62, 0.38)
+Scores:
+  accuracy: 0.6967509025270758
+Merging coefficients: (0.6, 0.4)
+Scores:
+  accuracy: 0.6967509025270758
+Merging coefficients: (0.58, 0.42000000000000004)
+Scores:
+  accuracy: 0.6895306859205776
+Merging coefficients: (0.56, 0.43999999999999995)
+Scores:
+  accuracy: 0.6931407942238267
+Merging coefficients: (0.54, 0.45999999999999996)
+Scores:
+  accuracy: 0.6895306859205776
+Merging coefficients: (0.52, 0.48)
+Scores:
+  accuracy: 0.6823104693140795
+Merging coefficients: (0.5, 0.5)
+Scores:
+  accuracy: 0.6823104693140795
+Merging coefficients: (0.48, 0.52)
+Scores:
+  accuracy: 0.6787003610108303
+Merging coefficients: (0.46, 0.54)
+Scores:
+  accuracy: 0.6678700361010831
+Merging coefficients: (0.44, 0.56)
+Scores:
+  accuracy: 0.6642599277978339
+Merging coefficients: (0.42, 0.5800000000000001)
+Scores:
+  accuracy: 0.6534296028880866
+Merging coefficients: (0.4, 0.6)
+Scores:
+  accuracy: 0.6498194945848376
+Merging coefficients: (0.38, 0.62)
+Scores:
+  accuracy: 0.6353790613718412
+Merging coefficients: (0.36, 0.64)
+Scores:
+  accuracy: 0.631768953068592
+Merging coefficients: (0.34, 0.6599999999999999)
+Scores:
+  accuracy: 0.6209386281588448
+Merging coefficients: (0.32, 0.6799999999999999)
+Scores:
+  accuracy: 0.6209386281588448
+Merging coefficients: (0.3, 0.7)
+Scores:
+  accuracy: 0.6137184115523465
+Merging coefficients: (0.28, 0.72)
+Scores:
+  accuracy: 0.5956678700361011
+Merging coefficients: (0.26, 0.74)
+Scores:
+  accuracy: 0.5884476534296029
+Merging coefficients: (0.24, 0.76)
+Scores:
+  accuracy: 0.592057761732852
+Merging coefficients: (0.22, 0.78)
+Scores:
+  accuracy: 0.5812274368231047
+Merging coefficients: (0.2, 0.8)
+Scores:
+  accuracy: 0.5595667870036101
+Merging coefficients: (0.18, 0.8200000000000001)
+Scores:
+  accuracy: 0.5415162454873647
+Merging coefficients: (0.16, 0.84)
+Scores:
+  accuracy: 0.5090252707581228
+Merging coefficients: (0.14, 0.86)
+Scores:
+  accuracy: 0.48736462093862815
+Merging coefficients: (0.12, 0.88)
+Scores:
+  accuracy: 0.47653429602888087
+Merging coefficients: (0.1, 0.9)
+Scores:
+  accuracy: 0.48014440433212996
+Merging coefficients: (0.08, 0.92)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.06, 0.94)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.04, 0.96)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.02, 0.98)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.0, 1.0)
+Scores:
+  accuracy: 0.5270758122743683
+********************************************************************************
+ Best Merge
+********************************************************************************
+Merging coefficients: (1.0, 0.0)
+Scores:
+  accuracy: 0.7256317689530686
+=================================================
+=================================================
+Evaluating Isometric Merge: Target=rte, Donor=sts-b
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780061163.948179 3401215 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780061164.000486 3401215 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780061166.401010 3401215 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780061174.345310 3401215 gpu_device.cc:2043] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 92991 MB memory:  -> device: 0, name: NVIDIA H100, pci bus id: 0000:af:00.0, compute capability: 9.0a
+E0000 00:00:1780061176.809347 3401300 ptx_compiler_helpers.cc:154] *** WARNING *** Invoking ptxas with version 12.0.140, which corresponds to a CUDA version <=12.6.2. CUDA versions 12.x.y up to and including 12.6.2 miscompile certain edge cases around clamping.
+Please upgrade to CUDA 12.6.3 or newer.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+I0529 22:26:20.556644 132360384684160 dataset_info.py:711] Load dataset info from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+I0529 22:26:20.562571 132360384684160 reader.py:262] Creating a tf.data.Dataset reading 1 files located in folders: /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0.
+I0529 22:26:20.629948 132360384684160 logging_logger.py:49] Constructing tf.data.Dataset glue for split validation, from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/transformers/data/processors/glue.py:520: FutureWarning: This processor will be removed from the library soon, preprocessing should be handled with the 🤗 Datasets library. You can have a look at this example script for pointers: https://github.com/huggingface/transformers/blob/main/examples/pytorch/text-classification/run_glue.py
+  warnings.warn(DEPRECATION_WARNING.format("processor"), FutureWarning)
+I0000 00:00:1780061183.829326 3401340 tf_record_dataset_op.cc:396] The default buffer size is 262144, which is overridden by the user specified `buffer_size` of 8388608
+Merging coefficients: (1.0, 0.0)
+Scores:
+  accuracy: 0.7256317689530686
+Merging coefficients: (0.98, 0.020000000000000018)
+Scores:
+  accuracy: 0.7220216606498195
+Merging coefficients: (0.96, 0.040000000000000036)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.94, 0.06000000000000005)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.92, 0.07999999999999996)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.9, 0.09999999999999998)
+Scores:
+  accuracy: 0.7256317689530686
+Merging coefficients: (0.88, 0.12)
+Scores:
+  accuracy: 0.7328519855595668
+Merging coefficients: (0.86, 0.14)
+Scores:
+  accuracy: 0.7292418772563177
+Merging coefficients: (0.84, 0.16000000000000003)
+Scores:
+  accuracy: 0.7256317689530686
+Merging coefficients: (0.82, 0.18000000000000005)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.8, 0.19999999999999996)
+Scores:
+  accuracy: 0.6931407942238267
+Merging coefficients: (0.78, 0.21999999999999997)
+Scores:
+  accuracy: 0.6859205776173285
+Merging coefficients: (0.76, 0.24)
+Scores:
+  accuracy: 0.6787003610108303
+Merging coefficients: (0.74, 0.26)
+Scores:
+  accuracy: 0.6750902527075813
+Merging coefficients: (0.72, 0.28)
+Scores:
+  accuracy: 0.6498194945848376
+Merging coefficients: (0.7, 0.30000000000000004)
+Scores:
+  accuracy: 0.628158844765343
+Merging coefficients: (0.68, 0.31999999999999995)
+Scores:
+  accuracy: 0.6245487364620939
+Merging coefficients: (0.66, 0.33999999999999997)
+Scores:
+  accuracy: 0.6137184115523465
+Merging coefficients: (0.64, 0.36)
+Scores:
+  accuracy: 0.6028880866425993
+Merging coefficients: (0.62, 0.38)
+Scores:
+  accuracy: 0.5848375451263538
+Merging coefficients: (0.6, 0.4)
+Scores:
+  accuracy: 0.5703971119133574
+Merging coefficients: (0.58, 0.42000000000000004)
+Scores:
+  accuracy: 0.555956678700361
+Merging coefficients: (0.56, 0.43999999999999995)
+Scores:
+  accuracy: 0.5415162454873647
+Merging coefficients: (0.54, 0.45999999999999996)
+Scores:
+  accuracy: 0.5379061371841155
+Merging coefficients: (0.52, 0.48)
+Scores:
+  accuracy: 0.5234657039711191
+Merging coefficients: (0.5, 0.5)
+Scores:
+  accuracy: 0.5018050541516246
+Merging coefficients: (0.48, 0.52)
+Scores:
+  accuracy: 0.5018050541516246
+Merging coefficients: (0.46, 0.54)
+Scores:
+  accuracy: 0.49097472924187724
+Merging coefficients: (0.44, 0.56)
+Scores:
+  accuracy: 0.47653429602888087
+Merging coefficients: (0.42, 0.5800000000000001)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.4, 0.6)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.38, 0.62)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.36, 0.64)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.34, 0.6599999999999999)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.32, 0.6799999999999999)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.3, 0.7)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.28, 0.72)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.26, 0.74)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.24, 0.76)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.22, 0.78)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.2, 0.8)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.18, 0.8200000000000001)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.16, 0.84)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.14, 0.86)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.12, 0.88)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.1, 0.9)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.08, 0.92)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.06, 0.94)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.04, 0.96)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.02, 0.98)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.0, 1.0)
+Scores:
+  accuracy: 0.4729241877256318
+********************************************************************************
+ Best Merge
+********************************************************************************
+Merging coefficients: (0.88, 0.12)
+Scores:
+  accuracy: 0.7328519855595668
+-------------------------------------------------
+Evaluating Fisher Merge: Target=rte, Donor=sts-b
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780061257.493984 3401854 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780061257.546147 3401854 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780061259.702240 3401854 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780061267.580103 3401854 gpu_device.cc:2043] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 92991 MB memory:  -> device: 0, name: NVIDIA H100, pci bus id: 0000:af:00.0, compute capability: 9.0a
+E0000 00:00:1780061270.029606 3401902 ptx_compiler_helpers.cc:154] *** WARNING *** Invoking ptxas with version 12.0.140, which corresponds to a CUDA version <=12.6.2. CUDA versions 12.x.y up to and including 12.6.2 miscompile certain edge cases around clamping.
+Please upgrade to CUDA 12.6.3 or newer.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+I0529 22:27:56.197224 129715909451904 dataset_info.py:711] Load dataset info from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+I0529 22:27:56.207496 129715909451904 reader.py:262] Creating a tf.data.Dataset reading 1 files located in folders: /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0.
+I0529 22:27:56.283478 129715909451904 logging_logger.py:49] Constructing tf.data.Dataset glue for split validation, from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/transformers/data/processors/glue.py:520: FutureWarning: This processor will be removed from the library soon, preprocessing should be handled with the 🤗 Datasets library. You can have a look at this example script for pointers: https://github.com/huggingface/transformers/blob/main/examples/pytorch/text-classification/run_glue.py
+  warnings.warn(DEPRECATION_WARNING.format("processor"), FutureWarning)
+I0000 00:00:1780061279.242450 3401960 tf_record_dataset_op.cc:396] The default buffer size is 262144, which is overridden by the user specified `buffer_size` of 8388608
+Merging coefficients: (1.0, 0.0)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.98, 0.020000000000000018)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.96, 0.040000000000000036)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.94, 0.06000000000000005)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.92, 0.07999999999999996)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.9, 0.09999999999999998)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.88, 0.12)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.86, 0.14)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.84, 0.16000000000000003)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.82, 0.18000000000000005)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.8, 0.19999999999999996)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.78, 0.21999999999999997)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.76, 0.24)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.74, 0.26)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.72, 0.28)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.7, 0.30000000000000004)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.68, 0.31999999999999995)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.66, 0.33999999999999997)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.64, 0.36)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.62, 0.38)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.6, 0.4)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.58, 0.42000000000000004)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.56, 0.43999999999999995)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.54, 0.45999999999999996)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.52, 0.48)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.5, 0.5)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.48, 0.52)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.46, 0.54)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.44, 0.56)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.42, 0.5800000000000001)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.4, 0.6)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.38, 0.62)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.36, 0.64)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.34, 0.6599999999999999)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.32, 0.6799999999999999)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.3, 0.7)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.28, 0.72)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.26, 0.74)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.24, 0.76)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.22, 0.78)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.2, 0.8)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.18, 0.8200000000000001)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.16, 0.84)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.14, 0.86)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.12, 0.88)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.1, 0.9)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.08, 0.92)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.06, 0.94)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.04, 0.96)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.02, 0.98)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.0, 1.0)
+Scores:
+  accuracy: 0.5270758122743683
+********************************************************************************
+ Best Merge
+********************************************************************************
+Merging coefficients: (1.0, 0.0)
+Scores:
+  accuracy: 0.5270758122743683
+=================================================
+=================================================
+Evaluating Isometric Merge: Target=rte, Donor=qnli
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780061352.599755 3402481 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780061352.652140 3402481 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780061354.965425 3402481 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780061363.137196 3402481 gpu_device.cc:2043] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 92991 MB memory:  -> device: 0, name: NVIDIA H100, pci bus id: 0000:af:00.0, compute capability: 9.0a
+E0000 00:00:1780061365.627942 3402520 ptx_compiler_helpers.cc:154] *** WARNING *** Invoking ptxas with version 12.0.140, which corresponds to a CUDA version <=12.6.2. CUDA versions 12.x.y up to and including 12.6.2 miscompile certain edge cases around clamping.
+Please upgrade to CUDA 12.6.3 or newer.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+I0529 22:29:29.358271 133190348968064 dataset_info.py:711] Load dataset info from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+I0529 22:29:29.364513 133190348968064 reader.py:262] Creating a tf.data.Dataset reading 1 files located in folders: /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0.
+I0529 22:29:29.429843 133190348968064 logging_logger.py:49] Constructing tf.data.Dataset glue for split validation, from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/transformers/data/processors/glue.py:520: FutureWarning: This processor will be removed from the library soon, preprocessing should be handled with the 🤗 Datasets library. You can have a look at this example script for pointers: https://github.com/huggingface/transformers/blob/main/examples/pytorch/text-classification/run_glue.py
+  warnings.warn(DEPRECATION_WARNING.format("processor"), FutureWarning)
+I0000 00:00:1780061372.245393 3402575 tf_record_dataset_op.cc:396] The default buffer size is 262144, which is overridden by the user specified `buffer_size` of 8388608
+Merging coefficients: (1.0, 0.0)
+Scores:
+  accuracy: 0.7256317689530686
+Merging coefficients: (0.98, 0.020000000000000018)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.96, 0.040000000000000036)
+Scores:
+  accuracy: 0.7148014440433214
+Merging coefficients: (0.94, 0.06000000000000005)
+Scores:
+  accuracy: 0.7075812274368231
+Merging coefficients: (0.92, 0.07999999999999996)
+Scores:
+  accuracy: 0.7075812274368231
+Merging coefficients: (0.9, 0.09999999999999998)
+Scores:
+  accuracy: 0.7075812274368231
+Merging coefficients: (0.88, 0.12)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.86, 0.14)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.84, 0.16000000000000003)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.82, 0.18000000000000005)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.8, 0.19999999999999996)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.78, 0.21999999999999997)
+Scores:
+  accuracy: 0.7075812274368231
+Merging coefficients: (0.76, 0.24)
+Scores:
+  accuracy: 0.6895306859205776
+Merging coefficients: (0.74, 0.26)
+Scores:
+  accuracy: 0.6859205776173285
+Merging coefficients: (0.72, 0.28)
+Scores:
+  accuracy: 0.6787003610108303
+Merging coefficients: (0.7, 0.30000000000000004)
+Scores:
+  accuracy: 0.6462093862815884
+Merging coefficients: (0.68, 0.31999999999999995)
+Scores:
+  accuracy: 0.628158844765343
+Merging coefficients: (0.66, 0.33999999999999997)
+Scores:
+  accuracy: 0.6064981949458483
+Merging coefficients: (0.64, 0.36)
+Scores:
+  accuracy: 0.6028880866425993
+Merging coefficients: (0.62, 0.38)
+Scores:
+  accuracy: 0.5884476534296029
+Merging coefficients: (0.6, 0.4)
+Scores:
+  accuracy: 0.5740072202166066
+Merging coefficients: (0.58, 0.42000000000000004)
+Scores:
+  accuracy: 0.5667870036101083
+Merging coefficients: (0.56, 0.43999999999999995)
+Scores:
+  accuracy: 0.5631768953068592
+Merging coefficients: (0.54, 0.45999999999999996)
+Scores:
+  accuracy: 0.5415162454873647
+Merging coefficients: (0.52, 0.48)
+Scores:
+  accuracy: 0.5306859205776173
+Merging coefficients: (0.5, 0.5)
+Scores:
+  accuracy: 0.516245487364621
+Merging coefficients: (0.48, 0.52)
+Scores:
+  accuracy: 0.516245487364621
+Merging coefficients: (0.46, 0.54)
+Scores:
+  accuracy: 0.5090252707581228
+Merging coefficients: (0.44, 0.56)
+Scores:
+  accuracy: 0.5090252707581228
+Merging coefficients: (0.42, 0.5800000000000001)
+Scores:
+  accuracy: 0.5126353790613718
+Merging coefficients: (0.4, 0.6)
+Scores:
+  accuracy: 0.516245487364621
+Merging coefficients: (0.38, 0.62)
+Scores:
+  accuracy: 0.5126353790613718
+Merging coefficients: (0.36, 0.64)
+Scores:
+  accuracy: 0.5090252707581228
+Merging coefficients: (0.34, 0.6599999999999999)
+Scores:
+  accuracy: 0.4981949458483754
+Merging coefficients: (0.32, 0.6799999999999999)
+Scores:
+  accuracy: 0.4981949458483754
+Merging coefficients: (0.3, 0.7)
+Scores:
+  accuracy: 0.49458483754512633
+Merging coefficients: (0.28, 0.72)
+Scores:
+  accuracy: 0.47653429602888087
+Merging coefficients: (0.26, 0.74)
+Scores:
+  accuracy: 0.48014440433212996
+Merging coefficients: (0.24, 0.76)
+Scores:
+  accuracy: 0.47653429602888087
+Merging coefficients: (0.22, 0.78)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.2, 0.8)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.18, 0.8200000000000001)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.16, 0.84)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.14, 0.86)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.12, 0.88)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.1, 0.9)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.08, 0.92)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.06, 0.94)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.04, 0.96)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.02, 0.98)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.0, 1.0)
+Scores:
+  accuracy: 0.4729241877256318
+********************************************************************************
+ Best Merge
+********************************************************************************
+Merging coefficients: (1.0, 0.0)
+Scores:
+  accuracy: 0.7256317689530686
+-------------------------------------------------
+Evaluating Fisher Merge: Target=rte, Donor=qnli
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780061445.796822 3403137 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780061445.848612 3403137 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX512_FP16 AVX_VNNI AMX_TILE AMX_INT8 AMX_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780061448.086561 3403137 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1780061456.337012 3403137 gpu_device.cc:2043] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 92991 MB memory:  -> device: 0, name: NVIDIA H100, pci bus id: 0000:af:00.0, compute capability: 9.0a
+E0000 00:00:1780061458.815526 3403180 ptx_compiler_helpers.cc:154] *** WARNING *** Invoking ptxas with version 12.0.140, which corresponds to a CUDA version <=12.6.2. CUDA versions 12.x.y up to and including 12.6.2 miscompile certain edge cases around clamping.
+Please upgrade to CUDA 12.6.3 or newer.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+All PyTorch model weights were used when initializing TFRobertaForSequenceClassification.
+
+All the weights of TFRobertaForSequenceClassification were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFRobertaForSequenceClassification for predictions without further training.
+I0529 22:31:05.147746 131349753675904 dataset_info.py:711] Load dataset info from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+I0529 22:31:05.157025 131349753675904 reader.py:262] Creating a tf.data.Dataset reading 1 files located in folders: /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0.
+I0529 22:31:05.226562 131349753675904 logging_logger.py:49] Constructing tf.data.Dataset glue for split validation, from /mnt/nas/home/hiromi/tensorflow_datasets/glue/rte/2.0.0
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/transformers/data/processors/glue.py:520: FutureWarning: This processor will be removed from the library soon, preprocessing should be handled with the 🤗 Datasets library. You can have a look at this example script for pointers: https://github.com/huggingface/transformers/blob/main/examples/pytorch/text-classification/run_glue.py
+  warnings.warn(DEPRECATION_WARNING.format("processor"), FutureWarning)
+I0000 00:00:1780061468.522495 3403270 tf_record_dataset_op.cc:396] The default buffer size is 262144, which is overridden by the user specified `buffer_size` of 8388608
+Merging coefficients: (1.0, 0.0)
+Scores:
+  accuracy: 0.7256317689530686
+Merging coefficients: (0.98, 0.020000000000000018)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.96, 0.040000000000000036)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.94, 0.06000000000000005)
+Scores:
+  accuracy: 0.7111913357400722
+Merging coefficients: (0.92, 0.07999999999999996)
+Scores:
+  accuracy: 0.7075812274368231
+Merging coefficients: (0.9, 0.09999999999999998)
+Scores:
+  accuracy: 0.7148014440433214
+Merging coefficients: (0.88, 0.12)
+Scores:
+  accuracy: 0.7075812274368231
+Merging coefficients: (0.86, 0.14)
+Scores:
+  accuracy: 0.7184115523465704
+Merging coefficients: (0.84, 0.16000000000000003)
+Scores:
+  accuracy: 0.7148014440433214
+Merging coefficients: (0.82, 0.18000000000000005)
+Scores:
+  accuracy: 0.7111913357400722
+Merging coefficients: (0.8, 0.19999999999999996)
+Scores:
+  accuracy: 0.7111913357400722
+Merging coefficients: (0.78, 0.21999999999999997)
+Scores:
+  accuracy: 0.7075812274368231
+Merging coefficients: (0.76, 0.24)
+Scores:
+  accuracy: 0.703971119133574
+Merging coefficients: (0.74, 0.26)
+Scores:
+  accuracy: 0.703971119133574
+Merging coefficients: (0.72, 0.28)
+Scores:
+  accuracy: 0.7003610108303249
+Merging coefficients: (0.7, 0.30000000000000004)
+Scores:
+  accuracy: 0.7003610108303249
+Merging coefficients: (0.68, 0.31999999999999995)
+Scores:
+  accuracy: 0.6967509025270758
+Merging coefficients: (0.66, 0.33999999999999997)
+Scores:
+  accuracy: 0.6931407942238267
+Merging coefficients: (0.64, 0.36)
+Scores:
+  accuracy: 0.6823104693140795
+Merging coefficients: (0.62, 0.38)
+Scores:
+  accuracy: 0.6678700361010831
+Merging coefficients: (0.6, 0.4)
+Scores:
+  accuracy: 0.6606498194945848
+Merging coefficients: (0.58, 0.42000000000000004)
+Scores:
+  accuracy: 0.6534296028880866
+Merging coefficients: (0.56, 0.43999999999999995)
+Scores:
+  accuracy: 0.6389891696750902
+Merging coefficients: (0.54, 0.45999999999999996)
+Scores:
+  accuracy: 0.628158844765343
+Merging coefficients: (0.52, 0.48)
+Scores:
+  accuracy: 0.6209386281588448
+Merging coefficients: (0.5, 0.5)
+Scores:
+  accuracy: 0.6209386281588448
+Merging coefficients: (0.48, 0.52)
+Scores:
+  accuracy: 0.6173285198555957
+Merging coefficients: (0.46, 0.54)
+Scores:
+  accuracy: 0.5884476534296029
+Merging coefficients: (0.44, 0.56)
+Scores:
+  accuracy: 0.5740072202166066
+Merging coefficients: (0.42, 0.5800000000000001)
+Scores:
+  accuracy: 0.5703971119133574
+Merging coefficients: (0.4, 0.6)
+Scores:
+  accuracy: 0.5703971119133574
+Merging coefficients: (0.38, 0.62)
+Scores:
+  accuracy: 0.555956678700361
+Merging coefficients: (0.36, 0.64)
+Scores:
+  accuracy: 0.5595667870036101
+Merging coefficients: (0.34, 0.6599999999999999)
+Scores:
+  accuracy: 0.555956678700361
+Merging coefficients: (0.32, 0.6799999999999999)
+Scores:
+  accuracy: 0.5415162454873647
+Merging coefficients: (0.3, 0.7)
+Scores:
+  accuracy: 0.5306859205776173
+Merging coefficients: (0.28, 0.72)
+Scores:
+  accuracy: 0.5270758122743683
+Merging coefficients: (0.26, 0.74)
+Scores:
+  accuracy: 0.5234657039711191
+Merging coefficients: (0.24, 0.76)
+Scores:
+  accuracy: 0.5234657039711191
+Merging coefficients: (0.22, 0.78)
+Scores:
+  accuracy: 0.516245487364621
+Merging coefficients: (0.2, 0.8)
+Scores:
+  accuracy: 0.516245487364621
+Merging coefficients: (0.18, 0.8200000000000001)
+Scores:
+  accuracy: 0.516245487364621
+Merging coefficients: (0.16, 0.84)
+Scores:
+  accuracy: 0.51985559566787
+Merging coefficients: (0.14, 0.86)
+Scores:
+  accuracy: 0.5090252707581228
+Merging coefficients: (0.12, 0.88)
+Scores:
+  accuracy: 0.5090252707581228
+Merging coefficients: (0.1, 0.9)
+Scores:
+  accuracy: 0.49458483754512633
+Merging coefficients: (0.08, 0.92)
+Scores:
+  accuracy: 0.48736462093862815
+Merging coefficients: (0.06, 0.94)
+Scores:
+  accuracy: 0.48014440433212996
+Merging coefficients: (0.04, 0.96)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.02, 0.98)
+Scores:
+  accuracy: 0.4729241877256318
+Merging coefficients: (0.0, 1.0)
+Scores:
+  accuracy: 0.555956678700361
+********************************************************************************
+ Best Merge
+********************************************************************************
+Merging coefficients: (1.0, 0.0)
+Scores:
+  accuracy: 0.7256317689530686
+=================================================
+All experiments completed successfully.

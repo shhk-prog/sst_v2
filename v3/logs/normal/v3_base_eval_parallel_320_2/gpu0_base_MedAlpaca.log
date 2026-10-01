@@ -1,0 +1,54 @@
+
+================================================================================
+MODEL: MedAlpaca
+PATH:  medalpaca/medalpaca-7b
+GPU:   0
+PREFIX:sst_merge_v3_main_base_MedAlpaca
+All expected outputs exist. Skipping whole model.
+
+================================================================================
+MODEL: MedAlpaca
+PATH:  medalpaca/medalpaca-7b
+GPU:   0
+PREFIX:sst_merge_v3_main_base_MedAlpaca
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_harmbench_safety.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_jailbreakbench_safety.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_strongreject_safety.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_wildjailbreak_safety.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_math_gsm8k.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_math_minerva_math500.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_code_humaneval.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_code_mbpp.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_medical_pubmedqa.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_medical_medqa_4options.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_general_mmlu.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_utility_general_ifeval.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_alpaca_eval2.json
+
+[skip existing] results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_inst_evol_code.json
+
+$ /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval_instruction_datasets.py --model_path medalpaca/medalpaca-7b --config configs/config_main.yaml --dataset medalpaca --output_file results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_inst_medalpaca.json --limit 320
+[transformers] Model config: pad_token_id must be `None` or an integer within the vocabulary (between 0 and 32000), got -1. This may result in unexpected behavior.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[transformers] The following generation flags are not valid and may be ignored: ['pad_token_id']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Evaluating medalpaca/medalpaca-7b on medalpaca (limit=320)
+Loaded 320 test samples.
+Loading full model: medalpaca/medalpaca-7b
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   4%|▍         | 13/291 [00:00<00:02, 119.07it/s]Loading weights:  11%|█         | 31/291 [00:00<00:01, 141.99it/s]Loading weights:  17%|█▋        | 49/291 [00:00<00:01, 148.98it/s]Loading weights:  23%|██▎       | 67/291 [00:00<00:01, 145.65it/s]Loading weights:  30%|██▉       | 86/291 [00:00<00:01, 157.20it/s]Loading weights:  36%|███▌      | 104/291 [00:00<00:01, 162.78it/s]Loading weights:  42%|████▏     | 121/291 [00:00<00:01, 155.70it/s]Loading weights:  48%|████▊     | 140/291 [00:00<00:00, 162.48it/s]Loading weights:  55%|█████▌    | 161/291 [00:01<00:00, 176.01it/s]Loading weights:  62%|██████▏   | 179/291 [00:01<00:00, 174.51it/s]Loading weights:  68%|██████▊   | 197/291 [00:01<00:00, 175.13it/s]Loading weights:  74%|███████▍  | 215/291 [00:01<00:00, 174.62it/s]Loading weights:  80%|████████  | 233/291 [00:01<00:00, 172.88it/s]Loading weights:  86%|████████▋ | 251/291 [00:01<00:00, 173.47it/s]Loading weights:  93%|█████████▎| 271/291 [00:01<00:00, 180.19it/s]Loading weights: 100%|█████████▉| 290/291 [00:01<00:00, 178.88it/s]Loading weights: 100%|██████████| 291/291 [00:01<00:00, 168.06it/s]
+Computing perplexity on target responses...
+Generating responses for similarity calculation...
+Evaluation completed. Perplexity: 1.1543, Similarity: 0.5550
+Results saved to results/debug_limit320/sst_merge_v3_main_base_MedAlpaca_inst_medalpaca.json

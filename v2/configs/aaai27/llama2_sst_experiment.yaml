@@ -1,0 +1,90 @@
+# configs/aaai27/llama2_sst_experiment.yaml
+# Llama-2-7Bベース特化モデル（Math, Code, Medical）マージ・評価実験設定ファイル
+
+experiment:
+  name: "llama2_sst_experiment"
+  seed: 42
+  num_seeds: 3
+
+model:
+  base_model: "meta-llama/Llama-2-7b-hf"
+  math_model: "WizardLMTeam/WizardMath-7B-V1.0"
+  code_model: "vanillaOVO/WizardCoder-Python-7B-V1.0"
+  medical_model: "medalpaca/medalpaca-7b"
+
+fim:
+  # FIM推定用データ（評価データと完全分離）
+  benign_dataset: "data/fim/fim_benign_repliqa.json"
+  harmful_dataset: "data/fim/fim_harmful_beavertails.json"
+  sample_size: 500
+  epsilon: 0.000001
+
+merge:
+  # 実験するマージ組み合わせ
+  patterns:
+    - ["math", "code"]
+    - ["math", "medical"]
+    - ["code", "medical"]
+    - ["math", "code", "medical"]
+    
+  # 実験するマージ手法
+  methods:
+    - "task_arithmetic"
+    - "ties"
+    - "dare"
+    - "della"
+    - "fisher_weighted_averaging"
+    - "merge_align"
+    - "safemerge"
+    - "led_merging"
+    - "sst_merge"
+    - "data_free_sst_merge"
+    
+  # ハイパーパラメータスイープ
+  alpha_sweep: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+  k_sweep: ["soft", 0.05, 0.10, 0.20, 0.50]
+
+# アブレーションパラメータ
+ablation:
+  sst_ratios:
+    - "Fh/Fb"         # SST本体
+    - "Fh_only"       # 有害のみ
+    - "1/Fb_only"     # 有用保護のみ
+    - "magnitude"     # タスクベクトル二乗（data-free proxy）
+    - "random"        # ランダムマスク
+  variants:
+    - "additive"      # 加算型
+    - "interpolation" # 補間型
+  masks:
+    - "hard"          # 閾値カットオフ
+    - "soft"          # シグモイド等
+  layer_wise: [true, false]
+  fim_sample_sizes: [100, 500]
+
+evaluation:
+  safety_tasks:
+    - name: "harmbench"
+      data_path: "data/eval/harmbench.json"
+    - name: "jailbreakbench"
+      data_path: "data/eval/jailbreakbench.json"
+    - name: "strongreject"
+      data_path: "data/eval/strongreject.json"
+    - name: "wildjailbreak"
+      data_path: "data/eval/wildjailbreak.json"
+  utility_tasks:
+    - name: "mmlu_pro"
+      num_fewshot: 5
+    - name: "mmlu"
+      num_fewshot: 5
+    - name: "ifeval"
+      num_fewshot: 0
+    - name: "gsm8k"
+      num_fewshot: 5
+    - name: "math_500"
+      num_fewshot: 4
+    - name: "mbpp"
+      num_fewshot: 3
+    - name: "alpaca_eval_2"
+      num_fewshot: 0
+    - name: "repliqa"
+      num_fewshot: 0

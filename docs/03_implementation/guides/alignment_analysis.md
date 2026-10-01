@@ -45,46 +45,46 @@ SST-Mergeプロジェクトの実装が、計画書1-8（Phase 1-3の研究計�
 
 | 計画書の要件 | 実装状況 | 対応ファイル |
 |------------|---------|------------|
-| **F_harmとF_benignの定義** | ✅ 完全実装 | [`src/fim_calculator.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/src/fim_calculator.py) |
-| **FIMの計算** | ✅ 3つの近似手法実装（gradient_variance, kfac, vila） | [`src/fim_calculator.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/src/fim_calculator.py) |
-| **GEVPの解法** | ✅ SciPyとPyTorch両方実装 | [`src/gevp_solver.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/src/gevp_solver.py) |
-| **安全サブスペースの選択** | ✅ 上位k個の固有ベクトル選択 | [`src/gevp_solver.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/src/gevp_solver.py) |
+| **F_harmとF_benignの定義** | ✅ 完全実装 | [`src/fim_calculator.py`](file:///mnt/nas/home/hiromi/src/sst_v2/src/fim_calculator.py) |
+| **FIMの計算** | ✅ 3つの近似手法実装（gradient_variance, kfac, vila） | [`src/fim_calculator.py`](file:///mnt/nas/home/hiromi/src/sst_v2/src/fim_calculator.py) |
+| **GEVPの解法** | ✅ SciPyとPyTorch両方実装 | [`src/gevp_solver.py`](file:///mnt/nas/home/hiromi/src/sst_v2/src/gevp_solver.py) |
+| **安全サブスペースの選択** | ✅ 上位k個の固有ベクトル選択 | [`src/gevp_solver.py`](file:///mnt/nas/home/hiromi/src/sst_v2/src/gevp_solver.py) |
 
 ### ✅ 実装済み: 計算効率（Phase 2対応）
 
 | 計画書の要件 | 実装状況 | 対応ファイル |
 |------------|---------|------------|
-| **FIM近似戦略** | ✅ 3つの手法実装 | [`src/fim_calculator.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/src/fim_calculator.py) |
-| **低ランク近似** | ✅ LoRAパラメータ空間での計算 | [`src/fim_calculator.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/src/fim_calculator.py) |
-| **GEVP効率的解法** | ✅ 正則化とフォールバック機構 | [`src/gevp_solver.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/src/gevp_solver.py) |
+| **FIM近似戦略** | ✅ 3つの手法実装 | [`src/fim_calculator.py`](file:///mnt/nas/home/hiromi/src/sst_v2/src/fim_calculator.py) |
+| **低ランク近似** | ✅ LoRAパラメータ空間での計算 | [`src/fim_calculator.py`](file:///mnt/nas/home/hiromi/src/sst_v2/src/fim_calculator.py) |
+| **GEVP効率的解法** | ✅ 正則化とフォールバック機構 | [`src/gevp_solver.py`](file:///mnt/nas/home/hiromi/src/sst_v2/src/gevp_solver.py) |
 
 ### ✅ 実装済み: SST-Mergeアルゴリズム（Phase 1-2統合）
 
 | 計画書の要件 | 実装状況 | 対応ファイル |
 |------------|---------|------------|
-| **LoRAマージング** | ✅ 安全サブスペースへの射影とマージ | [`src/sst_merge.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/src/sst_merge.py) |
-| **安全効率λの分析** | ✅ 固有値の分析とログ出力 | [`src/sst_merge.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/src/sst_merge.py) |
-| **マージ係数の最適化** | ✅ オプション機能として実装 | [`src/sst_merge.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/src/sst_merge.py) |
+| **LoRAマージング** | ✅ 安全サブスペースへの射影とマージ | [`src/sst_merge.py`](file:///mnt/nas/home/hiromi/src/sst_v2/src/sst_merge.py) |
+| **安全効率λの分析** | ✅ 固有値の分析とログ出力 | [`src/sst_merge.py`](file:///mnt/nas/home/hiromi/src/sst_v2/src/sst_merge.py) |
+| **マージ係数の最適化** | ✅ オプション機能として実装 | [`src/sst_merge.py`](file:///mnt/nas/home/hiromi/src/sst_v2/src/sst_merge.py) |
 
 ### ✅ 実装済み: 評価パイプライン（Phase 3対応）
 
 | 計画書の要件 | 実装状況 | 対応ファイル |
 |------------|---------|------------|
-| **安全性評価** | ✅ SafetyEvaluator実装 | [`src/evaluation/safety_evaluator.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/src/evaluation/safety_evaluator.py) |
-| **ユーティリティ評価** | ✅ UtilityEvaluator実装 | [`src/evaluation/utility_evaluator.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/src/evaluation/utility_evaluator.py) |
-| **複合メトリクス** | ✅ MetricsReporter実装 | [`src/evaluation/metrics_reporter.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/src/evaluation/metrics_reporter.py) |
-| **パレート効率分析** | ✅ パレートフロンティア特定 | [`src/evaluation/metrics_reporter.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/src/evaluation/metrics_reporter.py) |
-| **可視化** | ✅ Safety-Utilityトレードオフ、Safety Tax比較 | [`src/evaluation/metrics_reporter.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/src/evaluation/metrics_reporter.py) |
+| **安全性評価** | ✅ SafetyEvaluator実装 | [`src/evaluation/safety_evaluator.py`](file:///mnt/nas/home/hiromi/src/sst_v2/src/evaluation/safety_evaluator.py) |
+| **ユーティリティ評価** | ✅ UtilityEvaluator実装 | [`src/evaluation/utility_evaluator.py`](file:///mnt/nas/home/hiromi/src/sst_v2/src/evaluation/utility_evaluator.py) |
+| **複合メトリクス** | ✅ MetricsReporter実装 | [`src/evaluation/metrics_reporter.py`](file:///mnt/nas/home/hiromi/src/sst_v2/src/evaluation/metrics_reporter.py) |
+| **パレート効率分析** | ✅ パレートフロンティア特定 | [`src/evaluation/metrics_reporter.py`](file:///mnt/nas/home/hiromi/src/sst_v2/src/evaluation/metrics_reporter.py) |
+| **可視化** | ✅ Safety-Utilityトレードオフ、Safety Tax比較 | [`src/evaluation/metrics_reporter.py`](file:///mnt/nas/home/hiromi/src/sst_v2/src/evaluation/metrics_reporter.py) |
 
 ### ✅ 実装済み: テストとベンチマーク
 
 | テストスクリプト | 対応Phase | 状態 |
 |---------------|----------|------|
-| [`scripts/test_lora_basics.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/scripts/test_lora_basics.py) | Phase 1-3基礎 | ✅ 成功 |
-| [`scripts/test_fim_gevp.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/scripts/test_fim_gevp.py) | Phase 1-2理論 | ✅ 成功 |
-| [`scripts/test_sst_merge.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/scripts/test_sst_merge.py) | Phase 1-2統合 | ✅ 成功 |
-| [`scripts/test_evaluation.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/scripts/test_evaluation.py) | Phase 3評価 | ✅ 部分成功 |
-| [`scripts/test_end_to_end.py`](file:///mnt/iag-02/home/hiromi/src/SST_merge/scripts/test_end_to_end.py) | Phase 1-3統合 | ✅ 成功 |
+| [`scripts/test_lora_basics.py`](file:///mnt/nas/home/hiromi/src/sst_v2/scripts/test_lora_basics.py) | Phase 1-3基礎 | ✅ 成功 |
+| [`scripts/test_fim_gevp.py`](file:///mnt/nas/home/hiromi/src/sst_v2/scripts/test_fim_gevp.py) | Phase 1-2理論 | ✅ 成功 |
+| [`scripts/test_sst_merge.py`](file:///mnt/nas/home/hiromi/src/sst_v2/scripts/test_sst_merge.py) | Phase 1-2統合 | ✅ 成功 |
+| [`scripts/test_evaluation.py`](file:///mnt/nas/home/hiromi/src/sst_v2/scripts/test_evaluation.py) | Phase 3評価 | ✅ 部分成功 |
+| [`scripts/test_end_to_end.py`](file:///mnt/nas/home/hiromi/src/sst_v2/scripts/test_end_to_end.py) | Phase 1-3統合 | ✅ 成功 |
 
 ## 計画書との整合性評価
 

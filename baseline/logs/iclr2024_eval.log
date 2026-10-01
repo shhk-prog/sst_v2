@@ -1,0 +1,13 @@
+/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (6.0.0.post1)/charset_normalizer (3.4.1) doesn't match a supported version!
+  warnings.warn(
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/baseline/iclr2024-model-merging/code/predict.py", line 1, in <module>
+    from merging.main import RunMode, main
+  File "/mnt/nas/home/hiromi/src/sst_v2/baseline/iclr2024-model-merging/code/merging/main.py", line 19, in <module>
+    transformers.set_seed(os.getenv("seed"))
+  File "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/transformers/trainer_utils.py", line 105, in set_seed
+    torch.manual_seed(seed)
+  File "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/lib/python3.12/site-packages/torch/random.py", line 42, in manual_seed
+    seed = int(seed)
+           ^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'

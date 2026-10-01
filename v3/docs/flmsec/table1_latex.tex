@@ -1,0 +1,39 @@
+\begin{table}[htbp]
+\caption{評価前後で解釈が変わる代表例}
+\label{tab:safety_diagnostic}
+\centering
+\small
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{0.95}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.45cm}
+>{\centering\arraybackslash}p{1.35cm}
+>{\centering\arraybackslash}p{1.75cm}
+>{\centering\arraybackslash}p{0.85cm}
+>{\centering\arraybackslash}p{0.85cm}
+>{\raggedright\arraybackslash}p{2.00cm}
+>{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Method (Pattern)} &
+\textbf{Original ASR} &
+\textbf{Conditional ASR} &
+\textbf{VRR} &
+\textbf{VSR} &
+\textbf{Utility傾向} &
+\textbf{評価後の解釈} \\
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+&
+\\
+\midrule
+MergeAlign（全パターン） & 0.00 & ---（有効応答なし） & 0.00 & 0.00 & 医療のみ86.25、他ドメイン0 & False safe：Original ASRは最良に見えるが応答が生成されていない \\
+Task Arithmetic (safety+math) & 2.48 & 3.88 & 99.92 & 96.04 & Math 5.62、Code 9.74 & Validly safe：低ASRが有効応答と有用性維持に支えられている \\
+Task Arithmetic (safety+code) & 29.17 & 60.91 & 95.34 & 36.94 & Code 4.63、Medical 88.85 & Unsafe but functional：応答は有効だが有害追従が多く、Original ASRだけでは危険性を過小評価 \\
+LED-Merging（予備実験, TrustLLM） & Raw ASR 87.19 & --- & Gibberish Ratio 95.94 & --- & Utility 5.00 & False unsafe：無効応答の多さが単一評価器では攻撃成功として誤判定されやすい \\
+\bottomrule
+\end{tabularx}
+\end{table}

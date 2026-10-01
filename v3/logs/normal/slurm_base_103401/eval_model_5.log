@@ -1,0 +1,19 @@
+==================================================
+Slurm Per-Model Array Job ID (Base): 103401_5
+Configured CPU Threads: 2
+Assigned CUDA_VISIBLE_DEVICES: 0
+Working Dir: /mnt/nas/home/hiromi/src/sst_v2/v3
+==================================================
+Executing command:
+venv_v3/bin/python scripts/run_base_eval_parallel.py     --config configs/config_main.yaml     --limit 320     --gpus 0     --model_index 5     --use_vllm     --resume
+--------------------------------------------------
+Running single job for model index 5: SafetyFT_seed44
+Using result directory: results/debug_limit320/base
+base_eval jobs: 1
+gpus: 0
+workers: 1
+resume: True
+force: False
+use_vllm: True
+[GPU 0] START SafetyFT_seed44 -> logs/v3_base_eval_parallel/gpu0_sst_merge_v3_main_base_SafetyFT_seed44.log
+slurmstepd-iag-03: error: *** JOB 103401 ON iag-03 CANCELLED AT 2026-08-11T05:03:10 ***

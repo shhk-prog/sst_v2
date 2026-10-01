@@ -1,0 +1,11 @@
+(EngineCore pid=570323) Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+(EngineCore pid=570323) Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:02<00:07,  2.60s/it]
+(EngineCore pid=570323) Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:03<00:03,  1.54s/it]
+(EngineCore pid=570323) Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:04<00:01,  1.20s/it]
+(EngineCore pid=570323) Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:04<00:00,  1.02s/it]
+(EngineCore pid=570323) Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:04<00:00,  1.23s/it]
+(EngineCore pid=570323) 
+(EngineCore pid=570323) 2026-08-24 17:08:09,065 - INFO - autotuner.py:622 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+(EngineCore pid=570323) 2026-08-24 17:08:09,075 - INFO - autotuner.py:641 - flashinfer.jit: [Autotuner]: Autotuning process ends
+(EngineCore pid=570323) Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/11 [00:00<?, ?it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  36%|███▋      | 4/11 [00:00<00:00, 35.64it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  73%|███████▎  | 8/11 [00:00<00:00, 35.76it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 11/11 [00:00<00:00, 35.60it/s]
+(EngineCore pid=570323) Capturing CUDA graphs (decode, FULL):   0%|          | 0/7 [00:00<?, ?it/s]Capturing CUDA graphs (decode, FULL):  86%|████████▌ | 6/7 [00:00<00:00, 52.93it/s]Capturing CUDA graphs (decode, FULL): 100%|██████████| 7/7 [00:00<00:00, 53.20it/s]

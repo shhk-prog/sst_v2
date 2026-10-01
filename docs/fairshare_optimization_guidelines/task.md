@@ -1,0 +1,4 @@
+- [x] 実験結果（`benchmark_final_summary.csv`, `benchmark_vllm_summary.csv` 等）の読み込みと分析
+- [x] 最適なバッチサイズとGPU利用率の傾向の把握
+- [x] 今後の実験のための注意事項をまとめたガイドライン (`fairshare_guidelines.md`) の作成
+- [x] ユーザールールに基づくドキュメントファイル群の保存 (task, implementation_plan, walkthrough)

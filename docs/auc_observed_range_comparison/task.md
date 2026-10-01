@@ -1,0 +1,4 @@
+- `[x]` Pythonスクリプト(`calculate_observed_range_auc.py`)の作成
+- `[x]` vLLM環境の評価データを用いてスクリプトを実行し、AUC計算結果を取得する
+- `[x]` 取得したAUC計算結果をもとに、`v3/docs/flmsec/flmsec.tex` に記載されている「補完なしAUC（Observed-range AUC）とValidity-aware Pareto AUCの比較」の表を更新する
+- `[x]` 更新内容の確認（Walkthrough）ドキュメントの作成

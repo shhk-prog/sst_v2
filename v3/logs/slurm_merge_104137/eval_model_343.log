@@ -1,0 +1,47 @@
+==================================================
+Slurm Per-Model Array Job ID: 104137_343
+Batch Size: 32
+Configured CPU Threads: 2
+Assigned CUDA_VISIBLE_DEVICES: 0
+Working Dir: /mnt/nas/home/hiromi/src/sst_v2/v3
+==================================================
+Executing command:
+venv_v3/bin/python scripts/merge_eval_parallel.py     --config configs/config_main.yaml     --seeds 42 43 44     --limit 320     --batch_size 32     --gpus 0     --model_index 343     --use_vllm     --resume
+--------------------------------------------------
+[SINGLE MODEL MODE] Evaluating Index 343: seed=44 sst_merge_v3_main_della_safety+math_alpha0.2_seed44
+
+==============================
+Models to be evaluated
+==============================
+  1. seed=44  sst_merge_v3_main_della_safety+math_alpha0.2_seed44
+     models/merged/sst_merge_v3_main_della_safety+math_alpha0.2_seed44
+==============================
+Total models: 1
+==============================
+
+Using result directory: results/vllm/debug_limit320/merged
+Seeds: [42, 43, 44]
+GPUs: ['0']
+Patterns: all
+Reverse: False
+Resume: True
+Force: False
+Found successful merged models: 1
+[GPU 0] assigned jobs: 1
+
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_safety.py --model_path models/merged/sst_merge_v3_main_della_safety+math_alpha0.2_seed44 --config configs/config_main.yaml --tasks harmbench,jailbreakbench,strongreject,wildjailbreak --output_dir results/vllm/debug_limit320/merged/seed44/safety+math/della --model_name sst_merge_v3_main_della_safety+math_alpha0.2_seed44 --limit 320 --batch_size 32 --use_vllm
+
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_utility.py --model_path models/merged/sst_merge_v3_main_della_safety+math_alpha0.2_seed44 --config configs/config_main.yaml --tasks gsm8k,minerva_math500 --output_file results/vllm/debug_limit320/merged/seed44/safety+math/della/sst_merge_v3_main_della_safety+math_alpha0.2_seed44_utility_math.json --limit 320 --batch_size 32 --use_vllm
+
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_utility.py --model_path models/merged/sst_merge_v3_main_della_safety+math_alpha0.2_seed44 --config configs/config_main.yaml --tasks humaneval,mbpp --output_file results/vllm/debug_limit320/merged/seed44/safety+math/della/sst_merge_v3_main_della_safety+math_alpha0.2_seed44_utility_code.json --limit 320 --batch_size 32 --use_vllm
+
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_utility.py --model_path models/merged/sst_merge_v3_main_della_safety+math_alpha0.2_seed44 --config configs/config_main.yaml --tasks pubmedqa,medqa_4options --output_file results/vllm/debug_limit320/merged/seed44/safety+math/della/sst_merge_v3_main_della_safety+math_alpha0.2_seed44_utility_medical.json --limit 320 --batch_size 32 --use_vllm
+
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_utility.py --model_path models/merged/sst_merge_v3_main_della_safety+math_alpha0.2_seed44 --config configs/config_main.yaml --tasks mmlu,ifeval --output_file results/vllm/debug_limit320/merged/seed44/safety+math/della/sst_merge_v3_main_della_safety+math_alpha0.2_seed44_utility_general.json --limit 320 --batch_size 32 --use_vllm
+
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_alpaca.py --model_path models/merged/sst_merge_v3_main_della_safety+math_alpha0.2_seed44 --config configs/config_main.yaml --output_file results/vllm/debug_limit320/merged/seed44/safety+math/della/sst_merge_v3_main_della_safety+math_alpha0.2_seed44_alpaca_eval2.json --limit 320 --batch_size 32 --use_vllm
+
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_instruction_datasets.py --model_path models/merged/sst_merge_v3_main_della_safety+math_alpha0.2_seed44 --config configs/config_main.yaml --datasets evol_code,medalpaca --output_dir results/vllm/debug_limit320/merged/seed44/safety+math/della --model_name sst_merge_v3_main_della_safety+math_alpha0.2_seed44 --limit 320 --batch_size 32 --use_vllm
+[DONE] sst_merge_v3_main_della_safety+math_alpha0.2_seed44 seed=44 on GPU 0 log=logs/vllm/v3_merged_eval_parallel_320_seed44/sst_merge_v3_main_della_safety+math_alpha0.2_seed44_seed44.log
+
+Summary saved to results/vllm/debug_limit320/merged/merge_eval_parallel_seeds42-43-44_summary.json

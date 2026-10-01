@@ -1,0 +1,627 @@
+\section{Introductionの補足：背景・理論的考察・手法の位置づけ}
+\label{app:introduction}
+本付録では、本文のIntroductionで簡潔に述べた問題設定を補足する。
+まず、事後的モデル融合において安全性アライメントが劣化する背景を整理する。次に、既存の安全性対応merge手法が有する設計上の限界を述べる。最後に、本研究が採るFisher比に基づくSafety Subspace Tuning（SST-Merge）の理論的動機、近似、および比較対象との関係を明確にする
+
+\subsection{事後的なモデル融合におけるアライメントのドリフト(Alignment Drift under Post-hoc Model Fusion)}
+大規模言語モデル（LLM）は、汎用的な事前学習後に数学、コード生成、医療対話などの特定領域でファインチューニング（fine-tuning; FT）を施すことで、当該領域における性能を向上させる[44,45,46]。しかし、領域ごとに専門モデルを個別に再学習・保持・運用することは、計算資源、保存容量、評価コストの面で負担が大きい。また、実務上は元の学習データ、選好データ、安全性校正データが共有されない場合もあり[59]、各専門モデルに対して安全性アライメントを再学習することが常に可能とは限らない。
+
+このような制約の下で、複数のファインチューニング済みチェックポイントを重み空間で直接統合するmodel mergeは、複数の能力を単一モデルへ集約する事後的手法として注目されている[3,4]。Model Soups[3]は同一初期化から得られたモデル群の重み平均が有効となり得ることを示し、Task Arithmetic[4,25]は基盤モデルからの差分をタスクベクトルとして扱うことで、能力の追加・削除・合成を可能にした。ベースモデルを
+\(\theta_0 \in \mathbb{R}^d\)、タスク \(t\) に適応したモデルを\(\theta_t \in \mathbb{R}^d\) とすると、対応するタスクベクトルは
+\[
+\tau_t = \theta_t - \theta_0
+\]
+と表される。複数のタスクベクトルを係数付きで線形結合することで、統合モデルを構成できる。
+
+しかし、単純な重み平均や差分加算は、異なるタスク更新の符号不一致、更新方向の相殺、冗長な微小更新、または特定能力を担うパラメータの上書きによって、タスク間干渉（interference）を生じさせ得る。TIES[5]、DARE[6]、DELLA[7]は、符号選択、疎化、ランダムなリセット、振幅依存サンプリング等を用いて、このような干渉を緩和する代表的手法である。
+
+一方、model mergeにおいて問題となる干渉は、専門タスク性能の低下だけではない。instruction tuning、RLHF、DPO等により形成された安全性アライメントは、良性データを用いた追加学習後であっても劣化し得る[60,61]。ここでいうアライメントには、有害要求への適切な拒否、危険情報を扱う際の安全な応答、およびjailbreak等の攻撃的プロンプトに対する頑健性が含まれる。専門タスクへの適応に用いられる更新方向が、これらの安全挙動に関係するパラメータ方向と重複または干渉する場合、専門性能の獲得と引き換えに安全性が失われる可能性がある[1,2,47,48]。
+
+Hammoudらは、モデル融合後に安全性アライメントが劣化する現象を実証的に検証した[1]。同研究では、個別には安全に見えるモデル群であっても、非アラインなモデルが一つ混入することで、統合後のモデルが有害要求に応答しやすくなる`one bad model spoils the bunch'現象が報告されている。重要なのは、perplexityや一般的タスク性能の変化だけでは、この安全性劣化を十分に検出できない可能性がある点である[1]。したがって、通常の精度・損失・汎用ベンチマークのみを目的関数とするmergeでは、安全性アライメントの保持を直接的に担保できない。
+
+
+% このような背景のもと、単一の巨大大規模モデルをゼロから再学習・ファインチューニングするのではなく、専門化された複数のチェックポイント同士を重み空間で直接統合する事後的手法としてのmodel mergeが、能力統合アプローチとして広く用いられている[3, 4]。Model Soups[3]やFisher重み付き平均（Fisher-Weighted Averaging; FWA）[10]に関する初期の研究は、ファインチューニングされたモデル群が共通の低損失領域（low-loss basin）に存在すること[49, 50]を示しており、単純な線形補間であっても追加の推論コストなしに精度やロバスト性を向上させられることを実証した。その後の研究では、タスクベクトルやタスク演算（Task Arithmetic）[4, 25]によってパラメータ空間における方向ベクトル$\Delta_t$の線形結合が挙動の追加・削除・合成を可能にすることが定式化され、最近ではDynamic Fisher-weighted Merging (DF-Merge)[14]のようにベイズ最適化を用いてパラメータ組み合わせを動的に最適化する手法も登場している。
+
+% model mergeの一般的な目的は、複数モデルが獲得した能力を単一のパラメータ集合に統合し、複数モデルの保持・推論に伴うコストを抑えることである。Model Soupsは同一初期化から得られたファインチューニング済みモデルの重み平均が有効となり得ることを示し[3]、Task Arithmeticは基盤モデルからの重み差分をタスクベクトルとして扱うことにより、能力の加減算・合成を可能にした[4]。しかし、これらの単純な統合は、更新方向の相殺、符号不一致、冗長な微小更新、または特定能力を担うパラメータの上書きに起因する干渉を招く。TIES、DARE、DELLAは、この干渉を符号選択、疎化、振幅依存のサンプリングによって緩和する代表的手法である[5--7]。
+
+% しかしながら、これら既存のmodel merge手法に共通する決定的な問題として、アライメントが副次的な存在として扱われているという点が挙げられる[2]。従来の手法は主に損失・精度・汎用タスク性能・ロバスト性といった指標の最適化を対象としており、拒否応答（refusal behavior）、無害性（harmlessness）、および安全ポリシーの維持といったアライメントの保持をmerge過程の直接の制約として考慮していない。
+
+% とりわけ、事後的に安全性を専門モデルへ配備するSecure Merge[24]において、model merge時に安全性の回復と有用性（タスク性能）の保持との間に鋭いトレードオフが生じることが報告されている。安全パッチを強く反映すれば攻撃成功率（attack success rate; ASR）を低下させられる可能性があるが、専門タスク性能や無害な要求への応答性が損なわれ得る。逆に、専門モデルの更新を強く保持すれば、有用性は保たれても安全性が回復しない。この安全性と有用性のトレードオフはSafety Tax（またはAlignment Tax）として理解できる[58]。
+% 近年の研究は、この見落としが決して無視できない深刻なリスクをもたらすことを明らかにしている。Hammoudら[1]はmodel mergeと安全アライメントの関係を明示的に検証し、単純補間、Fisher重み付き平均、データ依存型混合といった一般的なmergeレシピが、個々のモデルが独立には安全であっても、merge後にはアライメントが大きく崩壊（degradation/drift）し得ることを示した。彼らの中心的な発見は一つ悪影響を及ぼすモデルが混ざるだけで全体が崩壊する(one bad model spoils the bunch)という現象である。すなわち、単一の非アラインな専門モデルが混ざるだけで、merge後のモデルの安全性挙動が支配され、perplexityや汎用タスク性能はほとんど変化しないまま、Jailbreak成功率や有害性（toxicity）が劇的に増加する。また、Yangらのサーベイ[26]によれば、既存のmerge軌道（trajectory）はパラメータ空間における高分散方向（high-variance directions）を優先的に辿る傾向があり、これらの方向が強力なタスク能力を表現する一方で、暗黙的な選好や安全挙動に対して制御不能な漂移（drift）を引き起こすことが確認されている[15]。
+
+% 単純なタスクベクトルmergeや、干渉緩和を目的としたTIES、DARE、DELLAといった手法は、そもそも安全性統合を想定した設計になっておらず、安全パッチが通常タスクのパラメータ更新と干渉し、有用性を大きく破壊してしまう問題を十分に制御できない。
+
+\subsection{Secure MergeとSafety--Utility Conflict}
+\label{app:secure-merge}
+
+本研究で扱うSecure Merge[24]は、専門タスクに適応した有用性モデルへ、安全性に関する能力を持つモデルの更新を事後的に統合し、再学習を行わずに安全性を付与または回復することを目指す枠組みである。safetyに特化していないモデルでも，複数のモデルを合成することでsafety能力が高まることから，safetyに特化したモデルを作成しmodel mergeを用いてセキュリティパッチのように低コストにセキュリティを向上させる手法として提案された．この概念は、計算コストの高い再学習（Fine-tuning）を回避しつつ、安全性アライメントの劣化問題（Safety-Utility conflict）を解決するための実用的なアプローチとして期待される．以下では、ベースモデル、有用性モデル、安全性モデルをそれぞれ
+\[
+\theta_0,\quad \theta_u,\quad \theta_s \in \mathbb{R}^d
+\]
+とする。有用性モデルおよび安全性モデルのタスクベクトルは、
+\[
+\tau_u = \theta_u - \theta_0,\qquad
+\tau_s = \theta_s - \theta_0
+\]
+と定義される。
+有用性モデルを出発点として安全パッチを導入する場合、安全性モデルとの差分は
+\[
+\Delta = \theta_s - \theta_u
+\]
+と書ける。最も単純なTask Arithmetic型の統合は、
+\[
+\theta_m = \theta_u + \alpha \Delta,\qquad \alpha \in [0,1]
+\]
+である。ここで\(\alpha\)は安全パッチの強度を調節する係数である。\(\alpha\)を大きくすると安全性に関する更新を強く反映できる可能性がある一方、有用性モデルが獲得した専門能力を損なう危険がある。反対に、\(\alpha\)を小さくすると専門性能は維持されやすいが、安全性回復が不十分となり得る。
+
+この安全性と有用性の競合は、Safety--Utility Conflict、あるいはSafety Tax（Alignment Tax）として理解できる[58]。本研究では、良性の通常タスク分布を\(D_u\)、有害要求および望ましい安全応答に関する安全性分布を\(D_s\)と表す。安全パッチ\(\Delta\)は、\(D_s\)上で望ましい安全挙動を高めることが期待される一方、\(D_u\)上の性能を低下させる可能性がある。Secure Mergeの課題は、この競合を完全に消去することではなく、安全性向上に寄与する更新をできる限り残しつつ、有用性に対する悪影響を抑えることである。
+
+なお、ASRの低下のみを安全性向上と解釈することには注意を要する。モデルが一貫して拒否する、極端に短い応答を返す、あるいは意味不明な出力を生成する場合にも、攻撃成功と判定される応答は減少し得る。この場合、低いASRは安全な拒否を表すのではなく、モデルの有効応答能力の低下を反映している可能性がある。本研究ではこの問題を「偽の安全性（fake safety）」と呼び、ASRに加えて有効応答率および有用性指標を併用して評価する。
+
+\paragraph{Secure Mergeのメカニズムと課題}
+Secure Merge[24]は、このSafety Taxを回避するため、Jailbreak耐性などの安全性を特化して学習した安全性特化モデル（Safety Model）（このモデルは安全性に特化しており，一般性能は壊滅的）と、ドメイン特化タスクを学習した「有用性モデル（Utility Model）」をパラメータ空間で直接統合する。具体的には、ベースモデルからの重み差分（タスクベクトル）を計算し、有用性ベクトルに対して安全ベクトル（安全パッチ）を選択的に適用することで、双方の能力を併せ持つ合成モデル（Merged Model）をゼロショットで構築する。
+
+しかし、Secure Merge[24]では既存のmerge手法を用いており，単純な重みの加算（Task Arithmeticなど）では、安全性に寄与するパラメータと有用性に寄与するパラメータが重み空間上で干渉を引き起こし、結果として推論能力が破綻したり、有害な出力を出さない代わりに意味不明な文字列を生成する偽の安全性（Fake Safety）に陥る危険性があることが指摘されている。本論文では、このSecure Mergeの枠組みを基礎として、いかにパラメータ干渉を制御し、真の安全性と有用性を両立させるかを様々なマージ手法を通して客観的に評価・分析している。
+また，secure merge専用のmerge手法として，utilityを劣化させないことを制約とした最適化問題を解く手法sst-merge, data-free sst-mergeを提案し，既存のmerge手法との比較を行う．
+
+\subsection{Safety-Aware Merging：進展と限界}
+\label{app:safety-aware-merging}
+
+既存の安全性対応merge手法は、通常のmodel mergeが安全性を直接扱わないという限界に対して、異なる粒度で対処している。
+
+MergeAlign[2]は、ドメイン適応に関する更新とアライメントに関する更新を区別し、両者の組合せを調整することで知識と安全性のトレードオフを扱う。SafeMERGE[8]は、ファインチューニングによって安全性から逸脱した層を分析し、層単位で選択的な統合または巻き戻しを行う。LED-Merging[9]は、勾配重要度を用いて安全性と有用性の競合が生じるニューロンを特定し、ニューロン単位で更新を分離することを目指す。SALSA[27]およびAlignment Soupsは、アライン済みモデル群の重み平均を利用して、
+RLHFの参照ポリシーをよりロバストにする方向を示している。また、Fisher-Weighted Averaging（FWA）[10]は安全性を直接の目的として提案されたものではないが、パラメータごとの局所的重要度を考慮する統合手法であり、Secure Mergeにおける重要なFisher系ベースラインとなる。
+
+これらの手法は安全性を明示的に考慮するという点で重要であるが、その多くは特定の情報源と操作粒度に依存する。
+
+\begin{itemize}
+\item MergeAlign[2]は、ドメインおよびアライメント更新を抽出するためのデータ、モデル、およびベクトル構成の妥当性に依存する。
+\item SafeMERGE[8]は層単位で安全性逸脱を扱うため、同一層内で混在する安全性関連更新と有用性関連更新を細かく区別できない可能性がある。
+\item LED-Merging[9]はニューロン単位まで粒度を細分化する一方で、勾配重要度の推定および競合判定に校正データと追加計算を必要とする。
+\item FWA[10]は局所重要度を反映するが、安全性分布\(D_s\)と有用性分布\(D_u\)の競合を明示的な比率として最適化するものではない。
+\item SALSA[27]はRLHFにおける参照ポリシー構築を主対象としており、異質な専門モデルへ安全パッチを事後的に適用するSecure Mergeとは設定が異なる。
+\end{itemize}
+
+これらを「局所的・ヒューリスティック」と呼ぶのは、安全性そのものが局所的であるという意味ではない。各手法が、層、ニューロン、更新ベクトル、または限られた校正データ上の重要度という限定的な観測に基づき、どの更新を残すかを決定するという意味である。このような設計は、既知のモデル組合せ、固定されたマージ係数、既知の評価分布において有効であり得る。しかし、専門モデルの種類、更新規模、攻撃プロンプトの分布、あるいは安全性評価器が変化すれば、元の判定規則が適切に機能するとは限らない。
+
+したがって、本研究は既存法が分布シフトに対して無効であると主張するものではない。むしろ、限られた実験条件で得られた安全性改善を、未知のモデル組合せや未知の攻撃分布に対する一般的保証として解釈してはならない、という点を強調する。提案するSST-Mergeについても同様に、分布シフトに対する理論保証を与えるものではない。
+
+\subsection{幾何学的視点：アライメントを局所感度制約として扱う}
+\label{app:geometry}
+
+安定したmodel mergeを実現するため、パラメータ空間の幾何構造を活用する研究も発展している。C2M3[28]はサイクル一貫性を課すことでmergeを可逆的な写像として扱い、model mergingに関するサーベイでは、置換対称性や低損失領域への拘束が
+安定した統合に重要であることが議論されている[26,29]。しかし、これらの研究は主としてタスク性能の維持やモデル間の整合性を対象とし、安全性に関わる更新方向と有用性に関わる更新方向を明示的に分離することを主眼としていない。
+
+本研究は、アライメントを厳密な意味で保存される物理的不変量とみなすものではない。代わりに、Secure Mergeにおける設計仮説として、`安全性に寄与する更新は、有用性を大きく損なわない局所的パラメータ方向へ可能な限り制限すべきである'と考える。この仮説を、\(D_s\)に対する局所感度と\(D_u\)に対する局所感度の比によって具体化する。AlignMerge[15]に代表される最新の幾何学的知見を踏まえるとこの観点は、以下の三つの経験的・方法論的含意として整理できる。
+\begin{itemize}
+\item \textbf{線形補間はアライメントに対して中立ではない。}
+  線形モード接続性や低損失領域の存在は、補間経路上で通常の損失やタスク精度が良好であることを示唆し得る。しかし、それだけでは拒否行動や有害要求への応答傾向が保持されることは保証しない[1,26,52,53,55,66]。
+\item \textbf{タスク干渉の緩和は、安全性保持の必要条件になり得るが十分条件ではない。}
+  TIES、DARE、DELLA等は更新間の衝突を低減するが、どの更新が安全性に重要であるかを目的関数に直接含めない。したがって、通常タスク性能が維持されていても、安全性に関わる更新が失われる可能性は残る。
+\item \textbf{安全性評価は、merge後の単一スコアだけで完結しない。}
+  ASR、拒否率、通常タスク性能、有効応答率は異なる失敗様式を観測する。特にASR低下が推論崩壊やgibberish生成を伴う場合、ASRのみから安全性改善を結論づけることはできない。
+\end{itemize}
+
+この意味で、本研究における「幾何学的な不変領域」とは、安全性を絶対的に保証する領域を意味しない。安全パッチの候補方向のうち、局所近似の範囲で安全性分布に対する感度が相対的に高く、有用性分布に対する感度が相対的に低い方向を優先的に残すための操作的概念である。
+
+
+\section{Secure Mergeの問題設定}
+\label{app:secure-merge-formulation}
+
+Secure Merge[24]では、有用性モデル\(\theta_u\)に安全モデル\(\theta_s\)由来の更新を適用し、有害要求に対する望ましい安全挙動を回復しながら、有用性モデルの専門能力を保持することを目指す。本研究は、この設定において「安全パッチのすべてを一様に適用する」のではなく、安全性に対する寄与と有用性に対するコストが異なる可能性を利用する。
+
+有用性分布\(D_u\)上の損失を\(L_u(\theta)\)、安全性分布\(D_s\)上の損失を\(L_s(\theta)\)とする。ここで\(L_s\)は、望ましい安全応答からの乖離を表す損失として設計されることを想定する。実際の定義は使用する校正データおよび損失関数に依存するため、以下の議論は局所近似に基づく設計原理として解釈する必要がある。
+
+安全パッチ\(\Delta\)を有用性モデルに適用したときの有用性損失の増加は、\(\theta_u\)近傍での二次近似により
+\[
+L_u(\theta_u+\Delta)-L_u(\theta_u)
+\approx
+\nabla L_u(\theta_u)^\top \Delta
++
+\frac{1}{2}\Delta^\top H_u\Delta
+\]
+と表される。ここで\(H_u\)は\(L_u\)のHessianである。\(\theta_u\)が局所的に十分適応されており一次項が小さいと仮定し、Hessianを経験Fisher情報行列\(F_u\)で近似すれば、
+\[
+\mathrm{Tax}(\Delta)
+\approx
+\frac{1}{2}\Delta^\top F_u\Delta
+\]
+を有用性低下の局所的近似量として用いることができる。ただし、経験FisherはHessianと一般には一致しないため、この式は厳密な損失変化の等式ではなく、局所感度に基づく近似である。同様に、安全性分布上の局所感度を
+\[
+\mathrm{SafetyEnergy}(\Delta)
+=
+\Delta^\top F_s\Delta
+\]
+と定義する。ここで\(F_s\)は\(D_s\)上で推定した経験Fisher情報行列である。この量は安全性そのものを直接測る評価指標ではなく、安全性データに対してモデル出力がどの程度局所的に敏感であるかを表す代理量である。
+
+
+\section{提案手法：Fisher-Ratio Safety Subspace Tuning}
+\label{app:sst}
+
+\subsection{Fisher比に基づく方向選択}
+
+SST-Mergeは、安全パッチの適用方向のうち、有用性コストあたりの安全性局所感度が高い方向を優先する。方向\(v \in \mathbb{R}^d\)に対し、次のRayleigh商を考える。
+\[
+R(v)
+=
+\frac{v^\top F_s v}
+{v^\top (F_u+\epsilon I)v},
+\qquad \epsilon > 0.
+\]
+分子は安全性分布上の局所感度、分母は有用性分布上の局所コストを表す。よって、大きい\(R(v)\)を持つ方向は、局所近似のもとで「有用性を比較的損なわずに安全性に関わる更新を加えられる候補方向」として解釈できる。
+制約付き最適化問題
+\[
+\max_v \ v^\top F_s v
+\quad
+\mathrm{s.t.}
+\quad
+v^\top(F_u+\epsilon I)v \leq \rho
+\]
+の停留条件は、一般化固有値問題
+\[
+F_s v
+=
+\lambda(F_u+\epsilon I)v
+\]
+を与える。ここでの一般化固有値
+\[
+\lambda
+=
+\frac{v^\top F_s v}
+{v^\top(F_u+\epsilon I)v}
+\]
+は、当該方向におけるFisher比を表す。上位の一般化固有ベクトルで張られる部分空間を、本研究ではFisher-Ratio Safety Subspaceと呼ぶ。
+
+重要な点は、この部分空間が安全性を保証する真の不変集合ではないことである。これは、所与の\(D_u\)、\(D_s\)、局所二次近似、Fisher近似の下で、安全性と有用性の競合を操作的に分離するための部分空間である。したがって、SST-Mergeの主張は「安全性を数学的に保証する」ことではなく、安全性と有用性の局所感度比を明示的に考慮しない既存mergeに対する設計上の代替を提示することである。
+
+\subsection{安全パッチの射影}
+
+既存の安全パッチ\(\Delta=\theta_s-\theta_u\)が与えられたとする。フルFisher行列を利用できる理想化設定では、上位\(k\)個の一般化固有ベクトルを列に持つ行列を\(V_k \in \mathbb{R}^{d\times k}\)とする。\(F_u+\epsilon I\)に関する内積を用いた射影は、
+\[
+\Delta_{\mathrm{SST}}
+=
+V_k
+\left(
+V_k^\top(F_u+\epsilon I)V_k
+\right)^{-1}
+V_k^\top(F_u+\epsilon I)\Delta
+\]
+と表される。統合モデルは
+\[
+\theta_m
+=
+\theta_u+\alpha\Delta_{\mathrm{SST}}
+\]
+として得られる。ここで\(\alpha\)は全体のmerge強度を表す。
+
+ただし、数十億パラメータ規模のLLMについてフルFisher行列を保持・分解することは、計算量・記憶量の面で現実的ではない。したがって、実験で用いるSST-Mergeは、以下に述べるDiagonal Fisher近似に基づく実装である。
+
+\subsection{Diagonal SST-Merge}
+
+Diagonal Fisher近似では、
+\[
+F_u \approx
+\mathrm{diag}(f_{u,1},\ldots,f_{u,d}),
+\qquad
+F_s \approx
+\mathrm{diag}(f_{s,1},\ldots,f_{s,d})
+\]
+とする。このとき各座標\(i\)におけるFisher比は
+\[
+r_i
+=
+\frac{f_{s,i}}{f_{u,i}+\epsilon}
+\]
+となる。\(r_i\)が大きい座標は、局所近似のもとで安全性分布に対する感度が有用性分布に対する感度より相対的に高い座標と解釈される。
+本研究では、以下の座標別統合規則を検討する。
+
+\begin{itemize}
+\item \textbf{Hard Masking.}
+  \(r_i\)が上位\(k\%\)に入る座標のみを選択する二値マスク\(M\in\{0,1\}^d\)を用い、
+  \[
+  \Delta_{\mathrm{SST\text{-}Hard}}
+  =
+  M\odot\Delta
+  \]
+  とする。
+
+\item \textbf{Soft Masking.}
+  Fisher比を連続重みへ変換するため、
+  \[
+  w_i
+  =
+  \sigma\left(
+  \frac{r_i-\tau}{\gamma}
+  \right)
+  \]
+  を用いる。ここで\(\tau\)は中心閾値、\(\gamma>0\)は温度である。統合パッチは
+  \[
+  \Delta_{\mathrm{SST\text{-}Soft}}
+  =
+  w\odot\Delta
+  \]
+  となる。
+
+\item \textbf{Coordinate-wise Interpolation.}
+  座標ごとに異なる補間係数を適用し、
+  \[
+  \theta_{m,i}
+  =
+  \theta_{u,i}
+  +
+  \alpha_i(\theta_{s,i}-\theta_{u,i}),
+  \qquad
+  \alpha_i=\alpha w_i
+  \]
+  とする。これは安全パッチを一律の係数で加える代わりに、Fisher比に応じてパッチ強度を調節する実装である。
+\end{itemize}
+
+Diagonal近似は、パラメータ間の相関を無視するため、フルFisherによる一般化固有値問題と同一ではない。そのため、本研究ではDiagonal SSTを「Fisher比の座標別近似に基づく実用的アルゴリズム」と位置づける。
+
+\section{Data-Free SST-Merge}
+\label{app:data-free-sst}
+
+\subsection{データフリー設定}
+
+Fisher情報の推定には通常、有用性分布\(D_u\)と安全性分布\(D_s\)から得られる校正データが必要である。しかし、モデル配布時には元の学習データ、選好データ、安全性校正データが共有されないことがある[59]。このような状況では、データ依存のFisher推定を行えない。
+
+そこで本研究では、Fisher比そのものを直接推定する代わりに、利用可能なチェックポイント間の更新量から座標の相対的重要度を近似するData-Free SSTを検討する。この方法はFisher情報を厳密に復元するものではなく、データ不在時に安全パッチの適用範囲を選別するためのproxy-basedな方法である。
+
+\subsection{Task-Vector Ratio Proxy（SST-V）}
+
+有用性タスクベクトルおよび安全パッチをそれぞれ
+\[
+\tau_u=\theta_u-\theta_0,
+\qquad
+\Delta=\theta_s-\theta_u
+\]
+とする。SST-Vでは、座標ごとの比率を
+\[
+\hat{r}^{\mathrm{SST\text{-}V}}_i
+=
+\frac{\Delta_i^2}
+{\tau_{u,i}^2+\epsilon}
+\]
+と定義する。
+
+この指標の分子は、当該座標において安全パッチが有用性モデルをどれだけ変化させるかを表す。分母は、基盤モデルから有用性モデルへの適応において、その座標がどれだけ変化したかを表す。したがって、\(\hat{r}^{\mathrm{SST\text{-}V}}_i\)が大きい座標は、有用性モデルが大きく依存しているとみなせる座標を避けながら、安全パッチの変化が相対的に大きい座標として選ばれやすい。
+
+ただし、タスクベクトルの大きさがFisher情報やHessianの対角成分と一般に等しいわけではない。したがって、SST-Vの比率は
+Fisher比の厳密な推定値ではなく、更新量に基づくヒューリスティックなproxyである。この限界は、データ依存SSTとの比較、および異なるタスク組合せにおける実験的検証によって評価する必要がある。
+
+\subsection{その他のデータフリー近似}
+
+比較のため、以下の近似も考える。
+
+\begin{itemize}
+\item \textbf{Magnitude-only proxy（SST-M）:}
+  モデル重みの相対的な大きさに基づき、
+  \[
+  \hat{r}^{\mathrm{SST\text{-}M}}_i
+  =
+  \frac{|\theta_{s,i}|}
+  {|\theta_{u,i}|+\epsilon}
+  \]
+  を用いる。この方法は簡便である一方、重みの絶対値がタスク重要度または安全性重要度を直接表すとは限らない。
+
+\item \textbf{Random-token Fisher variant:}
+  実データを利用できない場合でも、ランダムトークン列等を入力として擬似的なforward/backward passを行い、Diagonal Fisherを近似する方法である。ただし、この近似が実際の有用性・安全性分布をどの程度反映するかは別途検証を要する。
+\end{itemize}
+
+\section{比較対象手法の分類と位置づけ}
+\label{app:method-taxonomy}
+
+本研究では、モデル統合手法を「利用する情報」「介入粒度」「安全性を目的関数へ直接組み込むか」という三つの観点から整理する。この分類の目的は、各手法の性能順位を事前に決めることではない。むしろ、ASR、有効応答率、専門性能、計算コストの差異を、各手法がどの種類の情報をどの粒度で利用するかという設計差から解釈できるようにすることである。
+
+\begin{table*}[t]
+\centering
+\caption{本研究で扱うmodel merge手法の設計上の比較。
+「安全性への直接性」は、安全性に関する情報または目的をmerge規則へ明示的に取り込む程度を表す。
+これは安全性の保証や実験上の優劣を意味しない。}
+\label{tab:method-comparison-revised}
+\small
+\begin{tabular}{p{2.3cm}p{2.7cm}p{3.0cm}p{2.0cm}p{2.6cm}}
+\toprule
+手法群 & 代表手法 & 主な利用情報 & 介入粒度 & 安全性への直接性 \\
+\midrule
+重み平均 &
+Model Soups[3] &
+モデル重み &
+モデル全体 &
+低い \\
+差分ベクトル統合 &
+Task Arithmetic[4] &
+基盤モデルからの重み差分 &
+ベクトル全体 &
+低い \\
+干渉緩和 &
+TIES[5], DARE[6], DELLA[7] &
+符号、更新量、疎化規則 &
+主にパラメータ &
+低い \\
+重要度重み付け &
+FWA[10] &
+Fisher情報に基づく局所的重要度 &
+パラメータ &
+低いから中程度 \\
+安全更新の分離 &
+MergeAlign[2] &
+ドメイン更新とアライメント更新 &
+ベクトル全体 &
+中程度 \\
+選択的な安全保護 &
+SafeMERGE[8] &
+層ごとの安全性逸脱・類似度 &
+層 &
+高い \\
+競合更新の分離 &
+LED-Merging[9] &
+勾配重要度・競合位置 &
+ニューロン &
+高い \\
+幾何制約 &
+AlignMerge[15] &
+Fisher幾何・安全性制約 &
+部分空間 &
+高い \\
+提案法 &
+SST-Merge &
+安全性・有用性Fisher比 &
+パラメータ &
+高い \\
+提案法（データフリー） &
+Data-Free SST-Merge &
+タスクベクトル比等のproxy &
+パラメータ &
+中程度 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:method-comparison-revised}の分類から、三つの比較軸が得られる。
+第一に、TIES、DARE、DELLAは主に更新間の一般的干渉を扱うのに対し、MergeAlign、SafeMERGE、LED-Merging、AlignMerge、SST-Mergeは、安全性と有用性の競合を明示的に扱おうとする。第二に、層・ニューロン・パラメータ・部分空間という介入粒度の違いは、保護できる更新の細かさと計算コストの両方に関係する。第三に、Fisher、勾配、安全性校正データ、タスクベクトルといった利用情報の違いは、適用可能なデータアクセス条件を左右する。
+
+この整理は、実験結果の解釈枠組みでもある。たとえばASRが低くても有効応答率や専門性能が著しく低い場合、その結果は安全性の改善ではなく、過度の拒否、推論崩壊、またはgibberish生成による偽の安全性を反映している可能性がある。したがって本研究では、単一指標の順位ではなく、安全性、有効応答率、有用性、計算コストを併せて評価する。
+
+
+\section{merge手法の詳細と関連研究}
+本節では、本研究で提案するSST（Safety Subspace Tuning）およびData-Free SSTの数理的定式化を詳述するとともに、比較対象とした主要なベースライン手法（Task Arithmetic, FWA, TIES, DARE, DELLA, MergeAlign, SafeMERGE, LED-Merging等）の設計思想と本手法の新規性・位置づけを整理する。
+
+\subsection{安全パッチ統合とSafety Taxの定式化}
+ベースモデルを $\theta_0 \in \mathbb{R}^d$、有用性モデルを $\theta_u \in \mathbb{R}^d$、安全モデルを $\theta_s \in \mathbb{R}^d$ とする。専門タスクおよび安全性アライメントのタスクベクトル（差分ベクトル）は以下のように定義される：
+\[ \tau_u = \theta_u - \theta_0, \quad \tau_s = \theta_s - \theta_0 \]
+安全パッチ統合の設定における目的は、有用性モデル $\theta_u$ に対し、安全パッチベクトル $\Delta = \theta_s - \theta_u$ を統合して、マージ後のモデル $\theta_m = \theta_u + \Delta$ を構築することである。Task Arithmetic (TA)[4] では $\theta_m = \theta_u + \alpha \Delta$ となる（$\alpha \in [0, 1]$）。
+このマージにおいて、良性通常データ分布を $D_u$、脱獄要求と安全な拒否応答からなる安全性/拒否分布を $D_s$ と定義する。マージモデル $\theta_m$ の通常タスク性能を損なう代償を「Safety Tax」と呼び、既存手法はこの干渉を抑制できず性能が劣化する。
+
+\subsection{既存のMerge手法とその限界}
+\textbf{General Model Merging}: Model mergingは、異なるチェックポイントの知識を統合するための訓練フリーな事後的手法であり[3, 4]、MergeKit[43]のようなツールキットの登場により広く普及している。重み平均や差分ベクトルの加算はタスク干渉を引き起こしやすいため、符号整合とトリミングを行う TIES[5], DARE[6], DELLA[7] などの干渉緩和手法が開発されてきた。
+
+\textbf{Fisher-aware Model Merging}: パラメータの曲率（感度）を考慮する研究として、Fisher-weighted averaging[10]をはじめ、Gradient Matching[11]、Fisher Mask Nodes[12]、DRIFT-MEDIAN[13]、DF-Merge[14] などが提案されている。これらの手法は単一のタスク空間でのマージ性能向上を目的としており、対立する2つの分布 $D_u, D_s$ の曲率比の最適化は行わない。
+
+\textbf{Safety-preserving Merging}: 安全性を保持するためのマージとして、MergeAlign[2]、SafeMERGE[8]、LED-Merging[9]、AlignMerge[15] がある。SST-Merge はこれらの手法と同じく safety-utility conflict を扱うが、反復最適化を必要とせず、Fisher比から要素単位（element-wise）の選択ルールを Closed-form で導く点で補完的な位置づけを持つ。
+
+\textbf{Data-free Merging}: キャリブレーションデータの獲得が困難な環境向けに、ランダムトークンから層単位のマージ係数を決定する FIM-Merging[16] が提案されている。SST-Mergeは層単位ではなく、Fisher比プロキシを用いてパラメータの要素単位で安全パッチを選択・ステアリングする。
+
+\subsection{提案手法：Fisher-Ratio Safety Subspace (SST-Merge)}
+
+\subsubsection{Utility Tax と Safety-Sensitive Energy}
+パラメータの変化量 $\Delta$ が局所的な摂動領域にあると仮定する局所二次近似のもとで、有用性モデル $\theta_u$ の周囲で損失関数を Taylor 二次展開できる。有用性損失 $L_u$ の増加量（Utility Tax）は以下のように記述される：
+\[ \text{Tax}(\Delta) \approx \frac{1}{2} \Delta^\top F_u \Delta \]
+ここで $F_u$ は、有用性データ分布 $D_u$ 上で定義される有用性Fisher情報行列である。一方、安全性/拒否分布 $D_s$ に対する感度を Safety-sensitive energy (または local safety sensitivity) として定義する：
+\[ \text{SafetyEnergy}(\Delta) = \Delta^\top F_s \Delta \]
+
+\subsubsection{GEVPとFisher-Ratio Safety Subspace}
+安全パッチの配備における最適な更新方向 $v \in \mathbb{R}^d$ を、「単位有用性コスト（Tax）あたりの safety-sensitive energy を最大化する」問題として定式化する：
+\[ \max_v \frac{v^\top F_s v}{v^\top (F_u + \epsilon I) v} \]
+これは $\max_v v^\top F_s v \quad \text{s.t.} \quad v^\top (F_u + \epsilon I) v \le \rho$ と同値であり、Lagrangianの極値条件より、次の一般化固有値問題（GEVP）に帰着する：
+\[ F_s v = \lambda (F_u + \epsilon I) v \]
+この一般化固有値 $\lambda = \frac{v^\top F_s v}{v^\top (F_u + \epsilon I) v}$ は「安全・有用コスパ（Fisher-ratio efficiency）」を表し、上位 $k$ 個の一般化固有ベクトルが Fisher-Ratio Safety Subspace を張る。
+
+\subsubsection{サブスペースへの射影と合成}
+既存の安全パッチベクトル $\Delta = \theta_s - \theta_u$ が与えられたとき、このパッチから有用性を破壊するノイズ成分を除去し、安全効率が高い成分のみを抽出するため、パッチを Fisher比安全部分空間 $S_k$ に射影する。上位 $k$ 個の一般化固有ベクトルを列ベクトルとする行列を $V_k \in \mathbb{R}^{d \times k}$ とすると、射影後のパッチ $\Delta_{\text{SST}}$ は以下のように得られる：
+\[ \Delta_{\text{SST}} = \Pi_{S_k}^{F_u} (\Delta) = V_k (V_k^\top (F_u + \epsilon I) V_k)^{-1} V_k^\top (F_u + \epsilon I) \Delta \]
+
+\subsubsection{Diagonal SST-Merge}
+フルFIMおよび高次元GEVPの計算コスト（$O(d^3)$）を回避するため、対角 Fisher 近似（$F_u \approx \text{diag}(f_{u,1}, \dots, f_{u,d})$）を適用する。これにより、一般化固有値は各パラメータ座標 $i$ ごとの独立した「Fisher比」に分解される：
+\[ r_i = \frac{f_{s,i}}{f_{u,i} + \epsilon} \]
+この対角化により、部分空間射影は極めて計算コストの低い座標ごとのマスクおよび補間に簡略化される。
+\begin{itemize}
+    \item \textbf{Hard Masking (Top-k Selection)}: $r_i$ が大きい上位 $k$\% の座標のみを選択する二値マスク $M \in \{0, 1\}^d$ を適用し、$\Delta_{\text{SST-Hard}} = M \odot \Delta$ とする。
+    \item \textbf{Soft Masking (Sigmoid Masking)}: 滑らかな信頼度重み $w_i = \sigma\left(\frac{r_i - \tau}{\gamma}\right)$ を用い、$\Delta_{\text{SST-Soft}} = w \odot \Delta$ とする。
+    \item \textbf{Coordinate-wise Interpolation (SST-Interpolation)}: マージ後の極端化を防ぐため、$\theta_{m,i} = \theta_{u,i} + \alpha_i (\theta_{s,i} - \theta_{u,i})$ とし、パラメータごとの係数 $\alpha_i = \alpha \cdot w_i$ を用いて補間する。
+\end{itemize}
+
+\subsection{提案手法：Data-Free SST}
+
+\subsubsection{Motivation \& Data-Free Setup}
+FIMの計算には通常、良性およびアライメントの両データセットが必要となるが、データ漏洩や機密保護のために訓練データが共有されない場合、データ依存の手法は適用できない。そこで、データセットを必要とせずに Fisher比部分空間を近似する \textbf{Data-Free SST-V} を提案する。
+
+\subsubsection{Task-Vector Ratio Proxy (SST-V)}
+パラメータの更新方向それ自体が、局所損失曲面における感度（曲率）を反映しているという直感に基づき、各パラメータの更新量（タスクベクトル）の二乗を Fisher情報量のプロキシとして利用する。
+パッチベクトル $\Delta_i = \theta_{s,i} - \theta_{u,i}$ と有用性感度 $\tau_{u,i} = \theta_{u,i} - \theta_{0,i}$ から、SST-V の比率指標を以下のように定義する：
+\[ \hat{r}_i^{\text{SST-V}} = \frac{\Delta_i^2}{\tau_{u,i}^2 + \epsilon} \]
+この比率をとることで、「通常タスクのために大きく移動したパラメータ」を分母でペナルティづけし、「安全性アライメントのために大きく動かす必要があるパラメータ」を分子で優先的に選択できる直感的なパラメータ選別メカニズムが働く。
+
+\subsubsection{その他のデータフリー近似手法}
+\begin{itemize}
+    \item \textbf{Magnitude-only Ablation (SST-M)}: モデル重み自体の大きさを用いる $\hat{r}_i^{\text{SST-M}} = \frac{|\theta_{s,i}|}{|\theta_{u,i}| + \epsilon}$。
+    \item \textbf{Random-Token Fisher Variant}: 擬似的なフォワードパスから曲率を推計できる場合、ランダムトークン列を入力として Diagonal FIM を計算する。
+\end{itemize}
+
+\subsection{研究潮流の4フェーズ整理}
+
+model merge研究の展開は、大きく4フェーズに整理できる（Table~\ref{tab:merge-phases}）。第1フェーズ（2022–2023年）はFisher-Weighted AveragingやTask Arithmeticに代表される黎明期であり、複数タスクモデルを壊さず平均する理論の確立が主要課題であった[1][2]。第2フェーズ（2024–2025年）はTIES、DARE、DELLA、Fisher Mask Nodes、Fisher-Weighted Median、ベイズ最適化型手法など、干渉緩和・外れ値耐性・計算効率・ハイパーパラメータ自動化への関心の広がりを特徴とする[8][9][10][11][12][13]。第3フェーズ（2024–2026年）はMergeAlign、SafeMERGE、LED-Merging、AlignMergeに代表されるSafety–Utility特化期であり、安全パッチと有用性パッチの衝突そのものが主要研究対象となった[6][14][7][15]。第4フェーズ（2025–2026年）は補助データが使えない現実的制約を前提とするData-Free実装の追求である[16]。
+\begin{table}[htbp]
+\centering
+\caption{model merge研究の4フェーズと代表手法}
+\label{tab:merge-phases}
+\small
+\begin{tabular}{p{2.3cm}p{1.8cm}p{3.2cm}p{5.2cm}c}
+\toprule
+フェーズ & 期間 & 中心課題 & 代表手法 & 参照 \\
+\midrule
+Phase 1: 黎明期 & 2022--2023 & 破滅的忘却の防止 & Fisher-Weighted Averaging, Task Arithmetic & [1], [2] \\
+
+Phase 2: 発展期 & 2024--2025 & 干渉緩和・外れ値耐性・効率化 & TIES, DARE, DELLA, Fisher Mask Nodes, DRIFT-MEDIAN, DF-Merge & [8]--[13] \\
+
+Phase 3: Safety特化期 & 2024--2026 & Safety--Utility競合の直接解消 & MergeAlign, SafeMERGE, LED-Merging, AlignMerge & [6], [14], [7], [15] \\
+
+Phase 4: 実用制約期 & 2025--2026 & Data-Free環境への適応
+& 層適応型Fisher近似 & [16] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{各手法の比較整理}
+主要なmerge手法の設計原理、利用情報、介入粒度、および安全性への直接性に関する比較整理をTable~\ref{tab:method_comparison}に示す。
+\begin{table*}[t]
+\centering
+\caption{各手法の設計原理比較}
+\label{tab:method_comparison}
+\small
+\begin{tabular}{p{2.0cm}p{2.4cm}p{2.5cm}p{2.0cm}p{2.2cm}c}
+\toprule
+手法群 & 代表手法 & 重要情報 & 介入粒度 & 安全性への直接性 & 参照 \\
+\midrule
+単純補間 & Model Soups & 重み値 & モデル全体 & 低い & [17] \\
+
+差分合成 & Task Arithmetic & タスクベクトル & ベクトル全体 & 低い & [2] \\
+
+曲率重み付け & Fisher-Weighted Averaging & Fisher対角 & パラメータ & 低い〜中 & [1] \\
+
+干渉緩和 & TIES, DARE, DELLA & 符号・疎化・振幅 & パラメータ & 低い & [8], [19], [20] \\
+
+ベクトル分離 & MergeAlign & ドメイン／整列ベクトル & ベクトル全体 & 中 & [6] \\
+
+選択的保護 & SafeMERGE & 安全部分空間 & 層 & 高い & [14] \\
+
+ニューロン分離 & LED-Merging & 勾配重要度 & ニューロン & 高い & [7] \\
+
+幾何制約 & AlignMerge & Fisher幾何 & 部分空間 & 高い & [15] \\
+
+実用近似 & Data-Free FIM系 & 近似Fisher & 層／パラメータ & 中 & [16] \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+この整理は、実験結果の解釈フレームワークを与える。すなわち、Gibberish崩壊、ASR低下、一般性能維持の差異は、単に数値の優劣ではなく干渉をどのレベルで定義したかの違いとして理解されるべきである。
+
+
+\subsection{基礎系統：Model SoupsとTask Arithmetic}
+
+Model Soupsは、同一初期化から独立にファインチューニングされた複数モデルが同一の低損失盆地にあるならば、重み平均で性能を維持または改善できることを示した[17]。2モデルの線形補間は
+
+\[
+\theta_{\mathrm{soup}}=(1-\alpha)\theta_A+\alpha\theta_B
+\tag{1}
+\]
+
+と書ける。設計思想はきわめて単純であり、モデル間に十分な類似性があれば局所的な関数差は重み平均で平滑化されるという経験的事実に依拠する。
+
+Task Arithmeticは、この発想をファインチューニング更新ベクトルに抽象化した\[2\]。事前学習済み基盤モデルを\(\theta_0\)、タスク\(t\)用にファインチューニングしたモデルを\(\theta_t^\star\)とすると、タスクベクトルは
+
+\[
+\tau_t=\theta_t^\star-\theta_0
+\tag{2}
+\]
+
+で定義され、複数タスクの合成は
+
+\[
+\theta_{\mathrm{TA}}=\theta_0+\sum_{t=1}^{T}\alpha_t\tau_t
+\tag{3}
+\]
+
+で表される\[2\]。Ilharcoらは、これにより加算・減算・類推といった演算が直接モデル挙動編集として機能することを示した。この系統の限界は、どの座標が安全性に重要か、どの方向が有用性に寄与するかを区別しない点にあり、安全性と専門性能が同一パラメータで競合する場合、最も単純な加法は最も不安定な統合法となる。安全性を明示しないため、本稿では安全ASRと過剰拒否の双方を評価する。
+
+\subsection{Fisher-Weighted Averagingと重要度系統}
+
+Fisher-Weighted Averaging（FWA）は、単純平均をベイズ的に一般化する試みであり、各モデルの事後分布をラプラス近似し、Fisher情報を精度行列とみなすことで重み付け平均を導く\[1\]。対角近似のもとで、各パラメータ \(j\) に対するmerge値は
+
+\[
+\theta_j^{\mathrm{FWA}}=\frac{\sum_{m=1}^{M}\lambda_m F_{m,j}\theta_{m,j}}{\sum_{m=1}^{M}\lambda_m F_{m,j}}
+\tag{4}
+\]
+
+で与えられる。経験Fisherは一般に
+
+\[
+\hat F_{\theta}=\frac{1}{N}\sum_{i=1}^{N}\mathbb{E}_{y\sim p(y\mid x_i;\theta)}\left[(\nabla_{\theta}\log p(y\mid x_i;\theta))^2\right]
+\tag{5}
+\]
+
+で近似される[1]。FWAの設計思想は重要なパラメータほど平均してはならないという点にあるが、安全性と有用性のように異なる分布上で異なる重要性を持つ場合、単一Fisherは何に対して重要かを区別しない。
+
+この系統には、勾配整合性に着目したUncertainty-based Gradient Matching[18]、マスクノードにより計算量を削減したFisher Mask Nodes[9]、Fisher重み付き中央値で外れ値耐性を高めたDRIFT-MEDIAN\[11\]、ベイズ最適化で係数を自動探索するDF-Merge[12]が含まれる。いずれもFisherは何らかの重要度を表すという認識に立つが、安全性と有用性の二重目的を同時に扱うわけではない。本稿では、単一Fisherの重要度と、harmful/benign別Fisherの差を用いるアプローチを比較する。
+
+\subsection{干渉除去系：TIES、DARE、DELLA}
+
+TIES-Mergingは、失敗要因を微小で冗長な更新と符号不一致に求め、TRIM・ELECT SIGN・DISJOINT MERGEの三段階で処理する[8]。各座標\(j\)について
+
+\[
+s_j=\mathrm{sign}\left(\sum_m \tau_{m,j}\right),\qquad
+\theta_j=\theta_{0,j}+\frac{1}{|\mathcal{M}_j|}\sum_{m\in\mathcal{M}_j}\tau_{m,j}
+\tag{6}
+\]
+
+ただし\(\mathcal{M}_j=\{m\mid \mathrm{sign}(\tau_{m,j})=s_j\}\)である\[8\]。
+
+DAREは、更新の多くは本質的に不要であるという観察に基づき、ランダムドロップと再スケーリングを行う[19]。ドロップ率を\(p\)とすると
+
+\[
+\tilde{\tau}_j=\frac{m_j}{1-p}\tau_j,\qquad m_j\sim\mathrm{Bernoulli}(1-p)
+\tag{7}
+\]
+
+である[19]。DELLAはDAREを改良し、振幅に応じてドロップ確率を変えるMAGPRUNEを導入する[20]。振幅の小さい更新ほど高確率で削除し、残存更新を再スケーリングすることで、DAREより情報損失を抑えつつ干渉を減らす。
+
+これら三手法はいずれも局所ヒューリスティクスで更新を選別するが、安全性を明示的目的としないため、安全性更新と有用性更新が競合するSecure Merge設定では、干渉を減らしても安全性が保たれる保証はない。特に更新の削減が出力崩壊を生む可能性があるため、本稿では有効応答率を含めて評価する。
+
+\subsection{Safety–Utility特化系：MergeAlign、SafeMERGE、LED-Merging}
+
+MergeAlignは、ドメイン専門性と安全性アライメントを別々のベクトルとして明示的に分離する[6]。基盤モデルを\(\theta\)、ドメイン専門モデルを\(\theta_d\)、アライン済み汎用モデルを\(\theta_a\)とすると
+
+\[
+\tau_d=\theta_d-\theta,\qquad \tau_a=\theta_a-\theta
+\tag{8}
+\]
+
+であり、最終統合モデルは
+
+\[
+\hat\theta=\theta+\alpha\tau_d+\beta\tau_a
+\tag{9}
+\]
+
+で与えられる[6]。制御はベクトル全体に対するスカラー重み\(\alpha,\beta\)にとどまり、パラメータ単位のfiner-grainedな制御はできない。
+
+SafeMERGEは、どの層が安全性を担うかを判定し、逸脱の大きい層のみを安全モデル寄りに戻す\[14\]。層\(i\)の安全方向を\(V_i=W_{i,\mathrm{aligned}}-W_{i,\mathrm{unaligned}}\)とし、ファインチューニング更新とその安全部分空間射影とのコサイン類似度
+
+\[
+\rho_i=\mathrm{cosine\_similarity}(\Delta W_{i,f},C_i\Delta W_{i,f})
+\tag{10}
+\]
+
+を評価し、閾値 \(\tau\) 未満の層のみ
+
+\[
+\Delta W_{i,\mathrm{merge}}=\alpha\Delta W_{i,f}+(1-\alpha)\Delta W_{i,s}
+\tag{11}
+\]
+
+で補正する[14]。
+
+LED-Mergingは、競合の単位をニューロンへと下げる[7]。Location段階では勾配アトリビューションからニューロン重要度
+
+\[
+I(\theta_i)=\mathbb{E}_{x\sim X_i}[\theta_i\odot\nabla_{\theta_i}L(x)]
+\tag{12}
+\]
+
+を計算し[7]、Electionではベースモデルと専門モデル双方で高重要度なニューロン集合の積集合を取り、Disjointではタスク間で共有される重要ニューロンを差集合で分離する。本稿では、これらの層・ニューロン単位の選択が、SSTの要素単位選択とどう異なるかを比較する。
+
+\subsection{Fisher幾何型：AlignMergeとData-Free拡張}
+
+AlignMergeは、Fisher情報を単なるパラメータ重みではなく、モデル空間上の局所計量として解釈する[15]。設計思想は、アライメントを部分空間または多様体として表現し、merge後もそこから大きく逸脱しないよう制約付き最適化として統合を定式化する点にある。Data-Free Layer-Adaptive Mergingは、ランダムトークン列から層別Fisherを近似し、補助データなしでもFisher型mergeを可能にする方向性を示した[16]が、近似Fisherが本来の重要度ランキングをどこまで保持するかは未解明である。
+

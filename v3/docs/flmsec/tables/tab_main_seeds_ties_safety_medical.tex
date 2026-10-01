@@ -1,0 +1,20 @@
+\begin{table}[H]
+\centering
+\caption{メイン実験 シード別詳細 - Method: ties, Pattern: safety+medical}
+\label{tab:main_seeds_ties_safety_medical}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{llllrrrrrrr}
+\toprule
+\textbf{Pattern} & \textbf{Method} & \textbf{Alpha} & \textbf{Seed} & \textbf{Safety Ave [Harmful Content] (ASR$\downarrow$ \%)} & \textbf{Math Ave (\%)} & \textbf{Code Ave (\%)} & \textbf{Medical Ave (\%)} & \textbf{General/Inst Ave (\%)} & \textbf{EvolCode (PPL$\downarrow$)} & \textbf{MedAlpaca (PPL$\downarrow$)} \\
+\midrule
+safety+medical & ties & 0.60 & 42.0 & 0.08 & 0.00 & 0.00 & 13.75 & 12.33 & 38946.69 & 110844.44 \\
+safety+medical & ties & 0.60 & 43.0 & 0.00 & 0.00 & 0.00 & 13.12 & 12.17 & 33890.70 & 39990.65 \\
+safety+medical & ties & 0.60 & 44.0 & 0.08 & 0.00 & 0.00 & 13.75 & 11.19 & 29679.08 & 52863.53 \\
+safety+medical & ties & 1.00 & 42.0 & 0.00 & 1.72 & 8.75 & 84.38 & 29.68 & 2.24 & 6.85 \\
+safety+medical & ties & 1.00 & 43.0 & 0.00 & 0.62 & 3.91 & 37.19 & 11.49 & 2.28 & 6.71 \\
+safety+medical & ties & 1.00 & 44.0 & 0.00 & 0.47 & 7.03 & 42.19 & 20.80 & 2.29 & 6.60 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

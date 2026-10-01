@@ -1,0 +1,12 @@
+==================================================
+Slurm Per-Model Prelim Array Job ID: 103436_8
+Target Model: models/merged/sst_merge_v3_main_dare_safety+code_alpha0.4_seed44
+Limit: 320
+Configured CPU Threads: 2
+Assigned CUDA_VISIBLE_DEVICES: 0
+Working Dir: /mnt/nas/home/hiromi/src/sst_v2/v3
+==================================================
+Executing command:
+venv_v3/bin/python scripts/eval/eval_preliminary.py     --model_path "models/merged/sst_merge_v3_main_dare_safety+code_alpha0.4_seed44"     --output_dir "results/preliminary/merged"     --limit 320
+--------------------------------------------------
+Evaluation results already exist for sst_merge_v3_main_dare_safety+code_alpha0.4_seed44. Skipping.

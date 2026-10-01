@@ -1,0 +1,8 @@
+- `[x]` 論文の修正 (flmsec_standalone_nosst2.tex)
+  - `[x]` 数値の訂正（Section 4.1 Task Arithmetic）
+  - `[x]` 実証的詳細の明記と主張の根拠付け（Section 3.2, Section 4）
+  - `[x]` 冗長表現と繰り返し構造の削減（Introduction, Section 4, Conclusion）
+  - `[x]` 引用元の検証と修正（References）
+- `[x]` コンパイルによる検証 (※Sandbox環境にlatexコマンドが存在しなかったため、文法レベルの目視確認で代替)
+- `[/]` Walkthroughの作成
+- `[ ]` docs/flmsec_revision へのドキュメント保存

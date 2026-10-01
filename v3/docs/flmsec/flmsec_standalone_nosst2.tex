@@ -1,0 +1,4376 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2026
+
+% The authors should use one of these tracks.
+% Before accepting by the NeurIPS conference, select one of the options below.
+% 0. "default" for submission
+\usepackage{neurips_2026}
+\usepackage[margin=1in]{geometry}
+% the "default" option is equal to the "main" option, which is used for the Main Track with double-blind reviewing.
+% 1. "main" option is used for the Main Track
+%  \usepackage[main]{neurips_2026}
+% 2. "position" option is used for the Position Paper Track
+%  \usepackage[position]{neurips_2026}
+% 3. "eandd" option is used for the Evaluations & Datasets Track
+ % \usepackage[eandd]{neurips_2026}
+% 4. "creativeai" option is used for the Creative AI Track
+%  \usepackage[creativeai]{neurips_2026}
+% 5. "sglblindworkshop" option is used for the Workshop with single-blind reviewing
+ % \usepackage[sglblindworkshop]{neurips_2026}
+% 6. "dblblindworkshop" option is used for the Workshop with double-blind reviewing
+%  \usepackage[dblblindworkshop]{neurips_2026}
+% 7. "education" option is used for the Education Track
+%  \usepackage[education]{neurips_2026}
+
+
+% After being accepted, the authors should add "final" behind the track to compile a camera-ready version.
+% 1. Main Track
+ % \usepackage[main, final]{neurips_2026}
+% 2. Position Paper Track
+%  \usepackage[position, final]{neurips_2026}
+% 3. Evaluations & Datasets Track
+ % \usepackage[eandd, final]{neurips_2026}
+% 4. Creative AI Track
+%  \usepackage[creativeai, final]{neurips_2026}
+% 5. Workshop with single-blind reviewing
+%  \usepackage[sglblindworkshop, final]{neurips_2026}
+% 6. Workshop with double-blind reviewing
+%  \usepackage[dblblindworkshop, final]{neurips_2026}
+% Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote.
+% For workshops (5., 6.), the authors should add the name of the workshop, "\workshoptitle" command is used to set the workshop title.
+% \workshoptitle{WORKSHOP TITLE}
+% 7. Education Track
+% \usepackage[education, final]{neurips_2026}
+
+% "preprint" option is used for arXiv or other preprint submissions
+ % \usepackage[preprint]{neurips_2026}
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2026}
+
+% \usepackage[utf8]{inputenc} % allow utf-8 input
+% \usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont{Noto Serif CJK JP}
+\setCJKsansfont{Noto Sans CJK JP}
+\usepackage{amsmath}
+\usepackage{tabularx}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{float}
+\extrafloats{100}
+\usepackage{placeins}
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+
+% Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote. 
+\title{Validity-Aware Evaluation and Systematic Comparison for Secure Model Merge}
+
+\author{%
+  Saki Hiromi \\
+  NTT \\
+  Tokyo, Japan \\
+  \texttt{saki.hiromi@ntt.com}
+  \And
+  Hiroki Kinoshita \\
+  NTT \\
+  Tokyo, Japan \\
+  \texttt{hiroki.kinoshita@ntt.com}
+  \And
+  Takayuki Miura \\
+  NTT \\
+  Tokyo, Japan \\
+  \texttt{tkyk.miura@ntt.com}
+  \And
+  Akira Morikawa \\
+  NTT \\
+  Tokyo, Japan \\
+  \texttt{a.morikawa@ntt.com}
+}
+% \author{%
+%   % David S.~Hippocampus\thanks{Use footnote for providing further information
+%   %   about author (webpage, alternative address)---\emph{not} for acknowledging
+%   %   funding agencies.} \\
+%   % Department of Computer Science\\
+%   % Cranberry-Lemon University\\
+%   % Pittsburgh, PA 15213 \\
+%   % \texttt{hippo@cs.cranberry-lemon.edu} \\
+%   % examples of more authors
+%   % \And
+%   % Coauthor \\
+%   % Affiliation \\
+%   % Address \\
+%   % \texttt{email} \\
+%   % \AND
+%   % Coauthor \\
+%   % Affiliation \\
+%   % Address \\
+%   % \texttt{email} \\
+%   % \And
+%   % Coauthor \\
+%   % Affiliation \\
+%   % Address \\
+%   % \texttt{email} \\
+%   % \And
+%   % Coauthor \\
+%   % Affiliation \\
+%   % Address \\
+%   % \texttt{email} \\
+% }
+
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{abstract}
+model mergeは，追加学習を行わずに複数の専門化大規模言語モデルを統合できる[3,4]一方で，パラメータ干渉により安全性アライメントを劣化させる可能性がある[1,60,61]．Secure Merge[24]の評価では主にAttack Success Rate（ASR）が用いられるが，低いASRは意味のある安全拒否だけでなく，無効応答や生成崩壊を反映している可能性がある[21,73]．本研究では，応答有効性と有害要求への追従を分離するValidity-aware評価プロトコルを提案する．具体的には，全応答に対するOriginal ASR，有効応答に限定したConditional ASR，有効応答率を表すValid Response Rate（VRR），および有効かつ非追従の応答率を表すValid Safety Rate（VSR）を用いる．数学，コード，医療の専門モデルに対し，複数のjailbreakベンチマークおよび有用性ベンチマークを用いて代表的なmerge手法を再評価した．その結果，Original ASRが低い，あるいは0\%である条件の一部は，VRRが0\%である生成崩壊，または有効応答における有害追従率が高い状態に対応していた．これらの結果は，ASR単独ではSecure Mergeにおける安全性を適切に評価できないことを示し，安全性の主張には有害追従，応答有効性，および下流有用性を併せて評価する必要があることを示す．
+\end{abstract}
+
+\section{Introduction}
+大規模言語モデル（LLMs）は、専門タスクによるFine-tuning（FT）で高い性能を得るが、FTによりモデルを再学習・維持するには大量の計算やデータコストを必要する．これに対し，複数のFT済みのモデルを重み空間で合成するmodel mergeは，再学習を行わず低コストに複数の能力を統合する手法として注目されている[3,4,26]．model mergeはModel Soups[3]やTask Arithmetic[4,25]をはじめ，TIES[5]，DARE[6]，DELLA[7]など，モデル間のパラメータ干渉を抑制する様々な手法が提案されてきた．しかし，instruction tuningやRLHF等によって得られた安全性アライメントは，良性データのみを用いた専門化FTや，その後のmodel mergeによっても劣化し得ることがわかっている[1,47,48,60,61]．この問題に対し，安全性特化モデルを専門モデルへ合成することで安全性を事後的に回復する枠組みとしてSecure Merge[24]が提案されている．さらに，MergeAlign[2]，SafeMERGE[8]，LED-Merging[9]，Fisher-Weighted Averaging（FWA）[10]など，安全性と専門能力の干渉を抑えるためのmerge手法も種々提案されている．
+
+Secure Mergeの評価は，有害要求に対するAttack Success Rate（ASR）と下流タスクの有用性によって行われる[24]．しかし，ASRの低下のみではモデルが有効でかつ拒否応答を生成したかどうかを区別できない．merge後のパラメータ干渉によって，意味不明な文字列，特殊トークンの反復，空出力，入力プロンプトの再掲などの無効応答（invalid response）が生じた場合，有害要求への追従が検出されないため，ASRが低く算出される可能性がある．この場合，低ASRをそのまま安全性向上と解釈するSecure Merge評価の妥当性を損なうことになりかねない．
+\color{red}
+反復的・退行的なテキスト生成は，ニューラル言語モデルにおけるtext degenerationの代表的な現象としても知られている[74]．
+\color{black}
+
+この問題の原因は，従来の安全性評価器が「有害要求への追従の有無」を判定するよう設計されており，応答自体が言語として有効に成立しているかを評価しない点にある[19,72,75]．jailbreak評価研究では，非拒否のみを攻撃成功の基準とする評価が人間評価と十分に一致しないことや，意味不明・非一貫的な応答が評価結果を歪め得ることが指摘されている[21,73]．また，model mergeによりパラメータ干渉が発生し，無効応答が生じた場合，無効応答に有害内容が含まれなければ見かけ上安全と判定されるFalse Safeが生じる一方，評価器の判定規則によっては，同じ無効応答が攻撃成功として扱われるFalse Unsafeも生じ得る．したがって，ASRだけでは安全性改善と生成崩壊を区別することは難しい．本研究の予備実験でも，Gibberish Ratioが高い条件において，単一評価器によるRaw ASRが0\%または100\%へ極端に偏る事例が観測された（付録\ref{app:予備実験の詳細結果}）.
+
+本研究は，この問題に対処するため生成応答を「有効／無効」と「有害追従／非追従」の二段階で評価するValidity-aware評価プロトコルを導入する．具体的には，従来のOriginal ASRに加えて，有効応答のみに条件づけたConditional ASR，全応答に占める有効応答の割合であるValid Response Rate（VRR），および有効かつ非追従の応答の割合であるValid Safety Rate（VSR）を用いる．これにより，従来区別できなかった，(i) 意味のある安全拒否，(ii) 無効応答に由来する見かけ上の安全性，および(iii) 有効応答であるにもかかわらず有害要求へ追従する状態を区別する．さらに，有用性（Utility）およびperplexity（PPL）を併記し，安全性，応答有効性，専門能力など多面的に分析する．
+
+Secure Merge条件下において，代表的なmerge手法を再評価した結果，Original ASRのみでは安全と解釈される条件の一部が，False SafeまたはUnsafe but functionalとして分類された．特に，Original ASRが0\%であってもVRRが0\%である条件や，Original ASRが低い一方でConditional ASRが高い条件が見られた．これらの結果は，Secure MergeにおけるSafety--Utility trade-offおよび手法間の相対評価が，ASR単独の評価規則に強く依存することを示す．
+
+本研究では，以下の3つの研究課題（Research Questions; RQs）を設定する．
+\begin{itemize}
+    \item \textbf{RQ1（評価の妥当性）：} Secure Mergeにおいて，Original ASRのみの評価は，無効応答や生成崩壊を伴う応答をどの程度安全と判断するか．
+    \item \textbf{RQ2（再評価後の手法比較）：} VRRおよびVSRを導入すると，代表的なmerge手法のSafety--Utility trade-off，及び安全性の評価はどのように変化するか．
+    \item \textbf{RQ3（条件依存性）：} 専門性やモデルの組合せ，介入粒度，およびmerge強度は，再評価後の安全性，有用性，および応答有効性にどの程度影響するか．
+\end{itemize}
+
+本研究の貢献は以下の4点である．
+\begin{itemize}
+    \item Secure MergeにおけるASR単独評価の限界を分析し，無効応答が評価器の判定規則に応じてFalse SafeおよびFalse Unsafeを生み得ることを示した．
+    \item Original ASR，Conditional ASR，Valid Response Rate（VRR），Valid Safety Rate（VSR）を組み合わせたValidity-aware評価指標を導入し，「有効な安全拒否」「無効応答による見かけ上の安全性」「有効だが有害要求へ追従する応答」を分離した．
+    \item 代表的な既存merge手法同一条件下で再評価し，Original ASRのみでは安全と解釈される条件の一部が，False SafeまたはUnsafe but functionalとして再分類されることを示した．
+    \item 複数の専門性およびmerge設定を通じて，有効な安全性改善には低いConditional ASR，高いVRR，高いVSR，および有用性の維持を同時に確認する必要があることを示す．
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%
+\section{関連研究}
+\subsection{Model Mergeと干渉緩和}
+Model Soups[3]およびTask Arithmetic[4,25]は，複数のFT済みモデルの重み，またはベースモデルからの重み差分を平均することで，再学習を行わずに複数タスクの能力を統合する基礎的な手法である。一方，複数モデルを単純に合成すると，更新方向の相殺や上書きによるパラメータ干渉が生じ，合成後のモデルが持つ専門能力が低下する可能性がある．この干渉を抑制するため，TIES[5]はタスクベクトルの符号競合を解消し，DARE[6]およびDELLA[7]はパラメータの疎化や重要度を利用して干渉を軽減した．
+% \color{red}
+% 他にもRLHF適応のためのSALSA，モデル間の置換不変性を利用したC²M³，進化的最適化によるmerge手法探索など，干渉緩和や探索の観点から多様な発展が見られる[27,28,29].
+% \color{black}
+これらの研究は，主として複数タスク間の能力統合を目的としており，安全性アライメントの保持そのものを主要な対象とはしていない．
+
+\subsection{Secure Mergeと安全性保持}
+FTやmodel mergeによって既存の安全性アライメントが損なわれる問題に対し，Secure Merge[24]は，安全性特化モデルを''safety patch''として専門モデルへ合成し，専門能力を維持しつつ安全性を事後的に回復する枠組みを提示した．
+しかし，安全性パッチと専門モデルは同一パラメータに対して競合する場合があり，安全性の回復が専門能力の低下を伴うSafety Taxを生む可能性がある[24,58]。さらにHammoudら[1]は，非アラインな専門モデルを一つ混合するだけで全体の安全性が低下し得る``one bad model spoils the bunch''現象を報告し，TIESのような一般的な干渉緩和手法だけでは安全性崩壊を防げないことを示した。
+
+こうした安全性と有用性の競合を緩和するため，異なる介入粒度や情報を利用する手法が提案されている．MergeAlign[2]は安全性・専門能力に対応するタスクベクトルを調整し，SafeMERGE[8]は層単位，LED-Merging[9]はニューロン単位で安全性と有用性の競合を扱う．Fisher-Weighted Averaging（FWA）[10]は対角Fisher情報に基づいてパラメータ重要度を推定し，重要なパラメータを考慮して合成する．さらにAlignMerge[15]はFisher幾何およびアライメント部分空間に着目し，安全性に関わるパラメータ領域を保護する．
+\color{red}
+Fisher情報に基づく合成は，不確実性に基づく勾配マッチング，Fisherマスクノード，Fisher重み付き中央値，ベイズ最適化による動的Fisher重み付け，データフリーの層適応的Fisher mergeなど多様な変種へ拡張されている[11,12,13,14,16]．
+\color{black}
+これらの手法は，安全性と有用性の干渉を抑制するための合成規則や介入粒度に主眼を置く。その性能は主に有害要求への追従率，すなわちASRの低下と下流タスクの有用性スコアによって報告される[1,2,8,9,24]。
+
+\subsection{LLM安全性評価}
+LLMのjailbreak耐性評価では，敵対的プロンプトに対する有害要求への追従を測るAttack Success Rate（ASR）が広く用いられる。HarmBench[19]は，標準化された敵対的評価パイプラインにおいて，モデル出力が対象の有害行動を満たすかどうかを判定しASRを算出する。またLlama Guard[72]は，入力または出力の内容を安全性分類カテゴリに基づいてsafeまたはunsafeとして判定するLLMベースのsafeguardである。
+
+一方，ASRを自動判定する評価器には，応答有効性の観点から限界がある．Souly et al.[21]は，既存のjailbreak評価の多くが非拒否（non-refusal）を攻撃成功の代理指標として用いていることを指摘し，文字列マッチングに基づく非拒否判定が人間評価との一致度で劣ることを示した．さらに，jailbreak攻撃によってモデルの応答能力そのものが低下し，非一貫的・意味不明な応答が生成され得ることを報告し，拒否の有無だけでなく応答の有用性も考慮するStrongREJECT評価器を提案した[21]．
+
+
+model mergeの安全性評価においても同様の課題が残る．Farn et al.[73]は，自身の評価で使用したWildGuard[75]について，二値または粗粒度の出力しか提供せず，拒否が適切であったか回避的であったかを区別できないとしている．またHarmBench Classifier[19]は，有害行動の達成有無を評価することを目的としており，空出力，gibberish，特殊トークンの反復，入力プロンプトの再掲といった生成失敗を，有害性判定とは別に評価をしていない．
+これらから，ASRは有害要求への追従を測る指標として有用であるが，モデルが意味のある応答を生成できていることを保証する指標ではないと言える．特にmodel mergeでは，パラメータ干渉によって生成能力自体が損なわれる可能性があるため，安全性判定と応答有効性判定を分離する必要がある．本研究は，この応答有効性の検証をSecure Merge評価へ明示的に組み込み，Original ASRとは独立にVRR，Conditional ASR，VSRを報告する点で既存研究と異なる．詳しい背景および関連研究は付録\ref{app:本研究の背景と定式化上の位置づけ}を参照されたい．
+
+%%%%%%%%%%%%%%%%%%%
+\section{評価について}
+本章では，本研究で行った評価の概要について述べる．本研究ではsecure mergeにより向上させたい安全性をjailbreak耐性とおく．
+\subsection{対象モデルと手法}
+
+ベースモデルには7BパラメータのLlama-2-7B-base[30]を用い、数学・コード・医療ドメインの専門モデル[31,32,33]およびjailbreak trigger[17]でFTしたjailbreak耐性特化モデル(安全性特化モデル)を対象とした。比較対象は、標準merge（Task Arithmetic）、干渉緩和merge（TIES、DARE、DELLA）、安全性維持merge（MergeAlign、SafeMERGE、LED-Merging）、Fisher重要度系（FWA）である。
+
+\begin{itemize}
+\item \textbf{ベースモデル($\theta_0$)}: \texttt{Llama-2-7B-base}[30]
+\item \textbf{有用性専門モデル($\theta_u$)}: WizardMath-7B-V1.0[31]、WizardCoder-Python-7B-V1.0[32]、MedAlpaca-7B[33]を用いた。各モデルの元の学習設定は、それぞれの公開論文およびモデルカードに従う。
+\item \textbf{有用性Fisher推定用データ}: 数学にはGSM8K、コードにはEvol-Instruct-Code、医療にはMedAlpacaから抽出した校正サンプルを用いた。
+\item \textbf{安全モデル ($\theta_s$)}: \texttt{Llama-2-7B-base}に対する安全性アライメントとして、LoRA FTを適用したモデルを使用。FTデータは、TrustLLM[17]のjailbreak判定用データセット(JAILBREAK TRIGGER)の有害要求プロンプトに、固定の安全な拒否応答（"I'm sorry, but I cannot assist with that request."）を付与して作成した1,400件のデータセットを用いた。
+\end{itemize}
+
+本研究は特定のmerge手法の優位性を主張するものではなく，異なる介入粒度と利用情報を持つ既存手法を同一条件下で評価する．AlignMergeについては公式コードが公開されていないため本研究では対象外とする．各手法の詳細な数式および実装設定は付録\ref{app:実験設計の詳細}を参照されたい．
+
+\subsection{評価プロトコル}
+安全性評価には，HarmBench[19]，JailbreakBench[20]，StrongREJECT[21]，WildJailbreak[22]の4ベンチマークを用いた．各応答について，有害要求への追従の有無に加え，応答が意味のあるものとして成立しているかを評価する．具体的には，HarmBench Classifier[19]およびLlama Guard[72]を用いて有害性判定を行い，さらにgibberish，特殊トークンの反復，空出力，入力プロンプトの再掲などを無効応答として識別する．
+
+この評価に基づき，以下の指標を用いる．
+\begin{itemize}
+    \item \textbf{Original ASR}：全応答を対象とした従来型のAttack Success Rate
+    \item \textbf{Conditional ASR}：有効応答のみに条件づけて算出したASR
+    \item \textbf{Valid Response Rate (VRR)}：全応答に占める有効応答の割合
+    \item \textbf{Valid Safety Rate (VSR)}：有効であり，かつ有害要求への追従が認められなかった応答の割合
+    \item \textbf{Utility}：GSM8K[34]，Math500[35]，HumanEval[36]，MBPP[37]，MedQA[39]，PubMedQA[38]，AlpacaEval[42]，IFEval[41]，MMLU[40]等の下流タスク性能である．加えて，PPLおよびSimilarity Scoreを，専門データへの適合度と生成分布の異常を診断する補助指標として用いる．
+\end{itemize}
+
+全ての評価は，安全特化モデルの作成時に用いた3つのランダムシード（42，43，44）で独立に評価し，標準偏差として$\mathrm{mean}\pm\mathrm{std}$の形式で示す．merge対象はsafety+math，safety+code，safety+medical，safety+math+code+medicalの4パターンとした．主結果では$\alpha=0.6$を報告し，merge強度$\alpha$に対する詳細な挙動は付録\ref{sec:Seed別およびalpha別の完全結果}に示す．
+
+\subsection{予備実験から本実験への接続}
+TrustLLM[17]およびBeaverTails[18]を用いた予備実験では，単一評価器に基づく探索的評価を行った．pattern: safety+mathの結果を表\ref{tab:prelim_detail}に示す．（詳細は付録\ref{app:予備実験の詳細結果}）Gibberish Ratioが高い条件において，TrustLLM Raw ASRが0\%または100\%へ極端に偏る事例が観測された．この結果は，無効応答が評価器の判定規則に応じて，見かけ上の安全性（False Safe）または見かけ上の危険性（False Unsafe）のいずれも生み得ることを示す．
+
+この結果を踏まえ，本実験では評価にASRのみを用いず，有害性判定と応答有効性判定を分離して評価を行った．これにより，ASRの低下が意味のある安全拒否に由来するのか，あるいは出力崩壊に由来するのかを区別する．
+
+\begin{table}[htbp]
+\caption{予備実験（TrustLLM / BeaverTails）における安全性と有用性の評価（$\alpha=0.6$, pattern: safety+math）}
+\label{tab:prelim_detail}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.45cm}
+>{\raggedright\arraybackslash}p{2.10cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Pattern} &
+\textbf{Method} &
+\textbf{TrustLLM ASR} &
+\textbf{Gibberish Ratio} &
+\textbf{BeaverTails Utility} \\
+&
+&
+\textbf{(\% $\downarrow$)} &
+\textbf{(\% $\downarrow$)} &
+\textbf{(\% $\uparrow$)} \\
+\midrule
+\multirow{9}{*}{safety+math}
+& DARE            & $17.19 \pm 0.83$  & $18.65 \pm 0.95$  & $9.69 \pm 2.86$ \\
+& DELLA           & $19.06 \pm 3.17$  & $20.62 \pm 5.20$  & $7.81 \pm 2.05$ \\
+& LED-Merging     & $87.19 \pm 0.00$  & $96.15 \pm 0.18$  & $5.00 \pm 0.00$ \\
+& Matena-Fisher   & $19.79 \pm 1.18$  & $67.19 \pm 3.52$  & $10.00 \pm 1.65$ \\
+& MergeAlign      & $100.00 \pm 0.00$ & $100.00 \pm 0.00$ & $0.00 \pm 0.00$ \\
+& SafeMERGE       & $14.27 \pm 22.55$ & $31.15 \pm 53.95$ & $3.33 \pm 3.34$ \\
+& Task Arithmetic & $9.69 \pm 0.31$   & $47.92 \pm 18.35$ & $6.35 \pm 1.91$ \\
+& TIES            & $18.65 \pm 4.77$  & $36.67 \pm 4.77$  & $11.25 \pm 1.08$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%
+\section{実験結果と考察}
+本章では，Validity-aware評価による主要な結果を示す．詳細な実験結果および補足的な分析は，付録\ref{app:予備実験の詳細結果}，\ref{app:主実験の詳細結果}，\ref{app:偽の安全性の追加分析}，\ref{app:計算資源とデータ要件}，および\ref{sec:Seed別およびalpha別の完全結果}を参照されたい．
+
+\color{red}
+    表\ref{tab:safety_diagnostic}に，Original ASR(Orig. ASR)，Conditional ASR(Cond. ASR)，Valid Response Rate（VRR），Valid Safety Rate（VSR），および有用性を併記し，評価前後で解釈が変わる代表例を示す．これらから，Original ASRのみでは同じ低ASRとして扱われる条件が，応答有効性を考慮すると異なる安全性状態として分類されることがわかる．
+\color{black}
+
+
+\begin{table}[htbp]
+\caption{評価前後で解釈が変わる代表例}
+\label{tab:safety_diagnostic}
+\centering
+\small
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{0.95}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.45cm}
+>{\centering\arraybackslash}p{1.35cm}
+>{\centering\arraybackslash}p{1.75cm}
+>{\centering\arraybackslash}p{0.85cm}
+>{\centering\arraybackslash}p{0.85cm}
+>{\raggedright\arraybackslash}p{2.00cm}
+>{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Method (Pattern)} &
+\textbf{Original ASR} &
+\textbf{Conditional ASR} &
+\textbf{VRR} &
+\textbf{VSR} &
+\textbf{Utility傾向} &
+\textbf{評価後の解釈} \\
+&
+\textbf{(\%)} &
+\textbf{(\%)} &
+\textbf{(\%)} &
+\textbf{(\%)} &
+&
+\\
+\midrule
+\shortstack[l]{MergeAlign\\（全パターン）}
+& 0.00
+& 有効応答なし
+& 0.00
+& 0.00
+& \shortstack[l]{Medical 86.25\\他ドメイン 0}
+& \textit{False safe}：低ASRだが，有効応答が生成されていない。 \\
+\shortstack[l]{Task Arithmetic\\(safety+math)}
+& 2.48
+& 3.88
+& 99.92
+& 96.04
+& \shortstack[l]{Math 5.62\\Code 9.74}
+& \textit{Validly safe}：低ASRと有効応答，有用性を両立。 \\
+\shortstack[l]{Task Arithmetic\\(safety+code)}
+& 29.17
+& 60.91
+& 95.34
+& 36.94
+& \shortstack[l]{Code 4.63\\Medical 88.85}
+& \textit{Unsafe but functional}：有効応答は多いが，有害追従も多い。 \\
+\shortstack[l]{LED-Merging\\（予備実験）}
+& 87.19
+& ---
+& 4.06
+& ---
+& \shortstack[l]{TrustLLM\\Utility 5.00}
+& \textit{False unsafe}：無効応答が攻撃成功として誤判定されやすい。 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+MergeAlignは複数の設定でOriginal ASRが0.00\%であった．しかし，対応するVRRおよびVSRはいずれも0.00\%であり，有効な安全拒否は生成されていない．すなわち，Original ASRだけを見れば「全ての有害要求を防御できた」と評価されるが，実際には有効な拒否応答を1件も生成できていない。この条件では，評価対象となった応答の100\%が無効であり，Original ASRは生成能力の喪失を安全性向上として扱っている。したがって，この低ASRは安全性改善ではなく，応答生成の停止または無効応答に起因するFalse Safeとして解釈される．この結果は，低ASRが安全性改善の必要条件にはなり得ても，それ自体では十分条件にならないことを示す．
+
+また，生成崩壊が完全ではない場合にも，Original ASRは有害追従を過小評価することがわかる。safety+codeにおけるDAREおよびDELLAはOriginal ASRが0.00\%である一方，Conditional ASRはそれぞれ68.30\%および68.53\%であり，有効応答に限定すると約7割が有害要求へ追従していた。したがって，Original ASR単独では安全と判断されるものの中に，実際には有効な応答の多くが危険である状態が含まれる。
+
+一方，safety+math設定のTask Arithmeticでは，Original ASRおよびConditional ASRがともに低く，VRRおよびVSRも高い値を示した．この条件では，低ASRは応答生成の破綻ではなく，有効応答を維持した安全性改善と整合的である．また，SafeMERGEはsafety+code設定において低いConditional ASRと高いVRRおよびVSRを示し，有効な安全性改善候補として評価される．
+
+これに対して，safety+code設定のTask Arithmeticは，Original ASRが29.17\%であるのに対し，Conditional ASRは30.53\%とさらに高く，VSRは66.18\%に留まる．すなわち，全応答を対象としたASRよりも，有効応答に限定した場合には有害要求への追従がより顕著になることがわかる．この条件は，応答自体は生成されるものの安全性が十分に維持されないUnsafe but functionalな状態として解釈される．
+
+以上より，Original ASRのみの評価は，少なくとも「有効な安全性改善」「無効応答による見かけ上の安全性」「有効応答を生成するが有害追従が残る状態」を区別できない．したがって，Secure Mergeにおける安全性評価では，Original ASRに加えてConditional ASR，VRR，およびVSRを併記する必要がある．
+
+\subsection{再評価による手法ごとのSafety--Utility trade-off（RQ2）}
+RQ1の結果を一般化するため，本研究では各手法・条件を，Validly safe，False Safe，False Unsafe，およびUnsafe but functionalの4類型として整理する(表\ref{tab:validity_categories})．Validly safeは，低いConditional ASR，高いVRR，高いVSR，および有用性の維持が同時に確認される状態である．False Safeは，Original ASRが低いにもかかわらずVRRが低い，またはPPL等に異常が見られる状態であり，無効応答が見かけ上の安全性を生む．False Unsafeは，無効応答の多さにより評価器が攻撃成功と判定する可能性がある状態であり，本研究では主として予備実験の単一評価器条件で観測された．Unsafe but functionalは，VRRが比較的高い一方でConditional ASRが高く，有効応答を生成しているにもかかわらず有害要求への追従が残る状態である．
+
+この再分類は，Secure MergeにおけるSafety--Utility trade-offの解釈を変更する．従来のASR--Utility平面では，生成崩壊によりASRが低下した条件も安全性側によってしまう．しかし，VRRおよびVSRを導入すると，そのような条件は有効な安全性改善ではなく，応答能力の喪失を伴う状態として識別される．したがって，応答有効性は安全性と有用性に加えて報告すべき第三の評価軸であると同時に，安全性主張が成立するための条件として扱う必要がある．
+
+Validity-aware評価を適用することで，異なるmerge手法を，安全性だけでなく，有効な生成能力を維持する条件という観点から比較できる．これは，実運用において安全パッチの適用方法，merge強度，および採用手法を選択する上で重要である．
+
+\begin{table}[t]
+\centering
+\caption{Validity-aware評価による安全性の分類}
+\label{tab:validity_categories}
+\small
+\begin{tabular}{p{2.8cm}p{5.1cm}p{5.1cm}}
+\toprule
+\textbf{分類} & \textbf{判定上の特徴} & \textbf{解釈} \\
+\midrule
+Validly safe &
+低Conditional ASR，高VRR，高VSR，有用性維持 & 有効応答かつ安全な状態 \\
+\addlinespace
+False Safe & 低Original ASRかつ低VRR，またはPPL異常 & 無効応答または生成分布の異常により見かけ上安全となる状態 \\
+\addlinespace
+False Unsafe & 高Original ASRかつ無効応答が多い & 評価器が無効応答を危険として扱う可能性がある状態 \\
+\addlinespace
+Unsafe but functional & 高VRRかつ高Conditional ASR & 有効応答は生成されるが，有害要求への追従が残る状態． \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{限界と適用範囲}
+本研究の限界の１つは，valid/invalidの判定規則が評価結果に影響を与える点である．本研究では，gibberish，特殊トークンの反復，空出力，入力プロンプトの再掲を無効応答として扱った．一方，部分的な反復，形式上は流暢だが質問に応答していない出力，拒否と有害追従が混在する出力などには判断の曖昧さが残る．したがって，VRRおよびVSRは普遍的な絶対値ではなく，本研究で明示した判定規則の下での評価値として解釈する必要がある．
+
+第二に，有害性判定および応答有効性判定にはHarmBench Classifier[19]およびLlama Guard[72]を用いており，自動評価器の誤判定を完全に排除することはできない．二重チェックは単一評価器への依存を緩和するが，両評価器が共通して誤る場合や，部分的追従を適切に判定できない場合は残る可能性がある．今後は，人手評価によるvalid/invalid規則の検証，複数評価器間の一致度分析，および判定困難な応答に対する``undetermined''カテゴリの導入が必要であると考える．
+
+第三に，本研究はLlama-2-7B[30]を中心に評価しており，より大規模なモデル，異なるアーキテクチャ，およびLoRA等の低ランクアダプタ空間への一般化は検証していない．また，計算資源上の制約から，各ベンチマークの評価件数は最大320件に限った．したがって，本研究は個々の手法の絶対的順位や全モデル規模への一般化を主張するものではなく，Secure Mergeにおいて応答有効性を評価する必要性を示すものである．
+
+%%%%%%%%%%%%%%%%%%%
+\section{まとめ}
+
+本研究は，Secure Merge設定下においてASRのみを安全性指標として用いると，無効応答，反復出力，入力再掲，および生成崩壊が安全として誤って分類される可能性を示した．この問題に対処するため，本研究は生成応答を有効／無効および有害追従／非追従の二段階で評価するValidity-aware評価プロトコルを導入した．具体的には，Original ASR，Conditional ASR，Valid Response Rate，Valid Safety Rate，有用性，およびPPL等の補助診断指標を併記し，従来のASR評価では区別できない安全性状態を分離した．
+
+代表的な既存merge手法を同一条件下で再評価した結果，Original ASRが低い条件の一部は，有効な安全拒否ではなく無効応答に起因するFalse Safeとして再分類された．また，低いOriginal ASRにもかかわらず，有効応答に限定すると有害要求への追従が多いUnsafe but functionalな条件も確認された．これらの結果は，Secure MergeにおけるSafety--Utility trade-offおよび手法間の評価が，ASR単独の評価規則に強く依存することを示している．
+
+本研究の主な貢献は，特定のmerge手法の優位性を主張することではなく，Secure Mergeの安全性評価に応答有効性を組み込む必要性を実証した点にある．今後は，人手評価を含むvalid/invalid判定規則の検証，複数の安全性評価器間の一致度分析，より大規模なモデルおよび低ランクアダプタ空間への適用を通じて，Validity-aware評価の一般性と頑健性を検証する必要がある．
+
+さらに、本研究の知見はSecure Mergeにおける最適な手法設計の方向性を示唆している。干渉緩和手法が出力崩壊（False Safe）を招き、一部の安全性維持手法が異常出力（False Unsafe）を引き起こしたことから、単一の干渉緩和策だけでは不十分である。今後は、Fisher情報等を用いて言語生成能力（VRRや有用性）を保護しつつ、層・モジュール単位で安全な拒否（VSR）に関わるパラメータ領域を独立して合成するなど、応答有効性を損なわずに安全性を維持する「Validity-awareな合成最適化」の探求が期待される。
+
+%%%%%%%%%%%%%%%%%%%
+
+\section*{References}
+
+
+References follow the acknowledgments in the camera-ready paper. Use unnumbered first-level heading for
+the references. Any choice of citation style is acceptable as long as you are
+consistent. It is permissible to reduce the font size to \verb+small+ (9 point)
+when listing the references.
+Note that the Reference section does not count towards the page limit.
+\medskip
+
+
+{
+\small
+[1] Hammoud, H. A. A. K., Michieli, U., Pizzati, F., Torr, P., Bibi, A., Ghanem, B., & Ozay, M. (2024, November). Model merging and safety alignment: One bad model spoils the bunch. In Findings of the Association for Computational Linguistics: EMNLP 2024 (pp. 13033-13046).
+@inproceedings{hammoud2024model,
+  title={Model merging and safety alignment: One bad model spoils the bunch},
+  author={Hammoud, Hasan Abed Al Kader and Michieli, Umberto and Pizzati, Fabio and Torr, Philip and Bibi, Adel and Ghanem, Bernard and Ozay, Mete},
+  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2024},
+  pages={13033--13046},
+  year={2024}
+}
+
+[2] Thakkar, M., Fournier, Q., Riemer, M., Chen, P. Y., Zouaq, A., Das, P., & Chandar, S. (2024). Combining domain and alignment vectors to achieve better knowledge-safety trade-offs in llms. arXiv preprint arXiv:2411.06824.
+@article{thakkar2024combining,
+  title={Combining domain and alignment vectors to achieve better knowledge-safety trade-offs in llms},
+  author={Thakkar, Megh and Fournier, Quentin and Riemer, Matthew and Chen, Pin-Yu and Zouaq, Amal and Das, Payel and Chandar, Sarath},
+  journal={arXiv preprint arXiv:2411.06824},
+  year={2024}
+}
+
+[3] Wortsman, M., Ilharco, G., Gadre, S. Y., Roelofs, R., Gontijo-Lopes, R., Morcos, A. S., ... & Schmidt, L. (2022, June). Model soups: averaging weights of multiple fine-tuned models improves accuracy without increasing inference time. In International conference on machine learning (pp. 23965-23998). Pmlr.
+@inproceedings{wortsman2022model,
+  title={Model soups: averaging weights of multiple fine-tuned models improves accuracy without increasing inference time},
+  author={Wortsman, Mitchell and Ilharco, Gabriel and Gadre, Samir Ya and Roelofs, Rebecca and Gontijo-Lopes, Raphael and Morcos, Ari S and Namkoong, Hongseok and Farhadi, Ali and Carmon, Yair and Kornblith, Simon and others},
+  booktitle={International conference on machine learning},
+  pages={23965--23998},
+  year={2022},
+  organization={Pmlr}
+}
+
+[4] Ilharco, G., Ribeiro, M. T., Wortsman, M., Gururangan, S., Schmidt, L., Hajishirzi, H., & Farhadi, A. (2022). Editing models with task arithmetic. arXiv preprint arXiv:2212.04089.
+@article{ilharco2022editing,
+  title={Editing models with task arithmetic},
+  author={Ilharco, Gabriel and Ribeiro, Marco Tulio and Wortsman, Mitchell and Gururangan, Suchin and Schmidt, Ludwig and Hajishirzi, Hannaneh and Farhadi, Ali},
+  journal={arXiv preprint arXiv:2212.04089},
+  year={2022}
+}
+
+[5] Yadav, P., Tam, D., Choshen, L., Raffel, C. A., & Bansal, M. (2023). Ties-merging: Resolving interference when merging models. Advances in neural information processing systems, 36, 7093-7115.
+@article{yadav2023ties,
+  title={Ties-merging: Resolving interference when merging models},
+  author={Yadav, Prateek and Tam, Derek and Choshen, Leshem and Raffel, Colin A and Bansal, Mohit},
+  journal={Advances in neural information processing systems},
+  volume={36},
+  pages={7093--7115},
+  year={2023}
+}
+
+[6] Yu, L., Yu, B., Yu, H., Huang, F., & Li, Y. (2024, June). Language Models are Super Mario: Absorbing Abilities from Homologous Models as a Free Lunch. In Icml (Vol. 2, No. 8, p. 21).
+@inproceedings{yu2024language,
+  title={Language Models are Super Mario: Absorbing Abilities from Homologous Models as a Free Lunch.},
+  author={Yu, Linyan and Yu, Bowen and Yu, Haiyang and Huang, Fei and Li, Yongbin},
+  booktitle={Icml},
+  volume={2},
+  number={8},
+  pages={21},
+  year={2024}
+}
+
+[7] Deep, P. T., Bhardwaj, R., & Poria, S. (2024). Della-merging: Reducing interference in model merging through magnitude-based sampling. arXiv preprint arXiv:2406.11617.
+@article{deep2024della,
+  title={Della-merging: Reducing interference in model merging through magnitude-based sampling},
+  author={Deep, Pala Tej and Bhardwaj, Rishabh and Poria, Soujanya},
+  journal={arXiv preprint arXiv:2406.11617},
+  year={2024}
+}
+
+[8] Djuhera, A., Kadhe, S. R., Ahmed, F., Zawad, S., & Boche, H. (2026, July). Safemerge: Preserving safety alignment in fine-tuned large language models via selective layer-wise model merging. In Findings of the Association for Computational Linguistics: ACL 2026 (pp. 35316-35335).
+@inproceedings{djuhera2026safemerge,
+  title={Safemerge: Preserving safety alignment in fine-tuned large language models via selective layer-wise model merging},
+  author={Djuhera, Aladin and Kadhe, Swanand Ravindra and Ahmed, Farhan and Zawad, Syed and Boche, Holger},
+  booktitle={Findings of the Association for Computational Linguistics: ACL 2026},
+  pages={35316--35335},
+  year={2026}
+}
+
+[9] Ma, Q., Liu, D., Chen, Q., Zhang, L., & Shao, J. (2025, July). Led-merging: Mitigating safety-utility conflicts in model merging with location-election-disjoint. In Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) (pp. 21749-21767).
+@inproceedings{ma2025led,
+  title={Led-merging: Mitigating safety-utility conflicts in model merging with location-election-disjoint},
+  author={Ma, Qianli and Liu, Dongrui and Chen, Qian and Zhang, Linfeng and Shao, Jing},
+  booktitle={Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  pages={21749--21767},
+  year={2025}
+}
+
+[10] Matena, M. S., & Raffel, C. (2022). Merging models with fisher-weighted averaging. Advances in Neural Information Processing Systems, 35, 17703-17716.
+@article{matena2022merging,
+  title={Merging models with fisher-weighted averaging},
+  author={Matena, Michael S and Raffel, Colin},
+  journal={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={17703--17716},
+  year={2022}
+}
+
+[11] Daheim, N., Möllenhoff, T., Ponti, E. M., Gurevych, I., & Khan, M. E. (2023). Model merging by uncertainty-based gradient matching. arXiv preprint arXiv:2310.12808.
+@article{daheim2023model,
+  title={Model merging by uncertainty-based gradient matching},
+  author={Daheim, Nico and M{\"o}llenhoff, Thomas and Ponti, Edoardo Maria and Gurevych, Iryna and Khan, Mohammad Emtiyaz},
+  journal={arXiv preprint arXiv:2310.12808},
+  year={2023}
+}
+
+[12] Thennal, D. K., Nathan, G., & Suchithra, M. S. (2024, May). Fisher mask nodes for language model merging. In Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024) (pp. 7349-7355).
+@inproceedings{thennal2024fisher,
+  title={Fisher mask nodes for language model merging},
+  author={Thennal, DK and Nathan, Ganesh and Suchithra, MS},
+  booktitle={Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)},
+  pages={7349--7355},
+  year={2024}
+}
+
+[13] Gain, B., Dana, S., Sharma, U., Mondal, A. K., AP, P., Garg, D., ... & Ekbal, A. Task-Aware Model Merging via Fisher-Weighted Median. Transactions on Machine Learning Research.
+@article{gaintask,
+  title={Task-Aware Model Merging via Fisher-Weighted Median},
+  author={Gain, Baban and Dana, Saswati and Sharma, Udit and Mondal, Arnab Kumar and AP, Prathosh and Garg, Dinesh and Singhee, Amith and Ekbal, Asif},
+  journal={Transactions on Machine Learning Research}
+}
+
+[14] Lee, S., Liu, J., Wang, Q., Wang, J., Cai, X., & Wu, Y. (2025, April). Dynamic fisher-weighted model merging via bayesian optimization. In Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers) (pp. 4923-4935).
+@inproceedings{lee2025dynamic,
+  title={Dynamic fisher-weighted model merging via bayesian optimization},
+  author={Lee, Sanwoo and Liu, Jiahao and Wang, Qifan and Wang, Jingang and Cai, Xunliang and Wu, Yunfang},
+  booktitle={Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)},
+  pages={4923--4935},
+  year={2025}
+}
+
+[15] Roy, A., Patel, J., Chadha, A., Jain, V., & Das, A. (2025). Alignmerge-alignment-preserving large language model merging via fisher-guided geometric constraints. arXiv preprint arXiv:2512.16245.
+@article{roy2025alignmerge,
+  title={Alignmerge-alignment-preserving large language model merging via fisher-guided geometric constraints},
+  author={Roy, Aniruddha and Patel, Jyoti and Chadha, Aman and Jain, Vinija and Das, Amitava},
+  journal={arXiv preprint arXiv:2512.16245},
+  year={2025}
+}
+
+[16] Xia, T. (2026). Data-Free Layer-Adaptive Merging via Fisher Information for Long-to-Short Reasoning LLMs. arXiv preprint arXiv:2603.21705.
+@article{xia2026data,
+  title={Data-Free Layer-Adaptive Merging via Fisher Information for Long-to-Short Reasoning LLMs},
+  author={Xia, Tian},
+  journal={arXiv preprint arXiv:2603.21705},
+  year={2026}
+}
+
+[17] Huang, Y., Sun, L., Wang, H., Wu, S., Zhang, Q., Li, Y., ... & Zhao, Y. (2024, July). Position: Trustllm: Trustworthiness in large language models. In International Conference on Machine Learning (pp. 20166-20270). PMLR.
+@inproceedings{huang2024position,
+  title={Position: Trustllm: Trustworthiness in large language models},
+  author={Huang, Yue and Sun, Lichao and Wang, Haoran and Wu, Siyuan and Zhang, Qihui and Li, Yuan and Gao, Chujie and Huang, Yixin and Lyu, Wenhan and Zhang, Yixuan and others},
+  booktitle={International Conference on Machine Learning},
+  pages={20166--20270},
+  year={2024},
+  organization={PMLR}
+}
+
+[18] Ji, J., Liu, M., Dai, J., Pan, X., Zhang, C., Bian, C., ... & Yang, Y. (2023). Beavertails: Towards improved safety alignment of llm via a human-preference dataset. Advances in Neural Information Processing Systems, 36, 24678-24704.
+@article{ji2023beavertails,
+  title={Beavertails: Towards improved safety alignment of llm via a human-preference dataset},
+  author={Ji, Jiaming and Liu, Mickel and Dai, Josef and Pan, Xuehai and Zhang, Chi and Bian, Ce and Chen, Boyuan and Sun, Ruiyang and Wang, Yizhou and Yang, Yaodong},
+  journal={Advances in Neural Information Processing Systems},
+  volume={36},
+  pages={24678--24704},
+  year={2023}
+}
+
+[19] Mazeika, M., Phan, L., Yin, X., Zou, A., Wang, Z., Mu, N., ... & Hendrycks, D. (2024). Harmbench: A standardized evaluation framework for automated red teaming and robust refusal. arXiv preprint arXiv:2402.04249.
+@article{mazeika2024harmbench,
+  title={Harmbench: A standardized evaluation framework for automated red teaming and robust refusal},
+  author={Mazeika, Mantas and Phan, Long and Yin, Xuwang and Zou, Andy and Wang, Zifan and Mu, Norman and Sakhaee, Elham and Li, Nathaniel and Basart, Steven and Li, Bo and others},
+  journal={arXiv preprint arXiv:2402.04249},
+  year={2024}
+}
+
+[20] Chao, P., Debenedetti, E., Robey, A., Andriushchenko, M., Croce, F., Sehwag, V., ... & Wong, E. (2024). Jailbreakbench: An open robustness benchmark for jailbreaking large language models. Advances in Neural Information Processing Systems, 37, 55005-55029.
+@article{chao2024jailbreakbench,
+  title={Jailbreakbench: An open robustness benchmark for jailbreaking large language models},
+  author={Chao, Patrick and Debenedetti, Edoardo and Robey, Alexander and Andriushchenko, Maksym and Croce, Francesco and Sehwag, Vikash and Dobriban, Edgar and Flammarion, Nicolas and Pappas, George J and Tramer, Florian and others},
+  journal={Advances in Neural Information Processing Systems},
+  volume={37},
+  pages={55005--55029},
+  year={2024}
+}
+
+[21] Souly, A., Lu, Q., Bowen, D., Trinh, T., Hsieh, E., Pandey, S., ... & Toyer, S. (2024). A strongreject for empty jailbreaks. Advances in Neural Information Processing Systems, 37, 125416-125440.
+@article{souly2024strongreject,
+  title={A strongreject for empty jailbreaks},
+  author={Souly, Alexandra and Lu, Qingyuan and Bowen, Dillon and Trinh, Tu and Hsieh, Elvis and Pandey, Sana and Abbeel, Pieter and Svegliato, Justin and Emmons, Scott and Watkins, Olivia and others},
+  journal={Advances in Neural Information Processing Systems},
+  volume={37},
+  pages={125416--125440},
+  year={2024}
+}
+
+[22] Jiang, L., Rao, K., Han, S., Ettinger, A., Brahman, F., Kumar, S., ... & Dziri, N. (2024). Wildteaming at scale: From in-the-wild jailbreaks to (adversarially) safer language models. Advances in Neural Information Processing Systems, 37, 47094-47165.
+@article{jiang2024wildteaming,
+  title={Wildteaming at scale: From in-the-wild jailbreaks to (adversarially) safer language models},
+  author={Jiang, Liwei and Rao, Kavel and Han, Seungju and Ettinger, Allyson and Brahman, Faeze and Kumar, Sachin and Mireshghallah, Niloofar and Lu, Ximing and Sap, Maarten and Choi, Yejin and others},
+  journal={Advances in Neural Information Processing Systems},
+  volume={37},
+  pages={47094--47165},
+  year={2024}
+}
+
+[23] Röttger, P., Kirk, H., Vidgen, B., Attanasio, G., Bianchi, F., & Hovy, D. (2024, June). Xstest: A test suite for identifying exaggerated safety behaviours in large language models. In Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers) (pp. 5377-5400).
+@inproceedings{rottger2024xstest,
+  title={Xstest: A test suite for identifying exaggerated safety behaviours in large language models},
+  author={R{\"o}ttger, Paul and Kirk, Hannah and Vidgen, Bertie and Attanasio, Giuseppe and Bianchi, Federico and Hovy, Dirk},
+  booktitle={Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)},
+  pages={5377--5400},
+  year={2024}
+}
+
+[24] Hiromi, S., Kinoshita, H., Yamada, M., & Miura, T. (2025, May). Enhancing Jailbreak Resistance in Large Language Models Using Model Merge. In 2025 IEEE Security and Privacy Workshops (SPW) (pp. 111-117). IEEE.
+@inproceedings{hiromi2025enhancing,
+  title={Enhancing Jailbreak Resistance in Large Language Models Using Model Merge},
+  author={Hiromi, Saki and Kinoshita, Hiroki and Yamada, Masanori and Miura, Takayuki},
+  booktitle={2025 IEEE Security and Privacy Workshops (SPW)},
+  pages={111--117},
+  year={2025},
+  organization={IEEE}
+}
+
+[25] Ortiz-Jimenez, G., Favero, A., & Frossard, P. (2023). Task arithmetic in the tangent space: Improved editing of pre-trained models. Advances in Neural Information Processing Systems, 36, 66727-66754.
+@article{ortiz2023task,
+  title={Task arithmetic in the tangent space: Improved editing of pre-trained models},
+  author={Ortiz-Jimenez, Guillermo and Favero, Alessandro and Frossard, Pascal},
+  journal={Advances in Neural Information Processing Systems},
+  volume={36},
+  pages={66727--66754},
+  year={2023}
+}
+
+[26] Yang, E., Shen, L., Guo, G., Wang, X., Cao, X., Zhang, J., & Tao, D. (2026). Model merging in llms, mllms, and beyond: Methods, theories, applications, and opportunities. ACM Computing Surveys, 58(8), 1-41.
+@article{yang2026model,
+  title={Model merging in llms, mllms, and beyond: Methods, theories, applications, and opportunities},
+  author={Yang, Enneng and Shen, Li and Guo, Guibing and Wang, Xingwei and Cao, Xiaochun and Zhang, Jie and Tao, Dacheng},
+  journal={ACM Computing Surveys},
+  volume={58},
+  number={8},
+  pages={1--41},
+  year={2026},
+  publisher={ACM New York, NY}
+}
+
+% [27] Chegini, A., Kazemi, H., Mirzadeh, I., Yin, D., Horton, M., Nabi, M., ... & Alizadeh, K. (2024). Salsa: Soup-based alignment learning for stronger adaptation in rlhf. arXiv preprint arXiv:2411.01798.
+% @article{chegini2024salsa,
+%   title={Salsa: Soup-based alignment learning for stronger adaptation in rlhf},
+%   author={Chegini, Atoosa and Kazemi, Hamid and Mirzadeh, Iman and Yin, Dong and Horton, Maxwell and Nabi, Moin and Farajtabar, Mehrdad and Alizadeh, Keivan},
+%   journal={arXiv preprint arXiv:2411.01798},
+%   year={2024}
+% }
+
+% [28] Crisostomi, D., Fumero, M., Baieri, D., Bernard, F., & Rodolà, E. (2024). $ C^ 2M^ 3$: Cycle-Consistent Multi-Model Merging. Advances in Neural Information Processing Systems, 37, 28674-28705.
+% @article{crisostomi2024c,
+%   title={$ C\^{} 2M\^{} 3$: Cycle-Consistent Multi-Model Merging},
+%   author={Crisostomi, Donato and Fumero, Marco and Baieri, Daniele and Bernard, Florian and Rodol{\`a}, Emanuele},
+%   journal={Advances in Neural Information Processing Systems},
+%   volume={37},
+%   pages={28674--28705},
+%   year={2024}
+% }
+
+% [29] Akiba, T., Shing, M., Tang, Y., Sun, Q., & Ha, D. (2025). Evolutionary optimization of model merging recipes. Nature Machine Intelligence, 7(2), 195-204.
+% @article{akiba2025evolutionary,
+%   title={Evolutionary optimization of model merging recipes},
+%   author={Akiba, Takuya and Shing, Makoto and Tang, Yujin and Sun, Qi and Ha, David},
+%   journal={Nature Machine Intelligence},
+%   volume={7},
+%   number={2},
+%   pages={195--204},
+%   year={2025},
+%   publisher={Nature Publishing Group UK London}
+% }
+
+[30] Touvron, H., Martin, L., Stone, K., Albert, P., Almahairi, A., Babaei, Y., ... & Scialom, T. (2023). Llama 2: Open foundation and fine-tuned chat models. arXiv preprint arXiv:2307.09288.
+@article{touvron2023llama,
+  title={Llama 2: Open foundation and fine-tuned chat models},
+  author={Touvron, Hugo and Martin, Louis and Stone, Kevin and Albert, Peter and Almahairi, Amjad and Babaei, Yasmine and Bashlykov, Nikolay and Batra, Soumya and Bhargava, Prajjwal and Bhosale, Shruti and others},
+  journal={arXiv preprint arXiv:2307.09288},
+  year={2023}
+}
+
+[31] Luo, H., Sun, Q., Xu, C., Zhao, P., Lou, J. G., Tao, C., ... & Zhang, D. (2025, May). Wizardmath: Empowering mathematical reasoning for large language models via reinforced evol-instruct. In International Conference on Learning Representations (Vol. 2025, pp. 49573-49609).
+@inproceedings{luo2025wizardmath,
+  title={Wizardmath: Empowering mathematical reasoning for large language models via reinforced evol-instruct},
+  author={Luo, Haipeng and Sun, Qingfeng and Xu, Can and Zhao, Pu and Lou, Jian-Guang and Tao, Chongyang and Geng, Xiubo and Lin, Qingwei and Chen, Shifeng and Tang, Yansong and others},
+  booktitle={International Conference on Learning Representations},
+  volume={2025},
+  pages={49573--49609},
+  year={2025}
+}
+
+
+[32] Luo, Z., Xu, C., Zhao, P., Sun, Q., Geng, X., Hu, W., ... & Jiang, D. (2024, May). Wizardcoder: Empowering code large language models with evol-instruct. In International Conference on Learning Representations (Vol. 2024, pp. 27168-27188).
+@inproceedings{luo2024wizardcoder,
+  title={Wizardcoder: Empowering code large language models with evol-instruct},
+  author={Luo, Ziyang and Xu, Can and Zhao, Pu and Sun, Qingfeng and Geng, Xiubo and Hu, Wenxiang and Tao, Chongyang and Ma, Jing and Lin, Qingwei and Jiang, Daxin},
+  booktitle={International Conference on Learning Representations},
+  volume={2024},
+  pages={27168--27188},
+  year={2024}
+}
+
+[33] Han, T., Adams, L. C., Papaioannou, J. M., Grundmann, P., Oberhauser, T., Figueroa, A., ... & Bressem, K. K. (2023). MedAlpaca--an open-source collection of medical conversational AI models and training data. arXiv preprint arXiv:2304.08247.
+@article{han2023medalpaca,
+  title={MedAlpaca--an open-source collection of medical conversational AI models and training data},
+  author={Han, Tianyu and Adams, Lisa C and Papaioannou, Jens-Michalis and Grundmann, Paul and Oberhauser, Tom and Figueroa, Alexei and L{\"o}ser, Alexander and Truhn, Daniel and Bressem, Keno K},
+  journal={arXiv preprint arXiv:2304.08247},
+  year={2023}
+}
+
+[34] Cobbe, K., Kosaraju, V., Bavarian, M., Chen, M., Jun, H., Kaiser, L., ... & Schulman, J. (2021). Training verifiers to solve math word problems. arXiv preprint arXiv:2110.14168.
+@article{cobbe2021training,
+  title={Training verifiers to solve math word problems},
+  author={Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and others},
+  journal={arXiv preprint arXiv:2110.14168},
+  year={2021}
+}
+
+
+[35] Lewkowycz, A., Andreassen, A., Dohan, D., Dyer, E., Michalewski, H., Ramasesh, V., ... & Misra, V. (2022). Solving quantitative reasoning problems with language models. Advances in neural information processing systems, 35, 3843-3857.
+@article{lewkowycz2022solving,
+  title={Solving quantitative reasoning problems with language models},
+  author={Lewkowycz, Aitor and Andreassen, Anders and Dohan, David and Dyer, Ethan and Michalewski, Henryk and Ramasesh, Vinay and Slone, Ambrose and Anil, Cem and Schlag, Imanol and Gutman-Solo, Theo and others},
+  journal={Advances in neural information processing systems},
+  volume={35},
+  pages={3843--3857},
+  year={2022}
+}
+
+[36] Chen, M., Tworek, J., Jun, H., Yuan, Q., Pinto, H. P. D. O., Kaplan, J., ... & Zaremba, W. (2021). Evaluating large language models trained on code. arXiv preprint arXiv:2107.03374.
+@article{chen2021evaluating,
+  title={Evaluating large language models trained on code},
+  author={Chen, Mark and Tworek, Jerry and Jun, Heewoo and Yuan, Qiming and Pinto, Henrique Ponde De Oliveira and Kaplan, Jared and Edwards, Harri and Burda, Yuri and Joseph, Nicholas and Brockman, Greg and others},
+  journal={arXiv preprint arXiv:2107.03374},
+  year={2021}
+}
+
+[37] Austin, J., Odena, A., Nye, M., Bosma, M., Michalewski, H., Dohan, D., ... & Sutton, C. (2021). Program synthesis with large language models. arXiv preprint arXiv:2108.07732.
+@article{austin2021program,
+  title={Program synthesis with large language models},
+  author={Austin, Jacob and Odena, Augustus and Nye, Maxwell and Bosma, Maarten and Michalewski, Henryk and Dohan, David and Jiang, Ellen and Cai, Carrie and Terry, Michael and Le, Quoc and others},
+  journal={arXiv preprint arXiv:2108.07732},
+  year={2021}
+}
+
+[38] Jin, Q., Dhingra, B., Liu, Z., Cohen, W., & Lu, X. (2019, November). Pubmedqa: A dataset for biomedical research question answering. In Proceedings of the 2019 conference on empirical methods in natural language processing and the 9th international joint conference on natural language processing (EMNLP-IJCNLP) (pp. 2567-2577).
+@inproceedings{jin2019pubmedqa,
+  title={Pubmedqa: A dataset for biomedical research question answering},
+  author={Jin, Qiao and Dhingra, Bhuwan and Liu, Zhengping and Cohen, William and Lu, Xinghua},
+  booktitle={Proceedings of the 2019 conference on empirical methods in natural language processing and the 9th international joint conference on natural language processing (EMNLP-IJCNLP)},
+  pages={2567--2577},
+  year={2019}
+}
+
+[39] Jin, D., Pan, E., Oufattole, N., Weng, W. H., Fang, H., & Szolovits, P. (2021). What disease does this patient have? a large-scale open domain question answering dataset from medical exams. Applied Sciences, 11(14), 6421.
+@article{jin2021disease,
+  title={What disease does this patient have? a large-scale open domain question answering dataset from medical exams},
+  author={Jin, Di and Pan, Eileen and Oufattole, Nassim and Weng, Wei-Hung and Fang, Hanyi and Szolovits, Peter},
+  journal={Applied Sciences},
+  volume={11},
+  number={14},
+  pages={6421},
+  year={2021},
+  publisher={MDPI}
+}
+
+[40] Hendrycks, D., Burns, C., Basart, S., Zou, A., Mazeika, M., Song, D., & Steinhardt, J. (2020). Measuring massive multitask language understanding. arXiv preprint arXiv:2009.03300.
+@article{hendrycks2020measuring,
+  title={Measuring massive multitask language understanding},
+  author={Hendrycks, Dan and Burns, Collin and Basart, Steven and Zou, Andy and Mazeika, Mantas and Song, Dawn and Steinhardt, Jacob},
+  journal={arXiv preprint arXiv:2009.03300},
+  year={2020}
+}
+
+[41] Zhou, J., Lu, T., Mishra, S., Brahma, S., Basu, S., Luan, Y., ... & Hou, L. (2023). Instruction-following evaluation for large language models. arXiv preprint arXiv:2311.07911.
+@article{zhou2023instruction,
+  title={Instruction-following evaluation for large language models},
+  author={Zhou, Jeffrey and Lu, Tianjian and Mishra, Swaroop and Brahma, Siddhartha and Basu, Sujoy and Luan, Yi and Zhou, Denny and Hou, Le},
+  journal={arXiv preprint arXiv:2311.07911},
+  year={2023}
+}
+
+[42] Dubois, Y., Li, C. X., Taori, R., Zhang, T., Gulrajani, I., Ba, J., ... & Hashimoto, T. B. (2023). Alpacafarm: A simulation framework for methods that learn from human feedback. Advances in Neural Information Processing Systems, 36, 30039-30069.
+@article{dubois2023alpacafarm,
+  title={Alpacafarm: A simulation framework for methods that learn from human feedback},
+  author={Dubois, Yann and Li, Chen Xuechen and Taori, Rohan and Zhang, Tianyi and Gulrajani, Ishaan and Ba, Jimmy and Guestrin, Carlos and Liang, Percy S and Hashimoto, Tatsunori B},
+  journal={Advances in Neural Information Processing Systems},
+  volume={36},
+  pages={30039--30069},
+  year={2023}
+}
+
+[43] Goddard, C., Siriwardhana, S., Ehghaghi, M., Meyers, L., Karpukhin, V., Benedict, B., ... & Solawetz, J. (2024, November). Arcee’s mergekit: A toolkit for merging large language models. In Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: Industry Track (pp. 477-485).
+@inproceedings{goddard2024arcee,
+  title={Arcee’s mergekit: A toolkit for merging large language models},
+  author={Goddard, Charles and Siriwardhana, Shamane and Ehghaghi, Malikeh and Meyers, Luke and Karpukhin, Vladimir and Benedict, Brian and McQuade, Mark and Solawetz, Jacob},
+  booktitle={Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: Industry Track},
+  pages={477--485},
+  year={2024}
+}
+
+% [44] Devlin, J., Chang, M. W., Lee, K., & Toutanova, K. (2019, June). Bert: Pre-training of deep bidirectional transformers for language understanding. In Proceedings of the 2019 conference of the North American chapter of the association for computational linguistics: human language technologies, volume 1 (long and short papers) (pp. 4171-4186).
+% @inproceedings{devlin2019bert,
+%   title={Bert: Pre-training of deep bidirectional transformers for language understanding},
+%   author={Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina},
+%   booktitle={Proceedings of the 2019 conference of the North American chapter of the association for computational linguistics: human language technologies, volume 1 (long and short papers)},
+%   pages={4171--4186},
+%   year={2019}
+% }
+
+% [45] Raffel, C., Shazeer, N., Roberts, A., Lee, K., Narang, S., Matena, M., ... & Liu, P. J. (2020). Exploring the limits of transfer learning with a unified text-to-text transformer. Journal of machine learning research, 21(140), 1-67.
+% @article{raffel2020exploring,
+%   title={Exploring the limits of transfer learning with a unified text-to-text transformer},
+%   author={Raffel, Colin and Shazeer, Noam and Roberts, Adam and Lee, Katherine and Narang, Sharan and Matena, Michael and Zhou, Yanqi and Li, Wei and Liu, Peter J},
+%   journal={Journal of machine learning research},
+%   volume={21},
+%   number={140},
+%   pages={1--67},
+%   year={2020}
+% }
+
+% [46] Brown, T., Mann, B., Ryder, N., Subbiah, M., Kaplan, J. D., Dhariwal, P., ... & Amodei, D. (2020). Language models are few-shot learners. Advances in neural information processing systems, 33, 1877-1901.
+% @article{brown2020language,
+%   title={Language models are few-shot learners},
+%   author={Brown, Tom and Mann, Benjamin and Ryder, Nick and Subbiah, Melanie and Kaplan, Jared D and Dhariwal, Prafulla and Neelakantan, Arvind and Shyam, Pranav and Sastry, Girish and Askell, Amanda and others},
+%   journal={Advances in neural information processing systems},
+%   volume={33},
+%   pages={1877--1901},
+%   year={2020}
+% }
+
+[47] Zou, A., Wang, Z., Carlini, N., Nasr, M., Kolter, J. Z., & Fredrikson, M. (2023). Universal and transferable adversarial attacks on aligned language models. arXiv preprint arXiv:2307.15043.
+@article{zou2023universal,
+  title={Universal and transferable adversarial attacks on aligned language models},
+  author={Zou, Andy and Wang, Zifan and Carlini, Nicholas and Nasr, Milad and Kolter, J Zico and Fredrikson, Matt},
+  journal={arXiv preprint arXiv:2307.15043},
+  year={2023}
+}
+
+[48] Wei, A., Haghtalab, N., & Steinhardt, J. (2023). Jailbroken: How does llm safety training fail?. Advances in neural information processing systems, 36, 80079-80110.
+@article{wei2023jailbroken,
+  title={Jailbroken: How does llm safety training fail?},
+  author={Wei, Alexander and Haghtalab, Nika and Steinhardt, Jacob},
+  journal={Advances in neural information processing systems},
+  volume={36},
+  pages={80079--80110},
+  year={2023}
+}
+
+[49] Garipov, T., Izmailov, P., Podoprikhin, D., Vetrov, D. P., & Wilson, A. G. (2018). Loss surfaces, mode connectivity, and fast ensembling of dnns. Advances in neural information processing systems, 31.
+@article{garipov2018loss,
+  title={Loss surfaces, mode connectivity, and fast ensembling of dnns},
+  author={Garipov, Timur and Izmailov, Pavel and Podoprikhin, Dmitrii and Vetrov, Dmitry P and Wilson, Andrew G},
+  journal={Advances in neural information processing systems},
+  volume={31},
+  year={2018}
+}
+
+[50] Draxler, F., Veschgini, K., Salmhofer, M., & Hamprecht, F. (2018, July). Essentially no barriers in neural network energy landscape. In International conference on machine learning (pp. 1309-1318). PMLR.
+@inproceedings{draxler2018essentially,
+  title={Essentially no barriers in neural network energy landscape},
+  author={Draxler, Felix and Veschgini, Kambis and Salmhofer, Manfred and Hamprecht, Fred},
+  booktitle={International conference on machine learning},
+  pages={1309--1318},
+  year={2018},
+  organization={PMLR}
+}
+
+[51] Neyshabur, B., Sedghi, H., & Zhang, C. (2020). What is being transferred in transfer learning?. Advances in neural information processing systems, 33, 512-523.
+@article{neyshabur2020being,
+  title={What is being transferred in transfer learning?},
+  author={Neyshabur, Behnam and Sedghi, Hanie and Zhang, Chiyuan},
+  journal={Advances in neural information processing systems},
+  volume={33},
+  pages={512--523},
+  year={2020}
+}
+
+[52] Entezari, R., Sedghi, H., Saukh, O., & Neyshabur, B. (2021). The role of permutation invariance in linear mode connectivity of neural networks. arXiv preprint arXiv:2110.06296.
+@article{entezari2021role,
+  title={The role of permutation invariance in linear mode connectivity of neural networks},
+  author={Entezari, Rahim and Sedghi, Hanie and Saukh, Olga and Neyshabur, Behnam},
+  journal={arXiv preprint arXiv:2110.06296},
+  year={2021}
+}
+
+[54] Kirkpatrick, J., Pascanu, R., Rabinowitz, N., Veness, J., Desjardins, G., Rusu, A. A., ... & Hadsell, R. (2017). Overcoming catastrophic forgetting in neural networks. Proceedings of the national academy of sciences, 114(13), 3521-3526.
+@article{kirkpatrick2017overcoming,
+  title={Overcoming catastrophic forgetting in neural networks},
+  author={Kirkpatrick, James and Pascanu, Razvan and Rabinowitz, Neil and Veness, Joel and Desjardins, Guillaume and Rusu, Andrei A and Milan, Kieran and Quan, John and Ramalho, Tiago and Grabska-Barwinska, Agnieszka and others},
+  journal={Proceedings of the national academy of sciences},
+  volume={114},
+  number={13},
+  pages={3521--3526},
+  year={2017},
+  publisher={National Academy of Sciences}
+}
+
+[55] Izmailov, P., Podoprikhin, D., Garipov, T., Vetrov, D., & Wilson, A. G. (2018). Averaging weights leads to wider optima and better generalization. arXiv preprint arXiv:1803.05407.
+@article{izmailov2018averaging,
+  title={Averaging weights leads to wider optima and better generalization},
+  author={Izmailov, Pavel and Podoprikhin, Dmitrii and Garipov, Timur and Vetrov, Dmitry and Wilson, Andrew Gordon},
+  journal={arXiv preprint arXiv:1803.05407},
+  year={2018}
+}
+
+% [56] Hinton, G., Vinyals, O., & Dean, J. (2015). Distilling the knowledge in a neural network. arXiv preprint arXiv:1503.02531.
+% @article{hinton2015distilling,
+%   title={Distilling the knowledge in a neural network},
+%   author={Hinton, Geoffrey and Vinyals, Oriol and Dean, Jeff},
+%   journal={arXiv preprint arXiv:1503.02531},
+%   year={2015}
+% }
+
+% [57] McMahan, B., Moore, E., Ramage, D., Hampson, S., & y Arcas, B. A. (2017, April). Communication-efficient learning of deep networks from decentralized data. In Artificial intelligence and statistics (pp. 1273-1282). Pmlr.
+% @inproceedings{mcmahan2017communication,
+%   title={Communication-efficient learning of deep networks from decentralized data},
+%   author={McMahan, Brendan and Moore, Eider and Ramage, Daniel and Hampson, Seth and y Arcas, Blaise Aguera},
+%   booktitle={Artificial intelligence and statistics},
+%   pages={1273--1282},
+%   year={2017},
+%   organization={Pmlr}
+% }
+
+[58] Amodei, D., Olah, C., Steinhardt, J., Christiano, P., Schulman, J., & Mané, D. (2016). Concrete problems in AI safety. arXiv preprint arXiv:1606.06565.
+@article{amodei2016concrete,
+  title={Concrete problems in AI safety},
+  author={Amodei, Dario and Olah, Chris and Steinhardt, Jacob and Christiano, Paul and Schulman, John and Man{\'e}, Dan},
+  journal={arXiv preprint arXiv:1606.06565},
+  year={2016}
+}
+
+[59] Carlini, N., Tramer, F., Wallace, E., Jagielski, M., Herbert-Voss, A., Lee, K., ... & Raffel, C. (2021). Extracting training data from large language models. In 30th USENIX security symposium (USENIX Security 21) (pp. 2633-2650).
+@inproceedings{carlini2021extracting,
+  title={Extracting training data from large language models},
+  author={Carlini, Nicholas and Tramer, Florian and Wallace, Eric and Jagielski, Matthew and Herbert-Voss, Ariel and Lee, Katherine and Roberts, Adam and Brown, Tom and Song, Dawn and Erlingsson, Ulfar and others},
+  booktitle={30th USENIX security symposium (USENIX Security 21)},
+  pages={2633--2650},
+  year={2021}
+}
+
+[60] Ouyang, L., Wu, J., Jiang, X., Almeida, D., Wainwright, C., Mishkin, P., ... & Lowe, R. (2022). Training language models to follow instructions with human feedback. Advances in neural information processing systems, 35, 27730-27744.
+@article{ouyang2022training,
+  title={Training language models to follow instructions with human feedback},
+  author={Ouyang, Long and Wu, Jeffrey and Jiang, Xu and Almeida, Diogo and Wainwright, Carroll and Mishkin, Pamela and Zhang, Chong and Agarwal, Sandhini and Slama, Katarina and Ray, Alex and others},
+  journal={Advances in neural information processing systems},
+  volume={35},
+  pages={27730--27744},
+  year={2022}
+}
+
+[61] Bai, Y., Kadavath, S., Kundu, S., Askell, A., Kernion, J., Jones, A., ... & Kaplan, J. (2022). Constitutional ai: Harmlessness from ai feedback. arXiv preprint arXiv:2212.08073.
+@article{bai2022constitutional,
+  title={Constitutional ai: Harmlessness from ai feedback},
+  author={Bai, Yuntao and Kadavath, Saurav and Kundu, Sandipan and Askell, Amanda and Kernion, Jackson and Jones, Andy and Chen, Anna and Goldie, Anna and Mirhoseini, Azalia and McKinnon, Cameron and others},
+  journal={arXiv preprint arXiv:2212.08073},
+  year={2022}
+}
+
+[62] Pascanu, R., & Bengio, Y. (2013). Revisiting natural gradient for deep networks. arXiv preprint arXiv:1301.3584.
+@article{pascanu2013revisiting,
+  title={Revisiting natural gradient for deep networks},
+  author={Pascanu, Razvan and Bengio, Yoshua},
+  journal={arXiv preprint arXiv:1301.3584},
+  year={2013}
+}
+
+[63] Amari, S. I. (1998). Natural gradient works efficiently in learning. Neural computation, 10(2), 251-276.
+@article{amari1998natural,
+  title={Natural gradient works efficiently in learning},
+  author={Amari, Shun-Ichi},
+  journal={Neural computation},
+  volume={10},
+  number={2},
+  pages={251--276},
+  year={1998},
+  publisher={MIT Press}
+}
+
+[64] Martens, J. (2020). New insights and perspectives on the natural gradient method. Journal of Machine Learning Research, 21(146), 1-76.
+@article{martens2020new,
+  title={New insights and perspectives on the natural gradient method},
+  author={Martens, James},
+  journal={Journal of Machine Learning Research},
+  volume={21},
+  number={146},
+  pages={1--76},
+  year={2020}
+}
+
+[65] Polyak, B. T., & Juditsky, A. B. (1992). Acceleration of stochastic approximation by averaging. SIAM journal on control and optimization, 30(4), 838-855.
+@article{polyak1992acceleration,
+  title={Acceleration of stochastic approximation by averaging},
+  author={Polyak, Boris T and Juditsky, Anatoli B},
+  journal={SIAM journal on control and optimization},
+  volume={30},
+  number={4},
+  pages={838--855},
+  year={1992},
+  publisher={SIAM}
+}
+
+[66] Frankle, J., Dziugaite, G. K., Roy, D., & Carbin, M. (2020, November). Linear mode connectivity and the lottery ticket hypothesis. In International conference on machine learning (pp. 3259-3269). PMLR.
+@inproceedings{frankle2020linear,
+  title={Linear mode connectivity and the lottery ticket hypothesis},
+  author={Frankle, Jonathan and Dziugaite, Gintare Karolina and Roy, Daniel and Carbin, Michael},
+  booktitle={International conference on machine learning},
+  pages={3259--3269},
+  year={2020},
+  organization={PMLR}
+}
+
+% [67] Jin, X., Ren, X., Preotiuc-Pietro, D., & Cheng, P. (2022). Dataless knowledge fusion by merging weights of language models. arXiv preprint arXiv:2212.09849.
+% @article{jin2022dataless,
+%   title={Dataless knowledge fusion by merging weights of language models},
+%   author={Jin, Xisen and Ren, Xiang and Preotiuc-Pietro, Daniel and Cheng, Pengxiang},
+%   journal={arXiv preprint arXiv:2212.09849},
+%   year={2022}
+% }
+
+% [68] Ruder, S., & Plank, B. (2017, September). Learning to select data for transfer learning with bayesian optimization. In Proceedings of the 2017 Conference on Empirical Methods in Natural Language Processing (pp. 372-382).
+% @inproceedings{ruder2017learning,
+%   title={Learning to select data for transfer learning with bayesian optimization},
+%   author={Ruder, Sebastian and Plank, Barbara},
+%   booktitle={Proceedings of the 2017 Conference on Empirical Methods in Natural Language Processing},
+%   pages={372--382},
+%   year={2017}
+% }
+
+% [69] Wolf, T., Debut, L., Sanh, V., Chaumond, J., Delangue, C., Moi, A., ... & Rush, A. M. (2019). Huggingface's transformers: State-of-the-art natural language processing. arXiv preprint arXiv:1910.03771.
+% @article{wolf2019huggingface,
+%   title={Huggingface's transformers: State-of-the-art natural language processing},
+%   author={Wolf, Thomas and Debut, Lysandre and Sanh, Victor and Chaumond, Julien and Delangue, Clement and Moi, Anthony and Cistac, Pierric and Rault, Tim and Louf, R{\'e}mi and Funtowicz, Morgan and others},
+%   journal={arXiv preprint arXiv:1910.03771},
+%   year={2019}
+% }
+
+% [70] Choshen, L., Venezian, E., Slonim, N., & Katz, Y. (2022). Fusing finetuned models for better pretraining. arXiv preprint arXiv:2204.03044.
+% @article{choshen2022fusing,
+%   title={Fusing finetuned models for better pretraining},
+%   author={Choshen, Leshem and Venezian, Elad and Slonim, Noam and Katz, Yoav},
+%   journal={arXiv preprint arXiv:2204.03044},
+%   year={2022}
+% }
+
+% [71] Davari, M., & Belilovsky, E. (2024, September). Model breadcrumbs: Scaling multi-task model merging with sparse masks. In European Conference on Computer Vision (pp. 270-287). Cham: Springer Nature Switzerland.
+% @inproceedings{davari2024model,
+%   title={Model breadcrumbs: Scaling multi-task model merging with sparse masks},
+%   author={Davari, MohammadReza and Belilovsky, Eugene},
+%   booktitle={European Conference on Computer Vision},
+%   pages={270--287},
+%   year={2024},
+%   organization={Springer}
+% }
+
+[72] Inan, H., Upasani, K., Chi, J., Rungta, R., Iyer, K., Mao, Y., ... & Khabsa, M. (2023). Llama guard: Llm-based input-output safeguard for human-ai conversations. arXiv preprint arXiv:2312.06674.
+@article{inan2023llama,
+  title={Llama guard: Llm-based input-output safeguard for human-ai conversations},
+  author={Inan, Hakan and Upasani, Kartikeya and Chi, Jianfeng and Rungta, Rashi and Iyer, Krithika and Mao, Yuning and Tontchev, Michael and Hu, Qing and Fuller, Brian and Testuggine, Davide and others},
+  journal={arXiv preprint arXiv:2312.06674},
+  year={2023}
+}
+
+[73] Farn, H., Su, H., Kumar, S. H., Sahay, S., Chen, S. T., & Lee, H. Y. (2024). Safeguard fine-tuned llms through pre-and post-tuning model merging. arXiv preprint arXiv:2412.19512.
+@article{farn2024safeguard,
+  title={Safeguard fine-tuned llms through pre-and post-tuning model merging},
+  author={Farn, Hua and Su, Hsuan and Kumar, Shachi H and Sahay, Saurav and Chen, Shang-Tse and Lee, Hung-yi},
+  journal={arXiv preprint arXiv:2412.19512},
+  year={2024}
+}
+
+[74] Holtzman, A., Buys, J., Du, L., Forbes, M., & Choi, Y. (2019). The curious case of neural text degeneration. arXiv preprint arXiv:1904.09751.
+@article{holtzman2019curious,
+  title={The curious case of neural text degeneration},
+  author={Holtzman, Ari and Buys, Jan and Du, Li and Forbes, Maxwell and Choi, Yejin},
+  journal={arXiv preprint arXiv:1904.09751},
+  year={2019}
+}
+
+[75] Han, S., Rao, K., Ettinger, A., Jiang, L., Lin, B. Y., Lambert, N., ... & Dziri, N. (2024). Wildguard: Open one-stop moderation tools for safety risks, jailbreaks, and refusals of llms. Advances in neural information processing systems, 37, 8093-8131.
+@article{han2024wildguard,
+  title={Wildguard: Open one-stop moderation tools for safety risks, jailbreaks, and refusals of llms},
+  author={Han, Seungju and Rao, Kavel and Ettinger, Allyson and Jiang, Liwei and Lin, Bill Yuchen and Lambert, Nathan and Choi, Yejin and Dziri, Nouha},
+  journal={Advances in neural information processing systems},
+  volume={37},
+  pages={8093--8131},
+  year={2024}
+}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\appendix
+
+\section{本研究の背景と位置づけ}
+\label{app:本研究の背景と定式化上の位置づけ}
+
+\subsection{技術的背景}
+大規模言語モデル（LLMs）は、汎用的な事前学習後に数学、コード生成、医療対話などの特定領域でファインチューニング（fine-tuning; FT）を施すことで、当該領域における性能を向上させる。しかし、領域ごとに専門モデルを個別に再学習・保持・運用することは、計算資源、保存容量、評価コストの面で負担が大きい。また、実務上は元の学習データ、選好データ、安全性校正データが共有されない場合もあり、各専門モデルに対して安全性アライメントを再学習することが常に可能とは限らない[59]。
+
+このような制約の下で、複数のFT済みモデルを重み空間で合成するmodel mergeは、複数の能力を単一モデルへ集約する事後的な手法として注目されている[3,4]。
+\color{red}
+model mergeが有効である理論的根拠として，損失地形における複数モデル間のモード接続性（mode connectivity）が指摘されている[49,50]．また，パラメータ置換不変性に関する研究[52]，およびfine-tuning済み言語モデルにおける線形mode connectivityの分析[53]によって検討されてきた．同一の初期化やFTを経たモデル群は，パラメータ空間上で線形に接続可能な低損失領域を共有することが多く，これは転移学習で獲得される特徴がタスク間で共有されやすいことと関連する[51,66]．
+
+Model Soups[3]は同じベースモデルから得られたモデル群の重み平均をとることで特定タスクについて性能が向上することを示した．重み平均がより広い解や良好な汎化に結び付く可能性は，
+stochastic weight averagingに関する研究[55]でも議論されており，パラメータまたは反復解の平均化は，確率最適化における平均化推定の考え方とも関係する[65]．Task Arithmetic[4,25]はベースモデルからの差分をタスクベクトルとして扱うことで、能力の追加・削除・合成を可能にした。ベースモデルを\(\theta_0 \in \mathbb{R}^d\)、タスク \(t\) に適応したモデルを\(\theta_t \in \mathbb{R}^d\) とすると、対応するタスクベクトルは \(\tau_t = \theta_t - \theta_0\) と表される。複数のタスクベクトルを係数付きで線形結合することで、合成モデルを構成できる。さらに，fine-tuning後のモデルの挙動が局所的には接空間で近似できるという観点から，タスクベクトル演算の有効性を理論的に検討した研究もある[25]．
+\color{black}
+
+しかし、単純な重み平均や差分加算は、異なるタスク更新の符号不一致、更新方向の相殺、冗長な微小更新、または特定能力を担うパラメータの上書きによって、タスク間干渉（interference）を生じさせる可能性がある。TIES[5]、DARE[6]、DELLA[7]は、符号選択、疎化、ランダムなリセット、振幅依存サンプリング等を用いて、このような干渉を緩和する代表的な手法である。
+
+一方、model mergeにおいて問題となる干渉は、専門タスク性能の低下だけではない。instruction tuning、RLHF、DPO等により形成された安全性アライメントは、良性データを用いた追加学習後であっても劣化し得ることが示されている[1,47,48,60,61]。ここでいうアライメントには、有害要求への適切な拒否、危険情報を扱う際の安全な応答、およびjailbreak等の攻撃的プロンプトに対する頑健性が含まれる。専門タスクへの適応に用いられる更新方向が、これらの安全挙動に関係するパラメータ方向と重複または干渉する場合、専門性能の獲得と引き換えに安全性が失われる可能性がある[1,2,47,48]。
+
+Hammoudらは、モデル合成後に安全性アライメントが劣化する現象を実証的に検証した[1]。同研究では、個別には安全に見えるモデル群であっても、安全性が保証されないモデルが一つ混入することで、合成後のモデルが有害要求に応答しやすくなる`one bad model spoils the bunch'現象が報告されている。重要なのは、perplexityや一般的タスク性能の変化だけでは、この安全性劣化を十分に検出できない可能性がある点である[1]。したがって、通常の精度・損失・汎用ベンチマークのみを目的関数とするmergeでは、安全性アライメントの保持を直接的に担保できない。
+
+本研究で扱うSecure Merge[24]は、専門タスクに適応した有用性モデルへ、安全性に関する能力を持つモデルを事後的に合成し、再学習を行わずに安全性を付与または回復することを目指す枠組みである。以下では、ベースモデル、有用性モデル、安全性モデルをそれぞれ \(\theta_0,\quad \theta_u,\quad \theta_s \in \mathbb{R}^d\) とする。有用性モデルおよび安全性モデルのタスクベクトルは、\(\tau_u = \theta_u - \theta_0,\qquad \tau_s = \theta_s - \theta_0\) と定義される。
+
+Secure Mergeにおいて有用性モデルへ実際に適用する安全パッチを、
+\[
+\Delta_{\mathrm{patch}} = \tau_s - \tau_u = (\theta_s - \theta_0) - (\theta_u - \theta_0) = \theta_s-\theta_u
+\]
+と定義する。本研究のTask Arithmeticベースラインでは、 \(\Delta_{\mathrm{patch}}=\theta_s-\theta_u\)を安全パッチとして用いる。したがって、\(\alpha=0\)は有用性モデル\(\theta_u\)、 \(\alpha=1\)は安全性モデル\(\theta_s\)に対応し、最も単純なTask Arithmetic型の合成は \(\theta_m = \theta_u + \alpha \Delta_{\mathrm{patch}},\qquad \alpha \in [0,1]\) と表される。
+
+ここで\(\alpha\)は安全パッチの強度を調節する係数である。\(\alpha\)を大きくすると安全性に関する更新を強く反映できる可能性がある一方、有用性モデルが獲得した専門能力を損なう危険がある。この安全性と有用性の競合は、Safety--Utility Conflict、あるいはSafety Tax（Alignment Tax）と呼ばれる[58]。本研究では、良性の通常タスク分布を\(D_u\)、有害要求および望ましい安全応答に関する安全性分布を\(D_s\)と表す。安全パッチ\(\Delta_{\mathrm{patch}}\)は、\(D_s\)上で望ましい安全挙動を高めることが期待される一方、\(D_u\)上の性能を低下させる可能性がある。Secure Mergeの課題は、安全性に寄与し得る更新を選択的に保持しつつ、有用性に対する悪影響を抑えることである。
+
+なお、ASRの低下のみを安全性向上と解釈することには注意が必要である。モデルが一貫して拒否する、極端に短い応答を返す、あるいは意味不明な出力を生成する場合にも、攻撃成功と判定される応答は減少する。この場合、低いASRは安全な拒否を表すのではなく、モデルの有効応答能力の低下を反映している可能性がある。本研究ではこの問題を「偽の安全性（fake safety）」と呼び、ASRに加えて有効応答率および有用性指標を併用して評価する。
+
+
+\subsection{安全性対応mergeの限界}
+既存の安全性対応のmerge手法は、通常のmodel mergeが安全性を直接扱わないのに対して、異なる粒度で対処している。MergeAlign[2]は、ドメイン適応に関する更新とアライメントに関する更新を区別し、両者の組合せを調整することで知識と安全性のトレードオフを扱う。SafeMERGE[8]は、FTによって安全性から逸脱した層を分析し、層単位で選択的な合成または巻き戻しを行う。LED-Merging[9]は、勾配重要度を用いて安全性と有用性の競合が生じるニューロンを特定し、ニューロン単位で更新を分離することを目指す。また、Fisher-Weighted Averaging（FWA）[10]は安全性保持を目的として提案された手法ではないが、パラメータごとのFisher重要度を利用する合成手法であるため、本研究の比較対象として採用する。
+\color{red}
+Fisher情報は，パラメータ摂動に対する局所的な重要度を表す近似として用いられ，継続学習における重要パラメータの保持[54]や，Fisher情報に基づくmodel merging[10,12,13,14,16]に応用されている．また，Fisher情報行列と自然勾配の関係は情報幾何学的観点から整理されている
+[62,63,64]．Fisher情報に基づく合成規則は，不確実性に基づく勾配マッチング，Fisherマスクノード，Fisher重み付き中央値，ベイズ最適化による動的Fisher重み付け，データフリーの層適応的Fisher mergeなど多様な手法へ拡張されている[11,12,13,14,16]．
+\color{black}
+これらの手法は安全性を明示的に考慮するという点で重要であるが、その多くは特定の情報源と操作粒度に依存する。これらは「局所的・ヒューリスティック」であるが，それは安全性そのものが局所的であるという意味ではなく，各手法が、層、ニューロン、タスクベクトル、または限られた校正データ上の重要度という限定的な観測に基づき、どのパラメータを残すかを決定するという意味である。このような設計は、既知のモデル組合せ、固定されたマージ係数、既知の評価分布において有効である。しかし、専門モデルの種類、更新規模、攻撃プロンプトの分布、あるいは安全性評価器が変化すれば、元の判定規則が適切に機能するとは限らないという課題がある。
+
+
+\section{比較対象の分類と詳細な説明}
+\label{app:method-taxonomy-and-details}
+
+本研究では、モデル合成手法を「利用する情報」「介入粒度」「安全性を目的関数へ直接組み込むか」という三つの観点から整理する。この分類の目的は、ASR、有効応答率、専門性能、計算コストの差異を、各手法がどの種類の情報をどの粒度で利用するかという設計の差から解釈できるようにすることである。主要なmerge手法の比較整理をTable~\ref{tab:method-comparison-revised}に示す。Table~\ref{tab:method-comparison-revised}は実験上の安全性能、理論保証、または優劣を表すものではないことに注意されたい。
+なお、表中のTask Arithmeticは一般的な設計原理を示すが、本研究のSecure Mergeベースライン実装では、有用性モデルと安全性モデルの直接差分\(\Delta_{\mathrm{patch}}\)を適用する。
+
+
+\begin{table*}[t]
+\centering
+\caption{本研究で扱うmodel merge手法の比較}
+\label{tab:method-comparison-revised}
+\small
+\begin{tabular}{p{2.3cm}p{2.7cm}p{2.8cm}p{2.0cm}p{1.8cm}}
+\toprule
+手法群 & 代表手法 & 主な利用情報 & 介入粒度 & 安全直接性 \\
+\midrule
+重み平均 &  Model Soups[3] & モデル重み & モデル全体 & 低 \\
+差分ベクトル & Task Arithmetic[4] & ベースモデルからの重み差分 & ベクトル全体 & 低 \\
+干渉緩和 & TIES[5], DARE[6], DELLA[7] & 符号、更新量、疎化規則 & 主にパラメータ & 低 \\
+重要度重み付け & FWA[10] & Fisher情報に基づく局所的重要度 & パラメータ & 低から中 \\
+安全更新の分離 & MergeAlign[2] & ドメイン更新とアライメント更新 & ベクトル全体 & 中 \\
+選択的な安全保護 & SafeMERGE[8] & 層ごとの安全性逸脱・類似度 & 層 & 高 \\
+競合更新の分離 & LED-Merging[9] & 勾配重要度・競合位置 & ニューロン & 高 \\
+幾何制約 & AlignMerge[15] & Fisher幾何・安全性制約 & 部分空間 & 高 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:method-comparison-revised}の分類から、三つの比較軸が得られる。
+第一に、TIES、DARE、DELLAは主にパラメータ間の干渉を扱うのに対し、MergeAlign、SafeMERGE、LED-Merging、AlignMergeは、安全性と有用性の競合を明示的に扱う。第二に、層・ニューロン・パラメータ・部分空間という介入粒度の違いは、保護できる更新の細かさと計算コストの両方に関係する。第三に、Fisher、勾配、安全性校正データ、タスクベクトルといった利用情報の違いは、適用可能なデータアクセス条件を左右する。本研究では、安全性、有効応答率、有用性、および計算コストを併せて報告し、単一の指標に基づいて手法の優劣を結論づけないこととする。
+
+\section{実験設計の詳細}
+\label{app:実験設計の詳細}
+本節では、Section 4（Experiments）の補足として、実験で使用したターゲットモデル群、merge手法、評価ベンチマーク、およびハイパーパラメータ設定の具体的な詳細を記述する。
+
+\subsection{Target Models \& Architecture}
+実験対象として、7Bパラメータ規模の大規模言語モデルであるLlama-2[30]をベースモデルとする。専門性モデルは，モデルと学習に用いたデータセットが公開されているものを用いる．
+
+
+\begin{itemize}
+\item \textbf{ベースモデル($\theta_0$)}: \texttt{Llama-2-7B-base}[30]
+\item \textbf{有用性専門モデル($\theta_u$)}: WizardMath-7B-V1.0[31]、WizardCoder-Python-7B-V1.0[32]、MedAlpaca-7B[33]を用いた。各モデルの元の学習設定は、それぞれの公開論文およびモデルカードに従う。本研究では、合成時にパラメータ名およびテンソル形状が一致するチェックポイントのみを採用した。トークナイザ設定については、各公開モデルの推奨設定を用いた。
+\item \textbf{有用性Fisher推定用データ}: 数学にはGSM8K、コードにはEvol-Instruct-Code、医療にはMedAlpacaから抽出した校正サンプルを用いた。
+\item \textbf{安全モデル ($\theta_s$)}: \texttt{Llama-2-7B-base}に対する安全性アライメントとして、LoRA FTを適用したモデルを使用，評価時はフルモデルとして用いる。安全性学習データは、TrustLLM[17]のjailbreak判定用データセット(JAILBREAK TRIGGER)の有害要求プロンプトに固定の安全な拒否応答（"I'm sorry, but I cannot assist with that request."）を付与して作成した1,400件を用いた。3つのSafety FT seedにおいて、同一の学習集合を用い、データ順序および最適化過程に含まれる乱数シードのみを変更した。学習にはLoRA（対象層: q\_proj, v\_proj, k\_proj, o\_proj, gate\_proj, up\_proj, down\_proj, rank=16, alpha=32, dropout=0.05）を用い、最大トークン長512、バッチサイズ4（gradient accumulation steps=4で実質16）、学習率2e-4、エポック数3、fp16精度でファインチューニングを行った。warmupは用いず、weight decayは0とし、gradient clipping（最大ノルム1.0）を適用した。オプティマイザはAdamW（\(\beta_1=0.9, \beta_2=0.999, \epsilon=10^{-8}\)）を用いた。トークナイザはベースモデルの既定のものを用い、特定のchat templateは適用せず生テキストとして学習した。バリデーションデータによるcheckpoint選択は行わず、最終エポックのモデルを採用した。損失は拒否応答のcompletion tokenに対してのみではなく、入力プロンプト部分も含めた全トークンに対してCausal LM lossを計算した。完了後、LoRAウェイトはベースモデルに統合（merge\_and\_unload）された。
+\end{itemize}
+
+\subsection{Calibration Datasets \& Curvature Estimation}
+\label{app:calibration_datasets}
+対角Fisher情報行列(Diagonal FIM)を計算するためのキャリブレーションデータとして、各データセットから$N=500$件のサンプルを抽出して使用する。
+\begin{itemize}
+\item 安全性Fisher計算用データ ($D_s$): 有害要求プロンプトとそれに対する拒否応答ペア(JAILBREAK TRIGGER)
+\item 良性有用性Fisher計算用データ($D_u$): 各ドメイン（数学、コード、医療）のデータセットから抽出。各有用性Fisherは、対応するドメインを代表する公開データセットから抽出した校正サンプルを用いて推定する。
+\end{itemize}
+
+\subsection{Evaluation Benchmarks \& Metrics}
+\label{app:evaluation_benchmarks}
+自動評価はlm-evaluation-harnessを用いて実行する。lm-evaluation-harnessで実行したGSM8K[34]、Minerva Math 500[35]、PubMedQA[38]、MedQA-4Options[39]、MMLU[40]、およびIFEval[41]は、各タスクについて\texttt{num\_fewshot=0}に設定した。few-shot例の選択に起因する追加のばらつきを避けるため、対象タスクでは\texttt{num\_fewshot=0}に統一した。この設定により、同一のゼロショットプロンプト条件下でmerge手法間を比較する。
+HumanEvalおよびMBPPにおいては、各問題につき\(n=1\)個の候補を生成するシングルサンプル評価を行った。生成条件は temperature \(=0.0\)（greedy decoding）、top-p \(=1.0\)、max\_new\_tokens \(=512\) とし、コードブロック終端およびベンチマーク既定の停止条件を適用した。各問題につき1候補を生成したため、本研究のPass@1はgreedy decodingによる単一候補のfunctional correctness rateに相当する。
+
+HarmBench[19]，JailbreakBench[20]，StrongReject[21]，WildJailbreak[22]はそれぞれ専用の評価スクリプトで動いている。AlpacaEval 2[42]では、固定した100プロンプト、judgeモデル \texttt{gpt-4-1106-preview}、length-controlled win rate、評価スクリプトversion \texttt{1.0.4} を用いた。
+Evol-Instruct-Code[32] (nickrosh/Evol-Instruct-Code-80k-v1)，MedAlpaca[33] (medalpaca/medical\_meadow)のPPL評価を組み込んだ。
+対角経験Fisher情報行列を推定するため、各校正データセットから決定論的に抽出した\(N=500\)件のサンプルを使用した。評価用サンプルは、Fisher推定に用いたサンプルと重複しないように分離した。
+
+\paragraph{安全性アライメント評価（Safety Benchmarks）}
+本実験では，見かけ上の安全性（推論崩壊や無意味文字列生成に起因する偽の安全性）と，安全性評価と応答有効性を分離するため，HarmBench[19]，JailbreakBench[20]，StrongReject[21]，WildJailbreak[22]の各ベンチマークにおいて，以下の評価指標を算出した。
+
+\begin{enumerate}
+    \item \textbf{Original ASR (\%)}：全応答を対象として算出した攻撃成功率（Attack Success Rate）。低いほど望ましいが、推論崩壊による見かけ上の低下を含む可能性がある。
+    \item \textbf{Conditional ASR (\%)}：Gibberish判定規則を通過した「有効応答」から算出した攻撃成功率。無意味な文字列等による見かけ上のASR低下を低減するため、有効応答から有害要求への追従率を測定する。
+    \item \textbf{Valid Response Rate (\%)}：全応答中の有効応答の割合。高いほど望ましい。
+    \item \textbf{Valid Safety Rate (\%)}：有効であり、かつ有害要求への追従と判定されなかった応答の割合。
+\begin{equation}
+\mathrm{Valid\ Safety\ Rate} = \frac{\#\{\text{有効かつ有害要求への追従と判定されなかった応答}\}}{\#\{\text{全プロンプト}\}}
+\end{equation}
+    \item \textbf{Refusal Rate (\%)}：XSTest[23]等において過剰拒否（Over-refusal）を判定するための補助指標であり、単独で安全性指標としては用いない。
+\end{enumerate}
+
+Gibberish判定には外部評価器を用いず判定を行った。一方、有害要求への追従判定には各安全性ベンチマークの既定評価器または評価スクリプトを用いた。単語は空白区切りの文字列として定義する。生成応答を無効と判定するのは、次のいずれかを満たす場合である。(i) 出力が空文字列あるいは空白のみである。(ii) 単語数が5以上であり、一意な単語の割合が20\%未満（過度な反復）である。(iii) 単語数が5以上であり、数字のみで構成される単語の割合が60\%を超える（不自然な数値出力）。なお、これらの判定閾値は予備実験から設定した事前定義であり、本判定規則は有害要求に対する安全性評価の生成応答にのみ適用し、数学、コード、医療、および一般有用性ベンチマークには適用しない。
+
+これらの判定を通過したものを「有効応答」とし、安全性と応答有効性を区別する。
+総合的な安全指標として、4つの安全性ベンチマーク（HarmBench, JailbreakBench, StrongReject, WildJailbreak）の各指標の平均である Safety Ave [Original ASR] と Safety Ave [Conditional ASR] を算出した。
+
+\paragraph{Limitations.}
+本実験設定には以下の限界がある。第一に、安全性FTデータと評価ベンチマーク間のプロンプト重複については、文字列完全一致による除外を実施していない。そのため、得られた評価値にはデータ重複に由来する楽観的バイアスが含まれる可能性がある。第二に、計算資源上の制約から、多くの公開データセットでは先頭320件を用い、MMLUではタスクごとの均等抽出により320件を用いた。全量評価ではないため、データセット全体を完全に代表しない可能性があり、結果の一般化には限界がある。
+\paragraph{有用性評価（Utility Benchmarks）}
+model merge後の有用性を評価するため，以下のベンチマークを用いた。
+
+\begin{itemize}
+    \item \textbf{Utility(Math):}
+    \texttt{math\_gsm8k}[34],
+    \texttt{math\_minerva\_math500}[35]
+
+    \item \textbf{Utility(Code):}
+    \texttt{code\_humaneval}[36],
+    \texttt{code\_mbpp}[37]
+
+    \item \textbf{Utility(Medical):}
+    \texttt{medical\_pubmedqa}[38],
+    \texttt{medical\_medqa\_4options}[39]
+
+    \item \textbf{Utility(General):}
+    \texttt{general\_mmlu}[40],
+    \texttt{general\_ifeval}[41],
+    \texttt{alpaca\_eval2}[42],
+    \texttt{inst\_evol\_code}[32],
+    \texttt{inst\_medalpaca}[33]
+\end{itemize}
+
+本研究で用いたデータセット、測定指標、および各指標の目指すべき方向（望ましい変化）の定義をTable~\ref{tab:evaluation_metrics}に示す。
+
+\begin{table}[htbp]
+\caption{評価設定一覧}
+\label{tab:benchmark}
+\centering
+\small
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{1.55cm}
+>{\raggedright\arraybackslash}p{1.95cm}
+>{\centering\arraybackslash}p{1.05cm}
+>{\centering\arraybackslash}p{1.05cm}
+>{\centering\arraybackslash}p{3.2cm}
+>{\raggedright\arraybackslash}X
+>{\raggedright\arraybackslash}p{2.00cm}
+}
+\toprule
+\textbf{カテゴリ} &
+\textbf{データセット} &
+\textbf{公開規模} &
+\textbf{評価件数} &
+\textbf{評価方法} &
+\textbf{評価目的} \\
+\midrule
+\multirow{4}{*}{Safety}
+& HarmBench & 320 & 320 & ASR，拒否率 & 有害指示への耐性 \\
+& JailbreakBench & 100 & 100 & ASR & Jailbreak 耐性 \\
+& StrongReject & 313 & 313 & StrongReject Score，拒否性能 & 安全な拒否能力 \\
+& WildJailbreak & 500 & 320 & ASR & 実環境に近い Jailbreak 耐性 \\
+\midrule
+\multirow{2}{*}{\shortstack[l]{Utility\\(Math)}}
+& GSM8K & 1,319 & 320 & Exact Match (0-shot) & 数学推論能力 \\
+& \shortstack[l]{Minerva\\Math 500} & 500 & 320 & Exact Match (0-shot) & 高難度数学推論能力 \\
+\midrule
+\multirow{2}{*}{\shortstack[l]{Utility\\(Code)}}
+& HumanEval & 164 & 164 & pass@1 (0-shot) & コード生成能力 \\
+& MBPP & 257 & 257 & pass@1 (0-shot) & Python プログラミング能力 \\
+\midrule
+\multirow{2}{*}{\shortstack[l]{Utility\\(Medical)}}
+& PubMedQA & 1,000 & 320 & Accuracy (0-shot) & 医学論文 QA 能力 \\
+& \shortstack[l]{MedQA\\(4 options)} & 1,273 & 320 & Accuracy (0-shot) & 医療知識・診断能力 \\
+\midrule
+\multirow{2}{*}{\shortstack[l]{Utility\\(General)}}
+& MMLU & 14,042 & 320 & Accuracy (0-shot) & 一般知識・推論能力 \\
+& IFEval & 541 & 320 & Instruction Following Score (0-shot) & 指示追従能力 \\
+\midrule
+\shortstack[l]{General\\Chat}
+& AlpacaEval 2 & 805 & 100 & GPT-4 Judge による Win Rate & 総合的な対話品質 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\subsection{Evaluation Protocol \& Baselines}
+\label{app:evaluation_protocol}
+
+本研究の評価は，単一評価器に基づく探索的な予備実験と，複数の安全性・有用性指標および応答有効性指標を用いる本実験の二段階で構成される．予備実験では，model mergeに伴う生成崩壊が従来のASR評価を歪める可能性を確認し，本実験ではこの問題を考慮したValidity-aware評価を行う．
+
+\subsubsection{予備実験（Preliminary Experiment）の設計}
+
+\begin{itemize}
+    \item \textbf{目的:}
+    比較的軽量な評価設定において，Secure Mergeにおけるgibberish，反復，空出力等の生成異常が，単一の安全性評価器によるASRをどのように歪めるかを検証する．
+
+    \item \textbf{安全性・有用性評価:}
+    安全性にはTrustLLM[17]のjailbreak評価プロトコルを用い，TrustLLM Raw ASRを使用する．有用性にはBeaverTails[18]に基づく評価を用いる．加えて，出力のgibberish，特殊トークンの反復，空出力，および入力プロンプトの再掲を集計し，Gibberish Ratioとして報告する．
+
+    \item \textbf{評価範囲:}
+    評価対象は\texttt{safety+math}，\texttt{safety+code}，\texttt{safety+medical}，および\texttt{safety+math+code+medical}のmergeパターンとする．Task Arithmetic，TIES，DARE，DELLAについては，merge強度
+    \(\alpha \in \{0.0, 0.2, 0.4, 0.6, 0.8, 1.0\}\)を探索する．その他の手法は，それぞれの既定設定で評価する．
+
+    \item \textbf{乱数シードと報告形式:}
+    安全性特化モデルは乱数シード\texttt{42, 43, 44}で独立に学習し，各seedに対して同一のmerge設定および評価設定を適用する．結果は3 seedの平均と標本標準偏差（\(N=3\)，自由度\(N-1\)）として示す．
+
+    \item \textbf{予備実験の限界:}
+    TrustLLM Raw ASRは単一評価器による指標であり，応答が意味のある言語として成立しているかを評価しない．このため，無効応答に有害内容が含まれない場合には，生成崩壊が見かけ上の低ASR，すなわちFalse Safeを生む可能性がある．逆に，評価器の判定規則によっては，無効応答が攻撃成功として扱われるFalse Unsafeも生じ得る．したがって，予備実験のASRは安全性に関する最終的な結論ではなく，本実験におけるValidity-aware評価を導入する動機として位置づける．
+\end{itemize}
+
+\subsubsection{本実験（Main Experiment）の設計}
+予備実験で確認されたASR単独評価の限界を踏まえ，本実験では安全性，有用性，および応答有効性を分離して評価する．安全性評価では複数ベンチマークを用い，応答ごとに有害追従の有無と応答有効性を別々に判定する．
+
+\begin{itemize}
+    \item \textbf{包括的なベンチマークへの拡張:}
+    \begin{itemize}
+        \item 安全性（Safety）:
+        HarmBench[19], JailbreakBench[20], StrongReject[21],WildJailbreak[22] を用いる．各ベンチマークでは，計算資源上の制約から最大320件を評価対象として用いる．詳細なサンプル数および評価設定はTable~\ref{tab:benchmark}に示す．
+        \item \textbf{Validity-aware安全性指標:}
+        各生成応答について，有害要求への追従の有無に加えて，応答が有効なテキストとして成立しているかを判定する．無意味な文字列，特殊トークンの反復，空出力，および入力プロンプトの再掲を無効応答として扱う．この二段階の評価に基づき，以下の指標を報告する．
+        \begin{itemize}
+            \item \textbf{Original ASR:} 全応答を対象とする従来型のAttack Success Rate．
+            \item \textbf{Conditional ASR:} 有効応答のみに条件づけたAttack Success Rate．
+            \item \textbf{Valid Response Rate (VRR):} 全応答に占める有効応答の割合．
+            \item \textbf{Valid Safety Rate (VSR):} 有効かつ非追従の応答が全応答に占める割合．
+        \end{itemize}
+        有害性判定にはHarmBench ClassifierおよびLlama Guardを用いる．なお，VRRが0の場合，Conditional ASRは定義されないため報告上は``---''とする．
+        \item 有用性（Utility）:
+        有用性は，数学，コード，医療，一般能力・指示追従の4領域で評価する．数学ではGSM8KおよびMinerva Math 500，コードではHumanEvalおよびMBPP，医療ではMedQAおよびPubMedQA，一般能力・指示追従ではMMLU，IFEval，およびAlpacaEval~2を用いる．加えて，Evol-Instruct-CodeおよびMedAlpaca上のPPLとSimilarity Scoreを，専門データへの適合度および生成分布の異常を診断する補助指標として用いる．各ベンチマークの詳細はTable~\ref{tab:evaluation_metrics}およびTable~\ref{tab:benchmark}に示す．
+        \item \textbf{評価条件:}
+        lm-evaluation-harnessを用いるタスクは原則として\texttt{num\_fewshot=0}で評価する．HumanEvalおよびMBPPはgreedy decoding（temperature \(=0.0\)，top-p \(=1.0\)，max\_new\_tokens \(=512\)）による1サンプル生成で評価する．AlpacaEval~2では固定した100プロンプト，\texttt{gpt-4-1106-preview} judge，およびlength-controlled win rateを用いる．
+        \item \textbf{3 seedによるばらつきの報告:}
+        Safety FTの学習過程に由来するばらつきを定量化するため，乱数シード\texttt{42, 43, 44}で3つの安全性特化モデルを独立に構築する．各安全性モデルに対して同一の有用性モデル，merge設定，および評価プロトコルを適用し，すべての定量指標を3 seedの平均と標本標準偏差（\(N=3\)，自由度\(N-1\)）で示す．
+
+        \item \textbf{探索空間とパレート分析:}
+        Task Arithmetic，TIES，DARE，およびDELLAでは，merge強度
+        \[
+            \alpha \in \{0.0, 0.2, 0.4, 0.6, 0.8, 1.0\}
+        \]
+        を探索する．seed別および\(\alpha\)別の完全な結果はのちに示す．
+        \item \textbf{比較条件とmergeパターン:}
+        2モデル合成として\texttt{safety+math}，\texttt{safety+code}，\texttt{safety+medical}を評価し，多重ドメイン合成として\texttt{safety+math+code+medical}を評価する．多重ドメイン合成では，単一専門ドメインの場合と比較して，応答有効性，安全性，有用性，およびPPLの変化を分析する．
+        \item \textbf{ベースライン:}
+        基本的なmerge手法としてTask Arithmetic、TIES、DARE、およびDELLAを用いる．安全性維持を目的とする手法としてMergeAlign、SafeMERGE、およびLED-Mergingを比較する．さらに，Fisher情報に基づくFisher-Weighted Averaging（FWA）を重要度重み付きmergeの基準線として用いる．
+        各手法はMergeKit[43]または各論文で公開されている実装に基づいて実行する．ただし，LED-Merging等の一部手法は依存関係および公式実装上の制約により，適用可能な専門ドメインが限定される場合がある(medicalが除外)．
+    \end{itemize}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{予備実験の詳細結果}
+\label{app:予備実験の詳細結果}
+本章では、予備実験（TrustLLM/BeaverTails）の詳細結果について述べる。
+
+\begin{quote}
+\textbf{指標に関する注意：}本章で報告するTrustLLM Raw ASRおよびGibberish Ratioは予備実験固有の探索的指標であり、主実験のOriginal ASR、Conditional ASR、Valid Response Rate、およびValid Safety Rateと直接比較しない。予備実験の数値は手法の最終的な安全性順位を示すものではなく、単一評価器が出力崩壊に影響される可能性を確認するために用いる。また、予備実験は主実験とは異なる初期実装および評価パイプラインで実施した。したがって、予備実験における\(\alpha\)の挙動を、主実験で定義した直接差分型mergeの\(\alpha\)と同一視しない。
+\end{quote}
+
+
+\subsection{baseモデルの評価結果}
+
+baseモデルの評価結果を表\ref{tab:base_models_app}に示す．seed別の表を\ref{tab:base_models_seeds_app}に示す．seedの区別があるのはsafetyモデルのみのため，\ref{tab:base_models_seeds_app}はsafetyモデルのみ結果を示す．Safety ASR は Original ASR（$\downarrow$）を示す。Math，Code，Medical，General は平均性能（\%）であり，高いほど良い。
+PPL は低いほど良い。
+% --------------------------------------------------------------------------
+% ベースモデル (Base Models)
+% --------------------------------------------------------------------------
+
+% --- ベースモデル評価 集計 (Mean \pm Std) ---
+\begin{table}[htbp]
+\caption{ベースモデル評価の集計（Mean $\pm$ Std）}
+\label{tab:base_models_app}
+\centering
+\small
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.15cm}
+*{7}{>{\centering\arraybackslash}X}
+}
+\toprule
+\textbf{Model} &
+\textbf{Safety ASR} &
+\textbf{Math} &
+\textbf{Code} &
+\textbf{Medical} &
+\textbf{General} &
+\textbf{EvolCode PPL} &
+\textbf{MedAlpaca PPL} \\
+\midrule
+MedAlpaca
+& $5.17$ & $4.53$ & $3.59$ & $52.81$ & $20.28$ & $2.32$ & $5.71$ \\
+SafetyFT
+& $0.00 \pm 0.00$ & $0.52 \pm 0.48$ & $4.22 \pm 3.39$ & $43.49 \pm 11.80$ & $11.38 \pm 0.41$ & $2.34 \pm 0.03$ & --- \\
+WizardCoder
+& $24.69$ & $4.53$ & $21.03$ & $54.53$ & $18.41$ & $1.54$ & $3.72$ \\
+WizardMath
+& $31.01$ & $6.41$ & $3.12$ & $55.00$ & $14.02$ & $2.03$ & $2.77$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% --- ベースモデル評価 シード別詳細 ---
+\begin{table}[htbp]
+\caption{ベースモデル評価のシード別詳細}
+\label{tab:base_models_seeds_app}
+\centering
+\small
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\textwidth}{
+>{\centering\arraybackslash}p{1.0cm}
+*{7}{>{\centering\arraybackslash}X}
+}
+\toprule
+\textbf{Seed} &
+\textbf{Safety ASR} &
+\textbf{Math} &
+\textbf{Code} &
+\textbf{Medical} &
+\textbf{General} &
+\textbf{EvolCode PPL} &
+\textbf{MedAlpaca PPL} \\
+\midrule
+42 & 0.00 & 0.94 & 8.12 & 56.72 & 11.86 & 2.31 & --- \\
+43 & 0.00 & 0.62 & 2.03 & 39.69 & 11.13 & 2.36 & --- \\
+44 & 0.00 & 0.00 & 2.50 & 34.06 & 11.16 & 2.36 & --- \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{予備実験（Preliminary Experiment）結果（探索的分析）}
+表\ref{tab:prelim_detail_app}に主要なmerge設定（$\alpha=0.6$）における予備実験の結果を示す。
+
+\begin{table}[htbp]
+\caption{予備実験（TrustLLM / BeaverTails）における安全性と有用性の評価($\alpha=0.6$)}
+\label{tab:prelim_detail_app}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.45cm}
+>{\raggedright\arraybackslash}p{2.10cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Pattern} &
+\textbf{Method} &
+\textbf{TrustLLM ASR} &
+\textbf{Gibberish Ratio} &
+\textbf{BeaverTails Utility} \\
+&
+&
+\textbf{(\% $\downarrow$)} &
+\textbf{(\% $\downarrow$)} &
+\textbf{(\% $\uparrow$)} \\
+\midrule
+\multirow{9}{*}{safety+code}
+& DARE              & $100.00 \pm 0.00$ & $36.35 \pm 12.66$ & $64.06 \pm 11.87$ \\
+& DELLA             & $100.00 \pm 0.00$ & $33.65 \pm 8.21$  & $67.19 \pm 5.42$ \\
+& LED-Merging       & $87.19 \pm 0.00$  & $95.94 \pm 0.00$  & $5.00 \pm 0.00$ \\
+& Matena-Fisher     & $95.62 \pm 1.13$  & $71.98 \pm 1.57$  & $28.33 \pm 2.22$ \\
+& MergeAlign        & $100.00 \pm 0.00$ & $100.00 \pm 0.00$ & $0.00 \pm 0.00$ \\
+& SafeMERGE         & $4.58 \pm 5.81$   & $6.25 \pm 10.56$  & $2.81 \pm 2.19$ \\
+& Task Arithmetic   & $82.40 \pm 2.73$  & $56.67 \pm 4.07$  & $24.38 \pm 3.29$ \\
+& TIES              & $99.38 \pm 0.31$  & $62.29 \pm 6.59$  & $34.58 \pm 2.37$ \\
+\midrule
+\multirow{9}{*}{safety+math}
+& DARE              & $17.19 \pm 0.83$  & $18.65 \pm 0.95$  & $9.69 \pm 2.86$ \\
+& DELLA             & $19.06 \pm 3.17$  & $20.62 \pm 5.20$  & $7.81 \pm 2.05$ \\
+& LED-Merging       & $87.19 \pm 0.00$  & $96.15 \pm 0.18$  & $5.00 \pm 0.00$ \\
+& Matena-Fisher     & $19.79 \pm 1.18$  & $67.19 \pm 3.52$  & $10.00 \pm 1.65$ \\
+& MergeAlign        & $100.00 \pm 0.00$ & $100.00 \pm 0.00$ & $0.00 \pm 0.00$ \\
+& SafeMERGE         & $14.27 \pm 22.55$ & $31.15 \pm 53.95$ & $3.33 \pm 3.34$ \\
+& Task Arithmetic   & $9.69 \pm 0.31$   & $47.92 \pm 18.35$ & $6.35 \pm 1.91$ \\
+& TIES              & $18.65 \pm 4.77$  & $36.67 \pm 4.77$  & $11.25 \pm 1.08$ \\
+\midrule
+\multirow{5}{*}{\shortstack[l]{safety+math+\\code+medical}}
+& DARE              & $100.00 \pm 0.00$ & $70.42 \pm 40.72$ & $31.46 \pm 41.41$ \\
+& DELLA             & $100.00 \pm 0.00$ & $73.65 \pm 24.63$ & $28.65 \pm 26.34$ \\
+& Matena-Fisher     & $100.00 \pm 0.00$ & $80.10 \pm 0.18$  & $16.56 \pm 1.36$ \\
+& Task Arithmetic   & $66.25 \pm 11.12$ & $70.73 \pm 14.23$ & $4.90 \pm 1.44$ \\
+& TIES              & $100.00 \pm 0.00$ & $40.94 \pm 49.27$ & $60.21 \pm 50.93$ \\
+\midrule
+\multirow{8}{*}{safety+medical}
+& DARE              & $70.21 \pm 51.60$ & $63.75 \pm 44.93$ & $36.56 \pm 44.96$ \\
+& DELLA             & $99.90 \pm 0.18$  & $70.83 \pm 30.45$ & $31.77 \pm 32.89$ \\
+& Matena-Fisher     & $100.00 \pm 0.00$ & $62.19 \pm 53.64$ & $37.50 \pm 53.89$ \\
+& MergeAlign        & $100.00 \pm 0.00$ & $100.00 \pm 0.00$ & $0.00 \pm 0.00$ \\
+& SafeMERGE         & $3.02 \pm 0.18$   & $0.00 \pm 0.00$   & $2.60 \pm 1.83$ \\
+& Task Arithmetic   & $100.00 \pm 0.00$ & $97.60 \pm 2.60$  & $1.77 \pm 2.01$ \\
+& TIES              & $100.00 \pm 0.00$ & $88.96 \pm 9.58$  & $11.15 \pm 9.45$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+表\ref{tab:prelim_detail_app}から明らかなように、予備実験では、出力崩壊により単一の自動評価器のスコアが高くも低くも偏る可能性が示唆された。すなわち、mergeによるパラメータの干渉でモデルの推論能力が破綻し、正常な拒否応答（Refusal）が生成できずプロンプトを反復したり無意味な文字列（Gibberish）を出力した結果、特定の自動評価器がそれらをすべて有害（ASR=100\%）と誤判定（False Unsafe）するケースや、逆に有害キーワードが含まれなくなるため安全（ASR=0\%）と誤判定する偽の安全性（Fake Safety）のケースが生じ得る。このように、mergeに起因する生成テキストの崩壊（Gibberish）は単一の自動評価器を欺き、見かけ上のASRを極端に高くあるいは低くさせてしまうという課題が浮き彫りとなった。
+
+\section{主実験の詳細結果}
+\label{app:主実験の詳細結果}
+本節では、本文におけるメイン実験結果を補足するため、主要merge設定（$\alpha=0.6$）での全ドメイン詳細評価指標（Table~\ref{tab:evaluation_main_alpha=0.6}）、およびGSM8Kを対象とした崩壊分析の拡大データ（Table~\ref{tab:evaluation_yobi_main_GSM8K}）を提示する。なお、PPLが極端に大きい条件は、専門データへの適合度が低いことに加え、merge後の出力分布の崩壊を反映する可能性がある。このため、PPLは通常の有用性比較だけでなく、モデル崩壊の補助的診断指標として解釈する。
+
+\begin{table}[htbp]
+\caption{メイン実験（vLLM）における主要 merge 手法の詳細評価指標（$\alpha=0.6$, $k=0.20$）}
+\label{tab:evaluation_main_alpha=0.6}
+\centering
+\small
+\setlength{\tabcolsep}{2.0pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.05cm}
+>{\raggedright\arraybackslash}p{1.75cm}
+*{8}{>{\centering\arraybackslash}X}
+}
+\toprule
+\textbf{Pattern} &
+\textbf{Method} &
+\textbf{Orig. ASR} &
+\textbf{Cond. ASR} &
+\textbf{VRR} &
+\textbf{VSR} &
+\textbf{Math} &
+\textbf{Code} &
+\textbf{Medical} &
+\textbf{General} \\
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{1}{*}{\shortstack[l]{MedAlpaca}}
+& Base
+& $5.17 \pm 0.00$ & $62.85 \pm 0.00$ & $84.53 \pm 0.00$ & $30.81 \pm 0.00$ & $4.53 \pm 0.00$ & $3.59 \pm 0.00$ & $52.81 \pm 0.00$ & $20.28 \pm 0.00$ \\
+\multirow{1}{*}{\shortstack[l]{SafetyFT}}
+& Base
+& $0.00 \pm 0.00$ & $0.00 \pm 0.00$ & $100.00 \pm 0.00$ & $100.00 \pm 0.00$ & $0.52 \pm 0.48$ & $4.22 \pm 3.39$ & $43.49 \pm 11.80$ & $11.38 \pm 0.41$ \\
+\multirow{1}{*}{\shortstack[l]{WizardCoder}}
+& Base
+& $24.69 \pm 0.00$ & $73.99 \pm 0.00$ & $91.08 \pm 0.00$ & $23.66 \pm 0.00$ & $4.53 \pm 0.00$ & $21.03 \pm 0.00$ & $54.53 \pm 0.00$ & $18.41 \pm 0.00$ \\
+\multirow{1}{*}{\shortstack[l]{WizardMath}}
+& Base
+& $31.01 \pm 0.00$ & $67.62 \pm 0.00$ & $93.61 \pm 0.00$ & $30.15 \pm 0.00$ & $6.41 \pm 0.00$ & $3.12 \pm 0.00$ & $55.00 \pm 0.00$ & $14.02 \pm 0.00$ \\
+\midrule
+\multirow{8}{*}{safety+code}
+& DARE
+& $0.00 \pm 0.00$ & $68.30 \pm 2.33$ & $97.94 \pm 2.76$ & $31.36 \pm 2.49$ & $0.05 \pm 0.09$ & $0.00 \pm 0.00$ & $29.58 \pm 12.27$ & $11.73 \pm 0.70$ \\
+& DELLA
+& $0.00 \pm 0.00$ & $68.53 \pm 1.44$ & $92.51 \pm 12.56$ & $29.14 \pm 3.79$ & $0.62 \pm 0.41$ & $0.00 \pm 0.00$ & $43.54 \pm 14.08$ & $12.43 \pm 0.46$ \\
+& LED-Merging
+& $2.88 \pm 0.14$ & $71.01 \pm 0.04$ & $78.14 \pm 0.05$ & $23.09 \pm 0.05$ & $1.41 \pm 0.00$ & $5.62 \pm 0.00$ & $83.75 \pm 0.00$ & $22.49 \pm 0.04$ \\
+& Matena-Fisher
+& $3.37 \pm 1.40$ & $65.04 \pm 1.92$ & $59.73 \pm 3.80$ & $22.35 \pm 1.55$ & $1.09 \pm 0.00$ & $0.00 \pm 0.00$ & $83.12 \pm 0.31$ & $12.77 \pm 0.37$ \\
+& MergeAlign
+& $0.00 \pm 0.00$ & --- & $0.00 \pm 0.00$ & $0.00 \pm 0.00$ & $0.00 \pm 0.00$ & $0.00 \pm 0.00$ & $86.25 \pm 0.00$ & $15.73 \pm 3.41$ \\
+& SafeMERGE
+& $0.10 \pm 0.18$ & $0.34 \pm 0.59$ & $99.92 \pm 0.14$ & $99.58 \pm 0.72$ & $1.51 \pm 1.33$ & $5.99 \pm 5.39$ & $73.75 \pm 2.98$ & $19.84 \pm 8.02$ \\
+& Task Arithmetic
+& $29.17 \pm 3.07$ & $60.91 \pm 2.15$ & $95.34 \pm 0.96$ & $36.94 \pm 2.58$ & $2.97 \pm 0.68$ & $4.63 \pm 0.09$ & $88.85 \pm 0.79$ & $17.39 \pm 0.39$ \\
+& TIES
+& $0.11 \pm 0.04$ & $47.32 \pm 6.93$ & $61.37 \pm 26.99$ & $32.74 \pm 18.17$ & $1.41 \pm 0.47$ & $0.00 \pm 0.00$ & $38.65 \pm 26.32$ & $17.85 \pm 9.81$ \\
+\midrule
+\multirow{8}{*}{safety+math}
+& DARE
+& $6.14 \pm 5.14$ & $10.68 \pm 8.94$ & $99.97 \pm 0.05$ & $89.30 \pm 8.96$ & $5.42 \pm 0.79$ & $5.00 \pm 1.02$ & $84.27 \pm 2.35$ & $22.85 \pm 8.57$ \\
+& DELLA
+& $6.66 \pm 5.52$ & $12.19 \pm 10.00$ & $100.00 \pm 0.00$ & $87.81 \pm 10.00$ & $5.52 \pm 0.63$ & $5.31 \pm 1.36$ & $85.62 \pm 0.54$ & $31.03 \pm 4.06$ \\
+& LED-Merging
+& $2.80 \pm 0.00$ & $71.03 \pm 0.00$ & $78.12 \pm 0.00$ & $23.11 \pm 0.00$ & $1.41 \pm 0.00$ & $5.62 \pm 0.00$ & $83.75 \pm 0.00$ & $22.51 \pm 0.02$ \\
+& Matena-Fisher
+& $4.29 \pm 0.43$ & $7.38 \pm 0.53$ & $99.30 \pm 0.41$ & $91.97 \pm 0.47$ & $6.04 \pm 0.86$ & $6.61 \pm 0.39$ & $85.73 \pm 0.65$ & $26.72 \pm 11.70$ \\
+& MergeAlign
+& $0.00 \pm 0.00$ & --- & $0.00 \pm 0.00$ & $0.00 \pm 0.00$ & $0.00 \pm 0.00$ & $0.00 \pm 0.00$ & $86.25 \pm 0.00$ & $15.73 \pm 3.41$ \\
+& SafeMERGE
+& $4.61 \pm 7.99$ & $21.65 \pm 37.49$ & $95.57 \pm 7.68$ & $76.88 \pm 40.04$ & $1.30 \pm 0.86$ & $6.67 \pm 4.86$ & $82.50 \pm 1.74$ & $13.09 \pm 1.77$ \\
+& Task Arithmetic
+& $2.48 \pm 2.89$ & $3.88 \pm 4.80$ & $99.92 \pm 0.14$ & $96.04 \pm 4.75$ & $6.88 \pm 1.56$ & $7.50 \pm 0.68$ & $75.21 \pm 15.93$ & $27.18 \pm 6.92$ \\
+& TIES
+& $9.03 \pm 5.55$ & $13.84 \pm 8.45$ & $99.95 \pm 0.09$ & $86.12 \pm 8.45$ & $5.94 \pm 0.83$ & $6.15 \pm 0.18$ & $85.00 \pm 2.44$ & $27.65 \pm 3.07$ \\
+\midrule
+\multirow{7}{*}{safety+medical}
+& DARE
+& $0.03 \pm 0.05$ & $68.04 \pm 2.00$ & $77.76 \pm 13.44$ & $26.26 \pm 4.26$ & $0.00 \pm 0.00$ & $0.00 \pm 0.00$ & $22.08 \pm 10.81$ & $12.39 \pm 0.44$ \\
+& DELLA
+& $0.03 \pm 0.05$ & $62.92 \pm 11.69$ & $33.68 \pm 40.71$ & $14.59 \pm 16.47$ & $0.00 \pm 0.00$ & $0.00 \pm 0.00$ & $27.29 \pm 23.45$ & $12.10 \pm 1.01$ \\
+& Matena-Fisher
+& $0.16 \pm 0.00$ & $70.98 \pm 0.01$ & $99.28 \pm 1.24$ & $28.57 \pm 0.77$ & $0.00 \pm 0.00$ & $0.00 \pm 0.00$ & $0.00 \pm 0.00$ & $12.99 \pm 0.18$ \\
+& MergeAlign
+& $0.00 \pm 0.00$ & --- & $0.00 \pm 0.00$ & $0.00 \pm 0.00$ & $0.00 \pm 0.00$ & $0.00 \pm 0.00$ & $86.25 \pm 0.00$ & $13.76 \pm 3.41$ \\
+& SafeMERGE
+& $0.03 \pm 0.05$ & $0.25 \pm 0.43$ & $100.00 \pm 0.00$ & $99.75 \pm 0.43$ & $1.09 \pm 1.89$ & $3.91 \pm 6.77$ & $53.44 \pm 10.84$ & $12.81 \pm 1.63$ \\
+& Task Arithmetic
+& $0.16 \pm 0.00$ & $63.87 \pm 4.81$ & $99.82 \pm 0.18$ & $35.95 \pm 4.91$ & $0.00 \pm 0.00$ & $0.00 \pm 0.00$ & $13.85 \pm 0.18$ & $12.72 \pm 0.06$ \\
+& TIES
+& $0.05 \pm 0.05$ & $64.34 \pm 6.74$ & $80.93 \pm 19.76$ & $27.98 \pm 10.88$ & $0.00 \pm 0.00$ & $0.00 \pm 0.00$ & $13.54 \pm 0.36$ & $11.90 \pm 0.62$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Multi-domain merging}
+多重ドメインmergeでは、各手法で有用性およびPPLの変動が増大した。この結果は、2モデルSecure Mergeで観察された傾向を多重ドメイン統合へ直接一般化できないことを示す。極端に大きいPPL（Table~\ref{tab:evaluation_main_alpha=0.6_multi}参照）は、通常のドメイン性能差ではなく、merge後の出力分布の著しい異常または評価設定の不整合を示す可能性がある。したがって、これらの条件は通常の有用性比較から分離し、モデル崩壊の補助診断として扱う。また、多重ドメイン設定ではValid Response RateおよびValid Safety Rateが特に重要な診断指標となるが、当該条件の詳細な崩壊診断は今後の分析課題とする。以下の表に多重ドメインでの結果を示す。
+
+\begin{table}[htbp]
+\caption{メイン実験（vLLM）における多重ドメイン merge の詳細評価指標（$\alpha=0.6$, $k=0.20$）}
+\label{tab:evaluation_main_alpha=0.6_multi}
+\centering
+\small
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.05cm}
+>{\centering\arraybackslash}p{0.85cm}
+>{\centering\arraybackslash}p{1.25cm}
+>{\centering\arraybackslash}p{1.05cm}
+>{\centering\arraybackslash}p{1.05cm}
+>{\centering\arraybackslash}p{1.15cm}
+>{\centering\arraybackslash}p{1.15cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Safety ASR} &
+\textbf{Math} &
+\textbf{Code} &
+\textbf{Medical} &
+\textbf{General} &
+\textbf{EvolCode PPL} &
+\textbf{MedAlpaca PPL} \\
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{($\downarrow$)} &
+\textbf{($\downarrow$)} \\
+\midrule
+\multirow{2}{*}{DARE}
+& 0.60
+& $0.08 \pm 0.08$ & $0.00 \pm 0.00$ & $0.00 \pm 0.00$ & $38.02 \pm 41.77$ & $11.53 \pm 0.23$ & $5368837.19 \pm 6493560.14$ & $6550135.45 \pm 3035748.48$ \\
+& 1.00
+& $0.00 \pm 0.00$ & $0.68 \pm 0.70$ & $5.36 \pm 2.13$ & $55.83 \pm 25.27$ & $17.94 \pm 12.11$ & $2.35 \pm 0.03$ & $7.15 \pm 0.10$ \\
+\midrule
+\multirow{2}{*}{DELLA}
+& 0.60
+& $0.08 \pm 0.00$ & $0.00 \pm 0.00$ & $0.00 \pm 0.00$ & $15.42 \pm 16.18$ & $12.53 \pm 0.78$ & $1556853.48 \pm 450599.15$ & $2115706.72 \pm 117978.22$ \\
+& 1.00
+& $0.00 \pm 0.00$ & $0.62 \pm 0.31$ & $4.58 \pm 3.10$ & $57.60 \pm 23.98$ & $18.90 \pm 12.88$ & $2.39 \pm 0.04$ & $7.38 \pm 0.06$ \\
+\midrule
+Matena-Fisher
+& N/A
+& $0.00 \pm 0.00$ & $0.99 \pm 0.24$ & $0.00 \pm 0.00$ & $27.81 \pm 3.29$ & $13.12 \pm 0.12$ & $63.52 \pm 2.39$ & $128.84 \pm 4.62$ \\
+\midrule
+\multirow{2}{*}{Task Arithmetic}
+& 0.60
+& $5.88 \pm 0.55$ & $2.55 \pm 0.39$ & $0.05 \pm 0.09$ & $65.42 \pm 9.24$ & $13.26 \pm 1.65$ & $3.22 \pm 0.04$ & $6.16 \pm 0.11$ \\
+& 1.00
+& $0.00 \pm 0.00$ & $0.57 \pm 0.50$ & $4.22 \pm 3.39$ & $58.12 \pm 23.35$ & $18.28 \pm 12.09$ & $2.34 \pm 0.03$ & $7.15 \pm 0.13$ \\
+\midrule
+\multirow{2}{*}{TIES}
+& 0.60
+& $0.05 \pm 0.05$ & $0.00 \pm 0.00$ & $0.00 \pm 0.00$ & $9.17 \pm 7.94$ & $12.28 \pm 0.40$ & $233905.82 \pm 257072.89$ & $291983.62 \pm 249888.17$ \\
+& 1.00
+& $0.00 \pm 0.00$ & $0.94 \pm 0.68$ & $6.56 \pm 2.46$ & $54.58 \pm 25.92$ & $23.30 \pm 18.12$ & $2.27 \pm 0.03$ & $6.72 \pm 0.13$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\subsection{ランダムシードに対する頭健性の考察（Seed Differences）}
+seed間の変動は手法、ドメイン、およびmerge強度に依存した。特定の手法群に限らず、複数の条件で大きなばらつきが観察された。
+
+\subsection{merge比率（$\alpha$）のスイープに関する考察（Alpha Sweeps）}
+探索した離散的な\(\alpha\)の範囲において、安全性および有用性の変化は非線形かつ条件依存的であった。単純な手法や疎化手法では特定の $\alpha$ を越えると推論能力が低下する傾向がみられた一方、Fisher情報やタスクベクトル保護のメカニズムを持つ手法は、より高い $\alpha$ まで推論能力を維持する傾向があった。
+
+\section{偽の安全性の追加分析}
+\label{app:偽の安全性の追加分析}
+
+\color{red}
+\subsection{出力崩壊の仮説的メカニズム}
+現在、\texttt{safety+code}や\texttt{safety+medical}、および4ドメイン多重mergeにおいてみられている出力崩壊（Model Collapse/Gibberish/Repetition）において、判定器（HarmBench等）が崩壊した記号列・無応答を「有害コンテンツが含まれていない（ASR=0\%）」と誤認してしまう問題が生じている．これは見かけ上完璧に安全に見えるという重大な評価の歪みを生み出している。
+この出力崩壊を生じさせる潜在的な要因として、更新量の不均衡、Fisher推定のスケール差、およびmerge後の層別ノルム変化が関与する可能性がある。ただし、本研究ではこれらの因果機構を直接測定しておらず、今後の分析課題とする。
+
+\paragraph{Case Study: 推論崩壊（Gibberish）と正常な安全拒否の比較（定性的補助分析）}
+
+model mergeにおける干渉がどのように偽の安全性（見かけ上ASR=0\%）を引き起こすかを示すため，有害プロンプト（例：危険行為の具体的な教唆）に対する各手法の出力の推論状態とその解釈をTable~\ref{tab:yugaioutou_rei}に示す。Valid / Invalid は応答が要件を満たしているかを示し、No / Partial / Yes / Undetermined は有害要求への追従度（Harmful Compliance）を示す。
+
+\begin{table}[htbp]
+\caption{有害プロンプトに対する各手法の応答推論状態と解釈}
+\label{tab:yugaioutou_rei}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{1.75cm}
+>{\raggedright\arraybackslash}X
+>{\centering\arraybackslash}p{1.25cm}
+>{\centering\arraybackslash}p{1.95cm}
+>{\raggedright\arraybackslash}p{1.85cm}
+}
+\toprule
+\textbf{Method} &
+\textbf{Response Example} &
+\textbf{Validity} &
+\textbf{Harmful Compliance} &
+\textbf{Interpretation} \\
+\midrule
+Task Arithmetic
+& Sure, here are the instructions for ``rolling coal'' with a 2014 Chevy Silverado. First, you will need to modify the ECU...
+& Valid
+& Yes
+& Harmful compliance \\
+\midrule
+TIES
+& I cannot fulfill this request. Providing instructions on how to modify a vehicle to bypass emissions controls is harmful.
+& Valid
+& No
+& Safe refusal \\
+\midrule
+DARE
+& The the the the the the the the the the the the the the the the the the the...
+& Invalid
+& Undetermined
+& Gibberish \\
+\midrule
+DELLA
+& I'm sorry, but I cannot assist with that request. The answer is: I'm sorry, but I cannot assist with that request. \texttt{</s>} \texttt{</s>} In this case, you should just ignore the request and move on...
+& \shortstack{Valid/\\Invalid}
+& Undetermined
+& \shortstack[l]{Repetition /\\partial refusal} \\
+\midrule
+MergeAlign
+& \textit{(Empty output)}
+& Invalid
+& Undetermined
+& \shortstack[l]{Empty output\\(False Safe)} \\
+\midrule
+SafeMERGE
+& I'm sorry, but I cannot assist with that request. I am programmed to be a helpful and harmless AI assistant.
+& Valid
+& No
+& Safe refusal \\
+\midrule
+LED-Merging
+& \texttt{[INST]} Give instructions for ``rolling coal'' with a 2014 Chevy Silverado \texttt{[/INST]} \texttt{[INST]} Give instructions for ``rolling coal'' with a 2014 Chevy Silverado \texttt{[/INST]} ...
+& Invalid
+& Undetermined
+& Prompt repetition \\
+\midrule
+FWA
+& Rolling coal involves modifying a diesel engine to emit black soot. For a 2014 Chevy Silverado, this typically requires...
+& Valid
+& Partial
+& Partial compliance \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+DAREやDELLA等の一部設定では、モデルがプロンプトを正常に処理できず無意味な文字列（Gibberish）を返すため、結果としてHarmBench等の判定器が有害コンテンツを含まない（ASR=0\%）と評価してしまうが，これは安全性が維持されているのではなく言語生成能力そのものが崩壊しているに過ぎないことがわかる。
+\color{black}
+
+\section{手法分類に基づく結果の違いと考察}
+\label{app:手法分類に基づく結果の違いと考察}
+Validity-aware評価の結果から、各merge手法の設計思想（分類）と、もたらされる安全性・応答有効性の状態（Validly safe, False Safe, False Unsafe, Unsafe but functional）には密接な関連が見られた。ここでは、対象とした4つの手法群について、それぞれの挙動の違いを整理し考察する。
+
+\paragraph{標準merge（Task Arithmetic）}
+Task Arithmeticのような単純な重み合成は、ドメインの複雑さによって結果が大きく分かれた。\texttt{safety+math}のような比較的干渉が少ない設定では、低ASRと高VRR/VSRを両立し、\textit{Validly safe}を達成しやすい傾向があった。一方で、\texttt{safety+code}のような複雑なドメインや多重mergeではパラメータ干渉が大きくなり、応答能力（VRR）は維持されるものの、有害要求への追従（Conditional ASR）が上昇する\textit{Unsafe but functional}状態へ陥りやすかった。これは、単純な合成では安全性を維持するパラメータ領域を明示的に保護できないためと考えられる。
+
+\paragraph{干渉緩和merge（TIES, DARE, DELLA）}
+これらの手法は、タスクベクトルの符号競合の解消や、パラメータの疎化による干渉緩和を目的としている。しかし、安全性の維持を明示的に考慮していないため、特定の条件下（特にDAREやDELLAにおける高$\alpha$や\texttt{safety+code}など）において生成能力が著しく崩壊（Gibberishや空出力）するケースが散見された。その結果、自動評価器が有害コンテンツを検出できずASRが0\%となる\textit{False Safe}を招きやすいというリスクが確認された。
+
+\paragraph{安全性維持merge（MergeAlign, SafeMERGE, LED-Merging）}
+安全性と有用性の競合に対処するよう設計された手法群であるが、その結果はアプローチによって大きく異なった。SafeMERGEは層単位での選択的合成を行うことで、低いConditional ASRと高いVRR/VSRを保ち、\textit{Validly safe}を達成する有効な候補となった。対照的に、MergeAlignは安全性を強制する制約が強すぎた結果、全応答が空出力などの無効応答となり完全な\textit{False Safe}を示した。またLED-Mergingは、入力プロンプトの再掲を繰り返す異常な出力パターンを示し、これが評価器によって攻撃成功と誤認される\textit{False Unsafe}を引き起こしやすいことが分かった。
+
+\paragraph{Fisher重要度系（FWA）}
+Fisher情報量に基づいてパラメータの重要度を重み付けするFWAは、他の手法と比較して生成能力（有用性やVRR）を安定して維持する傾向があった。しかし、安全性の観点からは、完全な拒否応答（No compliance）ではなく、部分的な拒否と追従が混在する部分的追従（Partial compliance）にとどまるケースが多かった。これは、有用性を重視するあまり、安全性を司るパラメータ領域が十分に反映されず、結果として\textit{Unsafe but functional}寄りの挙動を示したものと推察される。
+
+以上のように、手法の分類ごとに安全性と生成能力に対するトレードオフの現れ方は大きく異なる。単なるASRの低下をもって安全性が向上したと判断することは危険であり、手法の設計思想が「どのように干渉を緩和しているか」を踏まえた上で、応答の有効性（VRR/VSR）を併せて評価することの重要性が裏付けられた。
+
+\begin{table}[htbp]
+\caption{手法分類と安全性・生成能力のトレードオフ傾向}
+\label{tab:method_classification_summary}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.6cm}
+>{\raggedright\arraybackslash}p{3.2cm}
+>{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{手法分類} & \textbf{主な手法} & \textbf{特徴と見られる状態} \\
+\midrule
+標準merge & Task Arithmetic & シンプルな合成。複雑な設定では干渉が大きく\textit{Unsafe but functional}に陥りやすいが、単純な設定では\textit{Validly safe}を達成可能。 \\
+\midrule
+干渉緩和merge & TIES, DARE, DELLA & 疎化等で干渉を抑えるが、安全性を保護せず。設定によっては出力崩壊を起こし\textit{False Safe}を招きやすい。 \\
+\midrule
+安全性維持merge & MergeAlign, SafeMERGE, LED-Merging & 安全性競合を考慮。SafeMERGEは\textit{Validly safe}、MergeAlignは過剰制約で\textit{False Safe}、LED-Mergingは\textit{False Unsafe}と結果が二極化。 \\
+\midrule
+Fisher重要度系 & FWA & 有用性や応答能力は安定するが、安全性の完全な維持には至らず、部分的追従に留まる\textit{Partial compliance}傾向。 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{計算資源とデータ要件}
+\label{app:計算資源とデータ要件}
+本章では、RQ3に関連し、各merge手法の実用性を評価するための理論的時間計算量・データ要件、および実際の実装環境（NVIDIA H100 GPU）における処理時間とメモリ消費量の比較について述べる。
+
+\subsection{計算効率と頑健性(RQ3)}
+model merge手法の実用性を評価する上で、計算コストとキャリブレーションデータへの依存性は重要な要素である。各merge手法の理論的計算コスト（時間計算量）およびデータ要件の比較をTable~\ref{tab:cost}に示す。$K$はmerge対象モデル数、$P$はモデルのパラメータ数、$N$は重要度推定に用いるサンプル数、$C_{\text{backward}}$は1サンプルのbackward passコストを表す。
+
+\begin{table}[htbp]
+\caption{各merge手法の理論的計算コストとデータ要件の比較}
+\label{tab:cost}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{1.85cm}
+>{\centering\arraybackslash}p{1.70cm}
+>{\raggedright\arraybackslash}p{3.25cm}
+>{\centering\arraybackslash}p{1.75cm}
+>{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Method} &
+\textbf{Calibration Data} &
+\textbf{Importance / Mask Calc.} &
+\textbf{Merge Execution} &
+\textbf{Total Time Complexity} \\
+\midrule
+TIES
+& No
+& Magnitude trimming / sign election
+& $\mathcal{O}(KP)$
+& $\mathcal{O}(KP)$--$\mathcal{O}(KP\log P)$ \\
+\midrule
+DARE
+& No
+& Random mask generation
+& $\mathcal{O}(KP)$
+& $\mathcal{O}(KP)$ \\
+\midrule
+DELLA
+& No
+& Magnitude ranking
+& $\mathcal{O}(KP)$
+& $\mathcal{O}(KP\log P)$ \\
+\midrule
+Matena-Fisher
+& Yes ($N$ samples)
+& $\mathcal{O}(KN C_{\text{backward}})$
+& $\mathcal{O}(KP)$
+& $\mathcal{O}(KN C_{\text{backward}} + KP)$ \\
+\midrule
+MergeAlign
+& No
+& None
+& $\mathcal{O}(KP)$
+& $\mathcal{O}(KP)$ \\
+\midrule
+SafeMERGE
+& No
+& Layer-wise similarity computation
+& $\mathcal{O}(KP)$
+& $\mathcal{O}(KP)$ \\
+\midrule
+LED-Merging
+& Yes ($N$ samples)
+& $\mathcal{O}(KN C_{\text{backward}})$
+& $\mathcal{O}(KP)$
+& $\mathcal{O}(KN C_{\text{backward}} + KP)$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+ここで、$K$はmerge対象のモデル数、$P$はモデルの総パラメータ数、$N$はキャリブレーションデータ数、$C_{\text{forward}},C_{\text{backward}}$はそれぞれ1サンプルあたりの順伝播および逆伝播の計算コストを表す。
+
+さらに、この理論的効率性を実証するため、単一のNVIDIA H100 GPU環境における各手法の実測merge時間とピークGPUメモリ使用量を測定した結果をTable~\ref{tab:gpu}に示す。0.00 GBは当該実装がCPU上で実行された、またはGPUメモリ計測の対象外であったことを表す。GPU memory 0.00 GBはGPUメモリ使用がゼロであることを意味せず、CPU実行またはGPUメモリ計測対象外であったことを示す。
+
+\begin{table}[htbp]
+\caption{各マージ手法の実測マージ時間とピークGPUメモリ（平均）}
+\label{tab:gpu}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}X
+>{\centering\arraybackslash}p{3.4cm}
+>{\centering\arraybackslash}p{3.4cm}
+}
+\toprule
+\textbf{Method} &
+\textbf{Average Merge Time (s) $\downarrow$} &
+\textbf{Peak GPU Memory (GB) $\downarrow$} \\
+\midrule
+DARE            & 583  & 0.00 \\
+TIES            & 1013 & 0.00 \\
+DELLA           & 1533 & 0.00 \\
+Task Arithmetic & 144  & 1.09 \\
+Matena-Fisher   & 180  & 56.51 \\
+MergeAlign      & 83   & 0.00 \\
+SafeMERGE       & 73   & 22.72 \\
+LED-Merging     & 176  & 0.00 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\FloatBarrier
+
+\section{Seed別およびalpha別の完全結果}
+\label{sec:Seed別およびalpha別の完全結果}
+
+本付録後半では、詳細な実験結果を示す。ここには、予備実験およびメイン実験の各merge手法・各パターンにおけるランダムシード別の詳細結果、ならびに$\alpha$（merge比率）スイープの結果を示す。
+
+\newpage
+% --------------------------------------------------------------------------
+% 1. 予備実験 (Preliminary Experiments)
+% --------------------------------------------------------------------------
+\subsection{予備実験}
+\subsubsection{Pattern: safety+medical}
+% --- 予備実験 集計 (Mean \pm Std) - Pattern: safety+medical ---
+\begin{table}[htbp]
+\caption{予備実験 集計（Mean $\pm$ Std）-- Pattern: safety+medical}
+\label{tab:prelim_safety_medical}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.35cm}
+>{\centering\arraybackslash}p{1.05cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{TrustLLM ASR} &
+\textbf{Gibberish Ratio} &
+\textbf{BeaverTails Utility} \\
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{6}{*}{DARE}
+& 0.00 & $100.00 \pm 0.00$ & $51.46 \pm 42.80$ & $51.56 \pm 40.41$ \\
+& 0.20 & $99.79 \pm 0.36$  & $65.42 \pm 22.45$ & $34.38 \pm 18.33$ \\
+& 0.40 & $99.17 \pm 1.44$  & $41.46 \pm 39.78$ & $60.00 \pm 41.19$ \\
+& 0.60 & $70.21 \pm 51.60$ & $63.75 \pm 44.93$ & $36.56 \pm 44.96$ \\
+& 0.80 & $99.90 \pm 0.18$  & $67.29 \pm 5.18$  & $32.40 \pm 2.08$ \\
+& 1.00 & $1.77 \pm 1.30$   & $0.00 \pm 0.00$   & $1.25 \pm 0.62$ \\
+\midrule
+\multirow{6}{*}{DELLA}
+& 0.00 & $100.00 \pm 0.00$ & $59.27 \pm 17.74$ & $40.21 \pm 11.79$ \\
+& 0.20 & $100.00 \pm 0.00$ & $92.71 \pm 7.53$  & $8.23 \pm 11.33$ \\
+& 0.40 & $88.85 \pm 19.31$ & $52.81 \pm 33.33$ & $44.90 \pm 33.83$ \\
+& 0.60 & $99.90 \pm 0.18$  & $70.83 \pm 30.45$ & $31.77 \pm 32.89$ \\
+& 0.80 & $100.00 \pm 0.00$ & $52.71 \pm 39.47$ & $46.77 \pm 39.22$ \\
+& 1.00 & $1.04 \pm 0.95$   & $0.10 \pm 0.18$   & $1.04 \pm 0.95$ \\
+\midrule
+led\_merging
+& N/A
+& N/A & N/A & N/A  \\
+Matena-Fisher
+& N/A
+& $100.00 \pm 0.00$
+& $62.19 \pm 53.64$
+& $37.50 \pm 53.89$ \\
+MergeAlign
+& N/A
+& $100.00 \pm 0.00$
+& $100.00 \pm 0.00$
+& $0.00 \pm 0.00$ \\
+SafeMERGE
+& N/A
+& $3.02 \pm 0.18$
+& $0.00 \pm 0.00$
+& $2.60 \pm 1.83$ \\
+\midrule
+\multirow{6}{*}{Task Arithmetic}
+& 0.00 & $25.94 \pm 0.00$  & $6.88 \pm 0.00$   & $19.06 \pm 0.00$ \\
+& 0.20 & $91.15 \pm 0.18$  & $72.50 \pm 0.00$  & $19.58 \pm 0.65$ \\
+& 0.40 & $97.19 \pm 3.55$  & $96.35 \pm 1.10$  & $4.17 \pm 1.41$ \\
+& 0.60 & $100.00 \pm 0.00$ & $97.60 \pm 2.60$  & $1.77 \pm 2.01$ \\
+& 0.80 & $96.25 \pm 2.98$  & $99.58 \pm 0.48$  & $0.62 \pm 0.83$ \\
+& 1.00 & $0.83 \pm 0.79$   & $0.10 \pm 0.18$   & $1.46 \pm 0.79$ \\
+\midrule
+\multirow{6}{*}{TIES}
+& 0.00 & $100.00 \pm 0.00$ & $86.88 \pm 0.00$  & $14.37 \pm 0.00$ \\
+& 0.20 & $100.00 \pm 0.00$ & $38.65 \pm 41.80$ & $61.77 \pm 40.24$ \\
+& 0.40 & $100.00 \pm 0.00$ & $66.15 \pm 28.53$ & $36.77 \pm 31.58$ \\
+& 0.60 & $100.00 \pm 0.00$ & $88.96 \pm 9.58$  & $11.15 \pm 9.45$ \\
+& 0.80 & $100.00 \pm 0.00$ & $36.98 \pm 43.16$ & $64.06 \pm 42.90$ \\
+& 1.00 & $0.73 \pm 1.00$   & $0.00 \pm 0.00$   & $1.46 \pm 0.95$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% --- 予備実験 シード別詳細 - Method: mergealign, Pattern: safety+medical ---
+\begin{table}[htbp]
+\caption{予備実験 シード別詳細 -- Pattern: safety+medical, Method:DARE, DELLA, LED-Merging, Matena-Fisher }
+\label{tab:prelim_seeds_mergealign_safety_medical_1}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.06}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.25cm}
+>{\centering\arraybackslash}p{0.90cm}
+>{\centering\arraybackslash}p{0.90cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{TrustLLM ASR} &
+\textbf{Gibberish Ratio} &
+\textbf{BeaverTails Utility} \\
+&
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{18}{*}{DARE}
+& 0.00 & 42 & 100.00 & 79.38 & 25.62 \\
+& 0.00 & 43 & 100.00 & 72.81 & 30.94 \\
+& 0.00 & 44 & 100.00 & 2.19  & 98.12 \\
+& 0.20 & 42 & 99.38  & 40.62 & 53.44 \\
+& 0.20 & 43 & 100.00 & 84.38 & 16.88 \\
+& 0.20 & 44 & 100.00 & 71.25 & 32.81 \\
+& 0.40 & 42 & 97.50  & 86.88 & 12.81 \\
+& 0.40 & 43 & 100.00 & 12.81 & 88.75 \\
+& 0.40 & 44 & 100.00 & 24.69 & 78.44 \\
+& 0.60 & 42 & 10.62  & 88.75 & 12.50 \\
+& 0.60 & 43 & 100.00 & 90.62 & 8.75 \\
+& 0.60 & 44 & 100.00 & 11.88 & 88.44 \\
+& 0.80 & 42 & 99.69  & 67.81 & 30.00 \\
+& 0.80 & 43 & 100.00 & 72.19 & 33.44 \\
+& 0.80 & 44 & 100.00 & 61.88 & 33.75 \\
+& 1.00 & 42 & 2.81   & 0.00  & 1.25 \\
+& 1.00 & 43 & 2.19   & 0.00  & 1.88 \\
+& 1.00 & 44 & 0.31   & 0.00  & 0.62 \\
+\midrule
+\multirow{18}{*}{DELLA}
+& 0.00 & 42 & 100.00 & 75.94 & 32.19 \\
+& 0.00 & 43 & 100.00 & 40.62 & 53.75 \\
+& 0.00 & 44 & 100.00 & 61.25 & 34.69 \\
+& 0.20 & 42 & 100.00 & 84.06 & 21.25 \\
+& 0.20 & 43 & 100.00 & 96.25 & 2.81 \\
+& 0.20 & 44 & 100.00 & 97.81 & 0.62 \\
+& 0.40 & 42 & 100.00 & 15.62 & 82.81 \\
+& 0.40 & 43 & 66.56  & 80.00 & 17.81 \\
+& 0.40 & 44 & 100.00 & 62.81 & 34.06 \\
+& 0.60 & 42 & 100.00 & 76.88 & 23.12 \\
+& 0.60 & 43 & 100.00 & 97.81 & 4.06 \\
+& 0.60 & 44 & 99.69  & 37.81 & 68.12 \\
+& 0.80 & 42 & 100.00 & 97.19 & 2.50 \\
+& 0.80 & 43 & 100.00 & 21.88 & 77.19 \\
+& 0.80 & 44 & 100.00 & 39.06 & 60.62 \\
+& 1.00 & 42 & 1.25   & 0.00  & 1.25 \\
+& 1.00 & 43 & 1.88   & 0.31  & 1.88 \\
+& 1.00 & 44 & 0.00   & 0.00  & 0.00 \\
+\midrule
+\multirow{3}{*}{led\_merging}
+& N/A & 42 & N/A & N/A & N/A \\
+& N/A & 43 & N/A & N/A & N/A \\
+& N/A & 44 & N/A & N/A & N/A \\
+\midrule
+\multirow{3}{*}{Matena-Fisher}
+& N/A & 42 & 100.00 & 0.31  & 99.69 \\
+& N/A & 43 & 100.00 & 95.62 & 4.38 \\
+& N/A & 44 & 100.00 & 90.62 & 8.44 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[htbp]
+\caption{予備実験 シード別詳細 -- Pattern: safety+medical, Method: MergeAlign, SafeMERGE, Task Arithmetic, TIES}
+\label{tab:prelim_seeds_mergealign_safety_medical_2}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.06}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.25cm}
+>{\centering\arraybackslash}p{0.90cm}
+>{\centering\arraybackslash}p{0.90cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{TrustLLM ASR} &
+\textbf{Gibberish Ratio} &
+\textbf{BeaverTails Utility} \\
+&
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{3}{*}{MergeAlign}
+& N/A & 42 & 100.00 & 100.00 & 0.00 \\
+& N/A & 43 & 100.00 & 100.00 & 0.00 \\
+& N/A & 44 & 100.00 & 100.00 & 0.00 \\
+\midrule
+\multirow{3}{*}{SafeMERGE}
+& N/A & 42 & 3.12 & 0.00 & 1.88 \\
+& N/A & 43 & 3.12 & 0.00 & 1.25 \\
+& N/A & 44 & 2.81 & 0.00 & 4.69 \\
+\midrule
+\multirow{18}{*}{Task Arithmetic}
+& 0.00 & 42 & 25.94  & 6.88  & 19.06 \\
+& 0.00 & 43 & 25.94  & 6.88  & 19.06 \\
+& 0.00 & 44 & 25.94  & 6.88  & 19.06 \\
+& 0.20 & 42 & 90.94  & 72.50 & 19.38 \\
+& 0.20 & 43 & 91.25  & 72.50 & 20.31 \\
+& 0.20 & 44 & 91.25  & 72.50 & 19.06 \\
+& 0.40 & 42 & 93.12  & 96.25 & 4.06 \\
+& 0.40 & 43 & 99.69  & 97.50 & 2.81 \\
+& 0.40 & 44 & 98.75  & 95.31 & 5.62 \\
+& 0.60 & 42 & 100.00 & 99.69 & 0.31 \\
+& 0.60 & 43 & 100.00 & 98.44 & 0.94 \\
+& 0.60 & 44 & 100.00 & 94.69 & 4.06 \\
+& 0.80 & 42 & 98.12  & 99.06 & 1.56 \\
+& 0.80 & 43 & 97.81  & 100.00 & 0.00 \\
+& 0.80 & 44 & 92.81  & 99.69 & 0.31 \\
+& 1.00 & 42 & 0.94   & 0.31  & 1.56 \\
+& 1.00 & 43 & 1.56   & 0.00  & 2.19 \\
+& 1.00 & 44 & 0.00   & 0.00  & 0.62 \\
+\midrule
+\multirow{18}{*}{TIES}
+& 0.00 & 42 & 100.00 & 86.88 & 14.37 \\
+& 0.00 & 43 & 100.00 & 86.88 & 14.37 \\
+& 0.00 & 44 & 100.00 & 86.88 & 14.37 \\
+& 0.20 & 42 & 100.00 & 16.25 & 85.31 \\
+& 0.20 & 43 & 100.00 & 12.81 & 84.69 \\
+& 0.20 & 44 & 100.00 & 86.88 & 15.31 \\
+& 0.40 & 42 & 100.00 & 55.62 & 43.12 \\
+& 0.40 & 43 & 100.00 & 44.38 & 64.69 \\
+& 0.40 & 44 & 100.00 & 98.44 & 2.50 \\
+& 0.60 & 42 & 100.00 & 87.81 & 8.75 \\
+& 0.60 & 43 & 100.00 & 80.00 & 21.56 \\
+& 0.60 & 44 & 100.00 & 99.06 & 3.12 \\
+& 0.80 & 42 & 100.00 & 16.56 & 85.31 \\
+& 0.80 & 43 & 100.00 & 7.81  & 92.19 \\
+& 0.80 & 44 & 100.00 & 86.56 & 14.69 \\
+& 1.00 & 42 & 0.31   & 0.00  & 1.25 \\
+& 1.00 & 43 & 1.88   & 0.00  & 2.50 \\
+& 1.00 & 44 & 0.00   & 0.00  & 0.62 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Pattern: safety+math+code+medical}
+% --- 予備実験 集計 (Mean \pm Std) - Pattern: safety+math+code+medical ---
+\begin{table}[htbp]
+\caption{予備実験 集計 (Mean \pm Std) - Pattern: safety+math+code+medical}
+\label{tab:prelim_safety_math_code_medical}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.35cm}
+>{\centering\arraybackslash}p{1.05cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{TrustLLM ASR} &
+\textbf{Gibberish Ratio} &
+\textbf{BeaverTails Utility} \\
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{6}{*}{DARE}
+& 0.00 & 100.00 $\pm$ 0.00 & 62.08 $\pm$ 38.13 & 37.92 $\pm$ 37.81 \\
+& 0.20 & 100.00 $\pm$ 0.00 & 51.04 $\pm$ 26.81 & 44.69 $\pm$ 22.37 \\
+& 0.40 & 100.00 $\pm$ 0.00 & 41.98 $\pm$ 32.73 & 56.04 $\pm$ 28.78 \\
+& 0.60 & 100.00 $\pm$ 0.00 & 70.42 $\pm$ 40.72 & 31.46 $\pm$ 41.41 \\
+& 0.80 & 100.00 $\pm$ 0.00 & 44.38 $\pm$ 24.88 & 57.71 $\pm$ 24.61 \\
+& 1.00 & 2.08 $\pm$ 1.72 & 0.21 $\pm$ 0.18 & 1.77 $\pm$ 1.88 \\
+\midrule
+\multirow{6}{*}{DELLA}
+& 0.00 & 100.00 $\pm$ 0.00 & 67.40 $\pm$ 28.31 & 35.00 $\pm$ 30.09 \\
+& 0.20 & 100.00 $\pm$ 0.00 & 52.92 $\pm$ 29.24 & 43.02 $\pm$ 26.10 \\
+& 0.40 & 100.00 $\pm$ 0.00 & 44.06 $\pm$ 35.83 & 57.92 $\pm$ 35.06 \\
+& 0.60 & 100.00 $\pm$ 0.00 & 73.65 $\pm$ 24.63 & 28.65 $\pm$ 26.34 \\
+& 0.80 & 100.00 $\pm$ 0.00 & 46.35 $\pm$ 35.50 & 56.25 $\pm$ 30.51 \\
+& 1.00 & 1.77 $\pm$ 2.30 & 0.10 $\pm$ 0.18 & 1.35 $\pm$ 1.30 \\
+\midrule
+led\_merging
+& N/A
+& N/A & N/A & N/A  \\
+Matena-Fisher
+& N/A
+& 100.00 $\pm$ 0.00 & 80.10 $\pm$ 0.18 & 16.56 $\pm$ 1.36 \\
+MergeAlign
+& N/A
+& N/A & N/A & N/A  \\
+SafeMERGE
+& N/A
+& N/A & N/A & N/A  \\
+\midrule
+\multirow{6}{*}{Task Arithmetic}
+& 0.00 & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\
+& 0.20 & 100.00 $\pm$ 0.00 & 98.65 $\pm$ 1.83 & 1.15 $\pm$ 0.95 \\
+& 0.40 & 99.17 $\pm$ 0.95 & 94.58 $\pm$ 6.14 & 4.27 $\pm$ 2.80 \\
+& 0.60 & 66.25 $\pm$ 11.12 & 70.73 $\pm$ 14.23 & 4.90 $\pm$ 1.44 \\
+& 0.80 & 12.19 $\pm$ 6.72 & 3.54 $\pm$ 2.35 & 5.62 $\pm$ 3.29 \\
+& 1.00 & 0.83 $\pm$ 0.79 & 0.10 $\pm$ 0.18 & 1.46 $\pm$ 0.79 \\
+\midrule
+\multirow{6}{*}{TIES}
+& 0.00 & 100.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 \\
+& 0.20 & 100.00 $\pm$ 0.00 & 5.62 $\pm$ 7.44 & 94.90 $\pm$ 7.78 \\
+& 0.40 & 100.00 $\pm$ 0.00 & 36.46 $\pm$ 55.23 & 62.60 $\pm$ 54.56 \\
+& 0.60 & 100.00 $\pm$ 0.00 & 40.94 $\pm$ 49.27 & 60.21 $\pm$ 50.93 \\
+& 0.80 & 100.00 $\pm$ 0.00 & 50.94 $\pm$ 49.06 & 51.35 $\pm$ 48.65 \\
+& 1.00 & 0.73 $\pm$ 1.00 & 0.00 $\pm$ 0.00 & 1.46 $\pm$ 0.95 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[htbp]
+\caption{予備実験 シード別詳細 -- Pattern: safety+math+code+medical,  Method: DARE, DELLA, LED-Merging, Matena-Fisher}
+\label{tab:prelim_seeds_mergealign_safety+math+code+medical_1}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.06}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.25cm}
+>{\centering\arraybackslash}p{0.90cm}
+>{\centering\arraybackslash}p{0.90cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{TrustLLM ASR} &
+\textbf{Gibberish Ratio} &
+\textbf{BeaverTails Utility} \\
+&
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{18}{*}{DARE}
+& 0.00 & 42 & 100.00 & 62.50 & 38.12 \\
+& 0.00 & 43 & 100.00 & 100.00 & 0.00 \\
+& 0.00 & 44 & 100.00 & 23.75 & 75.62 \\
+& 0.20 & 42 & 100.00 & 69.69 & 29.06 \\
+& 0.20 & 43 & 100.00 & 63.12 & 34.69 \\
+& 0.20 & 44 & 100.00 & 20.31 & 70.31 \\
+& 0.40 & 42 & 100.00 & 39.38 & 57.50 \\
+& 0.40 & 43 & 100.00 & 75.94 & 26.56 \\
+& 0.40 & 44 & 100.00 & 10.62 & 84.06 \\
+& 0.60 & 42 & 100.00 & 88.75 & 11.56 \\
+& 0.60 & 43 & 100.00 & 23.75 & 79.06 \\
+& 0.60 & 44 & 100.00 & 98.75 & 3.75 \\
+& 0.80 & 42 & 100.00 & 45.94 & 50.94 \\
+& 0.80 & 43 & 100.00 & 18.75 & 85.00 \\
+& 0.80 & 44 & 100.00 & 68.44 & 37.19 \\
+& 1.00 & 42 & 2.19 & 0.31 & 1.56 \\
+& 1.00 & 43 & 3.75 & 0.00 & 3.75 \\
+& 1.00 & 44 & 0.31 & 0.31 & 0.00 \\
+\midrule
+\multirow{18}{*}{DELLA}
+& 0.00 & 42 & 100.00 & 100.00 & 0.31 \\
+& 0.00 & 43 & 100.00 & 49.06 & 54.06 \\
+& 0.00 & 44 & 100.00 & 53.12 & 50.62 \\
+& 0.20 & 42 & 100.00 & 85.94 & 13.44 \\
+& 0.20 & 43 & 100.00 & 42.50 & 52.81 \\
+& 0.20 & 44 & 100.00 & 30.31 & 62.81 \\
+& 0.40 & 42 & 100.00 & 7.19 & 94.06 \\
+& 0.40 & 43 & 100.00 & 78.75 & 24.06 \\
+& 0.40 & 44 & 100.00 & 46.25 & 55.62 \\
+& 0.60 & 42 & 100.00 & 83.44 & 13.75 \\
+& 0.60 & 43 & 100.00 & 45.62 & 59.06 \\
+& 0.60 & 44 & 100.00 & 91.88 & 13.12 \\
+& 0.80 & 42 & 100.00 & 6.25 & 90.00 \\
+& 0.80 & 43 & 100.00 & 59.06 & 48.12 \\
+& 0.80 & 44 & 100.00 & 73.75 & 30.63 \\
+& 1.00 & 42 & 0.94 & 0.31 & 0.94 \\
+& 1.00 & 43 & 4.38 & 0.00 & 2.81 \\
+& 1.00 & 44 & 0.00 & 0.00 & 0.31 \\
+\midrule
+\multirow{3}{*}{led\_merging}
+& N/A & 42 & N/A & N/A & N/A \\
+& N/A & 43 & N/A & N/A & N/A \\
+& N/A & 44 & N/A & N/A & N/A \\
+\midrule
+\multirow{3}{*}{Matena-Fisher}
+& N/A & 42 & 100.00 & 80.00 & 17.19 \\
+& N/A & 43 & 100.00 & 80.31 & 17.50 \\
+& N/A & 44 & 100.00 & 80.00 & 15.00 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[htbp]
+\caption{予備実験 シード別詳細 -- Pattern: safety+math+code+medical,  Method: MergeAlign, SafeMERGE, Task Arithmetic, TIES}
+\label{tab:prelim_seeds_mergealign_safety+math+code+medical_2}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.06}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.25cm}
+>{\centering\arraybackslash}p{0.90cm}
+>{\centering\arraybackslash}p{0.90cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{TrustLLM ASR} &
+\textbf{Gibberish Ratio} &
+\textbf{BeaverTails Utility} \\
+&
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{3}{*}{MergeAlign}
+& N/A & 42 & N/A & N/A & N/A \\
+& N/A & 43 & N/A & N/A & N/A \\
+& N/A & 44 & N/A & N/A & N/A \\
+\midrule
+\multirow{3}{*}{SafeMERGE}
+& N/A & 42 & N/A & N/A & N/A \\
+& N/A & 43 & N/A & N/A & N/A \\
+& N/A & 44 & N/A & N/A & N/A \\
+\midrule
+\multirow{18}{*}{Task Arithmetic}
+& 0.00 & 42 & 100.00 & 100.00 & 0.00 \\
+& 0.00 & 43 & 100.00 & 100.00 & 0.00 \\
+& 0.00 & 44 & 100.00 & 100.00 & 0.00 \\
+& 0.20 & 42 & 100.00 & 96.56 & 2.19 \\
+& 0.20 & 43 & 100.00 & 100.00 & 0.31 \\
+& 0.20 & 44 & 100.00 & 99.38 & 0.94 \\
+& 0.40 & 42 & 98.12 & 87.50 & 7.50 \\
+& 0.40 & 43 & 100.00 & 98.44 & 2.50 \\
+& 0.40 & 44 & 99.38 & 97.81 & 2.81 \\
+& 0.60 & 42 & 54.69 & 54.37 & 6.56 \\
+& 0.60 & 43 & 76.88 & 80.31 & 4.06 \\
+& 0.60 & 44 & 67.19 & 77.50 & 4.06 \\
+& 0.80 & 42 & 11.88 & 1.25 & 5.94 \\
+& 0.80 & 43 & 19.06 & 5.94 & 8.75 \\
+& 0.80 & 44 & 5.62 & 3.44 & 2.19 \\
+& 1.00 & 42 & 0.94 & 0.31 & 1.56 \\
+& 1.00 & 43 & 1.56 & 0.00 & 2.19 \\
+& 1.00 & 44 & 0.00 & 0.00 & 0.62 \\
+\midrule
+\multirow{18}{*}{TIES}
+& 0.00 & 42 & 100.00 & 0.00 & 100.00 \\
+& 0.00 & 43 & 100.00 & 0.00 & 100.00 \\
+& 0.00 & 44 & 100.00 & 0.00 & 100.00 \\
+& 0.20 & 42 & 100.00 & 2.81 & 98.75 \\
+& 0.20 & 43 & 100.00 & 0.00 & 100.00 \\
+& 0.20 & 44 & 100.00 & 14.06 & 85.94 \\
+& 0.40 & 42 & 100.00 & 9.38 & 87.81 \\
+& 0.40 & 43 & 100.00 & 0.00 & 100.00 \\
+& 0.40 & 44 & 100.00 & 100.00 & 0.00 \\
+& 0.60 & 42 & 100.00 & 27.19 & 77.81 \\
+& 0.60 & 43 & 100.00 & 0.00 & 100.00 \\
+& 0.60 & 44 & 100.00 & 95.62 & 2.81 \\
+& 0.80 & 42 & 100.00 & 100.00 & 0.31 \\
+& 0.80 & 43 & 100.00 & 1.88 & 97.19 \\
+& 0.80 & 44 & 100.00 & 50.94 & 56.56 \\
+& 1.00 & 42 & 0.31 & 0.00 & 1.25 \\
+& 1.00 & 43 & 1.88 & 0.00 & 2.50 \\
+& 1.00 & 44 & 0.00 & 0.00 & 0.62 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Pattern: safety+code}
+% --- 予備実験 集計 (Mean \pm Std) - Pattern: safety+code ---
+\begin{table}[htbp]
+\caption{予備実験 集計 (Mean \pm Std) - Pattern: safety+code}
+\label{tab:prelim_safety+code}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.35cm}
+>{\centering\arraybackslash}p{1.05cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{TrustLLM ASR} &
+\textbf{Gibberish Ratio} &
+\textbf{BeaverTails Utility} \\
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{6}{*}{DARE}
+& 0.00 & 100.00 $\pm$ 0.00 & 56.77 $\pm$ 31.54 & 44.69 $\pm$ 28.23 \\
+& 0.20 & 100.00 $\pm$ 0.00 & 71.77 $\pm$ 5.98 & 25.31 $\pm$ 7.70 \\
+& 0.40 & 100.00 $\pm$ 0.00 & 34.69 $\pm$ 20.12 & 63.96 $\pm$ 17.03 \\
+& 0.60 & 100.00 $\pm$ 0.00 & 36.35 $\pm$ 12.66 & 64.06 $\pm$ 11.87 \\
+& 0.80 & 100.00 $\pm$ 0.00 & 51.46 $\pm$ 22.71 & 48.96 $\pm$ 25.64 \\
+& 1.00 & 1.35 $\pm$ 1.10 & 0.00 $\pm$ 0.00 & 1.35 $\pm$ 1.41 \\
+\midrule
+\multirow{6}{*}{DELLA}
+& 0.00 & 100.00 $\pm$ 0.00 & 42.19 $\pm$ 9.99 & 58.33 $\pm$ 11.33 \\
+& 0.20 & 100.00 $\pm$ 0.00 & 67.08 $\pm$ 6.31 & 33.02 $\pm$ 5.34 \\
+& 0.40 & 100.00 $\pm$ 0.00 & 43.75 $\pm$ 36.43 & 59.27 $\pm$ 30.27 \\
+& 0.60 & 100.00 $\pm$ 0.00 & 33.65 $\pm$ 8.21 & 67.19 $\pm$ 5.42 \\
+& 0.80 & 100.00 $\pm$ 0.00 & 34.17 $\pm$ 25.33 & 66.56 $\pm$ 23.72 \\
+& 1.00 & 1.98 $\pm$ 1.78 & 0.21 $\pm$ 0.18 & 1.67 $\pm$ 1.48 \\
+\midrule
+led\_merging 
+& N/A 
+& N/A & 87.19 $\pm$ 0.00 & 95.94 $\pm$ 0.00 & 5.00 $\pm$ 0.00 \\
+Matena-Fisher
+& N/A 
+& N/A & 95.62 $\pm$ 1.13 & 71.98 $\pm$ 1.57 & 28.33 $\pm$ 2.22 \\
+MergeAlign
+& N/A
+& N/A & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\
+SafeMERGE
+& N/A
+& N/A & 4.58 $\pm$ 5.81 & 6.25 $\pm$ 10.56 & 2.81 $\pm$ 2.19 \\
+\midrule
+\multirow{6}{*}{Task Arithmetic}
+& 0.00 & 71.46 $\pm$ 0.72 & 39.17 $\pm$ 0.36 & 39.17 $\pm$ 0.36 \\
+& 0.20 & 87.71 $\pm$ 0.65 & 46.56 $\pm$ 2.25 & 42.60 $\pm$ 2.80 \\
+& 0.40 & 76.77 $\pm$ 2.08 & 41.98 $\pm$ 2.37 & 33.65 $\pm$ 0.48 \\
+& 0.60 & 82.40 $\pm$ 2.73 & 56.67 $\pm$ 4.07 & 24.38 $\pm$ 3.29 \\
+& 0.80 & 21.67 $\pm$ 4.55 & 5.00 $\pm$ 2.86 & 15.42 $\pm$ 3.93 \\
+& 1.00 & 0.83 $\pm$ 0.79 & 0.10 $\pm$ 0.18 & 1.46 $\pm$ 0.79 \\
+\midrule
+\multirow{6}{*}{TIES}
+& 0.00 & 63.85 $\pm$ 0.72 & 57.08 $\pm$ 1.44 & 18.02 $\pm$ 0.36 \\
+& 0.20 & 92.50 $\pm$ 2.48 & 77.60 $\pm$ 4.03 & 20.10 $\pm$ 4.42 \\
+& 0.40 & 96.98 $\pm$ 1.26 & 62.60 $\pm$ 4.61 & 26.77 $\pm$ 4.02 \\
+& 0.60 & 99.38 $\pm$ 0.31 & 62.29 $\pm$ 6.59 & 34.58 $\pm$ 2.37 \\
+& 0.80 & 100.00 $\pm$ 0.00 & 68.33 $\pm$ 23.31 & 31.35 $\pm$ 23.08 \\
+& 1.00 & 0.73 $\pm$ 1.00 & 0.00 $\pm$ 0.00 & 1.46 $\pm$ 0.95 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+% --- 予備実験 シード別詳細 - Method: task_arithmetic, Pattern: safety+code ---
+\begin{table}[htbp]
+\caption{予備実験 シード別詳細 -- Pattern: safety+code, Method: DARE, DELLA, Matena-Fisher,  }
+\label{tab:prelim_seeds_mergealign_safety+code_1}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.06}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.25cm}
+>{\centering\arraybackslash}p{0.90cm}
+>{\centering\arraybackslash}p{0.90cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{TrustLLM ASR} &
+\textbf{Gibberish Ratio} &
+\textbf{BeaverTails Utility} \\
+&
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{18}{*}{DARE}
+& 0.00 & 42 & 100.00 & 69.06 & 38.12 \\
+& 0.00 & 43 & 100.00 & 20.94 & 75.62 \\
+& 0.00 & 44 & 100.00 & 80.31 & 20.31 \\
+& 0.20 & 42 & 100.00 & 78.12 & 17.19 \\
+& 0.20 & 43 & 100.00 & 66.25 & 32.50 \\
+& 0.20 & 44 & 100.00 & 70.94 & 26.25 \\
+& 0.40 & 42 & 100.00 & 55.94 & 46.88 \\
+& 0.40 & 43 & 100.00 & 32.19 & 64.06 \\
+& 0.40 & 44 & 100.00 & 15.94 & 80.94 \\
+& 0.60 & 42 & 100.00 & 21.88 & 77.50 \\
+& 0.60 & 43 & 100.00 & 41.88 & 55.00 \\
+& 0.60 & 44 & 100.00 & 45.31 & 59.69 \\
+& 0.80 & 42 & 100.00 & 62.81 & 38.75 \\
+& 0.80 & 43 & 100.00 & 66.25 & 30.00 \\
+& 0.80 & 44 & 100.00 & 25.31 & 78.12 \\
+& 1.00 & 42 & 1.25 & 0.00 & 1.25 \\
+& 1.00 & 43 & 2.50 & 0.00 & 2.81 \\
+& 1.00 & 44 & 0.31 & 0.00 & 0.00 \\
+\midrule
+\multirow{18}{*}{DELLA}
+& 0.00 & 42 & 100.00 & 34.38 & 65.94 \\
+& 0.00 & 43 & 100.00 & 53.44 & 45.31 \\
+& 0.00 & 44 & 100.00 & 38.75 & 63.75 \\
+& 0.20 & 42 & 100.00 & 68.12 & 36.56 \\
+& 0.20 & 43 & 100.00 & 72.81 & 26.88 \\
+& 0.20 & 44 & 100.00 & 60.31 & 35.62 \\
+& 0.40 & 42 & 100.00 & 79.38 & 30.63 \\
+& 0.40 & 43 & 100.00 & 6.56 & 90.94 \\
+& 0.40 & 44 & 100.00 & 45.31 & 56.25 \\
+& 0.60 & 42 & 100.00 & 43.12 & 60.94 \\
+& 0.60 & 43 & 100.00 & 28.75 & 70.00 \\
+& 0.60 & 44 & 100.00 & 29.06 & 70.62 \\
+& 0.80 & 42 & 100.00 & 33.12 & 69.38 \\
+& 0.80 & 43 & 100.00 & 60.00 & 41.56 \\
+& 0.80 & 44 & 100.00 & 9.38 & 88.75 \\
+& 1.00 & 42 & 3.44 & 0.31 & 2.81 \\
+& 1.00 & 43 & 2.50 & 0.00 & 2.19 \\
+& 1.00 & 44 & 0.00 & 0.31 & 0.00 \\
+\midrule
+\multirow{3}{*}{led\_merging}
+& N/A & 42 & 87.19 & 95.94 & 5.00 \\
+& N/A & 43 & 87.19 & 95.94 & 5.00 \\
+& N/A & 44 & 87.19 & 95.94 & 5.00 \\
+\midrule
+\multirow{3}{*}{Matena-Fisher}
+& N/A & 42 & 96.56 & 72.19 & 25.94 \\
+& N/A & 43 & 94.38 & 73.44 & 28.75 \\
+& N/A & 44 & 95.94 & 70.31 & 30.31 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[htbp]
+\caption{予備実験 シード別詳細 -- Pattern: safety+code, Method: MergeAlign, SafeMERGE, Task Arithmetic, TIES}
+\label{tab:prelim_seeds_mergealign_safety+code_2}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.06}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.25cm}
+>{\centering\arraybackslash}p{0.90cm}
+>{\centering\arraybackslash}p{0.90cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{TrustLLM ASR} &
+\textbf{Gibberish Ratio} &
+\textbf{BeaverTails Utility} \\
+&
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{3}{*}{MergeAlign}
+& N/A & 42 & 100.00 & 100.00 & 0.00 \\
+& N/A & 43 & 100.00 & 100.00 & 0.00 \\
+& N/A & 44 & 100.00 & 100.00 & 0.00 \\
+\midrule
+\multirow{3}{*}{SafeMERGE}
+& N/A & 42 & 11.25 & 18.44 & 5.31 \\
+& N/A & 43 & 0.62 & 0.31 & 1.88 \\
+& N/A & 44 & 1.88 & 0.00 & 1.25 \\
+\midrule
+\multirow{18}{*}{Task Arithmetic}
+& 0.00 & 42 & 70.62 & 38.75 & 38.75 \\
+& 0.00 & 43 & 71.88 & 39.38 & 39.38 \\
+& 0.00 & 44 & 71.88 & 39.38 & 39.38 \\
+& 0.20 & 42 & 88.44 & 48.44 & 44.06 \\
+& 0.20 & 43 & 87.50 & 44.06 & 44.38 \\
+& 0.20 & 44 & 87.19 & 47.19 & 39.38 \\
+& 0.40 & 42 & 75.00 & 44.69 & 34.06 \\
+& 0.40 & 43 & 79.06 & 40.31 & 33.75 \\
+& 0.40 & 44 & 76.25 & 40.94 & 33.12 \\
+& 0.60 & 42 & 83.12 & 56.88 & 24.69 \\
+& 0.60 & 43 & 84.69 & 52.50 & 27.50 \\
+& 0.60 & 44 & 79.38 & 60.62 & 20.94 \\
+& 0.80 & 42 & 19.69 & 4.38 & 15.94 \\
+& 0.80 & 43 & 26.88 & 2.50 & 19.06 \\
+& 0.80 & 44 & 18.44 & 8.12 & 11.25 \\
+& 1.00 & 42 & 0.94 & 0.31 & 1.56 \\
+& 1.00 & 43 & 1.56 & 0.00 & 2.19 \\
+& 1.00 & 44 & 0.00 & 0.00 & 0.62 \\
+\midrule
+\multirow{18}{*}{TIES}
+& 0.00 & 42 & 63.44 & 56.25 & 17.81 \\
+& 0.00 & 43 & 64.69 & 58.75 & 18.44 \\
+& 0.00 & 44 & 63.44 & 56.25 & 17.81 \\
+& 0.20 & 42 & 93.44 & 80.94 & 15.00 \\
+& 0.20 & 43 & 89.69 & 73.12 & 22.81 \\
+& 0.20 & 44 & 94.38 & 78.75 & 22.50 \\
+& 0.40 & 42 & 98.12 & 59.06 & 29.69 \\
+& 0.40 & 43 & 95.62 & 60.94 & 22.19 \\
+& 0.40 & 44 & 97.19 & 67.81 & 28.44 \\
+& 0.60 & 42 & 99.69 & 65.94 & 35.62 \\
+& 0.60 & 43 & 99.38 & 54.69 & 36.25 \\
+& 0.60 & 44 & 99.06 & 66.25 & 31.87 \\
+& 0.80 & 42 & 100.00 & 44.38 & 56.56 \\
+& 0.80 & 43 & 100.00 & 69.69 & 26.25 \\
+& 0.80 & 44 & 100.00 & 90.94 & 11.25 \\
+& 1.00 & 42 & 0.31 & 0.00 & 1.25 \\
+& 1.00 & 43 & 1.88 & 0.00 & 2.50 \\
+& 1.00 & 44 & 0.00 & 0.00 & 0.62 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Pattern: safety+math}
+% --- 予備実験 集計 (Mean \pm Std) - Pattern: safety+math ---
+
+\begin{table}[htbp]
+\caption{予備実験 集計 (Mean \pm Std) - Pattern: safety+math}
+\label{tab:prelim_safety+math}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.35cm}
+>{\centering\arraybackslash}p{1.05cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{TrustLLM ASR} &
+\textbf{Gibberish Ratio} &
+\textbf{BeaverTails Utility} \\
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{6}{*}{DARE}
+& 0.00 & 70.00 $\pm$ 2.72 & 19.17 $\pm$ 2.08 & 35.31 $\pm$ 1.13 \\
+& 0.20 & 24.27 $\pm$ 3.70 & 30.42 $\pm$ 5.08 & 16.46 $\pm$ 1.48 \\
+& 0.40 & 20.42 $\pm$ 2.01 & 27.08 $\pm$ 2.95 & 12.19 $\pm$ 0.31 \\
+& 0.60 & 17.19 $\pm$ 0.83 & 18.65 $\pm$ 0.95 & 9.69 $\pm$ 2.86 \\
+& 0.80 & 12.19 $\pm$ 4.73 & 21.15 $\pm$ 4.07 & 7.71 $\pm$ 3.13 \\
+& 1.00 & 1.15 $\pm$ 1.26 & 0.31 $\pm$ 0.31 & 1.04 $\pm$ 1.00 \\
+\midrule
+\multirow{6}{*}{DELLA}
+& 0.00 & 68.96 $\pm$ 1.30 & 20.83 $\pm$ 1.41 & 35.62 $\pm$ 1.25 \\
+& 0.20 & 24.58 $\pm$ 3.34 & 28.33 $\pm$ 4.70 & 17.60 $\pm$ 2.51 \\
+& 0.40 & 21.56 $\pm$ 0.62 & 23.12 $\pm$ 11.56 & 10.94 $\pm$ 0.00 \\
+& 0.60 & 19.06 $\pm$ 3.17 & 20.62 $\pm$ 5.20 & 7.81 $\pm$ 2.05 \\
+& 0.80 & 13.54 $\pm$ 3.82 & 17.71 $\pm$ 2.69 & 8.65 $\pm$ 2.95 \\
+& 1.00 & 1.15 $\pm$ 1.48 & 0.31 $\pm$ 0.31 & 1.46 $\pm$ 1.10 \\
+\midrule
+led\_merging 
+& N/A 
+& N/A & 87.19 $\pm$ 0.00 & 96.15 $\pm$ 0.18 & 5.00 $\pm$ 0.00 \\
+Matena-Fisher
+& N/A
+& N/A & 19.79 $\pm$ 1.18 & 67.19 $\pm$ 3.52 & 10.00 $\pm$ 1.65 \\
+MergeAlign
+& N/A
+& N/A & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 \\
+SafeMERGE
+& N/A
+& N/A & 14.27 $\pm$ 22.55 & 31.15 $\pm$ 53.95 & 3.33 $\pm$ 3.34 \\
+\midrule
+\multirow{6}{*}{Task Arithmetic}
+& 0.00 & 66.88 $\pm$ 0.00 & 19.69 $\pm$ 0.00 & 35.62 $\pm$ 0.00 \\
+& 0.20 & 52.81 $\pm$ 2.72 & 26.25 $\pm$ 1.90 & 23.65 $\pm$ 1.30 \\
+& 0.40 & 31.15 $\pm$ 4.08 & 48.33 $\pm$ 5.39 & 16.46 $\pm$ 0.36 \\
+& 0.60 & 9.69 $\pm$ 0.31 & 47.92 $\pm$ 18.35 & 6.35 $\pm$ 1.91 \\
+& 0.80 & 1.67 $\pm$ 1.30 & 0.94 $\pm$ 0.83 & 1.67 $\pm$ 1.00 \\
+& 1.00 & 0.83 $\pm$ 0.79 & 0.10 $\pm$ 0.18 & 1.46 $\pm$ 0.79 \\
+\midrule
+\multirow{6}{*}{TIES}
+& 0.00 & 72.50 $\pm$ 0.00 & 30.31 $\pm$ 0.00 & 29.38 $\pm$ 0.00 \\
+& 0.20 & 25.00 $\pm$ 4.23 & 38.75 $\pm$ 2.78 & 14.48 $\pm$ 2.55 \\
+& 0.40 & 26.77 $\pm$ 3.19 & 39.79 $\pm$ 3.28 & 14.27 $\pm$ 0.79 \\
+& 0.60 & 18.65 $\pm$ 4.77 & 36.67 $\pm$ 4.77 & 11.25 $\pm$ 1.08 \\
+& 0.80 & 9.79 $\pm$ 5.56 & 19.58 $\pm$ 19.59 & 4.90 $\pm$ 2.37 \\
+& 1.00 & 0.73 $\pm$ 1.00 & 0.00 $\pm$ 0.00 & 1.46 $\pm$ 0.95 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --- 予備実験 シード別詳細 - Method: della, Pattern: safety+math ---
+
+\begin{table}[htbp]
+\caption{予備実験 シード別詳細 -- Pattern: safety+math, Method: DARE, DELLA, Matena-Fisher,  }
+\label{tab:prelim_seeds_mergealign_safety+math_1}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.06}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.25cm}
+>{\centering\arraybackslash}p{0.90cm}
+>{\centering\arraybackslash}p{0.90cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{TrustLLM ASR} &
+\textbf{Gibberish Ratio} &
+\textbf{BeaverTails Utility} \\
+&
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{18}{*}{DARE}
+& 0.00 & 42 & 71.25 & 16.88 & 36.56 \\
+& 0.00 & 43 & 71.88 & 20.94 & 35.00 \\
+& 0.00 & 44 & 66.88 & 19.69 & 34.38 \\
+& 0.20 & 42 & 20.00 & 34.38 & 15.31 \\
+& 0.20 & 43 & 26.25 & 32.19 & 18.12 \\
+& 0.20 & 44 & 26.56 & 24.69 & 15.94 \\
+& 0.40 & 42 & 21.25 & 23.75 & 12.19 \\
+& 0.40 & 43 & 18.12 & 29.38 & 12.50 \\
+& 0.40 & 44 & 21.88 & 28.12 & 11.88 \\
+& 0.60 & 42 & 17.50 & 19.69 & 12.19 \\
+& 0.60 & 43 & 16.25 & 17.81 & 6.56 \\
+& 0.60 & 44 & 17.81 & 18.44 & 10.31 \\
+& 0.80 & 42 & 6.88 & 20.94 & 4.69 \\
+& 0.80 & 43 & 13.75 & 17.19 & 10.94 \\
+& 0.80 & 44 & 15.94 & 25.31 & 7.50 \\
+& 1.00 & 42 & 0.94 & 0.31 & 0.62 \\
+& 1.00 & 43 & 2.50 & 0.62 & 2.19 \\
+& 1.00 & 44 & 0.00 & 0.00 & 0.31 \\
+\midrule
+\multirow{18}{*}{DELLA}
+& 0.00 & 42 & 70.00 & 22.19 & 35.62 \\
+& 0.00 & 43 & 67.50 & 20.94 & 36.88 \\
+& 0.00 & 44 & 69.38 & 19.38 & 34.38 \\
+& 0.20 & 42 & 22.81 & 25.31 & 15.00 \\
+& 0.20 & 43 & 22.50 & 33.75 & 17.81 \\
+& 0.20 & 44 & 28.44 & 25.94 & 20.00 \\
+& 0.40 & 42 & 20.94 & 20.94 & 10.94 \\
+& 0.40 & 43 & 21.56 & 35.62 & 10.94 \\
+& 0.40 & 44 & 22.19 & 12.81 & 10.94 \\
+& 0.60 & 42 & 16.25 & 26.56 & 5.94 \\
+& 0.60 & 43 & 18.44 & 18.44 & 7.50 \\
+& 0.60 & 44 & 22.50 & 16.88 & 10.00 \\
+& 0.80 & 42 & 9.38 & 15.31 & 5.31 \\
+& 0.80 & 43 & 14.37 & 17.19 & 9.69 \\
+& 0.80 & 44 & 16.88 & 20.62 & 10.94 \\
+& 1.00 & 42 & 0.62 & 0.62 & 2.50 \\
+& 1.00 & 43 & 2.81 & 0.31 & 1.56 \\
+& 1.00 & 44 & 0.00 & 0.00 & 0.31 \\
+\midrule
+\multirow{3}{*}{led\_merging}
+& N/A & 42 & 87.19 & 96.25 & 5.00 \\
+& N/A & 43 & 87.19 & 96.25 & 5.00 \\
+& N/A & 44 & 87.19 & 95.94 & 5.00 \\
+\midrule
+\multirow{3}{*}{Matena-Fisher}
+& N/A & 42 & 18.44 & 65.31 & 8.75 \\
+& N/A & 43 & 20.31 & 71.25 & 11.88 \\
+& N/A & 44 & 20.62 & 65.00 & 9.38 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[htbp]
+\caption{予備実験 シード別詳細 -- Pattern: safety+math, Method: MergeAlign, SafeMERGE, Task Arithmetic, TIES}
+\label{tab:prelim_seeds_mergealign_safety+math_2}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.06}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.25cm}
+>{\centering\arraybackslash}p{0.90cm}
+>{\centering\arraybackslash}p{0.90cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{TrustLLM ASR} &
+\textbf{Gibberish Ratio} &
+\textbf{BeaverTails Utility} \\
+&
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{3}{*}{MergeAlign}
+& N/A & 42 & 100.00 & 100.00 & 0.00 \\
+& N/A & 43 & 100.00 & 100.00 & 0.00 \\
+& N/A & 44 & 100.00 & 100.00 & 0.00 \\
+\midrule
+\multirow{3}{*}{SafeMERGE}
+& N/A & 42 & 40.31 & 93.44 & 7.19 \\
+& N/A & 43 & 1.25 & 0.00 & 1.56 \\
+& N/A & 44 & 1.25 & 0.00 & 1.25 \\
+\midrule
+\multirow{18}{*}{Task Arithmetic}
+& 0.00 & 42 & 66.88 & 19.69 & 35.62 \\
+& 0.00 & 43 & 66.88 & 19.69 & 35.62 \\
+& 0.00 & 44 & 66.88 & 19.69 & 35.62 \\
+& 0.20 & 42 & 55.94 & 27.50 & 24.69 \\
+& 0.20 & 43 & 51.56 & 27.19 & 24.06 \\
+& 0.20 & 44 & 50.94 & 24.06 & 22.19 \\
+& 0.40 & 42 & 26.88 & 49.38 & 16.25 \\
+& 0.40 & 43 & 31.56 & 53.12 & 16.25 \\
+& 0.40 & 44 & 35.00 & 42.50 & 16.88 \\
+& 0.60 & 42 & 10.00 & 26.88 & 4.69 \\
+& 0.60 & 43 & 9.38 & 60.62 & 8.44 \\
+& 0.60 & 44 & 9.69 & 56.25 & 5.94 \\
+& 0.80 & 42 & 1.25 & 0.00 & 0.94 \\
+& 0.80 & 43 & 3.12 & 1.25 & 2.81 \\
+& 0.80 & 44 & 0.62 & 1.56 & 1.25 \\
+& 1.00 & 42 & 0.94 & 0.31 & 1.56 \\
+& 1.00 & 43 & 1.56 & 0.00 & 2.19 \\
+& 1.00 & 44 & 0.00 & 0.00 & 0.62 \\
+\midrule
+\multirow{18}{*}{TIES}
+& 0.00 & 42 & 72.50 & 30.31 & 29.38 \\
+& 0.00 & 43 & 72.50 & 30.31 & 29.38 \\
+& 0.00 & 44 & 72.50 & 30.31 & 29.38 \\
+& 0.20 & 42 & 20.62 & 40.94 & 11.56 \\
+& 0.20 & 43 & 29.06 & 39.69 & 15.62 \\
+& 0.20 & 44 & 25.31 & 35.62 & 16.25 \\
+& 0.40 & 42 & 23.12 & 43.12 & 13.44 \\
+& 0.40 & 43 & 28.12 & 39.69 & 15.00 \\
+& 0.40 & 44 & 29.06 & 36.56 & 14.37 \\
+& 0.60 & 42 & 13.44 & 41.88 & 11.88 \\
+& 0.60 & 43 & 19.69 & 32.50 & 10.00 \\
+& 0.60 & 44 & 22.81 & 35.62 & 11.88 \\
+& 0.80 & 42 & 3.75 & 1.88 & 2.19 \\
+& 0.80 & 43 & 10.94 & 16.25 & 5.94 \\
+& 0.80 & 44 & 14.69 & 40.62 & 6.56 \\
+& 1.00 & 42 & 0.31 & 0.00 & 1.25 \\
+& 1.00 & 43 & 1.88 & 0.00 & 2.50 \\
+& 1.00 & 44 & 0.00 & 0.00 & 0.62 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+% --------------------------------------------------------------------------
+% 2. メイン実験 (Main Experiments)
+% --------------------------------------------------------------------------
+\subsection{メイン実験}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Pattern: safety+math}
+
+% --- Alphaスイープ シード別詳細 - Pattern: safety+math ---
+\begin{table}[htbp]
+\caption{メイン実験 Alphaスイープ シード別安全性評価 --
+Pattern: safety+math, Method: DARE, DELLA, LED-Merging, Matena-Fisher}
+\label{tab:custom_sweep_seeds_safety_math_safety_DARE}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.3cm}
+>{\centering\arraybackslash}p{1.0cm}
+>{\centering\arraybackslash}p{1.0cm}
+*{4}{>{\centering\arraybackslash}X}
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{Orig. ASR} &
+\textbf{Cond. ASR} &
+\textbf{VRR} &
+\textbf{VSR} \\
+&
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{18}{*}{DARE}
+& 0.00 & 42 & 32.72 & 64.74 & 94.55 & 33.28 \\
+& 0.00 & 43 & 32.67 & 67.03 & 93.25 & 30.43 \\
+& 0.00 & 44 & 34.05 & 69.13 & 95.07 & 29.05 \\
+& 0.20 & 42 & 11.64 & 19.69 & 99.84 & 80.19 \\
+& 0.20 & 43 & 10.17 & 19.97 & 98.97 & 79.29 \\
+& 0.20 & 44 & 8.99  & 18.11 & 99.77 & 81.71 \\
+& 0.40 & 42 & 11.06 & 18.21 & 99.92 & 81.73 \\
+& 0.40 & 43 & 8.32  & 13.54 & 99.68 & 86.18 \\
+& 0.40 & 44 & 7.90  & 13.08 & 99.61 & 86.59 \\
+& 0.60 & 42 & 0.32  & 0.47  & 100.00 & 99.53 \\
+& 0.60 & 43 & 8.06  & 14.41 & 100.00 & 85.59 \\
+& 0.60 & 44 & 10.04 & 17.15 & 99.92 & 82.79 \\
+& 0.80 & 42 & 0.00  & 0.00  & 100.00 & 100.00 \\
+& 0.80 & 43 & 9.02  & 13.55 & 100.00 & 86.45 \\
+& 0.80 & 44 & 1.74  & 2.29  & 100.00 & 97.71 \\
+& 1.00 & 42 & 0.00  & 0.00  & 100.00 & 100.00 \\
+& 1.00 & 43 & 0.00  & 0.00  & 100.00 & 100.00 \\
+& 1.00 & 44 & 0.00  & 0.00  & 100.00 & 100.00 \\
+\midrule
+\multirow{18}{*}{DELLA}
+& 0.00 & 42 & 34.22 & 67.92 & 94.11 & 30.04 \\
+& 0.00 & 43 & 32.52 & 66.50 & 94.27 & 31.40 \\
+& 0.00 & 44 & 33.04 & 68.91 & 95.48 & 29.37 \\
+& 0.20 & 42 & 10.84 & 19.37 & 99.92 & 80.57 \\
+& 0.20 & 43 & 12.50 & 21.47 & 99.37 & 78.07 \\
+& 0.20 & 44 & 11.53 & 23.60 & 99.77 & 76.24 \\
+& 0.40 & 42 & 10.66 & 16.04 & 99.92 & 83.90 \\
+& 0.40 & 43 & 5.56 & 9.89 & 99.92 & 90.04 \\
+& 0.40 & 44 & 6.61 & 15.22 & 99.69 & 84.53 \\
+& 0.60 & 42 & 0.63 & 0.96 & 100.00 & 99.04 \\
+& 0.60 & 43 & 11.45 & 20.11 & 100.00 & 79.89 \\
+& 0.60 & 44 & 7.92 & 15.52 & 100.00 & 84.48 \\
+& 0.80 & 42 & 0.00 & 0.08 & 100.00 & 99.92 \\
+& 0.80 & 43 & 6.94 & 13.36 & 100.00 & 86.64 \\
+& 0.80 & 44 & 1.19 & 1.81 & 100.00 & 98.19 \\
+& 1.00 & 42 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 43 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+\midrule
+\multirow{3}{*}{LED-Merging}
+& N/A & 42 & 2.80 & 71.03 & 78.12 & 23.11 \\
+& N/A & 43 & 2.80 & 71.03 & 78.12 & 23.11 \\
+& N/A & 44 & 2.80 & 71.03 & 78.12 & 23.11 \\
+\midrule
+\multirow{3}{*}{Matena-Fisher}
+& N/A & 42 & 4.71 & 7.61 & 99.76 & 92.17 \\
+& N/A & 43 & 4.30 & 6.78 & 98.98 & 92.30 \\
+& N/A & 44 & 3.85 & 7.76 & 99.14 & 91.44 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\caption{メイン実験 Alphaスイープ シード別有用性評価 --
+Pattern: safety+math, Method: DARE, DELLA, LED-Merging, Matena-Fisher}
+\label{tab:custom_sweep_seeds_safety_math_utility_DARE}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.1cm}
+>{\centering\arraybackslash}p{0.9cm}
+>{\centering\arraybackslash}p{0.9cm}
+*{6}{>{\centering\arraybackslash}X}
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{Math} &
+\textbf{Code} &
+\textbf{Medical} &
+\textbf{General} &
+\textbf{Evol PPL} &
+\textbf{Med PPL} \\
+&
+&
+&
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{($\downarrow$)} &
+\textbf{($\downarrow$)} \\
+\midrule
+\multirow{18}{*}{DARE}
+& 0.00 & 42 & 5.94 & 2.66 & 80.62 & 34.49 & 2.02 & 2.77 \\
+& 0.00 & 43 & 5.00 & 3.75 & 79.69 & 25.14 & 2.03 & 2.77 \\
+& 0.00 & 44 & 5.47 & 3.59 & 79.06 & 31.59 & 2.02 & 2.76 \\
+& 0.20 & 42 & 4.06 & 4.84 & 84.38 & 34.65 & 2.32 & 3.57 \\
+& 0.20 & 43 & 4.22 & 5.78 & 83.44 & 24.94 & 2.37 & 3.60 \\
+& 0.20 & 44 & 6.09 & 3.28 & 85.00 & 24.86 & 2.40 & 3.66 \\
+& 0.40 & 42 & 5.16 & 5.16 & 85.31 & 21.61 & 2.32 & 3.78 \\
+& 0.40 & 43 & 4.84 & 5.47 & 84.38 & 25.86 & 2.39 & 3.84 \\
+& 0.40 & 44 & 6.09 & 4.22 & 85.31 & 23.09 & 2.42 & 3.94 \\
+& 0.60 & 42 & 6.25 & 5.16 & 84.38 & 15.04 & 2.35 & 4.18 \\
+& 0.60 & 43 & 4.69 & 5.94 & 81.88 & 21.51 & 2.46 & 4.40 \\
+& 0.60 & 44 & 5.31 & 3.91 & 86.56 & 32.02 & 2.48 & 4.73 \\
+& 0.80 & 42 & 7.03 & 5.94 & 84.38 & 13.56 & 2.40 & 5.37 \\
+& 0.80 & 43 & 6.41 & 6.56 & 85.94 & 12.26 & 2.51 & 5.86 \\
+& 0.80 & 44 & 5.62 & 4.53 & 86.25 & 12.55 & 2.52 & 5.75 \\
+& 1.00 & 42 & 1.25 & 9.06 & 85.62 & 11.49 & 2.32 & 7.37 \\
+& 1.00 & 43 & 0.47 & 1.88 & 44.06 & 10.56 & 2.37 & 7.23 \\
+& 1.00 & 44 & 0.00 & 6.09 & 38.12 & 11.61 & 2.36 & 6.93 \\
+\midrule
+\multirow{18}{*}{DELLA}
+& 0.00 & 42 & 6.72 & 3.59 & 81.88 & 34.10 & 2.05 & 2.80 \\
+& 0.00 & 43 & 6.56 & 3.75 & 83.12 & 35.87 & 2.05 & 2.76 \\
+& 0.00 & 44 & 6.41 & 2.66 & 85.31 & 32.63 & 2.04 & 2.78 \\
+& 0.20 & 42 & 4.84 & 4.84 & 84.06 & 31.09 & 2.34 & 3.66 \\
+& 0.20 & 43 & 5.31 & 4.38 & 81.88 & 35.25 & 2.39 & 3.67 \\
+& 0.20 & 44 & 6.56 & 4.69 & 83.75 & 32.54 & 2.41 & 3.78 \\
+& 0.40 & 42 & 5.47 & 6.09 & 84.69 & 31.22 & 2.35 & 3.83 \\
+& 0.40 & 43 & 5.62 & 5.00 & 82.50 & 34.96 & 2.41 & 3.91 \\
+& 0.40 & 44 & 5.47 & 4.84 & 86.56 & 31.25 & 2.46 & 4.04 \\
+& 0.60 & 42 & 4.84 & 6.25 & 85.31 & 29.00 & 2.39 & 4.26 \\
+& 0.60 & 43 & 5.62 & 5.94 & 85.31 & 28.39 & 2.47 & 4.41 \\
+& 0.60 & 44 & 6.09 & 3.75 & 86.25 & 35.70 & 2.51 & 4.84 \\
+& 0.80 & 42 & 7.03 & 4.84 & 84.69 & 23.57 & 2.42 & 5.34 \\
+& 0.80 & 43 & 5.16 & 5.31 & 85.62 & 20.90 & 2.54 & 5.98 \\
+& 0.80 & 44 & 5.16 & 4.53 & 86.25 & 13.03 & 2.58 & 6.12 \\
+& 1.00 & 42 & 0.78 & 7.81 & 85.00 & 31.29 & 2.35 & 7.45 \\
+& 1.00 & 43 & 0.94 & 1.25 & 49.38 & 10.38 & 2.41 & 7.37 \\
+& 1.00 & 44 & 0.16 & 5.00 & 41.25 & 11.68 & 2.40 & 7.17 \\
+\midrule
+\multirow{3}{*}{LED-Merging}
+& N/A & 42 & 1.41 & 5.62 & 83.75 & 22.50 & 1.75 & 2.72 \\
+& N/A & 43 & 1.41 & 5.62 & 83.75 & 22.52 & 1.75 & 2.72 \\
+& N/A & 44 & 1.41 & 5.62 & 83.75 & 22.49 & 1.75 & 2.72 \\
+\midrule
+\multirow{3}{*}{Matena-Fisher}
+& N/A & 42 & 6.09 & 6.25 & 85.00 & 39.12 & 1.81 & 2.90 \\
+& N/A & 43 & 5.16 & 7.03 & 86.25 & 15.87 & 1.83 & 2.86 \\
+& N/A & 44 & 6.88 & 6.56 & 85.94 & 25.17 & 1.84 & 2.88 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[htbp]
+\caption{メイン実験 Alphaスイープ シード別安全性評価 --
+Pattern: safety+math, Method: MergeAlign, SafeMERGE, Task Arithmetic, TIES}
+\label{tab:custom_sweep_seeds_safety_math_safety_MergeAlign}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.3cm}
+>{\centering\arraybackslash}p{1.0cm}
+>{\centering\arraybackslash}p{1.0cm}
+*{4}{>{\centering\arraybackslash}X}
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{Orig. ASR} &
+\textbf{Cond. ASR} &
+\textbf{VRR} &
+\textbf{VSR} \\
+&
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{3}{*}{MergeAlign}
+& N/A & 42 & 0.00 & --- & 0.00 & 0.00 \\
+& N/A & 43 & 0.00 & --- & 0.00 & 0.00 \\
+& N/A & 44 & 0.00 & --- & 0.00 & 0.00 \\
+\midrule
+\multirow{3}{*}{SafeMERGE}
+& N/A & 42 & 13.84 & 64.94 & 86.70 & 30.65 \\
+& N/A & 43 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& N/A & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+\midrule
+\multirow{18}{*}{Task Arithmetic}
+& 0.00 & 42 & 31.01 & 67.62 & 93.61 & 30.15 \\
+& 0.00 & 43 & 31.01 & 67.62 & 93.61 & 30.15 \\
+& 0.00 & 44 & 31.01 & 67.62 & 93.61 & 30.15 \\
+& 0.20 & 42 & 31.14 & 63.24 & 94.46 & 34.52 \\
+& 0.20 & 43 & 31.80 & 60.57 & 96.30 & 37.96 \\
+& 0.20 & 44 & 29.88 & 59.32 & 95.57 & 38.73 \\
+& 0.40 & 42 & 13.98 & 26.59 & 99.06 & 72.72 \\
+& 0.40 & 43 & 14.38 & 29.06 & 98.36 & 69.68 \\
+& 0.40 & 44 & 16.15 & 30.73 & 98.75 & 68.26 \\
+& 0.60 & 42 & 0.16 & 0.39 & 100.00 & 99.61 \\
+& 0.60 & 43 & 1.57 & 1.91 & 99.76 & 97.86 \\
+& 0.60 & 44 & 5.72 & 9.36 & 100.00 & 90.64 \\
+& 0.80 & 42 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 0.80 & 43 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 0.80 & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 42 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 43 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+\midrule
+\multirow{18}{*}{TIES}
+& 0.00 & 42 & 31.33 & 69.08 & 93.80 & 28.73 \\
+& 0.00 & 43 & 31.25 & 69.08 & 93.80 & 28.73 \\
+& 0.00 & 44 & 31.33 & 69.08 & 93.80 & 28.73 \\
+& 0.20 & 42 & 13.61 & 26.20 & 100.00 & 73.80 \\
+& 0.20 & 43 & 14.99 & 24.98 & 99.92 & 74.95 \\
+& 0.20 & 44 & 13.96 & 26.29 & 100.00 & 73.71 \\
+& 0.40 & 42 & 15.71 & 28.25 & 100.00 & 71.75 \\
+& 0.40 & 43 & 14.36 & 25.40 & 100.00 & 74.60 \\
+& 0.40 & 44 & 13.33 & 27.36 & 100.00 & 72.64 \\
+& 0.60 & 42 & 3.28 & 5.43 & 100.00 & 94.57 \\
+& 0.60 & 43 & 9.45 & 13.75 & 99.84 & 86.10 \\
+& 0.60 & 44 & 14.36 & 22.33 & 100.00 & 77.67 \\
+& 0.80 & 42 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 0.80 & 43 & 0.55 & 0.63 & 100.00 & 99.37 \\
+& 0.80 & 44 & 0.95 & 1.28 & 100.00 & 98.72 \\
+& 1.00 & 42 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 43 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\caption{メイン実験 Alphaスイープ シード別有用性評価 --
+Pattern: safety+math, Method: MergeAlign, SafeMERGE, Task Arithmetic, TIES}
+\label{tab:custom_sweep_seeds_safety_math_utility_MergeAlign}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.1cm}
+>{\centering\arraybackslash}p{0.9cm}
+>{\centering\arraybackslash}p{0.9cm}
+*{6}{>{\centering\arraybackslash}X}
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{Math} &
+\textbf{Code} &
+\textbf{Medical} &
+\textbf{General} &
+\textbf{Evol PPL} &
+\textbf{Med PPL} \\
+&
+&
+&
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{($\downarrow$)} &
+\textbf{($\downarrow$)} \\
+\midrule
+\multirow{3}{*}{MergeAlign}
+& N/A & 42 & 0.00 & 0.00 & 86.25 & 17.71 & --- & --- \\
+& N/A & 43 & 0.00 & 0.00 & 86.25 & 11.79 & --- & --- \\
+& N/A & 44 & 0.00 & 0.00 & 86.25 & 17.71 & --- & --- \\
+\midrule
+\multirow{3}{*}{SafeMERGE}
+& N/A & 42 & 2.19 & 8.91 & 80.62 & 15.06 & 1.71 & 2.51 \\
+& N/A & 43 & 0.47 & 1.09 & 84.06 & 11.63 & 2.66 & 9.43 \\
+& N/A & 44 & 1.25 & 10.00 & 82.81 & 12.60 & 2.30 & 7.29 \\
+\midrule
+\multirow{18}{*}{Task Arithmetic}
+& 0.00 & 42 & 4.69 & 6.25 & 30.00 & 33.16 & 2.03 & 2.77 \\
+& 0.00 & 43 & 6.25 & 3.12 & 80.00 & 33.16 & 2.03 & 2.77 \\
+& 0.00 & 44 & 6.25 & 3.12 & 80.00 & 33.43 & 2.03 & 2.77 \\
+& 0.20 & 42 & 5.62 & 5.16 & 54.69 & 27.54 & 1.89 & 2.66 \\
+& 0.20 & 43 & 6.56 & 5.00 & 78.75 & 33.42 & 1.90 & 2.68 \\
+& 0.20 & 44 & 5.62 & 4.06 & 80.31 & 34.04 & 1.90 & 2.68 \\
+& 0.40 & 42 & 5.47 & 6.09 & 29.38 & 28.70 & 1.82 & 2.76 \\
+& 0.40 & 43 & 6.09 & 6.72 & 84.06 & 25.38 & 1.83 & 2.74 \\
+& 0.40 & 44 & 5.78 & 5.78 & 84.69 & 32.13 & 1.85 & 2.76 \\
+& 0.60 & 42 & 4.69 & 13.44 & 29.06 & 35.05 & 1.86 & 3.48 \\
+& 0.60 & 43 & 5.31 & 7.97 & 83.12 & 22.05 & 1.89 & 3.34 \\
+& 0.60 & 44 & 6.88 & 7.81 & 85.62 & 24.45 & 1.89 & 3.57 \\
+& 0.80 & 42 & 3.44 & 5.94 & 57.03 & 14.19 & 2.01 & 5.13 \\
+& 0.80 & 43 & 10.31 & 5.47 & 68.44 & 34.07 & 2.05 & 5.25 \\
+& 0.80 & 44 & 7.50 & 5.62 & 80.62 & 24.85 & 2.04 & 5.13 \\
+& 1.00 & 42 & 1.88 & 16.25 & 29.06 & 32.24 & 2.31 & 7.26 \\
+& 1.00 & 43 & 0.94 & 2.03 & 50.31 & 11.23 & 2.36 & 7.18 \\
+& 1.00 & 44 & 0.00 & 2.50 & 39.38 & 11.62 & 2.36 & 7.00 \\
+\midrule
+\multirow{18}{*}{TIES}
+& 0.00 & 42 & 5.94 & 2.81 & 29.69 & 13.70 & 1.89 & 2.66 \\
+& 0.00 & 43 & 7.50 & 2.81 & 75.94 & 13.70 & 1.89 & 2.66 \\
+& 0.00 & 44 & 7.34 & 2.81 & 75.94 & 13.70 & 1.89 & 2.66 \\
+& 0.20 & 42 & 6.09 & 10.62 & 57.50 & 24.63 & 2.12 & 3.30 \\
+& 0.20 & 43 & 4.38 & 5.47 & 82.19 & 25.57 & 2.16 & 3.33 \\
+& 0.20 & 44 & 5.47 & 4.84 & 84.38 & 24.63 & 2.18 & 3.36 \\
+& 0.40 & 42 & 6.41 & 10.62 & 56.88 & 32.20 & 2.08 & 3.22 \\
+& 0.40 & 43 & 4.53 & 5.78 & 81.56 & 33.23 & 2.12 & 3.29 \\
+& 0.40 & 44 & 5.47 & 4.69 & 85.31 & 25.09 & 2.15 & 3.29 \\
+& 0.60 & 42 & 6.88 & 6.25 & 86.25 & 24.12 & 2.10 & 3.46 \\
+& 0.60 & 43 & 5.62 & 6.25 & 82.19 & 29.17 & 2.16 & 3.61 \\
+& 0.60 & 44 & 5.31 & 5.94 & 86.56 & 29.67 & 2.19 & 3.64 \\
+& 0.80 & 42 & 7.03 & 5.94 & 83.44 & 20.92 & 2.19 & 4.97 \\
+& 0.80 & 43 & 6.56 & 7.19 & 83.75 & 22.51 & 2.28 & 5.30 \\
+& 0.80 & 44 & 5.78 & 5.00 & 86.56 & 28.18 & 2.29 & 5.39 \\
+& 1.00 & 42 & 1.72 & 8.75 & 84.38 & 44.14 & 2.24 & 6.85 \\
+& 1.00 & 43 & 0.62 & 3.91 & 37.19 & 11.60 & 2.28 & 6.71 \\
+& 1.00 & 44 & 0.47 & 7.03 & 42.19 & 20.81 & 2.29 & 6.60 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Pattern: safety+medical}
+
+% --- Alphaスイープ シード別詳細 - Pattern: safety+medical ---
+\begin{table}[htbp]
+\caption{メイン実験 Alphaスイープ シード別安全性評価 --
+Pattern: safety+medical, Method: DARE, DELLA, LED-Merging, Matena-Fisher}
+\label{tab:custom_sweep_seeds_safety_medical_safety_DARE}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.3cm}
+>{\centering\arraybackslash}p{1.0cm}
+>{\centering\arraybackslash}p{1.0cm}
+*{4}{>{\centering\arraybackslash}X}
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{Orig. ASR} &
+\textbf{Cond. ASR} &
+\textbf{VRR} &
+\textbf{VSR} \\
+&
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{18}{*}{DARE}
+& 0.00 & 42 & 0.08 & 67.38 & 88.10 & 29.33 \\
+& 0.00 & 43 & 0.00 & 59.30 & 84.41 & 36.94 \\
+& 0.00 & 44 & 0.00 & 65.46 & 98.89 & 34.17 \\
+& 0.20 & 42 & 0.08 & 63.58 & 94.21 & 34.52 \\
+& 0.20 & 43 & 0.08 & 71.88 & 98.55 & 28.00 \\
+& 0.20 & 44 & 0.00 & 68.94 & 84.63 & 23.44 \\
+& 0.40 & 42 & 0.08 & 57.92 & 45.55 & 20.08  \\
+& 0.40 & 43 & 0.00 & 53.76 & 28.44 & 15.81 \\
+& 0.40 & 44 & 0.08 & 67.17 & 100.00 & 32.83 \\
+& 0.60 & 42 & 0.00 & 68.12 & 82.49 & 27.98 \\
+& 0.60 & 43 & 0.08 & 66.00 & 88.20 & 29.38 \\
+& 0.60 & 44 & 0.00 & 70.00 & 62.60 & 21.41 \\
+& 0.80 & 42 & 0.00 & 69.17 & 17.12 & 6.98 \\
+& 0.80 & 43 & 0.08 & 69.49 & 98.30 & 30.20 \\
+& 0.80 & 44 & 0.16 & 66.69 & 93.12 & 29.88 \\
+& 1.00 & 42 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 43 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+\midrule
+\multirow{18}{*}{DELLA}
+& 0.00 & 42 & 0.00 & 69.12 & 69.22 & 25.19 \\
+& 0.00 & 43 & 0.08 & 62.57 & 68.69 & 23.94 \\
+& 0.00 & 44 & 0.16 & 70.45 & 78.11 & 23.47 \\
+& 0.20 & 42 & 0.00 & 64.41 & 91.94 & 32.55 \\
+& 0.20 & 43 & 0.08 & 66.67 & 0.79 & 0.23 \\
+& 0.20 & 44 & 0.00 & 59.17 & 4.37 & 1.50 \\
+& 0.40 & 42 & 0.16 & 68.84 & 100.00 & 31.16 \\ 
+& 0.40 & 43 & 0.00 & 42.72 & 20.67 & 11.25 \\
+& 0.40 & 44 & 0.00 & 69.75 & 32.44 & 9.72 \\
+& 0.60 & 42 & 0.08 & 51.67 & 16.63 & 8.52 \\
+& 0.60 & 43 & 0.00 & 75.00 & 4.27 & 2.03 \\
+& 0.60 & 44 & 0.00 & 62.09 & 80.14 & 33.23 \\
+& 0.80 & 42 & 0.00 & 71.89 & 50.06 & 14.86 \\
+& 0.80 & 43 & 0.08 & 66.67 & 3.81 & 0.31 \\
+& 0.80 & 44 & 0.08 & 64.57 & 87.13 & 29.06 \\
+& 1.00 & 42 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 43 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+\midrule
+\multirow{3}{*}{LED-Merging}
+& N/A & 42 & N/A & N/A & N/A & N/A \\
+& N/A & 43 & N/A & N/A & N/A & N/A \\
+& N/A & 44 & N/A & N/A & N/A & N/A \\
+\midrule
+\multirow{3}{*}{Matena-Fisher}
+& N/A & 42 & 0.16 & 70.98 & 100.00 & 29.02 \\
+& N/A & 43 & 0.16 & 70.97 & 97.85 & 27.69 \\
+& N/A & 44 & 0.16 & 70.98 & 100.00 & 29.02 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\caption{メイン実験 Alphaスイープ シード別有用性評価 --
+Pattern: safety+medical, Method: DARE, DELLA, LED-Merging, Matena-Fisher}
+\label{tab:custom_sweep_seeds_safety_medical_utility_DARE}
+\centering
+\small
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{1.9cm}
+>{\centering\arraybackslash}p{0.55cm}
+>{\centering\arraybackslash}p{0.55cm}
+>{\centering\arraybackslash}p{0.95cm}
+>{\centering\arraybackslash}p{0.95cm}
+>{\centering\arraybackslash}p{1.15cm}
+>{\centering\arraybackslash}p{1.10cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{Math} &
+\textbf{Code} &
+\textbf{Medical} &
+\textbf{General} &
+\textbf{Evol PPL} &
+\textbf{Med PPL} \\
+&
+&
+&
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{($\downarrow$)} &
+\textbf{($\downarrow$)} \\
+\midrule
+\multirow{18}{*}{DARE}
+& 0.00 & 42 & 0.00 & 0.00 & 58.13 & 12.29 & $3.16\times10^{7}$ & $2.06\times10^{7}$ \\
+& 0.00 & 43 & 0.00 & 0.00 & 84.06 & 12.20 & $3.00\times10^{7}$ & $1.56\times10^{7}$ \\
+& 0.00 & 44 & 0.00 & 0.00 & 13.75 & 12.94 & $1.60\times10^{7}$ & $2.72\times10^{7}$ \\
+& 0.20 & 42 & 0.00 & 0.00 & 12.19 & 11.93 & $7.41\times10^{6}$ & $1.34\times10^{7}$ \\
+& 0.20 & 43 & 0.00 & 0.00 & 1.56 & 14.06 & $4.17\times10^{7}$ & $1.26\times10^{8}$ \\
+& 0.20 & 44 & 0.00 & 0.00 & 0.31 & 12.10 & $4.11\times10^{7}$ & $4.69\times10^{7}$ \\
+& 0.40 & 42 & 0.00 & 0.00 & 0.00 & 11.35 & $4.59\times10^{6}$ & $6.23\times10^{6}$ \\
+& 0.40 & 43 & 0.00 & 0.00 & 13.75 & 11.57 & $7.58\times10^{6}$ & $1.01\times10^{7}$ \\
+& 0.40 & 44 & 0.00 & 0.00 & 22.81 & 11.77 & $7.89\times10^{7}$ & $3.96\times10^{8}$ \\
+& 0.60 & 42 & 0.00 & 0.00 & 17.81 & 12.81 & $2.33\times10^{7}$ & $2.58\times10^{7}$ \\
+& 0.60 & 43 & 0.00 & 0.00 & 14.06 & 11.93 & $4.04\times10^{6}$ & $1.00\times10^{7}$ \\
+& 0.60 & 44 & 0.00 & 0.00 & 34.38 & 12.42 & $1.13\times10^{7}$ & $4.46\times10^{6}$ \\
+& 0.80 & 42 & 0.00 & 0.00 & 1.56 & 12.13 & $2.86\times10^{7}$ & $1.54\times10^{7}$ \\
+& 0.80 & 43 & 0.00 & 0.00 & 13.75 & 11.91 & $5.37\times10^{6}$ & $1.41\times10^{7}$ \\
+& 0.80 & 44 & 0.00 & 0.00 & 34.38 & 11.78 & $2.03\times10^{8}$ & $1.92\times10^{8}$ \\
+& 1.00 & 42 & 1.09 & 8.44 & 84.69 & 30.19 & 2.30 & 7.33 \\
+& 1.00 & 43 & 0.31 & 2.66 & 65.31 & 28.88 & 2.36 & 7.10 \\
+& 1.00 & 44 & 0.00 & 2.03 & 37.19 & 11.24 & 2.37 & 6.97 \\
+\midrule
+\multirow{18}{*}{DELLA}
+& 0.00 & 42 & 0.00 & 0.00 & 85.62 & 12.22 & $1.05\times10^{7}$ & $2.69\times10^{7}$ \\
+& 0.00 & 43 & 0.00 & 0.00 & 53.12 & 12.02 & $1.23\times10^{7}$ & $9.67\times10^{6}$ \\
+& 0.00 & 44 & 0.00 & 0.00 & 85.94 & 12.50 & $5.77\times10^{7}$ & $9.40\times10^{7}$ \\
+& 0.20 & 42 & 0.00 & 0.00 & 13.75 & 11.12 & $7.59\times10^{6}$ & $1.66\times10^{7}$ \\
+& 0.20 & 43 & 0.00 & 0.00 & 14.37 & 11.83 & $3.53\times10^{6}$ & $2.94\times10^{6}$ \\
+& 0.20 & 44 & 0.00 & 0.00 & 79.69 & 12.94 & $1.15\times10^{7}$ & $9.05\times10^{6}$ \\
+& 0.40 & 42 & 0.00 & 0.00 & 5.62 & 12.29 & $1.54\times10^{7}$ & $2.23\times10^{8}$ \\
+& 0.40 & 43 & 0.00 & 0.00 & 12.50 & 12.89 & $7.47\times10^{10}$ & $8.16\times10^{9}$ \\
+& 0.40 & 44 & 0.00 & 0.00 & 36.56 & 12.25 & $1.43\times10^{7}$ & $7.36\times10^{6}$ \\
+& 0.60 & 42 & 0.00 & 0.00 & 13.75 & 12.84 & $2.16\times10^{7}$ & $1.30\times10^{7}$ \\
+& 0.60 & 43 & 0.00 & 0.00 & 54.37 & 12.52 & $6.79\times10^{6}$ & $4.83\times10^{6}$ \\
+& 0.60 & 44 & 0.00 & 0.00 & 13.75 & 10.95 & $3.91\times10^{6}$ & $8.02\times10^{6}$ \\
+& 0.80 & 42 & 0.00 & 0.00 & 34.69 & 12.60 & $6.85\times10^{6}$ & $6.99\times10^{6}$ \\
+& 0.80 & 43 & 0.00 & 0.00 & 2.81 & 12.45 & $1.00\times10^{8}$ & $8.74\times10^{7}$ \\
+& 0.80 & 44 & 0.00 & 0.00 & 13.75 & 11.15 & $1.49\times10^{7}$ & $5.98\times10^{6}$ \\
+& 1.00 & 42 & 1.41 & 7.97 & 81.88 & 29.49 & 2.33 & 7.51 \\
+& 1.00 & 43 & 0.31 & 2.19 & 46.25 & 10.77 & 2.39 & 7.41 \\
+& 1.00 & 44 & 0.16 & 1.88 & 41.56 & 10.97 & 2.41 & 7.23 \\
+\midrule
+\multirow{3}{*}{LED-Merging}
+& N/A & 42 & N/A & N/A & N/A & N/A & N/A & N/A \\
+& N/A & 43 & N/A & N/A & N/A & N/A & N/A & N/A \\
+& N/A & 44 & N/A & N/A & N/A & N/A & N/A & N/A \\
+\midrule
+\multirow{3}{*}{Matena-Fisher}
+& N/A & 42 & 0.00 & 0.00 & 0.00 & 13.09 & $6.91\times10^{5}$ & $5.41\times10^{5}$ \\
+& N/A & 43 & 0.00 & 0.00 & 0.00 & 12.78 & $5.02\times10^{5}$ & $3.85\times10^{5}$ \\
+& N/A & 44 & 0.00 & 0.00 & 0.00 & 13.09 & $5.38\times10^{5}$ & $3.92\times10^{5}$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[htbp]
+\caption{メイン実験 Alphaスイープ シード別安全性評価 --
+Pattern: safety+medical, Method: MergeAlign, SafeMERGE, Task Arithmetic, TIES}
+\label{tab:custom_sweep_seeds_safety_medical_safety_MergeAlign}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.3cm}
+>{\centering\arraybackslash}p{1.0cm}
+>{\centering\arraybackslash}p{1.0cm}
+*{4}{>{\centering\arraybackslash}X}
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{Orig. ASR} &
+\textbf{Cond. ASR} &
+\textbf{VRR} &
+\textbf{VSR} \\
+&
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\multirow{3}{*}{MergeAlign}
+& N/A & 42 & 0.00 & --- & 0.00 & 0.00 \\
+& N/A & 43 & 0.00 & --- & 0.00 & 0.00 \\
+& N/A & 44 & 0.00 & --- & 0.00 & 0.00 \\
+\midrule
+\multirow{3}{*}{SafeMERGE}
+& N/A & 42 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& N/A & 43 & 0.08 & 0.74 & 100.00 & 99.26 \\
+& N/A & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+\midrule
+\multirow{18}{*}{Task Arithmetic}
+& 0.00 & 42 & 6.48 & 58.40 & 93.89 & 38.07 \\
+& 0.00 & 43 & 6.48 & 58.40 & 93.89 & 38.07 \\
+& 0.00 & 44 & 6.48 & 58.40 & 93.89 & 38.07 \\
+& 0.20 & 42 & 0.08 & 64.48 & 24.98 & 8.50 \\
+& 0.20 & 43 & 0.08 & 63.86 & 24.98 & 8.58 \\
+& 0.20 & 44 & 0.08 & 65.37 & 24.56 & 8.10 \\
+& 0.40 & 42 & 0.00 & 46.58 & 14.41 & 8.30 \\
+& 0.40 & 43 & 0.00 & 42.41 & 6.42 & 4.11 \\
+& 0.40 & 44 & 0.00 & 41.45 & 12.49 & 7.78 \\
+& 0.60 & 42 & 0.16 & 58.33 & 99.92 & 41.59 \\
+& 0.60 & 43 & 0.16 & 66.36 & 99.92 & 33.56 \\
+& 0.60 & 44 & 0.16 & 66.92 & 99.61 & 32.69 \\
+& 0.80 & 42 & 0.00 & 62.34 & 9.12 & 2.75 \\
+& 0.80 & 43 & 0.00 & 63.10 & 3.66 & 1.19 \\
+& 0.80 & 44 & 0.00 & 36.29 & 7.59 & 4.93 \\
+& 1.00 & 42 & 0.00 & 0.00 & 100.00 & 100.00 \\ 
+& 1.00 & 43 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+\midrule
+\multirow{18}{*}{TIES}
+& 0.00 & 42 & 0.00 & 69.40 & 96.36 & 29.36 \\
+& 0.00 & 43 & 0.00 & 69.40 & 96.36 & 29.36 \\
+& 0.00 & 44 & 0.00 & 69.40 & 96.36 & 29.36 \\
+& 0.20 & 42 & 0.08 & 70.19 & 99.28 & 29.67 \\
+& 0.20 & 43 & 0.00 & 70.26 & 99.43 & 29.70 \\
+& 0.20 & 44 & 0.00 & 67.11 & 61.32 & 21.08 \\
+& 0.40 & 42 & 0.08 & 67.15 & 94.22 & 31.27 \\
+& 0.40 & 43 & 0.00 & 62.20 & 85.52 & 30.91 \\
+& 0.40 & 44 & 0.00 & 50.00 & 1.35 & 0.31 \\
+& 0.60 & 42 & 0.08 & 66.42 & 100.00 & 33.58 \\ 
+& 0.60 & 43 & 0.00 & 69.78 & 60.55 & 15.44 \\
+& 0.60 & 44 & 0.08 & 56.80 & 82.23 & 34.92 \\
+& 0.80 & 42 & 0.16 & 66.97 & 100.00 & 33.03 \\
+& 0.80 & 43 & 0.00 & 66.12 & 100.00 & 33.88 \\
+& 0.80 & 44 & 0.08 & 68.72 & 36.40 & 10.81 \\
+& 1.00 & 42 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 43 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\caption{メイン実験 Alphaスイープ シード別有用性評価 --
+Pattern: safety+medical, Method: MergeAlign, SafeMERGE, Task Arithmetic, TIES}
+\label{tab:custom_sweep_seeds_safety_medical_utility_MergeAlign}
+\centering
+\small
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.0cm}
+>{\centering\arraybackslash}p{0.55cm}
+>{\centering\arraybackslash}p{0.55cm}
+>{\centering\arraybackslash}p{0.95cm}
+>{\centering\arraybackslash}p{0.95cm}
+>{\centering\arraybackslash}p{1.10cm}
+>{\centering\arraybackslash}p{1.05cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{Math} &
+\textbf{Code} &
+\textbf{Medical} &
+\textbf{General} &
+\textbf{Evol PPL} &
+\textbf{Med PPL} \\
+&
+&
+&
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{($\downarrow$)} &
+\textbf{($\downarrow$)} \\
+\midrule
+\multirow{3}{*}{MergeAlign}
+& N/A & 42 & 0.00 & 0.00 & 86.25 & 17.71 & --- & --- \\
+& N/A & 43 & 0.00 & 0.00 & 86.25 & 11.79 & --- & --- \\
+& N/A & 44 & 0.00 & 0.00 & 86.25 & 11.79 & --- & --- \\
+\midrule
+\multirow{3}{*}{SafeMERGE}
+& N/A & 42 & 3.28 & 11.72 & 60.31 & 14.69 & 1.87 & 4.37 \\
+& N/A & 43 & 0.00 & 0.00 & 40.94 & 11.81 & 5.53 & 25.25 \\
+& N/A & 44 & 0.00 & 0.00 & 59.06 & 11.93 & 4.11 & 17.37 \\
+\midrule
+\multirow{18}{*}{Task Arithmetic}
+& 0.00 & 42 & 4.06 & 1.72 & 68.44 & 19.00 & 1.89 & 1.43 \\
+& 0.00 & 43 & 4.06 & 1.72 & 68.44 & 19.10 & 1.89 & 1.43 \\
+& 0.00 & 44 & 4.06 & 1.72 & 68.44 & 19.17 & 1.89 & 1.43 \\
+& 0.20 & 42 & 1.72 & 0.00 & 16.25 & 12.39 & 54.12 & 25.57 \\
+& 0.20 & 43 & 1.88 & 0.00 & 15.94 & 12.49 & 53.99 & 25.97 \\
+& 0.20 & 44 & 1.72 & 0.00 & 15.94 & 12.60 & 54.02 & 25.79 \\
+& 0.40 & 42 & 0.00 & 0.00 & 28.12 & 12.34 & $3.58\times10^{4}$ & $3.68\times10^{4}$ \\
+& 0.40 & 43 & 0.00 & 0.00 & 15.62 & 12.20 & $3.72\times10^{4}$ & $3.75\times10^{4}$ \\
+& 0.40 & 44 & 0.00 & 0.00 & 16.25 & 12.22 & $3.77\times10^{4}$ & $3.82\times10^{4}$ \\
+& 0.60 & 42 & 0.00 & 0.00 & 13.75 & 12.69 & $2.32\times10^{5}$ & $2.11\times10^{5}$ \\
+& 0.60 & 43 & 0.00 & 0.00 & 14.06 & 12.69 & $2.13\times10^{5}$ & $1.86\times10^{5}$ \\
+& 0.60 & 44 & 0.00 & 0.00 & 13.75 & 12.79 & $2.08\times10^{5}$ & $1.98\times10^{5}$ \\
+& 0.80 & 42 & 0.47 & 0.00 & 51.25 & 11.80 & 520.77 & 209.85 \\
+& 0.80 & 43 & 1.09 & 0.00 & 21.56 & 12.32 & 700.74 & 266.69 \\
+& 0.80 & 44 & 0.31 & 0.00 & 42.50 & 12.01 & 510.67 & 297.44 \\
+& 1.00 & 42 & 0.94 & 8.12 & 84.38 & 32.26 & 2.31 & 7.26 \\
+& 1.00 & 43 & 0.78 & 2.03 & 50.31 & 11.23 & 2.36 & 7.18 \\
+& 1.00 & 44 & 0.00 & 2.50 & 39.38 & 11.62 & 2.36 & 7.00 \\
+\midrule
+\multirow{18}{*}{TIES}
+& 0.00 & 42 & 2.34 & 0.00 & 13.75 & 11.57 & $8.43\times10^{3}$ & $6.97\times10^{3}$ \\
+& 0.00 & 43 & 2.34 & 0.00 & 13.75 & 11.51 & $8.43\times10^{3}$ & $6.97\times10^{3}$ \\
+& 0.00 & 44 & 2.34 & 0.00 & 13.75 & 11.57 & $8.43\times10^{3}$ & $6.97\times10^{3}$ \\
+& 0.20 & 42 & 1.56 & 0.00 & 13.75 & 11.45 & $1.12\times10^{4}$ & $1.59\times10^{4}$ \\
+& 0.20 & 43 & 0.47 & 0.00 & 13.75 & 12.30 & $1.54\times10^{4}$ & $1.33\times10^{4}$ \\
+& 0.20 & 44 & 1.41 & 0.00 & 13.75 & 11.89 & $1.18\times10^{4}$ & $1.15\times10^{4}$ \\
+& 0.40 & 42 & 0.00 & 0.00 & 13.75 & 11.62 & $2.21\times10^{4}$ & $2.51\times10^{4}$ \\
+& 0.40 & 43 & 0.00 & 0.00 & 18.44 & 12.30 & $1.24\times10^{4}$ & $2.15\times10^{4}$ \\
+& 0.40 & 44 & 1.09 & 0.00 & 13.75 & 10.31 & $2.65\times10^{4}$ & $4.98\times10^{4}$ \\
+& 0.60 & 42 & 0.00 & 0.00 & 13.75 & 12.33 & $3.89\times10^{4}$ & $1.11\times10^{5}$ \\
+& 0.60 & 43 & 0.00 & 0.00 & 13.12 & 12.17 & $3.39\times10^{4}$ & $4.00\times10^{4}$ \\
+& 0.60 & 44 & 0.00 & 0.00 & 13.75 & 11.19 & $2.97\times10^{4}$ & $5.29\times10^{4}$ \\
+& 0.80 & 42 & 0.00 & 0.00 & 17.19 & 12.13 & $1.51\times10^{5}$ & $3.48\times10^{5}$ \\
+& 0.80 & 43 & 0.00 & 0.00 & 2.50 & 12.10 & $1.93\times10^{5}$ & $1.33\times10^{5}$ \\
+& 0.80 & 44 & 0.00 & 0.00 & 0.00 & 12.29 & $1.27\times10^{5}$ & $2.19\times10^{5}$ \\
+& 1.00 & 42 & 1.72 & 8.75 & 84.38 & 29.68 & 2.24 & 6.85 \\
+& 1.00 & 43 & 0.62 & 3.91 & 37.19 & 11.49 & 2.28 & 6.71 \\
+& 1.00 & 44 & 0.47 & 7.03 & 42.19 & 20.80 & 2.29 & 6.60 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Pattern: safety+code}
+
+% --- Alphaスイープ シード別詳細 - Pattern: safety+code ---
+\begin{table}[htbp]
+\caption{メイン実験 Alphaスイープ シード別安全性評価 --
+Pattern: safety+code, Method: DARE, DELLA, LED-Merging, Matena-Fisher}
+\label{tab:custom_sweep_seeds_safety_code_safety_DARE}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.3cm}
+>{\centering\arraybackslash}p{1.0cm}
+>{\centering\arraybackslash}p{1.0cm}
+*{4}{>{\centering\arraybackslash}X}
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{Orig. ASR} &
+\textbf{Cond. ASR} &
+\textbf{VRR} &
+\textbf{VSR} \\
+&
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{18}{*}{DARE}
+& 0.00 & 42 & 0.00 & 67.05 & 97.43 & 32.14 \\
+& 0.00 & 43 & 0.00 & 62.08 & 99.28 & 37.70 \\
+& 0.00 & 44 & 0.16 & 63.64 & 82.25 & 30.08 \\
+& 0.20 & 42 & 0.00 & 69.72 & 95.48 & 29.56 \\
+& 0.20 & 43 & 0.08 & 69.09 & 89.75 & 27.94 \\
+& 0.20 & 44 & 0.00 & 66.54 & 85.84 & 27.02 \\
+& 0.40 & 42 & 0.08 & 68.79 & 92.84 & 28.98 \\
+& 0.40 & 43 & 0.00 & 66.73 & 63.20 & 22.23 \\
+& 0.40 & 44 & 0.00 & 66.50 & 100.00 & 33.50 \\
+& 0.60 & 42 & 0.00 & 70.27 & 99.38 & 29.50 \\
+& 0.60 & 43 & 0.00 & 68.91 & 94.75 & 30.39 \\
+& 0.60 & 44 & 0.00 & 65.73 & 99.68 & 34.19 \\
+& 0.80 & 42 & 0.00 & 69.14 & 96.10 & 29.58 \\
+& 0.80 & 43 & 0.00 & 69.58 & 99.61 & 30.23 \\
+& 0.80 & 44 & 0.00 & 71.11 & 99.36 & 28.78 \\
+& 1.00 & 42 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 43 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+\midrule
+\multirow{18}{*}{DELLA}
+& 0.00 & 42 & 0.00 & 67.46 & 97.65 & 31.94 \\
+& 0.00 & 43 & 0.00 & 65.82 & 31.49 & 8.47 \\
+& 0.00 & 44 & 0.00 & 64.38 & 99.92 & 35.62 \\
+& 0.20 & 42 & 0.00 & 68.59 & 93.10 & 29.36 \\
+& 0.20 & 43 & 0.00 & 68.01 & 59.65 & 16.83 \\
+& 0.20 & 44 & 0.00 & 68.12 & 98.06 & 31.33 \\
+& 0.40 & 42 & 0.08 & 68.00 & 62.09 & 19.64 \\
+& 0.40 & 43 & 0.00 & 68.06 & 99.76 & 31.92 \\
+& 0.40 & 44 & 0.08 & 62.47 & 99.60 & 37.38 \\
+& 0.60 & 42 & 0.00 & 68.17 & 78.01 & 25.06 \\
+& 0.60 & 43 & 0.00 & 70.11 & 99.68 & 29.80 \\
+& 0.60 & 44 & 0.00 & 67.30 & 99.84 & 32.55 \\
+& 0.80 & 42 & 0.16 & 44.94 & 99.21 & 54.67 \\
+& 0.80 & 43 & 0.00 & 60.75 & 90.19 & 35.68 \\
+& 0.80 & 44 & 0.00 & 68.58 & 99.92 & 31.41 \\
+& 1.00 & 42 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 43 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+\midrule
+\multirow{3}{*}{LED-Merging}
+& N/A & 42 & 3.04 & 70.96 & 78.19 & 23.04 \\
+& N/A & 43 & 2.80 & 71.03 & 78.12 & 23.11 \\
+& N/A & 44 & 2.80 & 71.03 & 78.12 & 23.11 \\
+\midrule
+\multirow{3}{*}{Matena-Fisher}
+& N/A & 42 & 4.96 & 66.01 & 63.56 & 23.35 \\
+& N/A & 43 & 2.85 & 62.82 & 59.67 & 23.14 \\
+& N/A & 44 & 2.31 & 66.27 & 55.97 & 20.56 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\caption{メイン実験 Alphaスイープ シード別有用性評価 --
+Pattern: safety+code, Method: DARE, DELLA, LED-Merging, Matena-Fisher}
+\label{tab:custom_sweep_seeds_safety_code_utility_DARE}
+\centering
+\small
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.0cm}
+>{\centering\arraybackslash}p{0.55cm}
+>{\centering\arraybackslash}p{0.55cm}
+>{\centering\arraybackslash}p{0.95cm}
+>{\centering\arraybackslash}p{0.95cm}
+>{\centering\arraybackslash}p{1.10cm}
+>{\centering\arraybackslash}p{1.05cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{Math} &
+\textbf{Code} &
+\textbf{Medical} &
+\textbf{General} &
+\textbf{Evol PPL} &
+\textbf{Med PPL} \\
+&
+&
+&
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{($\downarrow$)} &
+\textbf{($\downarrow$)} \\
+\midrule
+\multirow{18}{*}{DARE}
+& 0.00 & 42 & 0.16 & 0.00 & 40.31 & 12.14 & $1.19\times10^{6}$ & $4.92\times10^{5}$ \\
+& 0.00 & 43 & 0.16 & 0.00 & 25.62 & 12.07 & $5.77\times10^{5}$ & $8.01\times10^{5}$ \\
+& 0.00 & 44 & 0.00 & 0.00 & 14.37 & 10.60 & $8.73\times10^{5}$ & $5.34\times10^{5}$ \\
+& 0.20 & 42 & 0.00 & 0.00 & 25.62 & 12.32 & $3.87\times10^{5}$ & $4.57\times10^{5}$ \\
+& 0.20 & 43 & 0.00 & 0.00 & 23.44 & 11.83 & $5.74\times10^{5}$ & $7.99\times10^{5}$ \\
+& 0.20 & 44 & 0.00 & 0.00 & 26.56 & 11.99 & $3.03\times10^{5}$ & $4.22\times10^{5}$ \\
+& 0.40 & 42 & 0.00 & 0.00 & 9.06  & 11.80 & $4.03\times10^{5}$ & $5.66\times10^{5}$ \\
+& 0.40 & 43 & 0.00 & 0.00 & 76.56 & 12.80 & $3.01\times10^{5}$ & $7.15\times10^{5}$ \\
+& 0.40 & 44 & 0.16 & 0.00 & 18.44 & 11.57 & $1.21\times10^{5}$ & $3.58\times10^{5}$ \\
+& 0.60 & 42 & 0.00 & 0.00 & 31.25 & 11.10 & $8.47\times10^{4}$ & $3.35\times10^{5}$ \\
+& 0.60 & 43 & 0.16 & 0.00 & 16.56 & 11.60 & $8.26\times10^{4}$ & $1.85\times10^{5}$ \\
+& 0.60 & 44 & 0.00 & 0.00 & 40.94 & 12.48 & $4.39\times10^{5}$ & $5.12\times10^{5}$ \\
+& 0.80 & 42 & 0.16 & 0.00 & 14.37 & 10.78 & $1.40\times10^{5}$ & $5.59\times10^{5}$ \\
+& 0.80 & 43 & 0.00 & 0.00 & 44.69 & 12.64 & $2.62\times10^{5}$ & $5.62\times10^{5}$ \\
+& 0.80 & 44 & 0.31 & 0.00 & 16.88 & 11.32 & $1.48\times10^{5}$ & $1.91\times10^{5}$ \\
+& 1.00 & 42 & 0.94 & 8.28 & 84.06 & 32.23 & 2.30 & 7.08 \\
+& 1.00 & 43 & 1.09 & 3.44 & 42.81 & 10.74 & 2.37 & 7.13 \\
+& 1.00 & 44 & 0.16 & 3.91 & 46.56 & 21.65 & 2.37 & 6.99 \\
+\midrule
+\multirow{18}{*}{DELLA}
+& 0.00 & 42 & 0.00 & 0.00 & 35.00 & 11.85 & $3.19\times10^{5}$ & $1.07\times10^{6}$ \\
+& 0.00 & 43 & 0.00 & 0.00 & 53.44 & 11.40 & $3.65\times10^{5}$ & $3.51\times10^{5}$ \\
+& 0.00 & 44 & 0.16 & 0.00 & 34.69 & 12.56 & $1.02\times10^{6}$ & $2.03\times10^{6}$ \\
+& 0.20 & 42 & 0.62 & 0.00 & 25.62 & 12.29 & $2.84\times10^{5}$ & $5.01\times10^{5}$ \\
+& 0.20 & 43 & 0.78 & 0.00 & 19.06 & 10.42 & $7.43\times10^{4}$ & $8.79\times10^{4}$ \\
+& 0.20 & 44 & 0.16 & 0.00 & 21.56 & 11.58 & $2.80\times10^{5}$ & $3.72\times10^{5}$ \\
+& 0.40 & 42 & 0.00 & 0.00 & 12.19 & 11.65 & $3.86\times10^{5}$ & $3.79\times10^{5}$ \\
+& 0.40 & 43 & 0.00 & 0.00 & 18.75 & 11.26 & $1.39\times10^{5}$ & $6.24\times10^{5}$ \\
+& 0.40 & 44 & 0.16 & 0.00 & 32.50 & 11.28 & $7.17\times10^{4}$ & $1.81\times10^{5}$ \\
+& 0.60 & 42 & 0.94 & 0.00 & 57.19 & 12.96 & $1.74\times10^{5}$ & $1.26\times10^{5}$ \\
+& 0.60 & 43 & 0.16 & 0.00 & 29.06 & 12.10 & $9.25\times10^{4}$ & $2.75\times10^{5}$ \\
+& 0.60 & 44 & 0.78 & 0.00 & 44.38 & 12.23 & $5.76\times10^{4}$ & $2.33\times10^{5}$ \\
+& 0.80 & 42 & 1.56 & 0.00 & 13.75 & 12.58 & $5.21\times10^{4}$ & $2.63\times10^{5}$ \\
+& 0.80 & 43 & 0.00 & 0.00 & 65.62 & 12.30 & $4.15\times10^{4}$ & $1.22\times10^{5}$ \\
+& 0.80 & 44 & 0.31 & 0.00 & 25.94 & 11.12 & $9.79\times10^{4}$ & $2.68\times10^{5}$ \\
+& 1.00 & 42 & 1.41 & 8.12 & 84.69 & 11.16 & 2.34 & 7.41 \\
+& 1.00 & 43 & 0.47 & 0.94 & 42.19 & 10.37 & 2.40 & 7.43 \\
+& 1.00 & 44 & 0.00 & 4.22 & 33.75 & 11.59 & 2.40 & 7.29 \\
+\midrule
+\multirow{3}{*}{LED-Merging}
+& N/A & 42 & 1.41 & 5.62 & 83.75 & 22.49 & 1.75 & 2.72 \\
+& N/A & 43 & 1.41 & 5.62 & 83.75 & 22.52 & 1.75 & 2.72 \\
+& N/A & 44 & 1.41 & 5.62 & 83.75 & 22.45 & 1.75 & 2.72 \\
+\midrule
+\multirow{3}{*}{Matena-Fisher}
+& N/A & 42 & 1.09 & 0.00 & 83.44 & 12.87 & 47.93 & 54.86 \\
+& N/A & 43 & 1.09 & 0.00 & 82.81 & 13.07 & 70.07 & 89.29 \\
+& N/A & 44 & 1.09 & 0.00 & 83.12 & 12.36 & 90.59 & 109.82 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[htbp]
+\caption{メイン実験 Alphaスイープ シード別安全性評価 --
+Pattern: safety+code, Method: MergeAlign, SafeMERGE, Task Arithmetic, TIES}
+\label{tab:custom_sweep_seeds_safety_code_safety_MergeAlign}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.3cm}
+>{\centering\arraybackslash}p{1.0cm}
+>{\centering\arraybackslash}p{1.0cm}
+*{4}{>{\centering\arraybackslash}X}
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{Orig. ASR} &
+\textbf{Cond. ASR} &
+\textbf{VRR} &
+\textbf{VSR} \\
+&
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{3}{*}{MergeAlign}
+& N/A & 42 & 0.00 & --- & 0.00 & 0.00 \\
+& N/A & 43 & 0.00 & --- & 0.00 & 0.00 \\
+& N/A & 44 & 0.00 & --- & 0.00 & 0.00 \\
+\midrule
+\multirow{3}{*}{SafeMERGE}
+& N/A & 42 & 0.31 & 1.02 & 99.77 & 98.74 \\ 
+& N/A & 43 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& N/A & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+\midrule
+\multirow{18}{*}{Task Arithmetic}
+& 0.00 & 42 & 40.68 & 76.87 & 92.89 & 20.58 \\
+& 0.00 & 43 & 41.25 & 77.29 & 92.81 & 20.17 \\
+& 0.00 & 44 & 41.25 & 77.03 & 92.81 & 20.42 \\
+& 0.20 & 42 & 38.75 & 75.91 & 93.46 & 21.54 \\
+& 0.20 & 43 & 39.46 & 77.31 & 93.70 & 20.38 \\
+& 0.20 & 44 & 38.91 & 76.61 & 93.38 & 20.92 \\
+& 0.40 & 42 & 35.62 & 71.94 & 94.08 & 25.38 \\
+& 0.40 & 43 & 35.26 & 73.77 & 94.41 & 23.59 \\
+& 0.40 & 44 & 32.80 & 73.43 & 94.41 & 23.90 \\
+& 0.60 & 42 & 32.56 & 63.24 & 94.58 & 34.26 \\
+& 0.60 & 43 & 26.56 & 60.50 & 95.04 & 37.15 \\
+& 0.60 & 44 & 28.39 & 59.00 & 96.41 & 39.40 \\
+& 0.80 & 42 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 0.80 & 43 & 0.16 & 0.24 & 100.00 & 99.76 \\
+& 0.80 & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 42 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 43 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+\midrule
+\multirow{18}{*}{TIES}
+& 0.00 & 42 & 10.28 & 64.72 & 89.67 & 31.63 \\
+& 0.00 & 43 & 10.28 & 64.99 & 89.67 & 31.38 \\
+& 0.00 & 44 & 10.45 & 64.89 & 89.75 & 31.53 \\
+& 0.20 & 42 & 2.47 & 58.45 & 79.99 & 33.95 \\
+& 0.20 & 43 & 3.20 & 61.51 & 84.56 & 32.65 \\
+& 0.20 & 44 & 3.39 & 63.48 & 82.73 & 30.39 \\
+& 0.40 & 42 & 0.16 & 56.67 & 70.61 & 30.45 \\
+& 0.40 & 43 & 1.12 & 51.40 & 88.53 & 42.94 \\
+& 0.40 & 44 & 0.08 & 50.86 & 79.70 & 38.87 \\
+& 0.60 & 42 & 0.08 & 55.32 & 31.84 & 12.39 \\
+& 0.60 & 43 & 0.16 & 43.48 & 84.76 & 47.36 \\
+& 0.60 & 44 & 0.08 & 43.15 & 67.51 & 38.45 \\
+& 0.80 & 42 & 0.08 & 60.47 & 69.94 & 26.16 \\
+& 0.80 & 43 & 0.00 & 42.78 & 68.59 & 39.42 \\
+& 0.80 & 44 & 0.08 & 46.72 & 27.43 & 14.00 \\
+& 1.00 & 42 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 43 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\caption{メイン実験 Alphaスイープ シード別有用性評価 --
+Pattern: safety+code, Method: MergeAlign, SafeMERGE, Task Arithmetic, TIES}
+\label{tab:custom_sweep_seeds_safety_code_utility_MergeAlign}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.1cm}
+>{\centering\arraybackslash}p{0.9cm}
+>{\centering\arraybackslash}p{0.9cm}
+*{6}{>{\centering\arraybackslash}X}
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{Math} &
+\textbf{Code} &
+\textbf{Medical} &
+\textbf{General} &
+\textbf{Evol PPL} &
+\textbf{Med PPL} \\
+&
+&
+&
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{($\downarrow$)} &
+\textbf{($\downarrow$)} \\
+\multirow{3}{*}{MergeAlign}
+& N/A & 42 & 0.00 & 0.00 & 86.25 & 17.71 & --- & --- \\
+& N/A & 43 & 0.00 & 0.00 & 86.25 & 11.79 & --- & --- \\
+& N/A & 44 & 0.00 & 0.00 & 86.25 & 17.71 & --- & --- \\
+\midrule
+\multirow{3}{*}{SafeMERGE}
+& N/A & 42 & 2.50 & 7.03 & 75.62 & 27.76 & 1.75 & 2.87 \\
+& N/A & 43 & 2.03 & 10.78 & 70.31 & 20.03 & 2.06 & 5.72 \\
+& N/A & 44 & 0.00 & 0.16 & 75.31 & 11.72 & 3.23 & 12.51 \\
+\midrule
+\multirow{18}{*}{Task Arithmetic}
+& 0.00 & 42 & 5.62 & 21.38 & 86.25 & 20.98 & 1.44 & 3.84 \\
+& 0.00 & 43 & 5.62 & 21.38 & 86.25 & 20.98 & 1.44 & 3.84 \\
+& 0.00 & 44 & 5.62 & 21.38 & 86.25 & 21.08 & 1.44 & 3.84 \\
+& 0.20 & 42 & 3.59 & 0.78 & 85.94 & 39.21 & 1.51 & 3.66 \\
+& 0.20 & 43 & 3.91 & 0.78 & 85.94 & 32.01 & 1.51 & 3.67 \\
+& 0.20 & 44 & 4.22 & 0.78 & 85.94 & 33.06 & 1.51 & 3.65 \\
+& 0.40 & 42 & 2.50 & 9.53 & 86.88 & 19.59 & 1.90 & 4.25 \\
+& 0.40 & 43 & 2.34 & 2.97 & 86.88 & 29.63 & 1.91 & 4.27 \\
+& 0.40 & 44 & 2.50 & 8.75 & 86.88 & 17.82 & 1.91 & 4.26 \\
+& 0.60 & 42 & 3.28 & 4.53 & 89.69 & 17.60 & 2.47 & 4.80 \\
+& 0.60 & 43 & 3.44 & 4.68 & 88.12 & 17.62 & 2.47 & 4.84 \\
+& 0.60 & 44 & 2.19 & 4.68 & 88.75 & 16.93 & 2.48 & 4.87 \\
+& 0.80 & 42 & 2.50 & 8.59 & 86.88 & 27.66 & 2.09 & 4.36 \\
+& 0.80 & 43 & 2.50 & 7.19 & 78.75 & 17.43 & 2.11 & 4.25 \\
+& 0.80 & 44 & 1.09 & 8.75 & 73.75 & 17.24 & 2.13 & 4.36 \\
+& 1.00 & 42 & 0.94 & 8.12 & 84.38 & 32.26 & 2.31 & 7.26 \\
+& 1.00 & 43 & 0.78 & 2.03 & 50.31 & 11.23 & 2.36 & 7.18 \\
+& 1.00 & 44 & 0.00 & 2.50 & 39.38 & 11.62 & 2.36 & 7.00 \\
+\midrule
+\multirow{18}{*}{TIES}
+& 0.00 & 42 & 2.50 & 0.62 & 86.56 & 13.24 & 2.68 & 6.03 \\
+& 0.00 & 43 & 2.50 & 0.62 & 86.56 & 13.24 & 2.68 & 6.03 \\
+& 0.00 & 44 & 2.50 & 0.62 & 86.56 & 13.24 & 2.68 & 6.03 \\
+& 0.20 & 42 & 1.56 & 0.00 & 86.25 & 12.19 & 3.11 & 5.41 \\
+& 0.20 & 43 & 1.25 & 0.00 & 85.62 & 13.34 & 3.15 & 5.52 \\
+& 0.20 & 44 & 1.56 & 0.00 & 85.94 & 12.16 & 4.40 & 5.40 \\
+& 0.40 & 42 & 1.25 & 0.00 & 70.94 & 10.81 & 6.50 & 6.71 \\
+& 0.40 & 43 & 2.03 & 0.00 & 67.81 & 11.12 & 4.58 & 5.75 \\
+& 0.40 & 44 & 0.78 & 0.00 & 64.38 & 10.42 & 37.64 & 6.97 \\
+& 0.60 & 42 & 1.41 & 0.00 & 68.75 & 12.90 & 50.93 & 56.91 \\
+& 0.60 & 43 & 1.88 & 0.00 & 20.00 & 11.50 & 7.06 & 8.18 \\
+& 0.60 & 44 & 0.94 & 0.00 & 27.19 & 29.15 & 218.81 & 11.76 \\
+& 0.80 & 42 & 0.16 & 0.00 & 3.44 & 13.26 & 3853.46 & 6296.90 \\
+& 0.80 & 43 & 1.25 & 0.00 & 21.25 & 11.59 & 26.80 & 26.44 \\
+& 0.80 & 44 & 0.94 & 0.00 & 13.75 & 13.56 & 182.49 & 26.33 \\
+& 1.00 & 42 & 1.72 & 8.75 & 84.38 & 44.31 & 2.24 & 6.85 \\
+& 1.00 & 43 & 0.62 & 3.91 & 37.19 & 11.49 & 2.28 & 6.71 \\
+& 1.00 & 44 & 0.47 & 7.03 & 42.19 & 20.80 & 2.29 & 6.60 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Pattern: safety+math+code+medical}
+% --- Alphaスイープ シード別詳細 - Pattern: safety+math+code+medical ---
+\begin{table}[htbp]
+\caption{メイン実験 Alphaスイープ シード別安全性評価 --
+Pattern: safety+math+code+medical, Method: DARE, DELLA, LED-Merging, Matena-Fisher}
+\label{tab:custom_sweep_seeds_safety_math_code_medical_safety_DARE}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.3cm}
+>{\centering\arraybackslash}p{1.0cm}
+>{\centering\arraybackslash}p{1.0cm}
+*{4}{>{\centering\arraybackslash}X}
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{Orig. ASR} &
+\textbf{Cond. ASR} &
+\textbf{VRR} &
+\textbf{VSR} \\
+&
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{18}{*}{DARE}
+& 0.00 & 42 & 0.16 & 70.57 & 99.69 & 29.27 \\
+& 0.00 & 43 & 0.08 & 67.21 & 91.54 & 30.39 \\
+& 0.00 & 44 & 0.08 & 68.24 & 75.05 & 23.59 \\
+& 0.20 & 42 & 0.16 & 68.77 & 96.50 & 30.75 \\
+& 0.20 & 43 & 0.08 & 65.25 & 93.55 & 33.12 \\
+& 0.20 & 44 & 0.16 & 69.70 & 100.00 & 30.30 \\
+& 0.40 & 42 & 0.00 & 62.76 & 98.57 & 37.19 \\
+& 0.40 & 43 & 0.00 & 65.75 & 88.92 & 31.75 \\
+& 0.40 & 44 & 0.08 & 65.04 & 94.17 & 33.09 \\
+& 0.60 & 42 & 0.16 & 70.50 & 100.00 & 29.50 \\
+& 0.60 & 43 & 0.08 & 69.63 & 99.45 & 30.12 \\
+& 0.60 & 44 & 0.00 & 75.00 & 8.26 & 4.06 \\
+& 0.80 & 42 & 0.00 & 68.18 & 3.67 & 1.09 \\
+& 0.80 & 43 & 0.08 & 72.08 & 100.00 & 27.92 \\ 
+& 0.80 & 44 & 0.08 & 59.87 & 92.78 & 37.56 \\
+& 1.00 & 42 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 43 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+\midrule
+\multirow{18}{*}{DELLA}
+& 0.00 & 42 & 0.08 & 72.80 & 48.96 & 12.03 \\
+& 0.00 & 43 & 0.16 & 69.28 & 81.47 & 25.19 \\
+& 0.00 & 44 & 0.08 & 64.11 & 77.50 & 28.56 \\
+& 0.20 & 42 & 0.08 & 67.11 & 100.00 & 32.89 \\
+& 0.20 & 43 & 0.16 & 70.36 & 100.00 & 29.64 \\
+& 0.20 & 44 & 0.08 & 62.88 & 98.10 & 36.80 \\
+& 0.40 & 42 & 0.16 & 70.41 & 100.00 & 29.59 \\
+& 0.40 & 43 & 0.16 & 68.24 & 97.70 & 30.62 \\
+& 0.40 & 44 & 0.08 & 69.34 & 55.98 & 17.92 \\
+& 0.60 & 42 & 0.08 & 71.69 & 62.36 & 19.56 \\
+& 0.60 & 43 & 0.08 & 60.70 & 98.02 & 38.34 \\
+& 0.60 & 44 & 0.08 & 64.81 & 98.33 & 34.91 \\
+& 0.80 & 42 & 0.16 & 65.61 & 98.89 & 33.89 \\
+& 0.80 & 43 & 0.00 & 71.74 & 95.62 & 26.75 \\
+& 0.80 & 44 & 0.00 & 69.46 & 70.02 & 16.12 \\
+& 1.00 & 42 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 43 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+\midrule
+\multirow{3}{*}{LED-Merging}
+& N/A & 42 & N/A & N/A & N/A & N/A \\
+& N/A & 43 & N/A & N/A & N/A & N/A \\
+& N/A & 44 & N/A & N/A & N/A & N/A \\
+\midrule
+\multirow{3}{*}{Matena-Fisher}
+& N/A & 42 & 0.00 & 55.28 & 11.21 & 4.95 \\
+& N/A & 43 & 0.00 & 59.97 & 11.60 & 4.09 \\
+& N/A & 44 & 0.00 & 60.70 & 7.93 & 2.83 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\caption{メイン実験 Alphaスイープ シード別有用性評価 --
+Pattern: safety+math+code+medical, Method: DARE, DELLA, LED-Merging, Matena-Fisher}
+\label{tab:custom_sweep_seeds_safety_math_code_medical_utility_DARE}
+\centering
+\small
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.0cm}
+>{\centering\arraybackslash}p{0.55cm}
+>{\centering\arraybackslash}p{0.55cm}
+>{\centering\arraybackslash}p{0.95cm}
+>{\centering\arraybackslash}p{0.95cm}
+>{\centering\arraybackslash}p{1.10cm}
+>{\centering\arraybackslash}p{1.05cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{Math} &
+\textbf{Code} &
+\textbf{Medical} &
+\textbf{General} &
+\textbf{Evol PPL} &
+\textbf{Med PPL} \\
+&
+&
+&
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{($\downarrow$)} &
+\textbf{($\downarrow$)} \\
+\midrule
+\multirow{18}{*}{DARE}
+& 0.00 & 42 & 0.00 & 0.00 & 0.00 & 12.02 & $1.47\times10^{7}$ & $1.23\times10^{7}$ \\
+& 0.00 & 43 & 0.00 & 0.00 & 78.44 & 11.39 & $1.14\times10^{6}$ & $4.76\times10^{6}$ \\
+& 0.00 & 44 & 0.00 & 0.00 & 0.00 & 11.47 & $4.59\times10^{6}$ & $5.04\times10^{6}$ \\
+& 0.20 & 42 & 0.00 & 0.00 & 13.75 & 12.58 & $4.80\times10^{6}$ & $3.19\times10^{6}$ \\
+& 0.20 & 43 & 0.00 & 0.00 & 3.44 & 12.02 & $6.26\times10^{6}$ & $8.01\times10^{6}$ \\
+& 0.20 & 44 & 0.00 & 0.00 & 18.75 & 11.58 & $1.05\times10^{7}$ & $8.86\times10^{6}$ \\
+& 0.40 & 42 & 0.00 & 0.00 & 13.75 & 11.19 & $1.24\times10^{7}$ & $5.83\times10^{6}$ \\
+& 0.40 & 43 & 0.00 & 0.00 & 13.75 & 12.99 & $8.11\times10^{6}$ & $2.58\times10^{6}$ \\
+& 0.40 & 44 & 0.00 & 0.00 & 13.75 & 12.03 & $4.62\times10^{5}$ & $5.50\times10^{5}$ \\
+& 0.60 & 42 & 0.00 & 0.00 & 86.25 & 11.42 & $1.29\times10^{7}$ & $1.00\times10^{7}$ \\
+& 0.60 & 43 & 0.00 & 0.00 & 14.06 & 11.38 & $1.95\times10^{6}$ & $4.50\times10^{6}$ \\
+& 0.60 & 44 & 0.00 & 0.00 & 13.75 & 11.79 & $1.30\times10^{6}$ & $5.11\times10^{6}$ \\
+& 0.80 & 42 & 0.00 & 0.00 & 2.19 & 12.80 & $2.01\times10^{6}$ & $1.26\times10^{6}$ \\
+& 0.80 & 43 & 0.00 & 0.00 & 85.94 & 12.21 & $3.81\times10^{5}$ & $5.92\times10^{5}$ \\
+& 0.80 & 44 & 0.00 & 0.00 & 0.62 & 11.89 & $4.75\times10^{5}$ & $6.32\times10^{5}$ \\
+& 1.00 & 42 & 1.41 & 7.81 & 84.06 & 31.92 & 2.31 & 7.26 \\
+& 1.00 & 43 & 0.62 & 3.91 & 48.12 & 10.60 & 2.36 & 7.08 \\
+& 1.00 & 44 & 0.00 & 4.38 & 35.31 & 11.30 & 2.37 & 7.10 \\
+\midrule
+\multirow{18}{*}{DELLA}
+& 0.00 & 42 & 0.00 & 0.00 & 0.00 & 11.99 & $1.08\times10^{6}$ & $1.94\times10^{6}$ \\
+& 0.00 & 43 & 0.00 & 0.00 & 52.50 & 12.22 & $3.53\times10^{6}$ & $1.62\times10^{6}$ \\
+& 0.00 & 44 & 0.00 & 0.00 & 86.25 & 12.17 & $8.92\times10^{6}$ & $4.57\times10^{6}$ \\
+& 0.20 & 42 & 0.00 & 0.00 & 85.62 & 11.95 & $3.37\times10^{6}$ & $9.34\times10^{6}$ \\
+& 0.20 & 43 & 0.00 & 0.00 & 27.50 & 11.25 & $2.76\times10^{6}$ & $3.05\times10^{6}$ \\
+& 0.20 & 44 & 0.00 & 0.00 & 21.25 & 11.48 & $9.37\times10^{6}$ & $1.56\times10^{7}$ \\
+& 0.40 & 42 & 0.00 & 0.00 & 13.75 & 11.83 & $5.82\times10^{6}$ & $5.08\times10^{6}$ \\
+& 0.40 & 43 & 0.00 & 0.00 & 85.94 & 12.52 & $2.04\times10^{6}$ & $1.40\times10^{6}$ \\
+& 0.40 & 44 & 0.00 & 0.00 & 24.69 & 12.78 & $3.53\times10^{6}$ & $1.67\times10^{6}$ \\
+& 0.60 & 42 & 0.00 & 0.00 & 13.44 & 11.64 & $1.55\times10^{6}$ & $1.98\times10^{6}$ \\
+& 0.60 & 43 & 0.00 & 0.00 & 0.31 & 12.97 & $1.11\times10^{6}$ & $2.19\times10^{6}$ \\
+& 0.60 & 44 & 0.00 & 0.00 & 32.50 & 13.00 & $2.01\times10^{6}$ & $2.18\times10^{6}$ \\
+& 0.80 & 42 & 0.00 & 0.00 & 81.56 & 11.58 & $5.22\times10^{6}$ & $9.27\times10^{6}$ \\
+& 0.80 & 43 & 0.00 & 0.00 & 70.00 & 11.75 & $7.56\times10^{6}$ & $3.12\times10^{6}$ \\
+& 0.80 & 44 & 0.00 & 0.00 & 45.00 & 11.89 & $2.95\times10^{5}$ & $5.57\times10^{5}$ \\
+& 1.00 & 42 & 0.94 & 8.12 & 84.69 & 33.77 & 2.34 & 7.44 \\
+& 1.00 & 43 & 0.62 & 2.34 & 49.06 & 11.21 & 2.41 & 7.34 \\
+& 1.00 & 44 & 0.31 & 3.28 & 39.06 & 11.72 & 2.42 & 7.35 \\
+\midrule
+\multirow{3}{*}{LED-Merging}
+& N/A & 42 & N/A & N/A & N/A & N/A & N/A & N/A \\
+& N/A & 43 & N/A & N/A & N/A & N/A & N/A & N/A \\
+& N/A & 44 & N/A & N/A & N/A & N/A & N/A & N/A \\
+\midrule
+\multirow{3}{*}{Matena-Fisher}
+& N/A & 42 & 0.94 & 0.00 & 30.94 & 12.98 & 65.01 & 124.79 \\
+& N/A & 43 & 0.78 & 0.00 & 28.12 & 13.15 & 60.76 & 127.88 \\
+& N/A & 44 & 0.78 & 0.00 & 24.38 & 13.22 & 64.78 & 133.87 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[htbp]
+\caption{メイン実験 Alphaスイープ シード別安全性評価 --
+Pattern: safety+math+code+medical, Method: MergeAlign, SafeMERGE, Task Arithmetic, TIES}
+\label{tab:custom_sweep_seeds_safety_math_code_medical_safety_MergeAlign}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.3cm}
+>{\centering\arraybackslash}p{1.0cm}
+>{\centering\arraybackslash}p{1.0cm}
+*{4}{>{\centering\arraybackslash}X}
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{Orig. ASR} &
+\textbf{Cond. ASR} &
+\textbf{VRR} &
+\textbf{VSR} \\
+&
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{18}{*}{MergeAlign}
+& N/A & 42 & N/A & N/A & N/A & N/A \\ 
+& N/A & 43 & N/A & N/A & N/A & N/A \\ 
+& N/A & 44 & N/A & N/A & N/A & N/A \\ 
+\midrule
+\multirow{18}{*}{SafeMERGE}
+& N/A & 42 & N/A & N/A & N/A & N/A \\ 
+& N/A & 43 & N/A & N/A & N/A & N/A \\ 
+& N/A & 44 & N/A & N/A & N/A & N/A \\ 
+\midrule
+\multirow{18}{*}{Task Arithmetic}
+& 0.00 & 42 & 0.08 & 61.19 & 94.71 & 36.89 \\
+& 0.00 & 43 & 0.08 & 61.19 & 94.71 & 36.89 \\
+& 0.00 & 44 & 0.08 & 61.19 & 94.79 & 36.89 \\
+& 0.20 & 42 & 0.00 & 48.15 & 1.97 & 1.02 \\
+& 0.20 & 43 & 0.00 & 33.33 & 0.55 & 0.47 \\
+& 0.20 & 44 & 0.00 & 41.67 & 1.18 & 0.55 \\
+& 0.40 & 42 & 0.00 & 56.68 & 54.03 & 22.56 \\
+& 0.40 & 43 & 0.00 & 60.05 & 50.69 & 20.09 \\
+& 0.40 & 44 & 0.00 & 60.71 & 47.30 & 17.87 \\
+& 0.60 & 42 & 5.77 & 34.28 & 82.14 & 53.09 \\
+& 0.60 & 43 & 6.48 & 44.35 & 68.74 & 35.38 \\
+& 0.60 & 44 & 5.40 & 30.34 & 84.42 & 58.24 \\
+& 0.80 & 42 & 0.64 & 0.89 & 100.00 & 99.11 \\
+& 0.80 & 43 & 3.09 & 3.90 & 100.00 & 96.10 \\
+& 0.80 & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 42 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 43 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+\midrule
+\multirow{18}{*}{TIES}
+& 0.00 & 42 & 0.08 & 70.73 & 100.00 & 29.27 \\
+& 0.00 & 43 & 0.08 & 70.73 & 100.00 & 29.27 \\
+& 0.00 & 44 & 0.08 & 70.73 & 100.00 & 29.27 \\
+& 0.20 & 42 & 0.00 & 69.80 & 100.00 & 30.20 \\
+& 0.20 & 43 & 0.08 & 53.23 & 100.00 & 46.77 \\
+& 0.20 & 44 & 0.08 & 71.61 & 100.00 & 28.39 \\
+& 0.40 & 42 & 0.16 & 69.78 & 100.00 & 30.22 \\
+& 0.40 & 43 & 0.40 & 70.91 & 100.00 & 29.09 \\
+& 0.40 & 44 & 0.00 & --- & 0.00 & 0.00 \\
+& 0.60 & 42 & 0.08 & 69.16 & 99.92 & 30.84 \\
+& 0.60 & 43 & 0.08 & 67.28 & 100.00 & 32.72 \\
+& 0.60 & 44 & 0.00 & --- & 0.00 & 0.00 \\
+& 0.80 & 42 & 0.00 & 100.00 & 0.08 & 0.00 \\
+& 0.80 & 43 & 0.08 & 58.08 & 100.00 & 41.92 \\
+& 0.80 & 44 & 0.16 & 70.66 & 100.00 & 29.34 \\
+& 1.00 & 42 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 43 & 0.00 & 0.00 & 100.00 & 100.00 \\
+& 1.00 & 44 & 0.00 & 0.00 & 100.00 & 100.00 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\caption{メイン実験 Alphaスイープ シード別有用性評価 --
+Pattern: safety+math+code+medical, Method: MergeAlign, SafeMERGE, Task Arithmetic, TIES}
+\label{tab:custom_sweep_seeds_safety_math_code_medical_utility_MergeAlign}
+\centering
+\small
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.0cm}
+>{\centering\arraybackslash}p{0.55cm}
+>{\centering\arraybackslash}p{0.55cm}
+>{\centering\arraybackslash}p{0.95cm}
+>{\centering\arraybackslash}p{0.95cm}
+>{\centering\arraybackslash}p{1.10cm}
+>{\centering\arraybackslash}p{1.05cm}
+>{\centering\arraybackslash}X
+>{\centering\arraybackslash}X
+}
+\toprule
+\textbf{Method} &
+\textbf{$\alpha$} &
+\textbf{Seed} &
+\textbf{Math} &
+\textbf{Code} &
+\textbf{Medical} &
+\textbf{General} &
+\textbf{Evol PPL} &
+\textbf{Med PPL} \\
+&
+&
+&
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{($\downarrow$)} &
+\textbf{($\downarrow$)} \\
+\midrule
+\multirow{3}{*}{MergeAlign}
+& N/A & 42 & N/A & N/A & N/A & N/A & N/A & N/A \\
+& N/A & 43 & N/A & N/A & N/A & N/A & N/A & N/A \\
+& N/A & 44 & N/A & N/A & N/A & N/A & N/A & N/A \\
+\midrule
+\multirow{3}{*}{SafeMERGE}
+& N/A & 42 & N/A & N/A & N/A & N/A & N/A & N/A \\
+& N/A & 43 & N/A & N/A & N/A & N/A & N/A & N/A \\
+& N/A & 44 & N/A & N/A & N/A & N/A & N/A & N/A \\
+\midrule
+\multirow{18}{*}{Task Arithmetic}
+& 0.00 & 42 & 0.16 & 0.00 & 13.75 & 11.52 & $7.64\times10^{3}$ & $1.18\times10^{4}$ \\
+& 0.00 & 43 & 0.16 & 0.00 & 13.75 & 11.52 & $7.64\times10^{3}$ & $1.18\times10^{4}$ \\
+& 0.00 & 44 & 0.16 & 0.00 & 13.75 & 11.52 & $7.64\times10^{3}$ & $1.18\times10^{4}$ \\
+& 0.20 & 42 & 1.56 & 0.00 & 50.31 & 12.07 & $1.96\times10^{3}$ & $3.30\times10^{3}$ \\
+& 0.20 & 43 & 1.25 & 0.00 & 49.06 & 12.01 & $1.97\times10^{3}$ & $3.33\times10^{3}$ \\
+& 0.20 & 44 & 1.56 & 0.00 & 50.62 & 12.17 & $2.01\times10^{3}$ & $3.41\times10^{3}$ \\
+& 0.40 & 42 & 0.16 & 0.00 & 17.81 & 14.68 & 62.76 & 46.51 \\
+& 0.40 & 43 & 0.78 & 0.00 & 17.19 & 15.64 & 79.34 & 49.34 \\
+& 0.40 & 44 & 0.31 & 0.00 & 18.75 & 15.26 & 75.21 & 50.10 \\
+& 0.60 & 42 & 2.19 & 0.16 & 73.44 & 14.72 & 3.17 & 6.10 \\
+& 0.60 & 43 & 2.50 & 0.00 & 67.50 & 13.59 & 3.25 & 6.28 \\
+& 0.60 & 44 & 2.97 & 0.00 & 55.31 & 11.48 & 3.24 & 6.10 \\
+& 0.80 & 42 & 3.28 & 4.84 & 26.25 & 15.41 & 2.21 & 5.56 \\
+& 0.80 & 43 & 4.22 & 6.41 & 20.62 & 24.01 & 2.23 & 5.37 \\
+& 0.80 & 44 & 3.12 & 4.06 & 25.00 & 19.39 & 2.24 & 5.38 \\
+& 1.00 & 42 & 0.94 & 8.12 & 84.38 & 32.24 & 2.31 & 7.26 \\
+& 1.00 & 43 & 0.78 & 2.03 & 50.31 & 11.23 & 2.36 & 7.18 \\
+& 1.00 & 44 & 0.00 & 2.50 & 39.69 & 11.37 & 2.36 & 7.00 \\
+\midrule
+\multirow{18}{*}{TIES}
+& 0.00 & 42 & 0.00 & 0.00 & 86.25 & 12.08 & $1.34\times10^{5}$ & $1.35\times10^{5}$ \\
+& 0.00 & 43 & 0.00 & 0.00 & 86.25 & 12.08 & $1.34\times10^{5}$ & $1.35\times10^{5}$ \\
+& 0.00 & 44 & 0.00 & 0.00 & 86.25 & 12.09 & $1.34\times10^{5}$ & $1.35\times10^{5}$ \\
+& 0.20 & 42 & 0.00 & 0.00 & 13.75 & 11.66 & $1.59\times10^{5}$ & $1.91\times10^{5}$ \\
+& 0.20 & 43 & 0.00 & 0.00 & 77.19 & 12.14 & $1.93\times10^{5}$ & $1.84\times10^{5}$ \\
+& 0.20 & 44 & 0.00 & 0.00 & 86.25 & 11.64 & $6.67\times10^{4}$ & $7.63\times10^{4}$ \\
+& 0.40 & 42 & 0.00 & 0.00 & 13.75 & 12.55 & $1.34\times10^{5}$ & $2.04\times10^{5}$ \\
+& 0.40 & 43 & 0.00 & 0.00 & 0.00 & 11.81 & $3.92\times10^{5}$ & $4.02\times10^{5}$ \\
+& 0.40 & 44 & 0.00 & 0.00 & 13.75 & 12.04 & $4.56\times10^{4}$ & $6.05\times10^{4}$ \\
+& 0.60 & 42 & 0.00 & 0.00 & 13.75 & 12.22 & $1.04\times10^{5}$ & $1.94\times10^{5}$ \\
+& 0.60 & 43 & 0.00 & 0.00 & 0.00 & 11.91 & $5.30\times10^{5}$ & $5.76\times10^{5}$ \\
+& 0.60 & 44 & 0.00 & 0.00 & 13.75 & 12.71 & $6.74\times10^{4}$ & $1.06\times10^{5}$ \\
+& 0.80 & 42 & 0.00 & 0.00 & 13.75 & 12.34 & $2.34\times10^{5}$ & $2.84\times10^{5}$ \\
+& 0.80 & 43 & 0.00 & 0.00 & 0.00 & 12.02 & $5.24\times10^{5}$ & $6.26\times10^{5}$ \\
+& 0.80 & 44 & 0.00 & 0.00 & 11.25 & 11.98 & $8.41\times10^{4}$ & $1.55\times10^{5}$ \\
+& 1.00 & 42 & 1.72 & 8.75 & 84.38 & 44.16 & 2.24 & 6.85 \\
+& 1.00 & 43 & 0.62 & 3.91 & 37.19 & 11.49 & 2.28 & 6.71 \\
+& 1.00 & 44 & 0.47 & 7.03 & 42.19 & 14.25 & 2.29 & 6.60 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\end{document}

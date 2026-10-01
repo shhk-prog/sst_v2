@@ -474,9 +474,9 @@
 
 ## ファイル保存先
 
-- **集計結果**: `/mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/results/summary.txt`
-- **評価ファイル**: `/mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/merge_eval/`
-- **マージモデル**: `/mnt/iag-02/home/hiromi/src/SST_merge/sst_merge_v5/merge_model/`
+- **集計結果**: `/mnt/nas/home/hiromi/src/sst_v2/v1/results/summary.txt`
+- **評価ファイル**: `/mnt/nas/home/hiromi/src/sst_v2/v1/merge_eval/`
+- **マージモデル**: `/mnt/nas/home/hiromi/src/sst_v2/v1/merge_model/`
 
 ---
 

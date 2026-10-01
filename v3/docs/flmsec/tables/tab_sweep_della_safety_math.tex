@@ -1,0 +1,20 @@
+\begin{table}[H]
+\centering
+\caption{Alpha スイープ 集計 - Method: della, Pattern: safety+math}
+\label{tab:sweep_della_safety_math}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lllrrrrrrrrrrr}
+\toprule
+\textbf{Pattern} & \textbf{Method} & \textbf{Alpha} & \textbf{Safety Ave [Harmful Content] (ASR$\downarrow$ \%)} & \textbf{Safety Ave [Original ASR] (ASR$\downarrow$ \%)} & \textbf{Safety Ave [Conditional ASR] (ASR$\downarrow$ \%)} & \textbf{Valid Response Rate (\%)} & \textbf{Valid Safety Rate (\%)} & \textbf{Math Ave (\%)} & \textbf{Code Ave (\%)} & \textbf{Medical Ave (\%)} & \textbf{General/Inst Ave (\%)} & \textbf{EvolCode (PPL$\downarrow$)} & \textbf{MedAlpaca (PPL$\downarrow$)} \\
+\midrule
+safety+math & della & 0.00 & 33.26 $\pm$ 0.87 & 33.26 $\pm$ 0.87 & 67.78 $\pm$ 1.21 & 94.62 $\pm$ 0.75 & 30.27 $\pm$ 1.04 & 6.56 $\pm$ 0.16 & 3.33 $\pm$ 0.59 & 83.44 $\pm$ 1.74 & 34.20 $\pm$ 1.62 & 2.04 $\pm$ 0.00 & 2.78 $\pm$ 0.02 \\
+safety+math & della & 0.20 & 11.63 $\pm$ 0.83 & 11.63 $\pm$ 0.83 & 21.48 $\pm$ 2.11 & 99.69 $\pm$ 0.29 & 78.29 $\pm$ 2.17 & 5.57 $\pm$ 0.89 & 4.64 $\pm$ 0.24 & 83.23 $\pm$ 1.18 & 32.96 $\pm$ 2.11 & 2.38 $\pm$ 0.04 & 3.70 $\pm$ 0.07 \\
+safety+math & della & 0.40 & 7.61 $\pm$ 2.70 & 7.61 $\pm$ 2.70 & 13.71 $\pm$ 3.34 & 99.84 $\pm$ 0.13 & 86.16 $\pm$ 3.38 & 5.52 $\pm$ 0.09 & 5.31 $\pm$ 0.68 & 84.58 $\pm$ 2.03 & 32.47 $\pm$ 2.15 & 2.41 $\pm$ 0.05 & 3.93 $\pm$ 0.10 \\
+safety+math & della & 0.60 & 6.66 $\pm$ 5.52 & 6.66 $\pm$ 5.52 & 12.19 $\pm$ 10.00 & 100.00 $\pm$ 0.00 & 87.81 $\pm$ 10.00 & 5.52 $\pm$ 0.63 & 5.31 $\pm$ 1.36 & 85.62 $\pm$ 0.54 & 31.03 $\pm$ 4.06 & 2.46 $\pm$ 0.06 & 4.50 $\pm$ 0.30 \\
+safety+math & della & 0.80 & 2.71 $\pm$ 3.71 & 2.71 $\pm$ 3.71 & 5.08 $\pm$ 7.22 & 100.00 $\pm$ 0.00 & 94.92 $\pm$ 7.22 & 5.78 $\pm$ 1.08 & 4.90 $\pm$ 0.39 & 85.52 $\pm$ 0.79 & 19.17 $\pm$ 5.48 & 2.51 $\pm$ 0.09 & 5.81 $\pm$ 0.42 \\
+safety+math & della & 1.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 0.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 100.00 $\pm$ 0.00 & 0.62 $\pm$ 0.41 & 4.69 $\pm$ 3.29 & 58.54 $\pm$ 23.27 & 17.78 $\pm$ 11.72 & 2.38 $\pm$ 0.03 & 7.33 $\pm$ 0.14 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

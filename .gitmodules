@@ -1,0 +1,6 @@
+[submodule "v3/baselines/third_party/model_merging"]
+	path = v3/baselines/third_party/model_merging
+	url = https://github.com/mmatena/model_merging
+[submodule "v3/baselines/model_merging"]
+	path = v3/baselines/model_merging
+	url = https://github.com/mmatena/model_merging

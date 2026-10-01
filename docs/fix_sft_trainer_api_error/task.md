@@ -1,0 +1,5 @@
+- [x] `run_lora_ft.py` の修正
+    - [x] `SFTConfig` のインポート追加
+    - [x] `TrainingArguments` から `SFTConfig` への置き換え
+    - [x] 引数の移動 (`dataset_text_field`, `max_seq_length`)
+- [/] 動作確認 (`run_phase2.sh` の実行)

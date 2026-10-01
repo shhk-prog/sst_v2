@@ -1,5 +1,17 @@
-lora_adapters/
-sst/
+venv_sst/
+v2/.cache/
+v2/models/
+
+# datasets cache (do not commit)
+data/cache/
+**/*.arrow
+
+# macOS junk
+.DS_Store
+._*
+*.pt
+sst_merge_v4/results_*/**/adapters/
+
 saved_adapters/
 sst_merge_v4/results/
 sst_merge_v4/results_A5_36/
@@ -24,13 +36,3 @@ sst_merge_v5/merge_adapters_interpolation/
 results/
 sst_merge_v6/
 sst_merge_v5/models/
-
-# datasets cache (do not commit)
-data/cache/
-**/*.arrow
-
-# macOS junk
-.DS_Store
-._*
-*.pt
-sst_merge_v4/results_*/**/adapters/

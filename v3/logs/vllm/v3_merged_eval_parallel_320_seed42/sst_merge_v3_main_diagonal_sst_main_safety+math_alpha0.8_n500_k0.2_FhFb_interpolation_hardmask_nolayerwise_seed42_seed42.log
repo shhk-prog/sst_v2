@@ -1,0 +1,69 @@
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_harmbench_safety.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_jailbreakbench_safety.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_strongreject_safety.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_wildjailbreak_safety.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_math_gsm8k.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_math_minerva_math500.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_code_humaneval.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_code_mbpp.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_medical_pubmedqa.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_medical_medqa_4options.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_general_mmlu.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_general_ifeval.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_alpaca_eval2.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_inst_evol_code.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_inst_medalpaca.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_safety.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --tasks harmbench,jailbreakbench,strongreject,wildjailbreak --output_dir results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main --model_name sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --limit 320 --batch_size 32 --use_vllm
+================================================================================
+[eval_safety] Configured PyTorch CPU threads: 2
+[SKIP] Completed output exists for task harmbench: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_harmbench_safety.json
+[SKIP] Completed output exists for task jailbreakbench: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_jailbreakbench_safety.json
+[SKIP] Completed output exists for task strongreject: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_strongreject_safety.json
+[SKIP] Completed output exists for task wildjailbreak: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_wildjailbreak_safety.json
+All specified tasks are already complete.
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_math.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_code.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_medical.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_general.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_alpaca_eval2.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_instruction_datasets.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --datasets evol_code,medalpaca --output_dir results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main --model_name sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --limit 320 --batch_size 32 --use_vllm
+================================================================================
+[eval_instruction_datasets] Configured PyTorch CPU threads: 2
+[SKIP] Completed output exists for evol_code: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_inst_evol_code.json
+[SKIP] Completed output exists for medalpaca: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_inst_medalpaca.json
+All specified datasets are already complete.
+
+[GPU 0] Exit code: 0
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_safety.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --tasks harmbench,jailbreakbench,strongreject,wildjailbreak --output_dir results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main --model_name sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --limit 320 --batch_size 32 --use_vllm
+================================================================================
+[eval_safety] Configured PyTorch CPU threads: 2
+[SKIP] Completed output exists for task harmbench: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_harmbench_safety.json
+[SKIP] Completed output exists for task jailbreakbench: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_jailbreakbench_safety.json
+[SKIP] Completed output exists for task strongreject: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_strongreject_safety.json
+[SKIP] Completed output exists for task wildjailbreak: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_wildjailbreak_safety.json
+All specified tasks are already complete.
+
+[GPU 0] Exit code: 0
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_math.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_code.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_medical.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_utility_general.json
+[GPU 0] skip complete: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_alpaca_eval2.json
+
+================================================================================
+[GPU 0] Running: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/eval/eval_instruction_datasets.py --model_path models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --config configs/config_main.yaml --datasets evol_code,medalpaca --output_dir results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main --model_name sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42 --limit 320 --batch_size 32 --use_vllm
+================================================================================
+[eval_instruction_datasets] Configured PyTorch CPU threads: 2
+[SKIP] Completed output exists for evol_code: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_inst_evol_code.json
+[SKIP] Completed output exists for medalpaca: results/vllm/debug_limit320/merged/seed42/safety+math/diagonal_sst_main/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42_inst_medalpaca.json
+All specified datasets are already complete.
+
+[GPU 0] Exit code: 0

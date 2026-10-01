@@ -1,0 +1,112 @@
+[Steering Hook] Base/model path verification passed: meta-llama/Llama-2-7b-hf
+Using cached temporary safety full model: models/temp_safety_full_seed42
+[Steering Hook] Merge method verification passed: method=ties, config=models/merged/sst_merge_v3_main_ties_safety+code_alpha0.8_seed42/merge_config.yml
+Running command: mergekit-yaml models/merged/sst_merge_v3_main_ties_safety+code_alpha0.8_seed42/merge_config.yml models/merged/sst_merge_v3_main_ties_safety+code_alpha0.8_seed42 --allow-crimes --copy-tokenizer
+mergekit completed successfully.
+Metadata saved.
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/merge.py", line 16, in <module>
+    from transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/__init__.py", line 30, in <module>
+    from . import dependency_versions_check
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/dependency_versions_check.py", line 16, in <module>
+    from .utils.versions import require_version, require_version_core
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/__init__.py", line 22, in <module>
+    from .auto_docstring import (
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/auto_docstring.py", line 32, in <module>
+    from .generic import ModelOutput
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/generic.py", line 38, in <module>
+    from .import_utils import is_mlx_available, is_torch_available, is_torch_fx_proxy
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/lib/python3.12/site-packages/transformers/utils/import_utils.py", line 47, in <module>
+    PACKAGE_DISTRIBUTION_MAPPING = importlib.metadata.packages_distributions()
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 947, in packages_distributions
+    for pkg in _top_level_declared(dist) or _top_level_inferred(dist):
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 959, in _top_level_inferred
+    for f in always_iterable(dist.files)
+                             ^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 500, in files
+    return skip_missing_files(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/_functools.py", line 102, in wrapper
+    return func(param, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 498, in skip_missing_files
+    return list(filter(lambda path: path.locate().exists(), package_paths))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 498, in <lambda>
+    return list(filter(lambda path: path.locate().exists(), package_paths))
+                                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 862, in exists
+    self.stat(follow_symlinks=follow_symlinks)
+  File "/usr/lib/python3.12/pathlib.py", line 842, in stat
+    return os.stat(self, follow_symlinks=follow_symlinks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+Using result directory: results/debug_limit10
+
+=== Step 3: Merging Models ===
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.0_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.2_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.4_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.6_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.8_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha1.0_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_ties_safety+math_alpha0.0_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_ties_safety+math_alpha0.2_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_ties_safety+math_alpha0.4_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_ties_safety+math_alpha0.6_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_ties_safety+math_alpha0.8_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_ties_safety+math_alpha1.0_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_dare_safety+math_alpha0.0_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_dare_safety+math_alpha0.2_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_dare_safety+math_alpha0.4_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_dare_safety+math_alpha0.6_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_dare_safety+math_alpha0.8_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_dare_safety+math_alpha1.0_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_della_safety+math_alpha0.0_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_della_safety+math_alpha0.2_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_della_safety+math_alpha0.4_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_della_safety+math_alpha0.6_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_della_safety+math_alpha0.8_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_della_safety+math_alpha1.0_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.0_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.2_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.4_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.6_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.8_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha1.0_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_ties_safety+code_alpha0.0_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_ties_safety+code_alpha0.2_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42
+Successful merge output found. Skipping: models/merged/sst_merge_v3_main_ties_safety+code_alpha0.6_seed42
+
+Running command: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method ties --pattern safety+code --seed 42 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_ties_safety+code_alpha0.8_seed42 --alpha 0.8 --fim_cache_dir cache/fim
+
+Running command: /mnt/nas/home/hiromi/src/sst_v2/v3/venv_v3/bin/python scripts/merge.py --config configs/config_main.yaml --method ties --pattern safety+code --seed 42 --sample_size 500 --output_dir models/merged/sst_merge_v3_main_ties_safety+code_alpha1.0_seed42 --alpha 1.0 --fim_cache_dir cache/fim
+Traceback (most recent call last):
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/run_experiments.py", line 717, in <module>
+    main()
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/run_experiments.py", line 707, in main
+    run_merge_phase(config, seeds)
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/run_experiments.py", line 533, in run_merge_phase
+    run_cmd(cmd, is_merge_cmd=True)
+  File "/mnt/nas/home/hiromi/src/sst_v2/v3/scripts/run_experiments.py", line 111, in run_cmd
+    res = subprocess.run(cmd, text=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1201, in communicate
+    self.wait()
+  File "/usr/lib/python3.12/subprocess.py", line 1264, in wait
+    return self._wait(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 2053, in _wait
+    (pid, sts) = self._try_wait(0)
+                 ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 2011, in _try_wait
+    (pid, sts) = os.waitpid(self.pid, wait_flags)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
