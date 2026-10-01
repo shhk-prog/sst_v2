@@ -167,6 +167,27 @@ class TestProposedInterventionMerge(unittest.TestCase):
             if os.path.exists(temp_path):
                 os.remove(temp_path)
 
+    def test_proposed_merger_rejects_missing_safety_keys_and_shape_mismatch(self):
+        """
+        R3-04 / R3-07: ProposedInterventionMerger override must reject missing keys in dict_s
+        and shape mismatches using shared validate_state_dicts, never quietly falling back to copying dict_u.
+        """
+        merger = ProposedInterventionMerger(allow_uncalibrated_smoke_test=True, total_layers=8)
+        u_weight = torch.randn(4, 4)
+        dict_u = {"model.layers.0.mlp.gate_proj.weight": u_weight}
+        dict_s_missing = {}
+
+        # 1. Missing key rejection
+        with self.assertRaises(ValueError) as ctx_missing:
+            merger.merge_state_dicts(dict_u, dict_s_missing, strict_shape_check=True)
+        self.assertIn("Missing essential weight keys in safety model", str(ctx_missing.exception))
+
+        # 2. Shape mismatch rejection
+        dict_s_mismatch = {"model.layers.0.mlp.gate_proj.weight": torch.randn(4, 8)}
+        with self.assertRaises(ValueError) as ctx_shape:
+            merger.merge_state_dicts(dict_u, dict_s_mismatch, strict_shape_check=True)
+        self.assertIn("Shape mismatch", str(ctx_shape.exception))
+
 
 if __name__ == "__main__":
     unittest.main()

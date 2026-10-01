@@ -114,20 +114,50 @@ def run_math_evaluation(
 
 
 def extract_code_block(generation: str, entry_point: Optional[str] = None) -> str:
-    """Extract python code block from generated text."""
+    """Extract python code block from generated text while preserving indentation."""
     m = re.findall(r"```python(.*?)```", generation, re.DOTALL)
     if m:
-        return m[0].strip()
+        code = m[0]
+        if code.startswith("\n"):
+            code = code[1:]
+        elif code.startswith("\r\n"):
+            code = code[2:]
+        return code.rstrip()
     m_generic = re.findall(r"```(.*?)```", generation, re.DOTALL)
     if m_generic:
-        return m_generic[0].strip()
-    return generation.strip()
+        code = m_generic[0]
+        if code.startswith("\n"):
+            code = code[1:]
+        elif code.startswith("\r\n"):
+            code = code[2:]
+        return code.rstrip()
+    if generation.startswith("\n"):
+        generation = generation[1:]
+    elif generation.startswith("\r\n"):
+        generation = generation[2:]
+    return generation.rstrip()
 
 
 def _target_code_runner(program_code: str, result_queue: Any):
-    """Worker process target that executes code in an isolated scope with stdout muted."""
+    """Worker process target that executes code in an isolated scope with resource and network limits."""
     import sys
     import io
+    try:
+        import resource
+        # 1. CPU time limit (5 seconds)
+        resource.setrlimit(resource.RLIMIT_CPU, (5, 5))
+    except (ValueError, OSError, ImportError):
+        pass
+
+    # 2. Disable socket/networking inside the child execution (R3-01 OS Isolation)
+    try:
+        import socket
+        def _disabled_socket(*args, **kwargs):
+            raise PermissionError("R3-01 OS Isolation: Network access is blocked during code execution.")
+        socket.socket = _disabled_socket
+    except Exception:
+        pass
+
     sys.stdout = io.StringIO()
     sys.stderr = io.StringIO()
     try:
@@ -138,12 +168,14 @@ def _target_code_runner(program_code: str, result_queue: Any):
         result_queue.put({"status": "ASSERTION_ERROR", "error": str(e)})
     except Exception as e:
         result_queue.put({"status": "RUNTIME_ERROR", "error": f"{type(e).__name__}: {str(e)}"})
+    except BaseException as e:
+        result_queue.put({"status": "BASE_EXCEPTION", "error": f"{type(e).__name__}: {str(e)}"})
 
 
 def execute_code_isolated(program_code: str, timeout: float = 3.0) -> Dict[str, Any]:
     """
-    R3-01: Executes generated program in a separate multiprocessing process with strict timeout.
-    Prevents host contamination and infinite execution loops.
+    R3-01: Executes generated program in a separate multiprocessing process with strict timeout and isolation.
+    Prevents host contamination, network leaks, and infinite execution loops.
     """
     import multiprocessing
     result_queue = multiprocessing.Queue()
@@ -163,15 +195,21 @@ def execute_code_isolated(program_code: str, timeout: float = 3.0) -> Dict[str, 
     return {"status": "CRASH", "error": "Worker process exited unexpectedly"}
 
 
-def build_humaneval_test_program(prompt: str, code: str, test: str, entry_point: str) -> str:
+def build_humaneval_test_program(prompt: str, code: str, test: str, entry_point: str) -> Optional[str]:
     """
     R3-01: Builds complete test code for HumanEval.
     Crucially ensures check(entry_point) is actually executed, not just defined!
+    Returns None if test suite is missing.
     """
+    if not test or not test.strip():
+        return None
+
     # If code does not include function definition or is just completion, merge with prompt
-    candidate_code = code
-    if entry_point and f"def {entry_point}" not in code:
-        candidate_code = prompt + "\n" + code
+    if entry_point and f"def {entry_point}" in code:
+        candidate_code = code
+    else:
+        sep = "" if prompt.endswith("\n") else "\n"
+        candidate_code = prompt + sep + code
 
     # Check if test defines `check(candidate)`
     call_line = ""
@@ -186,8 +224,10 @@ def build_humaneval_test_program(prompt: str, code: str, test: str, entry_point:
     return full_program
 
 
-def build_mbpp_test_program(code: str, test_list: List[str]) -> str:
-    """R3-01: Builds complete test code for MBPP from test_list assertions."""
+def build_mbpp_test_program(code: str, test_list: List[str]) -> Optional[str]:
+    """R3-01: Builds complete test code for MBPP from test_list assertions. Returns None if empty."""
+    if not test_list:
+        return None
     tests_str = "\n".join(test_list)
     return code + "\n\n" + tests_str + "\n"
 
@@ -238,26 +278,41 @@ def run_code_evaluation(
         resp = tokenizer.decode(outputs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
         code = extract_code_block(resp, entry_point)
 
-        # Syntax check
-        syntax_valid = True
-        try:
-            compile(code, "<string>", "exec")
-        except SyntaxError:
-            syntax_valid = False
-            syntax_error_count += 1
+        # R3-01: Assemble complete program according to dataset format before syntax checking
+        has_tests = bool(test_cases and test_cases.strip()) or bool(test_list)
+        full_prog = None
+
+        if test_cases:
+            full_prog = build_humaneval_test_program(prompt, code, test_cases, entry_point or "")
+        elif test_list:
+            full_prog = build_mbpp_test_program(code, test_list)
 
         exec_res = None
-        if execute_code and syntax_valid:
-            if test_cases:
-                full_prog = build_humaneval_test_program(prompt, code, test_cases, entry_point or "")
-            elif test_list:
-                full_prog = build_mbpp_test_program(code, test_list)
-            else:
-                full_prog = code
+        if not has_tests or full_prog is None:
+            # Missing test cases must NEVER be counted as PASSED
+            syntax_valid = True
+            try:
+                compile(code, "<string>", "exec")
+            except SyntaxError:
+                syntax_valid = False
+                syntax_error_count += 1
+            exec_res = {
+                "status": "NOT_EVALUATED",
+                "error": "Missing test suite: cannot evaluate without test cases (R3-01)."
+            }
+        else:
+            # Syntax check on assembled full program
+            syntax_valid = True
+            try:
+                compile(full_prog, "<string>", "exec")
+            except SyntaxError:
+                syntax_valid = False
+                syntax_error_count += 1
 
-            exec_res = execute_code_isolated(full_prog, timeout=timeout)
-            if exec_res.get("status") == "PASSED":
-                passed_count += 1
+            if execute_code and syntax_valid:
+                exec_res = execute_code_isolated(full_prog, timeout=timeout)
+                if exec_res.get("status") == "PASSED":
+                    passed_count += 1
 
         results.append({
             "task_id": item.get("task_id", idx),

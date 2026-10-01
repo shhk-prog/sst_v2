@@ -7,6 +7,7 @@ import os
 import sys
 import json
 import argparse
+from typing import Optional, Dict, Any
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
@@ -48,6 +49,8 @@ def run_merge(
     safety_model_path: str,
     base_model_path: str = "meta-llama/Llama-2-7b-hf",
     method_kwargs_json: str = "{}",
+    fim_u_path: Optional[str] = None,
+    fim_s_path: Optional[str] = None,
 ):
     os.makedirs(output_dir, exist_ok=True)
     kwargs = json.loads(method_kwargs_json)
@@ -58,6 +61,8 @@ def run_merge(
     print(f"  Safety Model:  {safety_model_path}")
     print(f"  Base Model:    {base_model_path}")
     print(f"  Parameters:    {kwargs}")
+    print(f"  FIM Utility:   {fim_u_path}")
+    print(f"  FIM Safety:    {fim_s_path}")
     print(f"  Output Dir:    {output_dir}")
     print("=" * 60)
 
@@ -68,8 +73,18 @@ def run_merge(
     dict_s = load_state_dict_or_model(safety_model_path, base_model_path)
     dict_0 = load_state_dict_or_model(base_model_path) if base_model_path else None
 
+    # Load FIM tensors if provided (R3-06)
+    fim_u_dict = None
+    fim_s_dict = None
+    if fim_u_path:
+        print(f"Loading utility FIM from {fim_u_path}...")
+        fim_u_dict = torch.load(fim_u_path, map_location="cpu")
+    if fim_s_path:
+        print(f"Loading safety FIM from {fim_s_path}...")
+        fim_s_dict = torch.load(fim_s_path, map_location="cpu")
+
     print("\nMerging state dict tensors...")
-    merged_dict = merger.merge_state_dicts(dict_u, dict_s, dict_0)
+    merged_dict = merger.merge_state_dicts(dict_u, dict_s, dict_0, fim_u=fim_u_dict, fim_s=fim_s_dict)
 
     # Load base model structure to receive state dict
     print("\nInstantiating skeleton model to save merged weights...")
@@ -90,9 +105,12 @@ def run_merge(
     manifest = {
         "method": method,
         "parameters": kwargs,
+        "fidelity": getattr(merger, "FIDELITY_STATUS", "STANDARD_IMPLEMENTATION"),
         "utility_model": utility_model_path,
         "safety_model": safety_model_path,
         "base_model": base_model_path,
+        "fim_u": fim_u_path,
+        "fim_s": fim_s_path,
     }
     with open(os.path.join(output_dir, "merge_manifest.json"), "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2)
@@ -110,6 +128,7 @@ if __name__ == "__main__":
     parser.add_argument("--base_model", type=str, default="meta-llama/Llama-2-7b-hf")
     parser.add_argument("--method_kwargs", type=str, default="{}")
     parser.add_argument("--track", type=str, default="primary", choices=["primary", "diagnostic"],
+                        help="Execution track: 'primary' requires valid E0 audit gate pass")
     parser.add_argument("--e0_manifest", type=str, default="v4/results/e0_audit/model_manifest.json",
                         help="Path to E0 audit manifest")
     parser.add_argument("--fim_u", type=str, default=None, help="Path to utility model FIM tensor file (.pt)")
@@ -148,4 +167,6 @@ if __name__ == "__main__":
         safety_model_path=args.safety_model,
         base_model_path=args.base_model,
         method_kwargs_json=args.method_kwargs,
+        fim_u_path=args.fim_u,
+        fim_s_path=args.fim_s,
     )

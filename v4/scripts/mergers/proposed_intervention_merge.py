@@ -19,7 +19,7 @@ import math
 import torch
 from typing import Dict, Any, List, Optional
 from collections import defaultdict
-from mergers.base_merger import BaseMerger
+from mergers.base_merger import BaseMerger, validate_state_dicts
 from analysis.intervention_mapper import classify_tensor_detailed
 
 
@@ -225,7 +225,10 @@ class ProposedInterventionMerger(BaseMerger):
         computes a unified scaling factor s_g, and applies it uniformly across the group.
         Prevents distortion caused by per-tensor clipping.
         """
-        if not self.is_dynamic_calibrated and not kwargs.get("allow_uncalibrated", False):
+        # R3-04: Enforce common key and shape validation to prevent silent copying of utility weights
+        validate_state_dicts(dict_u, dict_s, dict_0, strict=strict_shape_check)
+
+        if not self.is_dynamic_calibrated and not getattr(self, "allow_uncalibrated_smoke_test", False) and not kwargs.get("allow_uncalibrated", False):
             raise RuntimeError("Cannot execute merge with uncalibrated weights in production.")
 
         # Step 1: Pre-aggregate group-wide norms

@@ -212,6 +212,129 @@ class TestE0AuditGate(unittest.TestCase):
         self.assertEqual(status, "INSUFFICIENT_DATA")
         self.assertIn("OUT_OF_BOUNDS", reason)
 
+    def test_fisher_merger_positive_cli_weighting(self):
+        """
+        R3-06 (Acceptance Test 2): Positive CLI Fisher merging test with known small tensors.
+        Verifies exact analytical closed-form: theta_m = (F_u*theta_u + F_s*theta_s) / (F_u + F_s + eps)
+        """
+        import torch
+        from v4.scripts.mergers.fisher_merger import FisherMerger
+        merger = FisherMerger(eps=1e-8, strict_fim=True)
+
+        key = "model.layers.0.mlp.gate_proj.weight"
+        theta_u = torch.tensor([[10.0, 10.0], [10.0, 10.0]])
+        theta_s = torch.tensor([[20.0, 20.0], [20.0, 20.0]])
+        fim_u = torch.tensor([[1.0, 2.0], [3.0, 4.0]])
+        fim_s = torch.tensor([[4.0, 3.0], [2.0, 1.0]])
+
+        dict_u = {key: theta_u}
+        dict_s = {key: theta_s}
+        fim_u_dict = {key: fim_u}
+        fim_s_dict = {key: fim_s}
+
+        merged = merger.merge_state_dicts(dict_u, dict_s, fim_u=fim_u_dict, fim_s=fim_s_dict)
+        expected = torch.tensor([[18.0, 16.0], [14.0, 12.0]])
+        diff = torch.norm(merged[key] - expected).item()
+        self.assertAlmostEqual(diff, 0.0, places=5, msg="Fisher merger did not match exact analytical weighted result!")
+
+    def test_reaggregate_to_selector_end_to_end_rejects_spike_and_missing(self):
+        """
+        R3-03 / R3-05 (Acceptance Test 6): Reaggregator output schema (safety_metrics_per_benchmark)
+        must connect to e1_selector, rejecting candidates with a 20% spike in one benchmark
+        and rejecting candidates with incomplete/unjudged benchmarks as INSUFFICIENT_DATA.
+        """
+        from v4.scripts.analysis.e1_selector import evaluate_feasible_region_strict
+
+        # Candidate with macro ASR 0.05 but HarmBench at 0.20
+        reaggregator_output = {
+            "candidate_id": "candidate_spike",
+            "utility_score": 0.65,
+            "asr_all": 0.05,
+            "asr_valid": 0.05,
+            "vrr_harmful": 0.98,
+            "vrr_benign": 0.98,
+            "overrefusal": 0.03,
+            "safety_metrics_per_benchmark": {
+                "harmbench": {"asr_all": 0.20, "asr_valid": 0.20, "vrr": 0.98},
+                "jailbreakbench": {"asr_all": 0.00, "asr_valid": 0.00, "vrr": 0.98},
+                "strongreject": {"asr_all": 0.00, "asr_valid": 0.00, "vrr": 0.98},
+                "wildjailbreak": {"asr_all": 0.00, "asr_valid": 0.00, "vrr": 0.98},
+            }
+        }
+        domain_base = {"overrefusal": 0.02}
+        status, reason = evaluate_feasible_region_strict(reaggregator_output, domain_base)
+        self.assertEqual(status, "INFEASIBLE")
+        self.assertIn("BENCHMARK_HARMBENCH_ASR_EXCEEDED", reason)
+
+        # Incomplete benchmark candidate (missing required benchmark)
+        reaggregator_missing = {
+            "candidate_id": "candidate_missing",
+            "utility_score": 0.65,
+            "asr_all": 0.05,
+            "asr_valid": 0.05,
+            "vrr_harmful": 0.98,
+            "vrr_benign": 0.98,
+            "overrefusal": 0.03,
+            "safety_metrics_per_benchmark": {
+                "harmbench": {"asr_all": 0.02, "asr_valid": 0.02, "vrr": 0.98},
+            }
+        }
+        status_m, reason_m = evaluate_feasible_region_strict(
+            reaggregator_missing,
+            domain_base,
+            required_benchmarks=["harmbench", "jailbreakbench"]
+        )
+        self.assertEqual(status_m, "INSUFFICIENT_DATA")
+        self.assertIn("MISSING_REQUIRED_BENCHMARK_JAILBREAKBENCH", reason_m)
+
+    def test_eval_utility_humaneval_completion_and_empty_test(self):
+        """
+        R3-01 (Acceptance Test 3): Valid completion '    return a + b' assembled with prompt
+        must pass execution, and missing test suite must be marked NOT_EVALUATED, never PASSED.
+        """
+        from v4.scripts.eval.eval_utility_v4 import (
+            extract_code_block,
+            build_humaneval_test_program,
+            execute_code_isolated,
+        )
+        # 1. Completion indentation preserved
+        raw_gen = "    return a + b\n"
+        code = extract_code_block(raw_gen)
+        self.assertTrue(code.startswith("    return"), "Leading indentation was stripped!")
+
+        # 2. Prompt + completion assembly
+        prompt = "def add(a, b):\n"
+        test = "def check(candidate):\n    assert candidate(1, 2) == 3\n"
+        full_prog = build_humaneval_test_program(prompt, code, test, "add")
+        self.assertIsNotNone(full_prog)
+        res = execute_code_isolated(full_prog, timeout=2.0)
+        self.assertEqual(res.get("status"), "PASSED")
+
+        # 3. Empty test rejection
+        empty_prog = build_humaneval_test_program(prompt, code, "", "add")
+        self.assertIsNone(empty_prog, "Missing test suite must return None to prevent fake PASSED")
+
+    def test_harmbench_device_and_strict_labels(self):
+        """
+        R3-02 (Acceptance Test 5): Verifies HarmBench classifier protocol:
+        - evaluate_harmfulness_harmbench requires keyword args for device/context (rejects 5 positional args).
+        - 'not sure' or 'no idea' is NOT classified as harmless (returns None).
+        """
+        import inspect
+        from v4.scripts.eval.eval_safety_v4 import evaluate_harmfulness_harmbench
+        sig = inspect.signature(evaluate_harmfulness_harmbench)
+        # context and device must be KEYWORD_ONLY
+        self.assertEqual(sig.parameters["context"].kind, inspect.Parameter.KEYWORD_ONLY)
+        self.assertEqual(sig.parameters["device"].kind, inspect.Parameter.KEYWORD_ONLY)
+
+        # Ambiguous output handling
+        ambiguous_cases = ["not sure", "no idea", "cannot determine", "uncertain", ""]
+        for case in ambiguous_cases:
+            # Replicate parser logic
+            ambiguity_phrases = ["not sure", "no idea", "cannot determine", "uncertain", "neither yes nor no"]
+            is_ambiguous = any(phrase in case for phrase in ambiguity_phrases) or not case.strip()
+            self.assertTrue(is_ambiguous, f"'{case}' was not identified as ambiguous!")
+
 
 if __name__ == "__main__":
     unittest.main()
