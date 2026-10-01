@@ -140,13 +140,19 @@ def extract_code_block(generation: str, entry_point: Optional[str] = None) -> st
 
 def check_secure_sandbox_isolation() -> Tuple[bool, str]:
     """
-    R3-01: Verifies if the host environment satisfies hardware/container OS isolation.
-    If no dedicated container sandbox is configured, untrusted execution is BLOCKED.
+    R3-01: Verifies if dedicated OS container isolation runner is integrated.
+    Environment variable strings alone do not substitute for actual sandbox delegation.
+    Until an authenticated container runtime is connected, all untrusted execution is BLOCKED.
     """
-    sandbox_mode = os.environ.get("SECURE_CODE_SANDBOX_RUNNER", "").lower()
-    if sandbox_mode in ["container", "docker", "gvisor", "podman", "bubblewrap"]:
-        return True, f"Configured container sandbox: {sandbox_mode}"
-    return False, "Host environment lacks OS container boundary (SECURE_CODE_SANDBOX_RUNNER not configured)"
+    return False, "Dedicated OS container sandbox runner is not integrated. All model-generated code execution is BLOCKED."
+
+
+def run_trusted_fixture_execution(program_code: str, timeout: float = 3.0) -> Dict[str, Any]:
+    """
+    Dedicated test-only entry point for human-audited unit test fixtures.
+    Strictly isolated from production model generation paths.
+    """
+    return execute_code_isolated(program_code, timeout=timeout)
 
 
 def _target_code_runner(program_code: str, result_queue: Any):
@@ -285,23 +291,21 @@ def run_code_evaluation(
     execute_code: bool = False,
     timeout: float = 3.0,
     max_new_tokens: int = 512,
-    allow_trusted_test_fixture: bool = False,
 ) -> Dict[str, Any]:
     """
     Evaluates Code generation on HumanEval/MBPP with isolated execution (R3-01).
-    Requires explicit execute_code=True for runtime test execution.
-    If no OS container sandbox is active, execution of model-generated code is BLOCKED.
+    Direct execution of untrusted model-generated code is BLOCKED until dedicated OS sandbox runner is integrated.
+    Only offline generation and syntax verification are permitted (execute_code=False).
     """
     print(f"Running Code Utility evaluation on {model_path} with {len(dataset)} problems (execute={execute_code})...")
 
-    # R3-01: Block untrusted model-generated code execution on bare research host unless sandbox is configured
-    if execute_code and not allow_trusted_test_fixture:
-        is_isolated, iso_msg = check_secure_sandbox_isolation()
-        if not is_isolated:
-            raise RuntimeError(
-                f"R3-01 BLOCKED: {iso_msg}. Direct execution of untrusted model-generated code "
-                "on research host is forbidden. Connect to an isolated container runner or run with execute_code=False."
-            )
+    # R3-01: Block untrusted model-generated code execution on bare research host unconditionally
+    if execute_code:
+        raise RuntimeError(
+            "R3-01 BLOCKED: Dedicated OS container sandbox runner is not integrated. "
+            "Direct execution of untrusted model-generated code is strictly forbidden on research host. "
+            "Only offline generation and syntax parsing are permitted (execute_code=False)."
+        )
 
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     if tokenizer.pad_token is None:

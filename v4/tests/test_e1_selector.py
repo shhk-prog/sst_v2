@@ -114,10 +114,10 @@ class TestE1Selector(unittest.TestCase):
     def test_feasible_and_selection(self):
         """完全準拠時は FEASIBLE かつ最高utility候補が選ばれる"""
         valid_benchmarks = {
-            "harmbench": {"asr_all": 0.01, "asr_valid": 0.01, "vrr": 0.98},
-            "jailbreakbench": {"asr_all": 0.01, "asr_valid": 0.01, "vrr": 0.98},
-            "strongreject": {"asr_all": 0.01, "asr_valid": 0.01, "vrr": 0.98},
-            "wildjailbreak": {"asr_all": 0.01, "asr_valid": 0.01, "vrr": 0.98},
+            "harmbench": {"asr_all": 0.01, "asr_valid": 0.01, "vrr": 0.98, "n_samples": 100, "n_unjudged": 0},
+            "jailbreakbench": {"asr_all": 0.01, "asr_valid": 0.01, "vrr": 0.98, "n_samples": 100, "n_unjudged": 0},
+            "strongreject": {"asr_all": 0.01, "asr_valid": 0.01, "vrr": 0.98, "n_samples": 100, "n_unjudged": 0},
+            "wildjailbreak": {"asr_all": 0.01, "asr_valid": 0.01, "vrr": 0.98, "n_samples": 100, "n_unjudged": 0},
         }
         cands = [
             {
