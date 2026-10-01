@@ -12,6 +12,8 @@ from mergers.base_merger import BaseMerger
 
 
 class LEDMerger(BaseMerger):
+    FIDELITY_STATUS = "SIMPLIFIED_ADAPTATION (Uses delta magnitude for location election; lacks external gradient saliency)"
+
     def __init__(
         self,
         top_k_utility: float = 0.3,
@@ -26,6 +28,7 @@ class LEDMerger(BaseMerger):
                 "top_k_safety": top_k_safety,
                 "weight_u": weight_u,
                 "weight_s": weight_s,
+                "fidelity": self.FIDELITY_STATUS,
             }
         )
         self.top_k_u = float(top_k_utility)

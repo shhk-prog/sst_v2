@@ -30,20 +30,27 @@ from audit.audit_metrics import run_metrics_audit
 
 
 def check_e0_manifest(manifest_path: str) -> Dict[str, Any]:
-    """Reads model manifest and verifies E0 compatibility gates."""
+    """Reads model manifest and verifies E0 compatibility gates (R2-02)."""
     if not os.path.exists(manifest_path):
-        return {"status": "MANIFEST_NOT_FOUND", "allow_primary": False}
+        return {"status": "MANIFEST_NOT_FOUND", "allow_primary": False, "details": {}}
 
     with open(manifest_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    math_compat = data.get("math_compatible", False)
-    code_compat = data.get("code_compatible", False)
-    overall_verdict = data.get("overall_verdict", "FAIL")
+    domain_verdicts = data.get("domain_verdicts", {})
+    math_info = domain_verdicts.get("math", {})
+    code_info = domain_verdicts.get("code", {})
 
-    allow_primary = math_compat and code_compat and (overall_verdict == "PASS")
+    math_compat = data.get("math_compatible", math_info.get("is_compatible", False))
+    code_compat = data.get("code_compatible", code_info.get("is_compatible", False))
+
+    primary_verdict = data.get("primary_experiment_verdict", "NO_GO")
+    overall_verdict = data.get("overall_verdict", "PASS" if primary_verdict == "GO" else "FAIL")
+
+    allow_primary = (primary_verdict == "GO") and math_compat and code_compat and (overall_verdict == "PASS")
     return {
         "status": overall_verdict,
+        "primary_experiment_verdict": primary_verdict,
         "math_compatible": math_compat,
         "code_compatible": code_compat,
         "allow_primary": allow_primary,
@@ -77,17 +84,28 @@ def run_stage_e0(args, results_dir: str):
     proc = subprocess.run(cmd)
 
     gate = check_e0_manifest(manifest_out)
+    data = gate.get("details", {})
     print(f"\nE0 Manifest Audit Verdict: Math={gate['math_compatible']}, Code={gate['code_compatible']}, Overall={gate['status']}")
 
     if not gate["allow_primary"]:
         print("\n" + "!" * 70)
         print(">>> E0 GATE VERDICT: NO_GO for Primary Experiment Pipeline <<<")
-        print("Domain checkpoints exhibit architectural/tokenizer discrepancies:")
-        print("  - Math/Code vocab_size: 32001 (Base: 32000)")
-        print("  - Code rope_theta: 1000000 (Base: 10000), max_position_embeddings: 16384 (Base: 4096)")
+        print(f"Reason: {data.get('primary_gate_reason', 'E0 integrity audit failed')}")
+
+        domain_verdicts = data.get("domain_verdicts", {})
+        for dom, dom_data in domain_verdicts.items():
+            print(f"\n[{dom.upper()} Domain: {dom_data.get('verdict')}]")
+            discs = dom_data.get("discrepancies", {})
+            if discs:
+                print("  Concrete Discrepancies:")
+                for k, v in discs.items():
+                    print(f"    - {k}: {v}")
+            elif dom_data.get("verdict") == "UNVERIFIED":
+                print(f"  Unverified reason: {dom_data.get('reason')}")
         print("!" * 70)
+
         if args.track != "diagnostic":
-            print("\nExecution HALTED. Primary pipeline cannot proceed with mismatched checkpoints (P0-03).")
+            print("\nExecution HALTED. Primary pipeline cannot proceed with mismatched or unverified checkpoints (P0-03, R2-01).")
             print("To analyze legacy logs or study behavior under diagnosed domain mismatch, run with: --track diagnostic")
             sys.exit(1)
         else:
@@ -114,7 +132,13 @@ def run_stage_e1(args, results_dir: str):
     )
 
     from analysis.e1_selector import select_best_configurations, compute_sensitivity_matrix
-    domain_base = {"math": {"overrefusal": 0.02}, "code": {"overrefusal": 0.02}}
+    # R2-05: Do not hardcode domain baseline overrefusal to 0.02. Require empirical measurement.
+    domain_baseline_records = aggregated_records.get("domain_baseline_track", []) if isinstance(aggregated_records, dict) else []
+    domain_base = {}
+    for d in ["math", "code"]:
+        matching = [r for r in domain_baseline_records if r.get("domain") == d and r.get("overrefusal") is not None]
+        domain_base[d] = {"overrefusal": matching[0]["overrefusal"] if matching else None}
+
     candidates = aggregated_records if isinstance(aggregated_records, list) else aggregated_records.get("standard_baseline_track", [])
 
     sel = select_best_configurations(candidates, domain_base)
@@ -180,7 +204,7 @@ def run_stage_e3(args, results_dir: str):
 
     # Production generation is invoked per-condition via controlled_intervention.py CLI
     print("Stage E3 execution ready via v4/scripts/analysis/controlled_intervention.py")
-    print("\n>>> STAGE E3 COMPLETED <<<")
+    print("\n>>> STAGE E3 READY (PENDING INTERVENTION INFERENCE & SCORING) <<<")
 
 
 def run_stage_e4(args, results_dir: str):
@@ -191,7 +215,7 @@ def run_stage_e4(args, results_dir: str):
     calib_map = args.calibration_map
     if not calib_map or not os.path.exists(calib_map):
         print(f"[STAGE E4 BLOCKED] Empirical calibration map not provided or not found: {calib_map}")
-        print("Stage E4 requires empirical behavioral calibration measurements from Stage E3 (P0-05, P1-03).")
+        print("Stage E4 requires empirical behavioral calibration measurements from Stage E3 (P0-05, P1-03, R2-09).")
         print("Hardcoded or uncalibrated weights are rejected in production mode.")
         if args.track != "diagnostic":
             sys.exit(1)
@@ -202,7 +226,7 @@ def run_stage_e4(args, results_dir: str):
     print(f"Dynamically constructed {merger.name} from empirical calibration map:")
     for grp, w in merger.group_weights.items():
         print(f"  Region {grp:26s} -> Weight: {w:.4f}")
-    print("\n>>> STAGE E4 COMPLETED <<<")
+    print("\n>>> STAGE E4 CALIBRATED (PENDING MERGED MODEL INFERENCE & EVALUATION) <<<")
 
 
 def run_stage_e5(args, results_dir: str):
@@ -235,6 +259,7 @@ def run_smoke_tests():
     print("=" * 70)
 
     test_files = [
+        "v4/tests/test_e0_audit_gate.py",
         "v4/tests/test_utility_parser.py",
         "v4/tests/test_e1_selector.py",
         "v4/tests/test_characteristic_analyzer.py",
@@ -302,6 +327,24 @@ def main():
     print(f"Target Results Directory: {results_dir}")
 
     stages = ["e0", "e1", "e2", "e3", "e4", "e5"] if args.stage == "all" else [args.stage]
+
+    # R2-04: Gate bypass prevention. In primary track, individual stages (e.g. --stage e1)
+    # CANNOT proceed without a valid, passing E0 audit manifest.
+    if args.track == "primary" and "e0" not in stages:
+        primary_manifest_path = "v4/results/e0_audit/model_manifest.json"
+        print(f"\n[PRIMARY GATE VERIFICATION] Checking prior E0 audit manifest before executing stage(s) {stages}...")
+        if not os.path.exists(primary_manifest_path):
+            print(f"[FATAL GATE ERROR] E0 manifest not found at: {primary_manifest_path}")
+            print("Primary pipeline stages cannot bypass E0 audit. Please run stage E0 first.")
+            sys.exit(1)
+
+        gate = check_e0_manifest(primary_manifest_path)
+        if not gate.get("allow_primary", False):
+            reason = gate.get("details", {}).get("primary_gate_reason", gate.get("status", "NO_GO"))
+            print(f"[FATAL GATE ERROR] Prior E0 audit failed or is unverified: {reason}")
+            print("Execution HALTED. Primary pipeline cannot proceed with mismatched models.")
+            sys.exit(1)
+        print("[PRIMARY GATE VERIFICATION] E0 Audit Manifest is valid and PASS. Proceeding.\n")
 
     stage_funcs = {
         "e0": run_stage_e0,

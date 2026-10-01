@@ -109,6 +109,11 @@ class ProposedInterventionMerger(BaseMerger):
         with open(intervention_map_path, "r", encoding="utf-8") as f:
             calib_data = json.load(f)
 
+        if not isinstance(calib_data, dict) or len(calib_data) == 0:
+            raise ValueError(
+                f"E4 BLOCKED: Calibration map {intervention_map_path} is empty or invalid JSON (R2-09)."
+            )
+
         provenance = {
             "source_map_path": intervention_map_path,
             "target_asr_reduction_min": target_asr_reduction_min,
@@ -129,6 +134,8 @@ class ProposedInterventionMerger(BaseMerger):
             "group6_head",
         ]
 
+        valid_measured_groups_count = 0
+
         for grp in all_possible_groups:
             stats = calib_data.get(grp)
             if stats is None:
@@ -142,11 +149,19 @@ class ProposedInterventionMerger(BaseMerger):
             delta_util = stats.get("delta_utility")
             delta_overref = stats.get("delta_overrefusal")
 
-            # Check that required calibration metrics are present and finite
-            if None in (delta_asr, delta_vrr):
+            # Check that required calibration metrics are present and strictly finite
+            is_valid_entry = True
+            for m_val in [delta_asr, delta_vrr]:
+                if m_val is None or not math.isfinite(float(m_val)):
+                    is_valid_entry = False
+                    break
+
+            if not is_valid_entry:
                 group_weights[grp] = 0.0
-                provenance["evaluated_groups"][grp] = {"status": "INCOMPLETE_DATA", "weight": 0.0}
+                provenance["evaluated_groups"][grp] = {"status": "INCOMPLETE_OR_NON_FINITE_DATA", "weight": 0.0}
                 continue
+
+            valid_measured_groups_count += 1
 
             rejection_reasons = []
             # 1. Non-degeneration checks
@@ -179,6 +194,11 @@ class ProposedInterventionMerger(BaseMerger):
                     "delta_asr": delta_asr,
                     "delta_vrr": delta_vrr,
                 }
+
+        if valid_measured_groups_count == 0:
+            raise ValueError(
+                f"E4 BLOCKED: Calibration map {intervention_map_path} contains no valid finite measured groups (R2-09)."
+            )
 
         return cls(
             group_weights=group_weights,

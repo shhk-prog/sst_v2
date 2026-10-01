@@ -180,7 +180,7 @@ def build_single_controlled_condition(
         target_delta = scale_delta_to_target_norm(raw_delta, norm_A)
     elif condition_name == "Control_Full_Matched_to_C_Norm":
         target_delta = scale_delta_to_target_norm(raw_delta, norm_C)
-    elif "Random" in condition_name:
+    elif any(x in condition_name for x in ["Random", "Condition_B", "Condition_D", "Control_B_Scaled"]):
         random_keys = sample_matched_random_keys(map_keys, all_keys, shapes, total_layers=total_layers, seed=seed)
         delta_B = {k: (raw_delta[k] if k in random_keys else torch.zeros_like(dict_u[k])) for k in all_keys}
         delta_D = {

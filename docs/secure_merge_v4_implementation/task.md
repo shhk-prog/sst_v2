@@ -60,3 +60,15 @@
 - [x] 5.1 `eval_safety_v4.py` の単語ヒューリスティックをテスト用指標として明示・隔離（HarmBench公式判定器と混同しない）
 - [x] 5.2 比較手法（SafeMERGE, LED, Fisher 等）の実装差分台帳をコード docstring に明記
 - [x] 5.3 回帰テストスイートによる各ステージの受入基準クリア確認
+
+### Phase 6: 再監査指示書（R2-01〜R2-09）の完全是正
+- [x] 6.1 R2-01 (HF Hub ID 読込): ローカルパスと Hub ID を明示分離し、リモート/キャッシュ読込に到達 (`status: LOADED`)
+- [x] 6.2 R2-02 (Manifest Schema 統一): 書出側と読込側の共通スキーマ (`v4_model_audit_schema_v2`) 統一と陽性テスト (`test_e0_audit_gate.py`)
+- [x] 6.3 R2-03 (固定値排除と動的差分出力): runner/audit のハードコード文字列を全廃し、Hugging Face 実測 config/tokenizer から動的差分抽出
+- [x] 6.4 R2-04 (ゲート迂回防止 & SafetyFT 重み実体験証): 単独 stage (`--stage e1`) および CLI (`merge_cli.py`) の主実験実行時に E0 合格証跡を要求。SafetyFT の dense 重み存在検査を分離
+- [x] 6.5 R2-05 (有害性・Conditional ASR 欠測補完の撤廃): 有害性欠測を `unjudged_samples` として保持、`asr_valid` 代用廃止、過剰拒否率 0.02 固定撤廃
+- [x] 6.6 R2-06 (utility 任意数値 fallback の撤廃): `sample_len` 等の誤読を完全削除し、許可リスト厳格参照
+- [x] 6.7 R2-08 (評価器 & 手法忠実性): `eval_safety_v4.py` に HarmBench classifier 判定インターフェース追加、`eval_utility_v4.py` にコード実行採点アダプタ追加、Fisher に `strict_fim` 強制
+- [x] 6.8 R2-09 (対照条件名ディスパッチ & E4 空地図ブロック): `Control_B_Scaled_to_D_Norm_seed42` 分岐修正、空地図 E4 BLOCKED 送出
+- [x] 6.9 回帰テストスイート全 6 スイート（22 テスト）100% 合格
+

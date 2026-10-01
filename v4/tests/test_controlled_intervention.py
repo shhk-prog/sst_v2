@@ -100,6 +100,37 @@ class TestControlledIntervention(unittest.TestCase):
         )
         self.assertAlmostEqual(norm_A_matched, norm_C, places=4)
 
+    def test_all_scheduled_conditions_dispatch_successfully(self):
+        """
+        R2-09: Verifies that all expected condition names (including Control_B_Scaled_to_D_Norm)
+        are properly dispatched without raising unknown condition ValueError.
+        """
+        scheduled_conditions = [
+            "Condition_A_Map_Common",
+            "Condition_C_Map_Capped",
+            "Control_A_Scaled_to_C_Norm",
+            "Control_Full_Merge",
+            "Control_Full_Matched_to_A_Norm",
+            "Control_Full_Matched_to_C_Norm",
+            "Condition_B_Random_Common_seed42",
+            "Condition_D_Random_Capped_seed42",
+            "Control_B_Scaled_to_D_Norm_seed42",
+        ]
+
+        for cond_name in scheduled_conditions:
+            res_dict, norm_val = build_single_controlled_condition(
+                condition_name=cond_name,
+                dict_u=self.dict_u,
+                dict_s=self.dict_s,
+                beneficial_groups=["group4_layers_deep"],
+                common_alpha=0.5,
+                rho_g=0.03,
+                seed=42,
+                total_layers=8,
+            )
+            self.assertIsNotNone(res_dict)
+            self.assertTrue(norm_val >= 0.0)
+
 
 if __name__ == "__main__":
     unittest.main()

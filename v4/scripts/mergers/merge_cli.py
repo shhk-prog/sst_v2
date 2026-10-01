@@ -87,7 +87,6 @@ def run_merge(
     tokenizer = AutoTokenizer.from_pretrained(ref_model_path)
     tokenizer.save_pretrained(output_dir)
 
-    # Save manifest
     manifest = {
         "method": method,
         "parameters": kwargs,
@@ -103,14 +102,36 @@ def run_merge(
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description="Secure Merge CLI with Audit Gate Protection")
     parser.add_argument("--method", type=str, required=True)
     parser.add_argument("--output_dir", type=str, required=True)
     parser.add_argument("--utility_model", type=str, required=True)
     parser.add_argument("--safety_model", type=str, required=True)
     parser.add_argument("--base_model", type=str, default="meta-llama/Llama-2-7b-hf")
     parser.add_argument("--method_kwargs", type=str, default="{}")
+    parser.add_argument("--track", type=str, default="primary", choices=["primary", "diagnostic"],
+                        help="Execution track: 'primary' requires valid E0 audit gate pass")
+    parser.add_argument("--e0_manifest", type=str, default="v4/results/e0_audit/model_manifest.json",
+                        help="Path to E0 audit manifest")
     args = parser.parse_args()
+
+    # R2-04: Prevent merger CLI bypass in primary track
+    if args.track == "primary":
+        if not os.path.exists(args.e0_manifest):
+            print(f"[FATAL AUDIT GATE ERROR] E0 manifest not found at: {args.e0_manifest}")
+            print("Primary model merging cannot proceed without verified E0 audit trail.")
+            sys.exit(1)
+        try:
+            with open(args.e0_manifest, "r", encoding="utf-8") as f:
+                man = json.load(f)
+            primary_verdict = man.get("primary_experiment_verdict")
+            if primary_verdict != "GO":
+                print(f"[FATAL AUDIT GATE ERROR] E0 audit manifest verdict is '{primary_verdict}'.")
+                print("Primary model merging is BLOCKED. (Run with --track diagnostic for exploratory merges).")
+                sys.exit(1)
+        except Exception as e:
+            print(f"[FATAL AUDIT GATE ERROR] Failed to parse E0 manifest: {e}")
+            sys.exit(1)
 
     run_merge(
         method=args.method,

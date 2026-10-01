@@ -10,6 +10,8 @@ from mergers.base_merger import BaseMerger
 
 
 class SafeMergeMerger(BaseMerger):
+    FIDELITY_STATUS = "SIMPLIFIED_ADAPTATION (Uses layer-wise filtering; lacks gradient-guided directional optimization)"
+
     def __init__(
         self,
         target_layers: Optional[List[int]] = None,
@@ -21,7 +23,7 @@ class SafeMergeMerger(BaseMerger):
             target_layers = list(range(10, 26))
         super().__init__(
             name="safemerge",
-            config={"target_layers": target_layers, "alpha": alpha, "total_layers": total_layers}
+            config={"target_layers": target_layers, "alpha": alpha, "total_layers": total_layers, "fidelity": self.FIDELITY_STATUS}
         )
         self.target_layers = set(target_layers)
         self.alpha = float(alpha)

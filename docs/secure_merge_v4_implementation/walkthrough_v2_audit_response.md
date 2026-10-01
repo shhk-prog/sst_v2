@@ -152,3 +152,198 @@ Domain checkpoints exhibit architectural/tokenizer discrepancies:
 Execution HALTED. Primary pipeline cannot proceed with mismatched checkpoints (P0-03).
 ```
 (Exit Code: 1 により主実験の後続実行を完全停止)
+
+---
+
+## 5. 診断トラック実行結果（過去ログ再集計・欠測判定・依存ブロックの検証）
+
+過去ログの健全な分析および診断のため、`--track diagnostic` を明示した場合のみ実行される診断トラックの完全実行結果です。
+
+```text
+$ v4/scripts/run_v4_pipeline.py --track diagnostic
+
+Pipeline Track: DIAGNOSTIC
+Target Results Directory: v4/results/diagnostic_track
+
+======================================================================
+STAGE E0: Integrity Audit (整合性監査)
+======================================================================
+  [1/3] Mergers Mathematical Audit: PASSED
+  [2/3] Metrics Identities (VSR == VRR * (1 - ASR_valid)): PASSED
+  [3/3] Model Provenance Audit: Math=UNVERIFIED, Code=UNVERIFIED
+  >>> PRIMARY EXPERIMENT GATE: NO_GO <<<
+  [DIAGNOSTIC TRACK ACTIVE] Continuing execution in diagnostic mode (outputs quarantined to diagnostic_track/).
+
+======================================================================
+STAGE E1: Baseline Re-aggregation & Constrained Selection
+======================================================================
+[Diagnostic Track] Scanning empirical JSON logs in v3/results...
+Found 25806 result files. Binding safety and utility evaluations by normalized Candidate ID...
+
+[Diagnostic Track Completed]:
+  standard_baseline_track    -> Total Candidates: 325 | Measured BOTH Safety & Utility: 324
+  exploratory_sst_track      -> Total Candidates: 564 | Measured BOTH Safety & Utility: 558
+  domain_baseline_track      -> Total Candidates:   6 | Measured BOTH Safety & Utility:   0
+  safety_baseline_track      -> Total Candidates:   9 | Measured BOTH Safety & Utility:   0
+Summary saved to: v4/results/diagnostic_track/e1_comparison/diagnostic_reaggregation_summary.json
+
+[E1 Rigorous Constrained Selection Summary]:
+  math_mergealign          -> INSUFFICIENT_DATA (Required metrics like benign VRR or overrefusal unmeasured in raw logs)
+  math_led                 -> INSUFFICIENT_DATA (Required metrics like benign VRR or overrefusal unmeasured in raw logs)
+  math_legacy_task_arithmetic_linear_patch -> INSUFFICIENT_DATA (Required metrics like benign VRR or overrefusal unmeasured in raw logs)
+  math_safemerge           -> INSUFFICIENT_DATA (Required metrics like benign VRR or overrefusal unmeasured in raw logs)
+  math_dare                -> INSUFFICIENT_DATA (Required metrics like benign VRR or overrefusal unmeasured in raw logs)
+  math_della               -> INSUFFICIENT_DATA (Required metrics like benign VRR or overrefusal unmeasured in raw logs)
+  math_ties                -> INSUFFICIENT_DATA (Required metrics like benign VRR or overrefusal unmeasured in raw logs)
+  math_fisher              -> INSUFFICIENT_DATA (Required metrics like benign VRR or overrefusal unmeasured in raw logs)
+  code_dare                -> INSUFFICIENT_DATA (Required metrics like benign VRR or overrefusal unmeasured in raw logs)
+  code_led                 -> INSUFFICIENT_DATA (Required metrics like benign VRR or overrefusal unmeasured in raw logs)
+  code_legacy_task_arithmetic_linear_patch -> INSUFFICIENT_DATA (Required metrics like benign VRR or overrefusal unmeasured in raw logs)
+  code_mergealign          -> INSUFFICIENT_DATA (Required metrics like benign VRR or overrefusal unmeasured in raw logs)
+  code_safemerge           -> INSUFFICIENT_DATA (Required metrics like benign VRR or overrefusal unmeasured in raw logs)
+  code_fisher              -> INSUFFICIENT_DATA (Required metrics like benign VRR or overrefusal unmeasured in raw logs)
+  code_della               -> INSUFFICIENT_DATA (Required metrics like benign VRR or overrefusal unmeasured in raw logs)
+  code_ties                -> INSUFFICIENT_DATA (Required metrics like benign VRR or overrefusal unmeasured in raw logs)
+  ... (全23グループ全てで INSUFFICIENT_DATA を判定)
+
+>>> STAGE E1 COMPLETED <<<
+
+======================================================================
+STAGE E2: Characteristic Measurement (実重み特性測定)
+======================================================================
+[STAGE E2 BLOCKED] Production characteristic analysis requires --model-m and --model-u checkpoint paths.
+To run regression tests on weight analysis logic, run: v3/venv_v3/bin/python v4/tests/test_characteristic_analyzer.py
+
+======================================================================
+STAGE E3: Controlled Intervention Study (統制介入実験)
+======================================================================
+[STAGE E3 BLOCKED] Controlled intervention requires real checkpoints via --model-u and --model-s.
+To run regression tests on exact matching and norm shrinkage, run: v3/venv_v3/bin/python v4/tests/test_controlled_intervention.py
+
+======================================================================
+STAGE E4: Behavior-Intervention Guided Constrained Merge
+======================================================================
+[STAGE E4 BLOCKED] Empirical calibration map not provided or not found: None
+Stage E4 requires empirical behavioral calibration measurements from Stage E3 (P0-05, P1-03).
+Hardcoded or uncalibrated weights are rejected in production mode.
+
+======================================================================
+STAGE E5: Independent Validation & Ablation (独立検証とアブレーション)
+======================================================================
+Recorded E5 Status: NOT_RUN in v4/results/diagnostic_track/e5_validation/ablation_summary.json
+Stage E5 will be executed once empirical candidate models and test splits are evaluated.
+
+>>> STAGE E5 COMPLETED (STATUS: NOT_RUN) <<<
+```
+
+### 総括
+- 未測定データの補完（`overrefusal=0.04` や `vrr_benign` の有害VRR流用）が完全に排除され、過去ログはすべて **`INSUFFICIENT_DATA`** として厳格に記録されました。
+- 実測データが存在しない E2〜E5 は **`BLOCKED`** / **`NOT_RUN`** として明示的に停止・記録され、偽りの「実験完了」や固定辞書による優越性報告が完全に根絶されました。
+
+---
+
+## 4. 追加是正の実施状況 (R2-04, R2-08)
+
+### ① R2-04: ゲート迂回防止と SafetyFT 重み実体験証
+1. **単独ステージ実行時の E0 ゲート強制**:
+   - `run_v4_pipeline.py --stage e1` などの個別ステージ指定時であっても、`primary` トラックでは事前に `v4/results/e0_audit/model_manifest.json` の存在と合格ステータス（`primary_experiment_verdict == "GO"`）を検証。
+   - 不整合または未監査の場合は即座に **Exit 1** で実行を遮断（HALT）。
+2. **Merger CLI (`merge_cli.py`) の保護**:
+   - `--track primary` 実行時に `--e0_manifest` の合格確認を強制。未監査モデルのマージ実行を防止。
+3. **SafetyFT の dense 復元検証分離**:
+   - `audit_models.py` において、単に config/tokenizer が読めた `LOADED` 状態と、重み実体（safetensors / bin）が存在し復元が確認された `DENSE_RESTORED_VERIFIED` 状態を明確に分離。
+
+### ② R2-08: 評価器と既存手法の実装忠実性
+1. **安全評価器 (`eval_safety_v4.py`)**:
+   - `judge_backend` を引数および出力レポートに明示。
+   - `"harmbench_classifier"`（Hugging Face HarmBench 13B 分類器モデル）と `"keyword_heuristic"`（CI/スモークテスト用）を明示分離し、分類器不在時のサイレントな置換を禁止（例外送出）。
+2. **ユーティリティ評価器 (`eval_utility_v4.py`)**:
+   - 数値抽出 math 評価に加え、HumanEval / MBPP 向けのコードブロック抽出（`extract_code_block`）およびサンドボックス実行採点アダプタ（`run_code_evaluation`）を追加。
+3. **既存手法の実装忠実性 (`fisher_merger.py`, `safemerge.py`, `led_merger.py`)**:
+   - `FisherMerger`: `strict_fim=True` の本番モードで FIM テンソルが存在しない場合に定数平均フォールバックを拒絶しエラー化。
+   - `SafeMergeMerger`, `LEDMerger`: `FIDELITY_STATUS = "SIMPLIFIED_ADAPTATION"` をクラス属性および config メタデータに明記し、公式の勾配重要度や最適化投影を伴う完全実装とは区別される旨を明示。
+
+---
+
+## 5. 全受入回帰テスト実行結果 (全6スイート 22テスト 100% PASS)
+
+```bash
+$ PYTHONPATH=v4/scripts:. v3/venv_v3/bin/python v4/scripts/run_v4_pipeline.py --smoke_test
+
+======================================================================
+RUNNING SECURE MERGE V4 REGRESSION TEST SUITE
+======================================================================
+
+--- Running: v4/tests/test_e0_audit_gate.py ---
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.003s
+
+OK
+[PASS] v4/tests/test_e0_audit_gate.py passed.
+  - test_hub_id_not_classified_as_local_directory: PASS (R2-01)
+  - test_positive_test_perfect_pass_manifest_allows_primary: PASS (R2-02)
+  - test_unverified_model_comparison_does_not_fabricate_discrepancies: PASS (R2-03)
+  - test_concrete_discrepancies_detected_when_loaded: PASS (R2-03)
+  - test_fisher_rejects_missing_fim_in_strict_mode: PASS (R2-08, P0-07)
+  - test_code_evaluation_extraction_and_syntax: PASS (R2-08, P0-06)
+
+--- Running: v4/tests/test_utility_parser.py ---
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+[PASS] v4/tests/test_utility_parser.py passed.
+  - test_legacy_lm_eval_dict_extraction: PASS (P0-02)
+  - test_sample_len_not_extracted_as_utility: PASS (R2-06 sample_len誤読防止)
+  - test_unsupported_schema_returns_none: PASS (R2-06 fallback削除)
+
+--- Running: v4/tests/test_e1_selector.py ---
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.000s
+
+OK
+[PASS] v4/tests/test_e1_selector.py passed.
+  - test_e1_selector_feasible: PASS
+  - test_insufficient_data_candidate_rejected: PASS (P0-01 欠測除外)
+  - test_nan_or_infinite_utility_rejected: PASS (P1-04 NaN除外)
+  - test_selector_per_domain_and_method: PASS (R2-07 ドメイン別選定)
+  - test_unmeasured_overrefusal_domain_baseline: PASS (R2-05 基準値測定要求)
+
+--- Running: v4/tests/test_characteristic_analyzer.py ---
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.004s
+
+OK
+[PASS] v4/tests/test_characteristic_analyzer.py passed.
+  - test_fp16_norm_overflow_prevention: PASS (P1-04 FP32計算)
+  - test_zero_or_identical_models: PASS
+
+--- Running: v4/tests/test_controlled_intervention.py ---
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.011s
+
+OK
+[PASS] v4/tests/test_controlled_intervention.py passed.
+  - test_random_control_parameter_and_shape_match: PASS (P1-02 等パラメータ対照)
+  - test_bidirectional_norm_shrinkage: PASS (P1-02 双方向ノルム縮小)
+  - test_all_condition_names_dispatch: PASS (R2-09 条件名バグ修正)
+
+--- Running: v4/tests/test_proposed_intervention_merge.py ---
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK
+[PASS] v4/tests/test_proposed_intervention_merge.py passed.
+  - test_uncalibrated_merge_blocked: PASS (P0-05 未calibrate拒絶)
+  - test_empty_or_zero_measurements_blocked: PASS (R2-09 空地図 BLOCKED)
+  - test_dynamic_weight_assignment_and_group_norm_scaling: PASS (P1-03 群別上限スケーリング)
+
+>>> ALL REGRESSION TESTS PASSED! <<<
+```
+

@@ -64,6 +64,37 @@ class TestProposedInterventionMerge(unittest.TestCase):
             if os.path.exists(temp_path):
                 os.remove(temp_path)
 
+    def test_empty_or_non_finite_calibration_map_rejected(self):
+        """
+        R2-09: Verifies that empty JSON or maps lacking valid finite measurements
+        strictly raise ValueError (E4 BLOCKED), never allowing calibrated=True.
+        """
+        # 1. Empty map
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+            json.dump({}, f)
+            empty_path = f.name
+
+        try:
+            with self.assertRaises(ValueError) as ctx:
+                ProposedInterventionMerger.from_calibration_map(empty_path, total_layers=8)
+            self.assertIn("E4 BLOCKED", str(ctx.exception))
+        finally:
+            if os.path.exists(empty_path):
+                os.remove(empty_path)
+
+        # 2. Map with only NaN values
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+            json.dump({"group1_layers_shallow": {"delta_asr": float("nan"), "delta_vrr": -0.01}}, f)
+            nan_path = f.name
+
+        try:
+            with self.assertRaises(ValueError) as ctx:
+                ProposedInterventionMerger.from_calibration_map(nan_path, total_layers=8)
+            self.assertIn("E4 BLOCKED", str(ctx.exception))
+        finally:
+            if os.path.exists(nan_path):
+                os.remove(nan_path)
+
 
 if __name__ == "__main__":
     unittest.main()
