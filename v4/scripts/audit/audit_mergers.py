@@ -69,8 +69,8 @@ def run_merger_audit():
     print("\n[Audit 3] Identity Merging across ALL registered methods:")
     all_methods = sorted(list(set(MERGER_REGISTRY.keys())))
     for name in all_methods:
-        merger = get_merger(name)
-        res = merger.merge_tensors(theta_0, theta_0, theta_0, key="model.layers.15.self_attn.q_proj.weight")
+        merger = get_merger(name, allow_uncalibrated_smoke_test=True)
+        res = merger.merge_tensors(theta_0, theta_0, theta_0, key="model.layers.15.self_attn.q_proj.weight", allow_uncalibrated=True)
         diff_id = (res - theta_0).abs().max().item()
         print(f"  {name:26s} identity diff: {diff_id:.8f}")
         assert diff_id < 1e-5, f"{name} failed identity merge!"
@@ -80,8 +80,8 @@ def run_merger_audit():
     # Test 4: General Finite Values Check across all registry methods
     print("\n[Audit 4] General Finite Values Check across all registry methods:")
     for name in all_methods:
-        merger = get_merger(name)
-        out = merger.merge_tensors(theta_u, theta_s, theta_0, key="model.layers.15.self_attn.q_proj.weight")
+        merger = get_merger(name, allow_uncalibrated_smoke_test=True)
+        out = merger.merge_tensors(theta_u, theta_s, theta_0, key="model.layers.15.self_attn.q_proj.weight", allow_uncalibrated=True)
         assert torch.isfinite(out).all(), f"Merger {name} produced NaN or Inf!"
         print(f"  {name:26s} -> OK (mean={out.mean().item():.4f}, std={out.std().item():.4f})")
     audit_results["all_mergers_finite"] = "PASSED"

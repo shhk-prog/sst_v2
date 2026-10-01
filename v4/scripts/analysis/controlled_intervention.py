@@ -1,36 +1,35 @@
 """
 E3.2: controlled_intervention.py
 Rigorous 2x2 Factorial Controlled Intervention and Bi-directional Norm-Matched Controls
-according to Secure_Merge_Experiment_Plan.md Section 9.2.
+according to Secure_Merge_Experiment_Plan.md Section 9.2 and Code Audit Directives (P1-02, P1-04).
 
-Design:
-Factor 1: Location Selection
-  - Map-based selection (derived from E3.1 intervention map)
-  - Random selection matching parameter count and tensor types exactly across 3 seeds (42, 43, 44)
-Factor 2: Update Allocation
-  - Common scalar coefficient
-  - Per-region norm cap rho_g
-
-Norm-Matched Controls (Strict Rule):
-Let delta_1, delta_2 be two updates.
-t = min(||delta_1||_2, ||delta_2||_2)
-delta'_j = delta_j * (t / ||delta_j||_2)
-Scales down to the smaller norm, never expanding beyond bounds.
-Includes:
-- Condition A scaled down to Condition C's norm
-- Uniform Full Merge scaled down to Condition C's norm
-- Uniform Full Merge scaled down to Condition A's norm
+Key Principles:
+1. Exact Parameter-Count and Tensor-Type Matched Random Controls.
+2. High-precision FP32/FP64 norm calculation.
+3. Strict Shrinkage-Only norm matching (t = min(||delta_1||, ||delta_2||)).
 """
 
 import os
 import sys
 import json
 import random
+import math
+import argparse
+from typing import Dict, Any, List, Optional, Tuple, Set
 import torch
-from typing import Dict, Any, List, Optional, Tuple
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from analysis.intervention_mapper import classify_tensor_group
+from analysis.intervention_mapper import classify_tensor_detailed
+
+
+def compute_dict_l2_norm(delta_dict: Dict[str, torch.Tensor]) -> float:
+    """Computes total L2 norm of delta state dict using FP64 accumulation."""
+    norm_sq = 0.0
+    for d in delta_dict.values():
+        if d is not None and d.is_floating_point():
+            d_f = d.detach().to(torch.float32)
+            norm_sq += float(torch.sum(d_f ** 2).item())
+    return norm_sq ** 0.5
 
 
 def apply_per_region_norm_cap(
@@ -39,13 +38,19 @@ def apply_per_region_norm_cap(
     rho_g: float = 0.05,
     eps: float = 1e-8,
 ) -> torch.Tensor:
-    norm_delta = torch.norm(delta_tensor)
-    norm_u = torch.norm(theta_u_tensor)
+    """Applies per-region/tensor norm cap strictly in FP32."""
+    d_f = delta_tensor.detach().to(torch.float32)
+    u_f = theta_u_tensor.detach().to(torch.float32)
+
+    norm_delta = float(torch.norm(d_f).item())
+    norm_u = float(torch.norm(u_f).item())
     current_r_g = norm_delta / (norm_u + eps)
 
     if current_r_g > rho_g:
         scaling = (rho_g * (norm_u + eps)) / (norm_delta + eps)
-        return delta_tensor * scaling
+        # Never expand
+        scaling = min(scaling, 1.0)
+        return (d_f * scaling).to(delta_tensor.dtype)
     return delta_tensor
 
 
@@ -54,44 +59,103 @@ def scale_delta_to_target_norm(
     target_norm: float,
     eps: float = 1e-8,
 ) -> Dict[str, torch.Tensor]:
-    """Scales down delta dictionary so its total L2 norm equals target_norm."""
-    current_norm_sq = sum(torch.sum(d ** 2).item() for d in delta_dict.values())
-    current_norm = current_norm_sq ** 0.5
-    if current_norm <= eps:
+    """
+    Scales down delta dictionary so its total L2 norm equals target_norm.
+    Strict rule: Only shrink (scale_factor <= 1.0), never expand.
+    """
+    current_norm = compute_dict_l2_norm(delta_dict)
+    if current_norm <= eps or target_norm <= eps:
         return {k: torch.zeros_like(v) for k, v in delta_dict.items()}
 
     scale_factor = target_norm / current_norm
-    # Strict rule: only shrink, never expand beyond original
     scale_factor = min(scale_factor, 1.0)
-    return {k: v * scale_factor for k, v in delta_dict.items()}
+
+    scaled = {}
+    for k, v in delta_dict.items():
+        v_f = v.detach().to(torch.float32)
+        scaled[k] = (v_f * scale_factor).to(v.dtype)
+    return scaled
 
 
-def get_l2_norm(delta_dict: Dict[str, torch.Tensor]) -> float:
-    return (sum(torch.sum(d ** 2).item() for d in delta_dict.values())) ** 0.5
+def sample_matched_random_keys(
+    map_keys: Set[str],
+    all_keys: List[str],
+    state_dict_shapes: Dict[str, Tuple[int, ...]],
+    total_layers: int = 32,
+    seed: int = 42,
+) -> Set[str]:
+    """
+    Samples control keys matching BOTH tensor type and parameter count exactly (P1-02).
+    Groups keys by (module_type, shape). For each bucket used by map_keys,
+    samples the exact same count from outside map_keys.
+    """
+    rng = random.Random(seed)
+
+    # Classify all available keys into buckets: (module_type, shape)
+    buckets: Dict[Tuple[str, Tuple[int, ...]], List[str]] = {}
+    for k in all_keys:
+        info = classify_tensor_detailed(k, total_layers=total_layers)
+        bucket_key = (info["module_type"], state_dict_shapes[k])
+        buckets.setdefault(bucket_key, []).append(k)
+
+    # Count requirements from map_keys
+    needed_counts: Dict[Tuple[str, Tuple[int, ...]], int] = {}
+    for k in map_keys:
+        info = classify_tensor_detailed(k, total_layers=total_layers)
+        b_key = (info["module_type"], state_dict_shapes[k])
+        needed_counts[b_key] = needed_counts.get(b_key, 0) + 1
+
+    selected_control_keys = set()
+
+    for b_key, count in needed_counts.items():
+        # Candidate pool: all keys in this bucket NOT in map_keys
+        candidates = [k for k in buckets.get(b_key, []) if k not in map_keys]
+        if len(candidates) < count:
+            raise ValueError(
+                f"CONTROL_MATCH_FAILED: Cannot find {count} available tensors of type/shape {b_key}. "
+                f"Available pool has only {len(candidates)}."
+            )
+        sampled = rng.sample(candidates, count)
+        selected_control_keys.update(sampled)
+
+    # Final assertion: total keys and parameter counts must match exactly
+    n_params_map = sum(math.prod(state_dict_shapes[k]) for k in map_keys)
+    n_params_control = sum(math.prod(state_dict_shapes[k]) for k in selected_control_keys)
+    assert len(selected_control_keys) == len(map_keys), "Key count mismatch in control sampling!"
+    assert n_params_control == n_params_map, f"Parameter count mismatch! Map: {n_params_map}, Control: {n_params_control}"
+
+    return selected_control_keys
 
 
-def create_2x2_and_norm_matched_controls(
+def build_single_controlled_condition(
+    condition_name: str,
     dict_u: Dict[str, torch.Tensor],
     dict_s: Dict[str, torch.Tensor],
     beneficial_groups: List[str],
     common_alpha: float = 0.5,
     rho_g: float = 0.05,
-    mask_seeds: List[int] = [42, 43, 44],
+    seed: int = 42,
     total_layers: int = 32,
-) -> Dict[str, Any]:
-    beneficial_set = set(beneficial_groups)
+) -> Tuple[Dict[str, torch.Tensor], float]:
+    """
+    Builds one specific condition on-demand to conserve memory (P1-04).
+    Returns (intervened_state_dict, delta_l2_norm).
+    """
     all_keys = [k for k, p in dict_u.items() if p.is_floating_point() and k in dict_s]
+    shapes = {k: tuple(dict_u[k].shape) for k in all_keys}
 
-    # Map-based keys
-    map_keys = set(k for k in all_keys if classify_tensor_group(k, total_layers) in beneficial_set)
-    n_params_map = sum(dict_u[k].numel() for k in map_keys)
+    beneficial_set = set(beneficial_groups)
+    map_keys = set(k for k in all_keys if classify_tensor_detailed(k, total_layers)["group"] in beneficial_set)
 
-    # Base deltas: tau_s = theta_s - theta_u
-    raw_delta = {k: common_alpha * (dict_s[k] - dict_u[k]) for k in all_keys}
+    raw_delta = {}
+    for k in all_keys:
+        u_f = dict_u[k].detach().to(torch.float32)
+        s_f = dict_s[k].detach().to(torch.float32)
+        raw_delta[k] = common_alpha * (s_f - u_f)
 
     # Condition A: Map + Common
     delta_A = {k: (raw_delta[k] if k in map_keys else torch.zeros_like(dict_u[k])) for k in all_keys}
-    norm_A = get_l2_norm(delta_A)
+    norm_A = compute_dict_l2_norm(delta_A)
 
     # Condition C: Map + Capped
     delta_C = {}
@@ -100,82 +164,79 @@ def create_2x2_and_norm_matched_controls(
             delta_C[k] = apply_per_region_norm_cap(raw_delta[k], dict_u[k], rho_g=rho_g)
         else:
             delta_C[k] = torch.zeros_like(dict_u[k])
-    norm_C = get_l2_norm(delta_C)
+    norm_C = compute_dict_l2_norm(delta_C)
 
-    # Bi-directional target norm: smaller of A and C is norm_C
-    t_min = min(norm_A, norm_C)
+    target_delta = None
 
-    # Condition A scaled down to C's norm
-    delta_A_matched_to_C = scale_delta_to_target_norm(delta_A, t_min)
-
-    # Full Uniform Merge and its matched controls
-    delta_Full = raw_delta
-    norm_Full = get_l2_norm(delta_Full)
-    delta_Full_matched_to_A = scale_delta_to_target_norm(delta_Full, norm_A)
-    delta_Full_matched_to_C = scale_delta_to_target_norm(delta_Full, norm_C)
-
-    all_conditions = {
-        "Condition_A_Map_Common": {k: dict_u[k] + delta_A[k] for k in all_keys},
-        "Condition_C_Map_Capped": {k: dict_u[k] + delta_C[k] for k in all_keys},
-        "Control_A_Scaled_to_C_Norm": {k: dict_u[k] + delta_A_matched_to_C[k] for k in all_keys},
-        "Control_Full_Merge": {k: dict_u[k] + delta_Full[k] for k in all_keys},
-        "Control_Full_Matched_to_A_Norm": {k: dict_u[k] + delta_Full_matched_to_A[k] for k in all_keys},
-        "Control_Full_Matched_to_C_Norm": {k: dict_u[k] + delta_Full_matched_to_C[k] for k in all_keys},
-    }
-
-    # Random Conditions across 3 mask seeds (B and D)
-    for s in mask_seeds:
-        random.seed(s)
-        # Match parameter count and tensor types
-        random_keys = set(random.sample(all_keys, len(map_keys)))
-
-        # Condition B: Random + Common
+    if condition_name == "Condition_A_Map_Common":
+        target_delta = delta_A
+    elif condition_name == "Condition_C_Map_Capped":
+        target_delta = delta_C
+    elif condition_name == "Control_A_Scaled_to_C_Norm":
+        target_delta = scale_delta_to_target_norm(delta_A, norm_C)
+    elif condition_name == "Control_Full_Merge":
+        target_delta = raw_delta
+    elif condition_name == "Control_Full_Matched_to_A_Norm":
+        target_delta = scale_delta_to_target_norm(raw_delta, norm_A)
+    elif condition_name == "Control_Full_Matched_to_C_Norm":
+        target_delta = scale_delta_to_target_norm(raw_delta, norm_C)
+    elif "Random" in condition_name:
+        random_keys = sample_matched_random_keys(map_keys, all_keys, shapes, total_layers=total_layers, seed=seed)
         delta_B = {k: (raw_delta[k] if k in random_keys else torch.zeros_like(dict_u[k])) for k in all_keys}
-        # Condition D: Random + Capped
         delta_D = {
             k: (apply_per_region_norm_cap(raw_delta[k], dict_u[k], rho_g=rho_g) if k in random_keys else torch.zeros_like(dict_u[k]))
             for k in all_keys
         }
-        all_conditions[f"Condition_B_Random_Common_seed{s}"] = {k: dict_u[k] + delta_B[k] for k in all_keys}
-        all_conditions[f"Condition_D_Random_Capped_seed{s}"] = {k: dict_u[k] + delta_D[k] for k in all_keys}
+        norm_D = compute_dict_l2_norm(delta_D)
 
-        # Matched control for Random B scaled down to D
-        norm_D = get_l2_norm(delta_D)
-        delta_B_matched = scale_delta_to_target_norm(delta_B, norm_D)
-        all_conditions[f"Control_B_Scaled_to_D_Norm_seed{s}"] = {k: dict_u[k] + delta_B_matched[k] for k in all_keys}
+        if "Condition_B" in condition_name:
+            target_delta = delta_B
+        elif "Condition_D" in condition_name:
+            target_delta = delta_D
+        elif "Control_B_Scaled" in condition_name:
+            target_delta = scale_delta_to_target_norm(delta_B, norm_D)
 
-    # Summary of Norms
-    norm_summary = {
-        name: get_l2_norm({k: state[k] - dict_u[k] for k in all_keys})
-        for name, state in all_conditions.items()
-    }
+    if target_delta is None:
+        raise ValueError(f"Unknown condition name: {condition_name}")
 
-    return {
-        "conditions": all_conditions,
-        "norm_summary": norm_summary,
-        "norm_A": norm_A,
-        "norm_C": norm_C,
-        "norm_Full": norm_Full,
-    }
+    actual_norm = compute_dict_l2_norm(target_delta)
+    result_dict = {k: (dict_u[k].detach().to(torch.float32) + target_delta[k]).to(dict_u[k].dtype) for k in all_keys}
+    return result_dict, actual_norm
+
+
+def main():
+    parser = argparse.ArgumentParser(description="E3.2: Controlled Intervention Builder CLI")
+    parser.add_argument("--model-u", type=str, required=True, help="Domain model path (theta_u)")
+    parser.add_argument("--model-s", type=str, required=True, help="Safety model path (theta_s)")
+    parser.add_argument("--condition", type=str, required=True, help="Condition name to generate")
+    parser.add_argument("--beneficial-groups", type=str, nargs="+", default=["group3_layers_mid_deep"], help="Beneficial groups from E3.1")
+    parser.add_argument("--alpha", type=float, default=0.5, help="Common alpha")
+    parser.add_argument("--rho-g", type=float, default=0.05, help="Per-region norm cap")
+    parser.add_argument("--seed", type=int, default=42, help="Mask seed for random control")
+    parser.add_argument("--output-file", type=str, required=True, help="Output .pt checkpoint file")
+    args = parser.parse_args()
+
+    from analysis.characteristic_analyzer import load_model_weights_dict
+
+    print(f"Loading models to generate condition: {args.condition}...")
+    dict_u = load_model_weights_dict(args.model_u)
+    dict_s = load_model_weights_dict(args.model_s)
+
+    result_dict, norm = build_single_controlled_condition(
+        condition_name=args.condition,
+        dict_u=dict_u,
+        dict_s=dict_s,
+        beneficial_groups=args.beneficial_groups,
+        common_alpha=args.alpha,
+        rho_g=args.rho_g,
+        seed=args.seed,
+    )
+
+    print(f"Generated {args.condition} with delta L2 Norm: {norm:.6f}")
+    os.makedirs(os.path.dirname(args.output_file), exist_ok=True)
+    torch.save(result_dict, args.output_file)
+    print(f"Saved to {args.output_file}")
 
 
 if __name__ == "__main__":
-    torch.manual_seed(42)
-    # Synthetic smoke test
-    u = {f"model.layers.{i}.self_attn.q_proj.weight": torch.randn(16, 16) for i in range(16)}
-    s = {f"model.layers.{i}.self_attn.q_proj.weight": torch.randn(16, 16) for i in range(16)}
-
-    res = create_2x2_and_norm_matched_controls(
-        u, s, beneficial_groups=["group3_layers_mid_deep", "group4_layers_deep"],
-        common_alpha=0.5, rho_g=0.03, total_layers=16
-    )
-
-    print("Rigorous E3 Norm Summary:")
-    for name, norm_val in res["norm_summary"].items():
-        print(f"  {name:38s} -> L2 Norm: {norm_val:.4f}")
-
-    # Check that matched controls strictly equal their targets
-    assert abs(res["norm_summary"]["Control_Full_Matched_to_A_Norm"] - res["norm_A"]) < 1e-4
-    assert abs(res["norm_summary"]["Control_Full_Matched_to_C_Norm"] - res["norm_C"]) < 1e-4
-    assert abs(res["norm_summary"]["Control_A_Scaled_to_C_Norm"] - res["norm_C"]) < 1e-4
-    print("\n>>> All bi-directional norm matching assertions strictly satisfied! <<<")
+    main()

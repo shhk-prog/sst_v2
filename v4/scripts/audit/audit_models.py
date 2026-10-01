@@ -1,5 +1,5 @@
 """
-E0 Audit: audit_models.py
+E0 Audit: audit_models.py (Strict Gate Enforcement)
 Rigorous manifest builder and ancestor/tokenizer consistency auditor according to
 Secure_Merge_Experiment_Plan.md Section 3.1.
 
@@ -9,11 +9,12 @@ Inspects token IDs, special tokens, RoPE, and LoRA dense restoration properties.
 Status Taxonomy (Strict Plan Rule):
 - PASS: Provenance, config, tokenizer, and weight alignment fully confirmed.
 - FAIL: Concrete discrepancy detected (e.g. RoPE theta, vocab expansion, bos ID).
-        Specific mismatched keys and values must be saved.
+        Specific mismatched keys and values are saved.
 - UNVERIFIED: Missing files or insufficient provenance information.
 
 Gate Rule:
-If domain is FAIL or UNVERIFIED, primary comparison & new intervention for that domain MUST HALT.
+If any required domain or SafetyFT seed is FAIL or UNVERIFIED, the process MUST exit with code 1,
+and the primary pipeline must HALT to prevent degenerative conflation.
 """
 
 import os
@@ -35,6 +36,11 @@ def audit_single_model(model_name_or_path: str, role: str) -> Dict[str, Any]:
         "status": "UNVERIFIED",
     }
 
+    if not info["exists_locally"]:
+        info["status"] = "UNVERIFIED"
+        info["error"] = f"Model path does not exist locally: {model_name_or_path}"
+        return info
+
     try:
         cfg = AutoConfig.from_pretrained(model_name_or_path, trust_remote_code=True)
         info["config"] = {
@@ -50,6 +56,7 @@ def audit_single_model(model_name_or_path: str, role: str) -> Dict[str, Any]:
             "max_position_embeddings": getattr(cfg, "max_position_embeddings", None),
         }
     except Exception as e:
+        info["status"] = "UNVERIFIED"
         info["config_error"] = str(e)
         return info
 
@@ -68,6 +75,7 @@ def audit_single_model(model_name_or_path: str, role: str) -> Dict[str, Any]:
             "chat_template_present": bool(tok.chat_template),
         }
     except Exception as e:
+        info["status"] = "UNVERIFIED"
         info["tokenizer_error"] = str(e)
         return info
 
@@ -93,27 +101,34 @@ def audit_single_model(model_name_or_path: str, role: str) -> Dict[str, Any]:
 
 
 def compare_domain_to_base(base_info: Dict[str, Any], domain_info: Dict[str, Any], domain_name: str) -> Dict[str, Any]:
-    discrepancies = {}
+    # Guard against comparing unverified / unloaded models
+    if base_info.get("status") != "LOADED" or domain_info.get("status") != "LOADED":
+        return {
+            "domain": domain_name,
+            "verdict": "UNVERIFIED",
+            "reason": f"One or both models not loaded: base={base_info.get('status')}, domain={domain_info.get('status')}",
+            "discrepancies": {},
+        }
 
+    discrepancies = {}
     b_cfg = base_info.get("config", {})
     d_cfg = domain_info.get("config", {})
-
     b_tok = base_info.get("tokenizer", {})
     d_tok = domain_info.get("tokenizer", {})
 
-    # Check architecture dimensions
+    # Architecture dimensions
     for k in ["hidden_size", "num_hidden_layers", "num_attention_heads", "intermediate_size"]:
         if b_cfg.get(k) != d_cfg.get(k):
             discrepancies[f"config.{k}"] = {"base": b_cfg.get(k), "domain": d_cfg.get(k)}
 
-    # Check max position embeddings
+    # Position embeddings
     if b_cfg.get("max_position_embeddings") != d_cfg.get("max_position_embeddings"):
         discrepancies["config.max_position_embeddings"] = {
             "base": b_cfg.get("max_position_embeddings"),
             "domain": d_cfg.get("max_position_embeddings"),
         }
 
-    # Check RoPE scaling / theta
+    # RoPE scaling / theta
     b_rope = b_cfg.get("rope_theta")
     d_rope = d_cfg.get("rope_theta")
     d_rope_scaling = d_cfg.get("rope_scaling")
@@ -127,7 +142,7 @@ def compare_domain_to_base(base_info: Dict[str, Any], domain_info: Dict[str, Any
     elif b_rope != d_rope:
         discrepancies["config.rope_theta"] = {"base": b_rope, "domain": d_rope}
 
-    # Check vocab size
+    # Vocab size
     if b_tok.get("vocab_size") != d_tok.get("vocab_size"):
         discrepancies["tokenizer.vocab_size"] = {
             "base": b_tok.get("vocab_size"),
@@ -135,7 +150,7 @@ def compare_domain_to_base(base_info: Dict[str, Any], domain_info: Dict[str, Any
             "note": "Vocab expanded (e.g. [PAD] token added to index 32000)",
         }
 
-    # Check special token IDs
+    # Special token IDs
     for token_key in ["bos_token_id", "eos_token_id"]:
         if b_tok.get(token_key) != d_tok.get(token_key):
             discrepancies[f"tokenizer.{token_key}"] = {
@@ -143,10 +158,7 @@ def compare_domain_to_base(base_info: Dict[str, Any], domain_info: Dict[str, Any
                 "domain": d_tok.get(token_key),
             }
 
-    if discrepancies:
-        verdict = "FAIL"
-    else:
-        verdict = "PASS"
+    verdict = "FAIL" if discrepancies else "PASS"
 
     return {
         "domain": domain_name,
@@ -162,7 +174,7 @@ def run_full_model_audit(
     code_model: str = "vanillaOVO/WizardCoder-Python-7B-V1.0",
     models_root: str = "/mnt/nas/home/hiromi/src/sst_v2/v3/models",
     output_path: str = "/mnt/nas/home/hiromi/src/sst_v2/v4/results/e0_audit/model_manifest.json",
-):
+) -> Dict[str, Any]:
     print("=" * 70)
     print("Running Rigorous E0 Model Provenance & Input Condition Audit")
     print("=" * 70)
@@ -184,14 +196,20 @@ def run_full_model_audit(
     manifest["models"]["code"] = audit_single_model(code_model, "code_domain")
 
     # 2. Audit SafetyFT checkpoints (seed 42, 43, 44) for both LoRA adapter and Full restored
+    all_safety_dense_verified = True
     for seed in [42, 43, 44]:
         lora_path = os.path.join(models_root, f"safety_lora_seed{seed}")
         full_path = os.path.join(models_root, f"temp_safety_full_seed{seed}")
         
+        lora_aud = audit_single_model(lora_path, f"safety_lora_seed{seed}") if os.path.exists(lora_path) else {"status": "UNVERIFIED", "path": lora_path}
+        full_aud = audit_single_model(full_path, f"safety_full_seed{seed}") if os.path.exists(full_path) else {"status": "UNVERIFIED", "path": full_path}
+
         manifest["safetyft_checkpoints"][f"seed{seed}"] = {
-            "lora_adapter": audit_single_model(lora_path, f"safety_lora_seed{seed}") if os.path.exists(lora_path) else {"status": "UNVERIFIED", "path": lora_path},
-            "dense_full": audit_single_model(full_path, f"safety_full_seed{seed}") if os.path.exists(full_path) else {"status": "UNVERIFIED", "path": full_path},
+            "lora_adapter": lora_aud,
+            "dense_full": full_aud,
         }
+        if full_aud.get("status") != "LOADED":
+            all_safety_dense_verified = False
 
     # 3. Discrepancy comparison against Base
     math_audit = compare_domain_to_base(manifest["models"]["base"], manifest["models"]["math"], "math")
@@ -200,8 +218,9 @@ def run_full_model_audit(
     manifest["domain_verdicts"]["math"] = math_audit
     manifest["domain_verdicts"]["code"] = code_audit
 
-    # Primary gate rule: If both fail, entire primary benchmark is NO_GO
-    if math_audit["verdict"] == "FAIL" and code_audit["verdict"] == "FAIL":
+    # Primary gate rule:
+    # If any domain is FAIL or UNVERIFIED, or SafetyFT dense missing -> Primary Gate is NO_GO
+    if math_audit["verdict"] != "PASS" and code_audit["verdict"] != "PASS":
         manifest["primary_experiment_verdict"] = "NO_GO"
         manifest["primary_gate_reason"] = (
             "Both math and code domains failed E0 integrity audit. "
@@ -209,12 +228,15 @@ def run_full_model_audit(
             "Primary comparison and new interventions must HALT to prevent degenerative conflation. "
             "Past logs may only be analyzed under diagnostic track."
         )
-    elif math_audit["verdict"] == "FAIL" or code_audit["verdict"] == "FAIL":
+    elif math_audit["verdict"] != "PASS" or code_audit["verdict"] != "PASS":
         manifest["primary_experiment_verdict"] = "PARTIAL_GATE"
         manifest["primary_gate_reason"] = "One domain failed E0 audit and is excluded from primary comparison."
+    elif not all_safety_dense_verified:
+        manifest["primary_experiment_verdict"] = "NO_GO"
+        manifest["primary_gate_reason"] = "SafetyFT dense restored checkpoints (seeds 42/43/44) not fully verified."
     else:
         manifest["primary_experiment_verdict"] = "GO"
-        manifest["primary_gate_reason"] = "All domains passed E0 integrity audit."
+        manifest["primary_gate_reason"] = "All domains and SafetyFT checkpoints passed E0 integrity audit."
 
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2, ensure_ascii=False)
@@ -223,13 +245,13 @@ def run_full_model_audit(
     print("E0 MODEL INTEGRITY AUDIT RESULTS:")
     print("=" * 70)
     print(f"  Math Domain Verdict: {math_audit['verdict']}")
-    if math_audit['discrepancies']:
+    if math_audit.get('discrepancies'):
         print("    Discrepancies:")
         for k, v in math_audit['discrepancies'].items():
             print(f"      - {k}: {v}")
 
     print(f"  Code Domain Verdict: {code_audit['verdict']}")
-    if code_audit['discrepancies']:
+    if code_audit.get('discrepancies'):
         print("    Discrepancies:")
         for k, v in code_audit['discrepancies'].items():
             print(f"      - {k}: {v}")
@@ -237,6 +259,12 @@ def run_full_model_audit(
     print(f"\n  >>> PRIMARY EXPERIMENT GATE: {manifest['primary_experiment_verdict']} <<<")
     print(f"  Reason: {manifest['primary_gate_reason']}")
     print("=" * 70)
+
+    # Strict Halt Rule: Exit with code 1 if primary gate is NO_GO
+    if manifest["primary_experiment_verdict"] == "NO_GO":
+        print("\n[FATAL AUDIT FAILURE] Primary benchmark gate is NO_GO. Halting execution.")
+        sys.exit(1)
+
     return manifest
 
 

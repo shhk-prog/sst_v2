@@ -1,38 +1,51 @@
 """
 E3.1: intervention_mapper.py
-Generates behavioral intervention maps by perturbing 6 disjoint model parameter groups according to
-Secure_Merge_Experiment_Plan.md Section 9.1.
+Generates behavioral intervention parameter maps by perturbing disjoint model parameter groups according to
+Secure_Merge_Experiment_Plan.md Section 9.1 and Code Audit Remediation (P0-04, P1-02).
 
-Groups:
-- Group 1: Transformer Layers 0-7 (excluding Norms)
-- Group 2: Transformer Layers 8-15 (excluding Norms)
-- Group 3: Transformer Layers 16-23 (excluding Norms)
-- Group 4: Transformer Layers 24-31 (excluding Norms)
-- Group 5: All LayerNorm / RMSNorm weights
-- Group 6: Embedding and LM Head weights
-
-Intervention Formula:
-theta^(g, a) = theta_u + a * P_g(theta_s - theta_u),  a in {0.2, 0.6}
+Key Principles:
+1. Strict tensor group classification (no ambiguous fallback to embed/head).
+2. Production CLI that loads real weights and builds intervention checkpoints one condition at a time.
+3. Toy random tensor code isolated to tests/.
 """
 
 import os
 import sys
 import json
 import argparse
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Tuple
 import torch
 
 
-def classify_tensor_group(key: str, total_layers: int = 32) -> str:
+def classify_tensor_detailed(key: str, total_layers: int = 32) -> Dict[str, str]:
+    """
+    Strictly classifies a parameter tensor by its architectural group and module type.
+    Returns:
+        {"group": group_name, "module_type": module_type}
+    """
     key_lower = key.lower()
 
-    # Norm group
+    # Module type
     if "norm" in key_lower:
-        return "group5_norms"
+        mtype = "norm"
+    elif any(x in key_lower for x in ["q_proj", "k_proj", "v_proj", "o_proj", "self_attn", "attn"]):
+        mtype = "attention"
+    elif any(x in key_lower for x in ["gate_proj", "up_proj", "down_proj", "mlp"]):
+        mtype = "mlp"
+    elif "embed_tokens" in key_lower or "wte" in key_lower:
+        mtype = "embed"
+    elif "lm_head" in key_lower:
+        mtype = "lm_head"
+    else:
+        mtype = "other"
 
-    # Embed and Head group
-    if "embed_tokens" in key_lower or "lm_head" in key_lower:
-        return "group6_embed_head"
+    # Group classification
+    if mtype == "norm":
+        return {"group": "group5_norms", "module_type": mtype}
+    if mtype == "embed":
+        return {"group": "group6_embed", "module_type": mtype}
+    if mtype == "lm_head":
+        return {"group": "group6_head", "module_type": mtype}
 
     # Transformer layers
     parts = key.split(".")
@@ -45,25 +58,31 @@ def classify_tensor_group(key: str, total_layers: int = 32) -> str:
     if layer_idx is not None:
         quarter = max(1, total_layers // 4)
         if layer_idx < quarter:
-            return "group1_layers_shallow"
+            grp = "group1_layers_shallow"
         elif layer_idx < quarter * 2:
-            return "group2_layers_mid_shallow"
+            grp = "group2_layers_mid_shallow"
         elif layer_idx < quarter * 3:
-            return "group3_layers_mid_deep"
+            grp = "group3_layers_mid_deep"
         else:
-            return "group4_layers_deep"
+            grp = "group4_layers_deep"
+        return {"group": grp, "module_type": mtype}
 
-    return "group6_embed_head"
+    return {"group": "unclassified", "module_type": mtype}
 
 
-def create_intervention_state_dict(
+def apply_single_condition_intervention(
     dict_u: Dict[str, torch.Tensor],
     dict_s: Dict[str, torch.Tensor],
-    active_groups: List[str],
-    alpha: float = 0.2,
+    target_groups: List[str],
+    alpha: float,
     total_layers: int = 32,
 ) -> Dict[str, torch.Tensor]:
-    active_set = set(active_groups)
+    """
+    Applies intervention for specified groups at scalar alpha in FP32 precision,
+    returning a single intervened state dict.
+    theta^(g, a) = theta_u + a * (theta_s - theta_u)
+    """
+    target_set = set(target_groups)
     intervened = {}
 
     for key, p_u in dict_u.items():
@@ -72,60 +91,43 @@ def create_intervention_state_dict(
             intervened[key] = p_u.clone()
             continue
 
-        grp = classify_tensor_group(key, total_layers=total_layers)
-        if grp in active_set:
-            # theta^(g, a) = theta_u + a * (theta_s - theta_u)
-            intervened[key] = p_u + alpha * (p_s - p_u)
+        info = classify_tensor_detailed(key, total_layers=total_layers)
+        if info["group"] in target_set:
+            # High-precision delta calculation
+            u_f = p_u.detach().to(torch.float32)
+            s_f = p_s.detach().to(torch.float32)
+            delta = alpha * (s_f - u_f)
+            intervened[key] = (u_f + delta).to(p_u.dtype)
         else:
             intervened[key] = p_u.clone()
 
     return intervened
 
 
-def build_all_single_group_interventions(
-    dict_u: Dict[str, torch.Tensor],
-    dict_s: Dict[str, torch.Tensor],
-    alphas: List[float] = [0.2, 0.6],
-    total_layers: int = 32,
-) -> Dict[str, Dict[str, torch.Tensor]]:
-    groups = [
-        "group1_layers_shallow",
-        "group2_layers_mid_shallow",
-        "group3_layers_mid_deep",
-        "group4_layers_deep",
-        "group5_norms",
-        "group6_embed_head",
-    ]
-    interventions = {}
+def main():
+    parser = argparse.ArgumentParser(description="E3.1: Intervention Mapper CLI")
+    parser.add_argument("--model-u", type=str, required=True, help="Domain model path (theta_u)")
+    parser.add_argument("--model-s", type=str, required=True, help="Safety model path (theta_s)")
+    parser.add_argument("--condition", type=str, required=True, help="Condition name (e.g. group3_layers_mid_deep_alpha_0.2)")
+    parser.add_argument("--alpha", type=float, default=0.2, help="Intervention intensity alpha")
+    parser.add_argument("--groups", type=str, nargs="+", required=True, help="Target groups to intervene")
+    parser.add_argument("--output-dir", type=str, required=True, help="Output directory to save intervened weights")
+    args = parser.parse_args()
 
-    # 1. Single group interventions: 6 groups x 2 alphas = 12 conditions
-    for grp in groups:
-        for a in alphas:
-            cond_name = f"{grp}_alpha_{a}"
-            interventions[cond_name] = create_intervention_state_dict(
-                dict_u, dict_s, [grp], alpha=a, total_layers=total_layers
-            )
+    from analysis.characteristic_analyzer import load_model_weights_dict
 
-    # 2. Pre-specified group pairs to check interaction (e.g. Mid-deep + Norms, Deep + Embed)
-    pair1 = ["group3_layers_mid_deep", "group5_norms"]
-    pair2 = ["group4_layers_deep", "group2_layers_mid_shallow"]
-    for pair, name in [(pair1, "pair_mid_deep_and_norms"), (pair2, "pair_deep_and_mid_shallow")]:
-        for a in alphas:
-            cond_name = f"{name}_alpha_{a}"
-            interventions[cond_name] = create_intervention_state_dict(
-                dict_u, dict_s, pair, alpha=a, total_layers=total_layers
-            )
+    print(f"Loading models for condition {args.condition}...")
+    dict_u = load_model_weights_dict(args.model_u)
+    dict_s = load_model_weights_dict(args.model_s)
 
-    return interventions
+    print(f"Applying intervention for groups {args.groups} with alpha={args.alpha}...")
+    intervened = apply_single_condition_intervention(dict_u, dict_s, args.groups, alpha=args.alpha)
+
+    os.makedirs(args.output_dir, exist_ok=True)
+    out_file = os.path.join(args.output_dir, f"{args.condition}.pt")
+    torch.save(intervened, out_file)
+    print(f"Saved intervened checkpoint to {out_file}")
 
 
 if __name__ == "__main__":
-    torch.manual_seed(42)
-    # Synthetic smoke test
-    u = {"model.layers.5.self_attn.q_proj.weight": torch.randn(8, 8), "model.norm.weight": torch.randn(8)}
-    s = {"model.layers.5.self_attn.q_proj.weight": torch.randn(8, 8), "model.norm.weight": torch.randn(8)}
-
-    all_conds = build_all_single_group_interventions(u, s, alphas=[0.2, 0.6], total_layers=32)
-    print(f"Generated {len(all_conds)} controlled intervention conditions successfully.")
-    for k in list(all_conds.keys())[:5]:
-        print(f"  Condition: {k}")
+    main()

@@ -32,8 +32,19 @@ MERGER_REGISTRY = {
 }
 
 
+import inspect
+
 def get_merger(name: str, **kwargs) -> BaseMerger:
     key = name.lower()
     if key not in MERGER_REGISTRY:
         raise ValueError(f"Unknown merger '{name}'. Available: {list(MERGER_REGISTRY.keys())}")
-    return MERGER_REGISTRY[key](**kwargs)
+    cls = MERGER_REGISTRY[key]
+    sig = inspect.signature(cls.__init__)
+    # Filter kwargs to only those accepted by cls.__init__ (or all if **kwargs is present)
+    has_var_keyword = any(p.kind == inspect.Parameter.VAR_KEYWORD for p in sig.parameters.values())
+    if has_var_keyword:
+        filtered = kwargs
+    else:
+        accepted = set(sig.parameters.keys())
+        filtered = {k: v for k, v in kwargs.items() if k in accepted}
+    return cls(**filtered)
