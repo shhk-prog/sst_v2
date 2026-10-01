@@ -31,12 +31,16 @@ Hashes match: True
   - `model.embed_tokens.weight`: `[32001, 4096] -> [32000, 4096]`
   - `lm_head.weight`: `[32001, 4096] -> [32000, 4096]`
   - パラメータ数: `6,738,423,808 -> 6,738,415,616 (dropped: 8,192)`
-  - 保存先: `v4/models/canonical/wizardmath_7b`
+  - 保存先: `v4/results/models/canonical/wizardmath_7b` (git除外)
 - **SafetyFT seed42 (Safety-Full)**:
   - `model.embed_tokens.weight`: `[32001, 4096] -> [32000, 4096]`
   - `lm_head.weight`: `[32001, 4096] -> [32000, 4096]`
   - パラメータ数: `6,738,423,808 -> 6,738,415,616 (dropped: 8,192)`
-  - 保存先: `v4/models/canonical/safety_full_seed42`
+  - 保存先: `v4/results/models/canonical/safety_full_seed42` (git除外)
+- **マージモデル (Linear Safety-Patch alpha=0.6)**:
+  - 保存先: `v4/results/models/merged_math_linear_a0.6` (git除外)
+- **.gitignore 登録**:
+  - `v4/results/`, `v4/models/`, `*.safetensors`, `*.bin` を追加し、git にコミット・push されないよう完全隔離。
 
 ### 2.3 E0 ゲート監査結果
 ```text
