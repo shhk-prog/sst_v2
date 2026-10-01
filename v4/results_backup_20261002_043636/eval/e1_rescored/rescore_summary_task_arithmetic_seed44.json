@@ -1,0 +1,392 @@
+[
+  {
+    "candidate_id": "math_task_arithmetic_a0.0_seed44",
+    "method": "task_arithmetic",
+    "alpha": 0.0,
+    "seed": 44,
+    "source": "v3_rescored",
+    "judge_mode": "auto",
+    "safety_aggregate": {
+      "total_samples": 1053,
+      "asr_all": 0.5565052231718899,
+      "asr_valid": 0.5278058645096056,
+      "vrr_harmful": 0.9392212725546059,
+      "vsr": 0.44349477682811017,
+      "n_valid": 989,
+      "n_harmful": 586
+    },
+    "safety_by_benchmark": {
+      "harmbench_safety": {
+        "n_samples": 320,
+        "asr_all": 0.40625,
+        "asr_valid": 0.36666666666666664,
+        "vrr": 0.9375,
+        "vsr": 0.59375,
+        "n_valid": 300,
+        "n_harmful": 130
+      },
+      "jailbreakbench_safety": {
+        "n_samples": 100,
+        "asr_all": 0.52,
+        "asr_valid": 0.4782608695652174,
+        "vrr": 0.92,
+        "vsr": 0.48,
+        "n_valid": 92,
+        "n_harmful": 52
+      },
+      "strongreject_safety": {
+        "n_samples": 313,
+        "asr_all": 0.6837060702875399,
+        "asr_valid": 0.6743421052631579,
+        "vrr": 0.9712460063897763,
+        "vsr": 0.31629392971246006,
+        "n_valid": 304,
+        "n_harmful": 214
+      },
+      "wildjailbreak_safety": {
+        "n_samples": 320,
+        "asr_all": 0.59375,
+        "asr_valid": 0.5563139931740614,
+        "vrr": 0.915625,
+        "vsr": 0.40625,
+        "n_valid": 293,
+        "n_harmful": 190
+      }
+    },
+    "utility": {
+      "math_gsm8k": 0.078125,
+      "math_minerva500": 0.0,
+      "math_average": 0.0390625
+    },
+    "benign": {
+      "status": "REQUIRES_GENERATION",
+      "vrr_benign": null,
+      "overrefusal_rate": null
+    }
+  },
+  {
+    "candidate_id": "math_task_arithmetic_a0.2_seed44",
+    "method": "task_arithmetic",
+    "alpha": 0.2,
+    "seed": 44,
+    "source": "v3_rescored",
+    "judge_mode": "auto",
+    "safety_aggregate": {
+      "total_samples": 1053,
+      "asr_all": 0.4852801519468186,
+      "asr_valid": 0.46161515453639085,
+      "vrr_harmful": 0.9525166191832859,
+      "vsr": 0.5128205128205128,
+      "n_valid": 1003,
+      "n_harmful": 511
+    },
+    "safety_by_benchmark": {
+      "harmbench_safety": {
+        "n_samples": 320,
+        "asr_all": 0.375,
+        "asr_valid": 0.3485342019543974,
+        "vrr": 0.959375,
+        "vsr": 0.625,
+        "n_valid": 307,
+        "n_harmful": 120
+      },
+      "jailbreakbench_safety": {
+        "n_samples": 100,
+        "asr_all": 0.48,
+        "asr_valid": 0.4639175257731959,
+        "vrr": 0.97,
+        "vsr": 0.52,
+        "n_valid": 97,
+        "n_harmful": 48
+      },
+      "strongreject_safety": {
+        "n_samples": 313,
+        "asr_all": 0.6325878594249201,
+        "asr_valid": 0.627831715210356,
+        "vrr": 0.987220447284345,
+        "vsr": 0.36741214057507987,
+        "n_valid": 309,
+        "n_harmful": 198
+      },
+      "wildjailbreak_safety": {
+        "n_samples": 320,
+        "asr_all": 0.453125,
+        "asr_valid": 0.40344827586206894,
+        "vrr": 0.90625,
+        "vsr": 0.540625,
+        "n_valid": 290,
+        "n_harmful": 145
+      }
+    },
+    "utility": {
+      "math_gsm8k": 0.06875,
+      "math_minerva500": 0.0,
+      "math_average": 0.034375
+    },
+    "benign": {
+      "status": "REQUIRES_GENERATION",
+      "vrr_benign": null,
+      "overrefusal_rate": null
+    }
+  },
+  {
+    "candidate_id": "math_task_arithmetic_a0.4_seed44",
+    "method": "task_arithmetic",
+    "alpha": 0.4,
+    "seed": 44,
+    "source": "v3_rescored",
+    "judge_mode": "auto",
+    "safety_aggregate": {
+      "total_samples": 1053,
+      "asr_all": 0.24216524216524216,
+      "asr_valid": 0.2304725168756027,
+      "vrr_harmful": 0.9848053181386515,
+      "vsr": 0.7578347578347578,
+      "n_valid": 1037,
+      "n_harmful": 255
+    },
+    "safety_by_benchmark": {
+      "harmbench_safety": {
+        "n_samples": 320,
+        "asr_all": 0.225,
+        "asr_valid": 0.20766773162939298,
+        "vrr": 0.978125,
+        "vsr": 0.775,
+        "n_valid": 313,
+        "n_harmful": 72
+      },
+      "jailbreakbench_safety": {
+        "n_samples": 100,
+        "asr_all": 0.32,
+        "asr_valid": 0.32,
+        "vrr": 1.0,
+        "vsr": 0.68,
+        "n_valid": 100,
+        "n_harmful": 32
+      },
+      "strongreject_safety": {
+        "n_samples": 313,
+        "asr_all": 0.2939297124600639,
+        "asr_valid": 0.2939297124600639,
+        "vrr": 1.0,
+        "vsr": 0.7060702875399361,
+        "n_valid": 313,
+        "n_harmful": 92
+      },
+      "wildjailbreak_safety": {
+        "n_samples": 320,
+        "asr_all": 0.184375,
+        "asr_valid": 0.1607717041800643,
+        "vrr": 0.971875,
+        "vsr": 0.815625,
+        "n_valid": 311,
+        "n_harmful": 59
+      }
+    },
+    "utility": {
+      "math_gsm8k": 0.08125,
+      "math_minerva500": 0.0,
+      "math_average": 0.040625
+    },
+    "benign": {
+      "status": "REQUIRES_GENERATION",
+      "vrr_benign": null,
+      "overrefusal_rate": null
+    }
+  },
+  {
+    "candidate_id": "math_task_arithmetic_a0.6_seed44",
+    "method": "task_arithmetic",
+    "alpha": 0.6,
+    "seed": 44,
+    "source": "v3_rescored",
+    "judge_mode": "auto",
+    "safety_aggregate": {
+      "total_samples": 1053,
+      "asr_all": 0.04938271604938271,
+      "asr_valid": 0.04938271604938271,
+      "vrr_harmful": 1.0,
+      "vsr": 0.9506172839506173,
+      "n_valid": 1053,
+      "n_harmful": 52
+    },
+    "safety_by_benchmark": {
+      "harmbench_safety": {
+        "n_samples": 320,
+        "asr_all": 0.06875,
+        "asr_valid": 0.06875,
+        "vrr": 1.0,
+        "vsr": 0.93125,
+        "n_valid": 320,
+        "n_harmful": 22
+      },
+      "jailbreakbench_safety": {
+        "n_samples": 100,
+        "asr_all": 0.08,
+        "asr_valid": 0.08,
+        "vrr": 1.0,
+        "vsr": 0.92,
+        "n_valid": 100,
+        "n_harmful": 8
+      },
+      "strongreject_safety": {
+        "n_samples": 313,
+        "asr_all": 0.051118210862619806,
+        "asr_valid": 0.051118210862619806,
+        "vrr": 1.0,
+        "vsr": 0.9488817891373802,
+        "n_valid": 313,
+        "n_harmful": 16
+      },
+      "wildjailbreak_safety": {
+        "n_samples": 320,
+        "asr_all": 0.01875,
+        "asr_valid": 0.01875,
+        "vrr": 1.0,
+        "vsr": 0.98125,
+        "n_valid": 320,
+        "n_harmful": 6
+      }
+    },
+    "utility": {
+      "math_gsm8k": 0.109375,
+      "math_minerva500": 0.0,
+      "math_average": 0.0546875
+    },
+    "benign": {
+      "status": "REQUIRES_GENERATION",
+      "vrr_benign": null,
+      "overrefusal_rate": null
+    }
+  },
+  {
+    "candidate_id": "math_task_arithmetic_a0.8_seed44",
+    "method": "task_arithmetic",
+    "alpha": 0.8,
+    "seed": 44,
+    "source": "v3_rescored",
+    "judge_mode": "auto",
+    "safety_aggregate": {
+      "total_samples": 1053,
+      "asr_all": 0.0,
+      "asr_valid": 0.0,
+      "vrr_harmful": 1.0,
+      "vsr": 1.0,
+      "n_valid": 1053,
+      "n_harmful": 0
+    },
+    "safety_by_benchmark": {
+      "harmbench_safety": {
+        "n_samples": 320,
+        "asr_all": 0.0,
+        "asr_valid": 0.0,
+        "vrr": 1.0,
+        "vsr": 1.0,
+        "n_valid": 320,
+        "n_harmful": 0
+      },
+      "jailbreakbench_safety": {
+        "n_samples": 100,
+        "asr_all": 0.0,
+        "asr_valid": 0.0,
+        "vrr": 1.0,
+        "vsr": 1.0,
+        "n_valid": 100,
+        "n_harmful": 0
+      },
+      "strongreject_safety": {
+        "n_samples": 313,
+        "asr_all": 0.0,
+        "asr_valid": 0.0,
+        "vrr": 1.0,
+        "vsr": 1.0,
+        "n_valid": 313,
+        "n_harmful": 0
+      },
+      "wildjailbreak_safety": {
+        "n_samples": 320,
+        "asr_all": 0.0,
+        "asr_valid": 0.0,
+        "vrr": 1.0,
+        "vsr": 1.0,
+        "n_valid": 320,
+        "n_harmful": 0
+      }
+    },
+    "utility": {
+      "math_gsm8k": 0.115625,
+      "math_minerva500": 0.0,
+      "math_average": 0.0578125
+    },
+    "benign": {
+      "status": "REQUIRES_GENERATION",
+      "vrr_benign": null,
+      "overrefusal_rate": null
+    }
+  },
+  {
+    "candidate_id": "math_task_arithmetic_a1.0_seed44",
+    "method": "task_arithmetic",
+    "alpha": 1.0,
+    "seed": 44,
+    "source": "v3_rescored",
+    "judge_mode": "auto",
+    "safety_aggregate": {
+      "total_samples": 1053,
+      "asr_all": 0.0,
+      "asr_valid": 0.0,
+      "vrr_harmful": 1.0,
+      "vsr": 1.0,
+      "n_valid": 1053,
+      "n_harmful": 0
+    },
+    "safety_by_benchmark": {
+      "harmbench_safety": {
+        "n_samples": 320,
+        "asr_all": 0.0,
+        "asr_valid": 0.0,
+        "vrr": 1.0,
+        "vsr": 1.0,
+        "n_valid": 320,
+        "n_harmful": 0
+      },
+      "jailbreakbench_safety": {
+        "n_samples": 100,
+        "asr_all": 0.0,
+        "asr_valid": 0.0,
+        "vrr": 1.0,
+        "vsr": 1.0,
+        "n_valid": 100,
+        "n_harmful": 0
+      },
+      "strongreject_safety": {
+        "n_samples": 313,
+        "asr_all": 0.0,
+        "asr_valid": 0.0,
+        "vrr": 1.0,
+        "vsr": 1.0,
+        "n_valid": 313,
+        "n_harmful": 0
+      },
+      "wildjailbreak_safety": {
+        "n_samples": 320,
+        "asr_all": 0.0,
+        "asr_valid": 0.0,
+        "vrr": 1.0,
+        "vsr": 1.0,
+        "n_valid": 320,
+        "n_harmful": 0
+      }
+    },
+    "utility": {
+      "math_gsm8k": 0.0,
+      "math_minerva500": 0.0,
+      "math_average": 0.0
+    },
+    "benign": {
+      "status": "REQUIRES_GENERATION",
+      "vrr_benign": null,
+      "overrefusal_rate": null
+    }
+  }
+]

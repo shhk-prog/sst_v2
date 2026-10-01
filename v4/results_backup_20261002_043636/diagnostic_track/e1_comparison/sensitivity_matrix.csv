@@ -1,0 +1,10 @@
+asr_threshold,vrr_threshold,math_mergealign_pass,math_led_pass,math_legacy_task_arithmetic_linear_patch_pass,math_safemerge_pass,math_dare_pass,math_della_pass,math_ties_pass,math_fisher_pass,code_dare_pass,code_led_pass,code_legacy_task_arithmetic_linear_patch_pass,code_mergealign_pass,code_safemerge_pass,code_fisher_pass,code_della_pass,code_ties_pass,medical_safemerge_pass,medical_ties_pass,medical_mergealign_pass,medical_della_pass,medical_legacy_task_arithmetic_linear_patch_pass,medical_dare_pass,medical_fisher_pass
+0.02,0.9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0.02,0.95,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0.02,0.99,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0.05,0.9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0.05,0.95,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0.05,0.99,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0.1,0.9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0.1,0.95,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0.1,0.99,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

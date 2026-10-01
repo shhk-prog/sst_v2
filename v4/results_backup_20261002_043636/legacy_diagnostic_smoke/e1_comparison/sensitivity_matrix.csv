@@ -1,0 +1,10 @@
+asr_threshold,vrr_threshold,domain_math_base_pass,domain_code_base_pass,unknown_pass,diagonal_sst_pass,data_free_sst_pass,task_arithmetic_pass,safemerge_pass,dare_pass,della_pass,ties_pass,linear_pass
+0.02,0.9,0,0,6,16,12,22,8,15,15,15,1
+0.02,0.95,0,0,6,16,12,22,8,15,15,15,1
+0.02,0.99,0,0,6,16,12,22,8,15,15,15,1
+0.05,0.9,0,0,6,17,13,23,8,15,15,16,1
+0.05,0.95,0,0,6,17,13,23,8,15,15,16,1
+0.05,0.99,0,0,6,17,13,23,8,15,15,16,1
+0.1,0.9,3,0,6,23,17,24,8,15,16,16,2
+0.1,0.95,3,0,6,23,17,24,8,15,16,16,2
+0.1,0.99,2,0,6,23,17,24,8,15,16,16,2

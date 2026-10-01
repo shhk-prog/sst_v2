@@ -1,0 +1,45 @@
+{
+  "model_path": "v4/results/math_pilot/merged_math_linear_a0.6",
+  "n_samples": 4,
+  "correct_count": 3,
+  "extraction_fail_count": 0,
+  "accuracy": 0.75,
+  "results": [
+    {
+      "id": 0,
+      "question": "Natalia sold clips to 48 of her friends in April, and then she sold half as many clips in May. How many clips did Natalia sell altogether in April and May?",
+      "response": "\nStep 1: Identify the given information.\nWe are given that Natalia sold clips to 48 of her friends in April, and then she sold half as many clips in May.\nStep 2: Determine the number of clips sold in May.\nSince she sold half as many clips in May as she did in April, we can calculate the number of clips sold in May by dividing the number of clips sold in April by 2:\nNumber of clips sold in May = 48 / 2 = 24\nStep 3: Calculate the total number of clips sold in April and May.\nNow that we know the number of clips sold in both months, we can calculate the total number of clips sold by adding the number of clips sold in April and May:\nTotal number of clips sold = 48 + 24 = 72\nStep 4: Write the final answer.\nThe final answer is 72.\nThe answer is: 72.\n</s>The answer is: 72.\n</s>”>The answer is: 72.\n</s>",
+      "predicted_answer": "72",
+      "gold_answer": "72",
+      "is_correct": true,
+      "extraction_failed": false
+    },
+    {
+      "id": 1,
+      "question": "Weng earns $12 an hour for babysitting. Yesterday, she just did 50 minutes of babysitting. How much did she earn?",
+      "response": "\nWeng earns $12 an hour for babysitting. Yesterday, she just did 50 minutes of babysitting. How much did she earn?\nStep 1: Identify the given information.\nWeng earns $12 an hour for babysitting.\nYesterday, she just did 50 minutes of babysitting.\nStep 2: Determine the rate of pay per minute.\nTo find the rate of pay per minute, divide the hourly rate by the number of hours.\n$12 / 60 minutes = $0.2 per minute\nStep 3: Calculate the amount earned for 50 minutes of babysitting.\nTo calculate the amount earned for 50 minutes of babysitting, multiply the rate of pay per minute by the number of minutes.\n$0.2 x 50 minutes = $10\nStep 4: Write the final answer.\nWeng earned $10 for 50 minutes of babysitting.\nThe answer is: 10.\n\n</s>\n\n</s>\n\n</s>\n\n</s",
+      "predicted_answer": "10",
+      "gold_answer": "10",
+      "is_correct": true,
+      "extraction_failed": false
+    },
+    {
+      "id": 2,
+      "question": "Betty is saving money for a new wallet which costs $100. Betty has only half of the money she needs. Her parents gave her $15. How much more money does Betty need?",
+      "response": "\nBetty needs $100 - $15 = $85.\nThe answer is: 85.\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n</s>\n",
+      "predicted_answer": "85",
+      "gold_answer": "35",
+      "is_correct": false,
+      "extraction_failed": false
+    },
+    {
+      "id": 3,
+      "question": "What is the positive solution to x^2 - 5x - 14 = 0?",
+      "response": "\n\\begin{align*}\nx^2 - 5x - 14 &= 0 \\\\\n(x - 7)(x + 2) &= 0\n\\end{align*}\nThe positive solution is $x = 7$.\n\nThe answer is: 7.\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</s>\n\n</",
+      "predicted_answer": "7",
+      "gold_answer": "7",
+      "is_correct": true,
+      "extraction_failed": false
+    }
+  ]
+}

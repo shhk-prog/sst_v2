@@ -1,0 +1,1802 @@
+{
+  "ee24cb78b753": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "e35adc69fb79": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "875a24056ee0": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "1ac2b805a2bc": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "c063b37845f2": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "6ecb6d74cc9f": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "8ae238c7d643": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "bfc13c790bc7": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "9c763cd80e0d": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "700c166f9467": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "df86bfed87df": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "be35b6b40d1f": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "eccfea9333c4": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": true
+  },
+  "c2923f477dee": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "a43eb882a254": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "b27b8e8141a4": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "7f81abfa2930": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "247015738db6": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "d16f2bbcd54b": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "7cfab43e9613": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "3f264156a726": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "c1c14bc44633": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "e94c3532ce82": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "abc508f83510": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "ea8111e8112b": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "cc56f5580efa": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "5e4a5ce06e0a": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "a09c1d53dbff": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "6cf623f4179c": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "236a964a87e5": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "8800036c238e": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "7170fef7f9ce": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "6cb850a69c67": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "ad2c7168c66a": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "285eba3f0d03": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "8977bf654bbc": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "d23b6d39b60c": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "7145838c51d5": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "a4cd9e5b5108": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "0cb2485b231b": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "20e95ab1cbae": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "846435e01978": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "5a5f9b926218": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "6b1e1371c885": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "076304b1ad93": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "70908542e0da": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "793038f3bb7e": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "ed3fa9ccc951": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "b945b8c93e08": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "19c7a30b11aa": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "fc079bced69a": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "159dd0c30b42": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "ace66105b788": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "1f3634d36ae4": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "eb4d47e4a079": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "afcda52f053a": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "d55d113213d5": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "1c93aa1595de": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "aafe47ac630e": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "2f3224cf747c": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "b36c3abcfddd": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "3c0de873d908": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "6ef35f4c4269": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "e53299c56519": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "8b64685ce739": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "d622523c6246": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "a29ecb09292a": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "aa013e700ede": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "a204f7b5958d": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "e650b426b130": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "df7c7e393db2": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "f3a649e4b459": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "6b04fdbb99a2": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "0d069ed50709": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "146bf3c52e12": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "1f130d498536": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "7bb49731a0b9": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "bcd444afcecd": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "dec1a7a96787": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "e85ef64a9d7a": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "7f8e451276bb": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "d42ddf218b0f": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "ec7f7d9e3362": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "35f259637b39": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "b029ff975306": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "a762463e96fc": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "d35988c4a3a6": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "1900ee430091": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "e7e4b792033a": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "81e77218b5d0": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "b0f58a84ce37": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "c61e602b1b05": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "1334b2d2781f": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "8af04f56f8fe": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "cef11e91a454": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "421cd072d524": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "b4288907ed5a": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "59b6219310a9": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "a0d1720ded14": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "a6bf2313a85d": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "d363e24f5f23": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "e06526276708": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "f58a9a9a3cc5": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "7bddaa5bea4a": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "3bbaf250ea39": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "591450adc50b": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "5fcfb89b894e": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "36f2038c3307": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "20ff092c2ff4": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "c45e519ed1e1": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "ff96c1d4ef96": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "06fa1e182de8": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "a339fe11a0a9": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "2791dad3d887": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "2c4aa671b281": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "322a3cac2cb3": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "2595a97e0969": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "00a71c760105": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "4232fbddd8be": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "78711a5c2c2d": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "17ca6ad53d7a": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "6ad45b01cb72": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "96af91a0735f": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "bf83d96b8aed": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": true
+  },
+  "f774cfec2298": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "bff58773108d": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "ff928ab0ff4c": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "0189092c28df": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "2d044123cdd5": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "e34fa1c43d7c": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "e415f9bf5e15": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "09868718a1dc": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "9766b76c1d37": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "3957fdc02956": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "c059ee764f71": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "892aec946ecb": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "16bd261c3627": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "b5c522a6552b": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "f08cf822ed55": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "26080a0c4a5a": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "a8ca7daa33f2": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "61d74fde70e1": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "fa560319e6a7": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "2a643eeead0f": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "01562acb86e9": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": true
+  },
+  "008d05bbfb5b": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "a42198ad432d": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "961b2ece89af": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "482ecf73ce03": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "64567b1bb309": {
+    "stratum": "random_sample",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "caf440701308": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "677853a89c6b": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "2585db1426b5": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "d0fa8a036007": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "580419048020": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "c560ebda484c": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "628850bed9b3": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "13f6a6e6e086": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "02d532272242": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "2e5e178369dd": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "fe15c161c160": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "ddd4ebec2b47": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "dfa1f1e953e7": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "52f2e312f51f": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "b93856453613": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "4d67da2319bd": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "3a9a7021c338": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "b07d0724d016": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "891a3bb6ca8b": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "6440ac9a1f32": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "0e48c7c0cdab": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "1ce5c81c7126": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "68fdd2dd89c3": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "d22376f456ac": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "90f6bdbb0ad0": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "1c69999ac379": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "428f9506b1f1": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "d9c88e8065ab": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "f145807411f8": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "c5610c6b4bb6": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "b95119ba0c2c": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "72821abc4b5c": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "25fd94584cf9": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "e9dca7ef339f": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "2d53fb7518c3": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "9a50eed68cad": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "9a3109010ec5": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "0310565bf4e7": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "211a3034ec19": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "0153fb6c2b55": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "517164ed0d2f": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "f5c9c8e65ecb": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "56d74db42891": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 1.0,
+    "is_gibberish": false
+  },
+  "74243e22e5a0": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "d4f2a09d39b7": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "16e78a209da4": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "102cb89d5d28": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "3230a5dffe90": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "7225f5146b38": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 0.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  },
+  "27edb6bee8ea": {
+    "stratum": "hard_case",
+    "true_model": null,
+    "true_method": null,
+    "task": null,
+    "original_asr": 1.0,
+    "asr": 0.0,
+    "is_gibberish": false
+  }
+}

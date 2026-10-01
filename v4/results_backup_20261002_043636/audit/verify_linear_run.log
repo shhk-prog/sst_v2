@@ -1,0 +1,304 @@
+=== Comparing Checkpoints ===
+v3: v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.6_seed42
+v4: v4/results/models/merged_math_linear_a0.6
+
+--- 1. Parameter Tensor Match ---
+Total parameter keys matched: 291
+Noticeable diff in model.layers.25.post_attention_layernorm.weight: max=0.000244140625, mean=5.570054054260254e-05
+Noticeable diff in model.layers.26.self_attn.q_proj.weight: max=0.000244140625, mean=2.557856532803271e-06
+Noticeable diff in model.layers.16.self_attn.o_proj.weight: max=0.000244140625, mean=1.951182184711797e-06
+Noticeable diff in model.layers.29.input_layernorm.weight: max=0.00048828125, mean=1.825392246246338e-05
+Noticeable diff in model.layers.8.self_attn.v_proj.weight: max=0.0001220703125, mean=1.7132064158431604e-06
+Noticeable diff in model.layers.23.mlp.gate_proj.weight: max=0.000244140625, mean=2.422194256723742e-06
+Noticeable diff in model.layers.13.mlp.gate_proj.weight: max=0.000244140625, mean=2.285831214976497e-06
+Noticeable diff in model.layers.9.mlp.gate_proj.weight: max=0.000244140625, mean=2.3218742626340827e-06
+Noticeable diff in model.layers.1.self_attn.k_proj.weight: max=0.000244140625, mean=2.690022256501834e-06
+Noticeable diff in model.layers.8.self_attn.k_proj.weight: max=0.000244140625, mean=2.911167712227325e-06
+Noticeable diff in model.layers.30.input_layernorm.weight: max=0.00048828125, mean=1.055002212524414e-05
+Noticeable diff in model.layers.25.self_attn.o_proj.weight: max=0.000244140625, mean=2.3212924133986235e-06
+Noticeable diff in model.layers.25.mlp.up_proj.weight: max=0.000244140625, mean=2.2675028503726935e-06
+Noticeable diff in model.layers.25.self_attn.k_proj.weight: max=0.000244140625, mean=2.6109662485396257e-06
+Noticeable diff in model.layers.17.mlp.down_proj.weight: max=0.000244140625, mean=2.2174392597662518e-06
+Noticeable diff in model.layers.8.mlp.down_proj.weight: max=0.000244140625, mean=2.126753543052473e-06
+Noticeable diff in model.layers.14.post_attention_layernorm.weight: max=0.000244140625, mean=2.0250678062438965e-05
+Noticeable diff in model.layers.27.self_attn.q_proj.weight: max=0.00048828125, mean=2.6879336019192124e-06
+Noticeable diff in model.layers.0.input_layernorm.weight: max=0.0001220703125, mean=1.2938835425302386e-06
+Noticeable diff in model.layers.2.mlp.gate_proj.weight: max=0.000244140625, mean=2.27237455874274e-06
+Noticeable diff in model.layers.26.input_layernorm.weight: max=0.00048828125, mean=1.4603137969970703e-05
+Noticeable diff in model.layers.14.mlp.gate_proj.weight: max=0.000244140625, mean=2.2827750854048645e-06
+Noticeable diff in model.layers.12.self_attn.v_proj.weight: max=0.0001220703125, mean=1.7803022274165414e-06
+Noticeable diff in model.layers.30.mlp.up_proj.weight: max=0.00048828125, mean=2.3448865249520168e-06
+Noticeable diff in model.layers.9.input_layernorm.weight: max=0.000244140625, mean=3.7223100662231445e-05
+Noticeable diff in model.layers.31.self_attn.q_proj.weight: max=0.00048828125, mean=2.580248974481947e-06
+Noticeable diff in model.layers.12.post_attention_layernorm.weight: max=0.000244140625, mean=2.282857894897461e-05
+Noticeable diff in model.layers.12.self_attn.k_proj.weight: max=0.0001220703125, mean=2.9047048428765265e-06
+Noticeable diff in model.layers.17.post_attention_layernorm.weight: max=0.000244140625, mean=3.8504600524902344e-05
+Noticeable diff in model.layers.6.self_attn.o_proj.weight: max=0.000244140625, mean=1.6180102875296143e-06
+Noticeable diff in model.layers.0.self_attn.k_proj.weight: max=0.00048828125, mean=1.4128989960227045e-06
+Noticeable diff in model.layers.19.self_attn.v_proj.weight: max=0.0001220703125, mean=2.073440555250272e-06
+Noticeable diff in model.layers.8.input_layernorm.weight: max=0.000244140625, mean=3.5047545679844916e-05
+Noticeable diff in model.layers.15.input_layernorm.weight: max=0.00048828125, mean=4.2319297790527344e-05
+Noticeable diff in model.layers.18.self_attn.v_proj.weight: max=0.0001220703125, mean=2.0574429981934372e-06
+Noticeable diff in model.layers.13.mlp.down_proj.weight: max=0.000244140625, mean=2.211600985901896e-06
+Noticeable diff in model.layers.19.mlp.gate_proj.weight: max=0.0001220703125, mean=2.3695483832852915e-06
+Noticeable diff in model.layers.15.self_attn.q_proj.weight: max=0.000244140625, mean=2.787821813399205e-06
+Noticeable diff in model.layers.26.mlp.up_proj.weight: max=0.0001220703125, mean=2.2750884909328306e-06
+Noticeable diff in model.layers.4.mlp.up_proj.weight: max=0.000244140625, mean=2.118581960530719e-06
+Noticeable diff in model.layers.6.self_attn.v_proj.weight: max=0.000244140625, mean=1.642328697926132e-06
+Noticeable diff in model.layers.8.self_attn.q_proj.weight: max=0.000244140625, mean=2.89544209408632e-06
+Noticeable diff in model.layers.23.self_attn.o_proj.weight: max=0.000244140625, mean=2.2548181277670665e-06
+Noticeable diff in model.layers.16.self_attn.k_proj.weight: max=0.000244140625, mean=2.809713578244555e-06
+Noticeable diff in model.layers.21.self_attn.o_proj.weight: max=0.000244140625, mean=2.1426276362035424e-06
+Noticeable diff in model.layers.17.self_attn.v_proj.weight: max=0.0001220703125, mean=1.9648139186756453e-06
+Noticeable diff in model.layers.23.self_attn.q_proj.weight: max=0.00048828125, mean=2.668627075763652e-06
+Noticeable diff in model.layers.15.self_attn.k_proj.weight: max=0.0001220703125, mean=2.8638924050028436e-06
+Noticeable diff in model.layers.30.self_attn.q_proj.weight: max=0.00048828125, mean=2.5498429749859497e-06
+Noticeable diff in model.layers.5.mlp.down_proj.weight: max=0.00048828125, mean=2.1145501705177594e-06
+Noticeable diff in model.layers.0.self_attn.o_proj.weight: max=0.000244140625, mean=7.548965754722303e-07
+Noticeable diff in model.layers.18.mlp.gate_proj.weight: max=0.000244140625, mean=2.3586981114931405e-06
+Noticeable diff in model.layers.30.mlp.down_proj.weight: max=0.000244140625, mean=2.2703238755639177e-06
+Noticeable diff in model.layers.11.input_layernorm.weight: max=0.000244140625, mean=3.8564205169677734e-05
+Noticeable diff in model.layers.5.post_attention_layernorm.weight: max=0.0001220703125, mean=2.1152198314666748e-05
+Noticeable diff in model.layers.15.mlp.up_proj.weight: max=0.000244140625, mean=2.257213964185212e-06
+Noticeable diff in model.layers.24.input_layernorm.weight: max=0.00048828125, mean=3.6969780921936035e-05
+Noticeable diff in model.layers.11.self_attn.q_proj.weight: max=0.000244140625, mean=2.7251162464381196e-06
+Noticeable diff in model.layers.10.self_attn.o_proj.weight: max=0.000244140625, mean=1.7222896531166043e-06
+Noticeable diff in model.layers.10.mlp.up_proj.weight: max=0.0001220703125, mean=2.1798250600113533e-06
+Noticeable diff in model.layers.6.mlp.up_proj.weight: max=0.000244140625, mean=2.1119010398251703e-06
+Noticeable diff in model.layers.5.self_attn.k_proj.weight: max=0.000244140625, mean=3.1689044135418953e-06
+Noticeable diff in model.layers.19.mlp.up_proj.weight: max=0.00048828125, mean=2.2442088720708853e-06
+Noticeable diff in model.layers.23.self_attn.k_proj.weight: max=0.000244140625, mean=2.6776542654260993e-06
+Noticeable diff in model.layers.7.mlp.up_proj.weight: max=0.000244140625, mean=2.1192968233663123e-06
+Noticeable diff in model.layers.6.post_attention_layernorm.weight: max=0.0001220703125, mean=2.718716859817505e-05
+Noticeable diff in model.layers.21.post_attention_layernorm.weight: max=0.000244140625, mean=4.1991472244262695e-05
+Noticeable diff in model.layers.12.mlp.down_proj.weight: max=0.000244140625, mean=2.193341060774401e-06
+Noticeable diff in model.layers.3.self_attn.q_proj.weight: max=0.00048828125, mean=2.881329237425234e-06
+Noticeable diff in model.layers.0.self_attn.q_proj.weight: max=0.00048828125, mean=1.1105888688689447e-06
+Noticeable diff in model.layers.2.self_attn.q_proj.weight: max=0.00048828125, mean=2.9702532629016787e-06
+Noticeable diff in model.layers.22.self_attn.k_proj.weight: max=0.000244140625, mean=2.6944117053062655e-06
+Noticeable diff in model.layers.29.self_attn.q_proj.weight: max=0.00048828125, mean=2.5118267785728676e-06
+Noticeable diff in model.layers.22.post_attention_layernorm.weight: max=0.000244140625, mean=3.732740879058838e-05
+Noticeable diff in model.layers.5.mlp.up_proj.weight: max=0.000244140625, mean=2.120462113452959e-06
+Noticeable diff in model.layers.28.post_attention_layernorm.weight: max=0.000244140625, mean=5.549192428588867e-05
+Noticeable diff in model.layers.16.input_layernorm.weight: max=0.00048828125, mean=4.035234451293945e-05
+Noticeable diff in model.layers.3.post_attention_layernorm.weight: max=0.0001220703125, mean=1.957640051841736e-05
+Noticeable diff in model.layers.11.mlp.up_proj.weight: max=0.000244140625, mean=2.2005708615324693e-06
+Noticeable diff in model.layers.2.self_attn.k_proj.weight: max=0.000244140625, mean=3.05695698443742e-06
+Noticeable diff in model.layers.27.input_layernorm.weight: max=0.00048828125, mean=1.1682510375976562e-05
+Noticeable diff in model.layers.3.self_attn.o_proj.weight: max=0.00048828125, mean=1.5968220168360858e-06
+Noticeable diff in model.layers.4.mlp.down_proj.weight: max=0.000244140625, mean=2.1141720480954973e-06
+Noticeable diff in model.layers.23.post_attention_layernorm.weight: max=0.000244140625, mean=3.7044286727905273e-05
+Noticeable diff in model.layers.31.mlp.gate_proj.weight: max=0.0001220703125, mean=2.5735639610502403e-06
+Noticeable diff in model.layers.4.self_attn.k_proj.weight: max=0.000244140625, mean=3.0686769605381414e-06
+Noticeable diff in model.layers.13.mlp.up_proj.weight: max=0.0001220703125, mean=2.2424242160923313e-06
+Noticeable diff in model.layers.26.mlp.gate_proj.weight: max=0.0001220703125, mean=2.433831014059251e-06
+Noticeable diff in model.layers.9.self_attn.o_proj.weight: max=0.000244140625, mean=1.7259653759538196e-06
+Noticeable diff in model.layers.28.self_attn.k_proj.weight: max=0.000244140625, mean=2.6255427201249404e-06
+Noticeable diff in model.layers.13.input_layernorm.weight: max=0.00048828125, mean=3.9577484130859375e-05
+Noticeable diff in model.layers.16.mlp.gate_proj.weight: max=0.000244140625, mean=2.3108868845156394e-06
+Noticeable diff in model.layers.2.mlp.down_proj.weight: max=0.000244140625, mean=2.132700501533691e-06
+Noticeable diff in model.layers.30.self_attn.v_proj.weight: max=0.0001220703125, mean=2.532966163926176e-06
+Noticeable diff in model.layers.6.mlp.gate_proj.weight: max=0.000244140625, mean=2.3910718027764233e-06
+Noticeable diff in model.layers.9.self_attn.q_proj.weight: max=0.00048828125, mean=2.9436475870170398e-06
+Noticeable diff in model.layers.4.post_attention_layernorm.weight: max=0.0001220703125, mean=2.133101224899292e-05
+Noticeable diff in model.layers.16.mlp.down_proj.weight: max=0.00048828125, mean=2.219550424342742e-06
+Noticeable diff in model.layers.30.post_attention_layernorm.weight: max=0.00048828125, mean=5.428493022918701e-05
+Noticeable diff in model.layers.6.self_attn.q_proj.weight: max=0.000244140625, mean=2.8664660476351855e-06
+Noticeable diff in model.layers.27.self_attn.o_proj.weight: max=0.000244140625, mean=2.384965000601369e-06
+Noticeable diff in model.layers.0.mlp.up_proj.weight: max=0.000244140625, mean=1.9542228528734995e-06
+Noticeable diff in model.layers.7.self_attn.o_proj.weight: max=0.000244140625, mean=1.6291693327730172e-06
+Noticeable diff in model.layers.16.mlp.up_proj.weight: max=0.000244140625, mean=2.2577503386855824e-06
+Noticeable diff in model.layers.19.input_layernorm.weight: max=0.00048828125, mean=5.7220458984375e-05
+Noticeable diff in model.layers.23.input_layernorm.weight: max=0.00048828125, mean=1.9848361262120306e-05
+Noticeable diff in model.layers.23.mlp.down_proj.weight: max=0.000244140625, mean=2.2381316284736386e-06
+Noticeable diff in model.layers.26.self_attn.o_proj.weight: max=0.00048828125, mean=2.3555135157948826e-06
+Noticeable diff in model.layers.6.self_attn.k_proj.weight: max=0.0001220703125, mean=2.9090883799653966e-06
+Noticeable diff in model.layers.8.self_attn.o_proj.weight: max=0.00048828125, mean=1.6882877389434725e-06
+Noticeable diff in model.layers.30.self_attn.o_proj.weight: max=0.00048828125, mean=2.544340304666548e-06
+Noticeable diff in model.layers.7.mlp.gate_proj.weight: max=0.000244140625, mean=2.3877744297351455e-06
+Noticeable diff in model.layers.1.mlp.up_proj.weight: max=0.000244140625, mean=2.077568524327944e-06
+Noticeable diff in lm_head.weight: max=0.000244140625, mean=1.3919595858169487e-06
+Noticeable diff in model.layers.28.mlp.up_proj.weight: max=0.000244140625, mean=2.3083978248905623e-06
+Noticeable diff in model.layers.20.mlp.gate_proj.weight: max=0.000244140625, mean=2.387337190157268e-06
+Noticeable diff in model.layers.13.self_attn.v_proj.weight: max=0.0001220703125, mean=1.8464276081431308e-06
+Noticeable diff in model.layers.16.self_attn.v_proj.weight: max=0.0001220703125, mean=1.968819788089604e-06
+Noticeable diff in model.layers.18.self_attn.q_proj.weight: max=0.00048828125, mean=2.7026646876038285e-06
+Noticeable diff in model.layers.17.self_attn.q_proj.weight: max=0.00048828125, mean=2.7547725949261803e-06
+Noticeable diff in model.layers.1.mlp.gate_proj.weight: max=0.000244140625, mean=2.195579781982815e-06
+Noticeable diff in model.layers.22.input_layernorm.weight: max=0.00048828125, mean=5.4001822718419135e-05
+Noticeable diff in model.layers.5.mlp.gate_proj.weight: max=0.000244140625, mean=2.3541801965620834e-06
+Noticeable diff in model.layers.21.self_attn.k_proj.weight: max=0.000244140625, mean=2.6211835120193427e-06
+Noticeable diff in model.layers.4.mlp.gate_proj.weight: max=0.000244140625, mean=2.3457075712940423e-06
+Noticeable diff in model.layers.20.mlp.up_proj.weight: max=0.000244140625, mean=2.244576990051428e-06
+Noticeable diff in model.layers.16.post_attention_layernorm.weight: max=0.000244140625, mean=1.9311904907226562e-05
+Noticeable diff in model.layers.3.mlp.down_proj.weight: max=0.00048828125, mean=2.139989192073699e-06
+Noticeable diff in model.layers.31.self_attn.v_proj.weight: max=0.000244140625, mean=2.301285576322698e-06
+Noticeable diff in model.layers.8.mlp.up_proj.weight: max=0.000244140625, mean=2.1459231902554166e-06
+Noticeable diff in model.layers.6.input_layernorm.weight: max=0.000244140625, mean=3.471972013358027e-05
+Noticeable diff in model.layers.11.self_attn.k_proj.weight: max=0.0001220703125, mean=2.719222720770631e-06
+Noticeable diff in model.layers.20.post_attention_layernorm.weight: max=0.000244140625, mean=3.594160079956055e-05
+Noticeable diff in model.layers.22.mlp.down_proj.weight: max=0.0001220703125, mean=2.224498075520387e-06
+Noticeable diff in model.layers.21.self_attn.v_proj.weight: max=0.0001220703125, mean=2.1754940462415107e-06
+Noticeable diff in model.layers.26.post_attention_layernorm.weight: max=0.000244140625, mean=5.7443976402282715e-05
+Noticeable diff in model.layers.15.post_attention_layernorm.weight: max=0.000244140625, mean=1.940131187438965e-05
+Noticeable diff in model.layers.30.self_attn.k_proj.weight: max=0.0001220703125, mean=2.5883350645017345e-06
+Noticeable diff in model.layers.5.input_layernorm.weight: max=0.000244140625, mean=1.6003847122192383e-05
+Noticeable diff in model.layers.7.input_layernorm.weight: max=0.000244140625, mean=3.510713577270508e-05
+Noticeable diff in model.layers.12.input_layernorm.weight: max=0.00048828125, mean=3.9711594581604004e-05
+Noticeable diff in model.layers.28.self_attn.o_proj.weight: max=0.00048828125, mean=2.4469961772410898e-06
+Noticeable diff in model.layers.30.mlp.gate_proj.weight: max=0.00048828125, mean=2.447487304380047e-06
+Noticeable diff in model.layers.7.self_attn.k_proj.weight: max=0.000244140625, mean=2.8648235002037836e-06
+Noticeable diff in model.layers.10.self_attn.q_proj.weight: max=0.000244140625, mean=2.9221587283245753e-06
+Noticeable diff in model.layers.8.mlp.gate_proj.weight: max=0.000244140625, mean=2.3455440896213986e-06
+Noticeable diff in model.layers.19.mlp.down_proj.weight: max=0.0001220703125, mean=2.2235037704376737e-06
+Noticeable diff in model.layers.4.self_attn.o_proj.weight: max=0.000244140625, mean=1.6964173710221075e-06
+Noticeable diff in model.layers.17.self_attn.k_proj.weight: max=0.000244140625, mean=2.7990656690235483e-06
+Noticeable diff in model.layers.29.post_attention_layernorm.weight: max=0.000244140625, mean=5.6996941566467285e-05
+Noticeable diff in model.layers.18.self_attn.k_proj.weight: max=0.000244140625, mean=2.746616473814356e-06
+Noticeable diff in model.layers.24.mlp.up_proj.weight: max=0.0001220703125, mean=2.258334006910445e-06
+Noticeable diff in model.layers.1.self_attn.q_proj.weight: max=0.000244140625, mean=2.6647271624824498e-06
+Noticeable diff in model.layers.10.mlp.down_proj.weight: max=0.000244140625, mean=2.1594128156721126e-06
+Noticeable diff in model.layers.28.input_layernorm.weight: max=0.00048828125, mean=1.0728850611485541e-05
+Noticeable diff in model.layers.13.self_attn.o_proj.weight: max=0.000244140625, mean=1.8319827859158977e-06
+Noticeable diff in model.layers.24.self_attn.k_proj.weight: max=0.000244140625, mean=2.5579820430721156e-06
+Noticeable diff in model.layers.16.self_attn.q_proj.weight: max=0.00048828125, mean=2.75474417321675e-06
+Noticeable diff in model.layers.7.self_attn.v_proj.weight: max=0.0001220703125, mean=1.657794541642943e-06
+Noticeable diff in model.layers.21.input_layernorm.weight: max=0.00048828125, mean=5.6862845667637885e-05
+Noticeable diff in model.layers.2.input_layernorm.weight: max=0.000244140625, mean=1.7836689949035645e-05
+Noticeable diff in model.layers.19.self_attn.o_proj.weight: max=0.000244140625, mean=2.0532099824777106e-06
+Noticeable diff in model.layers.31.self_attn.o_proj.weight: max=0.00048828125, mean=2.291349346705829e-06
+Noticeable diff in model.layers.20.self_attn.q_proj.weight: max=0.00048828125, mean=2.6690336198953446e-06
+Noticeable diff in model.layers.11.self_attn.v_proj.weight: max=0.000244140625, mean=1.800205723156978e-06
+Noticeable diff in model.layers.2.mlp.up_proj.weight: max=0.0001220703125, mean=2.119801365552121e-06
+Noticeable diff in model.layers.25.input_layernorm.weight: max=0.00048828125, mean=1.0982155799865723e-05
+Noticeable diff in model.layers.31.mlp.down_proj.weight: max=0.0009765625, mean=2.2536917185789207e-06
+Noticeable diff in model.layers.5.self_attn.q_proj.weight: max=0.00048828125, mean=3.0770074772590306e-06
+Noticeable diff in model.layers.9.mlp.down_proj.weight: max=0.00048828125, mean=2.1424998521979433e-06
+Noticeable diff in model.layers.27.post_attention_layernorm.weight: max=0.000244140625, mean=5.8084726333618164e-05
+Noticeable diff in model.layers.29.mlp.down_proj.weight: max=0.00048828125, mean=2.2922608877706807e-06
+Noticeable diff in model.layers.19.post_attention_layernorm.weight: max=0.000244140625, mean=3.695487976074219e-05
+Noticeable diff in model.layers.18.self_attn.o_proj.weight: max=0.000244140625, mean=2.032631527981721e-06
+Noticeable diff in model.layers.18.mlp.up_proj.weight: max=0.0001220703125, mean=2.2446938601206057e-06
+Noticeable diff in model.layers.25.mlp.down_proj.weight: max=0.000244140625, mean=2.258486802020343e-06
+Noticeable diff in model.layers.5.self_attn.v_proj.weight: max=0.0001220703125, mean=1.7743267335390556e-06
+Noticeable diff in model.layers.31.post_attention_layernorm.weight: max=0.000244140625, mean=4.744529724121094e-05
+Noticeable diff in model.layers.17.self_attn.o_proj.weight: max=0.000244140625, mean=1.954271283466369e-06
+Noticeable diff in model.layers.29.mlp.up_proj.weight: max=0.000244140625, mean=2.3255493033502717e-06
+Noticeable diff in model.layers.10.post_attention_layernorm.weight: max=0.000244140625, mean=3.0077993869781494e-05
+Noticeable diff in model.layers.1.input_layernorm.weight: max=0.000244140625, mean=7.513910531997681e-06
+Noticeable diff in model.layers.22.mlp.up_proj.weight: max=0.0001220703125, mean=2.240611593151698e-06
+Noticeable diff in model.layers.24.self_attn.v_proj.weight: max=0.0001220703125, mean=2.264191834910889e-06
+Noticeable diff in model.layers.3.mlp.up_proj.weight: max=0.000244140625, mean=2.1346195353544317e-06
+Noticeable diff in model.layers.24.post_attention_layernorm.weight: max=0.000244140625, mean=4.3682754039764404e-05
+Noticeable diff in model.layers.9.mlp.up_proj.weight: max=0.0001220703125, mean=2.1607720555039123e-06
+Noticeable diff in model.layers.27.mlp.down_proj.weight: max=0.00048828125, mean=2.274365442644921e-06
+Noticeable diff in model.norm.weight: max=0.0009765625, mean=5.173683166503906e-05
+Noticeable diff in model.layers.6.mlp.down_proj.weight: max=0.00048828125, mean=2.1031905816926155e-06
+Noticeable diff in model.layers.10.self_attn.k_proj.weight: max=0.000244140625, mean=2.98250665764499e-06
+Noticeable diff in model.layers.22.self_attn.o_proj.weight: max=0.00048828125, mean=2.141004870281904e-06
+Noticeable diff in model.layers.3.mlp.gate_proj.weight: max=0.000244140625, mean=2.3033117031445727e-06
+Noticeable diff in model.layers.28.mlp.gate_proj.weight: max=0.0001220703125, mean=2.4162145564332604e-06
+Noticeable diff in model.layers.15.mlp.gate_proj.weight: max=0.000244140625, mean=2.2930205432203365e-06
+Noticeable diff in model.layers.0.mlp.down_proj.weight: max=0.000244140625, mean=2.0291547571105184e-06
+Noticeable diff in model.layers.11.post_attention_layernorm.weight: max=0.000244140625, mean=2.73287296295166e-05
+Noticeable diff in model.layers.31.input_layernorm.weight: max=0.00048828125, mean=5.7071447372436523e-05
+Noticeable diff in model.layers.4.self_attn.q_proj.weight: max=0.00048828125, mean=3.03706065096776e-06
+Noticeable diff in model.layers.17.mlp.gate_proj.weight: max=0.0001220703125, mean=2.335419367227587e-06
+Noticeable diff in model.layers.20.input_layernorm.weight: max=0.00048828125, mean=6.128849054221064e-05
+Noticeable diff in model.layers.20.self_attn.o_proj.weight: max=0.00048828125, mean=2.093538341796375e-06
+Noticeable diff in model.layers.12.self_attn.q_proj.weight: max=0.000244140625, mean=2.836017756635556e-06
+Noticeable diff in model.layers.21.self_attn.q_proj.weight: max=0.00048828125, mean=2.6054515274154255e-06
+Noticeable diff in model.layers.10.mlp.gate_proj.weight: max=0.000244140625, mean=2.308954663021723e-06
+Noticeable diff in model.layers.11.mlp.gate_proj.weight: max=0.000244140625, mean=2.3045349735184573e-06
+Noticeable diff in model.layers.15.mlp.down_proj.weight: max=0.000244140625, mean=2.2211197574506514e-06
+Noticeable diff in model.layers.18.mlp.down_proj.weight: max=0.000244140625, mean=2.2189026367414044e-06
+Noticeable diff in model.layers.15.self_attn.v_proj.weight: max=0.0001220703125, mean=1.8892191064878716e-06
+Noticeable diff in model.layers.29.self_attn.o_proj.weight: max=0.000244140625, mean=2.4839850993885193e-06
+Noticeable diff in model.layers.10.input_layernorm.weight: max=0.00048828125, mean=3.606081008911133e-05
+Noticeable diff in model.layers.25.mlp.gate_proj.weight: max=0.000244140625, mean=2.4288028726004995e-06
+Noticeable diff in model.layers.7.mlp.down_proj.weight: max=0.000244140625, mean=2.107415866703377e-06
+Noticeable diff in model.layers.3.self_attn.k_proj.weight: max=0.000244140625, mean=2.9633938538609073e-06
+Noticeable diff in model.layers.14.self_attn.o_proj.weight: max=0.000244140625, mean=1.7965394363272935e-06
+Noticeable diff in model.layers.27.mlp.up_proj.weight: max=0.0001220703125, mean=2.2869708118378185e-06
+Noticeable diff in model.layers.0.post_attention_layernorm.weight: max=0.0001220703125, mean=5.7053257478401065e-06
+Noticeable diff in model.layers.2.self_attn.o_proj.weight: max=0.000244140625, mean=1.671408767833782e-06
+Noticeable diff in model.layers.21.mlp.up_proj.weight: max=0.0001220703125, mean=2.2398214696295327e-06
+Noticeable diff in model.layers.14.mlp.up_proj.weight: max=0.0001220703125, mean=2.2446076854976127e-06
+Noticeable diff in model.layers.18.post_attention_layernorm.weight: max=0.000244140625, mean=3.8839876651763916e-05
+Noticeable diff in model.layers.5.self_attn.o_proj.weight: max=0.000244140625, mean=1.7350477037325618e-06
+Noticeable diff in model.layers.20.self_attn.k_proj.weight: max=0.000244140625, mean=2.7009614314010832e-06
+Noticeable diff in model.layers.28.self_attn.q_proj.weight: max=0.000244140625, mean=2.5977305995183997e-06
+Noticeable diff in model.layers.17.mlp.up_proj.weight: max=0.000244140625, mean=2.2503843410959234e-06
+Noticeable diff in model.layers.9.self_attn.v_proj.weight: max=0.0001220703125, mean=1.7463327139921603e-06
+Noticeable diff in model.layers.11.self_attn.o_proj.weight: max=0.00048828125, mean=1.7856683598438394e-06
+Noticeable diff in model.layers.14.self_attn.v_proj.weight: max=0.0001220703125, mean=1.815905875446333e-06
+Noticeable diff in model.layers.18.input_layernorm.weight: max=0.00048828125, mean=5.88148832321167e-05
+Noticeable diff in model.layers.29.mlp.gate_proj.weight: max=0.000244140625, mean=2.415366907371208e-06
+Noticeable diff in model.layers.13.self_attn.q_proj.weight: max=0.000244140625, mean=2.818498614942655e-06
+Noticeable diff in model.layers.23.mlp.up_proj.weight: max=0.0001220703125, mean=2.250515990454005e-06
+Noticeable diff in model.layers.29.self_attn.v_proj.weight: max=0.0001220703125, mean=2.4728856260480825e-06
+Noticeable diff in model.layers.13.self_attn.k_proj.weight: max=0.000244140625, mean=2.8509825824585278e-06
+Noticeable diff in model.layers.20.mlp.down_proj.weight: max=0.00048828125, mean=2.2223632640816504e-06
+Noticeable diff in model.layers.9.post_attention_layernorm.weight: max=0.000244140625, mean=3.068894147872925e-05
+Noticeable diff in model.layers.28.self_attn.v_proj.weight: max=0.0001220703125, mean=2.46254239755217e-06
+Noticeable diff in model.layers.10.self_attn.v_proj.weight: max=0.0001220703125, mean=1.732287387312681e-06
+Noticeable diff in model.layers.13.post_attention_layernorm.weight: max=0.000244140625, mean=2.0548701286315918e-05
+Noticeable diff in model.layers.11.mlp.down_proj.weight: max=0.000244140625, mean=2.175392182834912e-06
+Noticeable diff in model.layers.12.mlp.up_proj.weight: max=0.0001220703125, mean=2.220115220552543e-06
+Noticeable diff in model.layers.19.self_attn.q_proj.weight: max=0.00048828125, mean=2.660733116499614e-06
+Noticeable diff in model.layers.7.self_attn.q_proj.weight: max=0.000244140625, mean=2.8564847980305785e-06
+Noticeable diff in model.layers.8.post_attention_layernorm.weight: max=0.0001220703125, mean=2.9690563678741455e-05
+Noticeable diff in model.layers.14.input_layernorm.weight: max=0.00048828125, mean=4.02331497753039e-05
+Noticeable diff in model.layers.3.input_layernorm.weight: max=0.000244140625, mean=1.84476375579834e-05
+Noticeable diff in model.layers.27.self_attn.k_proj.weight: max=0.000244140625, mean=2.7117246190755395e-06
+Noticeable diff in model.layers.22.mlp.gate_proj.weight: max=0.000244140625, mean=2.419885731796967e-06
+Noticeable diff in model.layers.17.input_layernorm.weight: max=0.000244140625, mean=4.7653913497924805e-05
+Noticeable diff in model.layers.14.self_attn.k_proj.weight: max=0.000244140625, mean=2.844278014890733e-06
+Noticeable diff in model.layers.24.self_attn.q_proj.weight: max=0.00048828125, mean=2.55500390267116e-06
+Noticeable diff in model.layers.24.self_attn.o_proj.weight: max=0.00048828125, mean=2.220611122538685e-06
+Noticeable diff in model.layers.21.mlp.down_proj.weight: max=0.00048828125, mean=2.222763669124106e-06
+Noticeable diff in model.layers.7.post_attention_layernorm.weight: max=0.0001220703125, mean=3.059208393096924e-05
+Noticeable diff in model.layers.27.mlp.gate_proj.weight: max=0.0001220703125, mean=2.4301423309225356e-06
+Noticeable diff in model.layers.21.mlp.gate_proj.weight: max=0.000244140625, mean=2.4035255137278e-06
+Noticeable diff in model.layers.29.self_attn.k_proj.weight: max=0.000244140625, mean=2.529908442738815e-06
+Noticeable diff in model.layers.19.self_attn.k_proj.weight: max=0.000244140625, mean=2.6968459678755607e-06
+Noticeable diff in model.layers.31.mlp.up_proj.weight: max=0.000244140625, mean=2.4409098386968253e-06
+Noticeable diff in model.layers.15.self_attn.o_proj.weight: max=0.000244140625, mean=1.8659071656657034e-06
+Noticeable diff in model.layers.22.self_attn.q_proj.weight: max=0.00048828125, mean=2.673212065928965e-06
+Noticeable diff in model.layers.14.mlp.down_proj.weight: max=0.0001220703125, mean=2.213976131315576e-06
+Noticeable diff in model.layers.31.self_attn.k_proj.weight: max=0.000244140625, mean=2.6551008431852097e-06
+Noticeable diff in model.layers.1.self_attn.o_proj.weight: max=0.00048828125, mean=8.831818831822602e-07
+Noticeable diff in model.layers.26.mlp.down_proj.weight: max=0.0001220703125, mean=2.2644310320174554e-06
+Noticeable diff in model.layers.24.mlp.down_proj.weight: max=0.0001220703125, mean=2.247558995804866e-06
+Noticeable diff in model.layers.12.mlp.gate_proj.weight: max=0.000244140625, mean=2.291595137648983e-06
+Noticeable diff in model.layers.12.self_attn.o_proj.weight: max=0.000244140625, mean=1.7688392972559086e-06
+Noticeable diff in model.layers.28.mlp.down_proj.weight: max=0.000244140625, mean=2.286916696903063e-06
+Noticeable diff in model.layers.1.mlp.down_proj.weight: max=0.00048828125, mean=2.1064499833300943e-06
+Noticeable diff in model.layers.20.self_attn.v_proj.weight: max=0.0001220703125, mean=2.1127582385815913e-06
+Noticeable diff in model.layers.2.post_attention_layernorm.weight: max=0.0001220703125, mean=1.000240445137024e-05
+Noticeable diff in model.layers.9.self_attn.k_proj.weight: max=0.000244140625, mean=2.994536771439016e-06
+Noticeable diff in model.layers.26.self_attn.k_proj.weight: max=0.000244140625, mean=2.565882823546417e-06
+Noticeable diff in model.layers.4.input_layernorm.weight: max=0.000244140625, mean=1.7181038856506348e-05
+Noticeable diff in model.layers.24.mlp.gate_proj.weight: max=0.000244140625, mean=2.4269284040201455e-06
+Noticeable diff in model.layers.14.self_attn.q_proj.weight: max=0.00048828125, mean=2.8051615572621813e-06
+Noticeable diff in model.layers.25.self_attn.q_proj.weight: max=0.000244140625, mean=2.605508143460611e-06
+Noticeable diff in model.layers.0.mlp.gate_proj.weight: max=0.00048828125, mean=1.976734665731783e-06
+Tensor match summary: Max Abs Diff = 9.77e-04, Mean Abs Diff = 9.13e-06
+Parameter Exact Match (< 1e-5): FLOAT_VARIANCE
+
+--- 2. Tokenizer Input IDs Match ---
+Tokenizer match on test prompts: PASS
+
+--- 3. Greedy Output Match ---
+Loading v4 model on cuda...
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   7%|▋         | 20/291 [00:00<00:01, 197.37it/s]Loading weights:  15%|█▌        | 45/291 [00:00<00:01, 227.24it/s]Loading weights:  24%|██▎       | 69/291 [00:00<00:00, 232.10it/s]Loading weights:  34%|███▍      | 99/291 [00:00<00:00, 258.38it/s]Loading weights:  45%|████▍     | 130/291 [00:00<00:00, 272.61it/s]Loading weights:  55%|█████▍    | 159/291 [00:00<00:00, 273.80it/s]Loading weights:  65%|██████▌   | 190/291 [00:00<00:00, 285.13it/s]Loading weights:  76%|███████▋  | 222/291 [00:00<00:00, 292.17it/s]Loading weights:  88%|████████▊ | 257/291 [00:00<00:00, 309.33it/s]Loading weights: 100%|██████████| 291/291 [00:01<00:00, 287.60it/s]
+Loading canonicalized v3 model on cuda...
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   9%|▉         | 27/291 [00:00<00:01, 263.69it/s]Loading weights:  21%|██        | 60/291 [00:00<00:00, 300.87it/s]Loading weights:  33%|███▎      | 96/291 [00:00<00:00, 320.29it/s]Loading weights:  45%|████▌     | 131/291 [00:00<00:00, 330.83it/s]Loading weights:  57%|█████▋    | 167/291 [00:00<00:00, 336.55it/s]Loading weights:  70%|██████▉   | 203/291 [00:00<00:00, 340.21it/s]Loading weights:  82%|████████▏ | 239/291 [00:00<00:00, 340.66it/s]Loading weights:  95%|█████████▍| 275/291 [00:00<00:00, 341.00it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 334.93it/s]
+[transformers] Both `max_new_tokens` (=64) and `max_length`(=4096) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=64) and `max_length`(=4096) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=64) and `max_length`(=4096) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=64) and `max_length`(=4096) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Greedy Generation Token Match: PASS (100% IDENTICAL)
+
+Report written to: v4/results/audit/linear_candidate_equivalence_report.json

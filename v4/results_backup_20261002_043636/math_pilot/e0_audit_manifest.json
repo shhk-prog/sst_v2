@@ -1,0 +1,20 @@
+{
+  "base_model": "meta-llama/Llama-2-7b-hf",
+  "math_model": "v4/models/canonical/wizardmath_7b",
+  "safety_model": "v4/models/canonical/safety_full_seed42",
+  "checks": {
+    "math_manifest_valid": true,
+    "safety_manifest_valid": true,
+    "config_checks": {
+      "base_vocab": true,
+      "math_vocab": true,
+      "safety_vocab": true,
+      "math_rope_theta": true,
+      "math_bounded_eval_len": true
+    }
+  },
+  "verdict": "PASS",
+  "base_tokenizer_hash": "f88fa5c5f23d10390aa651f9ac9b119fb0cbfbf4c49f098af0b3a4b3f350e9fa",
+  "math_compatible": true,
+  "summary": "Math domain canonicalization successfully verified. Model is 100% compatible for weight-space merge under canonical parameterization."
+}

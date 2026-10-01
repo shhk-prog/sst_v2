@@ -1,0 +1,7 @@
+{
+  "source": "reaggregated_v3_empirical_data",
+  "n_evaluated_models": 897,
+  "best_baseline_selected": "sst_merge_v3_main_safemerge_safety+math_seed43",
+  "selection_summary_path": "v4/results/e1_comparison/selection_summary.json",
+  "sensitivity_matrix_path": "v4/results/e1_comparison/sensitivity_matrix.csv"
+}

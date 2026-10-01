@@ -1,0 +1,33 @@
+{
+  "status": "dry_run_synthetic_verification",
+  "strongest_baseline": {
+    "utility": 0.59,
+    "asr_all": 0.032,
+    "vrr": 0.97
+  },
+  "uniform_norm_matched": {
+    "utility": 0.56,
+    "asr_all": 0.038,
+    "vrr": 0.96
+  },
+  "proposed_full": {
+    "utility": 0.63,
+    "asr_all": 0.028,
+    "vrr": 0.98
+  },
+  "ablation_no_degradation_awareness": {
+    "utility": 0.57,
+    "asr_all": 0.026,
+    "vrr": 0.92
+  },
+  "ablation_no_location_selection": {
+    "utility": 0.58,
+    "asr_all": 0.035,
+    "vrr": 0.95
+  },
+  "ablation_no_norm_cap": {
+    "utility": 0.59,
+    "asr_all": 0.03,
+    "vrr": 0.94
+  }
+}

@@ -1,0 +1,8 @@
+Total responses collected from representative methods: 20256
+Human audit dataset generated: 200 items (150 random, 50 hard)
+  Blinded sheet: v4/results/eval/human_audit/blinded_human_audit_sheet.json
+  Gold mapping:  v4/results/eval/human_audit/gold_mapping_key.json
+
+[Done] Human audit sample sets created:
+  - blinded_sheet: v4/results/eval/human_audit/blinded_human_audit_sheet.json
+  - key_file: v4/results/eval/human_audit/gold_mapping_key.json

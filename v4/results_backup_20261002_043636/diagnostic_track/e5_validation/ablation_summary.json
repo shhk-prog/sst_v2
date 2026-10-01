@@ -1,0 +1,5 @@
+{
+  "status": "NOT_RUN",
+  "reason": "Test evaluation pending empirical E4 model generation on unseen benchmark splits.",
+  "notice": "Synthetic or fabricated scores (e.g. utility=0.63, ASR=0.028) are strictly prohibited."
+}

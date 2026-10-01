@@ -1,0 +1,441 @@
+{
+  "schema_version": "v4_model_audit_schema_v2",
+  "audit_version": "v4_rigorous_gate",
+  "benchmark_scope": "math_and_code_domestic_tier",
+  "models": {
+    "base": {
+      "role": "base",
+      "name_or_path": "meta-llama/Llama-2-7b-hf",
+      "source_type": "hub",
+      "status": "LOADED",
+      "errors": [],
+      "config": {
+        "model_type": "llama",
+        "architectures": [
+          "LlamaForCausalLM"
+        ],
+        "vocab_size": 32000,
+        "hidden_size": 4096,
+        "num_hidden_layers": 32,
+        "num_attention_heads": 32,
+        "intermediate_size": 11008,
+        "rope_theta": 10000.0,
+        "rope_scaling": {
+          "rope_theta": 10000.0,
+          "rope_type": "default"
+        },
+        "max_position_embeddings": 4096
+      },
+      "tokenizer": {
+        "vocab_size": 32000,
+        "bos_token": "<s>",
+        "bos_token_id": 1,
+        "eos_token": "</s>",
+        "eos_token_id": 2,
+        "pad_token": "None",
+        "pad_token_id": null,
+        "unk_token": "<unk>",
+        "unk_token_id": 0,
+        "chat_template_present": false
+      },
+      "weight_status": "REMOTE_OR_CACHED"
+    },
+    "math": {
+      "role": "math_domain",
+      "name_or_path": "WizardLMTeam/WizardMath-7B-V1.0",
+      "source_type": "hub",
+      "status": "LOADED",
+      "errors": [],
+      "config": {
+        "model_type": "llama",
+        "architectures": [
+          "LlamaForCausalLM"
+        ],
+        "vocab_size": 32001,
+        "hidden_size": 4096,
+        "num_hidden_layers": 32,
+        "num_attention_heads": 32,
+        "intermediate_size": 11008,
+        "rope_theta": 10000.0,
+        "rope_scaling": {
+          "rope_theta": 10000.0,
+          "rope_type": "default"
+        },
+        "max_position_embeddings": 2048
+      },
+      "tokenizer": {
+        "vocab_size": 32001,
+        "bos_token": "<s>",
+        "bos_token_id": 1,
+        "eos_token": "</s>",
+        "eos_token_id": 2,
+        "pad_token": "[PAD]",
+        "pad_token_id": 32000,
+        "unk_token": "<unk>",
+        "unk_token_id": 0,
+        "chat_template_present": false
+      },
+      "weight_status": "REMOTE_OR_CACHED"
+    },
+    "code": {
+      "role": "code_domain",
+      "name_or_path": "vanillaOVO/WizardCoder-Python-7B-V1.0",
+      "source_type": "hub",
+      "status": "LOADED",
+      "errors": [],
+      "config": {
+        "model_type": "llama",
+        "architectures": [
+          "LlamaForCausalLM"
+        ],
+        "vocab_size": 32001,
+        "hidden_size": 4096,
+        "num_hidden_layers": 32,
+        "num_attention_heads": 32,
+        "intermediate_size": 11008,
+        "rope_theta": 10000.0,
+        "rope_scaling": {
+          "rope_theta": 1000000,
+          "rope_type": "default"
+        },
+        "max_position_embeddings": 16384
+      },
+      "tokenizer": {
+        "vocab_size": 32001,
+        "bos_token": "</s>",
+        "bos_token_id": 2,
+        "eos_token": "</s>",
+        "eos_token_id": 2,
+        "pad_token": "[PAD]",
+        "pad_token_id": 32000,
+        "unk_token": "</s>",
+        "unk_token_id": 2,
+        "chat_template_present": false
+      },
+      "weight_status": "REMOTE_OR_CACHED"
+    }
+  },
+  "safetyft_checkpoints": {
+    "seed42": {
+      "lora_adapter": {
+        "role": "safety_lora_seed42",
+        "name_or_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/safety_lora_seed42",
+        "source_type": "local",
+        "status": "UNVERIFIED",
+        "errors": [
+          "Config load failed: ValueError: Unrecognized model in /mnt/nas/home/hiromi/src/sst_v2/v3/models/safety_lora_seed42. Should have a `model_type` key in its config.json."
+        ],
+        "tokenizer": {
+          "vocab_size": 32000,
+          "bos_token": "<s>",
+          "bos_token_id": 1,
+          "eos_token": "</s>",
+          "eos_token_id": 2,
+          "pad_token": "</s>",
+          "pad_token_id": 2,
+          "unk_token": "<unk>",
+          "unk_token_id": 0,
+          "chat_template_present": false
+        },
+        "weight_files": [
+          {
+            "name": "adapter_model.safetensors",
+            "size_bytes": 159967880
+          }
+        ],
+        "adapter_config": {
+          "base_model_name_or_path": "meta-llama/Llama-2-7b-hf",
+          "peft_type": "LORA",
+          "r": 16,
+          "lora_alpha": 32,
+          "target_modules": [
+            "q_proj",
+            "gate_proj",
+            "up_proj",
+            "k_proj",
+            "down_proj",
+            "v_proj",
+            "o_proj"
+          ],
+          "is_dense_restoration_required": true
+        },
+        "weight_status": "UNVERIFIED"
+      },
+      "dense_full": {
+        "role": "safety_full_seed42",
+        "name_or_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/temp_safety_full_seed42",
+        "source_type": "local",
+        "status": "LOADED",
+        "errors": [],
+        "config": {
+          "model_type": "llama",
+          "architectures": [
+            "LlamaForCausalLM"
+          ],
+          "vocab_size": 32001,
+          "hidden_size": 4096,
+          "num_hidden_layers": 32,
+          "num_attention_heads": 32,
+          "intermediate_size": 11008,
+          "rope_theta": 10000.0,
+          "rope_scaling": {
+            "rope_theta": 10000.0,
+            "rope_type": "default"
+          },
+          "max_position_embeddings": 4096
+        },
+        "tokenizer": {
+          "vocab_size": 32001,
+          "bos_token": "<s>",
+          "bos_token_id": 1,
+          "eos_token": "</s>",
+          "eos_token_id": 2,
+          "pad_token": "[PAD]",
+          "pad_token_id": 32000,
+          "unk_token": "<unk>",
+          "unk_token_id": 0,
+          "chat_template_present": false
+        },
+        "weight_files": [
+          {
+            "name": "model.safetensors",
+            "size_bytes": 13476881328
+          }
+        ],
+        "weight_status": "WEIGHTS_PRESENT"
+      },
+      "dense_restoration_status": "DENSE_RESTORED_VERIFIED"
+    },
+    "seed43": {
+      "lora_adapter": {
+        "role": "safety_lora_seed43",
+        "name_or_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/safety_lora_seed43",
+        "source_type": "local",
+        "status": "UNVERIFIED",
+        "errors": [
+          "Config load failed: ValueError: Unrecognized model in /mnt/nas/home/hiromi/src/sst_v2/v3/models/safety_lora_seed43. Should have a `model_type` key in its config.json."
+        ],
+        "tokenizer": {
+          "vocab_size": 32000,
+          "bos_token": "<s>",
+          "bos_token_id": 1,
+          "eos_token": "</s>",
+          "eos_token_id": 2,
+          "pad_token": "</s>",
+          "pad_token_id": 2,
+          "unk_token": "<unk>",
+          "unk_token_id": 0,
+          "chat_template_present": false
+        },
+        "weight_files": [
+          {
+            "name": "adapter_model.safetensors",
+            "size_bytes": 159967880
+          }
+        ],
+        "adapter_config": {
+          "base_model_name_or_path": "meta-llama/Llama-2-7b-hf",
+          "peft_type": "LORA",
+          "r": 16,
+          "lora_alpha": 32,
+          "target_modules": [
+            "k_proj",
+            "down_proj",
+            "up_proj",
+            "q_proj",
+            "v_proj",
+            "gate_proj",
+            "o_proj"
+          ],
+          "is_dense_restoration_required": true
+        },
+        "weight_status": "UNVERIFIED"
+      },
+      "dense_full": {
+        "role": "safety_full_seed43",
+        "name_or_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/temp_safety_full_seed43",
+        "source_type": "local",
+        "status": "LOADED",
+        "errors": [],
+        "config": {
+          "model_type": "llama",
+          "architectures": [
+            "LlamaForCausalLM"
+          ],
+          "vocab_size": 32001,
+          "hidden_size": 4096,
+          "num_hidden_layers": 32,
+          "num_attention_heads": 32,
+          "intermediate_size": 11008,
+          "rope_theta": 10000.0,
+          "rope_scaling": {
+            "rope_theta": 10000.0,
+            "rope_type": "default"
+          },
+          "max_position_embeddings": 4096
+        },
+        "tokenizer": {
+          "vocab_size": 32001,
+          "bos_token": "<s>",
+          "bos_token_id": 1,
+          "eos_token": "</s>",
+          "eos_token_id": 2,
+          "pad_token": "[PAD]",
+          "pad_token_id": 32000,
+          "unk_token": "<unk>",
+          "unk_token_id": 0,
+          "chat_template_present": false
+        },
+        "weight_files": [
+          {
+            "name": "model.safetensors",
+            "size_bytes": 13476881328
+          }
+        ],
+        "weight_status": "WEIGHTS_PRESENT"
+      },
+      "dense_restoration_status": "DENSE_RESTORED_VERIFIED"
+    },
+    "seed44": {
+      "lora_adapter": {
+        "role": "safety_lora_seed44",
+        "name_or_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/safety_lora_seed44",
+        "source_type": "local",
+        "status": "UNVERIFIED",
+        "errors": [
+          "Config load failed: ValueError: Unrecognized model in /mnt/nas/home/hiromi/src/sst_v2/v3/models/safety_lora_seed44. Should have a `model_type` key in its config.json."
+        ],
+        "tokenizer": {
+          "vocab_size": 32000,
+          "bos_token": "<s>",
+          "bos_token_id": 1,
+          "eos_token": "</s>",
+          "eos_token_id": 2,
+          "pad_token": "</s>",
+          "pad_token_id": 2,
+          "unk_token": "<unk>",
+          "unk_token_id": 0,
+          "chat_template_present": false
+        },
+        "weight_files": [
+          {
+            "name": "adapter_model.safetensors",
+            "size_bytes": 159967880
+          }
+        ],
+        "adapter_config": {
+          "base_model_name_or_path": "meta-llama/Llama-2-7b-hf",
+          "peft_type": "LORA",
+          "r": 16,
+          "lora_alpha": 32,
+          "target_modules": [
+            "down_proj",
+            "up_proj",
+            "v_proj",
+            "q_proj",
+            "gate_proj",
+            "k_proj",
+            "o_proj"
+          ],
+          "is_dense_restoration_required": true
+        },
+        "weight_status": "UNVERIFIED"
+      },
+      "dense_full": {
+        "role": "safety_full_seed44",
+        "name_or_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/temp_safety_full_seed44",
+        "source_type": "local",
+        "status": "LOADED",
+        "errors": [],
+        "config": {
+          "model_type": "llama",
+          "architectures": [
+            "LlamaForCausalLM"
+          ],
+          "vocab_size": 32001,
+          "hidden_size": 4096,
+          "num_hidden_layers": 32,
+          "num_attention_heads": 32,
+          "intermediate_size": 11008,
+          "rope_theta": 10000.0,
+          "rope_scaling": {
+            "rope_theta": 10000.0,
+            "rope_type": "default"
+          },
+          "max_position_embeddings": 4096
+        },
+        "tokenizer": {
+          "vocab_size": 32001,
+          "bos_token": "<s>",
+          "bos_token_id": 1,
+          "eos_token": "</s>",
+          "eos_token_id": 2,
+          "pad_token": "[PAD]",
+          "pad_token_id": 32000,
+          "unk_token": "<unk>",
+          "unk_token_id": 0,
+          "chat_template_present": false
+        },
+        "weight_files": [
+          {
+            "name": "model.safetensors",
+            "size_bytes": 13476881328
+          }
+        ],
+        "weight_status": "WEIGHTS_PRESENT"
+      },
+      "dense_restoration_status": "DENSE_RESTORED_VERIFIED"
+    }
+  },
+  "domain_verdicts": {
+    "math": {
+      "domain": "math",
+      "verdict": "FAIL",
+      "is_compatible": false,
+      "reason": "Discrepancies detected",
+      "discrepancies": {
+        "config.max_position_embeddings": {
+          "base": 4096,
+          "domain": 2048
+        },
+        "tokenizer.vocab_size": {
+          "base": 32000,
+          "domain": 32001,
+          "note": "Vocab expanded (e.g. [PAD] token added to index 32000)"
+        }
+      },
+      "n_discrepancies": 2
+    },
+    "code": {
+      "domain": "code",
+      "verdict": "FAIL",
+      "is_compatible": false,
+      "reason": "Discrepancies detected",
+      "discrepancies": {
+        "config.max_position_embeddings": {
+          "base": 4096,
+          "domain": 16384
+        },
+        "config.rope_scaling.rope_theta": {
+          "base": 10000.0,
+          "domain_scaling": 1000000
+        },
+        "tokenizer.vocab_size": {
+          "base": 32000,
+          "domain": 32001,
+          "note": "Vocab expanded (e.g. [PAD] token added to index 32000)"
+        },
+        "tokenizer.bos_token_id": {
+          "base": 1,
+          "domain": 2
+        }
+      },
+      "n_discrepancies": 4
+    }
+  },
+  "math_compatible": false,
+  "code_compatible": false,
+  "overall_verdict": "FAIL",
+  "primary_experiment_verdict": "NO_GO",
+  "primary_gate_reason": "Primary gate NO_GO: Math domain failed compatibility: config.max_position_embeddings, tokenizer.vocab_size; Code domain failed compatibility: config.max_position_embeddings, config.rope_scaling.rope_theta, tokenizer.vocab_size, tokenizer.bos_token_id"
+}

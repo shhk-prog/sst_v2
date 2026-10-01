@@ -1,0 +1,80 @@
+[
+  {
+    "alpha": 0.0,
+    "asr_all_mean": 55.650522317188994,
+    "asr_all_std": 7.105427357601002e-15,
+    "asr_valid_mean": 52.78058645096056,
+    "asr_valid_std": 0.0,
+    "vrr_mean": 93.92212725546058,
+    "vrr_std": 0.0,
+    "vsr_mean": 44.34947768281102,
+    "vsr_std": 0.0,
+    "gsm8k_mean": 7.8125,
+    "gsm8k_std": 0.0
+  },
+  {
+    "alpha": 0.2,
+    "asr_all_mean": 49.920861031972144,
+    "asr_all_std": 0.9970253718280206,
+    "asr_valid_mean": 47.50299998567558,
+    "asr_valid_std": 0.9491502637021563,
+    "vrr_mean": 95.0300728078506,
+    "vrr_std": 0.6774591503334162,
+    "vsr_mean": 49.889205444761,
+    "vsr_std": 1.0325740063501148,
+    "gsm8k_mean": 6.770833333333333,
+    "gsm8k_std": 0.14731391274719782
+  },
+  {
+    "alpha": 0.4,
+    "asr_all_mean": 23.899968344412788,
+    "asr_all_std": 0.44767760758882486,
+    "asr_valid_mean": 22.733631401605937,
+    "asr_valid_std": 0.27276018634890564,
+    "vrr_mean": 98.44887622665401,
+    "vrr_std": 0.34964738895812647,
+    "vsr_mean": 76.06837606837607,
+    "vsr_std": 0.4716576266461324,
+    "gsm8k_mean": 7.395833333333333,
+    "gsm8k_std": 0.6421264586426018
+  },
+  {
+    "alpha": 0.6,
+    "asr_all_mean": 2.437480215257993,
+    "asr_all_std": 1.861499262803312,
+    "asr_valid_mean": 2.4392891059557726,
+    "asr_valid_std": 1.8609780113376573,
+    "vrr_mean": 99.90503323836657,
+    "vrr_std": 0.13430328227664226,
+    "vsr_mean": 97.46755302310858,
+    "vsr_std": 1.8387509631475234,
+    "gsm8k_mean": 10.0,
+    "gsm8k_std": 2.267868860112212
+  },
+  {
+    "alpha": 0.8,
+    "asr_all_mean": 0.0,
+    "asr_all_std": 0.0,
+    "asr_valid_mean": 0.0,
+    "asr_valid_std": 0.0,
+    "vrr_mean": 100.0,
+    "vrr_std": 0.0,
+    "vsr_mean": 100.0,
+    "vsr_std": 0.0,
+    "gsm8k_mean": 14.6875,
+    "gsm8k_std": 2.2678688601122126
+  },
+  {
+    "alpha": 1.0,
+    "asr_all_mean": 0.0,
+    "asr_all_std": 0.0,
+    "asr_valid_mean": 0.0,
+    "asr_valid_std": 0.0,
+    "vrr_mean": 100.0,
+    "vrr_std": 0.0,
+    "vsr_mean": 100.0,
+    "vsr_std": 0.0,
+    "gsm8k_mean": 0.20833333333333334,
+    "gsm8k_std": 0.29462782549439476
+  }
+]

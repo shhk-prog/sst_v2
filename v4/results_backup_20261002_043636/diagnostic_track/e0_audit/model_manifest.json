@@ -1,0 +1,177 @@
+{
+  "audit_version": "v4_rigorous_gate",
+  "benchmark_scope": "math_and_code_domestic_tier",
+  "models": {
+    "base": {
+      "role": "base",
+      "name_or_path": "meta-llama/Llama-2-7b-hf",
+      "exists_locally": false,
+      "status": "UNVERIFIED",
+      "error": "Model path does not exist locally: meta-llama/Llama-2-7b-hf"
+    },
+    "math": {
+      "role": "math_domain",
+      "name_or_path": "WizardLMTeam/WizardMath-7B-V1.0",
+      "exists_locally": false,
+      "status": "UNVERIFIED",
+      "error": "Model path does not exist locally: WizardLMTeam/WizardMath-7B-V1.0"
+    },
+    "code": {
+      "role": "code_domain",
+      "name_or_path": "vanillaOVO/WizardCoder-Python-7B-V1.0",
+      "exists_locally": false,
+      "status": "UNVERIFIED",
+      "error": "Model path does not exist locally: vanillaOVO/WizardCoder-Python-7B-V1.0"
+    }
+  },
+  "safetyft_checkpoints": {
+    "seed42": {
+      "lora_adapter": {
+        "role": "safety_lora_seed42",
+        "name_or_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/safety_lora_seed42",
+        "exists_locally": true,
+        "status": "UNVERIFIED",
+        "config_error": "Unrecognized model in /mnt/nas/home/hiromi/src/sst_v2/v3/models/safety_lora_seed42. Should have a `model_type` key in its config.json."
+      },
+      "dense_full": {
+        "role": "safety_full_seed42",
+        "name_or_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/temp_safety_full_seed42",
+        "exists_locally": true,
+        "status": "LOADED",
+        "config": {
+          "model_type": "llama",
+          "architectures": [
+            "LlamaForCausalLM"
+          ],
+          "vocab_size": 32001,
+          "hidden_size": 4096,
+          "num_hidden_layers": 32,
+          "num_attention_heads": 32,
+          "intermediate_size": 11008,
+          "rope_theta": 10000.0,
+          "rope_scaling": {
+            "rope_theta": 10000.0,
+            "rope_type": "default"
+          },
+          "max_position_embeddings": 4096
+        },
+        "tokenizer": {
+          "vocab_size": 32001,
+          "bos_token": "<s>",
+          "bos_token_id": 1,
+          "eos_token": "</s>",
+          "eos_token_id": 2,
+          "pad_token": "[PAD]",
+          "pad_token_id": 32000,
+          "unk_token": "<unk>",
+          "unk_token_id": 0,
+          "chat_template_present": false
+        }
+      }
+    },
+    "seed43": {
+      "lora_adapter": {
+        "role": "safety_lora_seed43",
+        "name_or_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/safety_lora_seed43",
+        "exists_locally": true,
+        "status": "UNVERIFIED",
+        "config_error": "Unrecognized model in /mnt/nas/home/hiromi/src/sst_v2/v3/models/safety_lora_seed43. Should have a `model_type` key in its config.json."
+      },
+      "dense_full": {
+        "role": "safety_full_seed43",
+        "name_or_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/temp_safety_full_seed43",
+        "exists_locally": true,
+        "status": "LOADED",
+        "config": {
+          "model_type": "llama",
+          "architectures": [
+            "LlamaForCausalLM"
+          ],
+          "vocab_size": 32001,
+          "hidden_size": 4096,
+          "num_hidden_layers": 32,
+          "num_attention_heads": 32,
+          "intermediate_size": 11008,
+          "rope_theta": 10000.0,
+          "rope_scaling": {
+            "rope_theta": 10000.0,
+            "rope_type": "default"
+          },
+          "max_position_embeddings": 4096
+        },
+        "tokenizer": {
+          "vocab_size": 32001,
+          "bos_token": "<s>",
+          "bos_token_id": 1,
+          "eos_token": "</s>",
+          "eos_token_id": 2,
+          "pad_token": "[PAD]",
+          "pad_token_id": 32000,
+          "unk_token": "<unk>",
+          "unk_token_id": 0,
+          "chat_template_present": false
+        }
+      }
+    },
+    "seed44": {
+      "lora_adapter": {
+        "role": "safety_lora_seed44",
+        "name_or_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/safety_lora_seed44",
+        "exists_locally": true,
+        "status": "UNVERIFIED",
+        "config_error": "Unrecognized model in /mnt/nas/home/hiromi/src/sst_v2/v3/models/safety_lora_seed44. Should have a `model_type` key in its config.json."
+      },
+      "dense_full": {
+        "role": "safety_full_seed44",
+        "name_or_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/temp_safety_full_seed44",
+        "exists_locally": true,
+        "status": "LOADED",
+        "config": {
+          "model_type": "llama",
+          "architectures": [
+            "LlamaForCausalLM"
+          ],
+          "vocab_size": 32001,
+          "hidden_size": 4096,
+          "num_hidden_layers": 32,
+          "num_attention_heads": 32,
+          "intermediate_size": 11008,
+          "rope_theta": 10000.0,
+          "rope_scaling": {
+            "rope_theta": 10000.0,
+            "rope_type": "default"
+          },
+          "max_position_embeddings": 4096
+        },
+        "tokenizer": {
+          "vocab_size": 32001,
+          "bos_token": "<s>",
+          "bos_token_id": 1,
+          "eos_token": "</s>",
+          "eos_token_id": 2,
+          "pad_token": "[PAD]",
+          "pad_token_id": 32000,
+          "unk_token": "<unk>",
+          "unk_token_id": 0,
+          "chat_template_present": false
+        }
+      }
+    }
+  },
+  "domain_verdicts": {
+    "math": {
+      "domain": "math",
+      "verdict": "UNVERIFIED",
+      "reason": "One or both models not loaded: base=UNVERIFIED, domain=UNVERIFIED",
+      "discrepancies": {}
+    },
+    "code": {
+      "domain": "code",
+      "verdict": "UNVERIFIED",
+      "reason": "One or both models not loaded: base=UNVERIFIED, domain=UNVERIFIED",
+      "discrepancies": {}
+    }
+  },
+  "primary_experiment_verdict": "NO_GO",
+  "primary_gate_reason": "Both math and code domains failed E0 integrity audit. Concrete discrepancies detected in vocab size, RoPE scaling, and special tokens. Primary comparison and new interventions must HALT to prevent degenerative conflation. Past logs may only be analyzed under diagnostic track."
+}

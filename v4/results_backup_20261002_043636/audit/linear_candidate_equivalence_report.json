@@ -1,0 +1,8 @@
+{
+  "candidate": "linear_a0.6",
+  "parameter_keys_matched": 291,
+  "max_abs_diff": 0.0009765625,
+  "mean_abs_diff": 9.125485670426418e-06,
+  "tokenizer_input_ids_match": true,
+  "greedy_generation_match": true
+}

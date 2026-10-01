@@ -1,0 +1,776 @@
+{
+  "math_mergealign": {
+    "domain": "math",
+    "method": "mergealign",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 3,
+    "total_tested": 3,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_mergealign_safety+math_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_mergealign_safety+math_seed44",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_mergealign_safety+math_seed42",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "math_led": {
+    "domain": "math",
+    "method": "led",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 3,
+    "total_tested": 3,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_led_merging_safety+math_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_led_merging_safety+math_seed44",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_led_merging_safety+math_seed42",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "math_legacy_task_arithmetic_linear_patch": {
+    "domain": "math",
+    "method": "legacy_task_arithmetic_linear_patch",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 36,
+    "total_tested": 36,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_task_arithmetic_safety+math_alpha0.6_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_task_arithmetic_safety+math_alpha0.4_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_task_arithmetic_safety+math_alpha1.0_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_task_arithmetic_safety+math_alpha0.2_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_task_arithmetic_safety+math_alpha0.0_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "math_safemerge": {
+    "domain": "math",
+    "method": "safemerge",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 3,
+    "total_tested": 3,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_safemerge_safety+math_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_safemerge_safety+math_seed44",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_safemerge_safety+math_seed42",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "math_dare": {
+    "domain": "math",
+    "method": "dare",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 36,
+    "total_tested": 36,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_dare_safety+math_alpha0.6_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_dare_safety+math_alpha0.8_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_dare_safety+math_alpha0.4_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_dare_safety+math_alpha0.2_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_dare_safety+math_alpha0.0_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "math_della": {
+    "domain": "math",
+    "method": "della",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 36,
+    "total_tested": 36,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_della_safety+math_alpha0.6_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_della_safety+math_alpha0.2_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_della_safety+math_alpha0.4_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_della_safety+math_alpha1.0_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_della_safety+math_alpha0.0_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "math_ties": {
+    "domain": "math",
+    "method": "ties",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 36,
+    "total_tested": 36,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_ties_safety+math_alpha1.0_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_ties_safety+math_alpha0.6_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_ties_safety+math_alpha0.2_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_ties_safety+math_alpha0.4_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_ties_safety+math_alpha0.8_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "math_fisher": {
+    "domain": "math",
+    "method": "fisher",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 7,
+    "total_tested": 7,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_matena_fisher_safety+math_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_matena_fisher_safety+math+code+medical_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_matena_fisher_safety+math_seed44",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_matena_fisher_safety+math+code+medical_seed44",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_matena_fisher_safety+math_seed42",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "code_dare": {
+    "domain": "code",
+    "method": "dare",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 18,
+    "total_tested": 18,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_dare_safety+code_alpha0.6_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_dare_safety+code_alpha0.0_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_dare_safety+code_alpha0.2_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_dare_safety+code_alpha0.8_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_dare_safety+code_alpha0.4_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "code_led": {
+    "domain": "code",
+    "method": "led",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 3,
+    "total_tested": 3,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_led_merging_safety+code_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_led_merging_safety+code_seed44",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_led_merging_safety+code_seed42",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "code_legacy_task_arithmetic_linear_patch": {
+    "domain": "code",
+    "method": "legacy_task_arithmetic_linear_patch",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 18,
+    "total_tested": 18,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.0_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.6_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.8_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.2_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.4_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "code_mergealign": {
+    "domain": "code",
+    "method": "mergealign",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 3,
+    "total_tested": 3,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_mergealign_safety+code_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_mergealign_safety+code_seed44",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_mergealign_safety+code_seed42",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "code_safemerge": {
+    "domain": "code",
+    "method": "safemerge",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 3,
+    "total_tested": 3,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_safemerge_safety+code_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_safemerge_safety+code_seed44",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_safemerge_safety+code_seed42",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "code_fisher": {
+    "domain": "code",
+    "method": "fisher",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 3,
+    "total_tested": 3,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_matena_fisher_safety+code_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_matena_fisher_safety+code_seed44",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_matena_fisher_safety+code_seed42",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "code_della": {
+    "domain": "code",
+    "method": "della",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 18,
+    "total_tested": 18,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_della_safety+code_alpha0.6_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_della_safety+code_alpha0.0_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_della_safety+code_alpha1.0_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_della_safety+code_alpha0.8_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_della_safety+code_alpha0.2_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "code_ties": {
+    "domain": "code",
+    "method": "ties",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 18,
+    "total_tested": 18,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_ties_safety+code_alpha1.0_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_ties_safety+code_alpha0.2_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_ties_safety+code_alpha0.0_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_ties_safety+code_alpha0.4_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_ties_safety+code_alpha0.6_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "medical_safemerge": {
+    "domain": "medical",
+    "method": "safemerge",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 3,
+    "total_tested": 3,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_safemerge_safety+medical_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_safemerge_safety+medical_seed44",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_safemerge_safety+medical_seed42",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "medical_ties": {
+    "domain": "medical",
+    "method": "ties",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 18,
+    "total_tested": 18,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_ties_safety+medical_alpha0.8_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_ties_safety+medical_alpha0.2_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_ties_safety+medical_alpha0.6_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_ties_safety+medical_alpha0.0_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_ties_safety+medical_alpha1.0_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "medical_mergealign": {
+    "domain": "medical",
+    "method": "mergealign",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 3,
+    "total_tested": 3,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_mergealign_safety+medical_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_mergealign_safety+medical_seed44",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_mergealign_safety+medical_seed42",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "medical_della": {
+    "domain": "medical",
+    "method": "della",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 18,
+    "total_tested": 18,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_della_safety+medical_alpha0.2_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_della_safety+medical_alpha0.8_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_della_safety+medical_alpha0.4_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_della_safety+medical_alpha0.6_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_della_safety+medical_alpha0.0_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "medical_legacy_task_arithmetic_linear_patch": {
+    "domain": "medical",
+    "method": "legacy_task_arithmetic_linear_patch",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 18,
+    "total_tested": 18,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.6_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.0_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.8_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.4_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha1.0_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "medical_dare": {
+    "domain": "medical",
+    "method": "dare",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 18,
+    "total_tested": 18,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_dare_safety+medical_alpha0.8_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_dare_safety+medical_alpha0.6_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_dare_safety+medical_alpha0.0_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_dare_safety+medical_alpha0.2_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  },
+  "medical_fisher": {
+    "domain": "medical",
+    "method": "fisher",
+    "status": "INSUFFICIENT_DATA",
+    "best_candidate": null,
+    "n_feasible": 0,
+    "n_infeasible": 0,
+    "n_insufficient_data": 3,
+    "total_tested": 3,
+    "infeasible_samples": [],
+    "insufficient_samples": [
+      {
+        "candidate_id": "sst_merge_v3_main_matena_fisher_safety+medical_seed43",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_matena_fisher_safety+medical_seed44",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      },
+      {
+        "candidate_id": "sst_merge_v3_main_matena_fisher_safety+medical_seed42",
+        "params": null,
+        "reason": "MISSING_OR_NON_FINITE_VRR_BENIGN"
+      }
+    ]
+  }
+}
