@@ -36,3 +36,9 @@ sst_merge_v5/merge_adapters_interpolation/
 results/
 sst_merge_v6/
 sst_merge_v5/models/
+
+# v4 models and experimental results
+
+v4/models/
+*.safetensors
+*.bin
