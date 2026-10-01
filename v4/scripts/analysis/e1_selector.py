@@ -53,6 +53,36 @@ DEFAULT_REQUIRED_BENCHMARKS = ["harmbench", "jailbreakbench", "strongreject", "w
 DEFAULT_REQUIRED_UTILITY_TASKS = ["gsm8k", "math", "humaneval", "mbpp"]
 
 
+def validate_benchmark_counts(metrics: Dict[str, Any], label: str) -> Tuple[bool, Optional[str]]:
+    """
+    R5 Directive: Strictly validates sample counts and unjudged counts:
+    - Counts must be exact JSON integers (type is int, rejecting bool, float, NaN, Inf, None).
+    - n_samples > 0.
+    - 0 <= n_unjudged <= n_samples.
+    - For primary selection: n_unjudged must be exactly 0 (unjudged samples are not tolerated).
+    """
+    n = metrics.get("n_samples")
+    if n is None:
+        n = metrics.get("n_total")
+    if n is None:
+        n = metrics.get("sample_len")
+    if n is None:
+        n = metrics.get("n")
+
+    # type is int rejects bool (in Python, isinstance(True, int) is True, but type(True) is bool)
+    if type(n) is not int or n <= 0:
+        return False, f"INVALID_SAMPLE_COUNT_{label.upper()}"
+
+    u = metrics.get("n_unjudged")
+    if type(u) is not int or not (0 <= u <= n):
+        return False, f"INVALID_UNJUDGED_COUNT_{label.upper()}"
+
+    if u != 0:
+        return False, f"UNJUDGED_SAMPLES_{label.upper()}"
+
+    return True, None
+
+
 def evaluate_feasible_region_strict(
     entry: Dict[str, Any],
     domain_baseline_metrics: Dict[str, Any],
@@ -152,38 +182,23 @@ def evaluate_feasible_region_strict(
             rb_asr = rb_data.get("asr_all")
             rb_valid = rb_data.get("asr_valid")
             rb_vrr = rb_data.get("vrr")
-            rb_samples = rb_data.get("n_samples", rb_data.get("n_total", rb_data.get("sample_len", rb_data.get("n"))))
-            rb_unjudged = rb_data.get("n_unjudged", 0)
-
-            # Strict: NO NULL ALLOWED in required benchmarks
-            if rb_asr is None or not is_valid_ratio(rb_asr):
-                return "INSUFFICIENT_DATA", f"NULL_OR_INVALID_REQUIRED_BENCHMARK_{rb.upper()}_ASR_ALL"
-            if rb_valid is None or not is_valid_ratio(rb_valid):
-                return "INSUFFICIENT_DATA", f"NULL_OR_INVALID_REQUIRED_BENCHMARK_{rb.upper()}_ASR_VALID"
-            if rb_vrr is None or not is_valid_ratio(rb_vrr):
-                return "INSUFFICIENT_DATA", f"NULL_OR_INVALID_REQUIRED_BENCHMARK_{rb.upper()}_VRR"
-            
-            # Positive sample count is required
-            if rb_samples is None or not isinstance(rb_samples, (int, float)) or rb_samples <= 0:
-                return "INSUFFICIENT_DATA", f"ZERO_OR_MISSING_SAMPLE_COUNT_{rb.upper()}"
-            if rb_unjudged is None or not isinstance(rb_unjudged, (int, float)) or rb_unjudged > 0:
-                return "INSUFFICIENT_DATA", f"UNJUDGED_SAMPLES_IN_REQUIRED_BENCHMARK_{rb.upper()}"
+            # Strict count check: exact integer, positive n_samples, 0 <= n_unjudged <= n_samples, zero unjudged
+            valid_counts, count_err = validate_benchmark_counts(rb_data, rb)
+            if not valid_counts:
+                return "INSUFFICIENT_DATA", count_err
 
     if isinstance(bench_breakdown, dict):
         for b_name, b_val in bench_breakdown.items():
             if not isinstance(b_val, dict):
                 return "INSUFFICIENT_DATA", f"UNSUPPORTED_BENCHMARK_SCHEMA_{b_name.upper()}_SCALAR_NOT_ALLOWED"
             
+            valid_counts, count_err = validate_benchmark_counts(b_val, b_name)
+            if not valid_counts:
+                return "INSUFFICIENT_DATA", count_err
+
             b_asr = b_val.get("asr_all")
             b_valid = b_val.get("asr_valid")
             b_vrr = b_val.get("vrr")
-            b_samples = b_val.get("n_samples", b_val.get("n_total", b_val.get("sample_len", b_val.get("n"))))
-            b_unjudged = b_val.get("n_unjudged", 0)
-
-            if b_samples is not None and isinstance(b_samples, (int, float)) and b_samples <= 0:
-                return "INSUFFICIENT_DATA", f"ZERO_SAMPLE_COUNT_{b_name.upper()}"
-            if b_unjudged is not None and isinstance(b_unjudged, (int, float)) and b_unjudged > 0:
-                return "INSUFFICIENT_DATA", f"UNJUDGED_SAMPLES_{b_name.upper()}"
 
             if b_asr is not None:
                 if not is_valid_ratio(b_asr):

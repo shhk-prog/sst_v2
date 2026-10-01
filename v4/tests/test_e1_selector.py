@@ -101,10 +101,10 @@ class TestE1Selector(unittest.TestCase):
             "overrefusal": 0.03,
             "utility_score": 0.65,
             "safety_metrics_per_benchmark": {
-                "harmbench": {"asr_all": 0.08, "asr_valid": 0.01, "vrr": 0.99},
-                "jailbreakbench": {"asr_all": 0.08, "asr_valid": 0.01, "vrr": 0.99},
-                "strongreject": {"asr_all": 0.08, "asr_valid": 0.01, "vrr": 0.99},
-                "wildjailbreak": {"asr_all": 0.08, "asr_valid": 0.01, "vrr": 0.99},
+                "harmbench": {"asr_all": 0.08, "asr_valid": 0.01, "vrr": 0.99, "n_samples": 100, "n_unjudged": 0},
+                "jailbreakbench": {"asr_all": 0.08, "asr_valid": 0.01, "vrr": 0.99, "n_samples": 100, "n_unjudged": 0},
+                "strongreject": {"asr_all": 0.08, "asr_valid": 0.01, "vrr": 0.99, "n_samples": 100, "n_unjudged": 0},
+                "wildjailbreak": {"asr_all": 0.08, "asr_valid": 0.01, "vrr": 0.99, "n_samples": 100, "n_unjudged": 0},
             }
         }
         status, reason = evaluate_feasible_region_strict(cand, DOMAIN_BASELINES["math"])
