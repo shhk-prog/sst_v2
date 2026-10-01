@@ -131,7 +131,11 @@ def run_stage_e1(args, results_dir: str):
         output_dir=e1_dir,
     )
 
-    from analysis.e1_selector import select_best_configurations, compute_sensitivity_matrix
+    from analysis.e1_selector import (
+        select_best_configurations,
+        compute_sensitivity_matrix,
+        DEFAULT_REQUIRED_BENCHMARKS,
+    )
     # R2-05: Do not hardcode domain baseline overrefusal to 0.02. Require empirical measurement.
     domain_baseline_records = aggregated_records.get("domain_baseline_track", []) if isinstance(aggregated_records, dict) else []
     domain_base = {}
@@ -141,12 +145,12 @@ def run_stage_e1(args, results_dir: str):
 
     candidates = aggregated_records if isinstance(aggregated_records, list) else aggregated_records.get("standard_baseline_track", [])
 
-    sel = select_best_configurations(candidates, domain_base)
+    sel = select_best_configurations(candidates, domain_base, required_benchmarks=DEFAULT_REQUIRED_BENCHMARKS)
     sel_path = os.path.join(e1_dir, "selection_summary.json")
     with open(sel_path, "w", encoding="utf-8") as f:
         json.dump(sel, f, indent=2)
 
-    sens = compute_sensitivity_matrix(candidates, domain_base)
+    sens = compute_sensitivity_matrix(candidates, domain_base, required_benchmarks=DEFAULT_REQUIRED_BENCHMARKS)
     sens.to_csv(os.path.join(e1_dir, "sensitivity_matrix.csv"), index=False)
 
     print("\n[E1 Rigorous Constrained Selection Summary]:")

@@ -100,6 +100,12 @@ class TestE1Selector(unittest.TestCase):
             "vrr_benign": 0.99,
             "overrefusal": 0.03,
             "utility_score": 0.65,
+            "safety_metrics_per_benchmark": {
+                "harmbench": {"asr_all": 0.08, "asr_valid": 0.01, "vrr": 0.99},
+                "jailbreakbench": {"asr_all": 0.08, "asr_valid": 0.01, "vrr": 0.99},
+                "strongreject": {"asr_all": 0.08, "asr_valid": 0.01, "vrr": 0.99},
+                "wildjailbreak": {"asr_all": 0.08, "asr_valid": 0.01, "vrr": 0.99},
+            }
         }
         status, reason = evaluate_feasible_region_strict(cand, DOMAIN_BASELINES["math"])
         self.assertEqual(status, "INFEASIBLE")
@@ -107,6 +113,12 @@ class TestE1Selector(unittest.TestCase):
 
     def test_feasible_and_selection(self):
         """完全準拠時は FEASIBLE かつ最高utility候補が選ばれる"""
+        valid_benchmarks = {
+            "harmbench": {"asr_all": 0.01, "asr_valid": 0.01, "vrr": 0.98},
+            "jailbreakbench": {"asr_all": 0.01, "asr_valid": 0.01, "vrr": 0.98},
+            "strongreject": {"asr_all": 0.01, "asr_valid": 0.01, "vrr": 0.98},
+            "wildjailbreak": {"asr_all": 0.01, "asr_valid": 0.01, "vrr": 0.98},
+        }
         cands = [
             {
                 "candidate_id": "cand_1",
@@ -119,6 +131,7 @@ class TestE1Selector(unittest.TestCase):
                 "vrr_benign": 0.97,
                 "overrefusal": 0.04,
                 "utility_score": 0.55,
+                "safety_metrics_per_benchmark": valid_benchmarks,
             },
             {
                 "candidate_id": "cand_2",
@@ -131,6 +144,7 @@ class TestE1Selector(unittest.TestCase):
                 "vrr_benign": 0.99,
                 "overrefusal": 0.03,
                 "utility_score": 0.62,  # Higher utility
+                "safety_metrics_per_benchmark": valid_benchmarks,
             },
         ]
         summary = select_best_configurations(cands, DOMAIN_BASELINES)

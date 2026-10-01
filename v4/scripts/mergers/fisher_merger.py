@@ -27,13 +27,14 @@ class FisherMerger(BaseMerger):
         fim_s: Optional[torch.Tensor] = None,
         **kwargs
     ) -> torch.Tensor:
+        allow_uncalibrated = kwargs.get("allow_uncalibrated", False)
         if fim_u is None or fim_s is None:
-            if self.strict_fim:
+            if self.strict_fim and not allow_uncalibrated:
                 raise ValueError(
                     "E0/E4 BLOCKED: FisherMerger requires explicit Fisher Information Matrix (FIM) diagonal "
                     "tensors when strict_fim=True (P0-07, R2-08). Fallback to constant weights is rejected."
                 )
-            # Fallback to empirical magnitude or balanced weights if explicit FIM not supplied (diagnostic mode only)
+            # Fallback to empirical magnitude or balanced weights if explicit FIM not supplied (diagnostic / audit smoke test only)
             w_u = torch.ones_like(theta_u)
             w_s = torch.full_like(theta_s, self.default_weight_ratio)
         else:

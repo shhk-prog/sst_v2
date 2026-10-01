@@ -18,6 +18,11 @@ from mergers import get_merger
 
 def load_state_dict_or_model(model_name_or_path: str, base_model_path: str = None):
     print(f"Loading weights from {model_name_or_path}...")
+
+    # Direct pytorch file path
+    if os.path.isfile(model_name_or_path):
+        return torch.load(model_name_or_path, map_location="cpu")
+
     adapter_cfg = os.path.join(model_name_or_path, "adapter_config.json")
     if os.path.exists(adapter_cfg):
         if not base_model_path:
@@ -33,6 +38,12 @@ def load_state_dict_or_model(model_name_or_path: str, base_model_path: str = Non
         merged = peft_model.merge_and_unload()
         return merged.state_dict()
     else:
+        # Check if direct state dict file exists in directory without HuggingFace config
+        bin_file = os.path.join(model_name_or_path, "pytorch_model.bin")
+        cfg_file = os.path.join(model_name_or_path, "config.json")
+        if os.path.isfile(bin_file) and not os.path.isfile(cfg_file):
+            return torch.load(bin_file, map_location="cpu")
+
         model = AutoModelForCausalLM.from_pretrained(
             model_name_or_path,
             torch_dtype=torch.float16,
@@ -45,21 +56,36 @@ def load_state_dict_or_model(model_name_or_path: str, base_model_path: str = Non
 def run_merge(
     method: str,
     output_dir: str,
-    utility_model_path: str,
-    safety_model_path: str,
+    utility_model_path: Optional[str] = None,
+    safety_model_path: Optional[str] = None,
     base_model_path: str = "meta-llama/Llama-2-7b-hf",
     method_kwargs_json: str = "{}",
     fim_u_path: Optional[str] = None,
     fim_s_path: Optional[str] = None,
+    utility_model: Optional[str] = None,
+    safety_model: Optional[str] = None,
+    base_model: Optional[str] = None,
+    method_kwargs: Optional[Any] = None,
+    **kwargs_extra,
 ):
+    u_path = utility_model_path or utility_model
+    s_path = safety_model_path or safety_model
+    b_path = base_model or base_model_path
+
+    if not u_path or not s_path:
+        raise ValueError("Both utility_model and safety_model paths are required for run_merge.")
+
     os.makedirs(output_dir, exist_ok=True)
-    kwargs = json.loads(method_kwargs_json)
+    if method_kwargs is not None:
+        kwargs = method_kwargs if isinstance(method_kwargs, dict) else json.loads(str(method_kwargs))
+    else:
+        kwargs = json.loads(method_kwargs_json) if isinstance(method_kwargs_json, str) else method_kwargs_json
 
     print("=" * 60)
     print(f"Starting Model Merge: {method}")
-    print(f"  Utility Model: {utility_model_path}")
-    print(f"  Safety Model:  {safety_model_path}")
-    print(f"  Base Model:    {base_model_path}")
+    print(f"  Utility Model: {u_path}")
+    print(f"  Safety Model:  {s_path}")
+    print(f"  Base Model:    {b_path}")
     print(f"  Parameters:    {kwargs}")
     print(f"  FIM Utility:   {fim_u_path}")
     print(f"  FIM Safety:    {fim_s_path}")
@@ -69,9 +95,9 @@ def run_merge(
     merger = get_merger(method, **kwargs)
 
     # Load state dicts
-    dict_u = load_state_dict_or_model(utility_model_path, base_model_path)
-    dict_s = load_state_dict_or_model(safety_model_path, base_model_path)
-    dict_0 = load_state_dict_or_model(base_model_path) if base_model_path else None
+    dict_u = load_state_dict_or_model(u_path, b_path)
+    dict_s = load_state_dict_or_model(s_path, b_path)
+    dict_0 = load_state_dict_or_model(b_path) if b_path else None
 
     # Load FIM tensors if provided (R3-06)
     fim_u_dict = None
@@ -88,27 +114,34 @@ def run_merge(
 
     # Load base model structure to receive state dict
     print("\nInstantiating skeleton model to save merged weights...")
-    ref_model_path = utility_model_path if not os.path.exists(os.path.join(utility_model_path, "adapter_config.json")) else base_model_path
-    save_model = AutoModelForCausalLM.from_pretrained(
-        ref_model_path,
-        torch_dtype=torch.float16,
-        device_map="cpu",
-        low_cpu_mem_usage=True,
-    )
-    save_model.load_state_dict(merged_dict)
-    save_model.save_pretrained(output_dir)
+    ref_model_path = b_path if b_path else u_path
+    if u_path and os.path.exists(os.path.join(u_path, "config.json")):
+        ref_model_path = u_path
 
-    # Save tokenizer
-    tokenizer = AutoTokenizer.from_pretrained(ref_model_path)
-    tokenizer.save_pretrained(output_dir)
+    try:
+        save_model = AutoModelForCausalLM.from_pretrained(
+            ref_model_path,
+            torch_dtype=torch.float16,
+            device_map="cpu",
+            low_cpu_mem_usage=True,
+        )
+        save_model.load_state_dict(merged_dict)
+        save_model.save_pretrained(output_dir)
+
+        # Save tokenizer
+        tokenizer = AutoTokenizer.from_pretrained(ref_model_path)
+        tokenizer.save_pretrained(output_dir)
+    except Exception as e:
+        print(f"Warning: Could not save as HF pretrained model ({e}). Saving raw pytorch_model.bin instead.")
+        torch.save(merged_dict, os.path.join(output_dir, "pytorch_model.bin"))
 
     manifest = {
         "method": method,
         "parameters": kwargs,
         "fidelity": getattr(merger, "FIDELITY_STATUS", "STANDARD_IMPLEMENTATION"),
-        "utility_model": utility_model_path,
-        "safety_model": safety_model_path,
-        "base_model": base_model_path,
+        "utility_model": u_path,
+        "safety_model": s_path,
+        "base_model": b_path,
         "fim_u": fim_u_path,
         "fim_s": fim_s_path,
     }

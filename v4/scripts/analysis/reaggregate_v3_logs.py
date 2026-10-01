@@ -345,16 +345,16 @@ def reaggregate_v3_results(
         u_b = rec["utility_scores_per_benchmark"]
 
         # Safety Aggregation (R2-05, R3-03, R3-05: Strict null propagation, no partial benchmark dropping)
-        # If any benchmark has missing/null metrics or was unjudged, candidate cannot be MEASURED.
+        # If any benchmark has missing/null metrics (asr_all, asr_valid, vrr) or unjudged samples, candidate cannot be MEASURED.
         has_any_missing_metric = any(
-            m.get("asr_all") is None or m.get("vrr") is None
+            m.get("asr_all") is None or m.get("asr_valid") is None or m.get("vrr") is None or m.get("n_unjudged", 0) > 0
             for m in s_b.values()
         )
         asrs_all = [m["asr_all"] for m in s_b.values() if m.get("asr_all") is not None]
         vrrs_harm = [m["vrr"] for m in s_b.values() if m.get("vrr") is not None]
         valid_asrs = [m["asr_valid"] for m in s_b.values() if m.get("asr_valid") is not None]
 
-        if not s_b or has_any_missing_metric or len(asrs_all) != len(s_b) or len(vrrs_harm) != len(s_b):
+        if not s_b or has_any_missing_metric or len(asrs_all) != len(s_b) or len(vrrs_harm) != len(s_b) or len(valid_asrs) != len(s_b):
             rec["asr_all"] = None
             rec["vrr_harmful"] = None
             rec["asr_valid"] = None
@@ -362,7 +362,7 @@ def reaggregate_v3_results(
         else:
             rec["asr_all"] = float(sum(asrs_all) / len(asrs_all))
             rec["vrr_harmful"] = float(sum(vrrs_harm) / len(vrrs_harm))
-            rec["asr_valid"] = float(sum(valid_asrs) / len(valid_asrs)) if valid_asrs else None
+            rec["asr_valid"] = float(sum(valid_asrs) / len(valid_asrs))
             rec["safety_status"] = "MEASURED"
 
         # STRICT: NO FAKE ZERO OR DEFAULT VALUES (P0-01)

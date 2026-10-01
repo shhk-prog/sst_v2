@@ -10,7 +10,7 @@ import sys
 import json
 import re
 import argparse
-from typing import List, Dict, Any, Optional
+from typing import Tuple, List, Dict, Any, Optional
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
@@ -138,57 +138,103 @@ def extract_code_block(generation: str, entry_point: Optional[str] = None) -> st
     return generation.rstrip()
 
 
+def check_secure_sandbox_isolation() -> Tuple[bool, str]:
+    """
+    R3-01: Verifies if the host environment satisfies hardware/container OS isolation.
+    If no dedicated container sandbox is configured, untrusted execution is BLOCKED.
+    """
+    sandbox_mode = os.environ.get("SECURE_CODE_SANDBOX_RUNNER", "").lower()
+    if sandbox_mode in ["container", "docker", "gvisor", "podman", "bubblewrap"]:
+        return True, f"Configured container sandbox: {sandbox_mode}"
+    return False, "Host environment lacks OS container boundary (SECURE_CODE_SANDBOX_RUNNER not configured)"
+
+
 def _target_code_runner(program_code: str, result_queue: Any):
-    """Worker process target that executes code in an isolated scope with resource and network limits."""
+    """
+    Worker process target that executes code in an isolated scope.
+    Creates a new process group, sanitizes environment, and enforces resource/network limits.
+    """
     import sys
     import io
-    try:
-        import resource
-        # 1. CPU time limit (5 seconds)
-        resource.setrlimit(resource.RLIMIT_CPU, (5, 5))
-    except (ValueError, OSError, ImportError):
-        pass
+    import os
+    import tempfile
+    import signal
 
-    # 2. Disable socket/networking inside the child execution (R3-01 OS Isolation)
+    # 1. Create a new process group for full tree teardown (descendant harvesting)
     try:
-        import socket
-        def _disabled_socket(*args, **kwargs):
-            raise PermissionError("R3-01 OS Isolation: Network access is blocked during code execution.")
-        socket.socket = _disabled_socket
+        os.setpgrp()
     except Exception:
         pass
 
-    sys.stdout = io.StringIO()
-    sys.stderr = io.StringIO()
-    try:
-        global_scope = {}
-        exec(program_code, global_scope)
-        result_queue.put({"status": "PASSED", "error": None})
-    except AssertionError as e:
-        result_queue.put({"status": "ASSERTION_ERROR", "error": str(e)})
-    except Exception as e:
-        result_queue.put({"status": "RUNTIME_ERROR", "error": f"{type(e).__name__}: {str(e)}"})
-    except BaseException as e:
-        result_queue.put({"status": "BASE_EXCEPTION", "error": f"{type(e).__name__}: {str(e)}"})
+    # 2. Dedicated temporary directory non-shared with host / NAS
+    with tempfile.TemporaryDirectory() as sandbox_temp_dir:
+        try:
+            os.chdir(sandbox_temp_dir)
+        except Exception:
+            pass
+
+        # 3. Sanitize sensitive host environment variables (tokens, credentials, paths)
+        sensitive_env_keys = [
+            "HF_TOKEN", "HUGGINGFACE_HUB_TOKEN", "GITHUB_TOKEN", "AWS_ACCESS_KEY_ID",
+            "AWS_SECRET_ACCESS_KEY", "SSH_AUTH_SOCK", "SSH_AGENT_PID"
+        ]
+        for k in sensitive_env_keys:
+            if k in os.environ:
+                del os.environ[k]
+
+        # 4. Strict CPU time limit
+        try:
+            import resource
+            resource.setrlimit(resource.RLIMIT_CPU, (5, 5))
+        except (ValueError, OSError, ImportError):
+            pass
+
+        # 5. Disable socket/networking inside the child execution (R3-01 OS Isolation)
+        try:
+            import socket
+            def _disabled_socket(*args, **kwargs):
+                raise PermissionError("R3-01 OS Isolation: Network access is blocked during code execution.")
+            socket.socket = _disabled_socket
+        except Exception:
+            pass
+
+        sys.stdout = io.StringIO()
+        sys.stderr = io.StringIO()
+        try:
+            global_scope = {}
+            exec(program_code, global_scope)
+            result_queue.put({"status": "PASSED", "error": None})
+        except AssertionError as e:
+            result_queue.put({"status": "ASSERTION_ERROR", "error": str(e)})
+        except Exception as e:
+            result_queue.put({"status": "RUNTIME_ERROR", "error": f"{type(e).__name__}: {str(e)}"})
+        except BaseException as e:
+            result_queue.put({"status": "BASE_EXCEPTION", "error": f"{type(e).__name__}: {str(e)}"})
 
 
 def execute_code_isolated(program_code: str, timeout: float = 3.0) -> Dict[str, Any]:
     """
-    R3-01: Executes generated program in a separate multiprocessing process with strict timeout and isolation.
-    Prevents host contamination, network leaks, and infinite execution loops.
+    R3-01: Executes program in a separate multiprocessing process with strict timeout and isolation.
+    Kills the entire process group upon timeout to harvest all descendant processes.
     """
     import multiprocessing
+    import signal
+    import os
+
     result_queue = multiprocessing.Queue()
     proc = multiprocessing.Process(target=_target_code_runner, args=(program_code, result_queue))
     proc.start()
     proc.join(timeout=timeout)
 
     if proc.is_alive():
-        proc.terminate()
-        proc.join(0.5)
-        if proc.is_alive():
+        # Kill the entire process group tree to terminate all children and descendants
+        try:
+            pgid = os.getpgid(proc.pid)
+            os.killpg(pgid, signal.SIGKILL)
+        except Exception:
             proc.kill()
-        return {"status": "TIMEOUT", "error": f"Execution exceeded {timeout}s"}
+        proc.join(0.5)
+        return {"status": "TIMEOUT", "error": f"Execution exceeded {timeout}s (harvested process group)"}
 
     if not result_queue.empty():
         return result_queue.get()
@@ -239,12 +285,24 @@ def run_code_evaluation(
     execute_code: bool = False,
     timeout: float = 3.0,
     max_new_tokens: int = 512,
+    allow_trusted_test_fixture: bool = False,
 ) -> Dict[str, Any]:
     """
     Evaluates Code generation on HumanEval/MBPP with isolated execution (R3-01).
     Requires explicit execute_code=True for runtime test execution.
+    If no OS container sandbox is active, execution of model-generated code is BLOCKED.
     """
     print(f"Running Code Utility evaluation on {model_path} with {len(dataset)} problems (execute={execute_code})...")
+
+    # R3-01: Block untrusted model-generated code execution on bare research host unless sandbox is configured
+    if execute_code and not allow_trusted_test_fixture:
+        is_isolated, iso_msg = check_secure_sandbox_isolation()
+        if not is_isolated:
+            raise RuntimeError(
+                f"R3-01 BLOCKED: {iso_msg}. Direct execution of untrusted model-generated code "
+                "on research host is forbidden. Connect to an isolated container runner or run with execute_code=False."
+            )
+
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
@@ -324,14 +382,28 @@ def run_code_evaluation(
             "exec_error": exec_res.get("error") if exec_res else None,
         })
 
-    pass_at_1 = float(passed_count / len(dataset)) if (execute_code and dataset) else None
+    not_eval_count = sum(1 for r in results if r.get("exec_status") == "NOT_EVALUATED")
+    if not_eval_count > 0:
+        evaluated_count = len(dataset) - not_eval_count
+        coverage = float(evaluated_count / len(dataset)) if dataset else 0.0
+        pass_at_1 = None  # Incomplete test coverage: cannot claim verified primary pass_at_1
+        pass_at_1_diag = float(passed_count / evaluated_count) if evaluated_count > 0 else 0.0
+        eval_status = "INSUFFICIENT_TEST_COVERAGE"
+    else:
+        coverage = 1.0
+        pass_at_1 = float(passed_count / len(dataset)) if (execute_code and dataset) else None
+        pass_at_1_diag = pass_at_1
+        eval_status = "COMPLETE"
 
     report = {
         "model_path": model_path,
         "n_samples": len(dataset),
         "execute_code": execute_code,
+        "evaluation_status": eval_status,
+        "evaluation_coverage": coverage,
         "syntax_valid_rate": float((len(dataset) - syntax_error_count) / len(dataset)) if dataset else 0.0,
         "pass_at_1": pass_at_1,
+        "pass_at_1_diagnostics": pass_at_1_diag,
         "results": results,
     }
 
