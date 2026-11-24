@@ -38,61 +38,66 @@ lm-eval の MATH-500 における数式検証スコア（`math_verify`）を正�
 
 ---
 
-### 2. 正式な手法選択に基づく 3-Seed 主比較表 (Legacy E1 Screening Protocol)
+### 2. 評価データセット役割分担に基づく全10手法の総合結果表 (3-Seed Protocol: Mean ± SD)
 
-実験計画書に基づき、**「Development (Seed 42) で設定を1つ選択・固定し、その設定を Seed 42, 43, 44 に適用した 3-Seed Mean ± SD」** を算出。
-（個別 seed での一番良い結果をチェリーピックするのではなく、正式な評価プロトコルとして集計）
+各ベンチマークの役割を明確に分離した評価結果：
+- **Safety 4大ベンチマーク (Harmful)**: HarmBench, JailbreakBench, StrongReject, WildJailbreak（同一Judgeによる $ASR_{valid}$）
+- **Math Primary Utility ($U_{math}$)**: GSM8K, MATH-500 ($U_{math} = (\text{GSM8K} + \text{MATH500}) / 2$)
+- **General Utility Guardrails (Secondary)**: IFEval, MMLU（能力崩壊の検知、単一平均せず個別報告。未測定は N/A と表記）
 
-#### 表名: **Top Candidates Satisfying Harmful-Side Constraints by Combined Math Utility**
+#### 表名: **Comprehensive Multi-Benchmark Results across 10 Merge Methods (Fixed Setting, 3-Seed Mean ± SD)**
 
-| Method | Fixed Setting | ASR_all (mean±sd) | ASR_valid (mean±sd) | VRR harmful (mean±sd) | VSR (mean±sd) | GSM8K (mean±sd) | MATH500 (mean±sd) | **$U_{math}$ (mean±sd)** | Harmful-Side Feasible (3/3)? |
-|---|---|---|---|---|---|---|---|---|---|
-| **`diagonal_sst_main`** | $\alpha=1.0$ | **0.0 ± 0.0%** | **0.0 ± 0.0%** | **100.0 ± 0.0%** | **100.0 ± 0.0%** | 15.7 ± 2.2% | 4.0 ± 1.5% | **9.8 ± 0.4%** | **PASS (3/3)** |
-| **`task_arithmetic`** (Linear) | $\alpha=0.8$ | **0.0 ± 0.0%** | **0.0 ± 0.0%** | **100.0 ± 0.0%** | **100.0 ± 0.0%** | 14.7 ± 2.3% | 3.5 ± 0.1% | **9.1 ± 1.2%** | **PASS (3/3)** |
-| **`ties`** | $\alpha=0.8$ | 0.6 ± 0.5% | 0.6 ± 0.5% | **100.0 ± 0.0%** | 99.4 ± 0.5% | 9.2 ± 1.1% | 3.8 ± 0.9% | **6.5 ± 0.5%** | **PASS (3/3)** |
-| **`dare`** | $\alpha=0.8$ | 3.4 ± 3.4% | 3.4 ± 3.4% | **100.0 ± 0.0%** | 96.6 ± 3.4% | 8.2 ± 0.8% | 4.5 ± 0.8% | **6.4 ± 0.6%** | FAIL/PARTIAL |
-| **`matena_fisher`** | default | 6.9 ± 0.5% | 6.1 ± 0.3% | 99.1 ± 0.4% | 93.1 ± 0.5% | 8.0 ± 0.8% | 4.1 ± 0.7% | **6.0 ± 0.7%** | FAIL/PARTIAL |
-| **`data_free_sst_main`** | $\alpha=1.0$ | 10.8 ± 6.8% | 10.8 ± 6.8% | **100.0 ± 0.0%** | 89.2 ± 6.8% | 7.2 ± 0.4% | 4.6 ± 0.9% | **5.9 ± 0.6%** | FAIL/PARTIAL |
-| **`della`** | $\alpha=0.8$ | 2.8 ± 3.1% | 2.8 ± 3.1% | **100.0 ± 0.0%** | 97.2 ± 3.1% | 8.4 ± 1.6% | 3.1 ± 0.4% | **5.8 ± 0.9%** | FAIL/PARTIAL |
-| **`led_merging`** | default | 29.7 ± 0.0% | 11.5 ± 0.0% | 79.1 ± 0.0% | 70.0 ± 0.0% | 0.0 ± 0.0% | 2.8 ± 0.0% | **1.4 ± 0.0%** | FAIL/PARTIAL |
-| **`safemerge`** | default | 12.2 ± 17.3% | 9.6 ± 13.6% | 95.6 ± 6.2% | 87.2 ± 18.0% | 0.7 ± 0.6% | 1.9 ± 1.6% | **1.3 ± 0.7%** | FAIL/PARTIAL |
-| **`mergealign`** | default | 100.0 ± 0.0% | 100.0 ± 0.0% | 0.0 ± 0.0% | 0.0 ± 0.0% | 0.0 ± 0.0% | 0.0 ± 0.0% | **0.0 ± 0.0%** | FAIL/PARTIAL |
+| # | 手法 (Method) | 設定 (Setting) | HarmBench | JailbreakB | StrongRej | WildJailB | VRR-H | GSM8K | MATH500 | **$U_{math}$ (Primary)** | IFEval | MMLU | Gate 1 判定・Legacy位置づけ |
+|---:|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|:---:|
+| 1 | **SST-Merge (Diagonal)** | $\alpha=1.0$ | **0.0±0.0%** | **0.0±0.0%** | **0.0±0.0%** | **0.0±0.0%** | **100.0±0.0%** | 15.7±2.2% | 4.0±1.5% | **9.8±0.4%** | 13.4±0.0% | 26.5±0.0% | **HARMFUL_FEASIBLE (Screening Leader)** |
+| 2 | **Linear Safety-Patch** | $\alpha=0.8$ | **0.0±0.0%** | **0.0±0.0%** | **0.0±0.0%** | **0.0±0.0%** | **100.0±0.0%** | 14.7±2.3% | 3.5±0.1% | **9.1±1.2%** | 14.4±0.0% | 27.9±0.0% | **HARMFUL_FEASIBLE (Reference Baseline)** |
+| 3 | **TIES** | $\alpha=0.8$ | 0.4±0.6% | **0.0±0.0%** | 1.1±1.1% | 0.6±0.5% | **100.0±0.0%** | 9.2±1.1% | 3.8±0.9% | **6.5±0.5%** | N/A | N/A | **HARMFUL_FEASIBLE (干渉抑制Baseline)** |
+| 4 | **DARE** | $\alpha=0.8$ | 3.8±4.9% | 4.7±6.6% | 4.5±3.7% | 1.5±1.1% | **100.0±0.0%** | 8.2±0.8% | 4.5±0.8% | **6.4±0.6%** | N/A | N/A | FAIL (安全基準境界・シード不安定) |
+| 5 | **Fisher-weighted** | default | 6.9±1.1% | 6.3±1.2% | 4.9±0.6% | 6.5±1.5% | 99.1±0.4% | 8.0±0.8% | 4.1±0.7% | **6.0±0.7%** | N/A | N/A | FAIL (全安全ベンチマークでASR>5% 防御未達) |
+| 6 | **Data-Free SST** | $\alpha=1.0$ | 9.8±6.1% | 15.0±11.5% | 10.5±6.5% | 10.6±7.1% | **100.0±0.0%** | 7.2±0.4% | 4.6±0.9% | **5.9±0.6%** | 11.9±0.0% | 27.5±0.0% | FAIL (Data-Freeの限界: ASR高) |
+| 7 | **DELLA** | $\alpha=0.8$ | 3.8±4.9% | 2.0±2.8% | 3.7±3.4% | 1.2±1.2% | **100.0±0.0%** | 8.4±1.6% | 3.1±0.4% | **5.8±0.9%** | N/A | N/A | FAIL (安全基準境界・シード不安定) |
+| 8 | **LED-Merging** | default | 6.2±0.0% | 11.0±0.0% | 10.7±0.0% | 19.1±0.0% | 79.1±0.0% | 0.0±0.0% | 2.8±0.0% | **1.4±0.0%** | N/A | N/A | FAIL (Degeneration 崩壊: VRR 79%) |
+| 9 | **SafeMERGE** | default | 7.4±10.5% | 13.6±19.2% | 10.8±15.3% | 9.4±13.3% | 95.6±6.2% | 0.7±0.6% | 1.9±1.6% | **1.3±0.7%** | N/A | N/A | FAIL (ASR未達 & Utility喪失) |
+| 10| **MergeAlign** | default | N/A | N/A | N/A | N/A | 0.0±0.0% | 0.0±0.0% | 0.0±0.0% | **0.0±0.0%** | N/A | N/A | FAIL (完全生成崩壊: valid 0件) |
 
-> [!NOTE]
-> **重要な分析**:
-> 3-Seed 全てで Harmful-side Feasible（$ASR_{valid} \le 5\%, VRR \ge 95\%$）を達成できたのは **Diagonal SST ($\alpha=1.0$), Linear ($\alpha=0.8$), TIES ($\alpha=0.8$)** の3手法のみ。
-> DARE/DELLA はシードによる ASR の跳ねがあり、Fisher/Data-Free SST は安全基準未達、LED は Degeneration 崩壊、SafeMerge は Utility 喪失となりました。
-
----
-
-### 3. Linear Candidate-Level Canonical Equivalence の実測検証
-
-`v4/scripts/audit/verify_linear_candidate_equivalence.py` により、
-`canonicalize(v3 Linear α=.6 checkpoint)` vs `v4 新マージ Linear α=.6` を直接比較：
-
-1. **Parameter Exact Match**:
-   - 291/291 全テンソルキーが完全一致。
-   - 平均絶対誤差: **$9.13 \times 10^{-6}$**（fp16 演算の丸め誤差水準）。
-2. **Tokenizer Match**:
-   - 複数プロンプトでの Tokenizer Input IDs が **完全一致 (PASS)**。
-3. **Greedy Generation Match**:
-   - 有害プロンプトおよび数学プロンプトに対する Greedy Generation 出力トークン列が **100% 完全一致 (PASS: IDENTICAL)**。
-
-これにより、**Linear に関しては「v3 response = canonical Production E1 response」として数学的・実測的に正式再利用（FULL_REUSE）できることが証明されました。**
+> [!IMPORTANT]
+> **General Guardrail の「N/A」に関する監査結果**:
+> 実測監査により、TIES, DARE, DELLA, Fisher, LED, SafeMERGE, MergeAlign は Math マージモデルにおいて IFEval / MMLU が元々測定されておらず、欠損値（missing utility）であったことが判明しました。
+> したがって、これらを「能力崩壊（0.0%）」とみなすのは誤りであり、現段階では **partial General Guardrail** として扱い、未測定項目は `N/A` と明記します。
 
 ---
 
-## 4. 今後の具体的実行順（フェーズ移行計画）
+### 3. 現段階での候補の位置づけ（3大群・8分類）
 
-- **Phase 1: Human Validity 200件のアノテーション・評価**
-  - ランダム150件＋難例50件の評価（Cohen's $\kappa$, Precision, Recall, F1）
-- **Phase 2: XSTest 8モデルの Benign VRR & Over-refusal 評価**
-  - 対象: Base, WizardMath, SafetyFT, Linear (.6, .8), Diagonal SST (.8, 1.0), TIES (.8)
-  - `HARMFUL_SIDE_FEASIBLE` から正式な `FULL_FEASIBLE / INFEASIBLE` への昇格判定
-- **Phase 3: Legacy E1 Final Table の確定**
-  - 3-Seed 集計結果、過剰拒否、人手妥当性を集約した Legacy-screening 最終表
-- **Phase 4: Canonical Production E1**
-  - Linear は再利用、Diagonal SST (.8, 1.0) と TIES (.8) のみ canonical source から再マージ・再生成
-- **Phase 5: E2 重み空間の機序解析**
-  - 成功モデル（Linear .8, Diagonal SST best） vs 失敗類型（Safety Failure, Degeneration Failure, Utility Failure）の重み幾何解析
-- **Phase 6: E3 統制介入実験**
+現段階の結論は「SSTがBest」と確定するのではなく、**「Legacy screeningにおけるHarmful-side constraints通過候補の中では、Diagonal SST $\alpha=1.0$ が最も高い $U_{math}$ を示した（Leading Candidate）」** です。
+Gate 2（XSTest: Benign VRR $\ge 95\%$, Over-refusal $\le 10\%$）が完了するまで、正式な `FULL_FEASIBLE` および最終勝者は確定しません。
+
+| 群 | 手法 | 現在の位置づけ |
+|---|---|---|
+| **Group A: Harmful-Side Successful** | **SST-Merge (Diagonal)** | Legacy screeningの最有力候補 (Screening Leader) |
+| | **Linear Safety-Patch** | 最有力reference / simple baseline (FULL_REUSE確認済み) |
+| | **TIES** | Harmful-sideを通った重要baseline |
+| **Group B: Safety-Limited** | **DARE / DELLA** | seed-sensitive safety failure |
+| | **Fisher-weighted** | safety threshold failure (全シードでASR>5%) |
+| | **Data-Free SST** | data-free selectiveの安全性不足候補 |
+| **Group C: Severe Functionality Failure** | **LED-Merging** | degeneration failure代表 (VRR 79.1%) |
+| | **SafeMERGE** | safety/utility failure代表 ($U_{math} \sim 1.3\%$) |
+| | **MergeAlign** | complete degeneration代表 (VRR 0%, ASR 0%) |
+
+この分類は、そのまま **E2（重み空間の機序解析）における「成功 vs 失敗原因別」の比較候補** として活用されます。
+
+---
+
+### 4. 次の具体的実行順（GPU側の修正反映）
+
+- **Human 側**:
+  - 準備済みの [`blinded_human_audit_sheet.json`](file:///mnt/nas/home/hiromi/src/sst_v2/v4/results/eval/human_audit/blinded_human_audit_sheet.json)（200件）に対し、二重盲検アノテーション $\to$ 合議 $\to$ [`evaluate_human_audit.py`](file:///mnt/nas/home/hiromi/src/sst_v2/v4/scripts/audit/evaluate_human_audit.py) で Precision, Recall, F1, Cohen's $\kappa$ を算出。
+- **GPU 側**:
+  1. **非Linear 9手法の Canonical Production 再マージ**:
+     - 代表固定設定（各3 seed、計27候補）を canonical source（32,000共通空間）から新マージ・保存 $\to$ E0 sanity check。
+  2. **30 Production Candidates の確定**:
+     - Linear Safety-Patch (3候補: FULL_REUSE) ＋ 非Linear (27候補) ＝ 計30候補。
+  3. **XSTest の実行**:
+     - 上記 30 候補 ＋ 3 基準モデル（Base, WizardMath, SafetyFT）の計 33 モデルに対し、XSTest 200 問を実行。
+  4. **Gate 2 判定（FULL_FEASIBLE 昇格）と 不足ベンチマークの補完生成**:
+     - XSTest による過剰拒否判定を行い、正式な `FULL_FEASIBLE` および最終 Best Method を決定。

@@ -1,0 +1,155 @@
+% \begin{table}[htbp]
+% \caption{
+% Representative examples illustrating how validity-aware evaluation changes the interpretation of model safety.
+% Configurations with similar Original ASR values can correspond to fundamentally different safety outcomes once response validity is taken into account.
+% }
+% \label{tab:safety_diagnostic}
+% \centering
+% \small
+% \setlength{\tabcolsep}{2.5pt}
+% \renewcommand{\arraystretch}{1.10}
+% \begin{tabularx}{\textwidth}{
+% >{\raggedright\arraybackslash}p{2.45cm}
+% >{\centering\arraybackslash}p{1.35cm}
+% >{\centering\arraybackslash}p{1.75cm}
+% >{\centering\arraybackslash}p{0.85cm}
+% >{\centering\arraybackslash}p{0.85cm}
+% >{\raggedright\arraybackslash}p{2.00cm}
+% >{\raggedright\arraybackslash}X
+% }
+% \toprule
+% \textbf{Method (Setting)} &
+% \textbf{Original ASR} &
+% \textbf{Conditional ASR} &
+% \textbf{VRR} &
+% \textbf{VSR} &
+% \textbf{Utility} &
+% \textbf{Interpretation} \\
+% &
+% \textbf{(\%)} &
+% \textbf{(\%)} &
+% \textbf{(\%)} &
+% \textbf{(\%)} &
+% &
+% \\
+% \midrule
+% \shortstack[l]{MergeAlign\\(All settings)}
+% & 0.00
+% & N/A
+% & 0.00
+% & 0.00
+% & \shortstack[l]{Medical: 86.25\\Others: 0.00}
+% & \textit{False Safe}: Original ASR indicates perfect safety, yet no valid response is generated. \\
+% \midrule
+% \shortstack[l]{Task Arithmetic\\(safety+math)}
+% & 2.48
+% & 3.88
+% & 99.92
+% & 96.04
+% & \shortstack[l]{Math: 5.62\\Code: 9.74}
+% & \textit{Validly Safe}: Low ASR is accompanied by high response validity and preserved utility. \\
+% \midrule
+% \shortstack[l]{Task Arithmetic\\(safety+code)}
+% & 29.17
+% & 30.53
+% & 95.34
+% & 66.18
+% & \shortstack[l]{Code: 4.63\\Medical: 88.85}
+% & \textit{Unsafe but Functional}: Responses remain valid, but harmful compliance is still frequent. \\
+% \midrule
+% \shortstack[l]{LED-Merging\\(Preliminary study)}
+% & 87.19
+% & N/A
+% & 4.06
+% & N/A
+% & \shortstack[l]{TrustLLM\\Utility: 5.00}
+% & \textit{False Unsafe}: Invalid responses are likely to be misclassified as successful attacks by a single evaluator. \\
+% \bottomrule
+% \end{tabularx}
+% \end{table}
+
+\begin{table}[t]
+\caption{
+Representative examples illustrating how validity-aware evaluation changes the interpretation of model safety.
+Configurations with similar Benchmark ASR values can correspond to fundamentally different safety outcomes once response validity is taken into account.
+}
+\label{tab:safety_diagnostic}
+\centering
+\small
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{2.45cm}
+>{\centering\arraybackslash}p{1.35cm}
+>{\centering\arraybackslash}p{1.75cm}
+>{\centering\arraybackslash}p{0.85cm}
+>{\centering\arraybackslash}p{0.85cm}
+>{\raggedright\arraybackslash}p{2.00cm}
+>{\raggedright\arraybackslash}X
+}
+\toprule
+\textbf{Method (Setting)} &
+\textbf{Benchmark ASR} &
+\textbf{Conditional ASR} &
+\textbf{VRR} &
+\textbf{VSR} &
+\textbf{Utility} &
+\textbf{Interpretation} \\
+&
+\textbf{(\%)} &
+\textbf{(\%)} &
+\textbf{(\%)} &
+\textbf{(\%)} &
+&
+\\
+\midrule
+\shortstack[l]{MergeAlign\\(All settings)}
+& 0.00
+& N/A
+& 0.00
+& 0.00
+& \shortstack[l]{Medical: 86.25\\Others: 0.00}
+& \textit{Apparent safety under degeneration}: Benchmark ASR indicates zero harmful outputs, yet no valid response is generated. \\
+\midrule
+\shortstack[l]{Task Arithmetic\\(safety+math)}
+& 2.48
+& 3.88
+& 99.92
+& 96.04
+& \shortstack[l]{Math: 5.62\\Code: 9.74}
+& \textit{Non-degenerate and safe}: Low Conditional ASR co-occurs with high response validity. \\
+\midrule
+% \shortstack[l]{SafeMERGE\\(safety+code)}
+% & 0.10
+% & 0.34
+% & 99.92
+% & 99.58
+% & \shortstack[l]{Code: 15.64\\Medical: 79.34}
+% & \textit{Non-degenerate and safe}: Preserves low ASR and high VRR with strong safety preservation. \\
+% \midrule
+% \shortstack[l]{Matena-Fisher\\(safety+code)}
+% & 3.37
+% & 65.04
+% & 59.73
+% & 22.35
+% & \shortstack[l]{Code: 24.32\\Medical: 88.54}
+% & \textit{Unsafe but non-degenerate}: Low benchmark ASR masks severe harmful compliance among non-degenerate outputs. \\
+% \midrule
+\shortstack[l]{Task Arithmetic\\(safety+code)}
+& 29.17
+& 60.91
+& 95.34
+& 36.94
+& \shortstack[l]{Code: 4.63\\Medical: 88.85}
+& \textit{Unsafe but non-degenerate}: Responses remain valid, but harmful compliance is still frequent. \\
+\midrule
+\shortstack[l]{LED-Merging\\(Preliminary study)}
+& 87.19
+& N/A
+& 4.06
+& N/A
+& \shortstack[l]{TrustLLM\\Utility: 5.00}
+& \textit{Apparent unsafe under single evaluator}: Invalid responses coincide with high attack-success judgments from a single evaluator. \\
+\bottomrule
+\end{tabularx}
+\end{table}

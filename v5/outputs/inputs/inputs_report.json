@@ -1,0 +1,421 @@
+{
+  "availability": {
+    "fim_cache_benign": true,
+    "fim_cache_harmful": true,
+    "fim_data_json": true,
+    "merged_model_configs": true,
+    "merged_model_safetensors_headers": true,
+    "merged_models_sst": true,
+    "merged_models_ta": true,
+    "model_weights_base": true,
+    "model_weights_safety": true,
+    "model_weights_util": true,
+    "results_ablation": true,
+    "results_main": true
+  },
+  "entries": [
+    {
+      "category": "fim_cache_harmful",
+      "exists": true,
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/harmful_safety_Llama2_SafetyFT_n500_seed42.pt",
+      "size_bytes": 25904104495
+    },
+    {
+      "category": "fim_cache_benign",
+      "exists": true,
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/benign_math_Llama2_WizardMath_n500_seed42.pt",
+      "size_bytes": 25904104265
+    },
+    {
+      "category": "fim_cache_benign",
+      "exists": true,
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/benign_code_Llama2_WizardCoder_n500_seed42.pt",
+      "size_bytes": 25904104495
+    },
+    {
+      "category": "fim_cache_benign",
+      "exists": true,
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/benign_medical_Llama2_MedAlpaca_n500_seed42.pt",
+      "size_bytes": 25904104725
+    },
+    {
+      "category": "fim_cache_harmful",
+      "exists": true,
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/harmful_safety_Llama2_SafetyFT_n500_seed43.pt",
+      "size_bytes": 25904104495
+    },
+    {
+      "category": "fim_cache_benign",
+      "exists": true,
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/benign_math_Llama2_WizardMath_n500_seed43.pt",
+      "size_bytes": 25904104265
+    },
+    {
+      "category": "fim_cache_benign",
+      "exists": true,
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/benign_code_Llama2_WizardCoder_n500_seed43.pt",
+      "size_bytes": 25904104495
+    },
+    {
+      "category": "fim_cache_benign",
+      "exists": true,
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/benign_medical_Llama2_MedAlpaca_n500_seed43.pt",
+      "size_bytes": 25904104725
+    },
+    {
+      "category": "fim_cache_harmful",
+      "exists": true,
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/harmful_safety_Llama2_SafetyFT_n500_seed44.pt",
+      "size_bytes": 25904104495
+    },
+    {
+      "category": "fim_cache_benign",
+      "exists": true,
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/benign_math_Llama2_WizardMath_n500_seed44.pt",
+      "size_bytes": 25904104265
+    },
+    {
+      "category": "fim_cache_benign",
+      "exists": true,
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/benign_code_Llama2_WizardCoder_n500_seed44.pt",
+      "size_bytes": 25904104495
+    },
+    {
+      "category": "fim_cache_benign",
+      "exists": true,
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/benign_medical_Llama2_MedAlpaca_n500_seed44.pt",
+      "size_bytes": 25904104725
+    },
+    {
+      "category": "fim_data_json",
+      "exists": true,
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/data/fim/fim_benign_math.json",
+      "size_bytes": 568725
+    },
+    {
+      "category": "fim_data_json",
+      "exists": true,
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/data/fim/fim_benign_code.json",
+      "size_bytes": 2420135
+    },
+    {
+      "category": "fim_data_json",
+      "exists": true,
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/data/fim/fim_benign_medical.json",
+      "size_bytes": 456199
+    },
+    {
+      "category": "fim_data_json",
+      "exists": true,
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/data/fim/fim_harmful.json",
+      "size_bytes": 744039
+    },
+    {
+      "category": "model_weights_base",
+      "exists": true,
+      "files": [
+        {
+          "name": "config.json",
+          "size_bytes": 609
+        },
+        {
+          "name": "generation_config.json",
+          "size_bytes": 188
+        },
+        {
+          "name": "model-00001-of-00002.safetensors",
+          "size_bytes": 9976578928
+        },
+        {
+          "name": "model-00002-of-00002.safetensors",
+          "size_bytes": 3500297344
+        },
+        {
+          "name": "model.safetensors.index.json",
+          "size_bytes": 26788
+        },
+        {
+          "name": "pytorch_model.bin.index.json",
+          "size_bytes": 26788
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size_bytes": 414
+        },
+        {
+          "name": "tokenizer.json",
+          "size_bytes": 1842767
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size_bytes": 776
+        }
+      ],
+      "path": "/mnt/nas/home/hiromi/.cache/huggingface/hub/models--meta-llama--Llama-2-7b-hf/snapshots/01c7f73d771dfac7d292323805ebc428287df4f9"
+    },
+    {
+      "category": "model_weights_util:math",
+      "exists": true,
+      "files": [
+        {
+          "name": "added_tokens.json",
+          "size_bytes": 21
+        },
+        {
+          "name": "config.json",
+          "size_bytes": 617
+        },
+        {
+          "name": "generation_config.json",
+          "size_bytes": 132
+        },
+        {
+          "name": "pytorch_model-00001-of-00003.bin",
+          "size_bytes": 9878005970
+        },
+        {
+          "name": "pytorch_model-00002-of-00003.bin",
+          "size_bytes": 9894801014
+        },
+        {
+          "name": "pytorch_model-00003-of-00003.bin",
+          "size_bytes": 7181007033
+        },
+        {
+          "name": "pytorch_model.bin.index.json",
+          "size_bytes": 26788
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size_bytes": 435
+        },
+        {
+          "name": "tokenizer.json",
+          "size_bytes": 1842945
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size_bytes": 676
+        }
+      ],
+      "path": "/mnt/nas/home/hiromi/.cache/huggingface/hub/models--WizardLMTeam--WizardMath-7B-V1.0/snapshots/825a586f260d6c583b8aa9ceab6cdfaa3d9a4ddc"
+    },
+    {
+      "category": "model_weights_util:code",
+      "exists": true,
+      "files": [
+        {
+          "name": "added_tokens.json",
+          "size_bytes": 21
+        },
+        {
+          "name": "config.json",
+          "size_bytes": 716
+        },
+        {
+          "name": "generation_config.json",
+          "size_bytes": 111
+        },
+        {
+          "name": "pytorch_model-00001-of-00002.bin",
+          "size_bytes": 9976639678
+        },
+        {
+          "name": "pytorch_model-00002-of-00002.bin",
+          "size_bytes": 3500322643
+        },
+        {
+          "name": "pytorch_model.bin.index.json",
+          "size_bytes": 26788
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size_bytes": 96
+        },
+        {
+          "name": "tokenizer.json",
+          "size_bytes": 1842946
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size_bytes": 721
+        }
+      ],
+      "path": "/mnt/nas/home/hiromi/.cache/huggingface/hub/models--vanillaOVO--WizardCoder-Python-7B-V1.0/snapshots/f85f4b80949c1451502ab32022ce23af6e3ad549"
+    },
+    {
+      "category": "model_weights_util:medical",
+      "exists": true,
+      "files": [
+        {
+          "name": "added_tokens.json",
+          "size_bytes": 21
+        },
+        {
+          "name": "config.json",
+          "size_bytes": 542
+        },
+        {
+          "name": "generation_config.json",
+          "size_bytes": 137
+        },
+        {
+          "name": "model-00001-of-00003.safetensors",
+          "size_bytes": 9877979288
+        },
+        {
+          "name": "model-00002-of-00003.safetensors",
+          "size_bytes": 9894773440
+        },
+        {
+          "name": "model-00003-of-00003.safetensors",
+          "size_bytes": 7180987992
+        },
+        {
+          "name": "model.safetensors.index.json",
+          "size_bytes": 28091
+        },
+        {
+          "name": "pytorch_model.bin.index.json",
+          "size_bytes": 26788
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size_bytes": 96
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size_bytes": 260
+        },
+        {
+          "name": "trainer_state.json",
+          "size_bytes": 283524
+        }
+      ],
+      "path": "/mnt/nas/home/hiromi/.cache/huggingface/hub/models--medalpaca--medalpaca-7b/snapshots/fbb41b75d5a46ba405d496db1083a6f1d3df72a2"
+    },
+    {
+      "category": "model_weights_safety:seed42",
+      "exists": true,
+      "files": [
+        {
+          "name": "_temp_metadata.json",
+          "size_bytes": 141
+        },
+        {
+          "name": "config.json",
+          "size_bytes": 728
+        },
+        {
+          "name": "generation_config.json",
+          "size_bytes": 183
+        },
+        {
+          "name": "model.safetensors",
+          "size_bytes": 13476881328
+        },
+        {
+          "name": "tokenizer.json",
+          "size_bytes": 3619048
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size_bytes": 398
+        }
+      ],
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/temp_safety_full_seed42"
+    },
+    {
+      "category": "model_weights_safety:seed43",
+      "exists": true,
+      "files": [
+        {
+          "name": "_temp_metadata.json",
+          "size_bytes": 142
+        },
+        {
+          "name": "config.json",
+          "size_bytes": 729
+        },
+        {
+          "name": "generation_config.json",
+          "size_bytes": 187
+        },
+        {
+          "name": "model.safetensors",
+          "size_bytes": 13476881328
+        },
+        {
+          "name": "tokenizer.json",
+          "size_bytes": 3619051
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size_bytes": 425
+        }
+      ],
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/temp_safety_full_seed43"
+    },
+    {
+      "category": "model_weights_safety:seed44",
+      "exists": true,
+      "files": [
+        {
+          "name": "_temp_metadata.json",
+          "size_bytes": 142
+        },
+        {
+          "name": "config.json",
+          "size_bytes": 729
+        },
+        {
+          "name": "generation_config.json",
+          "size_bytes": 187
+        },
+        {
+          "name": "model.safetensors",
+          "size_bytes": 13476881328
+        },
+        {
+          "name": "tokenizer.json",
+          "size_bytes": 3619051
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size_bytes": 425
+        }
+      ],
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/temp_safety_full_seed44"
+    },
+    {
+      "category": "merged_models",
+      "exists": true,
+      "n_dirs": 1236,
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged"
+    },
+    {
+      "category": "results",
+      "exists": true,
+      "path": "/mnt/nas/home/hiromi/src/sst_v2/v3/results/vllm/debug_limit320"
+    }
+  ],
+  "likely_undetermined": {},
+  "scope": {
+    "full_patterns": true,
+    "full_seeds": true,
+    "layers": null,
+    "max_models": null,
+    "max_tensors": null,
+    "patterns": [
+      "safety+math",
+      "safety+code",
+      "safety+medical",
+      "safety+math+code+medical"
+    ],
+    "seeds": [
+      42,
+      43,
+      44
+    ]
+  }
+}

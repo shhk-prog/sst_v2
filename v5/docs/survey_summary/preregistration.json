@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "status": "実データを使う実行（Part B）の前に固定した記録。結果を見てから書き換えない",
+  "recorded_on": "2026-11-23",
+  "user_has_seen_flmsec_table": true,
+  "comparison": {
+    "vrr_floor": {
+      "primary": 80.0,
+      "sensitivity": [90.0, 50.0],
+      "unit": "百分率",
+      "keep_condition": "VRR >= 下限の点を残す"
+    },
+    "neighborhood_tolerance_pt": 2.0,
+    "harm_rule_primary": "harmbench_only",
+    "harm_rule_reproduction_only": "or_legacy",
+    "paper_compare_tolerance": 0.005,
+    "pareto": "観測済みの点の厳密な支配（補間なし）。Conditional ASR は低いほど、有用性は高いほど良い",
+    "adoption_uses_general_column": false
+  },
+  "normalized_total": {
+    "role": "補助。採用判定には使わない",
+    "formula": "各特化ドメイン（math、code、medical）のスコアを、対応する単体ドメインモデル（WizardMath、WizardCoder、MedAlpaca）の同ドメインのスコアで割り、対象ドメインの単純平均を取る。参照値が無い・0 以下のドメインは除く",
+    "domains_by_pattern": {
+      "safety+math": ["math"],
+      "safety+code": ["code"],
+      "safety+medical": ["medical"],
+      "safety+math+code+medical": ["math", "code", "medical"]
+    }
+  },
+  "verdict_classes": ["支持", "不支持", "判定不能"],
+  "verdict_rules": {
+    "support": "support_if を満たし、refute_if を満たさない",
+    "refute": "refute_if を満たし、support_if を満たさない",
+    "undetermined": "次のいずれか。(1) 判定に必要なデータが無い、(2) 実行範囲を絞った（範囲外を含む）、(3) 支持と反証の基準の間にあり要因を切り分けられない、(4) 基準が重なる",
+    "scope_rule": "--max-tensors、--layers などで範囲を絞った実行は、その仮説を判定不能にする。範囲は出力に必ず記録する",
+    "statement_direction": "「支持」は、statement に書いた仮説（SST の不振を説明しうる機構が存在する、など）が成り立つこと"
+  },
+  "execution_order": [
+    "inputs: 入力の有無と大きさの確認（check_inputs.py）",
+    "v1_v9: V1〜V9 の CPU 検証（check_v1_v9.py）",
+    "v10_v11: V10〜V11 の再集計（check_v10_v11.py）"
+  ],
+  "hypotheses": {
+    "V1": {
+      "title": "FIM の 0 の割合（fp16 キャスト後）",
+      "stage": "v1_v9",
+      "check": "harmful FIM（F_h）を fp16 にキャストした後、0 の割合が 0.8 を超えるテンソルが多いか",
+      "statement": "F_h の fp16 キャスト後の 0 の割合が高く、多くのテンソルで SST のマスクが全 1 に退化する",
+      "metric": "frac_tensors_fh_zero_over_80pct",
+      "metric_definition": "走査したテンソルのうち、F_h（fp16）の 0 の割合が 0.8 を超えたテンソルの割合",
+      "support_if": {"op": ">=", "value": 0.10},
+      "refute_if": {"op": "<=", "value": 0.02},
+      "supplementary_metrics": ["max_zero_fraction_fh_fp16", "mean_zero_fraction_fh_fp16", "mean_zero_fraction_fh_fp32"],
+      "needs": ["fim_cache_harmful"]
+    },
+    "V2": {
+      "title": "実際のマスク比率と inf の数",
+      "stage": "v1_v9",
+      "check": "sst.py と同じ計算（fp16、λ = F_h/(F̄_b+1e-6)、top-k、>=）で、テンソルごとのマスク比率が期待値 k から外れていないか、inf が多くないか",
+      "statement": "多くのテンソルで、マスク比率が k から大きく外れる、または λ の inf が多い",
+      "metric": "frac_tensors_mask_or_inf_abnormal",
+      "metric_definition": "走査したテンソルのうち、|mask.mean() - k| > mask_tolerance、または inf の割合 > inf_fraction_limit のテンソルの割合",
+      "params": {"k": 0.2, "mask_tolerance": 0.05, "inf_fraction_limit": 0.2},
+      "support_if": {"op": ">=", "value": 0.10},
+      "refute_if": {"op": "<=", "value": 0.02},
+      "supplementary_metrics": ["mean_mask_ratio", "max_mask_ratio", "total_inf_count"],
+      "needs": ["fim_cache_harmful", "fim_cache_benign"]
+    },
+    "V3": {
+      "title": "マスクの中身が FIM に依存しているか",
+      "stage": "v1_v9",
+      "check": "Fh/Fb、magnitude（|δ_s|）、random のマスクの Jaccard 係数、λ と |δ_s| の順位相関",
+      "statement": "Fh/Fb のマスクは |δ_s| のマスクとほぼ同じで、FIM 由来の独立した情報が小さい",
+      "metric": "median_jaccard_fhfb_vs_magnitude",
+      "metric_definition": "走査したテンソルでの、Fh/Fb のマスクと magnitude のマスクの Jaccard 係数の中央値",
+      "support_if": {"op": ">=", "value": 0.5},
+      "refute_if": {"op": "<=", "value": 0.2},
+      "supplementary_metrics": ["median_jaccard_fhfb_vs_random", "median_jaccard_magnitude_vs_random", "median_spearman_lambda_vs_abs_delta_s"],
+      "needs": ["fim_cache_harmful", "fim_cache_benign", "model_weights_base", "model_weights_safety"]
+    },
+    "V4": {
+      "title": "fp16 の丸めで安全成分が消える割合",
+      "stage": "v1_v9",
+      "check": "|α·δ_s| < ulp_fp16(θ_u)/2 の座標の割合（α=0.6）",
+      "statement": "fp16 の丸めで、α·δ_s が θ_u に反映されない座標が無視できない割合で存在する",
+      "metric": "mean_frac_alpha_delta_below_half_ulp",
+      "metric_definition": "走査したテンソルでの、|α·δ_s| < ulp_fp16(θ_u)/2 となる座標の割合の平均",
+      "params": {"alpha": 0.6},
+      "support_if": {"op": ">=", "value": 0.10},
+      "refute_if": {"op": "<=", "value": 0.01},
+      "supplementary_metrics": ["max_frac_alpha_delta_below_half_ulp"],
+      "needs": ["model_weights_base", "model_weights_util", "model_weights_safety"]
+    },
+    "V5": {
+      "title": "注入された安全成分の量",
+      "stage": "v1_v9",
+      "check": "同じ α・seed・パターンの SST と task_arithmetic の merge 済みモデルについて、⟨θ_merged − θ_u, δ_s⟩ をテンソルごとに比べる",
+      "statement": "SST は task_arithmetic より、安全成分（δ_s 方向）をずっと少なくしか注入していない",
+      "metric": "median_ratio_sst_over_ta_injection",
+      "metric_definition": "走査したテンソルでの、⟨θ_sst − θ_u, δ_s⟩ / ⟨θ_ta − θ_u, δ_s⟩ の中央値",
+      "support_if": {"op": "<=", "value": 0.5},
+      "refute_if": {"op": ">=", "value": 0.9},
+      "supplementary_metrics": ["median_norm_ratio_sst_over_ta"],
+      "needs": ["model_weights_base", "model_weights_util", "model_weights_safety", "merged_models_sst", "merged_models_ta"]
+    },
+    "V6": {
+      "title": "WizardMath の系統",
+      "stage": "v1_v9",
+      "check": "WizardMath と Llama-2-7b-hf の各層の相対差分 ‖θ_u−θ₀‖/‖θ₀‖ を、WizardCoder、MedAlpaca と並べる",
+      "statement": "WizardMath は Llama-2-7b-hf からの相対差分が他のドメインモデルより大きく、別の系統である可能性が高い",
+      "metric": "ratio_wizardmath_over_mean_others_rel_diff",
+      "metric_definition": "層ごとの相対差分の中央値について、WizardMath / (WizardCoder と MedAlpaca の平均)",
+      "support_if": {"op": ">=", "value": 2.0},
+      "refute_if": {"op": "<=", "value": 1.2},
+      "supplementary_metrics": ["median_rel_diff_wizardmath", "median_rel_diff_wizardcoder", "median_rel_diff_medalpaca"],
+      "needs": ["model_weights_base", "model_weights_util"]
+    },
+    "V7": {
+      "title": "merge 済み code モデルの位置符号化",
+      "stage": "v1_v9",
+      "check": "models/merged/*safety+code*/config.json の rope_theta と、base/ の WizardCoder 評価時の値（1000000）を比べる",
+      "statement": "merge 済みの safety+code モデルの rope_theta が、WizardCoder 評価時の値（1000000）と食い違う",
+      "metric": "merged_code_rope_theta_mismatch_fraction",
+      "metric_definition": "確認した safety+code の merge 済みモデルのうち、rope_theta が 1000000 でないものの割合",
+      "params": {"reference_rope_theta": 1000000},
+      "support_if": {"op": ">=", "value": 0.5},
+      "refute_if": {"op": "<=", "value": 0.0},
+      "supplementary_metrics": ["n_models_checked", "rope_theta_values"],
+      "needs": ["merged_model_configs"]
+    },
+    "V8": {
+      "title": "FIM データが実データか",
+      "stage": "v1_v9",
+      "check": "data/fim/fim_benign_*.json の先頭数件がプレースホルダでないか。fim_harmful.json の件数（想定 1,400）",
+      "statement": "FIM の推定に使ったデータの多くがプレースホルダである",
+      "metric": "placeholder_fraction",
+      "metric_definition": "確認した先頭の件のうち、プレースホルダの型に一致した件の割合（全ファイルの平均）",
+      "params": {"sample_head": 20, "expected_harmful_count": 1400},
+      "support_if": {"op": ">=", "value": 0.5},
+      "refute_if": {"op": "<=", "value": 0.0},
+      "supplementary_metrics": ["harmful_count", "benign_counts"],
+      "needs": ["fim_data_json"]
+    },
+    "V9": {
+      "title": "mergekit 出力の語彙の扱い",
+      "stage": "v1_v9",
+      "check": "mergekit 系の merge 済みモデルの config.json の vocab_size と、safetensors ヘッダの lm_head.weight の形状を比べる",
+      "statement": "mergekit 系の merge 済みモデルで、config の vocab_size と lm_head の形状が食い違う",
+      "metric": "n_vocab_mismatch_models",
+      "metric_definition": "確認した mergekit 系の merge 済みモデルのうち、vocab_size と lm_head.weight の行数が食い違うモデルの数",
+      "support_if": {"op": ">=", "value": 1},
+      "refute_if": {"op": "<=", "value": 0},
+      "supplementary_metrics": ["n_models_checked", "vocab_sizes", "lm_head_rows"],
+      "needs": ["merged_model_configs", "merged_model_safetensors_headers"]
+    },
+    "V10": {
+      "title": "論文に近い条件の結果が v3 にあるか",
+      "stage": "v10_v11",
+      "check": "アブレーション結果のファイル名から、k0.05、k0.1、additive、layerwise_* の評価済みの条件を一覧する",
+      "statement": "SAGAI_EN_sst に近い条件（k の他の値、additive、層重み）の大半が v3 で評価済みである",
+      "metric": "frac_paper_like_conditions_evaluated",
+      "metric_definition": "条件の集合 {k0.05, k0.1, additive, layerwise_sin, layerwise_linear, layerwise_exp} のうち、評価済みの割合",
+      "params": {"conditions": ["k0.05", "k0.1", "additive", "layerwise_sin", "layerwise_linear", "layerwise_exp"]},
+      "support_if": {"op": ">=", "value": 0.5},
+      "refute_if": {"op": "<=", "value": 0.25},
+      "supplementary_metrics": ["evaluated_conditions"],
+      "needs": ["results_ablation"]
+    },
+    "V11": {
+      "title": "同じ JB での比較（SST と task_arithmetic）",
+      "stage": "v10_v11",
+      "check": "VRR の下限を満たす観測点で、SST と task_arithmetic を Pareto 支配と近傍比較で比べる",
+      "statement": "SST は、VRR の下限を満たす観測点で task_arithmetic を Pareto 支配する",
+      "metric": "sst_dominates_ta_panel_fraction",
+      "metric_definition": "(パターン, ドメイン) の枠のうち、SST の点が task_arithmetic の点を 1 つ以上支配する枠の割合（両方の点が残る枠だけが分母）",
+      "support_if": {"op": ">=", "value": 0.5},
+      "refute_if": {"op": "<=", "value": 0.25},
+      "supplementary_metrics": ["ta_dominates_sst_panel_fraction", "n_panels", "neighborhood_pairs"],
+      "needs": ["results_main"]
+    }
+  },
+  "out_of_scope": ["V12", "V13", "V14", "V15", "V16"]
+}

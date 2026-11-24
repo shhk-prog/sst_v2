@@ -1,0 +1,73 @@
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+
+
+\usepackage{multirow}
+\usepackage[x11names, dvipsnames, svgnames, table, html]{xcolor}
+
+\begin{document}
+
+
+
+\begin{table}[h]
+\centering
+\caption{Caption HERE!!!!!}
+\label{tab:hoge}
+\begin{tabular}{l|l}
+\hline \hline
+Base Model                       & FT Model                 \\ \hline
+\multirow{3}{*}{Mistral-7B-v0.1} & Mistral-7B-Instruct-v0.1 \\
+                                 & WizardMath-7B-V1.1       \\
+                                 & shisa-gamma-7b-v1        \\ \hline \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Caption HERE!!!!!}
+\label{tab:hogehoge}
+\begin{tabular}{l|l}
+\hline \hline
+Base Model      & FT Model                 \\ \hline
+Mistral-7B-v0.3 & Mistral-7B-Instruct-v0.3 \\ \hline \hline
+\end{tabular}
+\end{table}
+
+
+
+
+
+\begin{table}[h]
+\centering
+\caption{Caption HERE!!!!!}
+\label{tab:hogehogehoge}
+\begin{tabular}{l|l|ll}
+\hline \hline
+                              &                            & \multicolumn{2}{l}{Merge Model}                                                                                      \\ \cline{3-4} 
+\multirow{-2}{*}{Patch Model} & \multirow{-2}{*}{FT model} & \multicolumn{1}{l|}{Linear}                                         & Task Arithmetic                                \\ \hline
+                              & Mistral-7B-Instruct-v0.1   & \multicolumn{1}{l|}{{\color[HTML]{FE0000} }}                        & {\color[HTML]{FE0000} }                        \\
+                              & 0.291                      & \multicolumn{1}{l|}{\multirow{-2}{*}{{\color[HTML]{FE0000} 0.839}}} & \multirow{-2}{*}{{\color[HTML]{FE0000} 0.758}} \\ \cline{2-4} 
+                              & WizardMath-7B-V1.1         & \multicolumn{1}{l|}{{\color[HTML]{FE0000} }}                        & {\color[HTML]{FE0000} }                        \\
+                              & 0.705                      & \multicolumn{1}{l|}{\multirow{-2}{*}{{\color[HTML]{FE0000} 0.908}}} & \multirow{-2}{*}{{\color[HTML]{FE0000} 0.870}} \\ \cline{2-4} 
+                              & shisa-gamma-7b-v1          & \multicolumn{1}{l|}{{\color[HTML]{FE0000} }}                        & {\color[HTML]{FE0000} }                        \\
+\multirow{-6}{*}{0.975}       & 0.769                      & \multicolumn{1}{l|}{\multirow{-2}{*}{{\color[HTML]{FE0000} 0.931}}} & \multirow{-2}{*}{{\color[HTML]{FE0000} 0.868}} \\ \hline \hline
+\end{tabular}
+\end{table}
+
+
+
+
+\begin{table}[h]
+\centering
+\caption{Caption HERE!!!!!}
+\label{tab:hogealpha}
+\begin{tabular}{l|l|ll}
+\hline \hline
+                              &                                            & \multicolumn{2}{l}{Merge Model}                                                                                      \\ \cline{3-4} 
+\multirow{-2}{*}{Patch Model} & \multirow{-2}{*}{FT Model}                 & \multicolumn{1}{l|}{linear}                                         & Task Arithmetic                                \\ \hline
+                              &                                            & \multicolumn{1}{l|}{{\color[HTML]{CB0000} }}                        & {\color[HTML]{CB0000} }                        \\
+\multirow{-2}{*}{0.974}       & \multirow{-2}{*}{Mistral-7B-Instruct-v0.3} & \multicolumn{1}{l|}{\multirow{-2}{*}{{\color[HTML]{CB0000} 0.928}}} & \multirow{-2}{*}{{\color[HTML]{CB0000} 0.946}} \\ \hline \hline
+\end{tabular}
+\end{table}
+
+\end{document}

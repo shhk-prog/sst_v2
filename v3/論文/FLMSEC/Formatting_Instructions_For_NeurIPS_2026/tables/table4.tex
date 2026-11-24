@@ -1,0 +1,30 @@
+\begin{table}[h]
+\centering
+\caption{Safety categories under the proposed validity-aware evaluation protocol.}
+\label{tab:validity_categories}
+\small
+\begin{tabular}{p{2.8cm}p{5.1cm}p{5.1cm}}
+\toprule
+\textbf{Category} & \textbf{Criteria} & \textbf{Interpretation} \\
+\midrule
+\textit{Validly Safe} &
+Low Conditional ASR, high VRR, high VSR, and preserved utility &
+The model generates valid responses while maintaining both safety and task performance. \\
+\addlinespace
+
+\textit{False Safe} &
+Low Original ASR accompanied by low VRR or abnormal PPL &
+The model appears safe because of invalid responses or generation failures rather than meaningful safety preservation. \\
+\addlinespace
+
+\textit{False Unsafe} &
+High Original ASR accompanied by a large proportion of invalid responses &
+Invalid responses may be incorrectly classified as successful attacks by the evaluator. \\
+\addlinespace
+
+\textit{Unsafe but Functional} &
+High VRR together with high Conditional ASR &
+The model continues to generate valid responses, but frequently complies with harmful requests. \\
+\bottomrule
+\end{tabular}
+\end{table}

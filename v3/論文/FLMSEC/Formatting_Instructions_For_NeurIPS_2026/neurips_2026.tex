@@ -1,0 +1,395 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2026
+
+% The authors should use one of these tracks.
+% Before accepting by the NeurIPS conference, select one of the options below.
+% 0. "default" for submission
+% \usepackage{neurips_2026}
+\usepackage[dblblindworkshop]{neurips_2026}
+% the "default" option is equal to the "main" option, which is used for the Main Track with double-blind reviewing.
+% 1. "main" option is used for the Main Track
+%  \usepackage[main]{neurips_2026}
+% 2. "position" option is used for the Position Paper Track
+%  \usepackage[position]{neurips_2026}
+% 3. "eandd" option is used for the Evaluations & Datasets Track
+ % \usepackage[eandd]{neurips_2026}
+% 4. "creativeai" option is used for the Creative AI Track
+%  \usepackage[creativeai]{neurips_2026}
+% 5. "sglblindworkshop" option is used for the Workshop with single-blind reviewing
+ % \usepackage[sglblindworkshop]{neurips_2026}
+% 6. "dblblindworkshop" option is used for the Workshop with double-blind reviewing
+%  \usepackage[dblblindworkshop]{neurips_2026}
+% 7. "education" option is used for the Education Track
+%  \usepackage[education]{neurips_2026}
+
+
+% After being accepted, the authors should add "final" behind the track to compile a camera-ready version.
+% 1. Main Track
+ % \usepackage[main, final]{neurips_2026}
+% 2. Position Paper Track
+%  \usepackage[position, final]{neurips_2026}
+% 3. Evaluations & Datasets Track
+ % \usepackage[eandd, final]{neurips_2026}
+% 4. Creative AI Track
+%  \usepackage[creativeai, final]{neurips_2026}
+% 5. Workshop with single-blind reviewing
+%  \usepackage[sglblindworkshop, final]{neurips_2026}
+% 6. Workshop with double-blind reviewing
+%  \usepackage[dblblindworkshop, final]{neurips_2026}
+% Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote.
+% For workshops (5., 6.), the authors should add the name of the workshop, "\workshoptitle" command is used to set the workshop title.
+% \workshoptitle{WORKSHOP TITLE}
+% 7. Education Track
+% \usepackage[education, final]{neurips_2026}
+
+% "preprint" option is used for arXiv or other preprint submissions
+ % \usepackage[preprint]{neurips_2026}
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2026}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbol
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{placeins}
+\usepackage{amsmath}
+\usepackage{xurl}
+\usepackage{seqsplit}
+
+
+\workshoptitle{Foundations of Language Model Security}
+% Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote. 
+\title{Validity-Aware Evaluation and Systematic Comparison for Secure Model Merge}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+\author{%
+  Saki Hiromi \\
+  NTT \\
+  Tokyo, Japan \\
+  \texttt{saki.hiromi@ntt.com}
+  \And
+  Hiroki Kinoshita \\
+  NTT \\
+  Tokyo, Japan \\
+  \texttt{hiroki.kinoshita@ntt.com}
+  \And
+  Takayuki Miura \\
+  NTT \\
+  Tokyo, Japan \\
+  \texttt{tkyk.miura@ntt.com}
+  \And
+  Akira Morikawa \\
+  NTT \\
+  Tokyo, Japan \\
+  \texttt{a.morikawa@ntt.com}
+  \And
+  Toshiki Shibara \\
+  NTT \\
+  Tokyo, Japan \\
+  \texttt{toshiki.shibahara@ntt.com}
+}
+% \author{%
+%   David S.~Hippocampus\thanks{Use footnote for providing further information
+%     about author (webpage, alternative address)---\emph{not} for acknowledging
+%     funding agencies.} \\
+%   Department of Computer Science\\
+%   Cranberry-Lemon University\\
+%   Pittsburgh, PA 15213 \\
+%   \texttt{hippo@cs.cranberry-lemon.edu} \\
+%   % examples of more authors
+%   % \And
+%   % Coauthor \\
+%   % Affiliation \\
+%   % Address \\
+%   % \texttt{email} \\
+%   % \AND
+%   % Coauthor \\
+%   % Affiliation \\
+%   % Address \\
+%   % \texttt{email} \\
+%   % \And
+%   % Coauthor \\
+%   % Affiliation \\
+%   % Address \\
+%   % \texttt{email} \\
+%   % \And
+%   % Coauthor \\
+%   % Affiliation \\
+%   % Address \\
+%   % \texttt{email} \\
+% }
+
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{abstract}
+    Model merge enables multiple specialized large language models (LLMs) to be integrated without additional training. However, interference of parameters when merging can degrade safety alignment acquired through instruction tuning. Existing evaluations of Secure Merge primarily rely on Attack Success Rate (ASR). Nevertheless, a low ASR does not always indicate successful safety alignment, as it may instead result from invalid responses or model collapse. To address this limitation, we propose a validity-aware evaluation protocol that explicitly separates response validity from harmful compliance. Specifically, we investigate Benchmark ASR over all responses, Conditional ASR computed only on valid responses, Valid Response Rate (VRR), and Valid Safety Rate (VSR), which measures the proportion of responses that are both valid and non-compliant with harmful requests. We reevaluate conventional model merging methods on mathematical, coding, and medical expert models using multiple jailbreak benchmarks and utility benchmarks. Our experiments show that several configurations with low, or even zero, Benchmark ASR either produce few non-degenerate responses or retain substantial harmful compliance among the responses that pass our validity checks. These findings indicate that ASR alone is insufficient to distinguish safety preservation from the detected generation-failure modes in Secure Merge. Reliable assessment should therefore jointly report harmful compliance, response validity, and utility.
+\end{abstract}
+
+
+\section{Introduction}
+Large language models (LLMs) achieve strong performance on specialized tasks through fine-tuning (FT), but training and maintaining individual fine-tuned models requires a huge amount of computational resources and data. Model merge has emerged as a cost-effective alternative that integrates multiple fine-tuned models directly in the model parameters, enabling the integration of diverse capabilities of individual models, without additional training~[1,2,3]. Model Soups~[1], Task Arithmetic~[2,4], TIES~[5], DARE~[6], and DELLA~[7], have been proposed to mitigate parameter interference among models. However, safety alignment acquired through instruction tuning, RLHF, and other related alignment procedures can deteriorate during merging models~[8,9,10,11,12]. To address this issue, Secure Merge~[13] has been proposed as a framework to restore safety retroactively, in which a safety-specialized model is merged with a task-specialized model. Furthermore, several safety-aware merging methods, including MergeAlign~[14], SafeMERGE~[15], LED-Merging~[16], and Fisher-Weighted Averaging (FWA)~[17], have been proposed to mitigate the trade-offs between safety alignment and the model utility.
+
+In Secure Merge, the merged model is evaluated based on the Attack Success Rate (ASR) on harmful requests and utility on general tasks~[13]. However, ASR alone cannot distinguish valid safety refusals from failures to generate meaningful responses. Parameter interference that occurs during merging may generate severely degenerate responses, such as empty outputs, excessive repetition, abnormal numerical strings, or input-prompt repetition.
+Since ASR does not explicitly evaluate whether a generated response is a valid output passing the basic quality rules, generation failures can reduce the ASR. As a result, a model may achieve a low ASR even when its outputs are not valid. Repetitive and degenerate text generation is a well-known phenomenon of text degeneration in neural language models~[18].
+
+
+
+A key limitation of conventional safety evaluation is that it is designed primarily to determine whether a model complies with or rejects a harmful request, rather than whether the response itself remains a non-degenerate linguistic output that passes basic validity checks~[19,20,21]. Prior work on jailbreak evaluation has shown that treating non-refusal alone as evidence of a successful attack does not necessarily align with human judgments and that nonsensical or incoherent responses can distort evaluation results~[22,63]. In model merge, parameter interference can further deteriorate this problem by generating invalid responses. If such a response contains no harmful content, it may be classified as safe by automatic evaluators, resulting in an \textit{apparent safety under degeneration}; conversely, depending on the evaluation criteria, the same invalid response may be classified as a successful attack, resulting in an \textit{apparent unsafe under a single evaluator}. Conventional ASR alone therefore cannot distinguish genuine safety improvements from detected generation failures. In fact, our preliminary experiments reveal cases in which the Raw ASR measured by a single evaluator collapses to either 0\% or 100\% under conditions with a high Gibberish Ratio (Appendix~\ref{app:予備実験の詳細結果}).
+
+To address this issue, we introduce a \textit{validity-aware evaluation protocol} that evaluates generated responses along two aspects: whether the response passes rule-based validity checks, and whether it complies with or rejects the harmful request. Specifically, in addition to the conventional Benchmark ASR, we report the Conditional ASR only over valid responses, the Valid Response Rate (VRR), defined as the proportion of valid responses among all generations, and the Valid Safety Rate (VSR), defined as the proportion of responses that are both valid and non-compliant with harmful requests. This protocol enables us to distinguish three cases that conventional ASR-based evaluation conflates: (i) non-degenerate safety refusals, (ii) apparent safety resulting from invalid responses, and (iii) valid responses that nevertheless comply with harmful requests. We further report general utility and perplexity (PPL), allowing us to evaluate merged models from multiple perspectives, including safety, response validity, and task-specific capability.
+
+Re-evaluating conventional merging methods under the Secure Merge setting reveals that some configurations that appear safe under Benchmark ASR alone are instead categorized as exhibiting apparent safety under degeneration or remaining unsafe among non-degenerate responses. Notably, we observe configurations with a Benchmark ASR near 0\% but a VRR near 0\%, as well as configurations with a low Benchmark ASR but a high Conditional ASR. These findings demonstrate that the apparent safety--utility trade-off in Secure Merge, as well as the relative ranking of merging methods, can depend substantially on whether safety is assessed using ASR alone.
+
+To investigate these issues, we address the following research questions (RQs):
+
+\begin{itemize}
+    \item \textbf{RQ1 (Validity of Current Evaluation):} To what extent can low benchmark-reported ASR coincide with detected generation failures in the Secure Merge setting?
+    
+    \item \textbf{RQ2 (Re-evaluating Existing Merging Methods):} How does incorporating VRR and VSR affect the evaluation of representative model merge methods and their safety--utility trade-offs?
+    
+    \item \textbf{RQ3 (Condition Dependence):} How consistently do validity-aware safety interpretations hold across task domains and merge strengths?
+    % How do task specialization, model combinations, intervention granularity, and merging strength influence safety, utility, and response validity under the proposed evaluation metrics?
+\end{itemize}
+
+The main contributions of this work are summarized as follows:
+
+\begin{itemize}
+    \item We analyze the limitations of ASR-alone evaluation in Secure Merge and show that invalid responses can lead to low benchmark-reported ASR that coincides with severe detected generation failures.
+    
+    \item We introduce a validity-aware evaluation protocol that combines Benchmark ASR, Conditional ASR, Valid Response Rate (VRR), and Valid Safety Rate (VSR), enabling non-degenerate non-compliant responses, apparent safety caused by invalid responses, and valid but harmful responses to be distinguished.
+    
+    \item We systematically re-evaluate conventional model merge methods under an identical experimental setting and show that some configurations previously regarded as safe based solely on Benchmark ASR are instead categorized as exhibiting apparent safety under degeneration or remaining unsafe among non-degenerate responses.
+    
+    \item Through experiments across diverse task domains and merging configurations, we demonstrate that meaningful safety improvements should be assessed jointly using a low Conditional ASR, a high VRR, a high VSR, and preserved downstream utility, rather than ASR alone.
+\end{itemize}
+
+
+% \section{Introduction}
+% Large language models (LLMs) achieve strong performance on specialized tasks through fine-tuning (FT), but training and maintaining individual fine-tuned models requires substantial computational resources and data. Model merge has emerged as a cost-effective alternative that integrates multiple fine-tuned models directly in the model parameters, enabling the integration of diverse capabilities of individual models, without additional training [1,2,3]. Since methods such as Model Soups [1] and Task Arithmetic [2,4], a variety of merging methods, including TIES [5], DARE [6], and DELLA [7], have been proposed to mitigate parameter interference among models. However, safety alignment acquired through instruction tuning, RLHF, and related alignment procedures can deteriorate during specialization on benign data and subsequent model merge [8,9,10,11,12]. To address this issue, Secure Merge [13] has been proposed as a framework to restore safety retroactively, in which a safety-specialized model is merged with a task-specialized model. Furthermore, several safety-aware merging methods, including MergeAlign [14], SafeMERGE [15], LED-Merging [16], and Fisher-Weighted Averaging (FWA) [17], have been proposed to mitigate the tradeoffs between safety alignment and task-specific capabilities.
+
+% Secure Merge is evaluated based on the Attack Success Rate (ASR) on harmful requests and utility on downstream tasks [13]. However, we cannot distinguish between valid refusal responses and failures to generate meaningful responses with ASR alone. Parameter interference that occurs during merging may generate invalid responses, such as nonsensical text, repeated special tokens, empty outputs, or regeneration of the input prompt.
+% Since ASR does not explicitly assess whether a generated response is a valid and meaningful piece of text, generation failures can reduce the measured ASR. As a result, a model may achieve a low ASR even when its outputs are invalid. Repetitive and degenerate text generation is a well-known manifestation of text degeneration in neural language models~[18].
+
+% The fundamental cause of this issue is that conventional safety evaluators are designed primarily to determine whether a model rejects a harmful request, rather than whether the response itself constitutes a valid and coherent linguistic output [19,20,21]. Prior work on jailbreak evaluation has shown that treating non-refusal alone as evidence of a successful attack does not necessarily align with human judgments and that nonsensical or incoherent responses can distort evaluation results [22,23]. In model merge, parameter interference can further encour1age this problem by generating invalid responses. If such a response contains no harmful content, it may be classified as safe, resulting in a \textit{False Safe}; conversely, depending on the evaluation criteria, the same invalid response may be classified as a successful attack, resulting in a \textit{False Unsafe}. ASR alone therefore cannot distinguish genuine safety improvements from failures in response generation. In fact, our preliminary experiments reveal cases in which the Raw ASR measured by a single evaluator collapses to either 0\% or 100\% under conditions with a high Gibberish Ratio (Appendix~\ref{app:予備実験の詳細結果}).
+
+% To address this issue, we introduce a \textit{validity-aware evaluation metrics} that evaluates generated responses along two aspects: whether the response is valid or invalid, and whether it complies with or rejects the harmful request. Specifically, in addition to the conventional Original ASR, we report the Conditional ASR computed only over valid responses, the Valid Response Rate (VRR), defined as the proportion of valid responses among all generations, and the Valid Safety Rate (VSR), defined as the proportion of responses that are both valid and non-compliant with harmful requests. This protocol enables us to distinguish three cases that conventional ASR-based evaluation conflates: (i) meaningful and valid safety refusals, (ii) apparent safety resulting from invalid responses, and (iii) valid responses that nevertheless comply with harmful requests. We further report downstream utility and perplexity (PPL), allowing us to assess merged models from multiple perspectives, including safety, response validity, and task-specific capability.
+
+% Re-evaluating conventional merging methods under the Secure Merge setting reveals that some configurations that appear safe under Original ASR alone are instead classified as either \textit{False Safe} or \textit{Unsafe but Functional} when response validity is taken into account. Notably, we observe configurations with an Original ASR of 0\% but a VRR of 0\%, as well as configurations with a low Original ASR but a high Conditional ASR. These findings demonstrate that the apparent Safety–Utility trade-off in Secure Merge, as well as the relative ranking of merging methods, can depend substantially on whether safety is assessed using ASR alone.
+
+% To investigate these issues, we address the following research questions (RQs):
+
+% \begin{itemize}
+%     \item \textbf{RQ1 (Validity of Current Evaluation):} To what extent does Original ASR misclassify invalid or generation-collapsed responses as safe in the Secure Merge setting?
+    
+%     \item \textbf{RQ2 (Re-evaluating Existing Merging Methods):} How does incorporating VRR and VSR affect the evaluation of representative model merge methods and their Safety--Utility trade-offs?
+    
+%     \item \textbf{RQ3 (Condition Dependence):} How do task specialization, model combinations, intervention granularity, and merging strength influence safety, utility, and response validity under the proposed evaluation protocol?
+% \end{itemize}
+
+% The main contributions of this work are summarized as follows:
+
+% \begin{itemize}
+%     \item We analyze the limitations of ASR-alone evaluation in Secure Merge and show that invalid responses can be misclassified as either \textit{False Safe} or \textit{False Unsafe}, depending on the evaluation criteria.
+    
+%     \item We introduce a validity-aware evaluation protocol that combines Original ASR, Conditional ASR, Valid Response Rate (VRR), and Valid Safety Rate (VSR), enabling meaningful safety refusals, apparent safety caused by invalid responses, and valid but harmful responses to be distinguished.
+    
+%     \item We systematically re-evaluate conventional model merge methods under a identical experimental setting and show that some configurations previously regarded as safe based solely on Original ASR are instead categorized as \textit{False Safe} or \textit{Unsafe but Functional}.
+    
+%     \item Through experiments across diverse task domains and merging configurations, we demonstrate that meaningful safety improvements be assessed jointly using a low Conditional ASR, a high VRR, a high VSR, and preserved downstream utility, rather than ASR alone.
+% \end{itemize}
+
+\section{Related Work}
+
+\subsection{Model Merge and Interference Mitigation}
+
+Model Soups~[1] and Task Arithmetic~[2,4] are foundational model merge methods that combine either the weights of multiple fine-tuned models or their weight differences with the base model, which realizes multiple task capabilities without additional training. However, simply merging multiple models often causes parameter interference, where conflicting parameter updates cancel or overwrite one another, leading to degradation of the specialized capabilities of the merged model. To mitigate this problem, TIES~[5] resolves sign conflicts among task vectors, while DARE~[6] and DELLA~[7] reduce interference through parameter sparsification and importance-aware parameter selection. These methods primarily focus on sustaining task performance across multiple domains rather than maintaining safety alignment.
+
+\subsection{Secure Merge and Safety-Preserving Model Merge}
+
+To address the degradation of safety alignment caused by fine-tuning and model merge, Secure Merge~[13] introduces a framework to restore safety retroactively by merging a safety-specialized model, referred to as a \emph{safety patch}, into the task-specialized model. While this approach effectively restores safety, interference between the safety patch and the task-specific model may arise when both share the same parameters, giving rise to the well-known \emph{Safety Tax}, in which improved safety comes at the expense of downstream utility~[13,24]. Hammoud et al.~[8] further reported the ``one bad model spoils the bunch'' phenomenon, demonstrating that introducing a single misaligned expert model can substantially compromise the safety of the merged model and that general interference-mitigation methods such as TIES are insufficient to prevent this failure.
+
+To mitigate the interference between safety and utility, a variety of merging methods have been proposed. MergeAlign~[14] tunes task vectors associated with domain-specific capabilities and safety alignment, whereas SafeMERGE~[15] and LED-Merging~[16] resolve safety--utility trade-offs at the layer and neuron levels, respectively. Fisher-Weighted Averaging (FWA)~[17] estimates parameter importance using the diagonal Fisher information matrix and performs importance-weighted model merging. AlignMerge~[25] further leverages Fisher geometry and alignment subspaces to keep parameter space that are vital for maintaining safety.
+Fisher-based merging has also been extended in several directions, including uncertainty-aware gradient matching, Fisher mask nodes, Fisher-weighted median merging, Bayesian optimization for adaptive Fisher weighting, and data-free layer-adaptive Fisher merging~[26,27,28,29,30].
+Despite their methodological differences, these approaches primarily focus on designing merging rules or intervention strategies that mitigate interference between safety and utility. Their effectiveness is typically evaluated in terms of reductions in Attack Success Rate (ASR) together with utility on downstream tasks~[8,13,14,15,16].
+
+
+\subsection{Safety Evaluation for Large Language Models}
+The Attack Success Rate (ASR), which evaluates a model's behavior with harmful requests under adversarial prompts, is the standard metric for evaluating the jailbreak robustness of large language models. HarmBench~[19] provides an evaluation pipeline that defines ASR by determining whether a model's output successfully achieves the intended harmful compliance. Its classifier is designed primarily to assess harmful-behavior completion rather than to evaluate response validity as an independent dimension or systematically identify generation failures, such as empty outputs, gibberish, repetitive special tokens, or verbatim prompt repetition. Similarly, Llama Guard~[20] is an LLM-based safety classifier that categorizes model inputs and outputs as \textit{safe} or \textit{unsafe} according to predefined safety policies.
+
+
+Several recent studies have sought to address limitations of binary compliance-based jailbreak evaluation. StrongREJECT evaluates refusal behavior beyond simple non-refusal by considering the usefulness and strength of a model's response to harmful requests~[22]. WildGuard jointly evaluates harmfulness, jailbreak behavior, and refusal behavior within a unified moderation framework~[21]. More recently, JailMeter proposes an evidence-based evaluation framework in which an attack is considered successful only when the response captures the malicious intent and provides a complete answer, thereby reducing false-positive attack-success judgments caused by incomplete or ambiguous outputs~[63].
+
+
+These approaches primarily aim to improve the reliability or granularity of harmful-compliance and refusal judgments. In contrast, we focus on the Secure Merge setting, where parameter interference can cause severe generation failures. Rather than proposing a new harmfulness evaluator, we treat response validity as an independent evaluation axis and quantify detected severe degeneration through rule-based checks, Valid Response Rate (VRR), Conditional ASR, and Valid Safety Rate (VSR). Additional background and discussion are provided in Appendix~\ref{app:本研究の背景と定式化上の位置づけ}.
+
+
+\section{Evaluation}
+
+This section describes the experimental setup used throughout this paper. Following the Secure Merge setting, we operationalize \emph{safety} as robustness against jailbreak attacks and evaluate how effectively each merging method preserves this property while maintaining downstream task utility.
+
+
+\subsection{Models and Baselines}
+
+We use \texttt{Llama-2-7B}~[31] as the base model and consider three task-specialized models covering mathematics, code generation, and the medical domain~[32,33,34], together with a safety-specialized model fine-tuned for jailbreak robustness~[35]. We compare representative model merge methods spanning standard merging (Task Arithmetic), interference-aware merging (TIES, DARE, and DELLA), safety-preserving merging (MergeAlign, SafeMERGE, and LED-Merging), and Fisher importance-based merging (FWA).
+
+\begin{itemize}
+    \item \textbf{Base model ($\theta_0$):} Pretrained \texttt{Llama-2-7B} checkpoint~[31] (exact identifier: \texttt{meta-llama/Llama-2-7b-hf}).
+
+    \item \textbf{Task-specialized models ($\theta_u$):} We use WizardMath-7B-V1.0~[32], WizardCoder-Python-7B-V1.0~[33], and MedAlpaca-7B~[34] for the mathematics, code generation, and medical domains, respectively. Each model follows the original training configuration described in its model card.
+
+    \item \textbf{Calibration data for utility Fisher estimation:} We use calibration samples from GSM8K for mathematics, Evol-Instruct-Code for code generation, and MedAlpaca for the medical domain.
+
+
+    \item \textbf{Safety-specialized model ($\theta_s$):} We fine-tune pretrained \texttt{Llama-2-7B} using LoRA (rank $r=16$, $\alpha=32$) to obtain a safety-aligned model. The fine-tuning dataset consists of 1,400 harmful prompts from the \textit{JAILBREAK TRIGGER} subset of TrustLLM~[35], where each prompt is paired with the exact same fixed refusal response: \texttt{"I'm sorry, but I cannot assist with that request."} Standard causal language modeling (CLM) loss is computed across all tokens, including both prompt and completion tokens. This controlled setup reduces variation arising from refusal phrasing. However, the fixed refusal target and prompt-inclusive loss may increase susceptibility to verbatim prompt repetition or formulaic template copying under severe parameter interference.
+    
+    (discussed in Appendix~\ref{app:実験設計の詳細}).
+\end{itemize}
+
+The objective of this work is not to establish the superiority of any particular merging method, but to provide a consistent evaluation of representative approaches with different intervention granularities and information sources under a common experimental setting. We evaluate MergeAlign~[14] as a representative safety-aware baseline. In contrast, we do not evaluate AlignMerge~[25] since an official implementation was not publicly available at the time of our study. Detailed formulations and implementation settings for all merging methods are provided in Appendix~\ref{app:実験設計の詳細}.
+
+\subsection{Evaluation Protocol}
+
+For safety evaluation, we use four benchmark datasets: HarmBench~[19], JailbreakBench~[36], StrongREJECT~[22], and WildJailbreak~[37]. In addition to determining whether a model complies with a harmful request, our evaluation explicitly assesses whether the generated response passes pre-specified validity rules. In this study, response validity is operationalized using rule-based checks for empty outputs, excessive token repetition, and abnormal numerical outputs. Specifically, a response is classified as an \emph{invalid response} if: (i) it is empty or whitespace-only; (ii) for outputs with at least five whitespace-delimited words, fewer than 20\% of the words are unique; or (iii) for outputs with at least five words, more than 60\% of the words consist solely of digits. We do not claim that these rules detect all conceivable forms of gibberish or prompt repetition; rather, they provide an operationalized filter for severe generation failures.
+
+Based on the above protocol, we distinguish between standard benchmark-reported evaluations and our proposed validity-aware metrics:
+
+\begin{itemize}
+    \item \textbf{Benchmark ASR ($\mathrm{ASR}_{\mathrm{bench}}$)}: The standard Attack Success Rate computed directly using each benchmark's official evaluator pipeline over all $N$ generated responses: $\mathrm{ASR}_{\mathrm{bench}} = \frac{1}{N}\sum_{i=1}^N B_i$, where $B_i \in \{0,1\}$ is the binary attack-success decision assigned by the benchmark classifier.
+    
+    \item \textbf{Validity-aware Metrics}: For each response sample $i \in \{1,\dots,N\}$, let $V_i \in \{0,1\}$ be the binary indicator of whether the output passes our rule-based validity checks, and let $H_i \in \{0,1\}$ be the harmfulness decision assigned by a common evaluator (HarmBench Classifier) over valid outputs. We define:
+    \begin{itemize}
+        \item \textbf{Conditional ASR ($\mathrm{ASR}_{\mathrm{valid}}$)}: The Attack Success Rate restricted to non-degenerate responses ($N_{\mathrm{valid}} = \sum V_i$ samples): $\mathrm{ASR}_{\mathrm{valid}} = \frac{\sum_{i=1}^N V_i H_i}{\sum_{i=1}^N V_i}$.
+        \item \textbf{Valid Response Rate (VRR)}: The proportion of valid responses among all generated outputs: $\mathrm{VRR} = \frac{1}{N}\sum_{i=1}^N V_i$.
+        \item \textbf{Valid Safety Rate (VSR)}: The proportion of responses that are both valid and non-compliant with harmful requests: $\mathrm{VSR} = \frac{1}{N}\sum_{i=1}^N V_i(1-H_i)$.
+    \end{itemize}
+    \item \textbf{Utility}: Downstream task performance measured on GSM8K~[38], Math500~[39], HumanEval~[40], MBPP~[41], MedQA~[42], PubMedQA~[43], AlpacaEval~[44], IFEval~[45], and MMLU~[46]. For each domain, utility is reported as the unweighted arithmetic mean of the percentage scores of its constituent benchmarks. Detailed per-benchmark scores are provided in Appendix~\ref{app:主実験の詳細結果}.
+\end{itemize}
+
+Under these validity-aware metrics, for any individual evaluation run, the metrics satisfy the exact mathematical identity:
+\[
+\mathrm{VSR} = \mathrm{VRR}\left(1-\mathrm{ASR}_{\mathrm{valid}}\right)
+\]
+% Note that since $\mathrm{ASR}_{\mathrm{bench}}$ is derived from official benchmark evaluators whereas $H_i$ is evaluated on valid outputs, $\mathrm{ASR}_{\mathrm{bench}}$ and $\mathrm{ASR}_{\mathrm{valid}}$ are evaluated separately, allowing us to reveal cases where a low $\mathrm{ASR}_{\mathrm{bench}}$ coincides with generation failures rather than true safety preservation.
+
+
+Because $\mathrm{ASR}_{\mathrm{bench}}$ is obtained using each benchmark's official evaluator over all outputs, whereas $\mathrm{ASR}_{\mathrm{valid}}$ uses a common HarmBench Classifier only over outputs that pass the rule-based validity checks, the two quantities are not numerically interchangeable. Their discrepancy should be interpreted diagnostically: it can reflect both conditioning on detected valid outputs and differences between evaluator pipelines. We therefore use these metrics jointly to identify cases in which low benchmark-reported ASR co-occurs with low VRR or high harmful compliance among outputs passing the validity checks.
+
+For each benchmark, the generation prompt template, official benchmark evaluator, and harmful-compliance mapping rules are summarized in Appendix~\ref{app:実験設計の詳細}.
+
+All experiments are independently repeated using three random seeds (42, 43, and 44) for constructing the safety-specialized model, and results are reported as $\mathrm{mean}\pm\mathrm{std}$. We evaluate four merging configurations: safety+math, safety+code, safety+medical, and safety+math+code+medical. Unless otherwise specified, the main results are reported with a merging coefficient of $\alpha=0.6$, while a comprehensive analysis across different values of $\alpha$ is provided in Appendix~\ref{sec:Seed別およびalpha別の完全結果}.
+
+
+
+\input{Formatting_Instructions_For_NeurIPS_2026/tables/table1}
+
+\subsection{From Preliminary Experiments to the Main Evaluation}
+
+As a preliminary investigation, we conducted an exploratory evaluation using TrustLLM~[35] and BeaverTails~[47] with a single safety evaluator. Table~\ref{tab:prelim_detail} presents the results for the \texttt{safety+math} configuration (see Appendix~\ref{app:予備実験の詳細結果} for the complete results). Under conditions with a high Gibberish Ratio, the Raw ASR measured by TrustLLM frequently collapsed to either 0\% or 100\%. This observation suggests that generation failures can substantially affect the ASR reported by a single evaluator, although the preliminary experiment does not establish whether individual evaluator judgments are erroneous.
+
+Motivated by these findings, the main experiments do not rely on ASR alone. Instead, we explicitly separate harmfulness assessment from response validity assessment. This evaluation protocol enables us to distinguish whether a reduction in ASR reflects valid non-compliant responses or merely results from generation failures.
+
+
+
+
+
+\section{Results and Discussion}
+
+This section presents the main findings from our validity-aware evaluation. Detailed experimental results and supplementary analyses are provided in Appendix~\ref{app:予備実験の詳細結果}, \ref{app:主実験の詳細結果}, \ref{app:偽の安全性の追加分析}, \ref{app:計算資源とデータ要件}, and \ref{sec:Seed別およびalpha別の完全結果}.
+
+Table~\ref{tab:safety_diagnostic} presents representative examples in which the interpretation of safety changes after applying the proposed validity-aware evaluation protocol. The table reports Benchmark ASR ($\mathrm{ASR}_{\mathrm{bench}}$), Conditional ASR ($\mathrm{ASR}_{\mathrm{valid}}$), Valid Response Rate (VRR), Valid Safety Rate (VSR), and utility. These examples show that conditions exhibiting similarly low Benchmark ASR can correspond to substantially different safety states once response validity is taken into account.
+
+MergeAlign achieves a Benchmark ASR of 0.00\% under multiple settings. However, both its VRR and VSR are also 0.00\%, indicating that it fails to generate any responses that pass our validity checks. Based on Benchmark ASR alone, this result suggests that the model successfully rejects all harmful requests; in practice, however, none of the evaluated responses are valid. In this case, the apparent reduction in ASR reflects a loss of generation capability rather than improved safety. We therefore categorize this behavior as \textit{Apparent safety under degeneration}, where generation failure or invalid responses coincide with a low benchmark ASR. This result demonstrates that a low ASR, while potentially necessary for establishing safety improvement, is not sufficient on its own.
+
+\input{Formatting_Instructions_For_NeurIPS_2026/tables/table3}
+
+Benchmark-reported ASR can diverge substantially from harmful compliance measured among outputs passing our validity checks.  Under the \texttt{safety+code} setting, methods such as \texttt{matena\_fisher} achieve a Benchmark ASR of only 3.37\%, whereas its Conditional ASR reaches 65.04\% with a VRR of 59.73\%. Thus, among non-degenerate responses, harmful compliance is dramatically higher than implied by the raw unconditioned benchmark ASR.
+
+In contrast, Task Arithmetic under the \texttt{safety+math} setting exhibits low Benchmark ASR (2.48\%) and Conditional ASR (3.88\%) together with high VRR (99.92\%) and VSR (96.04\%). In this case, the low Benchmark ASR co-occurs with high VRR and low Conditional ASR, making this configuration consistent with non-degenerate safety behavior under our evaluation protocol rather than with the detected generation failures. Similarly, SafeMERGE under the \texttt{safety+code} setting achieves a low Conditional ASR (0.34\%) together with high VRR (99.92\%) and VSR (99.58\%), suggesting effective safety preservation while maintaining valid generation.
+
+Task Arithmetic under the \texttt{safety+code} setting exhibits a different failure mode. Its Benchmark ASR is 29.17\%, whereas its Conditional ASR is 60.91\%, with a VSR of 36.94\%. Harmful compliance therefore becomes substantially more apparent when the evaluation is restricted to valid responses. We characterize this behavior as \textit{Unsafe but non-degenerate}: the model retains its ability to generate valid responses, but safety alignment is not sufficiently preserved.
+
+Taken together, these results show that Benchmark ASR alone cannot distinguish among at least three qualitatively different outcomes: (i) non-degenerate and safe behavior, (ii) apparent safety under detected generation failures, and (iii) preserved generation capability with substantial residual harmful compliance. We therefore argue that safety evaluation in Secure Merge should report Conditional ASR, VRR, and VSR alongside Benchmark ASR to distinguish genuine safety preservation from artifacts of generation failure.
+
+
+
+
+
+\subsection{Safety--Utility Trade-offs Under Validity-Aware Evaluation}
+
+
+To generalize these observations, we categorize all methods and experimental settings into four groups: \textit{Non-degenerate and safe}, \textit{Apparent safety under degeneration}, \textit{Apparent unsafe under a single evaluator}, and \textit{Unsafe but non-degenerate} (Table~\ref{tab:safety_diagnostic}). 
+% A \textit{Non-degenerate and safe} configuration simultaneously achieves a low Conditional ASR, high VRR, high VSR, and preserved downstream utility. 
+A \textit{Non-degenerate and safe} configuration exhibits low Conditional
+ASR together with high VRR and VSR. We report downstream utility separately,
+because the degree of utility retention depends on the reference model,
+task domain, and deployment objective. An \textit{Apparent safety under degeneration} configuration exhibits a low Benchmark ASR but poor response validity, such as a low VRR or abnormal PPL, indicating that the apparent safety originates from generation failures. An \textit{Apparent unsafe under a single evaluator} configuration refers to cases in which a large number of invalid responses are judged as successful attacks by a single evaluator; in our experiments, this behavior is primarily observed in the preliminary evaluation using a single evaluator. Finally, an \textit{Unsafe but non-degenerate} configuration maintains relatively high response validity but also exhibits a high Conditional ASR, indicating that the model continues to produce valid responses while remaining vulnerable to harmful requests.
+
+
+This validity-aware categorization substantially changes the interpretation of the Safety--Utility trade-off in Secure Merge. Under the conventional ASR--Utility perspective, configurations suffering from generation collapse may appear favorable simply because their ASR is artificially reduced. By incorporating VRR and VSR, these cases are correctly identified as failures of response generation rather than successful safety preservation. Response validity therefore serves not only as a third evaluation dimension alongside safety and utility, but also as a prerequisite for interpreting low ASR as evidence of genuine safety improvement.
+
+More broadly, the proposed validity-aware evaluation enables meaningful comparisons among model merge methods by considering not only safety but also whether valid generation is preserved. This perspective is particularly important in practice when selecting merging strategies, intervention strengths, and safety patches for deployment.
+
+
+\subsection{Limitations and Scope}
+
+One limitation of this work is that the distinction between valid and invalid responses depends on the predefined validity criteria. In our evaluation, severe generation failures are operationalized as (i) empty or whitespace-only outputs; (ii) for outputs with at least five whitespace-delimited words, fewer than 20\% unique words; or (iii) for outputs with at least five words, more than 60\% numeric-only words. These criteria are intended to identify severe generation failures rather than to exhaustively characterize all forms as gibberish, special-token repetition, or prompt repetition. Accordingly, the reported VRR and VSR should be interpreted with respect to this operational definition of response validity.
+
+A second limitation concerns the automatic harmfulness evaluators and the rule-based response-validity checks used in our evaluation. Misclassification may still occur when automatic classifiers fail to properly assess partially compliant or ambiguous responses. Future work should validate the proposed validity criteria through human annotation, analyze inter-evaluator agreement, and consider introducing an \textit{undetermined} category for responses that cannot be reliably classified.
+
+Finally, our experiments focus on Llama-2-7B and do not evaluate the generality of the proposed evaluation metrics across larger language models, alternative model architectures, or parameter-efficient adaptation methods such as LoRA. In addition, due to computational constraints, each benchmark is evaluated using at most 320 samples. Accordingly, this work does not seek to establish a definitive ranking of existing merging methods or to claim generalization across model scales. Instead, its primary contribution is to demonstrate the importance of explicitly evaluating response validity in the Secure Merge setting.
+
+\section{Conclusion}
+
+In this work, we showed that low benchmark-reported Attack Success Rate (ASR) does not necessarily indicate successful safety preservation in Secure Merge, making ASR alone insufficient to determine whether a merged model remains both safe and capable of producing non-degenerate responses. Therefore, we introduced a validity-aware evaluation protocol that jointly reports harmful compliance, rule-based response validity, and general utility.
+
+Our experiments reveal qualitatively distinct safety regimes that can appear similar under ASR alone, indicating genuinely safe behavior, apparent safety caused by generation failures, and functional responses that still exhibit substantial harmful compliance. These results suggest that safety evaluation for Secure Merge should report validity-conditioned harmful compliance and response-validity statistics alongside conventional benchmark ASR.
+
+Our primary contribution is an evaluation perspective rather than a new merging algorithm. Future work should validate the proposed rule-based validity criteria through human annotation, analyze agreement among safety evaluators, and extend the evaluation to larger model families and additional adaptation settings.
+
+
+
+
+\section*{References}
+\small
+\input{Formatting_Instructions_For_NeurIPS_2026/bib}
+
+\newpage
+\appendix
+
+\input{Formatting_Instructions_For_NeurIPS_2026/appendix}
+
+\clearpage
+
+
+\newpage
+
+\input{checklist.tex}
+
+
+
+
+\end{document}

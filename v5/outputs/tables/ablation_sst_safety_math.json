@@ -1,0 +1,1057 @@
+{
+  "alpha_effect": [
+    {
+      "alpha": 0.0,
+      "cell": {
+        "cond_asr": {
+          "mean": 35.90679309444614,
+          "std": 0.0
+        },
+        "math": {
+          "mean": 5.9375,
+          "std": 0.0
+        },
+        "n_seeds": 1,
+        "seeds": [
+          42
+        ],
+        "vrr": {
+          "mean": 95.36626397763578,
+          "std": 0.0
+        }
+      }
+    },
+    {
+      "alpha": 0.2,
+      "cell": {
+        "cond_asr": {
+          "mean": 32.70085108658141,
+          "std": 0.0
+        },
+        "math": {
+          "mean": 6.25,
+          "std": 0.0
+        },
+        "n_seeds": 1,
+        "seeds": [
+          42
+        ],
+        "vrr": {
+          "mean": 95.24815295527156,
+          "std": 0.0
+        }
+      }
+    },
+    {
+      "alpha": 0.4,
+      "cell": {
+        "cond_asr": {
+          "mean": 34.84214069804614,
+          "std": 0.0
+        },
+        "math": {
+          "mean": 6.25,
+          "std": 0.0
+        },
+        "n_seeds": 1,
+        "seeds": [
+          42
+        ],
+        "vrr": {
+          "mean": 97.21525559105432,
+          "std": 0.0
+        }
+      }
+    },
+    {
+      "alpha": 0.6,
+      "cell": {
+        "cond_asr": {
+          "mean": 23.106147773625093,
+          "std": 0.0
+        },
+        "math": {
+          "mean": 6.71875,
+          "std": 0.0
+        },
+        "n_seeds": 1,
+        "seeds": [
+          42
+        ],
+        "vrr": {
+          "mean": 99.84375,
+          "std": 0.0
+        }
+      }
+    },
+    {
+      "alpha": 0.8,
+      "cell": {
+        "cond_asr": {
+          "mean": 3.9862220447284344,
+          "std": 0.0
+        },
+        "math": {
+          "mean": 7.5,
+          "std": 0.0
+        },
+        "n_seeds": 1,
+        "seeds": [
+          42
+        ],
+        "vrr": {
+          "mean": 100.0,
+          "std": 0.0
+        }
+      }
+    },
+    {
+      "alpha": 1.0,
+      "cell": {
+        "cond_asr": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "math": {
+          "mean": 9.6875,
+          "std": 0.0
+        },
+        "n_seeds": 1,
+        "seeds": [
+          42
+        ],
+        "vrr": {
+          "mean": 100.0,
+          "std": 0.0
+        }
+      }
+    }
+  ],
+  "fixed": {
+    "family": "sst",
+    "layerwise": "nolayerwise",
+    "mask": "hard",
+    "method": "diagonal_sst",
+    "n": 500,
+    "pattern": "safety+math",
+    "ratio": "FhFb",
+    "rule": "harmbench_only",
+    "seeds": [
+      42,
+      43,
+      44
+    ]
+  },
+  "k_variant": [
+    {
+      "alpha": 0.0,
+      "rows": [
+        {
+          "cells": {
+            "additive": null,
+            "interpolation": null
+          },
+          "k": 0.05
+        },
+        {
+          "cells": {
+            "additive": null,
+            "interpolation": null
+          },
+          "k": 0.1
+        },
+        {
+          "cells": {
+            "additive": {
+              "cond_asr": {
+                "mean": 35.397859669367534,
+                "std": 0.0
+              },
+              "math": {
+                "mean": 5.9375,
+                "std": 0.0
+              },
+              "n_seeds": 1,
+              "seeds": [
+                42
+              ],
+              "vrr": {
+                "mean": 95.36626397763578,
+                "std": 0.0
+              }
+            },
+            "interpolation": {
+              "cond_asr": {
+                "mean": 35.90679309444614,
+                "std": 0.0
+              },
+              "math": {
+                "mean": 5.9375,
+                "std": 0.0
+              },
+              "n_seeds": 1,
+              "seeds": [
+                42
+              ],
+              "vrr": {
+                "mean": 95.36626397763578,
+                "std": 0.0
+              }
+            }
+          },
+          "k": 0.2
+        },
+        {
+          "cells": {
+            "additive": null,
+            "interpolation": null
+          },
+          "k": 0.5
+        }
+      ]
+    },
+    {
+      "alpha": 0.2,
+      "rows": [
+        {
+          "cells": {
+            "additive": null,
+            "interpolation": null
+          },
+          "k": 0.05
+        },
+        {
+          "cells": {
+            "additive": null,
+            "interpolation": null
+          },
+          "k": 0.1
+        },
+        {
+          "cells": {
+            "additive": {
+              "cond_asr": {
+                "mean": 34.30573305161918,
+                "std": 0.0
+              },
+              "math": {
+                "mean": 5.46875,
+                "std": 0.0
+              },
+              "n_seeds": 1,
+              "seeds": [
+                42
+              ],
+              "vrr": {
+                "mean": 96.53813897763578,
+                "std": 0.0
+              }
+            },
+            "interpolation": {
+              "cond_asr": {
+                "mean": 32.70085108658141,
+                "std": 0.0
+              },
+              "math": {
+                "mean": 6.25,
+                "std": 0.0
+              },
+              "n_seeds": 1,
+              "seeds": [
+                42
+              ],
+              "vrr": {
+                "mean": 95.24815295527156,
+                "std": 0.0
+              }
+            }
+          },
+          "k": 0.2
+        },
+        {
+          "cells": {
+            "additive": null,
+            "interpolation": null
+          },
+          "k": 0.5
+        }
+      ]
+    },
+    {
+      "alpha": 0.4,
+      "rows": [
+        {
+          "cells": {
+            "additive": null,
+            "interpolation": null
+          },
+          "k": 0.05
+        },
+        {
+          "cells": {
+            "additive": null,
+            "interpolation": null
+          },
+          "k": 0.1
+        },
+        {
+          "cells": {
+            "additive": {
+              "cond_asr": {
+                "mean": 33.78147342924233,
+                "std": 0.0
+              },
+              "math": {
+                "mean": 6.09375,
+                "std": 0.0
+              },
+              "n_seeds": 1,
+              "seeds": [
+                42
+              ],
+              "vrr": {
+                "mean": 95.59025559105432,
+                "std": 0.0
+              }
+            },
+            "interpolation": {
+              "cond_asr": {
+                "mean": 34.84214069804614,
+                "std": 0.0
+              },
+              "math": {
+                "mean": 6.25,
+                "std": 0.0
+              },
+              "n_seeds": 1,
+              "seeds": [
+                42
+              ],
+              "vrr": {
+                "mean": 97.21525559105432,
+                "std": 0.0
+              }
+            }
+          },
+          "k": 0.2
+        },
+        {
+          "cells": {
+            "additive": null,
+            "interpolation": null
+          },
+          "k": 0.5
+        }
+      ]
+    },
+    {
+      "alpha": 0.6,
+      "rows": [
+        {
+          "cells": {
+            "additive": null,
+            "interpolation": null
+          },
+          "k": 0.05
+        },
+        {
+          "cells": {
+            "additive": null,
+            "interpolation": null
+          },
+          "k": 0.1
+        },
+        {
+          "cells": {
+            "additive": {
+              "cond_asr": {
+                "mean": 30.369657948886886,
+                "std": 0.0
+              },
+              "math": {
+                "mean": 5.78125,
+                "std": 0.0
+              },
+              "n_seeds": 1,
+              "seeds": [
+                42
+              ],
+              "vrr": {
+                "mean": 97.40450279552715,
+                "std": 0.0
+              }
+            },
+            "interpolation": {
+              "cond_asr": {
+                "mean": 23.106147773625093,
+                "std": 0.0
+              },
+              "math": {
+                "mean": 6.71875,
+                "std": 0.0
+              },
+              "n_seeds": 1,
+              "seeds": [
+                42
+              ],
+              "vrr": {
+                "mean": 99.84375,
+                "std": 0.0
+              }
+            }
+          },
+          "k": 0.2
+        },
+        {
+          "cells": {
+            "additive": null,
+            "interpolation": null
+          },
+          "k": 0.5
+        }
+      ]
+    },
+    {
+      "alpha": 0.8,
+      "rows": [
+        {
+          "cells": {
+            "additive": null,
+            "interpolation": null
+          },
+          "k": 0.05
+        },
+        {
+          "cells": {
+            "additive": null,
+            "interpolation": null
+          },
+          "k": 0.1
+        },
+        {
+          "cells": {
+            "additive": {
+              "cond_asr": {
+                "mean": 15.113993629002373,
+                "std": 0.0
+              },
+              "math": {
+                "mean": 5.625,
+                "std": 0.0
+              },
+              "n_seeds": 1,
+              "seeds": [
+                42
+              ],
+              "vrr": {
+                "mean": 99.921875,
+                "std": 0.0
+              }
+            },
+            "interpolation": {
+              "cond_asr": {
+                "mean": 3.9862220447284344,
+                "std": 0.0
+              },
+              "math": {
+                "mean": 7.5,
+                "std": 0.0
+              },
+              "n_seeds": 1,
+              "seeds": [
+                42
+              ],
+              "vrr": {
+                "mean": 100.0,
+                "std": 0.0
+              }
+            }
+          },
+          "k": 0.2
+        },
+        {
+          "cells": {
+            "additive": null,
+            "interpolation": null
+          },
+          "k": 0.5
+        }
+      ]
+    },
+    {
+      "alpha": 1.0,
+      "rows": [
+        {
+          "cells": {
+            "additive": null,
+            "interpolation": null
+          },
+          "k": 0.05
+        },
+        {
+          "cells": {
+            "additive": null,
+            "interpolation": null
+          },
+          "k": 0.1
+        },
+        {
+          "cells": {
+            "additive": {
+              "cond_asr": {
+                "mean": 10.234874201277956,
+                "std": 0.0
+              },
+              "math": {
+                "mean": 5.15625,
+                "std": 0.0
+              },
+              "n_seeds": 1,
+              "seeds": [
+                42
+              ],
+              "vrr": {
+                "mean": 100.0,
+                "std": 0.0
+              }
+            },
+            "interpolation": {
+              "cond_asr": {
+                "mean": 0.0,
+                "std": 0.0
+              },
+              "math": {
+                "mean": 9.6875,
+                "std": 0.0
+              },
+              "n_seeds": 1,
+              "seeds": [
+                42
+              ],
+              "vrr": {
+                "mean": 100.0,
+                "std": 0.0
+              }
+            }
+          },
+          "k": 0.2
+        },
+        {
+          "cells": {
+            "additive": null,
+            "interpolation": null
+          },
+          "k": 0.5
+        }
+      ]
+    }
+  ],
+  "missing": [
+    {
+      "alpha": 0.0,
+      "family": "sst",
+      "k": 0.05,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.0_n500_k0.05_FhFb_interpolation_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.0,
+      "family": "sst",
+      "k": 0.05,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.0_n500_k0.05_FhFb_additive_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "additive"
+    },
+    {
+      "alpha": 0.0,
+      "family": "sst",
+      "k": 0.1,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.0_n500_k0.1_FhFb_interpolation_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.0,
+      "family": "sst",
+      "k": 0.1,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.0_n500_k0.1_FhFb_additive_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "additive"
+    },
+    {
+      "alpha": 0.0,
+      "family": "sst",
+      "k": 0.5,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.0_n500_k0.5_FhFb_interpolation_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.0,
+      "family": "sst",
+      "k": 0.5,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.0_n500_k0.5_FhFb_additive_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "additive"
+    },
+    {
+      "alpha": 0.2,
+      "family": "sst",
+      "k": 0.05,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.2_n500_k0.05_FhFb_interpolation_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.2,
+      "family": "sst",
+      "k": 0.05,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.2_n500_k0.05_FhFb_additive_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "additive"
+    },
+    {
+      "alpha": 0.2,
+      "family": "sst",
+      "k": 0.1,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.2_n500_k0.1_FhFb_interpolation_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.2,
+      "family": "sst",
+      "k": 0.1,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.2_n500_k0.1_FhFb_additive_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "additive"
+    },
+    {
+      "alpha": 0.2,
+      "family": "sst",
+      "k": 0.5,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.2_n500_k0.5_FhFb_interpolation_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.2,
+      "family": "sst",
+      "k": 0.5,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.2_n500_k0.5_FhFb_additive_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "additive"
+    },
+    {
+      "alpha": 0.4,
+      "family": "sst",
+      "k": 0.05,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.4_n500_k0.05_FhFb_interpolation_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.4,
+      "family": "sst",
+      "k": 0.05,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.4_n500_k0.05_FhFb_additive_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "additive"
+    },
+    {
+      "alpha": 0.4,
+      "family": "sst",
+      "k": 0.1,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.4_n500_k0.1_FhFb_interpolation_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.4,
+      "family": "sst",
+      "k": 0.1,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.4_n500_k0.1_FhFb_additive_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "additive"
+    },
+    {
+      "alpha": 0.4,
+      "family": "sst",
+      "k": 0.5,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.4_n500_k0.5_FhFb_interpolation_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.4,
+      "family": "sst",
+      "k": 0.5,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.4_n500_k0.5_FhFb_additive_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "additive"
+    },
+    {
+      "alpha": 0.6,
+      "family": "sst",
+      "k": 0.05,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.6_n500_k0.05_FhFb_interpolation_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.6,
+      "family": "sst",
+      "k": 0.05,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.6_n500_k0.05_FhFb_additive_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "additive"
+    },
+    {
+      "alpha": 0.6,
+      "family": "sst",
+      "k": 0.1,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.6_n500_k0.1_FhFb_interpolation_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.6,
+      "family": "sst",
+      "k": 0.1,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.6_n500_k0.1_FhFb_additive_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "additive"
+    },
+    {
+      "alpha": 0.6,
+      "family": "sst",
+      "k": 0.5,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.6_n500_k0.5_FhFb_interpolation_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.6,
+      "family": "sst",
+      "k": 0.5,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.6_n500_k0.5_FhFb_additive_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "additive"
+    },
+    {
+      "alpha": 0.8,
+      "family": "sst",
+      "k": 0.05,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.8_n500_k0.05_FhFb_interpolation_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.8,
+      "family": "sst",
+      "k": 0.05,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.8_n500_k0.05_FhFb_additive_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "additive"
+    },
+    {
+      "alpha": 0.8,
+      "family": "sst",
+      "k": 0.1,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.8_n500_k0.1_FhFb_interpolation_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.8,
+      "family": "sst",
+      "k": 0.1,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.8_n500_k0.1_FhFb_additive_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "additive"
+    },
+    {
+      "alpha": 0.8,
+      "family": "sst",
+      "k": 0.5,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.8_n500_k0.5_FhFb_interpolation_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.8,
+      "family": "sst",
+      "k": 0.5,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha0.8_n500_k0.5_FhFb_additive_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "additive"
+    },
+    {
+      "alpha": 1.0,
+      "family": "sst",
+      "k": 0.05,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha1.0_n500_k0.05_FhFb_interpolation_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 1.0,
+      "family": "sst",
+      "k": 0.05,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha1.0_n500_k0.05_FhFb_additive_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "additive"
+    },
+    {
+      "alpha": 1.0,
+      "family": "sst",
+      "k": 0.1,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha1.0_n500_k0.1_FhFb_interpolation_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 1.0,
+      "family": "sst",
+      "k": 0.1,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha1.0_n500_k0.1_FhFb_additive_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "additive"
+    },
+    {
+      "alpha": 1.0,
+      "family": "sst",
+      "k": 0.5,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha1.0_n500_k0.5_FhFb_interpolation_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 1.0,
+      "family": "sst",
+      "k": 0.5,
+      "pattern": "safety+math",
+      "reason": "v3 に結果が無い（別の条件で代用しない）",
+      "searched": "sst_merge_v3_ablation_diagonal_sst_ablation_safety+math_alpha1.0_n500_k0.5_FhFb_additive_hardmask_nolayerwise_seed*_harmbench_safety.json",
+      "variant": "additive"
+    }
+  ],
+  "partial": [
+    {
+      "alpha": 0.0,
+      "family": "sst",
+      "k": 0.2,
+      "pattern": "safety+math",
+      "seeds_expected": [
+        42,
+        43,
+        44
+      ],
+      "seeds_present": [
+        42
+      ],
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.0,
+      "family": "sst",
+      "k": 0.2,
+      "pattern": "safety+math",
+      "seeds_expected": [
+        42,
+        43,
+        44
+      ],
+      "seeds_present": [
+        42
+      ],
+      "variant": "additive"
+    },
+    {
+      "alpha": 0.2,
+      "family": "sst",
+      "k": 0.2,
+      "pattern": "safety+math",
+      "seeds_expected": [
+        42,
+        43,
+        44
+      ],
+      "seeds_present": [
+        42
+      ],
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.2,
+      "family": "sst",
+      "k": 0.2,
+      "pattern": "safety+math",
+      "seeds_expected": [
+        42,
+        43,
+        44
+      ],
+      "seeds_present": [
+        42
+      ],
+      "variant": "additive"
+    },
+    {
+      "alpha": 0.4,
+      "family": "sst",
+      "k": 0.2,
+      "pattern": "safety+math",
+      "seeds_expected": [
+        42,
+        43,
+        44
+      ],
+      "seeds_present": [
+        42
+      ],
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.4,
+      "family": "sst",
+      "k": 0.2,
+      "pattern": "safety+math",
+      "seeds_expected": [
+        42,
+        43,
+        44
+      ],
+      "seeds_present": [
+        42
+      ],
+      "variant": "additive"
+    },
+    {
+      "alpha": 0.6,
+      "family": "sst",
+      "k": 0.2,
+      "pattern": "safety+math",
+      "seeds_expected": [
+        42,
+        43,
+        44
+      ],
+      "seeds_present": [
+        42
+      ],
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.6,
+      "family": "sst",
+      "k": 0.2,
+      "pattern": "safety+math",
+      "seeds_expected": [
+        42,
+        43,
+        44
+      ],
+      "seeds_present": [
+        42
+      ],
+      "variant": "additive"
+    },
+    {
+      "alpha": 0.8,
+      "family": "sst",
+      "k": 0.2,
+      "pattern": "safety+math",
+      "seeds_expected": [
+        42,
+        43,
+        44
+      ],
+      "seeds_present": [
+        42
+      ],
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 0.8,
+      "family": "sst",
+      "k": 0.2,
+      "pattern": "safety+math",
+      "seeds_expected": [
+        42,
+        43,
+        44
+      ],
+      "seeds_present": [
+        42
+      ],
+      "variant": "additive"
+    },
+    {
+      "alpha": 1.0,
+      "family": "sst",
+      "k": 0.2,
+      "pattern": "safety+math",
+      "seeds_expected": [
+        42,
+        43,
+        44
+      ],
+      "seeds_present": [
+        42
+      ],
+      "variant": "interpolation"
+    },
+    {
+      "alpha": 1.0,
+      "family": "sst",
+      "k": 0.2,
+      "pattern": "safety+math",
+      "seeds_expected": [
+        42,
+        43,
+        44
+      ],
+      "seeds_present": [
+        42
+      ],
+      "variant": "additive"
+    }
+  ]
+}

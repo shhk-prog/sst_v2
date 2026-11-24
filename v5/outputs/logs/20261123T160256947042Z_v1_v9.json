@@ -1,0 +1,7 @@
+{
+  "command": "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/bin/python v5/scripts/check_v1_v9.py --seed 42 --pattern safety+math --layers 0,15,31 --max-tensors 8 --hypotheses V1,V2,V3,V7,V8,V9 --approved-by-user",
+  "finished_at": "2026-11-23T16:04:31.898642+00:00",
+  "return_code": 0,
+  "stage": "v1_v9",
+  "started_at": "2026-11-23T16:02:56.947042+00:00"
+}

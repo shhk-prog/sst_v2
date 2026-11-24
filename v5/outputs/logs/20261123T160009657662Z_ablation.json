@@ -1,0 +1,7 @@
+{
+  "command": "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/bin/python v5/scripts/ablation_table.py",
+  "finished_at": "2026-11-23T16:02:39.718743+00:00",
+  "return_code": 0,
+  "stage": "ablation",
+  "started_at": "2026-11-23T16:00:09.657662+00:00"
+}

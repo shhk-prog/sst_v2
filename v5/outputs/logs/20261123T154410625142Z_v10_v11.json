@@ -1,0 +1,7 @@
+{
+  "command": "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/bin/python v5/scripts/check_v10_v11.py",
+  "finished_at": "2026-11-23T15:49:28.900134+00:00",
+  "return_code": 0,
+  "stage": "v10_v11",
+  "started_at": "2026-11-23T15:44:10.625142+00:00"
+}

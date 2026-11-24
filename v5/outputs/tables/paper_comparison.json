@@ -1,0 +1,4326 @@
+{
+  "tab:evaluation_main_alpha06_safety": [
+    {
+      "method": "Base",
+      "metric": "bench_asr",
+      "paper": 5.17,
+      "pattern": "MedAlpaca",
+      "repro_harmbench_only": 5.173921725239616,
+      "repro_or_legacy": 5.173921725239616,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "bench_asr",
+      "paper": 0.0,
+      "pattern": "MedAlpaca",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "cond_asr",
+      "paper": 62.85,
+      "pattern": "MedAlpaca",
+      "repro_harmbench_only": 6.112972610786536,
+      "repro_or_legacy": 6.112972610786536,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "Base",
+      "metric": "cond_asr",
+      "paper": 0.0,
+      "pattern": "MedAlpaca",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "vrr",
+      "paper": 84.53,
+      "pattern": "MedAlpaca",
+      "repro_harmbench_only": 84.53444488817891,
+      "repro_or_legacy": 84.53444488817891,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "vrr",
+      "paper": 0.0,
+      "pattern": "MedAlpaca",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "vsr",
+      "paper": 30.81,
+      "pattern": "MedAlpaca",
+      "repro_harmbench_only": 79.3605231629393,
+      "repro_or_legacy": 79.3605231629393,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "Base",
+      "metric": "vsr",
+      "paper": 0.0,
+      "pattern": "MedAlpaca",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "bench_asr",
+      "paper": 0.0,
+      "pattern": "SafetyFT",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "bench_asr",
+      "paper": 0.0,
+      "pattern": "SafetyFT",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "cond_asr",
+      "paper": 0.0,
+      "pattern": "SafetyFT",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "cond_asr",
+      "paper": 0.0,
+      "pattern": "SafetyFT",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "vrr",
+      "paper": 100.0,
+      "pattern": "SafetyFT",
+      "repro_harmbench_only": 100.0,
+      "repro_or_legacy": 100.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "vrr",
+      "paper": 0.0,
+      "pattern": "SafetyFT",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "vsr",
+      "paper": 100.0,
+      "pattern": "SafetyFT",
+      "repro_harmbench_only": 100.0,
+      "repro_or_legacy": 100.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "vsr",
+      "paper": 0.0,
+      "pattern": "SafetyFT",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "bench_asr",
+      "paper": 24.69,
+      "pattern": "WizardCoder",
+      "repro_harmbench_only": 24.685103833865814,
+      "repro_or_legacy": 24.685103833865814,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "bench_asr",
+      "paper": 0.0,
+      "pattern": "WizardCoder",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "cond_asr",
+      "paper": 73.99,
+      "pattern": "WizardCoder",
+      "repro_harmbench_only": 26.684730590980593,
+      "repro_or_legacy": 26.769190050440052,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "Base",
+      "metric": "cond_asr",
+      "paper": 0.0,
+      "pattern": "WizardCoder",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "vrr",
+      "paper": 91.08,
+      "pattern": "WizardCoder",
+      "repro_harmbench_only": 91.0814197284345,
+      "repro_or_legacy": 91.0814197284345,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "vrr",
+      "paper": 0.0,
+      "pattern": "WizardCoder",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "vsr",
+      "paper": 23.66,
+      "pattern": "WizardCoder",
+      "repro_harmbench_only": 66.47444089456869,
+      "repro_or_legacy": 66.39631589456869,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "Base",
+      "metric": "vsr",
+      "paper": 0.0,
+      "pattern": "WizardCoder",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "bench_asr",
+      "paper": 31.01,
+      "pattern": "WizardMath",
+      "repro_harmbench_only": 31.008486421725237,
+      "repro_or_legacy": 31.008486421725237,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "bench_asr",
+      "paper": 0.0,
+      "pattern": "WizardMath",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "cond_asr",
+      "paper": 67.62,
+      "pattern": "WizardMath",
+      "repro_harmbench_only": 32.97460953262367,
+      "repro_or_legacy": 32.97460953262367,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "Base",
+      "metric": "cond_asr",
+      "paper": 0.0,
+      "pattern": "WizardMath",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "vrr",
+      "paper": 93.61,
+      "pattern": "WizardMath",
+      "repro_harmbench_only": 93.60927515974441,
+      "repro_or_legacy": 93.60927515974441,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "vrr",
+      "paper": 0.0,
+      "pattern": "WizardMath",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "vsr",
+      "paper": 30.15,
+      "pattern": "WizardMath",
+      "repro_harmbench_only": 62.60078873801917,
+      "repro_or_legacy": 62.60078873801917,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "Base",
+      "metric": "vsr",
+      "paper": 0.0,
+      "pattern": "WizardMath",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "bench_asr",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "bench_asr",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "cond_asr",
+      "paper": 68.3,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "DARE",
+      "metric": "cond_asr",
+      "paper": 2.33,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "DARE",
+      "metric": "vrr",
+      "paper": 97.94,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 97.93561967518637,
+      "repro_or_legacy": 97.93561967518637,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "vrr",
+      "paper": 2.76,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 2.7634471052192153,
+      "repro_or_legacy": 2.7634471052192153,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "vsr",
+      "paper": 31.36,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 97.93561967518637,
+      "repro_or_legacy": 97.93561967518637,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "DARE",
+      "metric": "vsr",
+      "paper": 2.49,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 2.7634471052192153,
+      "repro_or_legacy": 2.7634471052192153,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "DELLA",
+      "metric": "bench_asr",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "bench_asr",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "cond_asr",
+      "paper": 68.53,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "DELLA",
+      "metric": "cond_asr",
+      "paper": 1.44,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "DELLA",
+      "metric": "vrr",
+      "paper": 92.51,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 92.51196419062832,
+      "repro_or_legacy": 92.51196419062832,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "vrr",
+      "paper": 12.56,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 12.560936763147785,
+      "repro_or_legacy": 12.560936763147785,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "vsr",
+      "paper": 29.14,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 92.51196419062832,
+      "repro_or_legacy": 92.51196419062832,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "DELLA",
+      "metric": "vsr",
+      "paper": 3.79,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 12.560936763147785,
+      "repro_or_legacy": 12.560936763147785,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "bench_asr",
+      "paper": 2.88,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 2.879176650692226,
+      "repro_or_legacy": 2.879176650692226,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "bench_asr",
+      "paper": 0.14,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.13632521831404404,
+      "repro_or_legacy": 0.13632521831404404,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "cond_asr",
+      "paper": 71.01,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 3.6438281296196835,
+      "repro_or_legacy": 3.6438281296196835,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "cond_asr",
+      "paper": 0.04,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.18074019299697328,
+      "repro_or_legacy": 0.18074019299697328,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "vrr",
+      "paper": 78.14,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 78.14200612353568,
+      "repro_or_legacy": 78.14200612353568,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "vrr",
+      "paper": 0.05,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.04510548978043951,
+      "repro_or_legacy": 0.04510548978043951,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "vsr",
+      "paper": 23.09,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 75.26282947284345,
+      "repro_or_legacy": 75.26282947284345,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "vsr",
+      "paper": 0.05,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.09121972853360787,
+      "repro_or_legacy": 0.09121972853360787,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "bench_asr",
+      "paper": 3.37,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 3.373968317358892,
+      "repro_or_legacy": 3.373968317358892,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "bench_asr",
+      "paper": 1.4,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 1.4006594459318729,
+      "repro_or_legacy": 1.4006594459318729,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "cond_asr",
+      "paper": 65.04,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 5.7242700603006895,
+      "repro_or_legacy": 5.7242700603006895,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "cond_asr",
+      "paper": 1.92,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 1.9503847980848923,
+      "repro_or_legacy": 1.9503847980848923,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "vrr",
+      "paper": 59.73,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 59.7299321086262,
+      "repro_or_legacy": 59.7299321086262,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "vrr",
+      "paper": 3.8,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 3.7955925514060986,
+      "repro_or_legacy": 3.7955925514060986,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "vsr",
+      "paper": 22.35,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 56.3559637912673,
+      "repro_or_legacy": 56.3559637912673,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "vsr",
+      "paper": 1.55,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 2.5037671542491307,
+      "repro_or_legacy": 2.5037671542491307,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "bench_asr",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "bench_asr",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "cond_asr",
+      "paper": null,
+      "pattern": "safety+code",
+      "repro_harmbench_only": null,
+      "repro_or_legacy": null,
+      "stat": "mean",
+      "status": "both_na"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "cond_asr",
+      "paper": null,
+      "pattern": "safety+code",
+      "repro_harmbench_only": null,
+      "repro_or_legacy": null,
+      "stat": "std",
+      "status": "both_na"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "vrr",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "vrr",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "vsr",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "vsr",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "bench_asr",
+      "paper": 0.1,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.10416666666666667,
+      "repro_or_legacy": 0.10416666666666667,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "bench_asr",
+      "paper": 0.18,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.18042195912175804,
+      "repro_or_legacy": 0.18042195912175804,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "cond_asr",
+      "paper": 0.34,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.10465956887486856,
+      "repro_or_legacy": 0.10465956887486856,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "cond_asr",
+      "paper": 0.59,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.18127569078952666,
+      "repro_or_legacy": 0.18127569078952666,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "vrr",
+      "paper": 99.92,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 99.921875,
+      "repro_or_legacy": 99.921875,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "vrr",
+      "paper": 0.14,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.13531646934131855,
+      "repro_or_legacy": 0.13531646934131855,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "vsr",
+      "paper": 99.58,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 99.81770833333333,
+      "repro_or_legacy": 99.81770833333333,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "vsr",
+      "paper": 0.72,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.31573842846307654,
+      "repro_or_legacy": 0.31573842846307654,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "bench_asr",
+      "paper": 29.17,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 29.167798189563367,
+      "repro_or_legacy": 29.167798189563367,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "bench_asr",
+      "paper": 3.07,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 3.0730886747224218,
+      "repro_or_legacy": 3.0730886747224218,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "cond_asr",
+      "paper": 60.91,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 30.47048333091961,
+      "repro_or_legacy": 30.527282600173308,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "cond_asr",
+      "paper": 2.15,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 3.3013617295701816,
+      "repro_or_legacy": 3.3162959181167717,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "vrr",
+      "paper": 95.34,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 95.34300119808307,
+      "repro_or_legacy": 95.34300119808307,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "vrr",
+      "paper": 0.96,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.9560687913945787,
+      "repro_or_legacy": 0.9560687913945787,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "vsr",
+      "paper": 36.94,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 66.22786874334399,
+      "repro_or_legacy": 66.1752030085197,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "vsr",
+      "paper": 2.58,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 3.5839053302918544,
+      "repro_or_legacy": 3.6031616143813103,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "TIES",
+      "metric": "bench_asr",
+      "paper": 0.11,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.10533146964856228,
+      "repro_or_legacy": 0.10533146964856228,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "bench_asr",
+      "paper": 0.04,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.04409674080771403,
+      "repro_or_legacy": 0.04409674080771403,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "cond_asr",
+      "paper": 47.32,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.17684217016829903,
+      "repro_or_legacy": 0.17684217016829903,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "TIES",
+      "metric": "cond_asr",
+      "paper": 6.93,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.049448866960254426,
+      "repro_or_legacy": 0.049448866960254426,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "TIES",
+      "metric": "vrr",
+      "paper": 61.37,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 61.37140575079872,
+      "repro_or_legacy": 61.37140575079872,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "vrr",
+      "paper": 26.99,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 26.990164295851287,
+      "repro_or_legacy": 26.990164295851287,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "vsr",
+      "paper": 32.74,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 61.26607428115017,
+      "repro_or_legacy": 61.26607428115017,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "TIES",
+      "metric": "vsr",
+      "paper": 18.17,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 26.95708462988587,
+      "repro_or_legacy": 26.95708462988587,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "DARE",
+      "metric": "bench_asr",
+      "paper": 6.14,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 6.139110756123536,
+      "repro_or_legacy": 6.139110756123536,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "bench_asr",
+      "paper": 5.14,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 5.1371601828432585,
+      "repro_or_legacy": 5.1371601828432585,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "cond_asr",
+      "paper": 10.68,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 5.978446867457209,
+      "repro_or_legacy": 6.141070003772438,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "DARE",
+      "metric": "cond_asr",
+      "paper": 8.94,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 4.984967289560481,
+      "repro_or_legacy": 5.139390608184487,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "DARE",
+      "metric": "vrr",
+      "paper": 99.97,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 99.97395833333333,
+      "repro_or_legacy": 99.97395833333333,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "vrr",
+      "paper": 0.05,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.04510548978043951,
+      "repro_or_legacy": 0.04510548978043951,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "vsr",
+      "paper": 89.3,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 93.99747071352503,
+      "repro_or_legacy": 93.8348475772098,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "DARE",
+      "metric": "vsr",
+      "paper": 8.96,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 5.012128818876118,
+      "repro_or_legacy": 5.166909669128597,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "DELLA",
+      "metric": "bench_asr",
+      "paper": 6.66,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 6.664603301384452,
+      "repro_or_legacy": 6.664603301384452,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "bench_asr",
+      "paper": 5.52,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 5.51818045358856,
+      "repro_or_legacy": 5.51818045358856,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "cond_asr",
+      "paper": 12.19,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 6.638561634717785,
+      "repro_or_legacy": 6.664603301384452,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "DELLA",
+      "metric": "cond_asr",
+      "paper": 10.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 5.484410065555706,
+      "repro_or_legacy": 5.51818045358856,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "DELLA",
+      "metric": "vrr",
+      "paper": 100.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 100.0,
+      "repro_or_legacy": 100.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "vrr",
+      "paper": 0.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "vsr",
+      "paper": 87.81,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 93.36143836528221,
+      "repro_or_legacy": 93.33539669861555,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "DELLA",
+      "metric": "vsr",
+      "paper": 10.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 5.484410065555701,
+      "repro_or_legacy": 5.5181804535885535,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "bench_asr",
+      "paper": 2.8,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 2.800469249201278,
+      "repro_or_legacy": 2.800469249201278,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "bench_asr",
+      "paper": 0.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "cond_asr",
+      "paper": 71.03,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 3.5394777305394967,
+      "repro_or_legacy": 3.5394777305394967,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "cond_asr",
+      "paper": 0.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 5.438959822042073e-16,
+      "repro_or_legacy": 5.438959822042073e-16,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "vrr",
+      "paper": 78.12,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 78.11596445686901,
+      "repro_or_legacy": 78.11596445686901,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "vrr",
+      "paper": 0.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "vsr",
+      "paper": 23.11,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 75.31549520766774,
+      "repro_or_legacy": 75.31549520766774,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "vsr",
+      "paper": 0.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "bench_asr",
+      "paper": 4.29,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 4.287756256656017,
+      "repro_or_legacy": 4.287756256656017,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "bench_asr",
+      "paper": 0.43,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.42895521217230204,
+      "repro_or_legacy": 0.42895521217230204,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "cond_asr",
+      "paper": 7.38,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 4.207400877937109,
+      "repro_or_legacy": 4.317443612979844,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "cond_asr",
+      "paper": 0.53,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.2862850590058834,
+      "repro_or_legacy": 0.42326306319620105,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "vrr",
+      "paper": 99.3,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 99.29512779552715,
+      "repro_or_legacy": 99.29512779552715,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "vrr",
+      "paper": 0.41,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.4130720149375712,
+      "repro_or_legacy": 0.4130720149375712,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "vsr",
+      "paper": 91.97,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 95.11732894036209,
+      "repro_or_legacy": 95.00737153887114,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "vsr",
+      "paper": 0.47,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.37860478182434804,
+      "repro_or_legacy": 0.3029835785506867,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "bench_asr",
+      "paper": 0.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "bench_asr",
+      "paper": 0.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "cond_asr",
+      "paper": null,
+      "pattern": "safety+math",
+      "repro_harmbench_only": null,
+      "repro_or_legacy": null,
+      "stat": "mean",
+      "status": "both_na"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "cond_asr",
+      "paper": null,
+      "pattern": "safety+math",
+      "repro_harmbench_only": null,
+      "repro_or_legacy": null,
+      "stat": "std",
+      "status": "both_na"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "vrr",
+      "paper": 0.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "vrr",
+      "paper": 0.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "vsr",
+      "paper": 0.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "vsr",
+      "paper": 0.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "bench_asr",
+      "paper": 4.61,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 4.612453407880724,
+      "repro_or_legacy": 4.612453407880724,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "bench_asr",
+      "paper": 7.99,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 7.989003649993627,
+      "repro_or_legacy": 7.989003649993627,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "cond_asr",
+      "paper": 21.65,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 5.117661377604997,
+      "repro_or_legacy": 5.2480278045531,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "cond_asr",
+      "paper": 37.49,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 8.86404952194479,
+      "repro_or_legacy": 9.08985079702012,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "vrr",
+      "paper": 95.57,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 95.56764177316295,
+      "repro_or_legacy": 95.56764177316295,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "vrr",
+      "paper": 7.68,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 7.677069646227682,
+      "repro_or_legacy": 7.677069646227682,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "vsr",
+      "paper": 76.88,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 91.06456336528221,
+      "repro_or_legacy": 90.95518836528221,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "vsr",
+      "paper": 40.04,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 15.47663023914347,
+      "repro_or_legacy": 15.666073296221315,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "bench_asr",
+      "paper": 2.48,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 2.4821452342918,
+      "repro_or_legacy": 2.4821452342918,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "bench_asr",
+      "paper": 2.89,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 2.888553622724252,
+      "repro_or_legacy": 2.888553622724252,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "cond_asr",
+      "paper": 3.88,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 2.4004185886587615,
+      "repro_or_legacy": 2.4837519219920945,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "cond_asr",
+      "paper": 4.8,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 2.748141822217411,
+      "repro_or_legacy": 2.887797773231438,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "vrr",
+      "paper": 99.92,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 99.9207101970181,
+      "repro_or_legacy": 99.9207101970181,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "vrr",
+      "paper": 0.14,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.137333967286768,
+      "repro_or_legacy": 0.137333967286768,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "vsr",
+      "paper": 96.04,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 97.52189829605963,
+      "repro_or_legacy": 97.43856496272629,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "vsr",
+      "paper": 4.75,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 2.716447073261444,
+      "repro_or_legacy": 2.8542523411692744,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "TIES",
+      "metric": "bench_asr",
+      "paper": 9.03,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 9.033879126730564,
+      "repro_or_legacy": 9.033879126730564,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "bench_asr",
+      "paper": 5.55,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 5.551165576496907,
+      "repro_or_legacy": 5.551165576496907,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "cond_asr",
+      "paper": 13.84,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 8.903460431479393,
+      "repro_or_legacy": 9.038877098146061,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "TIES",
+      "metric": "cond_asr",
+      "paper": 8.45,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 5.391709041237747,
+      "repro_or_legacy": 5.551738900966051,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "TIES",
+      "metric": "vrr",
+      "paper": 99.95,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 99.94733426517571,
+      "repro_or_legacy": 99.94733426517571,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "vrr",
+      "paper": 0.09,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.09121972853360787,
+      "repro_or_legacy": 0.09121972853360787,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "vsr",
+      "paper": 86.12,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 91.04887180511183,
+      "repro_or_legacy": 90.91345513844516,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "TIES",
+      "metric": "vsr",
+      "paper": 8.45,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 5.39879261999071,
+      "repro_or_legacy": 5.557881547493176,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "DARE",
+      "metric": "bench_asr",
+      "paper": 0.03,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.02662406815761448,
+      "repro_or_legacy": 0.02662406815761448,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "bench_asr",
+      "paper": 0.05,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.046114238753165,
+      "repro_or_legacy": 0.046114238753165,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "cond_asr",
+      "paper": 68.04,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.028538812785388126,
+      "repro_or_legacy": 0.028538812785388126,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "DARE",
+      "metric": "cond_asr",
+      "paper": 2.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.049430673731988506,
+      "repro_or_legacy": 0.049430673731988506,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "DARE",
+      "metric": "vrr",
+      "paper": 77.76,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 77.76311235356762,
+      "repro_or_legacy": 77.76311235356762,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "vrr",
+      "paper": 13.44,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 13.438333733490403,
+      "repro_or_legacy": 13.438333733490403,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "vsr",
+      "paper": 26.26,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 77.73648828541,
+      "repro_or_legacy": 77.73648828541,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "DARE",
+      "metric": "vsr",
+      "paper": 4.26,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 13.407367670017422,
+      "repro_or_legacy": 13.407367670017422,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "DELLA",
+      "metric": "bench_asr",
+      "paper": 0.03,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.02662406815761448,
+      "repro_or_legacy": 0.02662406815761448,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "bench_asr",
+      "paper": 0.05,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.046114238753165,
+      "repro_or_legacy": 0.046114238753165,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "cond_asr",
+      "paper": 62.92,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.23148148148148148,
+      "repro_or_legacy": 0.23148148148148148,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "DELLA",
+      "metric": "cond_asr",
+      "paper": 11.69,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.4009376869372401,
+      "repro_or_legacy": 0.4009376869372401,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "DELLA",
+      "metric": "vrr",
+      "paper": 33.68,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 33.67911341853035,
+      "repro_or_legacy": 33.67911341853035,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "vrr",
+      "paper": 40.71,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 40.70539111630207,
+      "repro_or_legacy": 40.70539111630207,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "vsr",
+      "paper": 14.59,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 33.65248935037274,
+      "repro_or_legacy": 33.65248935037274,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "DELLA",
+      "metric": "vsr",
+      "paper": 16.47,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 40.72214520614504,
+      "repro_or_legacy": 40.72214520614504,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "bench_asr",
+      "paper": 0.16,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.1597444089456869,
+      "repro_or_legacy": 0.1597444089456869,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "bench_asr",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "cond_asr",
+      "paper": 70.98,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.1604337052086672,
+      "repro_or_legacy": 0.1604337052086672,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "cond_asr",
+      "paper": 0.01,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0011938961489492714,
+      "repro_or_legacy": 0.0011938961489492714,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "vrr",
+      "paper": 99.28,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 99.28412872736953,
+      "repro_or_legacy": 99.28412872736953,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "vrr",
+      "paper": 1.24,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 1.2399254158749415,
+      "repro_or_legacy": 1.2399254158749415,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "vsr",
+      "paper": 28.57,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 99.12438431842385,
+      "repro_or_legacy": 99.12438431842385,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "vsr",
+      "paper": 0.77,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 1.2399254158749498,
+      "repro_or_legacy": 1.2399254158749498,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "bench_asr",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "bench_asr",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "cond_asr",
+      "paper": null,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": null,
+      "repro_or_legacy": null,
+      "stat": "mean",
+      "status": "both_na"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "cond_asr",
+      "paper": null,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": null,
+      "repro_or_legacy": null,
+      "stat": "std",
+      "status": "both_na"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "vrr",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "vrr",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "vsr",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "vsr",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "bench_asr",
+      "paper": 0.03,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.02662406815761448,
+      "repro_or_legacy": 0.02662406815761448,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "bench_asr",
+      "paper": 0.05,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.046114238753165,
+      "repro_or_legacy": 0.046114238753165,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "cond_asr",
+      "paper": 0.25,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.02662406815761448,
+      "repro_or_legacy": 0.02662406815761448,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "cond_asr",
+      "paper": 0.43,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.046114238753165,
+      "repro_or_legacy": 0.046114238753165,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "vrr",
+      "paper": 100.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 100.0,
+      "repro_or_legacy": 100.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "vrr",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "vsr",
+      "paper": 99.75,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 99.97337593184238,
+      "repro_or_legacy": 99.97337593184238,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "vsr",
+      "paper": 0.43,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.04611423875316835,
+      "repro_or_legacy": 0.04611423875316835,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "bench_asr",
+      "paper": 0.16,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.1597444089456869,
+      "repro_or_legacy": 0.1597444089456869,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "bench_asr",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "cond_asr",
+      "paper": 63.87,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.1597444089456869,
+      "repro_or_legacy": 0.1597444089456869,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "cond_asr",
+      "paper": 4.81,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "vrr",
+      "paper": 99.82,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 99.81770833333333,
+      "repro_or_legacy": 99.81770833333333,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "vrr",
+      "paper": 0.18,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.18042195912175807,
+      "repro_or_legacy": 0.18042195912175807,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "vsr",
+      "paper": 35.95,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 99.65796392438766,
+      "repro_or_legacy": 99.65796392438766,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "vsr",
+      "paper": 4.91,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.18042195912175804,
+      "repro_or_legacy": 0.18042195912175804,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "TIES",
+      "metric": "bench_asr",
+      "paper": 0.05,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.05324813631522896,
+      "repro_or_legacy": 0.05324813631522896,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "bench_asr",
+      "paper": 0.05,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.046114238753165,
+      "repro_or_legacy": 0.046114238753165,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "cond_asr",
+      "paper": 64.34,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.06049940691100202,
+      "repro_or_legacy": 0.06049940691100202,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "TIES",
+      "metric": "cond_asr",
+      "paper": 6.74,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.053511127433990544,
+      "repro_or_legacy": 0.053511127433990544,
+      "stat": "std",
+      "status": "mismatch"
+    },
+    {
+      "method": "TIES",
+      "metric": "vrr",
+      "paper": 80.93,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 80.92573548988285,
+      "repro_or_legacy": 80.92573548988285,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "vrr",
+      "paper": 19.76,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 19.756890979154004,
+      "repro_or_legacy": 19.756890979154004,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "vsr",
+      "paper": 27.98,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 80.87248735356762,
+      "repro_or_legacy": 80.87248735356762,
+      "stat": "mean",
+      "status": "mismatch"
+    },
+    {
+      "method": "TIES",
+      "metric": "vsr",
+      "paper": 10.88,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 19.715715920073986,
+      "repro_or_legacy": 19.715715920073986,
+      "stat": "std",
+      "status": "mismatch"
+    }
+  ],
+  "tab:evaluation_main_alpha06_utility": [
+    {
+      "method": "Base",
+      "metric": "math",
+      "paper": 4.53,
+      "pattern": "MedAlpaca",
+      "repro_harmbench_only": 4.53125,
+      "repro_or_legacy": 4.53125,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "MedAlpaca",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "code",
+      "paper": 3.59,
+      "pattern": "MedAlpaca",
+      "repro_harmbench_only": 3.5937499999999996,
+      "repro_or_legacy": 3.5937499999999996,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "MedAlpaca",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "medical",
+      "paper": 52.81,
+      "pattern": "MedAlpaca",
+      "repro_harmbench_only": 52.8125,
+      "repro_or_legacy": 52.8125,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "medical",
+      "paper": 0.0,
+      "pattern": "MedAlpaca",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "general",
+      "paper": 20.28,
+      "pattern": "MedAlpaca",
+      "repro_harmbench_only": 20.27885226963983,
+      "repro_or_legacy": 20.27885226963983,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "general",
+      "paper": 0.0,
+      "pattern": "MedAlpaca",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "math",
+      "paper": 0.52,
+      "pattern": "SafetyFT",
+      "repro_harmbench_only": 0.5208333333333334,
+      "repro_or_legacy": 0.5208333333333334,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "math",
+      "paper": 0.48,
+      "pattern": "SafetyFT",
+      "repro_harmbench_only": 0.47735163489123333,
+      "repro_or_legacy": 0.47735163489123333,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "code",
+      "paper": 4.22,
+      "pattern": "SafetyFT",
+      "repro_harmbench_only": 4.21875,
+      "repro_or_legacy": 4.21875,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "code",
+      "paper": 3.39,
+      "pattern": "SafetyFT",
+      "repro_harmbench_only": 3.391021002220423,
+      "repro_or_legacy": 3.391021002220423,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "medical",
+      "paper": 43.49,
+      "pattern": "SafetyFT",
+      "repro_harmbench_only": 43.489583333333336,
+      "repro_or_legacy": 43.489583333333336,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "medical",
+      "paper": 11.8,
+      "pattern": "SafetyFT",
+      "repro_harmbench_only": 11.796961230369172,
+      "repro_or_legacy": 11.796961230369172,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "general",
+      "paper": 11.38,
+      "pattern": "SafetyFT",
+      "repro_harmbench_only": 11.383070188126903,
+      "repro_or_legacy": 11.383070188126903,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "general",
+      "paper": 0.41,
+      "pattern": "SafetyFT",
+      "repro_harmbench_only": 0.4135952883888376,
+      "repro_or_legacy": 0.4135952883888376,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "math",
+      "paper": 4.53,
+      "pattern": "WizardCoder",
+      "repro_harmbench_only": 4.53125,
+      "repro_or_legacy": 4.53125,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "WizardCoder",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "code",
+      "paper": 21.03,
+      "pattern": "WizardCoder",
+      "repro_harmbench_only": 21.02515243902439,
+      "repro_or_legacy": 21.02515243902439,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "WizardCoder",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "medical",
+      "paper": 54.53,
+      "pattern": "WizardCoder",
+      "repro_harmbench_only": 54.53125,
+      "repro_or_legacy": 54.53125,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "medical",
+      "paper": 0.0,
+      "pattern": "WizardCoder",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "general",
+      "paper": 18.41,
+      "pattern": "WizardCoder",
+      "repro_harmbench_only": 18.413717684282833,
+      "repro_or_legacy": 18.413717684282833,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "general",
+      "paper": 0.0,
+      "pattern": "WizardCoder",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "math",
+      "paper": 6.41,
+      "pattern": "WizardMath",
+      "repro_harmbench_only": 6.40625,
+      "repro_or_legacy": 6.40625,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "WizardMath",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "code",
+      "paper": 3.12,
+      "pattern": "WizardMath",
+      "repro_harmbench_only": 3.125,
+      "repro_or_legacy": 3.125,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "WizardMath",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "medical",
+      "paper": 55.0,
+      "pattern": "WizardMath",
+      "repro_harmbench_only": 55.0,
+      "repro_or_legacy": 55.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "medical",
+      "paper": 0.0,
+      "pattern": "WizardMath",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "general",
+      "paper": 14.02,
+      "pattern": "WizardMath",
+      "repro_harmbench_only": 14.020695617266226,
+      "repro_or_legacy": 14.020695617266226,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Base",
+      "metric": "general",
+      "paper": 0.0,
+      "pattern": "WizardMath",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "math",
+      "paper": 0.05,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.052083333333333336,
+      "repro_or_legacy": 0.052083333333333336,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "math",
+      "paper": 0.09,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.09021097956087902,
+      "repro_or_legacy": 0.09021097956087902,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "medical",
+      "paper": 29.58,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 29.583333333333332,
+      "repro_or_legacy": 29.583333333333332,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "medical",
+      "paper": 12.27,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 12.272672471117826,
+      "repro_or_legacy": 12.272672471117826,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "general",
+      "paper": 11.73,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 11.726692897568727,
+      "repro_or_legacy": 11.726692897568727,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "general",
+      "paper": 0.7,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.6970086000167252,
+      "repro_or_legacy": 0.6970086000167252,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "math",
+      "paper": 0.62,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.625,
+      "repro_or_legacy": 0.625,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "math",
+      "paper": 0.41,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.41339864235384227,
+      "repro_or_legacy": 0.41339864235384227,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "medical",
+      "paper": 43.54,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 43.541666666666664,
+      "repro_or_legacy": 43.541666666666664,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "medical",
+      "paper": 14.08,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 14.081006341285883,
+      "repro_or_legacy": 14.081006341285883,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "general",
+      "paper": 12.43,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 12.431720246394084,
+      "repro_or_legacy": 12.431720246394084,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "general",
+      "paper": 0.46,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.4620974458915765,
+      "repro_or_legacy": 0.4620974458915765,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "math",
+      "paper": 1.41,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 1.40625,
+      "repro_or_legacy": 1.40625,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "code",
+      "paper": 5.62,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 5.625,
+      "repro_or_legacy": 5.625,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "medical",
+      "paper": 83.75,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 83.75,
+      "repro_or_legacy": 83.75,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "medical",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "general",
+      "paper": 22.49,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 22.488676692393867,
+      "repro_or_legacy": 22.488676692393867,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "general",
+      "paper": 0.04,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0376088197166767,
+      "repro_or_legacy": 0.0376088197166767,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "math",
+      "paper": 1.09,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 1.09375,
+      "repro_or_legacy": 1.09375,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "medical",
+      "paper": 83.12,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 83.125,
+      "repro_or_legacy": 83.125,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "medical",
+      "paper": 0.31,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.3125,
+      "repro_or_legacy": 0.3125,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "general",
+      "paper": 12.77,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 12.769834001424172,
+      "repro_or_legacy": 12.769834001424172,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "general",
+      "paper": 0.37,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.365867182677219,
+      "repro_or_legacy": 0.365867182677219,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "medical",
+      "paper": 86.25,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 86.25,
+      "repro_or_legacy": 86.25,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "medical",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "general",
+      "paper": 15.73,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 15.73473895855489,
+      "repro_or_legacy": 15.73473895855489,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "general",
+      "paper": 3.41,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 3.414878278014007,
+      "repro_or_legacy": 3.414878278014007,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "math",
+      "paper": 1.51,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 1.5104166666666667,
+      "repro_or_legacy": 1.5104166666666667,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "math",
+      "paper": 1.33,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 1.3288907106430285,
+      "repro_or_legacy": 1.3288907106430285,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "code",
+      "paper": 5.99,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 5.989583333333333,
+      "repro_or_legacy": 5.989583333333333,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "code",
+      "paper": 5.39,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 5.388548815157318,
+      "repro_or_legacy": 5.388548815157318,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "medical",
+      "paper": 73.75,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 73.75,
+      "repro_or_legacy": 73.75,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "medical",
+      "paper": 2.98,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 2.981060004427955,
+      "repro_or_legacy": 2.981060004427955,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "general",
+      "paper": 19.84,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 19.83703047536253,
+      "repro_or_legacy": 19.83703047536253,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "general",
+      "paper": 8.02,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 8.02213455225078,
+      "repro_or_legacy": 8.02213455225078,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "math",
+      "paper": 2.97,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 2.96875,
+      "repro_or_legacy": 2.96875,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "math",
+      "paper": 0.68,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.6810779599282303,
+      "repro_or_legacy": 0.6810779599282303,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "code",
+      "paper": 4.63,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 4.630335365853658,
+      "repro_or_legacy": 4.630335365853658,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "code",
+      "paper": 0.09,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.08581044397254337,
+      "repro_or_legacy": 0.08581044397254337,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "medical",
+      "paper": 88.85,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 88.85416666666667,
+      "repro_or_legacy": 88.85416666666667,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "medical",
+      "paper": 0.79,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.7864410870073698,
+      "repro_or_legacy": 0.7864410870073698,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "general",
+      "paper": 17.39,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 17.386882259584894,
+      "repro_or_legacy": 17.386882259584894,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "general",
+      "paper": 0.39,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.392393196594519,
+      "repro_or_legacy": 0.392393196594519,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "math",
+      "paper": 1.41,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 1.40625,
+      "repro_or_legacy": 1.40625,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "math",
+      "paper": 0.47,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.46875,
+      "repro_or_legacy": 0.46875,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "medical",
+      "paper": 38.65,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 38.645833333333336,
+      "repro_or_legacy": 38.645833333333336,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "medical",
+      "paper": 26.32,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 26.31749754599273,
+      "repro_or_legacy": 26.31749754599273,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "general",
+      "paper": 17.85,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 17.85301586893815,
+      "repro_or_legacy": 17.85301586893815,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "general",
+      "paper": 9.81,
+      "pattern": "safety+code",
+      "repro_harmbench_only": 9.80971997168911,
+      "repro_or_legacy": 9.80971997168911,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "math",
+      "paper": 5.42,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 5.416666666666667,
+      "repro_or_legacy": 5.416666666666667,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "math",
+      "paper": 0.79,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.7864410870073698,
+      "repro_or_legacy": 0.7864410870073698,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "code",
+      "paper": 5.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 5.0,
+      "repro_or_legacy": 5.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "code",
+      "paper": 1.02,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 1.0245997694221876,
+      "repro_or_legacy": 1.0245997694221876,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "medical",
+      "paper": 84.27,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 84.27083333333333,
+      "repro_or_legacy": 84.27083333333333,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "medical",
+      "paper": 2.35,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 2.345485468582855,
+      "repro_or_legacy": 2.345485468582855,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "general",
+      "paper": 22.85,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 22.85317216873371,
+      "repro_or_legacy": 22.85317216873371,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "general",
+      "paper": 8.57,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 8.568506949505904,
+      "repro_or_legacy": 8.568506949505904,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "math",
+      "paper": 5.52,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 5.520833333333333,
+      "repro_or_legacy": 5.520833333333333,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "math",
+      "paper": 0.63,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.6314768569261532,
+      "repro_or_legacy": 0.6314768569261532,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "code",
+      "paper": 5.31,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 5.3125,
+      "repro_or_legacy": 5.3125,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "code",
+      "paper": 1.36,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 1.3621559198564606,
+      "repro_or_legacy": 1.3621559198564606,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "medical",
+      "paper": 85.62,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 85.625,
+      "repro_or_legacy": 85.625,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "medical",
+      "paper": 0.54,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.5412658773652742,
+      "repro_or_legacy": 0.5412658773652742,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "general",
+      "paper": 31.03,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 31.029598704231404,
+      "repro_or_legacy": 31.029598704231404,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "general",
+      "paper": 4.06,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 4.059855237961332,
+      "repro_or_legacy": 4.059855237961332,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "math",
+      "paper": 1.41,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 1.40625,
+      "repro_or_legacy": 1.40625,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "code",
+      "paper": 5.62,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 5.625,
+      "repro_or_legacy": 5.625,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "medical",
+      "paper": 83.75,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 83.75,
+      "repro_or_legacy": 83.75,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "medical",
+      "paper": 0.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "general",
+      "paper": 22.51,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 22.50510991637239,
+      "repro_or_legacy": 22.50510991637239,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "LED-Merging",
+      "metric": "general",
+      "paper": 0.02,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.016442510929038246,
+      "repro_or_legacy": 0.016442510929038246,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "math",
+      "paper": 6.04,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 6.041666666666667,
+      "repro_or_legacy": 6.041666666666667,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "math",
+      "paper": 0.86,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.8605578980134531,
+      "repro_or_legacy": 0.8605578980134531,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "code",
+      "paper": 6.61,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 6.614583333333333,
+      "repro_or_legacy": 6.614583333333333,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "code",
+      "paper": 0.39,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.3932205435036849,
+      "repro_or_legacy": 0.3932205435036849,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "medical",
+      "paper": 85.73,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 85.72916666666667,
+      "repro_or_legacy": 85.72916666666667,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "medical",
+      "paper": 0.65,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.6505206248331664,
+      "repro_or_legacy": 0.6505206248331664,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "general",
+      "paper": 26.72,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 26.718601269032117,
+      "repro_or_legacy": 26.718601269032117,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "general",
+      "paper": 11.7,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 11.701946579227107,
+      "repro_or_legacy": 11.701946579227107,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "medical",
+      "paper": 86.25,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 86.25,
+      "repro_or_legacy": 86.25,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "medical",
+      "paper": 0.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "general",
+      "paper": 15.73,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 15.73473895855489,
+      "repro_or_legacy": 15.73473895855489,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "general",
+      "paper": 3.41,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 3.414878278014007,
+      "repro_or_legacy": 3.414878278014007,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "math",
+      "paper": 1.3,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 1.3020833333333333,
+      "repro_or_legacy": 1.3020833333333333,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "math",
+      "paper": 0.86,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.8605578980134535,
+      "repro_or_legacy": 0.8605578980134535,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "code",
+      "paper": 6.67,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 6.666666666666667,
+      "repro_or_legacy": 6.666666666666667,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "code",
+      "paper": 4.86,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 4.857172263347609,
+      "repro_or_legacy": 4.857172263347609,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "medical",
+      "paper": 82.5,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 82.5,
+      "repro_or_legacy": 82.5,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "medical",
+      "paper": 1.74,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 1.7399263633843818,
+      "repro_or_legacy": 1.7399263633843818,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "general",
+      "paper": 13.09,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 13.094847365068292,
+      "repro_or_legacy": 13.094847365068292,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "general",
+      "paper": 1.77,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 1.766968787503645,
+      "repro_or_legacy": 1.766968787503645,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "math",
+      "paper": 6.88,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 6.875,
+      "repro_or_legacy": 6.875,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "math",
+      "paper": 1.56,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 1.5625,
+      "repro_or_legacy": 1.5625,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "code",
+      "paper": 7.5,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 7.5,
+      "repro_or_legacy": 7.5,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "code",
+      "paper": 0.68,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.68107795992823,
+      "repro_or_legacy": 0.68107795992823,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "medical",
+      "paper": 75.21,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 75.20833333333333,
+      "repro_or_legacy": 75.20833333333333,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "medical",
+      "paper": 15.93,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 15.926262378013659,
+      "repro_or_legacy": 15.926262378013659,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "general",
+      "paper": 27.18,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 27.182164506783504,
+      "repro_or_legacy": 27.182164506783504,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "general",
+      "paper": 6.92,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 6.920493595898298,
+      "repro_or_legacy": 6.920493595898298,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "math",
+      "paper": 5.94,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 5.9375,
+      "repro_or_legacy": 5.9375,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "math",
+      "paper": 0.83,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.8267972847076851,
+      "repro_or_legacy": 0.8267972847076851,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "code",
+      "paper": 6.15,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 6.145833333333333,
+      "repro_or_legacy": 6.145833333333333,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "code",
+      "paper": 0.18,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 0.18042195912175804,
+      "repro_or_legacy": 0.18042195912175804,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "medical",
+      "paper": 85.0,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 85.0,
+      "repro_or_legacy": 85.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "medical",
+      "paper": 2.44,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 2.4407030237208294,
+      "repro_or_legacy": 2.4407030237208294,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "general",
+      "paper": 27.65,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 27.65291859370574,
+      "repro_or_legacy": 27.65291859370574,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "general",
+      "paper": 3.07,
+      "pattern": "safety+math",
+      "repro_harmbench_only": 3.072260106074825,
+      "repro_or_legacy": 3.072260106074825,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "medical",
+      "paper": 22.08,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 22.083333333333332,
+      "repro_or_legacy": 22.083333333333332,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "medical",
+      "paper": 10.81,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 10.808766214667303,
+      "repro_or_legacy": 10.808766214667303,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "general",
+      "paper": 12.39,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 12.387222696465379,
+      "repro_or_legacy": 12.387222696465379,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DARE",
+      "metric": "general",
+      "paper": 0.44,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.4416598469322489,
+      "repro_or_legacy": 0.4416598469322489,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "medical",
+      "paper": 27.29,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 27.291666666666668,
+      "repro_or_legacy": 27.291666666666668,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "medical",
+      "paper": 23.45,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 23.45485468582854,
+      "repro_or_legacy": 23.45485468582854,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "general",
+      "paper": 12.1,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 12.104042758410081,
+      "repro_or_legacy": 12.104042758410081,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "DELLA",
+      "metric": "general",
+      "paper": 1.01,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 1.0143454035802975,
+      "repro_or_legacy": 1.0143454035802975,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "medical",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "medical",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "general",
+      "paper": 12.99,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 12.988228541237776,
+      "repro_or_legacy": 12.988228541237776,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Matena-Fisher",
+      "metric": "general",
+      "paper": 0.18,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.18052927772462307,
+      "repro_or_legacy": 0.18052927772462307,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "medical",
+      "paper": 86.25,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 86.25,
+      "repro_or_legacy": 86.25,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "medical",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "general",
+      "paper": 13.76,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 13.763158065493698,
+      "repro_or_legacy": 13.763158065493698,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "MergeAlign",
+      "metric": "general",
+      "paper": 3.41,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 3.414878278014007,
+      "repro_or_legacy": 3.414878278014007,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "math",
+      "paper": 1.09,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 1.09375,
+      "repro_or_legacy": 1.09375,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "math",
+      "paper": 1.89,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 1.8944305707784594,
+      "repro_or_legacy": 1.8944305707784594,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "code",
+      "paper": 3.91,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 3.90625,
+      "repro_or_legacy": 3.90625,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "code",
+      "paper": 6.77,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 6.7658234670659265,
+      "repro_or_legacy": 6.7658234670659265,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "medical",
+      "paper": 53.44,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 53.4375,
+      "repro_or_legacy": 53.4375,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "medical",
+      "paper": 10.84,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 10.843344733060919,
+      "repro_or_legacy": 10.843344733060919,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "general",
+      "paper": 12.81,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 12.809816868731644,
+      "repro_or_legacy": 12.809816868731644,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "SafeMERGE",
+      "metric": "general",
+      "paper": 1.63,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 1.6312234492275024,
+      "repro_or_legacy": 1.6312234492275024,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "medical",
+      "paper": 13.85,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 13.854166666666666,
+      "repro_or_legacy": 13.854166666666666,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "medical",
+      "paper": 0.18,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.18042195912175701,
+      "repro_or_legacy": 0.18042195912175701,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "general",
+      "paper": 12.72,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 12.721176142950213,
+      "repro_or_legacy": 12.721176142950213,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "Task Arithmetic",
+      "metric": "general",
+      "paper": 0.06,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.05825182967312215,
+      "repro_or_legacy": 0.05825182967312215,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "math",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "code",
+      "paper": 0.0,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.0,
+      "repro_or_legacy": 0.0,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "medical",
+      "paper": 13.54,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 13.541666666666666,
+      "repro_or_legacy": 13.541666666666666,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "medical",
+      "paper": 0.36,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.36084391824351714,
+      "repro_or_legacy": 0.36084391824351714,
+      "stat": "std",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "general",
+      "paper": 11.9,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 11.89785569209321,
+      "repro_or_legacy": 11.89785569209321,
+      "stat": "mean",
+      "status": "match"
+    },
+    {
+      "method": "TIES",
+      "metric": "general",
+      "paper": 0.62,
+      "pattern": "safety+medical",
+      "repro_harmbench_only": 0.6205184736918348,
+      "repro_or_legacy": 0.6205184736918348,
+      "stat": "std",
+      "status": "match"
+    }
+  ]
+}

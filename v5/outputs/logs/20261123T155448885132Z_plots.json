@@ -1,0 +1,7 @@
+{
+  "command": "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/bin/python v5/scripts/plot_pareto_curves.py",
+  "finished_at": "2026-11-23T16:00:09.654810+00:00",
+  "return_code": 0,
+  "stage": "plots",
+  "started_at": "2026-11-23T15:54:48.885132+00:00"
+}

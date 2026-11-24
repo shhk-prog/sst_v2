@@ -1,0 +1,306 @@
+[
+  {
+    "cond_asr": 0.03156565656565657,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "dare@0",
+    "utility": 51.979166666666664,
+    "vrr": 90.4677016773163
+  },
+  {
+    "cond_asr": 0.055010893246187374,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "dare@0.2",
+    "utility": 4.6875,
+    "vrr": 92.46337526624067
+  },
+  {
+    "cond_asr": 0.08789857796153605,
+    "domain": "medical",
+    "excluded_by_vrr": true,
+    "label": "dare@0.4",
+    "utility": 12.1875,
+    "vrr": 57.996106230031955
+  },
+  {
+    "cond_asr": 0.028538812785388126,
+    "domain": "medical",
+    "excluded_by_vrr": true,
+    "label": "dare@0.6",
+    "utility": 22.083333333333332,
+    "vrr": 77.76311235356762
+  },
+  {
+    "cond_asr": 0.08196896965540888,
+    "domain": "medical",
+    "excluded_by_vrr": true,
+    "label": "dare@0.8",
+    "utility": 16.5625,
+    "vrr": 69.51575812034078
+  },
+  {
+    "cond_asr": 0.0,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "dare@1",
+    "utility": 62.395833333333336,
+    "vrr": 100.0
+  },
+  {
+    "cond_asr": 0.0,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "data_free_sst@0",
+    "utility": 33.125,
+    "vrr": 90.49620607028754
+  },
+  {
+    "cond_asr": 0.035919540229885055,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "data_free_sst@0.2",
+    "utility": 5.208333333333333,
+    "vrr": 80.60210330138445
+  },
+  {
+    "cond_asr": 0.032051282051282055,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "data_free_sst@0.4",
+    "utility": 17.1875,
+    "vrr": 91.04760716187434
+  },
+  {
+    "cond_asr": 0.4452284946236558,
+    "domain": "medical",
+    "excluded_by_vrr": true,
+    "label": "data_free_sst@0.6",
+    "utility": 61.666666666666664,
+    "vrr": 42.65686568157614
+  },
+  {
+    "cond_asr": 0.45730646059593427,
+    "domain": "medical",
+    "excluded_by_vrr": true,
+    "label": "data_free_sst@0.8",
+    "utility": 53.333333333333336,
+    "vrr": 58.86095580404686
+  },
+  {
+    "cond_asr": 0.08436982232708005,
+    "domain": "medical",
+    "excluded_by_vrr": true,
+    "label": "data_free_sst@1",
+    "utility": 32.916666666666664,
+    "vrr": 68.12128927050053
+  },
+  {
+    "cond_asr": 0.10281683668780443,
+    "domain": "medical",
+    "excluded_by_vrr": true,
+    "label": "della@0",
+    "utility": 74.89583333333333,
+    "vrr": 72.00346112886048
+  },
+  {
+    "cond_asr": 2.777777777777778,
+    "domain": "medical",
+    "excluded_by_vrr": true,
+    "label": "della@0.2",
+    "utility": 35.9375,
+    "vrr": 32.36742878061768
+  },
+  {
+    "cond_asr": 0.05324813631522896,
+    "domain": "medical",
+    "excluded_by_vrr": true,
+    "label": "della@0.4",
+    "utility": 18.229166666666668,
+    "vrr": 51.03712393503727
+  },
+  {
+    "cond_asr": 0.23148148148148148,
+    "domain": "medical",
+    "excluded_by_vrr": true,
+    "label": "della@0.6",
+    "utility": 27.291666666666668,
+    "vrr": 33.67911341853035
+  },
+  {
+    "cond_asr": 0.3309375552022611,
+    "domain": "medical",
+    "excluded_by_vrr": true,
+    "label": "della@0.8",
+    "utility": 17.083333333333332,
+    "vrr": 47.00211328541001
+  },
+  {
+    "cond_asr": 0.0,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "della@1",
+    "utility": 56.5625,
+    "vrr": 100.0
+  },
+  {
+    "cond_asr": 0.1604337052086672,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "matena_fisher@N/A",
+    "utility": 0.0,
+    "vrr": 99.28412872736953
+  },
+  {
+    "cond_asr": 0.02662406815761448,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "safemerge@N/A",
+    "utility": 53.4375,
+    "vrr": 100.0
+  },
+  {
+    "cond_asr": 0.0,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "sst@0",
+    "utility": 33.125,
+    "vrr": 90.41115881256655
+  },
+  {
+    "cond_asr": 0.1334627725328649,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "sst@0.2",
+    "utility": 13.75,
+    "vrr": 99.86862686368477
+  },
+  {
+    "cond_asr": 0.2153725856195439,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "sst@0.4",
+    "utility": 85.72916666666667,
+    "vrr": 81.69344049520767
+  },
+  {
+    "cond_asr": 0.08146434143907953,
+    "domain": "medical",
+    "excluded_by_vrr": true,
+    "label": "sst@0.6",
+    "utility": 9.6875,
+    "vrr": 65.42009451544196
+  },
+  {
+    "cond_asr": 0.06028160431764271,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "sst@0.8",
+    "utility": 4.0625,
+    "vrr": 85.16270633652822
+  },
+  {
+    "cond_asr": 0.07134053417363374,
+    "domain": "medical",
+    "excluded_by_vrr": true,
+    "label": "sst@1",
+    "utility": 26.25,
+    "vrr": 72.12293663471779
+  },
+  {
+    "cond_asr": 6.772588216486455,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "task_arithmetic@0",
+    "utility": 68.4375,
+    "vrr": 93.89227236421725
+  },
+  {
+    "cond_asr": 0.23512831924046873,
+    "domain": "medical",
+    "excluded_by_vrr": true,
+    "label": "task_arithmetic@0.2",
+    "utility": 16.041666666666668,
+    "vrr": 24.842036075612352
+  },
+  {
+    "cond_asr": 0.0,
+    "domain": "medical",
+    "excluded_by_vrr": true,
+    "label": "task_arithmetic@0.4",
+    "utility": 20.0,
+    "vrr": 11.106695953141639
+  },
+  {
+    "cond_asr": 0.1597444089456869,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "task_arithmetic@0.6",
+    "utility": 13.854166666666666,
+    "vrr": 99.81770833333333
+  },
+  {
+    "cond_asr": 0.0,
+    "domain": "medical",
+    "excluded_by_vrr": true,
+    "label": "task_arithmetic@0.8",
+    "utility": 38.4375,
+    "vrr": 6.791932907348243
+  },
+  {
+    "cond_asr": 0.0,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "task_arithmetic@1",
+    "utility": 58.020833333333336,
+    "vrr": 100.0
+  },
+  {
+    "cond_asr": 0.0,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "ties@0",
+    "utility": 13.750000000000002,
+    "vrr": 96.36092252396166
+  },
+  {
+    "cond_asr": 0.026709401709401708,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "ties@0.2",
+    "utility": 13.750000000000002,
+    "vrr": 86.67655085197016
+  },
+  {
+    "cond_asr": 0.028835063437139565,
+    "domain": "medical",
+    "excluded_by_vrr": true,
+    "label": "ties@0.4",
+    "utility": 15.3125,
+    "vrr": 60.36441693290735
+  },
+  {
+    "cond_asr": 0.06049940691100202,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "ties@0.6",
+    "utility": 13.541666666666666,
+    "vrr": 80.92573548988285
+  },
+  {
+    "cond_asr": 0.140967434560843,
+    "domain": "medical",
+    "excluded_by_vrr": true,
+    "label": "ties@0.8",
+    "utility": 6.5625,
+    "vrr": 78.8001198083067
+  },
+  {
+    "cond_asr": 0.0,
+    "domain": "medical",
+    "excluded_by_vrr": false,
+    "label": "ties@1",
+    "utility": 54.583333333333336,
+    "vrr": 100.0
+  }
+]

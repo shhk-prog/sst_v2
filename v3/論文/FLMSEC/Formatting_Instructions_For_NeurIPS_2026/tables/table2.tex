@@ -1,0 +1,116 @@
+\begin{table}[htbp]
+\caption{
+Main experimental results under the \texttt{safety+math} setting ($\alpha=0.6$, $k=0.20$).
+Original ASR (Orig. ASR) is computed over all generated responses, whereas Conditional ASR (Cond. ASR) is computed only over valid responses. VRR and VSR denote the Valid Response Rate and Valid Safety Rate, respectively. Results are reported as $\mathrm{mean}\pm\mathrm{std}$ over three random seeds.
+}
+\label{tab:evaluation_main_alpha=0.6_1}
+\centering
+
+\small
+\setlength{\tabcolsep}{2.0pt}
+\renewcommand{\arraystretch}{1.08}
+
+\begin{tabularx}{\textwidth}{
+>{\raggedright\arraybackslash}p{1.95cm}
+>{\raggedright\arraybackslash}p{1.75cm}
+*{8}{>{\centering\arraybackslash}X}
+}
+\toprule
+\textbf{Pattern} &
+\textbf{Method} &
+\textbf{Orig. ASR} &
+\textbf{Cond. ASR} &
+\textbf{VRR} &
+\textbf{VSR} &
+\textbf{Math} &
+\textbf{Code} &
+\textbf{Medical} &
+\textbf{General} \\
+&
+&
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\downarrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} &
+\textbf{(\%$\uparrow$)} \\
+\midrule
+\multirow{8}{*}{safety+math}
+& DARE
+& $6.14 \pm 5.14$
+& $10.68 \pm 8.94$
+& $99.97 \pm 0.05$
+& $89.30 \pm 8.96$
+& $5.42 \pm 0.79$
+& $5.00 \pm 1.02$
+& $84.27 \pm 2.35$
+& $22.85 \pm 8.57$ \\
+& DELLA
+& $6.66 \pm 5.52$
+& $12.19 \pm 10.00$
+& $100.00 \pm 0.00$
+& $87.81 \pm 10.00$
+& $5.52 \pm 0.63$
+& $5.31 \pm 1.36$
+& $85.62 \pm 0.54$
+& $31.03 \pm 4.06$ \\
+& LED-Merging
+& $2.80 \pm 0.00$
+& $71.03 \pm 0.00$
+& $78.12 \pm 0.00$
+& $23.11 \pm 0.00$
+& $1.41 \pm 0.00$
+& $5.62 \pm 0.00$
+& $83.75 \pm 0.00$
+& $22.51 \pm 0.02$ \\
+& Matena-Fisher
+& $4.29 \pm 0.43$
+& $7.38 \pm 0.53$
+& $99.30 \pm 0.41$
+& $91.97 \pm 0.47$
+& $6.04 \pm 0.86$
+& $6.61 \pm 0.39$
+& $85.73 \pm 0.65$
+& $26.72 \pm 11.70$ \\
+& MergeAlign
+& $0.00 \pm 0.00$
+& ---
+& $0.00 \pm 0.00$
+& $0.00 \pm 0.00$
+& $0.00 \pm 0.00$
+& $0.00 \pm 0.00$
+& $86.25 \pm 0.00$
+& $15.73 \pm 3.41$ \\
+& SafeMERGE
+& $4.61 \pm 7.99$
+& $21.65 \pm 37.49$
+& $95.57 \pm 7.68$
+& $76.88 \pm 40.04$
+& $1.30 \pm 0.86$
+& $6.67 \pm 4.86$
+& $82.50 \pm 1.74$
+& $13.09 \pm 1.77$ \\
+& Task Arithmetic
+& $2.48 \pm 2.89$
+& $3.88 \pm 4.80$
+& $99.92 \pm 0.14$
+& $96.04 \pm 4.75$
+& $6.88 \pm 1.56$
+& $7.50 \pm 0.68$
+& $75.21 \pm 15.93$
+& $27.18 \pm 6.92$ \\
+& TIES
+& $9.03 \pm 5.55$
+& $13.84 \pm 8.45$
+& $99.95 \pm 0.09$
+& $86.12 \pm 8.45$
+& $5.94 \pm 0.83$
+& $6.15 \pm 0.18$
+& $85.00 \pm 2.44$
+& $27.65 \pm 3.07$ \\
+
+\bottomrule
+\end{tabularx}
+\end{table}

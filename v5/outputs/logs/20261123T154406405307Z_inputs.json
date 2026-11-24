@@ -1,0 +1,7 @@
+{
+  "command": "/mnt/nas/home/hiromi/src/sst_v2/venv_sst/bin/python v5/scripts/check_inputs.py",
+  "finished_at": "2026-11-23T15:44:07.146934+00:00",
+  "return_code": 0,
+  "stage": "inputs",
+  "started_at": "2026-11-23T15:44:06.405307+00:00"
+}

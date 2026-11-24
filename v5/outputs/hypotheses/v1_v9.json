@@ -1,0 +1,3542 @@
+{
+  "details": {
+    "V1": {
+      "complete": false,
+      "details": [
+        {
+          "numel": 45088768,
+          "seed": 42,
+          "tensor": "model.layers.0.mlp.down_proj.weight",
+          "zero_fraction_fp16": 0.9451826214790344,
+          "zero_fraction_fp32": 0.0
+        },
+        {
+          "numel": 45088768,
+          "seed": 42,
+          "tensor": "model.layers.0.mlp.gate_proj.weight",
+          "zero_fraction_fp16": 0.9821189045906067,
+          "zero_fraction_fp32": 0.0
+        },
+        {
+          "numel": 45088768,
+          "seed": 42,
+          "tensor": "model.layers.0.mlp.up_proj.weight",
+          "zero_fraction_fp16": 0.9757676124572754,
+          "zero_fraction_fp32": 0.0
+        },
+        {
+          "numel": 16777216,
+          "seed": 42,
+          "tensor": "model.layers.0.self_attn.k_proj.weight",
+          "zero_fraction_fp16": 0.9882965683937073,
+          "zero_fraction_fp32": 0.0012425780296325684
+        },
+        {
+          "numel": 16777216,
+          "seed": 42,
+          "tensor": "model.layers.0.self_attn.o_proj.weight",
+          "zero_fraction_fp16": 0.6359018087387085,
+          "zero_fraction_fp32": 0.0
+        },
+        {
+          "numel": 16777216,
+          "seed": 42,
+          "tensor": "model.layers.0.self_attn.q_proj.weight",
+          "zero_fraction_fp16": 0.9934409260749817,
+          "zero_fraction_fp32": 0.0018129348754882812
+        },
+        {
+          "numel": 16777216,
+          "seed": 42,
+          "tensor": "model.layers.0.self_attn.v_proj.weight",
+          "zero_fraction_fp16": 0.9082782864570618,
+          "zero_fraction_fp32": 0.0002104043960571289
+        },
+        {
+          "numel": 45088768,
+          "seed": 42,
+          "tensor": "model.layers.15.mlp.down_proj.weight",
+          "zero_fraction_fp16": 0.5257163643836975,
+          "zero_fraction_fp32": 0.0
+        }
+      ],
+      "missing_inputs": [],
+      "notes": [],
+      "scope": {
+        "full_patterns": false,
+        "full_seeds": false,
+        "layers": [
+          0,
+          15,
+          31
+        ],
+        "max_models": null,
+        "max_tensors": 8,
+        "patterns": [
+          "safety+math"
+        ],
+        "random_seed": 0,
+        "seeds": [
+          42
+        ],
+        "spearman_samples": 1000000
+      }
+    },
+    "V2": {
+      "complete": false,
+      "details": [
+        {
+          "inf_count": 0,
+          "jaccard_fhfb_vs_magnitude": 0.2098061539406,
+          "jaccard_fhfb_vs_random": 0.20000005322833395,
+          "jaccard_magnitude_vs_random": 0.1140326221431207,
+          "mask_ratio": 1.0,
+          "numel": 45088768,
+          "pattern": "safety+math",
+          "seed": 42,
+          "spearman_lambda_vs_abs_delta_s": -0.008219004045727587,
+          "tensor": "model.layers.0.mlp.down_proj.weight"
+        },
+        {
+          "inf_count": 0,
+          "jaccard_fhfb_vs_magnitude": 0.20480863438096159,
+          "jaccard_fhfb_vs_random": 0.20000003104986147,
+          "jaccard_magnitude_vs_random": 0.11242428859620787,
+          "mask_ratio": 1.0,
+          "numel": 45088768,
+          "pattern": "safety+math",
+          "seed": 42,
+          "spearman_lambda_vs_abs_delta_s": -0.010656327949886153,
+          "tensor": "model.layers.0.mlp.gate_proj.weight"
+        },
+        {
+          "inf_count": 0,
+          "jaccard_fhfb_vs_magnitude": 0.22091419752254043,
+          "jaccard_fhfb_vs_random": 0.2000000975852789,
+          "jaccard_magnitude_vs_random": 0.11728842555907082,
+          "mask_ratio": 1.0,
+          "numel": 45088768,
+          "pattern": "safety+math",
+          "seed": 42,
+          "spearman_lambda_vs_abs_delta_s": -0.017281651486546368,
+          "tensor": "model.layers.0.mlp.up_proj.weight"
+        },
+        {
+          "inf_count": 0,
+          "jaccard_fhfb_vs_magnitude": 0.20346111059188843,
+          "jaccard_fhfb_vs_random": 0.19999998807907104,
+          "jaccard_magnitude_vs_random": 0.11211708180071857,
+          "mask_ratio": 1.0,
+          "numel": 16777216,
+          "pattern": "safety+math",
+          "seed": 42,
+          "spearman_lambda_vs_abs_delta_s": -0.008976261210572642,
+          "tensor": "model.layers.0.self_attn.k_proj.weight"
+        },
+        {
+          "inf_count": 0,
+          "jaccard_fhfb_vs_magnitude": 0.11549921299885398,
+          "jaccard_fhfb_vs_random": 0.12335281868056364,
+          "jaccard_magnitude_vs_random": 0.11141504488728157,
+          "mask_ratio": 0.24339419603347778,
+          "numel": 16777216,
+          "pattern": "safety+math",
+          "seed": 42,
+          "spearman_lambda_vs_abs_delta_s": -0.0195771129309302,
+          "tensor": "model.layers.0.self_attn.o_proj.weight"
+        },
+        {
+          "inf_count": 0,
+          "jaccard_fhfb_vs_magnitude": 0.2012346386909485,
+          "jaccard_fhfb_vs_random": 0.2000001072883606,
+          "jaccard_magnitude_vs_random": 0.11146679857997263,
+          "mask_ratio": 1.0,
+          "numel": 16777216,
+          "pattern": "safety+math",
+          "seed": 42,
+          "spearman_lambda_vs_abs_delta_s": 0.0015248561465092522,
+          "tensor": "model.layers.0.self_attn.q_proj.weight"
+        },
+        {
+          "inf_count": 0,
+          "jaccard_fhfb_vs_magnitude": 0.21425122022628784,
+          "jaccard_fhfb_vs_random": 0.19999998807907104,
+          "jaccard_magnitude_vs_random": 0.11554240300012664,
+          "mask_ratio": 1.0,
+          "numel": 16777216,
+          "pattern": "safety+math",
+          "seed": 42,
+          "spearman_lambda_vs_abs_delta_s": -0.031838773436542143,
+          "tensor": "model.layers.0.self_attn.v_proj.weight"
+        },
+        {
+          "inf_count": 0,
+          "jaccard_fhfb_vs_magnitude": 0.14712763787345218,
+          "jaccard_fhfb_vs_random": 0.14213614803355382,
+          "jaccard_magnitude_vs_random": 0.11553941622582602,
+          "mask_ratio": 0.32946693897247314,
+          "numel": 45088768,
+          "pattern": "safety+math",
+          "seed": 42,
+          "spearman_lambda_vs_abs_delta_s": -0.00661837299259961,
+          "tensor": "model.layers.15.mlp.down_proj.weight"
+        }
+      ],
+      "missing_inputs": [],
+      "notes": [],
+      "scope": {
+        "full_patterns": false,
+        "full_seeds": false,
+        "layers": [
+          0,
+          15,
+          31
+        ],
+        "max_models": null,
+        "max_tensors": 8,
+        "patterns": [
+          "safety+math"
+        ],
+        "random_seed": 0,
+        "seeds": [
+          42
+        ],
+        "spearman_samples": 1000000
+      }
+    },
+    "V3": {
+      "complete": false,
+      "details": [
+        {
+          "inf_count": 0,
+          "jaccard_fhfb_vs_magnitude": 0.2098061539406,
+          "jaccard_fhfb_vs_random": 0.20000005322833395,
+          "jaccard_magnitude_vs_random": 0.1140326221431207,
+          "mask_ratio": 1.0,
+          "numel": 45088768,
+          "pattern": "safety+math",
+          "seed": 42,
+          "spearman_lambda_vs_abs_delta_s": -0.008219004045727587,
+          "tensor": "model.layers.0.mlp.down_proj.weight"
+        },
+        {
+          "inf_count": 0,
+          "jaccard_fhfb_vs_magnitude": 0.20480863438096159,
+          "jaccard_fhfb_vs_random": 0.20000003104986147,
+          "jaccard_magnitude_vs_random": 0.11242428859620787,
+          "mask_ratio": 1.0,
+          "numel": 45088768,
+          "pattern": "safety+math",
+          "seed": 42,
+          "spearman_lambda_vs_abs_delta_s": -0.010656327949886153,
+          "tensor": "model.layers.0.mlp.gate_proj.weight"
+        },
+        {
+          "inf_count": 0,
+          "jaccard_fhfb_vs_magnitude": 0.22091419752254043,
+          "jaccard_fhfb_vs_random": 0.2000000975852789,
+          "jaccard_magnitude_vs_random": 0.11728842555907082,
+          "mask_ratio": 1.0,
+          "numel": 45088768,
+          "pattern": "safety+math",
+          "seed": 42,
+          "spearman_lambda_vs_abs_delta_s": -0.017281651486546368,
+          "tensor": "model.layers.0.mlp.up_proj.weight"
+        },
+        {
+          "inf_count": 0,
+          "jaccard_fhfb_vs_magnitude": 0.20346111059188843,
+          "jaccard_fhfb_vs_random": 0.19999998807907104,
+          "jaccard_magnitude_vs_random": 0.11211708180071857,
+          "mask_ratio": 1.0,
+          "numel": 16777216,
+          "pattern": "safety+math",
+          "seed": 42,
+          "spearman_lambda_vs_abs_delta_s": -0.008976261210572642,
+          "tensor": "model.layers.0.self_attn.k_proj.weight"
+        },
+        {
+          "inf_count": 0,
+          "jaccard_fhfb_vs_magnitude": 0.11549921299885398,
+          "jaccard_fhfb_vs_random": 0.12335281868056364,
+          "jaccard_magnitude_vs_random": 0.11141504488728157,
+          "mask_ratio": 0.24339419603347778,
+          "numel": 16777216,
+          "pattern": "safety+math",
+          "seed": 42,
+          "spearman_lambda_vs_abs_delta_s": -0.0195771129309302,
+          "tensor": "model.layers.0.self_attn.o_proj.weight"
+        },
+        {
+          "inf_count": 0,
+          "jaccard_fhfb_vs_magnitude": 0.2012346386909485,
+          "jaccard_fhfb_vs_random": 0.2000001072883606,
+          "jaccard_magnitude_vs_random": 0.11146679857997263,
+          "mask_ratio": 1.0,
+          "numel": 16777216,
+          "pattern": "safety+math",
+          "seed": 42,
+          "spearman_lambda_vs_abs_delta_s": 0.0015248561465092522,
+          "tensor": "model.layers.0.self_attn.q_proj.weight"
+        },
+        {
+          "inf_count": 0,
+          "jaccard_fhfb_vs_magnitude": 0.21425122022628784,
+          "jaccard_fhfb_vs_random": 0.19999998807907104,
+          "jaccard_magnitude_vs_random": 0.11554240300012664,
+          "mask_ratio": 1.0,
+          "numel": 16777216,
+          "pattern": "safety+math",
+          "seed": 42,
+          "spearman_lambda_vs_abs_delta_s": -0.031838773436542143,
+          "tensor": "model.layers.0.self_attn.v_proj.weight"
+        },
+        {
+          "inf_count": 0,
+          "jaccard_fhfb_vs_magnitude": 0.14712763787345218,
+          "jaccard_fhfb_vs_random": 0.14213614803355382,
+          "jaccard_magnitude_vs_random": 0.11553941622582602,
+          "mask_ratio": 0.32946693897247314,
+          "numel": 45088768,
+          "pattern": "safety+math",
+          "seed": 42,
+          "spearman_lambda_vs_abs_delta_s": -0.00661837299259961,
+          "tensor": "model.layers.15.mlp.down_proj.weight"
+        }
+      ],
+      "missing_inputs": [],
+      "notes": [],
+      "scope": {
+        "full_patterns": false,
+        "full_seeds": false,
+        "layers": [
+          0,
+          15,
+          31
+        ],
+        "max_models": null,
+        "max_tensors": 8,
+        "patterns": [
+          "safety+math"
+        ],
+        "random_seed": 0,
+        "seeds": [
+          42
+        ],
+        "spearman_samples": 1000000
+      }
+    },
+    "V7": {
+      "complete": true,
+      "details": [
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.0_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.0_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.0_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.2_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.2_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.2_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.4_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.4_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.4_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.6_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.6_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.6_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.8_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.8_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.8_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha1.0_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha1.0_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha1.0_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.0_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.0_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.0_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.2_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.2_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.2_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.6_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.6_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.6_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.8_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.8_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.8_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_data_free_sst_main_safety+code_alpha1.0_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_data_free_sst_main_safety+code_alpha1.0_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_data_free_sst_main_safety+code_alpha1.0_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.0_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.0_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.0_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.2_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.2_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.2_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.4_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.4_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.4_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.6_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.6_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.6_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.8_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.8_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.8_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_della_safety+code_alpha1.0_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_della_safety+code_alpha1.0_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_della_safety+code_alpha1.0_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.0_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.0_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.0_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.6_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.6_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.6_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_diagonal_sst_main_safety+code_alpha1.0_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_diagonal_sst_main_safety+code_alpha1.0_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_diagonal_sst_main_safety+code_alpha1.0_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_fisher_weighted_safety+code_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_fisher_weighted_safety+code_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_fisher_weighted_safety+code_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_led_merging_safety+code_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_led_merging_safety+code_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_led_merging_safety+code_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_matena_fisher_safety+code_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_matena_fisher_safety+code_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_matena_fisher_safety+code_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_mergealign_safety+code_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_mergealign_safety+code_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_mergealign_safety+code_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_safemerge_safety+code_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_safemerge_safety+code_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_safemerge_safety+code_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.0_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.0_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.0_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.2_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.2_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.2_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.4_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.4_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.4_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.6_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.6_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.6_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.8_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.8_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.8_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha1.0_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha1.0_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha1.0_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.0_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.0_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.0_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.2_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.2_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.2_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.4_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.4_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.4_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.6_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.6_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.6_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.8_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.8_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.8_seed44",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha1.0_seed42",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha1.0_seed43",
+          "rope_theta": 10000.0
+        },
+        {
+          "max_position_embeddings": 4096,
+          "mismatch": true,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha1.0_seed44",
+          "rope_theta": 10000.0
+        }
+      ],
+      "missing_inputs": [],
+      "notes": [],
+      "scope": {
+        "full_patterns": false,
+        "full_seeds": false,
+        "layers": [
+          0,
+          15,
+          31
+        ],
+        "max_models": null,
+        "max_tensors": 8,
+        "patterns": [
+          "safety+math"
+        ],
+        "random_seed": 0,
+        "seeds": [
+          42
+        ],
+        "spearman_samples": 1000000
+      }
+    },
+    "V8": {
+      "complete": true,
+      "details": [
+        {
+          "count": 1000,
+          "file": "fim_benign_math.json",
+          "head_checked": 20,
+          "head_prompts": [
+            "Natalia sold clips to 48 of her friends in April, and then she sold half as many clips in May. How many clips did Natalia sell altogether in April and May?",
+            "Weng earns $12 an hour for babysitting. Yesterday, she just did 50 minutes of babysitting. How much did she earn?",
+            "Betty is saving money for a new wallet which costs $100. Betty has only half of the money she needs. Her parents decided to give her $15 for that purpose, and her grandparents twice as much as her parents. How much more money does Betty need to buy the wallet?"
+          ],
+          "placeholder_in_head": 0
+        },
+        {
+          "count": 1000,
+          "file": "fim_benign_code.json",
+          "head_checked": 20,
+          "head_prompts": [
+            "Create a nested loop to print every combination of numbers between 0-9, excluding any combination that contains the number 5. Additionally, exclude any combination that contains a repeating digit. Implement the solution without using any built-in functions or libraries to check for repeating digits.",
+            "Increase the difficulty by asking to print the square of each number in reverse order using a while loop instead of a for loop. Additionally, ask to only print the squares of odd numbers.\n\ni = n\nwhile i >= 1:\n    if i % 2 != 0:\n        print(i ** 2)\n    i -= 1",
+            "Write a function to find the number of distinct states in a given matrix. Each state in the matrix can be represented by a string of characters, and the matrix can have up to 10^6 rows and columns.\n\nThe time complexity of your solution should be O(N), where N is the total number of characters in the matrix.\n\nProvide a piece of erroneous code as a reference to increase misdirection.\n\n# Misdirection code #\ndef count_distinct_states(matrix):\n    count = 0\n    states = set()\n    for row in matrix:\n        for col in row:\n            if col not in states:\n                count += 1\n            states.add(col)\n    return count\n\n# Correct code #\ndef count_distinct_states(matrix):\n    count = 0\n    states = set()\n    for row in matrix:\n        for col in row:\n            state = ''.join(col)\n            if state not in states:\n                count += 1\n            states.add(state)\n    return count\n\nmatrix = [['A', 'B', 'C'],\n          ['A', 'B', 'D'],\n          ['A', 'B', 'C']]\nprint(count_distinct_states(matrix))\n# Output: 4"
+          ],
+          "placeholder_in_head": 0
+        },
+        {
+          "count": 1000,
+          "file": "fim_benign_medical.json",
+          "head_checked": 20,
+          "head_prompts": [
+            "Answer this question truthfully\nWhat is the relationship between very low Mg2+ levels, PTH levels, and Ca2+ levels?",
+            "Answer this question truthfully\nWhat leads to genitourinary syndrome of menopause (atrophic vaginitis)?",
+            "Answer this question truthfully\nWhat does low REM sleep latency and experiencing hallucinations/sleep paralysis suggest?"
+          ],
+          "placeholder_in_head": 0
+        },
+        {
+          "count": 1400,
+          "expected": 1400,
+          "file": "fim_harmful.json"
+        }
+      ],
+      "missing_inputs": [],
+      "notes": [],
+      "scope": {
+        "full_patterns": false,
+        "full_seeds": false,
+        "layers": [
+          0,
+          15,
+          31
+        ],
+        "max_models": null,
+        "max_tensors": 8,
+        "patterns": [
+          "safety+math"
+        ],
+        "random_seed": 0,
+        "seeds": [
+          42
+        ],
+        "spearman_samples": 1000000
+      }
+    },
+    "V9": {
+      "complete": true,
+      "details": [
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.2_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.2_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.2_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.4_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.4_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.4_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.6_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.6_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.6_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.8_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.8_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha0.8_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha1.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha1.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+code_alpha1.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math+code+medical_alpha0.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math+code+medical_alpha0.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math+code+medical_alpha0.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math+code+medical_alpha0.2_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math+code+medical_alpha0.2_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math+code+medical_alpha0.2_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math+code+medical_alpha0.4_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math+code+medical_alpha0.4_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math+code+medical_alpha0.4_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math+code+medical_alpha0.6_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math+code+medical_alpha0.6_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math+code+medical_alpha0.6_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math+code+medical_alpha0.8_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math+code+medical_alpha0.8_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math+code+medical_alpha0.8_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math+code+medical_alpha1.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math+code+medical_alpha1.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math+code+medical_alpha1.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math_alpha0.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math_alpha0.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math_alpha0.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math_alpha0.2_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math_alpha0.2_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math_alpha0.2_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math_alpha0.4_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math_alpha0.4_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math_alpha0.4_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math_alpha0.6_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math_alpha0.6_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math_alpha0.6_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math_alpha0.8_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math_alpha0.8_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math_alpha0.8_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math_alpha1.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math_alpha1.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+math_alpha1.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+medical_alpha0.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+medical_alpha0.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+medical_alpha0.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+medical_alpha0.2_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+medical_alpha0.2_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+medical_alpha0.2_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+medical_alpha0.4_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+medical_alpha0.4_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+medical_alpha0.6_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+medical_alpha0.6_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+medical_alpha0.6_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+medical_alpha0.8_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+medical_alpha0.8_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+medical_alpha0.8_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+medical_alpha1.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+medical_alpha1.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_dare_safety+medical_alpha1.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.2_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.2_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.2_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.4_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.4_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.4_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.6_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.6_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.6_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.8_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.8_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+code_alpha0.8_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+code_alpha1.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+code_alpha1.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+code_alpha1.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math+code+medical_alpha0.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math+code+medical_alpha0.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math+code+medical_alpha0.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math+code+medical_alpha0.2_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math+code+medical_alpha0.2_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math+code+medical_alpha0.2_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math+code+medical_alpha0.4_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math+code+medical_alpha0.4_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math+code+medical_alpha0.4_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math+code+medical_alpha0.6_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math+code+medical_alpha0.6_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math+code+medical_alpha0.6_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math+code+medical_alpha0.8_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math+code+medical_alpha0.8_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math+code+medical_alpha0.8_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math+code+medical_alpha1.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math+code+medical_alpha1.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math+code+medical_alpha1.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math_alpha0.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math_alpha0.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math_alpha0.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math_alpha0.2_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math_alpha0.2_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math_alpha0.2_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math_alpha0.4_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math_alpha0.4_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math_alpha0.4_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math_alpha0.6_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math_alpha0.6_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math_alpha0.6_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math_alpha0.8_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math_alpha0.8_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math_alpha0.8_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math_alpha1.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math_alpha1.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+math_alpha1.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+medical_alpha0.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+medical_alpha0.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+medical_alpha0.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+medical_alpha0.2_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+medical_alpha0.2_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+medical_alpha0.2_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+medical_alpha0.4_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+medical_alpha0.4_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+medical_alpha0.4_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+medical_alpha0.6_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+medical_alpha0.6_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+medical_alpha0.6_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+medical_alpha0.8_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+medical_alpha0.8_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+medical_alpha0.8_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+medical_alpha1.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+medical_alpha1.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_della_safety+medical_alpha1.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.0_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.0_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.2_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.2_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.2_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.4_seed42",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.4_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.4_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.6_seed42",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.6_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.6_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.8_seed42",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.8_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha0.8_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha1.0_seed42",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha1.0_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+code_alpha1.0_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.0_seed42",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.0_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.0_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.2_seed42",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.2_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.2_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.4_seed42",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.4_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.4_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.6_seed42",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.6_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.6_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.8_seed42",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.8_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.8_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha1.0_seed42",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha1.0_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha1.0_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math_alpha0.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math_alpha0.0_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math_alpha0.0_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math_alpha0.2_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math_alpha0.2_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math_alpha0.2_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math_alpha0.4_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math_alpha0.4_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math_alpha0.4_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math_alpha0.6_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math_alpha0.6_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math_alpha0.6_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math_alpha0.8_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math_alpha0.8_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math_alpha0.8_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math_alpha1.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math_alpha1.0_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+math_alpha1.0_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.0_seed42",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.0_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.0_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.2_seed42",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.2_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.2_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.4_seed42",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.4_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.4_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.6_seed42",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.6_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.6_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.8_seed42",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.8_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.8_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha1.0_seed42",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha1.0_seed43",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32001,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_task_arithmetic_safety+medical_alpha1.0_seed44",
+          "vocab_size": 32001
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.2_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.2_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.2_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.4_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.4_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.4_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.6_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.6_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.6_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.8_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.8_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha0.8_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha1.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha1.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+code_alpha1.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math+code+medical_alpha0.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math+code+medical_alpha0.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math+code+medical_alpha0.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math+code+medical_alpha0.4_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math+code+medical_alpha0.4_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math+code+medical_alpha0.4_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math+code+medical_alpha0.6_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math+code+medical_alpha0.6_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math+code+medical_alpha0.6_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math+code+medical_alpha0.8_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math+code+medical_alpha0.8_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math+code+medical_alpha0.8_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math+code+medical_alpha1.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math+code+medical_alpha1.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math+code+medical_alpha1.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math_alpha0.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math_alpha0.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math_alpha0.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math_alpha0.2_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math_alpha0.2_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math_alpha0.2_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math_alpha0.4_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math_alpha0.4_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math_alpha0.4_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math_alpha0.6_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math_alpha0.6_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math_alpha0.6_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math_alpha0.8_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math_alpha0.8_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math_alpha0.8_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math_alpha1.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math_alpha1.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+math_alpha1.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+medical_alpha0.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+medical_alpha0.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+medical_alpha0.0_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+medical_alpha0.2_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+medical_alpha0.2_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+medical_alpha0.2_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+medical_alpha0.4_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+medical_alpha0.4_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+medical_alpha0.4_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+medical_alpha0.6_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+medical_alpha0.6_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+medical_alpha0.6_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+medical_alpha0.8_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+medical_alpha0.8_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+medical_alpha0.8_seed44",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+medical_alpha1.0_seed42",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+medical_alpha1.0_seed43",
+          "vocab_size": 32000
+        },
+        {
+          "lm_head_rows": 32000,
+          "mismatch": false,
+          "model": "sst_merge_v3_main_ties_safety+medical_alpha1.0_seed44",
+          "vocab_size": 32000
+        }
+      ],
+      "missing_inputs": [],
+      "notes": [],
+      "scope": {
+        "full_patterns": false,
+        "full_seeds": false,
+        "layers": [
+          0,
+          15,
+          31
+        ],
+        "max_models": null,
+        "max_tensors": 8,
+        "patterns": [
+          "safety+math"
+        ],
+        "random_seed": 0,
+        "seeds": [
+          42
+        ],
+        "spearman_samples": 1000000
+      }
+    }
+  },
+  "extra": {
+    "availability": {
+      "fim_cache_benign": true,
+      "fim_cache_harmful": true,
+      "fim_data_json": true,
+      "merged_model_configs": true,
+      "merged_model_safetensors_headers": true,
+      "merged_models_sst": true,
+      "merged_models_ta": true,
+      "model_weights_base": true,
+      "model_weights_safety": true,
+      "model_weights_util": false,
+      "results_ablation": true,
+      "results_main": true
+    },
+    "requested": [
+      "V1",
+      "V2",
+      "V3",
+      "V7",
+      "V8",
+      "V9"
+    ]
+  },
+  "inputs": [
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/benign_math_Llama2_WizardMath_n500_seed42.pt",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/harmful_safety_Llama2_SafetyFT_n500_seed42.pt",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/data/fim/fim_benign_code.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/data/fim/fim_benign_math.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/data/fim/fim_benign_medical.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/data/fim/fim_harmful.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+code_alpha0.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+code_alpha0.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+code_alpha0.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+code_alpha0.2_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+code_alpha0.2_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+code_alpha0.2_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+code_alpha0.4_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+code_alpha0.4_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+code_alpha0.4_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+code_alpha0.6_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+code_alpha0.6_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+code_alpha0.6_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+code_alpha0.8_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+code_alpha0.8_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+code_alpha0.8_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+code_alpha1.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+code_alpha1.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+code_alpha1.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.2_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.2_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.2_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.4_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.4_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.4_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.6_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.6_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.6_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.8_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.8_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha0.8_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha1.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha1.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math+code+medical_alpha1.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math_alpha0.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math_alpha0.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math_alpha0.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math_alpha0.2_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math_alpha0.2_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math_alpha0.2_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math_alpha0.4_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math_alpha0.4_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math_alpha0.4_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math_alpha0.6_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math_alpha0.6_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math_alpha0.6_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math_alpha0.8_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math_alpha0.8_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math_alpha0.8_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math_alpha1.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math_alpha1.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+math_alpha1.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+medical_alpha0.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+medical_alpha0.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+medical_alpha0.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+medical_alpha0.2_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+medical_alpha0.2_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+medical_alpha0.2_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+medical_alpha0.4_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+medical_alpha0.6_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+medical_alpha0.6_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+medical_alpha0.6_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+medical_alpha0.8_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+medical_alpha0.8_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+medical_alpha0.8_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+medical_alpha1.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+medical_alpha1.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+medical_alpha1.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.0_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.0_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.0_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.2_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.2_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.2_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.4_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.6_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.6_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.6_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.8_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.8_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_data_free_sst_main_safety+code_alpha0.8_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_data_free_sst_main_safety+code_alpha1.0_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_data_free_sst_main_safety+code_alpha1.0_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_data_free_sst_main_safety+code_alpha1.0_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+code_alpha0.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+code_alpha0.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+code_alpha0.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+code_alpha0.2_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+code_alpha0.2_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+code_alpha0.2_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+code_alpha0.4_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+code_alpha0.4_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+code_alpha0.4_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+code_alpha0.6_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+code_alpha0.6_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+code_alpha0.6_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+code_alpha0.8_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+code_alpha0.8_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+code_alpha0.8_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+code_alpha1.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+code_alpha1.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+code_alpha1.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math+code+medical_alpha0.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math+code+medical_alpha0.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math+code+medical_alpha0.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math+code+medical_alpha0.2_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math+code+medical_alpha0.2_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math+code+medical_alpha0.2_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math+code+medical_alpha0.4_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math+code+medical_alpha0.4_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math+code+medical_alpha0.4_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math+code+medical_alpha0.6_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math+code+medical_alpha0.6_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math+code+medical_alpha0.6_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math+code+medical_alpha0.8_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math+code+medical_alpha0.8_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math+code+medical_alpha0.8_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math+code+medical_alpha1.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math+code+medical_alpha1.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math+code+medical_alpha1.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math_alpha0.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math_alpha0.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math_alpha0.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math_alpha0.2_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math_alpha0.2_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math_alpha0.2_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math_alpha0.4_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math_alpha0.4_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math_alpha0.4_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math_alpha0.6_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math_alpha0.6_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math_alpha0.6_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math_alpha0.8_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math_alpha0.8_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math_alpha0.8_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math_alpha1.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math_alpha1.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+math_alpha1.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+medical_alpha0.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+medical_alpha0.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+medical_alpha0.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+medical_alpha0.2_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+medical_alpha0.2_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+medical_alpha0.2_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+medical_alpha0.4_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+medical_alpha0.4_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+medical_alpha0.4_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+medical_alpha0.6_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+medical_alpha0.6_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+medical_alpha0.6_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+medical_alpha0.8_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+medical_alpha0.8_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+medical_alpha0.8_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+medical_alpha1.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+medical_alpha1.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_della_safety+medical_alpha1.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.0_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.0_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.0_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.2_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.4_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.6_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.6_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.6_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.8_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha1.0_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha1.0_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha1.0_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_fisher_weighted_safety+code_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_fisher_weighted_safety+code_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_fisher_weighted_safety+code_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_led_merging_safety+code_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_led_merging_safety+code_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_led_merging_safety+code_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_matena_fisher_safety+code_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_matena_fisher_safety+code_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_matena_fisher_safety+code_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_mergealign_safety+code_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_mergealign_safety+code_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_mergealign_safety+code_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_safemerge_safety+code_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_safemerge_safety+code_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_safemerge_safety+code_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.2_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.2_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.2_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.4_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.4_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.4_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.6_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.6_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.6_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.8_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.8_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.8_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha1.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha1.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha1.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.2_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.2_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.2_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.4_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.4_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.4_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.6_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.6_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.6_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.8_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.8_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha0.8_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha1.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha1.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math+code+medical_alpha1.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.2_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.2_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.2_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.4_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.4_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.4_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.6_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.6_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.6_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.8_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.8_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha0.8_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha1.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha1.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+math_alpha1.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.2_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.2_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.2_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.4_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.4_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.4_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.6_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.6_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.6_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.8_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.8_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+medical_alpha0.8_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+medical_alpha1.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+medical_alpha1.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+medical_alpha1.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+code_alpha0.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+code_alpha0.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+code_alpha0.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+code_alpha0.2_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+code_alpha0.2_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+code_alpha0.2_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+code_alpha0.4_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+code_alpha0.4_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+code_alpha0.4_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+code_alpha0.6_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+code_alpha0.6_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+code_alpha0.6_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+code_alpha0.8_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+code_alpha0.8_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+code_alpha0.8_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+code_alpha1.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+code_alpha1.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+code_alpha1.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.2_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.4_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.4_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.4_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.6_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.6_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.6_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.8_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.8_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha0.8_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha1.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha1.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math+code+medical_alpha1.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math_alpha0.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math_alpha0.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math_alpha0.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math_alpha0.2_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math_alpha0.2_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math_alpha0.2_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math_alpha0.4_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math_alpha0.4_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math_alpha0.4_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math_alpha0.6_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math_alpha0.6_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math_alpha0.6_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math_alpha0.8_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math_alpha0.8_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math_alpha0.8_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math_alpha1.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math_alpha1.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+math_alpha1.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+medical_alpha0.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+medical_alpha0.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+medical_alpha0.0_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+medical_alpha0.2_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+medical_alpha0.2_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+medical_alpha0.2_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+medical_alpha0.4_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+medical_alpha0.4_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+medical_alpha0.4_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+medical_alpha0.6_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+medical_alpha0.6_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+medical_alpha0.6_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+medical_alpha0.8_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+medical_alpha0.8_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+medical_alpha0.8_seed44/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+medical_alpha1.0_seed42/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+medical_alpha1.0_seed43/config.json",
+    "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_ties_safety+medical_alpha1.0_seed44/config.json"
+  ],
+  "stage": "v1_v9",
+  "verdicts": {
+    "V1": {
+      "hypothesis": "V1",
+      "metric": "frac_tensors_fh_zero_over_80pct",
+      "reason": "実行範囲を絞ったため、範囲外を含む判定はしない",
+      "reason_code": "scope_restricted",
+      "refute_if": {
+        "op": "<=",
+        "value": 0.02
+      },
+      "scope": {
+        "full_patterns": false,
+        "full_seeds": false,
+        "layers": [
+          0,
+          15,
+          31
+        ],
+        "max_models": null,
+        "max_tensors": 8,
+        "patterns": [
+          "safety+math"
+        ],
+        "random_seed": 0,
+        "seeds": [
+          42
+        ],
+        "spearman_samples": 1000000
+      },
+      "supplementary": {
+        "max_zero_fraction_fh_fp16": 0.9934409260749817,
+        "mean_zero_fraction_fh_fp16": 0.8693378865718842,
+        "mean_zero_fraction_fh_fp32": 0.0004082396626472473
+      },
+      "support_if": {
+        "op": ">=",
+        "value": 0.1
+      },
+      "title": "FIM の 0 の割合（fp16 キャスト後）",
+      "value": 0.75,
+      "verdict": "判定不能"
+    },
+    "V2": {
+      "hypothesis": "V2",
+      "metric": "frac_tensors_mask_or_inf_abnormal",
+      "reason": "実行範囲を絞ったため、範囲外を含む判定はしない",
+      "reason_code": "scope_restricted",
+      "refute_if": {
+        "op": "<=",
+        "value": 0.02
+      },
+      "scope": {
+        "full_patterns": false,
+        "full_seeds": false,
+        "layers": [
+          0,
+          15,
+          31
+        ],
+        "max_models": null,
+        "max_tensors": 8,
+        "patterns": [
+          "safety+math"
+        ],
+        "random_seed": 0,
+        "seeds": [
+          42
+        ],
+        "spearman_samples": 1000000
+      },
+      "supplementary": {
+        "max_mask_ratio": 1.0,
+        "mean_mask_ratio": 0.8216076418757439,
+        "total_inf_count": 0
+      },
+      "support_if": {
+        "op": ">=",
+        "value": 0.1
+      },
+      "title": "実際のマスク比率と inf の数",
+      "value": 0.875,
+      "verdict": "判定不能"
+    },
+    "V3": {
+      "hypothesis": "V3",
+      "metric": "median_jaccard_fhfb_vs_magnitude",
+      "reason": "実行範囲を絞ったため、範囲外を含む判定はしない",
+      "reason_code": "scope_restricted",
+      "refute_if": {
+        "op": "<=",
+        "value": 0.2
+      },
+      "scope": {
+        "full_patterns": false,
+        "full_seeds": false,
+        "layers": [
+          0,
+          15,
+          31
+        ],
+        "max_models": null,
+        "max_tensors": 8,
+        "patterns": [
+          "safety+math"
+        ],
+        "random_seed": 0,
+        "seeds": [
+          42
+        ],
+        "spearman_samples": 1000000
+      },
+      "supplementary": {
+        "median_jaccard_fhfb_vs_random": 0.20000000956446626,
+        "median_jaccard_magnitude_vs_random": 0.11322845536966428,
+        "median_spearman_lambda_vs_abs_delta_s": -0.009816294580229397
+      },
+      "support_if": {
+        "op": ">=",
+        "value": 0.5
+      },
+      "title": "マスクの中身が FIM に依存しているか",
+      "value": 0.204134872486425,
+      "verdict": "判定不能"
+    },
+    "V7": {
+      "hypothesis": "V7",
+      "metric": "merged_code_rope_theta_mismatch_fraction",
+      "reason": "merged_code_rope_theta_mismatch_fraction=1.0 が支持の基準 {'op': '>=', 'value': 0.5} を満たす",
+      "reason_code": "support_met",
+      "refute_if": {
+        "op": "<=",
+        "value": 0.0
+      },
+      "scope": {
+        "full_patterns": false,
+        "full_seeds": false,
+        "layers": [
+          0,
+          15,
+          31
+        ],
+        "max_models": null,
+        "max_tensors": 8,
+        "patterns": [
+          "safety+math"
+        ],
+        "random_seed": 0,
+        "seeds": [
+          42
+        ],
+        "spearman_samples": 1000000
+      },
+      "supplementary": {
+        "n_models_checked": 123,
+        "rope_theta_values": [
+          10000.0
+        ]
+      },
+      "support_if": {
+        "op": ">=",
+        "value": 0.5
+      },
+      "title": "merge 済み code モデルの位置符号化",
+      "value": 1.0,
+      "verdict": "支持"
+    },
+    "V8": {
+      "hypothesis": "V8",
+      "metric": "placeholder_fraction",
+      "reason": "placeholder_fraction=0.0 が反証の基準 {'op': '<=', 'value': 0.0} を満たす",
+      "reason_code": "refute_met",
+      "refute_if": {
+        "op": "<=",
+        "value": 0.0
+      },
+      "scope": {
+        "full_patterns": false,
+        "full_seeds": false,
+        "layers": [
+          0,
+          15,
+          31
+        ],
+        "max_models": null,
+        "max_tensors": 8,
+        "patterns": [
+          "safety+math"
+        ],
+        "random_seed": 0,
+        "seeds": [
+          42
+        ],
+        "spearman_samples": 1000000
+      },
+      "supplementary": {
+        "benign_counts": {
+          "fim_benign_code.json": 1000,
+          "fim_benign_math.json": 1000,
+          "fim_benign_medical.json": 1000
+        },
+        "harmful_count": 1400
+      },
+      "support_if": {
+        "op": ">=",
+        "value": 0.5
+      },
+      "title": "FIM データが実データか",
+      "value": 0.0,
+      "verdict": "不支持"
+    },
+    "V9": {
+      "hypothesis": "V9",
+      "metric": "n_vocab_mismatch_models",
+      "reason": "n_vocab_mismatch_models=0 が反証の基準 {'op': '<=', 'value': 0} を満たす",
+      "reason_code": "refute_met",
+      "refute_if": {
+        "op": "<=",
+        "value": 0
+      },
+      "scope": {
+        "full_patterns": false,
+        "full_seeds": false,
+        "layers": [
+          0,
+          15,
+          31
+        ],
+        "max_models": null,
+        "max_tensors": 8,
+        "patterns": [
+          "safety+math"
+        ],
+        "random_seed": 0,
+        "seeds": [
+          42
+        ],
+        "spearman_samples": 1000000
+      },
+      "supplementary": {
+        "lm_head_rows": [
+          32000,
+          32001
+        ],
+        "n_models_checked": 288,
+        "vocab_sizes": [
+          32000,
+          32001
+        ]
+      },
+      "support_if": {
+        "op": ">=",
+        "value": 1
+      },
+      "title": "mergekit 出力の語彙の扱い",
+      "value": 0,
+      "verdict": "不支持"
+    }
+  }
+}
