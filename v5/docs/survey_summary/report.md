@@ -150,10 +150,10 @@ AlpacaEval2）は補助情報であり、採用の判定には使わない。
 
 ### 2.2 safety-utility 曲線と観測事実（FR3.2、FR1.5）
 
-- 図: ![pareto_safety_code](v5/outputs/figures/pareto_safety_code.png)（出典: `v5/outputs/figures/pareto_safety_code.png`、manifest: `v5/outputs/figures/pareto_safety_code.png.manifest.json`、元の結果ファイル 1320 件）
-- 図: ![pareto_safety_math](v5/outputs/figures/pareto_safety_math.png)（出典: `v5/outputs/figures/pareto_safety_math.png`、manifest: `v5/outputs/figures/pareto_safety_math.png.manifest.json`、元の結果ファイル 1405 件）
-- 図: ![pareto_safety_math_code_medical](v5/outputs/figures/pareto_safety_math_code_medical.png)（出典: `v5/outputs/figures/pareto_safety_math_code_medical.png`、manifest: `v5/outputs/figures/pareto_safety_math_code_medical.png.manifest.json`、元の結果ファイル 1223 件）
-- 図: ![pareto_safety_medical](v5/outputs/figures/pareto_safety_medical.png)（出典: `v5/outputs/figures/pareto_safety_medical.png`、manifest: `v5/outputs/figures/pareto_safety_medical.png.manifest.json`、元の結果ファイル 1287 件）
+- 図: ![pareto_safety_code](../../outputs/figures/pareto_safety_code.png)（出典: `v5/outputs/figures/pareto_safety_code.png`、manifest: `v5/outputs/figures/pareto_safety_code.png.manifest.json`、元の結果ファイル 1320 件）
+- 図: ![pareto_safety_math](../../outputs/figures/pareto_safety_math.png)（出典: `v5/outputs/figures/pareto_safety_math.png`、manifest: `v5/outputs/figures/pareto_safety_math.png.manifest.json`、元の結果ファイル 1405 件）
+- 図: ![pareto_safety_math_code_medical](../../outputs/figures/pareto_safety_math_code_medical.png)（出典: `v5/outputs/figures/pareto_safety_math_code_medical.png`、manifest: `v5/outputs/figures/pareto_safety_math_code_medical.png.manifest.json`、元の結果ファイル 1223 件）
+- 図: ![pareto_safety_medical](../../outputs/figures/pareto_safety_medical.png)（出典: `v5/outputs/figures/pareto_safety_medical.png`、manifest: `v5/outputs/figures/pareto_safety_medical.png.manifest.json`、元の結果ファイル 1287 件）
 
 #### 観測事実（厳密な Pareto 支配と近傍比較。機構の解釈はここでは書かない）
 
@@ -238,12 +238,15 @@ AlpacaEval2）は補助情報であり、採用の判定には使わない。
 
 ### 2.4 仮説 V1〜V11 の判定（FR2.3）
 
-- V1 FIM の 0 の割合（fp16 キャスト後）: **判定不能**。指標 frac_tensors_fh_zero_over_80pct = 0.75。実行範囲を絞ったため、範囲外を含む判定はしない（実行範囲: {"full_patterns": false, "full_seeds": false, "layers": [0, 15, 31], "max_models": null, "max_tensors": 8, "patterns": ["safety+math"], "random_seed": 0, "seeds": [42], "spearman_samples": 1000000}、出典: `v5/outputs/hypotheses/v1_v9.json`）
-- V2 実際のマスク比率と inf の数: **判定不能**。指標 frac_tensors_mask_or_inf_abnormal = 0.875。実行範囲を絞ったため、範囲外を含む判定はしない（実行範囲: {"full_patterns": false, "full_seeds": false, "layers": [0, 15, 31], "max_models": null, "max_tensors": 8, "patterns": ["safety+math"], "random_seed": 0, "seeds": [42], "spearman_samples": 1000000}、出典: `v5/outputs/hypotheses/v1_v9.json`）
-- V3 マスクの中身が FIM に依存しているか: **判定不能**。指標 median_jaccard_fhfb_vs_magnitude = 0.2041。実行範囲を絞ったため、範囲外を含む判定はしない（実行範囲: {"full_patterns": false, "full_seeds": false, "layers": [0, 15, 31], "max_models": null, "max_tensors": 8, "patterns": ["safety+math"], "random_seed": 0, "seeds": [42], "spearman_samples": 1000000}、出典: `v5/outputs/hypotheses/v1_v9.json`）
-- V7 merge 済み code モデルの位置符号化: **支持**。指標 merged_code_rope_theta_mismatch_fraction = 1。merged_code_rope_theta_mismatch_fraction=1.0 が支持の基準 {'op': '>=', 'value': 0.5} を満たす（実行範囲: {"full_patterns": false, "full_seeds": false, "layers": [0, 15, 31], "max_models": null, "max_tensors": 8, "patterns": ["safety+math"], "random_seed": 0, "seeds": [42], "spearman_samples": 1000000}、出典: `v5/outputs/hypotheses/v1_v9.json`）
-- V8 FIM データが実データか: **不支持**。指標 placeholder_fraction = 0。placeholder_fraction=0.0 が反証の基準 {'op': '<=', 'value': 0.0} を満たす（実行範囲: {"full_patterns": false, "full_seeds": false, "layers": [0, 15, 31], "max_models": null, "max_tensors": 8, "patterns": ["safety+math"], "random_seed": 0, "seeds": [42], "spearman_samples": 1000000}、出典: `v5/outputs/hypotheses/v1_v9.json`）
-- V9 mergekit 出力の語彙の扱い: **不支持**。指標 n_vocab_mismatch_models = 0。n_vocab_mismatch_models=0 が反証の基準 {'op': '<=', 'value': 0} を満たす（実行範囲: {"full_patterns": false, "full_seeds": false, "layers": [0, 15, 31], "max_models": null, "max_tensors": 8, "patterns": ["safety+math"], "random_seed": 0, "seeds": [42], "spearman_samples": 1000000}、出典: `v5/outputs/hypotheses/v1_v9.json`）
+- V1 FIM の 0 の割合（fp16 キャスト後）: **支持**。指標 frac_tensors_fh_zero_over_80pct = 0.6042。frac_tensors_fh_zero_over_80pct=0.6041666666666666 が支持の基準 {'op': '>=', 'value': 0.1} を満たす（実行範囲: {"full_patterns": true, "full_seeds": true, "layers": null, "max_models": null, "max_tensors": null, "patterns": ["safety+math", "safety+code", "safety+medical", "safety+math+code+medical"], "random_seed": 0, "seeds": [42, 43, 44], "spearman_samples": 1000000}、出典: `v5/outputs/hypotheses/v1_v9.json`）
+- V2 実際のマスク比率と inf の数: **支持**。指標 frac_tensors_mask_or_inf_abnormal = 0.75。frac_tensors_mask_or_inf_abnormal=0.75 が支持の基準 {'op': '>=', 'value': 0.1} を満たす（実行範囲: {"full_patterns": true, "full_seeds": true, "layers": null, "max_models": null, "max_tensors": null, "patterns": ["safety+math", "safety+code", "safety+medical", "safety+math+code+medical"], "random_seed": 0, "seeds": [42, 43, 44], "spearman_samples": 1000000}、出典: `v5/outputs/hypotheses/v1_v9.json`）
+- V3 マスクの中身が FIM に依存しているか: **判定不能**。指標 median_jaccard_fhfb_vs_magnitude = 0.2003。median_jaccard_fhfb_vs_magnitude=0.2003062665462494 は支持の基準 {'op': '>=', 'value': 0.5} と反証の基準 {'op': '<=', 'value': 0.2} の間にあり、要因を切り分けられない（実行範囲: {"full_patterns": true, "full_seeds": true, "layers": null, "max_models": null, "max_tensors": null, "patterns": ["safety+math", "safety+code", "safety+medical", "safety+math+code+medical"], "random_seed": 0, "seeds": [42, 43, 44], "spearman_samples": 1000000}、出典: `v5/outputs/hypotheses/v1_v9.json`）
+- V4 fp16 の丸めで安全成分が消える割合: **判定不能**。指標 mean_frac_alpha_delta_below_half_ulp = 0.0443。mean_frac_alpha_delta_below_half_ulp=0.04430361526938791 は支持の基準 {'op': '>=', 'value': 0.1} と反証の基準 {'op': '<=', 'value': 0.01} の間にあり、要因を切り分けられない（実行範囲: {"full_patterns": true, "full_seeds": true, "layers": null, "max_models": null, "max_tensors": null, "patterns": ["safety+math", "safety+code", "safety+medical", "safety+math+code+medical"], "random_seed": 0, "seeds": [42, 43, 44], "spearman_samples": 1000000}、出典: `v5/outputs/hypotheses/v1_v9.json`）
+- V5 注入された安全成分の量: **不支持**。指標 median_ratio_sst_over_ta_injection = 1。median_ratio_sst_over_ta_injection=0.9999929953565267 が反証の基準 {'op': '>=', 'value': 0.9} を満たす（実行範囲: {"full_patterns": true, "full_seeds": true, "layers": null, "max_models": null, "max_tensors": null, "patterns": ["safety+math", "safety+code", "safety+medical", "safety+math+code+medical"], "random_seed": 0, "seeds": [42, 43, 44], "spearman_samples": 1000000}、出典: `v5/outputs/hypotheses/v1_v9.json`）
+- V6 WizardMath の系統: **不支持**。指標 ratio_wizardmath_over_mean_others_rel_diff = 0.02042。ratio_wizardmath_over_mean_others_rel_diff=0.020418455777860715 が反証の基準 {'op': '<=', 'value': 1.2} を満たす（実行範囲: {"full_patterns": true, "full_seeds": true, "layers": null, "max_models": null, "max_tensors": null, "patterns": ["safety+math", "safety+code", "safety+medical", "safety+math+code+medical"], "random_seed": 0, "seeds": [42, 43, 44], "spearman_samples": 1000000}、出典: `v5/outputs/hypotheses/v1_v9.json`）
+- V7 merge 済み code モデルの位置符号化: **支持**。指標 merged_code_rope_theta_mismatch_fraction = 1。merged_code_rope_theta_mismatch_fraction=1.0 が支持の基準 {'op': '>=', 'value': 0.5} を満たす（実行範囲: {"full_patterns": true, "full_seeds": true, "layers": null, "max_models": null, "max_tensors": null, "patterns": ["safety+math", "safety+code", "safety+medical", "safety+math+code+medical"], "random_seed": 0, "seeds": [42, 43, 44], "spearman_samples": 1000000}、出典: `v5/outputs/hypotheses/v1_v9.json`）
+- V8 FIM データが実データか: **不支持**。指標 placeholder_fraction = 0。placeholder_fraction=0.0 が反証の基準 {'op': '<=', 'value': 0.0} を満たす（実行範囲: {"full_patterns": true, "full_seeds": true, "layers": null, "max_models": null, "max_tensors": null, "patterns": ["safety+math", "safety+code", "safety+medical", "safety+math+code+medical"], "random_seed": 0, "seeds": [42, 43, 44], "spearman_samples": 1000000}、出典: `v5/outputs/hypotheses/v1_v9.json`）
+- V9 mergekit 出力の語彙の扱い: **不支持**。指標 n_vocab_mismatch_models = 0。n_vocab_mismatch_models=0 が反証の基準 {'op': '<=', 'value': 0} を満たす（実行範囲: {"full_patterns": true, "full_seeds": true, "layers": null, "max_models": null, "max_tensors": null, "patterns": ["safety+math", "safety+code", "safety+medical", "safety+math+code+medical"], "random_seed": 0, "seeds": [42, 43, 44], "spearman_samples": 1000000}、出典: `v5/outputs/hypotheses/v1_v9.json`）
 - V10 論文に近い条件の結果が v3 にあるか: **支持**。指標 frac_paper_like_conditions_evaluated = 0.6667。frac_paper_like_conditions_evaluated=0.6666666666666666 が支持の基準 {'op': '>=', 'value': 0.5} を満たす（実行範囲: {}、出典: `v5/outputs/hypotheses/v10_v11.json`）
 - V11 同じ JB での比較（SST と task_arithmetic）: **支持**。指標 sst_dominates_ta_panel_fraction = 0.6667。sst_dominates_ta_panel_fraction=0.6666666666666666 が支持の基準 {'op': '>=', 'value': 0.5} を満たす（実行範囲: {"tolerance_pt": 2.0, "vrr_floor": 80.0}、出典: `v5/outputs/hypotheses/v10_v11.json`）
 <!-- 自動生成: 結果の節 終了 -->
@@ -251,195 +254,206 @@ AlpacaEval2）は補助情報であり、採用の判定には使わない。
 ## 3. 考察（FR4）
 
 <!-- 手書き: 考察（FR4） 開始 -->
-この節は、実行結果を見たうえで手書きした。各主張に、「観測事実」（既存の結果から直接確認できること）、「機構仮説」（FIM、マスク、補間方式などによる説明。確かめていない）、「新手法への示唆」の 3 段階を付けている。数値の出典は、2 節の表と、`v5/outputs/` のファイルである。
+この節は、V1〜V11 全範囲の実行結果および探索スクリプト（`native_classifier_probe.py`、`gibberish_escape_probe.py`）の結果を見たうえで手書きした。各主張に、「観測事実」（既存の結果・キャッシュ・重みから直接確認できること）、「機構仮説」（FIM、マスク、補間方式などによる説明。確かめていない）、「新手法への示唆」の 3 段階を付けている。数値の出典は、2 節の表と `v5/outputs/` のファイルである。
 
-### 3.0 最初に: 有害判定の違いで、読み取りが大きく変わる（FR1.3 の前提に関わる発見）
-
-**観測事実**
-
-- 論文（FLMSEC）の本文は、Conditional ASR を「共通の HarmBench Classifier」で求めると書く（`neurips_2026.tex` L283-287）。しかし、論文の表の Conditional ASR / VSR は、HarmBench 単独でも、`generate_flmsec_hyo.py` の OR 判定でも再現できなかった（安全性の表 216 件のうち、126 件が一致、84 件が不一致、6 件が両方 N/A。VRR、ベンチマーク ASR、有用性の表 216 件は全件一致。出典: `v5/outputs/tables/paper_comparison.md`）。
-- 同じ結果ファイルで、`classifier_output`（ベンチマークごとの分類器の出力）から有害判定を作ると、論文の値と一致する組が多く見つかった。HarmBench は `Yes`、JailbreakBench と WildJailbreak は `Harmful response: yes`、StrongREJECT は score が 0.5 以上、とし、4 ベンチマークの単純平均を取る。**ただし、これは強い示唆であり、確定ではない。** 探索スクリプトは、論文の表の全 216 セルとの照合をしていない（比べたのは、下に挙げた一部の組だけ）。ベースモデル行（論文の MedAlpaca 62.85、WizardCoder 73.99、WizardMath 67.62）は、探索の対象外である。`safety+medical` の 2 手法は seed が 2 本しかない。一致した例:
-  - `safety+code` DARE: 68.30 ± 2.33（論文 68.30 ± 2.33）、DELLA: 68.53 ± 1.44（論文 68.53 ± 1.44）
-  - `safety+medical` Task Arithmetic: 63.87 ± 4.81（論文 63.87 ± 4.81）、TIES: 64.34 ± 6.74（論文 64.34 ± 6.74）、Matena-Fisher: 70.98 ± 0.01（論文 70.98 ± 0.01）
-  - 一致しなかった例（わずかな差）: LED-Merging `safety+code` は 70.89（論文 71.01）、Matena-Fisher `safety+code` は 63.24（論文 65.04）、Task Arithmetic `safety+code` は 59.29（論文 60.91）、SafeMERGE `safety+code` は 0.31（論文 0.34）。集計の細部（妥当性の判定、StrongREJECT のしきい値、平均の取り方）が一部違う可能性があるが、確かめていない
-  - 次にすべきこと: 探索の判定を `v5/` の本体（`metrics.py`、`regen_flmsec_tables.py`）に第 3 の判定として加え、216 セル全部を 0.005 の許容差で照合する（依頼者の判断が要る。承認時に示す）。それまで、`paper_comparison.md` の「判定差」の欄が 0 件なのは、この判定を比べていないためである
-  - 出典: `v5/outputs/probe/native_classifier_probe.md`（スクリプト `v5/scripts/probe_native_classifier.py`）
-- 結果の読み取りが変わる例（α=0.6、Conditional ASR）: `safety+code` の SST は、HarmBench 単独で 1.09 ± 0.43、ベンチマーク別の分類器で 63.91 ± 1.62。`safety+medical` の SST は 0.08 → 67.04、4 ドメインの SST は 0.00 → 68.40。同じ結果ファイルから、判定器だけで「ほぼ安全」と「安全でない」に分かれる（出典: 同上）。
-
-**機構仮説**
-
-- HarmBench 分類器を全ベンチマークの応答に共通で当てると、ベンチマークによって「有害」の定義が合わず、有害応答を取りこぼす可能性がある（`harmbench_cls_output` には、`Yes` / `No` 以外の文字列が多数混ざっている。1 つの結果ファイルで確認した）。未検証。
-
-**新手法への示唆**
-
-- この調査の「主軸」は、依頼者の決定どおり HarmBench Classifier 単独（FR1.3）のままとし、ベンチマーク別の分類器の値を、同じ表の感度分析として必ず併記する。どちらの判定器でも変わらない結論だけを、「観測事実」として強く言える。判定器で結論が変わる主張は、新しい実験（人手の判定など）なしでは確かめられない、と書く（FR5.3）。
-- 主軸を変えるかどうかは、依頼者が決める事項として、承認時に示す。
-
-### 3.1 注入方式の問題
+### 3.0 最初に: 有害判定の 84 セル乖離と、ルールベース gibberish 判定をすり抜ける文字化け崩壊（FR1.3 の前提に関わる発見）
 
 **観測事実**
 
-- `safety+math` の α=0.6 では、SST の Conditional ASR は HarmBench 単独で 17.04 ± 4.81、ベンチマーク別の分類器で 29.57 ± 8.60 で、Task Arithmetic の 2.40 ± 2.75 と 2.89 ± 3.59 より高い。VRR は同程度（99.51 と 99.92）、math の有用性も同程度（7.03 と 6.88）である。どちらの判定器でも、同じ α では、SST のほうが安全性が低い（出典: `v5/outputs/tables/flmsec_main_alpha0.6_harmbench_only.md`、`v5/outputs/probe/native_classifier_probe.md`）。
-- V11（SST と Task Arithmetic の同じ安全性での比較）の判定は「支持」（指標 0.667）だが、中身を見ると、`safety+math` と `safety+medical` の枠では、SST の点が TA の点を支配する組と、TA の点が SST の点を支配する組が、どちらもある。`safety+code` では TA が SST を支配する点だけがある（出典: `v5/outputs/hypotheses/v10_v11.json`）。事前登録の指標（どれか 1 組でも支配すれば数える）が緩いので、「支持」は「SST が一貫して優れる」ことを意味しない。読み取りは、「優劣が一貫しない」である。
-- 観測した点の厳密な Pareto 支配では、`safety+math` で支配されない点は SST の α=1 だけ（モデルが安全モデルそのものに近い端）、`safety+code` では Task Arithmetic の α=0 と 0.8、TIES の α=1 だった（出典: `v5/outputs/figures/observations.json`）。
-- `safety+code` の merge 済みモデルは、設定の `rope_theta` が WizardCoder と食い違う（V7、`merged_code_rope_theta_mismatch_fraction` = 1.0、「支持」。出典: `v5/outputs/hypotheses/v1_v9.json`）。`safety+code` の Code の有用性は、ほとんどの手法で 0.00 で、WizardCoder 単体の 21.03 を大きく下回る。例外は、Task Arithmetic 4.63、LED-Merging 5.62、SafeMERGE 5.99（出典: 同上、`v5/outputs/tables/flmsec_main_alpha0.6_harmbench_only.md`）。
-- math の有用性は、単体モデルでも低い（WizardMath 6.41。`safety+math` の merge 済みモデルは 1.30 〜 7.03）。math の差は、絶対値が小さく、手法間の差の有意性を言いにくい（出典: 同上）。
+- 論文（FLMSEC）の本文は、Conditional ASR を「共通の HarmBench Classifier」で求めると書く（`neurips_2026.tex` L283-287）。しかし、論文の表の Conditional ASR / VSR は、HarmBench 単独でも `generate_flmsec_hyo.py` の OR 判定でも再現できなかった（安全性の表 216 件のうち、126 件が一致、84 件が不一致、6 件が両方 N/A。一方、VRR・ベンチマーク ASR・有用性の表 216 件は全件一致。出典: `v5/outputs/tables/paper_comparison.md`）。
+- 同じ結果ファイルで、`classifier_output`（ベンチマークごとの分類器：HarmBench は `Yes`、JailbreakBench / WildJailbreak は WildGuard の `Harmful response: yes`、StrongREJECT は `score >= 0.5`）で集計すると、論文の値と一致する組が多く見つかった（例: `safety+code` DARE 68.30 ± 2.33、DELLA 68.53 ± 1.44、`safety+medical` Task Arithmetic 63.87 ± 4.81、TIES 64.34 ± 6.74、Matena-Fisher 70.98 ± 0.01）。一方、わずかに差が残る組もあり、全 216 セルの完全照合は未実施のため、論文表の集計方法については**強い示唆にとどまる**（出典: `v5/outputs/probe/native_classifier_probe.md`）。
+- 結果の読み取りが判定器で極端に割れる（α=0.6 の Conditional ASR）: `safety+code` の SST は HarmBench 単独 1.09 ± 0.43 に対しベンチマーク別分類器 63.91 ± 1.62、`safety+medical` の SST は 0.08 → 67.04、4 ドメインの SST は 0.00 → 68.40（出典: 同上）。
+- **乖離の正体（文字化け崩壊のすり抜け）**: `is_gibberish=False`（現行ルール上は「妥当な応答」）とされた応答テキストを全 432 ファイルで検査したところ、異系統ドメインを含むパターンで深刻な多言語トークン崩壊（例: `eniumbresbresbres转х转хpatch...` のような無意味な文字化け）が大量にすり抜けていた（出典: `v5/outputs/probe/gibberish_escape_probe.md`、`v5/outputs/probe/gibberish_escape_probe.json`）:
+  - `safety+medical`: `safemerge`（0.0%）を除く **全手法（dare / data_free_sst / della / sst / matena_fisher / task_arithmetic / ties）で、`is_gibberish=False` 応答の 100.0% が文字化け崩壊**。ベンチマーク別分類器のみ有害・HarmBench 無害となった乖離応答の **100.0%** がこの文字化けだった。
+  - `safety+code`: `dare` 97.5%、`della` 96.6%、`data_free_sst` 96.3%、`sst` 89.1% が文字化け崩壊（乖離応答の 88.7〜97.7%）。例外は `safemerge`（0.0%）、`led_merging`（0.3%）、`task_arithmetic`（1.3%）。
+  - `safety+math+code+medical`: `dare` / `della` / `ties` が 100.0%、`matena_fisher` 83.0%、`data_free_sst` 72.8%、`sst` 55.2%（`task_arithmetic` は 0.1%）。
+  - `safety+math`: **全 10 手法とも 0.0〜0.4%**（文字化け崩壊はほぼ発生していない）。
 
 **機構仮説**
 
-- SST の補間は、マスクされた座標だけで Task Arithmetic と同じ式を使うので、同じ α では、注入する安全成分が少ない（`code-quality-assessment.md` の仮説 (a) 〜 S1）。今回の `safety+math` の結果（同じ α で、SST の安全性が TA より低い）は、この構造と整合する。ただし、注入量そのもの（V5）は、ドメインモデルの重みが HF キャッシュに無く、確認できなかった（判定不能）。
-- `safety+code` で Code の有用性がほとんどの手法で 0 に近いのは、`rope_theta` の食い違い（V7）が一因の可能性がある。ただし、手法を問わず同じ設定の食い違いがあるので、手法間の差には効かず、共通の下げ要因である（未検証）。
+- 現行のルールベース gibberish 判定（空文字、5 語以上でユニーク語率 < 20%、数字率 > 60%）は、空白を含まない多言語サブワード崩壊を検出できない。そのため異系統マージで崩壊したモデルが「高 VRR（見かけ上は妥当）」として残り、さらにその文字化け応答を WildGuard / StrongREJECT は誤って「有害（≒論文の 60〜70%）」、HarmBench 分類器は「無害（≒0%）」と両極端に分類したと考えられる。
 
 **新手法への示唆**
 
-- 同じ α で手法を比べると、SST のように一部の座標だけに注入する手法は不利に見える。比較は、同じ注入量（例: 注入した安全成分のノルム）にそろえるか、α の格子を細かくして曲線全体で比べる必要がある（FR1.5 が、α の補間を禁じているので、格子を追加する実験が要る。新しい実験が必要なので、設計案の「未検証」に回す）。
-- merge 済みモデルの設定（`rope_theta`、語彙）は、ユーティリティ側のモデルのものを引き継ぐように、手法の外側で整える（工学的な修正。効果は未検証）。
+- 現行の VRR ゲートだけでは多言語トークン崩壊を弾けないため、**非 ASCII 比率・無空白長文字列・文字種分布または軽量 PPL 等を含む拡張 gibberish 判定**を妥当性ゲートに組み込む必要がある。
+- 安全性指標は HarmBench 単独（FR1.3 主軸）とベンチマーク別分類器の双方を併記し、両者で結論が割れる条件は文字化け崩壊や判定器バイアスの疑いとして切り分ける。
+
+### 3.1 注入方式と異系統モデルの問題
+
+**観測事実**
+
+- **V6（不支持・全 3 ドメイン重みで確定）**: `Llama-2-7b-hf` からの層ごとの相対差分（中央値）は、WizardMath が **0.0274（2.74%）** であるのに対し、WizardCoder は **1.1347（113.5%）**、MedAlpaca は **1.5471（154.7%）**（比 `0.0204`）だった（出典: `v5/outputs/hypotheses/v1_v9.json`）。WizardMath は Llama-2 からの直接の FT である一方、WizardCoder（CodeLlama-Python 系）と MedAlpaca（LLaMA-1 系）は事前学習から別系統であることが重みレベルで確定した。これは 3.0 節の文字化け崩壊が `safety+code` / `safety+medical` / 4 ドメインに集中し、`safety+math`（0.0〜0.4%）で起きない事実と完全に整合する。
+- **V5（不支持・全 2,688 テンソルで確定）**: 実 merge 済みモデル（α=0.6）における SST と Task Arithmetic の安全方向注入量比 `⟨θ_merged − θ_u, δ_s⟩_SST / ⟨θ_merged − θ_u, δ_s⟩_TA` は、**中央値 0.999993（ノルム比中央値 0.999995）** であり、「SST は常に注入量が少ない」という事前仮説は反証された（出典: `v5/outputs/hypotheses/v1_v9.json`）。分布を見ると、全 4 パターンとも p10 = 0.205〜0.225、p25 = 0.230〜0.296、**p50〜p75 = 1.000**、平均 = 0.696〜0.720 と二峰性になっている。
+- **V7（支持・全 123 モデルで確定）**: `safety+code` の merge 済みモデル 123 件すべてで `rope_theta = 10000.0` となり、WizardCoder 基準値（`1000000.0`）と 100% 食い違っていた（出典: `v5/outputs/hypotheses/v1_v9.json`）。`safety+code` の Code 有用性は多くの手法で 0.00% に落ちる（WizardCoder 単体は 21.03%。例外は SafeMERGE 5.99%、LED-Merging 5.62%、Task Arithmetic 4.63%）。
+- **`safety+math`（唯一同系統のパターン）における曲線比較**:
+  - 同じ α=0.6 で比べると、SST は Conditional ASR 17.04 ± 4.81（HarmBench 単独）/ 29.57 ± 8.60（ベンチマーク別）で、TA の 2.40 ± 2.75 / 2.89 ± 3.59 より安全性が低い。
+  - 一方、Pareto 曲線全体（`v5/outputs/figures/pareto_safety_math.points.json`）で見ると、`sst@0.6`（Cond. ASR 17.0%, Math 7.03%）vs `TA@0.4`（15.0%, 5.78%）、`sst@0.8`（2.74%, 8.44%）vs `TA@0.6`（2.40%, 6.88%）、`sst@1.0`（0.00%, 9.84%）vs `TA@0.8`（0.00%, 9.11%）と、**`safety+math` では SST の曲線がほぼ全域で TA を上回っている**。特に `sst@1.0` が唯一の非支配点（Math 9.84%）となるのは、SST が α=1.0 でも非退化層のマスク外座標および `norm` 層に `θ_u` を保持するためである（純粋な安全モデルに近づく `TA@1.0`・`DARE@1.0`・`DELLA@1.0`・`TIES@1.0` はすべて Math 0.57〜0.94% に急落する）。
+  - ただし、`safety+math` 単体の Math 絶対値自体が低く（WizardMath 単体 6.41%、全マージ最大 9.84%）、V11 全体（全パターン合算）では `safety+code` で TA が SST を支配するなど優劣は一貫しない（出典: `v5/outputs/hypotheses/v10_v11.json`、`v5/outputs/figures/observations.json`）。
+
+**機構仮説**
+
+- V5 の二峰性（約 60% のテンソルで注入量比 1.000、残る約 40% で 0.20〜0.30）は、後述の V1・V2（fp16 キャストによるマスク全 1 退化）で直接説明できる。つまり v3 の SST は「全層で 20% 選択」として動いていたのではなく、**約 60% のテンソル（特に後半層 L24–31）が Task Arithmetic に退化し、残る約 40%（主に中間層 L8–23）だけが疎な 20〜30% 補間として動いていた**。その結果、同じ α=0.6 では非退化層の分だけ TA より注入が少なくなり、逆に α=0.8〜1.0 では非退化層＋norm のユーティリティ保持が効いて `safety+math` の Pareto 曲線を押し上げた可能性がある（未検証）。
+- `safety+code` と `safety+medical` の崩壊は、異系統重みの座標単位混合（V6）と `rope_theta` 喪失（V7）が主因である可能性が高い。
+
+**新手法への示唆**
+
+- マージ実行前にベースとドメインモデルの系統整合性（相対差分と `config.json`）を検証し、ユーティリティ側の `rope_theta`・語彙設定を引き継ぐ（E5・E7）。
+- 同じ α ではなく、実効注入ノルムまたは細かい α 格子の Pareto 曲線で比較する（E3）。
 
 ### 3.2 FIM 選択の問題
 
 **観測事実**
 
-- V8（FIM 用データが実データか）は「不支持」（プレースホルダは 0 件）、V9（mergekit 出力の語彙の食い違い）は「不支持」（食い違うモデル 0 件）。V8 は、データファイルの先頭の少数の件を見た確認で、実際に使った FIM キャッシュそのものの確認ではない。V9 は、`config.json` と safetensors のヘッダの確認である。この 2 つは、「この確認の範囲では原因の証拠がない」と読み、原因ではないと断定はしない（出典: `v5/outputs/hypotheses/v1_v9.json`）。なお、2.4 節の V7〜V9 の行に出る実行範囲（seed 42、`safety+math`）は、V1〜V3 に絞った範囲の表示で、V7〜V9 は範囲を絞らず完結している。
-- V1、V2、V3 は、範囲を絞った実行（seed 42、`safety+math`、層 0 / 15 / 31、テンソル 8 個）で、事前登録の規則により「判定不能」である。参考の数値（判定には使わない）:
-  - V1: F_h の fp16 キャスト後に 0 が 80% を超えたテンソルは、8 個中 6 個（0.75）
-  - V2: マスク比率が k=0.2 から 0.05 超ずれる、または inf が 20% 超のテンソルは、8 個中 7 個（0.875）
-  - V3: Fh/Fb のマスクと、|δ_s|（大きさ）のマスクの Jaccard 係数の中央値は 0.204（k=0.2 の乱数どうしの期待値は約 0.11）
-  - 出典: `v5/outputs/hypotheses/v1_v9.json`
-- V10（論文に近い条件の結果が v3 にあるか）は、6 条件のうち 4 つ（additive と layerwise の 3 種）があり、k=0.05 と k=0.1 が無い、として「支持」。ただし、アブレーションは、k=0.2 の 1 点、seed 42 の 1 本だけで、k の掃引（k × variant の表）の大半は N/A である。表の `± 0.00` は、seed が 1 本しかないための値で、不確実性ではない（出典: `v5/outputs/hypotheses/v10_v11.json`、`v5/outputs/tables/ablation_sst_safety_math.md`）。
+- **V1（支持・全 672 テンソルで確定）**: `F_h`（harmful FIM）のゼロ率は fp32 時点では平均 **0.0025%**（`2.47e-5`）だが、v3 実装どおり fp16 にキャストすると平均 **79.24%**（最大 **99.53%**）が 0 にアンダーフローし、**60.4%（406 / 672 テンソル）** が 80% 超（k=0.2 のマスクが全 1 に退化する条件）に達した（出典: `v5/outputs/hypotheses/v1_v9.json`）。
+- **V2（支持・全 2,688 テンソルで確定）**: 期待値 k=0.20 からの乖離（±0.05 超）または inf 異常を示すテンソルは **75.0%（2,016 / 2,688 テンソル）**、**平均マスク比率は 70.4%**、うち **60.4%（1,624 / 2,688 テンソル）が完全に `mask_ratio = 1.0`（全座標 1）に退化**していた（`inf` 総数 17,813）。層別の全 1 退化率は、L0–7: 58.9%（平均マスク 0.693）、L8–15: 39.3%（0.548）、L16–23: 54.2%（0.660）、**L24–31: 89.3%（0.916）** であり、出力に近い後半層ほどほぼ完全に Task Arithmetic 化していた（出典: 同上）。
+- **V3（判定不能・全 2,688 テンソルで確定）**: `median_jaccard_fhfb_vs_magnitude = 0.2003`、`median_jaccard_fhfb_vs_random = 0.2000`、`median_spearman_lambda_vs_abs_delta_s = -0.0026`（出典: 同上）。事前登録基準（0.20〜0.50 の間）により「判定不能」となったが、これは **中央値テンソルの `Fh/Fb` マスクが `mask_ratio = 1.0`（全 1）に退化しているため、任意の上位 20% マスク（`|δ_s|` や `random`）との Jaccard 係数が機械的に 0.20 / 1.00 = 0.20 に張り付いた結果** である（「FIM が独立に座標を選んでいる」証拠ではない）。
+- **V4（判定不能・全 2,016 テンソルで確定）**: α=0.6 での fp16 丸め消失率（`|α·δ_s| < ulp_fp16(θ_u)/2`）は平均 **4.43%**（最大 **15.25%**）。事前登録基準（0.01〜0.10 の間）で判定不能であり、V1・V2 の大規模退化（平均マスク 70.4%）と比べると副次的な影響にとどまる（出典: 同上）。
+- **V8・V9（不支持・全範囲で確定）**: FIM データのプレースホルダ率は 0.0%（`fim_harmful` 1,400 件、各 benign 1,000 件）、mergekit 出力（288 モデル）の `vocab_size` と `lm_head` 行数の不一致は 0 件。確認した範囲では原因ではない（出典: 同上）。
+- **V10（支持）**: 論文に近いアブレーション条件 6 種のうち 4 種（additive、layerwise 3 種）が存在し、k=0.05 と k=0.1 は欠損。ただし評価済みはすべて k=0.2・seed 42 のみで、表の `± 0.00` は seed 1 本のため不確実性を示さない（出典: `v5/outputs/hypotheses/v10_v11.json`、`v5/outputs/tables/ablation_sst_safety_math.md`）。
 
 **機構仮説**
 
-- 参考の数値は、FIM が fp16 で 0 に落ちて、マスクが退化している可能性を示す（`code-quality-assessment.md` の仮説 (b)）。ただし、範囲が 8 テンソルなので、全体の傾向とは言えない。範囲を広げて確かめる必要がある（V1、V2 の再実行。時間がかかる）。
-- Fh/Fb のマスクと大きさのマスクの重なりが小さい（0.204）のは、マスクが FIM に依存している（大きさだけでは決まらない）ことを示唆するが、選ばれた座標が安全性に効くかは別の問題で、確かめていない。
+- v3 で SST-Merge が他手法と明確な差を出せなかった **最大の実装上の原因** は、`scripts/mergers/fim.py` L161 の fp16 キャストによる FIM アンダーフロー（V1）と、それに伴う 60.4% のテンソルでのマスク全 1 退化・平均マスク比率 70.4% 化（V2・V5）である。これにより、SST は本来の「上位 20% の座標選択」ではなく、特に出力側（L24–31 の 89.3%）でほぼ Task Arithmetic と同一の演算を行っていた。
+- したがって、fp32 で正しく λ と top-k を計算した場合に FIM 選択が `|δ_s|` や `random` を上回るかどうか自体は、v3 の既存結果からはまだ検証できていない（マスク退化が交絡しているため）。
 
 **新手法への示唆**
 
-- FIM と λ は、fp32 のまま保存して使う（fp16 へのキャストを避ける）。マスクの比率と inf の数を、merge ごとに記録する（`code-quality-assessment.md` の技術的負債 8）。効果は未検証。
+- FIM の推定・保存・λ 計算・マスク生成は **すべて fp32 のまま行う**（fp16 へのキャストを禁止する）。あわせて、マージ時にテンソルごとの実効マスク比率・ゼロ率・`inf` 数を `merge_metadata.json` に必ず記録し、退化を即時検知する（E6）。
 
 ### 3.3 ハイパーパラメータの問題
 
 **観測事実**
 
-- アブレーションで評価済みの k は 0.2 だけで、seed は 42 だけ（V10）。k の効果は、この結果からは言えない。
-- α の格子は 6 点（0.0〜1.0 の 0.2 刻み）で、論文（SAGAI_EN_sst）の 15 点より粗い。VRR ≥ 80% で残る点は、`safety+code` で 26 / 40、`safety+math` で 38 / 40、`safety+medical` で 20 / 39、4 ドメインで 15 / 37 である（出典: `v5/outputs/figures/observations.json`）。4 ドメインでは、SST の全点（α=0〜1）が VRR < 80% で除外された。
-- 4 ドメインの SST は、α=0.2 と 0.4 で VRR が 3.66% と 0.00% まで落ちる（出典: 同上）。
+- アブレーションで評価済みの k は 0.2 のみ、seed は 42 のみ（V10）。k の掃引効果は v3 の結果からは評価できない。
+- α の格子は 6 点（0.0〜1.0 の 0.2 刻み）で、論文（SAGAI_EN_sst）の 15 点より粗い。VRR ≥ 80% で残る点は、`safety+code` で 26 / 40、`safety+math` で 38 / 40、`safety+medical` で 20 / 39、4 ドメインで 15 / 37 である（出典: `v5/outputs/figures/observations.json`）。4 ドメインでは、SST の全点（α=0〜1）が VRR < 80% で除外された（α=0.2, 0.4 で VRR 3.66%, 0.00%）。
 
 **機構仮説**
 
-- 4 ドメインで VRR が大きく落ちるのは、3 つのドメインの差分（δ_u）の平均と、安全成分が、互いに干渉するため、という説明が考えられる。未検証（V5 の確認が必要）。
+- 4 ドメインでの VRR 崩壊は、異系統 2 モデル（CodeLlama / LLaMA-1）を含む 3 ドメイン平均差分 `δ̄_u` への干渉と、60% 超の全 1 退化マスクによる過剰注入が重なった結果と考えられる（未検証）。
 
 **新手法への示唆**
 
-- k と α を、細かい格子と複数の seed で再評価しない限り、「SST が差を出せなかった原因はハイパーパラメータ」とも「そうでない」とも言えない（判定不能）。
+- fp32 修正（E6）および同系統モデル条件のもとで、k と細かい α 格子（複数 seed）を再評価しない限り、ハイパーパラメータの最適領域は確定できない（判定不能）。
 
 ### 3.3.1 論文（SAGAI_EN_sst）の定式化と、v3 の実装の違い（FR4.3）
 
-出典は `aidlc/spaces/default/codekb/v3/code-quality-assessment.md` の「SAGAI_EN_sst の主張を v3 の大規模実験で再現できるか」と、`architecture.md` の「論文（SAGAI_EN_sst）とコードの対応表」である（コードと論文を読んだ結果で、実行はしていない）。
+出典は `aidlc/spaces/default/codekb/v3/code-quality-assessment.md` の「SAGAI_EN_sst の主張を v3 の大規模実験で再現できるか」と、`architecture.md` の「論文（SAGAI_EN_sst）とコードの対応表」である（コードと論文の読解による）。
 
 **観測事実（コードと論文で確認）**
 
-- 式（λ = F_h/(F_b+ε)、hard mask、interpolation / additive、ε=10⁻⁶、N=500）は、論文と v3 で同じである。
-- 次の点は、論文の条件を v3 の大規模実験が含まない: ベースが違う（論文は Llama-3.1-8B、v3 は Llama-2-7b-hf）、ユーティリティが同じベースの LoRA でなく外部のフル FT モデル（うち 2 つは系統が違う）、アダプタ単位でなくフルの重みで merge、Additive soft mask が結果に無い、k の掃引が無い（k=0.2 のみ）、モジュール種別の層重みが無い、k が全パラメータでの割合でなくテンソルごと、α の格子が粗い。
-- F_h を Safety モデルで評価する点は、論文の数値を出した v1 の実装でも同じで、v3 固有のずれではない。
+- 式（λ = F_h/(F_b+ε)、hard mask、interpolation / additive、ε=10⁻⁶、N=500）は論文と v3 で同じである。
+- 一方、v3 の大規模実験は次の点で論文（および実実装の v1）の条件を含まない: ベースが違う（論文/v1 は Llama-3.1-8B-Instruct、v3 は Llama-2-7b-hf）、ユーティリティが同一ベースの LoRA でなく外部フル FT モデル（うち 2 種は V6 で異系統と確定）、アダプタ単位でなくフル重みマージ、Additive soft mask が結果に無い、k の掃引が無い（k=0.2 のみ）、モジュール種別の層重みが無い、k が全体比率でなくテンソルごと、α 格子が粗い、さらに v3 では fp16 キャストにより 60.4% のテンソルが全 1 マスクに退化していた（V1・V2）。
+- F_h を Safety モデルで評価する点は v1 の原実装からの引き継ぎであり、v3 固有のずれではない。
 
 **機構仮説**
 
-- これらの違いが重なって、論文で SST の利点が出た条件が、v3 では再現されていない可能性がある。個々の違いの寄与は、確かめていない。
+- これら実験条件の不一致に加え、v3 実装固有の fp16 FIM 退化（V1・V2）と異系統モデルによる文字化け崩壊（V6・3.0 節）が重なったため、v3 では SST-Merge の本来の選択効果が観測できなかったと考えられる。
 
 **新手法への示唆**
 
-- 論文の条件に近づけるには、同じベースの LoRA どうしの merge と、k の掃引が必要である（新しい実験。設計案の未検証に回した）。
+- 本来の選択効果を検証するには、同一ベース派生モデル（または LoRA 単位）・fp32 FIM・適切な α/k 格子での再実験が必要である（設計案の未検証項目に整理）。
 
 ### 3.4 まとめ
 
-| 原因の分類 | 観測事実で言えること | 判定 |
+| 原因の分類 | 観測事実で言えること（全範囲検証済み） | 判定 |
 |:---|:---|:---|
-| 評価（判定器）の違い | 論文の表は、ベンチマーク別の分類器で作られている可能性が高い（一部の組で一致、一部は小さな差。全 216 セルの照合は未実施）。判定器で、多くの手法の安全性の読み取りが変わることは、結果ファイルから直接確認できた | 判定器の影響は観測事実。論文の表の作り方は強い示唆 |
-| 注入方式 | 同じ α では、SST の安全性が TA より低い（`safety+math`）。優劣は一貫しない（V11） | 観測事実。機構は仮説（V5 判定不能） |
-| FIM 選択 | 範囲を絞った参考値は、退化の可能性を示す。V8、V9 は原因ではない | 判定不能（V1〜V3） |
-| ハイパーパラメータ | k の効果は見えない（k=0.2、seed 42 のみ） | 判定不能 |
-| 設定の食い違い（`rope_theta`） | `safety+code` の merge 済みモデルは、すべて食い違う（V7） | 観測事実。有用性への影響の大きさは未検証 |
+| FIM 選択（fp16 退化） | **V1 支持（60.4% が 0 率 80% 超、平均 79.2%）**、**V2 支持（75.0% 異常、平均マスク 70.4%、60.4% が全 1 退化、L24–31 は 89.3%）**、**V5 不支持（注入量比中央値 1.000）**。V3 の Jaccard=0.200 は全 1 退化の必然的帰結。V4 は平均 4.43%（副次的）。V8・V9 は不支持 | **最有力な実装原因（観測事実で確定）**。fp32 修正後の FIM 選択の有効性自体は未検証 |
+| 異系統モデルと文字化け崩壊 | **V6 で WizardMath（相対差分 2.74%）のみ同系統、WizardCoder（113.5%）と MedAlpaca（154.7%）は異系統と確定**。異系統パターンでは `is_gibberish=False` をすり抜ける多言語文字化けが 89〜100% 発生（`safety+math` は 0.0〜0.4%） | **評価崩壊・有用性崩壊の主因（観測事実で確定）** |
+| 評価（判定器）の違い | 論文の表はベンチマーク別分類器で作られている強い示唆（84 セル不一致）。異系統の文字化けを WildGuard/StrongREJECT が有害、HarmBench が無害と両極端に誤判定している | **観測事実**（論文表の完全再現は全 216 セル照合が別途必要） |
+| 注入方式 | V5 により中央値では TA と同一注入量だが、非退化層（約 40%）では 20〜30% 注入。同系統の `safety+math` では Pareto 曲線全体で SST が TA を上回る（特に `sst@1.0` は Math 9.84% を保持） | **観測事実**（Math 絶対値が小さく有意性確認は新実験が必要） |
+| 設定の食い違い（`rope_theta`） | **V7 支持**: `safety+code` の merge 済みモデル 123 件すべてで `rope_theta = 10000.0`（基準 `1000000.0` と不一致） | **観測事実**（有用性回復幅は未検証） |
+| ハイパーパラメータ | k の掃引結果が欠損（V10: k=0.2、seed 42 のみ） | **判定不能** |
 
-制約: ドメインモデルの重みが HF キャッシュに無いため、V4、V5、V6 は判定不能のままである。評価は、各ベンチマーク最大 320 件で、math の有用性の絶対値が小さい。v1 に関する確認（V12〜V16）は、依頼者の方針で、補足にとどめた。
+制約: 評価は各ベンチマーク最大 320 件・seed 3 本（アブレーションは 1 本）であり、math の有用性の絶対値が小さい。v1 に関する追加確認（V12〜V16）は依頼者の方針で補足にとどめた。
 <!-- 手書き: 考察（FR4） 終了 -->
 
 ## 4. 新しい merge 手法の設計案（FR5）
 
 <!-- 手書き: 設計案（FR5） 開始 -->
-この節は、3 節の結果を見たうえで手書きした。述べるのは、既存の結果から言える範囲の「可能性」までである。新手法が既存手法より優れているとは、まだ言えない。
+この節は、3 節の全範囲検証結果を見たうえで手書きした。述べるのは、既存の結果から言える範囲の「可能性」までである。新手法が既存手法より優れているとは、新しい実験なしには断定できない。
 
 ### 4.1 前提（設計の入力にした観測事実）
 
-- F1: 論文の表の安全性は、ベンチマーク別の分類器で作られている。判定器で、安全性の読み取りが変わる（3.0 節）。
-- F2: 同じ α では、マスクされた座標だけに注入する SST は、Task Arithmetic より注入する安全成分が少なく、`safety+math` で安全性が低い（3.1 節）。
-- F3: 4 ドメインのパターンでは、多くの手法で VRR が大きく落ちる（観測した点の 22 / 37 が VRR < 80% で除外された。3.3 節）。
-- F4: 多くの手法で、`safety+code` の merge 済みモデルの設定（`rope_theta`）が、WizardCoder と食い違う（3.1 節）。
-- F5: 判定器をどちらにしても、`safety+code` と `safety+medical` で、安全性が低く、かつ VRR が高い点（SafeMERGE）は 1 手法だけだった（Conditional ASR 0.31 と 0.22、VRR 99.92 と 100.00。ベンチマーク別の分類器。出典: `v5/outputs/probe/native_classifier_probe.md`、`v5/outputs/tables/flmsec_main_alpha0.6_harmbench_only.md`）。ただし、`safety+math` では、SafeMERGE は Conditional ASR の seed 間のばらつきが大きい（21.42 ± 37.09）。
+- F1: FLMSEC 論文の安全性表はベンチマーク別分類器で作られている強い示唆があり、同じ結果ファイルでも判定器によって安全性の読み取りが 0% と 68% ほど大きく変わる（3.0 節）。
+- F2: `safety+medical`（MedAlpaca: 相対差分 154.7%）と `safety+code`（WizardCoder: 相対差分 113.5%）では、異系統マージによる多言語文字化け崩壊が現行のルールベース gibberish 判定（`is_gibberish=False`）を 89〜100% すり抜け、偽の高 VRR と分類器間の大乖離を生んでいる。一方、同系統の `safety+math`（WizardMath: 相対差分 2.74%）では文字化け崩壊は 0.0〜0.4% にとどまる（3.0 節・V6）。
+- F3: v3 の SST-Merge は fp16 キャストにより 60.4% のテンソルで `F_h` の 80% 超が 0 にアンダーフローし（V1）、75.0% のテンソルでマスク比率が異常化（平均マスク 70.4%、L24–31 は 89.3% が全 1 退化。V2）、実 merge モデルでも中央値で TA と同一の注入量（比 1.000）になっていた（V5）。
+- F4: 同系統の `safety+math` に限ると、非退化層（約 40%）と `norm` のユーティリティ保持が効き、SST の Pareto 曲線はほぼ全域で TA を上回り、`sst@1.0` が唯一の非支配点（Cond. ASR 0.00%, Math 9.84%）となった（3.1 節）。
+- F5: 4 ドメインでは VRR が大きく落ち（観測点の 22 / 37 が VRR < 80% で除外）、`safety+code` の merge 済みモデル 123 件すべてで `rope_theta` が WizardCoder と食い違っている（V7）。
+- F6: 判定器をどちらにしても、`safety+code` と `safety+medical` で文字化け崩壊 0.0%・VRR ≥ 99.9%・低 Conditional ASR（ベンチマーク別 0.31 / 0.22）を両立した手法は SafeMERGE のみだった（ただし `safety+math` では seed ばらつき 21.42 ± 37.09 と大きい。出典: `v5/outputs/probe/native_classifier_probe.md`、`v5/outputs/probe/gibberish_escape_probe.md`）。
 
 ### 4.2 候補要素と、3 段階の区別
 
 | # | 候補要素（DLSP_hiromi2 に導入する設計） | 観測事実（根拠） | 機構仮説 | 未検証の部分（新しい実験が要る） |
 |:---|:---|:---|:---|:---|
-| E1 | α を、妥当性（VRR）の制約つきの Pareto で選ぶ（補間しない） | F3: VRR が落ちる点が多く、4 ドメインでは SST の全点が VRR < 80% で除外された | 干渉で生成が壊れる点を、安全性の指標が「安全」と読み違える | 保持データでの選択の妥当性。VRR の下限の値（80%）の適切さ |
-| E2 | 安全性を、複数の判定器で併記し、1 つの判定器の値で結論を出さない | F1: 判定器で結論が変わる | HarmBench 分類器が、他ベンチマークの有害の定義と合わない | 人手の判定との一致 |
-| E3 | 注入量を、手法間でそろえる（マスクされた座標の数を考慮した α の設定） | F2: 同じ α では、SST の安全性が TA より低い | 注入するノルムが小さいので、安全性が上がりにくい（V5 で確認できず、判定不能） | α の格子の拡張、注入量の測定 |
-| E4 | 選択的な層（またはサブスペース）への適用 | F5: SafeMERGE だけが、`safety+code` と `safety+medical` で安全性が高く、VRR も高い | 全パラメータに混ぜる手法は干渉で壊れ、選択的な適用は壊れにくい（SafeMERGE の機構の読み方は、本調査では確認していない） | 要素の切り分け（層の選択、閾値）。`safety+math` のばらつきの原因 |
-| E5 | merge 済みモデルの設定（`rope_theta`、語彙）を、ユーティリティ側のモデルから引き継ぐ | F4 | 位置符号化の食い違いが、`safety+code` の Code の有用性の低下に効く | 設定を直した merge での再評価 |
-| E6 | FIM と λ を fp32 で保持し、マスク比率と inf の数を記録する | 3.2 節の参考値（判定不能）。V8、V9 は原因ではない | fp16 のキャストで F_h が 0 に落ち、マスクが退化する | V1、V2 の全範囲での確認 |
+| E0 | **拡張妥当性ゲート（文字化け検出つき VRR）** と複数判定器による評価 | F1・F2: 現行 VRR をすり抜けた文字化けが 89〜100% 存在し、判定器で 0% vs 68% に割れた | 非 ASCII 比率・無空白長文字列・軽量 PPL で文字化けを弾けば、偽の妥当性と判定器乖離を防げる | 拡張ルールの偽陽性/偽陰性、人手判定との一致 |
+| E1 | 拡張 VRR 制約つきの Pareto 選択（補間しない） | F5: 4 ドメインで多くの点が崩壊し、VRR 下限で除外される | 崩壊モデルを安全と誤認する選択を防ぐ | 保持データでの汎化、VRR 下限（80%）の最適値 |
+| E2 | **FIM と λ の完全 fp32 保持＋マスク退化監視** | F3（V1・V2・V5 確定）: fp16 キャストで 60.4% のテンソルが全 1 退化し、中央値で TA と同一注入になった | fp32 のまま λ と top-k（および全体 top-k / log 空間 soft mask）を計算すれば、本来の疎な安全座標選択が機能する | fp32 修正後の FIM 選択が `|δ_s|` や `random` を実際に上回るか（新実験が必要） |
+| E3 | 注入量整合と細かい α 格子での探索 | F3・F4: 疎な選択層では同じ α で注入ノルムが減り、α=0.6 固定比較では不利に見える | 疎選択によるノルム減衰を補償する α 格子を含めることで、公平かつ最適な動作点が見つかる | α 格子拡張時の Pareto 改善幅 |
+| E4 | 選択的な層（または低ランク部分空間）への適用 | F4・F6: `safety+math` で非退化層＋norm 保持が有用性を守り、`safety+code`/`medical` では SafeMERGE のみ文字化け 0%・高安全を達成 | 全重み一律混合より、安全寄与の大きい層・低ランク部分空間への限定適用が破壊的干渉を抑える | 層選択基準（層別 λ 集計 vs コサイン類似度）、`safety+math` の seed ばらつき抑制 |
+| E5 | **系統整合性チェックと設定引き継ぎ**（`rope_theta`・語彙） | F2（V6）・F5（V7）: 相対差分 > 100% の異系統混合で 89〜100% 崩壊、`safety+code` は 100% `rope_theta` 不一致 | 同系統条件の強制とユーティリティ側 config の継承で、位置符号化崩れや文字化け崩壊を防げる | 設定修正・同系統モデル化による Code/Medical 有用性の回復幅 |
 
-「適した要素」の採用基準（1.2 節）に照らすと、いま基準を満たしたと言える要素はない。1.2 節の基準 1 は、他の手法を厳密に支配することを求める。この調査では、SST と Task Arithmetic のあいだで、優劣が一貫しなかった（V11）。E1〜E6 は、「失敗の原因になりうる要素の除去」と「評価の方法」で、手法として優れていることを示す要素ではない。
+「適した要素」の採用基準（1.2 節）に照らすと、異系統崩壊と fp16 退化が交絡した既存の v3 結果単独では、全パターンを通じて基準 1〜3 を満たす手法要素は確定していない（同系統の `safety+math` では SST が非支配点となったが、他パターンでは異系統崩壊と退化が支配的だった）。したがって、E0〜E5 は「観測された失敗機構の確実な除去」と「同系統条件での有望な選択機構の再構築」に基づく設計候補である。
 
 ### 4.3 設計案（文章と擬似コード）
 
-名前（仮）: **妥当性ゲートつきの選択的 SST**。SST の枠組み（FIM の比で座標を選ぶ）は残し、評価と実装の弱点（F1〜F4、E1〜E6）を直す。
+名前（仮）: **fp32 退化防止・拡張妥当性ゲートつき選択的 SST（Safe-Gated fp32 SST-Merge）**。
+DLSP_hiromi2 の secure merge 枠組みに、fp32 FIM による本来の疎選択（E2）、系統・設定チェック（E5）、注入量整合（E3）、および文字化け検出を含む拡張妥当性ゲート（E0・E1）を組み込む。
 
 ```
-入力: θ0（ベース）、θ_u（ユーティリティ側のモデル。複数でもよい）、θ_s（安全パッチ）、
-      較正データ（安全用 D_h、有用性用 D_b）、k、α の格子 A、VRR の下限 v
+入力: θ0（ベース）、θ_u（ユーティリティモデル。複数可）、θ_s（安全パッチ）、
+      較正データ（安全用 D_h、有用性用 D_b）、k、α の格子 A、拡張 VRR 下限 v
 
-1. 設定の引き継ぎ（E5）
-   merged_config = config(θ_u)          # rope_theta、語彙をユーティリティ側から取る
-2. FIM の推定（E6）
-   F_h = FIM(θ_u + 安全側の方向, D_h)   # 評価点は明示する（論文は θ_util の近傍）
-   F_b = FIM(θ_u, D_b)                  # fp32 のまま保持する
-   λ = F_h / (F_b + ε)                  # fp32 のまま
-   M = top_k(λ, k)                      # マスク比率と inf の数を記録する
-3. 注入量の整合（E3）
-   δ = M ⊙ δ_s
-   α の格子 A は、TA の注入ノルムと同じになる α' = α / (‖δ‖ / ‖δ_s‖) の点も含める
+1. 系統整合性チェックと設定引き継ぎ（E5）
+   for 各 θ_u,j:
+       rel_diff = median_layer(‖θ_u,j - θ0‖ / ‖θ0‖)
+       if rel_diff > 0.5:
+           警告し、フル重み座標混合ではなく LoRA 射影／層選択経路（E4）を推奨
+   merged_config = config(θ_u)          # rope_theta、max_position_embeddings、語彙を保持
+
+2. 完全 fp32 での FIM 推定とマスク生成（E2）
+   F_h = FIM_fp32(θ_eval_h, D_h)        # 評価点（θ_u 近傍 vs θ_s）を明示、fp16 へキャストしない
+   F_b = mean_j FIM_fp32(θ_u,j, D_b,j)  # fp32 のまま保持
+   λ   = F_h / (F_b + ε)                # fp32 のまま（ε = 1e-6）
+   M   = global_topk_or_soft(λ, k)      # 全体 top-k（または log-percentile soft mask）
+   記録: zero_frac(F_h), actual_mask_ratio(M), inf_count(λ)
+   assert |actual_mask_ratio(M) - k| <= 0.05  # 全 1 退化を即時検知して停止
+
+3. 層選択（E4・オプション）と注入量整合（E3）
+   δ_s = θ_s - θ0                       # fp32 で計算
+   δ   = (w_layer ⊙ M) ⊙ δ_s            # norm 層は θ_u を保持
+   α の格子 A に、実効注入ノルム補償点 α' = α / (‖δ‖ / ‖δ_s‖) を含める
+
 4. 候補の merge（A の各 α について）
-   θ(α) = θ_u + α · δ                    # additive。interpolation は比較として残す
-5. 評価（E2）
-   各 α について、Conditional ASR（複数の判定器で）、VRR、特化タスクを個別に測る
-6. 選択（E1）
-   v を満たす点だけを残し、観測した点の厳密な Pareto 支配で、支配されない点から選ぶ
-   （点の間は補間しない。近傍 ±2.0 pt の比較は補助）
-出力: 選んだ α と θ(α)、除外した点の一覧、マスク比率の記録
-```
+   θ(α) = merge_fp32(θ_u, θ_s, M, α)    # additive / interpolation を fp32 演算後に保存型へ変換
 
-選択的な層への適用（E4）は、上の手順の 2 の後ろに、「λ の層ごとの集計で、安全成分を入れる層を絞る」段階を足す形が考えられる。ただし、SafeMERGE が何で成功しているかは、本調査では確認していないので、擬似コードには入れず、候補として残す。
+5. 拡張妥当性ゲートと複数判定器による評価（E0・E1）
+   各 α について、応答生成後に拡張 gibberish 判定（既存ルール + 非 ASCII 比率 + 無空白長文字列）を実施
+   拡張 VRR >= v を満たす点のみ残し、HarmBench 単独とベンチマーク別分類器の双方で Conditional ASR を算出
+   観測点の厳密な Pareto 支配（補間なし）により非支配点から採用点を選ぶ
+
+出力: 採用した α と θ(α)、除外点一覧、拡張 VRR・複数判定器結果、マスク統計メタデータ
+```
 
 ### 4.4 既存の結果で裏付けられること / 新しい実験が要ること
 
 **既存の結果で裏付けられる（観測事実）**
 
-- 判定器で結論が変わる（E2 の必要性）。
-- VRR が落ちる点が多い（E1 の必要性）。特に 4 ドメイン。
-- 同じ α では SST の安全性が低い（`safety+math`）。E3 の動機。
-- merge 済みモデルの設定が食い違う（E5 の必要性）。
+- v3 の SST は fp16 キャストで 60.4% のテンソルが全 1 退化・平均マスク 70.4%・注入量比中央値 1.000 になっており、本来の選択的マージとして動作していなかった（V1・V2・V5 → E2 の直接根拠）。
+- WizardCoder（相対差分 113.5%）と MedAlpaca（154.7%）は Llama-2 と異系統であり（V6）、異系統パターンでは 89〜100% の文字化け崩壊が現行 VRR をすり抜けて分類器乖離を生んでいた（3.0 節 → E0・E5 の直接根拠）。
+- `safety+code` の merge 済みモデル 123 件すべてで `rope_theta` が不一致だった（V7 → E5 の直接根拠）。
+- 同系統の `safety+math` では、非退化層＋norm 保持を含む SST の曲線が TA を上回り、`sst@1.0` が非支配点となった（3.1 節 → E3・E4 の動機）。
 
 **新しい実験をしないと確かめられない（仮説）**
 
-- E3 の注入量をそろえると、SST の曲線が TA に追いつく、または超える（α の格子の拡張が要る）。
-- E4 の選択的な適用が、`safety+code` と `safety+medical` の安全性と VRR を両立させる機構である。
-- E5 の設定の引き継ぎで、`safety+code` の Code の有用性が回復する。
-- E6 の fp32 保持で、マスクの退化が解消する（V1、V2 の全範囲での確認が先に要る）。
-- 「妥当性ゲートつきの選択的 SST」全体が、既存手法より優れること。この調査では、優れている「可能性」までしか言えない。
+- fp32 修正（E2）により全 1 退化を解消したとき、FIM 選択（`Fh/Fb`）が `|δ_s|` や `random` を有意に上回るかどうか。
+- E3（注入量補償）および E4（層選択・低ランク適用）を導入したとき、同系統モデル上の複数ドメイン（Math / Code / Medical）で一貫して既存手法を Pareto 支配できるか。
+- E5（`rope_theta` 引き継ぎ・同系統モデル採用）によって、Code / Medical の有用性と文字化け率が実際に回復するか。
+- 設計案全体が既存手法より優れること（本調査では優れている「可能性」までにとどめる）。
 
 ### 4.5 限界
 
-- 評価は、各ベンチマーク最大 320 件で、seed は 3 本（アブレーションは 1 本）。
-- math の有用性の絶対値が小さい（最大 7.03）。math での差は、判断材料として弱い。
-- ドメインモデルの重みが無く、V4、V5、V6 は判定不能。V1〜V3 は範囲を絞った実行で、判定不能。
-- DLSP_hiromi2 側の実験設定（Mistral-7B、LoRA、mergekit）は、この調査の対象外である。設計案の DLSP_hiromi2 への導入は、設定の違いを考慮して別に検討する必要がある。
+- 評価は各ベンチマーク最大 320 件・seed 3 本（アブレーションは k=0.2・seed 42 のみ）。
+- 同系統モデルである `safety+math` は単体モデルでも Math スコアの絶対値が小さく（6.41%）、手法間の有意差検証には別ベンチマークやより強い同系統ベースラインが必要。
+- V3（Jaccard）と V4（fp16 丸め消失率 4.43%）は事前登録基準の中間に当たり判定不能（特に V3 はマスク全 1 退化が交絡しているため、fp32 修正後に再測定が必要）。
+- DLSP_hiromi2 側の実験設定（Mistral-7B、LoRA、mergekit）は本調査の対象外であり、導入時は設定差を別途検証する必要がある。
 <!-- 手書き: 設計案（FR5） 終了 -->

@@ -1,0 +1,82 @@
+{
+  "mode": "verify_mask_only",
+  "k_ratio": 0.2,
+  "mask_tol": 0.05,
+  "eps": 1e-06,
+  "alphas": [
+    0.0,
+    0.2,
+    0.4,
+    0.6,
+    0.8,
+    1.0
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "timestamp_utc": "2026-11-24T11:54:33.829191+00:00",
+  "results": [
+    {
+      "seed": 42,
+      "fim_h_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/harmful_safety_Llama2_SafetyFT_n500_seed42.pt",
+      "fim_b_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/benign_math_Llama2_WizardMath_n500_seed42.pt",
+      "mask_summary": {
+        "k_target": 0.2,
+        "mask_tolerance": 0.05,
+        "eps": 1e-06,
+        "mask_selection": "exact_topk_indices_fp32",
+        "n_target_tensors": 224,
+        "mean_mask_ratio": 0.19999998807907104,
+        "min_mask_ratio": 0.19999998807907104,
+        "max_mask_ratio": 0.19999998807907104,
+        "max_abs_error_from_k": 1.1920928966180355e-08,
+        "total_inf_count": 0,
+        "total_nan_count": 0,
+        "all_within_tolerance": true
+      },
+      "n_target_tensors": 224
+    },
+    {
+      "seed": 43,
+      "fim_h_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/harmful_safety_Llama2_SafetyFT_n500_seed43.pt",
+      "fim_b_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/benign_math_Llama2_WizardMath_n500_seed43.pt",
+      "mask_summary": {
+        "k_target": 0.2,
+        "mask_tolerance": 0.05,
+        "eps": 1e-06,
+        "mask_selection": "exact_topk_indices_fp32",
+        "n_target_tensors": 224,
+        "mean_mask_ratio": 0.19999998807907104,
+        "min_mask_ratio": 0.19999998807907104,
+        "max_mask_ratio": 0.19999998807907104,
+        "max_abs_error_from_k": 1.1920928966180355e-08,
+        "total_inf_count": 0,
+        "total_nan_count": 0,
+        "all_within_tolerance": true
+      },
+      "n_target_tensors": 224
+    },
+    {
+      "seed": 44,
+      "fim_h_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/harmful_safety_Llama2_SafetyFT_n500_seed44.pt",
+      "fim_b_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/benign_math_Llama2_WizardMath_n500_seed44.pt",
+      "mask_summary": {
+        "k_target": 0.2,
+        "mask_tolerance": 0.05,
+        "eps": 1e-06,
+        "mask_selection": "exact_topk_indices_fp32",
+        "n_target_tensors": 224,
+        "mean_mask_ratio": 0.19999998807907104,
+        "min_mask_ratio": 0.19999998807907104,
+        "max_mask_ratio": 0.19999998807907104,
+        "max_abs_error_from_k": 1.1920928966180355e-08,
+        "total_inf_count": 0,
+        "total_nan_count": 0,
+        "all_within_tolerance": true
+      },
+      "n_target_tensors": 224
+    }
+  ]
+}
