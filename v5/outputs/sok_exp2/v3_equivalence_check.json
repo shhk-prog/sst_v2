@@ -1,0 +1,66 @@
+{
+  "check": "v3_single_factor_equivalence",
+  "seed": 42,
+  "alpha": 0.6,
+  "k_ratio": 0.2,
+  "eps": 1e-06,
+  "v3_reference_model": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+math_alpha0.6_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42",
+  "safe_full_source": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/temp_safety_full_seed42",
+  "alignment": {
+    "base_dir": "/mnt/nas/home/hiromi/.cache/huggingface/hub/models--meta-llama--Llama-2-7b-hf/snapshots/01c7f73d771dfac7d292323805ebc428287df4f9",
+    "util_dir": "/mnt/nas/home/hiromi/.cache/huggingface/hub/models--WizardLMTeam--WizardMath-7B-V1.0/snapshots/825a586f260d6c583b8aa9ceab6cdfaa3d9a4ddc",
+    "n_base_total_tensors": 323,
+    "n_base_target_tensors": 224,
+    "n_fim_h_keys": 224,
+    "n_fim_b_keys": 224,
+    "missing_in_fh": 0,
+    "missing_in_fb": 0,
+    "shape_mismatch_fh": 0,
+    "shape_mismatch_fb": 0,
+    "missing_in_util": 0,
+    "exact_match_224": true
+  },
+  "n_total_tensors_checked": 291,
+  "n_target_tensors_checked": 224,
+  "n_norm_tensors_checked": 65,
+  "n_shape_mismatch_tensors_checked": 2,
+  "v3_reproduced_mean_mask_ratio": 0.6150079495938761,
+  "v3_reproduced_all1_tensors": 111,
+  "timestamp_utc": "2026-11-24T13:20:43.011560+00:00",
+  "disk_gpu_max_abs_diff": 0.0003108978271484375,
+  "disk_gpu_worst_tensor": "model.layers.0.self_attn.o_proj.weight",
+  "disk_gpu_n_nonzero_diff_tensors": 5,
+  "disk_gpu_nonzero_tensors_sample": [
+    {
+      "tensor": "model.layers.0.self_attn.o_proj.weight",
+      "max_abs_diff": 0.0003108978271484375,
+      "n_diff_elems": 4
+    },
+    {
+      "tensor": "model.layers.1.self_attn.o_proj.weight",
+      "max_abs_diff": 0.000217437744140625,
+      "n_diff_elems": 1
+    },
+    {
+      "tensor": "model.layers.1.self_attn.v_proj.weight",
+      "max_abs_diff": 1.9073486328125e-05,
+      "n_diff_elems": 2
+    },
+    {
+      "tensor": "model.layers.4.self_attn.v_proj.weight",
+      "max_abs_diff": 0.00028324127197265625,
+      "n_diff_elems": 4
+    },
+    {
+      "tensor": "model.layers.5.self_attn.v_proj.weight",
+      "max_abs_diff": 0.000286102294921875,
+      "n_diff_elems": 1
+    }
+  ],
+  "disk_gpu_total_diff_elems": 12,
+  "exact_zero_match_disk_gpu": false,
+  "in_process_v3_merge_sst_checked_tensors": 5,
+  "in_process_v3_merge_sst_max_abs_diff": 0.0,
+  "exact_zero_match_in_process": true,
+  "explanation": "286/291 tensors match disk GPU-merged v3 checkpoint bit-for-bit (0.0); remaining 5 tensors have 12/6,738,415,616 elements (1.78e-9) at the 1-ULP CUDA-vs-CPU fp16 division threshold boundary, and all 5 match v3/scripts/mergers/sst.py merge_sst() bit-for-bit (0.0) in the same CPU process."
+}

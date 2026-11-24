@@ -1,5 +1,6 @@
 {
   "mode": "verify_mask_only",
+  "mask_mode": "fp32",
   "k_ratio": 0.2,
   "mask_tol": 0.05,
   "eps": 1e-06,
@@ -16,13 +17,29 @@
     43,
     44
   ],
-  "timestamp_utc": "2026-11-24T11:54:33.829191+00:00",
+  "timestamp_utc": "2026-11-24T13:15:17.241716+00:00",
   "results": [
     {
       "seed": 42,
+      "mask_mode": "fp32",
       "fim_h_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/harmful_safety_Llama2_SafetyFT_n500_seed42.pt",
       "fim_b_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/benign_math_Llama2_WizardMath_n500_seed42.pt",
+      "alignment": {
+        "base_dir": "/mnt/nas/home/hiromi/.cache/huggingface/hub/models--meta-llama--Llama-2-7b-hf/snapshots/01c7f73d771dfac7d292323805ebc428287df4f9",
+        "util_dir": "/mnt/nas/home/hiromi/.cache/huggingface/hub/models--WizardLMTeam--WizardMath-7B-V1.0/snapshots/825a586f260d6c583b8aa9ceab6cdfaa3d9a4ddc",
+        "n_base_total_tensors": 323,
+        "n_base_target_tensors": 224,
+        "n_fim_h_keys": 224,
+        "n_fim_b_keys": 224,
+        "missing_in_fh": 0,
+        "missing_in_fb": 0,
+        "shape_mismatch_fh": 0,
+        "shape_mismatch_fb": 0,
+        "missing_in_util": 0,
+        "exact_match_224": true
+      },
       "mask_summary": {
+        "mask_mode": "fp32",
         "k_target": 0.2,
         "mask_tolerance": 0.05,
         "eps": 1e-06,
@@ -40,9 +57,25 @@
     },
     {
       "seed": 43,
+      "mask_mode": "fp32",
       "fim_h_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/harmful_safety_Llama2_SafetyFT_n500_seed43.pt",
       "fim_b_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/benign_math_Llama2_WizardMath_n500_seed43.pt",
+      "alignment": {
+        "base_dir": "/mnt/nas/home/hiromi/.cache/huggingface/hub/models--meta-llama--Llama-2-7b-hf/snapshots/01c7f73d771dfac7d292323805ebc428287df4f9",
+        "util_dir": "/mnt/nas/home/hiromi/.cache/huggingface/hub/models--WizardLMTeam--WizardMath-7B-V1.0/snapshots/825a586f260d6c583b8aa9ceab6cdfaa3d9a4ddc",
+        "n_base_total_tensors": 323,
+        "n_base_target_tensors": 224,
+        "n_fim_h_keys": 224,
+        "n_fim_b_keys": 224,
+        "missing_in_fh": 0,
+        "missing_in_fb": 0,
+        "shape_mismatch_fh": 0,
+        "shape_mismatch_fb": 0,
+        "missing_in_util": 0,
+        "exact_match_224": true
+      },
       "mask_summary": {
+        "mask_mode": "fp32",
         "k_target": 0.2,
         "mask_tolerance": 0.05,
         "eps": 1e-06,
@@ -60,9 +93,25 @@
     },
     {
       "seed": 44,
+      "mask_mode": "fp32",
       "fim_h_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/harmful_safety_Llama2_SafetyFT_n500_seed44.pt",
       "fim_b_path": "/mnt/nas/home/hiromi/src/sst_v2/v3/cache/fim/benign_math_Llama2_WizardMath_n500_seed44.pt",
+      "alignment": {
+        "base_dir": "/mnt/nas/home/hiromi/.cache/huggingface/hub/models--meta-llama--Llama-2-7b-hf/snapshots/01c7f73d771dfac7d292323805ebc428287df4f9",
+        "util_dir": "/mnt/nas/home/hiromi/.cache/huggingface/hub/models--WizardLMTeam--WizardMath-7B-V1.0/snapshots/825a586f260d6c583b8aa9ceab6cdfaa3d9a4ddc",
+        "n_base_total_tensors": 323,
+        "n_base_target_tensors": 224,
+        "n_fim_h_keys": 224,
+        "n_fim_b_keys": 224,
+        "missing_in_fh": 0,
+        "missing_in_fb": 0,
+        "shape_mismatch_fh": 0,
+        "shape_mismatch_fb": 0,
+        "missing_in_util": 0,
+        "exact_match_224": true
+      },
       "mask_summary": {
+        "mask_mode": "fp32",
         "k_target": 0.2,
         "mask_tolerance": 0.05,
         "eps": 1e-06,
