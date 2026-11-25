@@ -29,6 +29,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import socket
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -736,6 +737,14 @@ def run_merge_for_seed(
             base_model.save_pretrained(str(out_dir))
             tokenizer.save_pretrained(str(out_dir))
 
+            exec_env = {
+                "hostname": socket.gethostname(),
+                "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES", ""),
+                "device": device,
+                "gpu_name": torch.cuda.get_device_name(0) if device.startswith("cuda") and torch.cuda.is_available() else None,
+                "torch_version": torch.__version__,
+                "torch_cuda_version": torch.version.cuda,
+            }
             meta = {
                 "status": "success",
                 "experiment": "sok_exp2_fp32_sst_math",
@@ -758,10 +767,16 @@ def run_merge_for_seed(
                 "shape_mismatch_tensors_kept_base": shape_mismatch_names,
                 "model_fim_alignment": alignment_compact,
                 "mask_verification": mask_summary,
+                "execution_env": exec_env,
                 "timestamp_utc": datetime.now(timezone.utc).isoformat(),
             }
-            with open(out_dir / "merge_metadata.json", "w", encoding="utf-8") as f:
+            meta_path = out_dir / "merge_metadata.json"
+            meta_tmp = out_dir / "merge_metadata.json.tmp"
+            with open(meta_tmp, "w", encoding="utf-8") as f:
                 json.dump(meta, f, indent=2, ensure_ascii=False)
+                f.flush()
+                os.fsync(f.fileno())
+            os.replace(meta_tmp, meta_path)
             saved_dirs.append(str(out_dir))
             print(
                 f"[seed{seed} α={alpha:.1f}] 保存完了: {out_dir.name} "

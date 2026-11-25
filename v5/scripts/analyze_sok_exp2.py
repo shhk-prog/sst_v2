@@ -628,12 +628,26 @@ def fmt_ci(d: dict[str, float | None]) -> str:
     return f"{d['mean_diff']:+.2f} [{d['ci95_low']:+.2f}, {d['ci95_high']:+.2f}]"
 
 
+def load_gpu_infos(exp2_out_dir: Path) -> list[dict[str, Any]]:
+    """v5/outputs/sok_exp2/gpu_info_seed*.json があれば読み込む。"""
+    infos: list[dict[str, Any]] = []
+    for seed in SEEDS:
+        p = exp2_out_dir / f"gpu_info_seed{seed}.json"
+        if p.is_file():
+            try:
+                infos.append(read_json(p))
+            except Exception:
+                continue
+    return infos
+
+
 def build_report(
     curves: dict[str, list[dict[str, Any]]],
     bootstrap_rows: list[dict[str, Any]],
     cls_check: dict[str, Any],
     controls_cmp: list[dict[str, Any]],
     scales: dict[str, float],
+    gpu_infos: list[dict[str, Any]] | None = None,
 ) -> str:
     lines = [
         "# SoK 実証 2: P5 修正（fp32 SST-Merge）による安全性–有用性曲線の変化",
@@ -698,7 +712,30 @@ def build_report(
 
     lines += [
         "",
-        "## 5. 図の出力",
+        "## 5. 実行 GPU 環境の記録",
+        "",
+    ]
+    if gpu_infos:
+        lines += [
+            "| Seed | Host | CUDA_VISIBLE_DEVICES | GPU 名 | UUID | Driver | PyTorch / CUDA / vLLM |",
+            "|:---:|:---|:---:|:---|:---|:---|:---|",
+        ]
+        for g in gpu_infos:
+            ng = (g.get("nvidia_smi_gpus") or [{}])[0]
+            tg = (g.get("torch_gpus") or [{}])[0]
+            gname = ng.get("name") or tg.get("name") or "---"
+            uuid = ng.get("uuid") or "---"
+            drv = ng.get("driver_version") or "---"
+            vers = f"{g.get('torch_version')} / {g.get('torch_cuda_version')} / {g.get('vllm_version')}"
+            lines.append(
+                f"| {g.get('seed')} | {g.get('hostname')} | `{g.get('cuda_visible_devices')}` | {gname} | `{uuid}` | {drv} | `{vers}` |"
+            )
+    else:
+        lines.append("- （`gpu_info_seed*.json` 未出力）")
+
+    lines += [
+        "",
+        "## 6. 図の出力",
         "",
         f"- 主図（曲線比較、3 分類器別）: `exp2_safety_utility_curve.png`",
         f"- 補助図（実効安全注入量スケール vs 安全性・有用性）: `exp2_injection_ratio_curve.png`（スケール: `fp32_sst={scales['fp32_sst_v5']:.3f}`, `fp16_sst={scales['fp16_sst_v3']:.3f}`, `TA=1.000`）",
@@ -753,10 +790,11 @@ def main() -> int:
             bootstrap_rows.append(row)
 
     out_dir = args.out_dir
+    gpu_infos = load_gpu_infos(out_dir)
     plot_safety_utility_curves(curves, out_dir / "exp2_safety_utility_curve.png")
     plot_injection_aux(curves, scales, out_dir / "exp2_injection_ratio_curve.png")
 
-    report_md = build_report(curves, bootstrap_rows, cls_check, controls_cmp, scales)
+    report_md = build_report(curves, bootstrap_rows, cls_check, controls_cmp, scales, gpu_infos=gpu_infos)
     write_text(out_dir / "exp2_analysis_summary.md", report_md)
     write_json(
         out_dir / "exp2_analysis_summary.json",
@@ -764,6 +802,7 @@ def main() -> int:
             "timestamp_utc": datetime.now(timezone.utc).isoformat(),
             "n_boot": args.n_boot,
             "boot_seed": args.boot_seed,
+            "gpu_infos": gpu_infos,
             "classifier_output_check": cls_check,
             "effective_injection_scales": scales,
             "curves": curves,

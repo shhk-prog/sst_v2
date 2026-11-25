@@ -94,25 +94,37 @@ def verify_seed(
     )
 
     # --- Check 1: α=0.0 vs WizardMath (embed_tokens / lm_head 以外完全一致) ---
-    c1_non_vocab_max_diff = 0.0
+    # v3/scripts/mergers/sst.py L51, L72 は fp16 で `base + (util - base)` を経由するため、
+    # 直接比較には fp16 の 1 ULP (最大 ~1.9e-6) の丸め差が出る。
+    # そこで (a) v3 同式 `base + (util - base)` との厳密一致 (== 0.0) と
+    #       (b) raw `util` との差が fp16 丸め範囲 (<= 1e-5) の両方を検証する。
+    c1_non_vocab_vs_v3expr_max_diff = 0.0
+    c1_non_vocab_vs_raw_util_max_diff = 0.0
     c1_vocab_vs_base_max_diff = 0.0
     c1_mismatches: list[dict[str, Any]] = []
     with torch.no_grad():
         for name in all_names:
             t_m0 = m0_src.get(name).to(dtype=torch.float16)
+            t_base = base_src.get(name).to(dtype=torch.float16)
             if name in VOCAB_MISMATCH_NAMES:
-                t_base = base_src.get(name).to(dtype=torch.float16)
                 diff = float((t_m0.float() - t_base.float()).abs().max().item())
                 c1_vocab_vs_base_max_diff = max(c1_vocab_vs_base_max_diff, diff)
                 if diff > 0.0:
                     c1_mismatches.append({"tensor": name, "kind": "vocab_vs_base", "max_abs_diff": diff})
             else:
                 t_util = util_src.get(name).to(dtype=torch.float16)
-                diff = float((t_m0.float() - t_util.float()).abs().max().item())
-                c1_non_vocab_max_diff = max(c1_non_vocab_max_diff, diff)
-                if diff > 0.0:
-                    c1_mismatches.append({"tensor": name, "kind": "non_vocab_vs_util", "max_abs_diff": diff})
-    c1_pass = c1_non_vocab_max_diff == 0.0 and c1_vocab_vs_base_max_diff == 0.0
+                t_v3expr = t_base + (t_util - t_base)
+                diff_expr = float((t_m0.float() - t_v3expr.float()).abs().max().item())
+                diff_raw = float((t_m0.float() - t_util.float()).abs().max().item())
+                c1_non_vocab_vs_v3expr_max_diff = max(c1_non_vocab_vs_v3expr_max_diff, diff_expr)
+                c1_non_vocab_vs_raw_util_max_diff = max(c1_non_vocab_vs_raw_util_max_diff, diff_raw)
+                if diff_expr > 0.0:
+                    c1_mismatches.append({"tensor": name, "kind": "non_vocab_vs_v3expr", "max_abs_diff": diff_expr})
+    c1_pass = (
+        c1_non_vocab_vs_v3expr_max_diff == 0.0
+        and c1_non_vocab_vs_raw_util_max_diff <= 1e-5
+        and c1_vocab_vs_base_max_diff == 0.0
+    )
 
     # --- Check 2 (α=1.0 置換割合) & Check 3 (α=0.6 注入量比 vs v3 TA) ---
     target_names = [n for n in all_names if is_target_weight(n)]
@@ -212,7 +224,8 @@ def verify_seed(
         "check1_alpha0_vs_wizardmath": {
             "pass": c1_pass,
             "n_total_tensors": len(all_names),
-            "non_vocab_max_abs_diff": c1_non_vocab_max_diff,
+            "non_vocab_vs_v3expr_max_abs_diff": c1_non_vocab_vs_v3expr_max_diff,
+            "non_vocab_max_abs_diff": c1_non_vocab_vs_raw_util_max_diff,
             "vocab_vs_base_max_abs_diff": c1_vocab_vs_base_max_diff,
             "mismatches": c1_mismatches[:20],
         },
@@ -273,6 +286,7 @@ def main() -> int:
     ap.add_argument("--out-dir", type=Path, default=V5_ROOT / "outputs" / "sok_exp2")
     ap.add_argument("--k", type=float, default=0.20)
     ap.add_argument("--tol", type=float, default=0.05)
+    ap.add_argument("--force", action="store_true")
     args = ap.parse_args()
 
     out_dir = assert_inside_v5(args.out_dir)
@@ -281,19 +295,29 @@ def main() -> int:
     results = []
     all_pass = True
     for seed in args.seeds:
+        json_path = out_dir / f"post_merge_verification_seed{seed}.json"
+        md_path = out_dir / f"post_merge_verification_seed{seed}.md"
+        if not args.force and json_path.is_file():
+            try:
+                prev = json.loads(json_path.read_text(encoding="utf-8"))
+                if prev.get("overall_pass") is True:
+                    print(f"[post-merge verify] seed={seed} -> SKIP (既存の検証で PASS 済み: {json_path.name})", flush=True)
+                    results.append(prev)
+                    continue
+            except Exception:
+                pass
         print(f"[post-merge verify] seed={seed} 検証開始...", flush=True)
         res = verify_seed(seed=seed, models_root=args.models_root, k_ratio=args.k, tol=args.tol)
         results.append(res)
         all_pass = all_pass and res["overall_pass"]
-        json_path = out_dir / f"post_merge_verification_seed{seed}.json"
-        md_path = out_dir / f"post_merge_verification_seed{seed}.md"
         json_path.write_text(json.dumps(res, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         md_path.write_text(format_markdown([res]), encoding="utf-8")
+        c1 = res["check1_alpha0_vs_wizardmath"]
         c2 = res["check2_alpha1_replacement_fraction"]
         c3 = res["check3_alpha06_injection_ratio_vs_v3_ta"]
         print(
             f"[post-merge verify] seed={seed} -> {'PASS' if res['overall_pass'] else 'FAIL'} | "
-            f"α=0 diff={res['check1_alpha0_vs_wizardmath']['non_vocab_max_abs_diff']:.1g} | "
+            f"α=0 v3式差={c1['non_vocab_vs_v3expr_max_abs_diff']:.1g} (raw差={c1['non_vocab_max_abs_diff']:.1g}) | "
             f"α=1 置換率={c2['mean_replaced_where_safe_differs']:.4f} | "
             f"α=0.6 注入比中央値={c3['median_inner_ratio']:.4f} | "
             f"config={'PASS' if res['check4_config_comparison']['pass'] else 'FAIL'}",

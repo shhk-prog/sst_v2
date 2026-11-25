@@ -1,0 +1,29 @@
+{
+  "seed": 43,
+  "hostname": "iag-02",
+  "slurm_job_id": "local",
+  "slurm_array_task_id": "1",
+  "cuda_visible_devices": "2",
+  "nvidia_smi_gpus": [
+    {
+      "index": "2",
+      "name": "NVIDIA H100",
+      "uuid": "GPU-91d12958-6d46-ba66-1e90-89df74b92159",
+      "pci_bus_id": "00000000:AF:00.0",
+      "memory_total": "95830 MiB",
+      "driver_version": "580.142"
+    }
+  ],
+  "torch_gpus": [
+    {
+      "logical_index": 0,
+      "name": "NVIDIA H100",
+      "total_memory_gb": 93.09,
+      "compute_capability": "9.0"
+    }
+  ],
+  "torch_version": "2.11.0+cu130",
+  "torch_cuda_version": "13.0",
+  "vllm_version": "0.24.0",
+  "timestamp_utc": "2026-11-24T19:34:23.013503+00:00"
+}

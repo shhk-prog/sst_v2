@@ -1,0 +1,71 @@
+{
+  "seed": 43,
+  "overall_pass": true,
+  "check1_alpha0_vs_wizardmath": {
+    "pass": true,
+    "n_total_tensors": 291,
+    "non_vocab_vs_v3expr_max_abs_diff": 0.0,
+    "non_vocab_max_abs_diff": 1.9073486328125e-06,
+    "vocab_vs_base_max_abs_diff": 0.0,
+    "mismatches": []
+  },
+  "check2_alpha1_replacement_fraction": {
+    "pass": true,
+    "n_target_tensors": 224,
+    "mean_replaced_where_safe_differs": 0.19975050990923285,
+    "min_replaced_where_safe_differs": 0.1993356466671714,
+    "max_replaced_where_safe_differs": 0.2003734505187118,
+    "mean_changed_all_coords": 0.19839480838605336,
+    "k_target": 0.2,
+    "tol": 0.05
+  },
+  "check3_alpha06_injection_ratio_vs_v3_ta": {
+    "pass": true,
+    "n_target_tensors": 224,
+    "median_inner_ratio": 0.1978044948264157,
+    "mean_inner_ratio": 0.19608496259623182,
+    "min_inner_ratio": 0.14323691666251093,
+    "max_inner_ratio": 0.24487689397107082,
+    "median_norm_ratio": 0.43476686770836226,
+    "v3_reference_median": 1.0
+  },
+  "check4_config_comparison": {
+    "pass": true,
+    "fields": {
+      "rope_theta": {
+        "merged": 10000.0,
+        "wizardmath": 10000.0,
+        "llama2_base": 10000.0,
+        "match": true
+      },
+      "rms_norm_eps": {
+        "merged": 1e-05,
+        "wizardmath": 1e-05,
+        "match": true
+      },
+      "rope_scaling": {
+        "merged": null,
+        "wizardmath": null,
+        "match": true
+      },
+      "hidden_size": {
+        "merged": 4096,
+        "wizardmath": 4096,
+        "match": true
+      },
+      "max_position_embeddings": {
+        "merged": 4096,
+        "wizardmath": 2048,
+        "llama2_base": 4096,
+        "note": "v3 と同一仕様でベースモデル(Llama-2, 4096)を継承（WizardMath は 2048）"
+      },
+      "vocab_size": {
+        "merged": 32000,
+        "wizardmath": 32001,
+        "llama2_base": 32000,
+        "note": "v3 と同一仕様でベースモデル(32000)を継承（embed/lm_head はベース重み）"
+      }
+    }
+  },
+  "timestamp_utc": "2026-11-24T18:55:12.161205+00:00"
+}
