@@ -217,15 +217,15 @@ def write_samples_review(results: list[dict[str, Any]], out_md: Path, model_name
     ]
     for idx, r in enumerate(chosen, 1):
         lines += [
-            f"## {idx}. `{r['task_id']}` (`entry_point={r['entry_point']}`) — {'PASS' if r['passed'] else 'FAIL'} (`{r['exec_status']}`, mode=`{r['extract_mode']}`)",
+            f"## {idx}. `{r['task_id']}` (`entry_point={r['entry_point']}`) — {'PASS' if r['passed'] else 'FAIL'} (`{r['exec_status']}`, mode=`{r['extract_mode']}`, raw_chars=`{len(str(r['raw_response']))}`)",
             "",
-            "**Raw response (先頭 600 文字):**",
+            "**Raw response (全文):**",
             "```text",
-            str(r["raw_response"])[:600],
+            str(r["raw_response"]),
             "```",
-            "**Extracted code (先頭 600 文字):**",
+            "**Extracted code (全文):**",
             "```python",
-            str(r.get("extracted_code") or "")[:600],
+            str(r.get("extracted_code") or ""),
             "```",
             "",
         ]

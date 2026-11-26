@@ -14,3 +14,7 @@ worker GPU 2 (seeds: 43) PID 988393 started at 2026-11-25T23:47:28+09:00
 [worker GPU 2] seed 43 OK 2026-11-26T08:16:10+09:00
 [worker GPU 1] seed 42 OK 2026-11-26T08:29:36+09:00
 [worker GPU 1] seed 44 start 2026-11-26T08:29:36+09:00
+[worker GPU 1] seed 44 OK 2026-11-26T16:58:01+09:00
+worker GPU 1 (seeds: 42 44) OK at 2026-11-26T16:58:01+09:00
+worker GPU 2 (seeds: 43) OK at 2026-11-26T16:58:01+09:00
+all done: 2026-11-26T16:58:01+09:00

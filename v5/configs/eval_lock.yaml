@@ -1,0 +1,36 @@
+# sst_v2 実環境トラック 評価設定ロック（指示書 v2 §2.3）
+# 本ファイルに記載された検証済み設定のみマージ済みモデル評価に使用する。
+locked_at_jst: "2026-11-26T15:16:01.197243+09:00"
+expert_eval_spec_path: "v5/configs/expert_eval_spec.yaml"
+expert_eval_spec_sha256: "fc950b85d7c76dbb6623ad3277a800fd83b45c5af4399e23b18f40288a2879c0"
+
+locked_evaluations:
+  math_gsm8k_alpaca_cot:
+    expert_model: "WizardLMTeam/WizardMath-7B-V1.0"
+    script: "v5/scripts/eval_math_alpaca_cot.py"
+    script_sha256: "9157a6ef1da80d7a71040c41cce6f5d8dcffaf353926e450e1e202775a47077e"
+    prompt_variant: "WizardMath_Official_Alpaca_CoT"
+    generation:
+      temperature: 0.0
+      max_tokens: 1024
+    verified_run: "20261125-2347_math-alpaca-reeval"
+    verified_value_pct: 55.62
+    official_value_pct: 54.9
+    status: "locked"
+
+  code_humaneval_official_tab_nl:
+    expert_model: "vanillaOVO/WizardCoder-Python-7B-V1.0"
+    script: "v5/scripts/eval_code_wizardcoder_official.py"
+    script_sha256: "119181fc374236009ddae4f8a83f027311789eaa563d4539379ab3242f99ee83"
+    prompt_variant: "official_tab_nl"
+    generation:
+      temperature: 0.0
+      max_tokens: 2048
+      n_samples: 164
+    verified_run: "20261126-1413_wizardcoder-humaneval-gate-v2"
+    verified_value_pct: 50.61
+    official_value_pct: 55.5
+    official_eval_note: "公式55.5%は温度0.2サンプリング、本設定は貪欲法(temperature=0.0)で差-4.89pp（許容5pp以内）"
+    human_review: "確認済み（2026-11-26、20/20件全文確認・JSON完全一致・抽出器問題なし）"
+    mbpp_policy: "実環境トラックでは未検証のため除外し、HumanEval のみに一本化"
+    status: "locked"
