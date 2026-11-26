@@ -1,0 +1,75 @@
+# sst_v2 実環境トラック 専門モデル評価仕様書（指示書 v2 第 2.1 節）
+# マージ済みモデルは、ここに記載し §2.2 検証ゲートを通過した設定でのみ評価する。
+
+experts:
+  wizardmath_7b_v1:
+    model_id: "WizardLMTeam/WizardMath-7B-V1.0"
+    base_model: "meta-llama/Llama-2-7b-hf"
+    domain: "math"
+    benchmark: "gsm8k"
+    prompt_format: |
+      Below is an instruction that describes a task. Write a response that appropriately completes the request.
+
+      ### Instruction:
+      {question}
+
+      ### Response: Let's think step by step.
+    prompt_source: "WizardLM/WizardMath 公式リポジトリ gsm8k_eval.py (Luo et al., 2023) / sst_v2 v5/scripts/eval_math_alpaca_cot.py"
+    extractor: "The answer is -> \\boxed{} -> #### -> 末尾の数値"
+    generation:
+      temperature: 0.0
+      max_tokens: 1024
+      stop: ["</s>", "### Instruction:", "### Response:"]
+      n_samples_eval: 320
+      n_samples_full: 1319
+    official_value: 54.9
+    official_source: "WizardMath paper (arXiv:2308.09583, Table 1, GSM8K pass@1)"
+    gate_status: "verified"
+    verified_value: 55.62
+    verified_run: "20261125-2347_math-alpaca-reeval"
+
+  wizardcoder_python_7b_v1:
+    model_id: "vanillaOVO/WizardCoder-Python-7B-V1.0"
+    base_model: "meta-llama/Llama-2-7b-hf"
+    domain: "code"
+    benchmark: "humaneval"
+    prompt_format: |
+      Below is an instruction that describes a task. Write a response that appropriately completes the request.
+
+      ### Instruction:
+      Create a Python script for this problem:
+      {prompt}
+
+      ### Response:
+    prompt_source: "WizardLM/WizardCoder 公式リポジトリ src/humaneval_gen.py (Luo et al., 2023) および src/process_humaneval.py"
+    extractor: "```python ... ``` コードブロック抽出（失敗時は def 文以降を抽出）。関数シグネチャ重複連結を避け、prompt の import 群＋生成関数本体で評価"
+    generation:
+      temperature: 0.0
+      max_tokens: 1024
+      stop: ["</s>", "### Instruction:", "### Response:"]
+      n_samples_full: 164
+    official_value: 55.5
+    official_source: "WizardCoder-Python-7B-V1.0 公式モデルカード / WizardCoder paper (HumanEval pass@1 greedy)"
+    gate_status: "pending_gpu_verification"
+    legacy_broken_value: 5.49
+    legacy_broken_note: "v3 eval_utility.py では ### Instruction: で包んだ応答を lm-eval が prompt+response 連結したため def 重複・途中で切断され 5.49%（MBPP 36.56%, Avg 21.03%）に崩壊"
+
+  medalpaca_7b:
+    model_id: "medalpaca/medalpaca-7b"
+    base_model: "meta-llama/Llama-2-7b-hf"
+    domain: "medical"
+    benchmark: "medqa_4options"
+    prompt_format: |
+      Context: {context}
+
+      Question: {question}
+
+      Answer:
+    prompt_source: "kbressem/medAlpaca 公式リポジトリ (Han et al., 2023) — 検証時に公式プロンプト形式を再確認予定"
+    extractor: "選択肢ラベル抽出（A/B/C/D）"
+    generation:
+      temperature: 0.0
+      max_tokens: 128
+    official_value: null
+    official_source: "公式単一報告値なし（ベースより下がらないことを基準とする）"
+    gate_status: "pending"

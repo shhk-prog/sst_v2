@@ -1,29 +1,22 @@
 #!/usr/bin/env python3
 """SoK 数学有用性（WizardMath 公式 Alpaca-CoT GSM8K、55% スケール）× 安全性の最終集計・曲線プロット・ブートストラップ解析（CPU 専用）。
 
-機能:
-  1. v5/results/math_alpaca_cot/ 配下の全 11 手法（fp32 SST + v3 10 手法）× 全 α × 完了済み seed（最大 3 seed）と
-     単体参照モデル（WizardMath-7B-V1.0 / SafetyFT_seed42 / Llama-2-7b-hf）の GSM8K Alpaca-CoT 正答率を集計。
-  2. 同一条件の安全性結果（v5/results/fp32_sst_math/ および v3/results/vllm/debug_limit320/）と結合し、
-     拡張妥当性判定（P1 修正）＋3 種の有害分類器個別（HarmBench / WildGuard / StrongREJECT）を並べる。
-  3. 修正前（v3 の旧プロンプト GSM8K: ~6%）vs 修正後（Alpaca-CoT GSM8K: ~55%）の比較表を作成。
-  4. 妥当性制約付き Pareto フロンティア（拡張 VRR ≥ 80%、低 Cond.ASR HB、高 Alpaca-CoT GSM8K）を抽出。
-  5. プロンプト単位ブートストラップ（1,000 回、固定 seed=20261124）で 95% CI を算出:
-     - 同一名目 α での比較（fp32 SST vs fp16 SST vs TA vs Data-Free SST）
-     - **同等の安全性水準を揃えた比較**（例: fp32 SST α=0.8 vs fp16 SST α=0.6 vs TA α=0.4、
-       および fp32 SST α=1.0 vs fp16 SST α=0.8 vs TA α=0.6）
-  6. 論文用図 3 枚を出力:
-     - `math_alpaca_p5_curve_3classifiers.png`: 3 分類器別 安全性–有用性曲線（fp32 SST / fp16 SST / Data-Free SST / TA）
-     - `math_alpaca_all11_pareto.png`: 全 11 手法の安全性–有用性散布図＋Pareto フロンティア
-     - `math_prompt_before_after_alpha06.png`: 旧プロンプト（6%）vs 新 Alpaca-CoT（55%）の比較棒グラフ
+指示書 v2 第 1 節・2.5 節・3.4 節・4.1 節・4.3 節準拠:
+  1. --run-dir 指定時は <run_dir>/outputs/ および <run_dir>/summary.json に出力（RUN.md 必須）。
+  2. 妥当性 (VRR) は「従来規則（is_gibberish）と拡張規則（文字化け検出）のどちらか一方でも崩壊なら無効」
+     を主とし、従来規則単独 VRR・拡張規則単独 VRR も別列で出力する。
+  3. 妥当性制約の下限は safetybench の compare.py と揃えて VRR >= 90% とする。
+  4. 同じ安全性水準での比較を 3 種の判定器（HarmBench / WildGuard / StrongREJECT）ごとに独立に実施:
+     - (a) 判定器ごとの線形補間による目標 ASR 水準での GSM8K 有用性（「到達せず」を明示）
+     - (b) 判定器ごとに安全性を揃えた代表ペアのプロンプト単位ペアードブートストラップ 95% CI（1,000 回）
+  5. 図には参照点 3 種（Base: Llama-2-7b-hf / Safety: SafetyFT / Utility: WizardMath-7B-V1.0）を描画する。
 
-制約: CPU 専用・v3/ は読み取り専用。出力は v5/outputs/sok_math_alpaca/ のみ。
+制約: CPU 専用・v3/ は読み取り専用。
 """
 
 from __future__ import annotations
 
 import argparse
-import json
 import os
 import re
 import statistics
@@ -48,11 +41,12 @@ sys.path.insert(0, str(V5_ROOT / "src"))
 sys.path.insert(0, str(V5_ROOT / "scripts"))
 
 from analyze_sok_exp2 import (  # noqa: E402
-    WILDGUARD_BENCHES,
     STRONGREJECT_BENCHES,
+    WILDGUARD_BENCHES,
     extract_math_task_scores,
     extract_safety_arrays,
 )
+from probe_gibberish_escape import is_suspected_token_salad  # noqa: E402
 from probe_native_classifier import BENCHES  # noqa: E402
 from v5lib.results_io import scan_results  # noqa: E402
 from v5lib.safeio import prepare_write_path, read_json, write_json, write_text  # noqa: E402
@@ -137,6 +131,51 @@ def parse_alpaca_model_name(name: str) -> tuple[str | None, float | None, int | 
     return None, None, None
 
 
+def _extract_safety_with_vrr_breakdown(bench: str, rows: list[dict[str, Any]]) -> dict[str, Any]:
+    """従来 VRR / 拡張単独 VRR / 結合 VRR（どちらか崩壊で無効）をすべて返す。"""
+    rec = extract_safety_arrays(bench, rows)
+    n = len(rows)
+    ext_only_valid = sum(1 for r in rows if isinstance(r, dict) and not is_suspected_token_salad(str(r.get("response", ""))))
+    rec["vrr_ext_only"] = float(100.0 * ext_only_valid / n) if n > 0 else None
+    return rec
+
+
+def load_base_safety(v3_results_root: Path) -> dict[str, dict[str, float | None]]:
+    """単体参照モデル（SafetyFT 3 seed 平均・WizardMath）の安全性指標を読み込む。"""
+    base_dir = v3_results_root / "base"
+    out: dict[str, dict[str, float | None]] = {}
+    if not base_dir.is_dir():
+        return out
+
+    def _eval_tag(tag: str) -> dict[str, float | None] | None:
+        benches_out = {}
+        for b in BENCHES:
+            p = base_dir / f"sst_merge_v3_main_base_{tag}_{b}_safety.json"
+            if p.is_file():
+                rows = read_json(p).get("results", [])
+                if rows:
+                    benches_out[b] = _extract_safety_with_vrr_breakdown(b, rows)
+        if len(benches_out) != len(BENCHES):
+            return None
+        return {
+            "vrr_ext": sum(benches_out[b]["vrr_ext"] for b in BENCHES) / len(BENCHES),
+            "vrr_rule": sum(benches_out[b]["vrr_rule"] for b in BENCHES) / len(BENCHES),
+            "vrr_ext_only": sum(benches_out[b]["vrr_ext_only"] for b in BENCHES) / len(BENCHES),
+            "cond_hb": sum(benches_out[b]["cond_hb"] for b in BENCHES) / len(BENCHES),
+            "cond_wg": sum(benches_out[b]["cond_nat"] for b in WILDGUARD_BENCHES) / len(WILDGUARD_BENCHES),
+            "cond_sr": benches_out["strongreject"]["cond_nat"],
+        }
+
+    wm = _eval_tag("WizardMath")
+    if wm:
+        out["WizardMath-7B-V1.0"] = wm
+
+    sft_vals = [v for s in (42, 43, 44) if (v := _eval_tag(f"SafetyFT_seed{s}")) is not None]
+    if sft_vals:
+        out["SafetyFT"] = {k: sum(d[k] for d in sft_vals) / len(sft_vals) for k in sft_vals[0]}
+    return out
+
+
 def load_alpaca_results(alpaca_root: Path) -> tuple[dict[str, dict[str, Any]], dict[tuple[str, float | None, int], dict[str, Any]]]:
     base_models: dict[str, dict[str, Any]] = {}
     if (alpaca_root / "base").is_dir():
@@ -215,7 +254,7 @@ def load_safety_and_old_gsm8k(
             if b in bmap and bmap[b].is_file():
                 rows = read_json(bmap[b]).get("results", [])
                 if isinstance(rows, list) and rows:
-                    benches_out[b] = extract_safety_arrays(b, rows)
+                    benches_out[b] = _extract_safety_with_vrr_breakdown(b, rows)
 
         def _avg(bs: tuple[str, ...], field: str) -> float | None:
             vals = [benches_out[b][field] for b in bs if b in benches_out and benches_out[b][field] is not None]
@@ -224,6 +263,8 @@ def load_safety_and_old_gsm8k(
         safety_records[key] = {
             "benches": benches_out,
             "vrr_ext": _avg(BENCHES, "vrr_ext"),
+            "vrr_rule": _avg(BENCHES, "vrr_rule"),
+            "vrr_ext_only": _avg(BENCHES, "vrr_ext_only"),
             "cond_hb": _avg(BENCHES, "cond_hb"),
             "cond_wg": _avg(WILDGUARD_BENCHES, "cond_nat"),
             "cond_sr": _avg(STRONGREJECT_BENCHES, "cond_nat"),
@@ -240,6 +281,44 @@ def load_safety_and_old_gsm8k(
                     break
 
     return safety_records, old_gsm8k
+
+
+def interpolate_utility_at_asr(
+    points: list[tuple[float, float]],
+    target_asr: float,
+) -> float | None:
+    """(asr, utility) の α 順列を線形補間し、target_asr における最高有用性を返す。到達しない場合は None。
+
+    - points は α 昇順（通常は ASR 降順）。
+    - target_asr 以下に到達しない（最小 ASR > target_asr）なら None（「到達せず」）。
+    - 曲線上の隣接セグメントが target_asr を跨ぐ場合、線形補間値の最大値を返す。
+      また target_asr と完全一致する点があればその値も候補に含める。
+    """
+    if not points:
+        return None
+    min_asr = min(a for a, _ in points)
+    if min_asr > target_asr + 1e-9:
+        return None
+
+    cands: list[float] = []
+    for a, u in points:
+        if abs(a - target_asr) <= 1e-9:
+            cands.append(u)
+
+    for (a0, u0), (a1, u1) in zip(points, points[1:]):
+        lo, hi = (a0, a1) if a0 <= a1 else (a1, a0)
+        if lo - 1e-9 <= target_asr <= hi + 1e-9:
+            if abs(a1 - a0) <= 1e-12:
+                cands.extend([u0, u1])
+            else:
+                t = (target_asr - a0) / (a1 - a0)
+                cands.append(u0 + t * (u1 - u0))
+
+    if cands:
+        return max(cands)
+    # すべての点が target_asr 以下の場合（例: 単発手法が既に target 以下）は、target 以下の最高有用性
+    below = [u for a, u in points if a <= target_asr + 1e-9]
+    return max(below) if below else None
 
 
 def bootstrap_pair(
@@ -259,7 +338,6 @@ def bootstrap_pair(
 
     rng = np.random.default_rng(seed)
 
-    # 1. GSM8K Alpaca-CoT (320 docs)
     arr_pairs = [(alpaca_map[(ma[0], ma[1], s)]["arr"], alpaca_map[(mb[0], mb[1], s)]["arr"]) for s in common_seeds]
     n_doc = min(min(len(a), len(b)) for a, b in arr_pairs)
     idx_m = rng.integers(0, n_doc, size=(n_boot, n_doc))
@@ -271,7 +349,6 @@ def bootstrap_pair(
     g_lo, g_hi = np.percentile(g_boot, [2.5, 97.5])
     gsm_ci = {"mean_diff": float(g_boot.mean()), "ci95_low": float(g_lo), "ci95_high": float(g_hi)}
 
-    # 2. Safety Cond.ASR (HB / WG / SR)
     def _boot_safety(benches: tuple[str, ...], harm_key: str) -> dict[str, float] | None:
         s_boot = np.zeros(n_boot, dtype=np.float64)
         for b in benches:
@@ -307,24 +384,28 @@ def bootstrap_pair(
     }
 
 
-def compute_pareto_front(points: list[dict[str, Any]], vrr_min: float = 80.0) -> set[tuple[str, float | None]]:
-    """拡張 VRR >= vrr_min の点から、低 Cond.ASR HB かつ 高 Alpaca-CoT GSM8K の非支配点集合を求める。"""
+def compute_pareto_front(
+    points: list[dict[str, Any]],
+    vrr_min: float = 90.0,
+    asr_key: str = "cond_hb",
+) -> set[tuple[str, float | None]]:
+    """結合 VRR >= vrr_min の点から、低 Cond.ASR かつ 高 Alpaca-CoT GSM8K の非支配点集合を求める。"""
     eligible = [
         p
         for p in points
         if p["vrr_ext"]["mean"] is not None
         and p["vrr_ext"]["mean"] >= vrr_min
-        and p["cond_hb"]["mean"] is not None
+        and p[asr_key]["mean"] is not None
         and p["gsm8k_alpaca"]["mean"] is not None
     ]
     front: set[tuple[str, float | None]] = set()
     for p in eligible:
-        pa, pg = p["cond_hb"]["mean"], p["gsm8k_alpaca"]["mean"]
+        pa, pg = p[asr_key]["mean"], p["gsm8k_alpaca"]["mean"]
         dominated = False
         for q in eligible:
             if q is p:
                 continue
-            qa, qg = q["cond_hb"]["mean"], q["gsm8k_alpaca"]["mean"]
+            qa, qg = q[asr_key]["mean"], q["gsm8k_alpaca"]["mean"]
             if qa <= pa and qg >= pg and (qa < pa or qg > pg):
                 dominated = True
                 break
@@ -347,7 +428,9 @@ def mean_std(vals: list[float | None]) -> dict[str, float | int | None]:
 def plot_p5_curves_3classifiers(
     summary_rows: list[dict[str, Any]],
     base_models: dict[str, dict[str, Any]],
+    base_safety: dict[str, dict[str, float | None]],
     out_png: Path,
+    vrr_min: float = 90.0,
 ) -> None:
     styles = {
         "fp32_sst_v5": {"label": "fp32 SST (P5 fixed, v5)", "color": "#d62728", "marker": "o", "ls": "-"},
@@ -362,17 +445,31 @@ def plot_p5_curves_3classifiers(
     ]
     wm_acc = base_models.get("WizardMath-7B-V1.0", {}).get("acc_pct")
     sf_acc = base_models.get("SafetyFT_seed42", {}).get("acc_pct")
+    base_acc = base_models.get("Llama-2-7b-hf", {}).get("acc_pct")
 
-    fig, axes = plt.subplots(1, 3, figsize=(16.0, 5.5), sharex=True)
+    fig, axes = plt.subplots(1, 3, figsize=(16.5, 5.8), sharex=True)
     for ax, (y_key, title) in zip(axes, panels):
+        # 参照点 3 種を描画（指示書 v2 §4.1）
+        if base_acc is not None:
+            ax.axvline(base_acc, color="#888888", linestyle="-.", linewidth=1.0, alpha=0.65, label="Base: Llama-2-7b-hf (1.9%)")
         if wm_acc is not None:
-            ax.axvline(wm_acc, color="#555555", linestyle="--", linewidth=1.0, alpha=0.6)
+            ax.axvline(wm_acc, color="#444444", linestyle="--", linewidth=1.0, alpha=0.55)
+            wm_asr = (base_safety.get("WizardMath-7B-V1.0") or {}).get(y_key)
+            if wm_asr is not None:
+                ax.scatter([wm_acc], [wm_asr], marker="*", s=160, color="#222222", zorder=6, label="Utility: WizardMath-7B")
         if sf_acc is not None:
-            ax.axvline(sf_acc, color="#999999", linestyle=":", linewidth=1.0, alpha=0.6)
+            sf_asr = (base_safety.get("SafetyFT") or {}).get(y_key, 0.0)
+            ax.scatter([sf_acc], [sf_asr], marker="P", s=110, color="#117733", zorder=6, label="Safety: SafetyFT (0.0% ASR)")
 
         for m in ("fp32_sst_v5", "fp16_sst_v3", "data_free_sst_v3", "task_arithmetic_v3"):
             pts = sorted(
-                (r for r in summary_rows if r["method"] == m and r["gsm8k_alpaca"]["mean"] is not None and r[y_key]["mean"] is not None),
+                (
+                    r for r in summary_rows
+                    if r["method"] == m
+                    and r["gsm8k_alpaca"]["mean"] is not None
+                    and r[y_key]["mean"] is not None
+                    and (r["vrr_ext"]["mean"] or 0.0) >= vrr_min
+                ),
                 key=lambda r: r["alpha"],
             )
             if not pts:
@@ -385,7 +482,7 @@ def plot_p5_curves_3classifiers(
             ax.errorbar(
                 xs, ys, xerr=xe, yerr=ye,
                 label=st["label"], color=st["color"], marker=st["marker"], linestyle=st["ls"],
-                linewidth=1.8, markersize=6, capsize=3, alpha=0.92,
+                linewidth=1.8, markersize=5.5, capsize=3, alpha=0.92,
             )
             for p, x, y in zip(pts, xs, ys):
                 ax.annotate(f"{p['alpha']:.1f}", (x, y), textcoords="offset points", xytext=(4, 4), fontsize=7.5, color=st["color"])
@@ -393,14 +490,18 @@ def plot_p5_curves_3classifiers(
         ax.set_xlabel("GSM8K Accuracy — WizardMath Alpaca-CoT (%)")
         ax.set_ylabel("Conditional ASR (%, lower is safer)")
         ax.set_xlim(0, 62)
-        ax.set_ylim(-3, 102)
+        ax.set_ylim(-4, 102)
         ax.grid(True, alpha=0.3)
 
     handles, labels = axes[0].get_legend_handles_labels()
-    fig.suptitle("safety+math (Alpaca-CoT GSM8K): Safety–Utility Curves Across 3 Harm Classifiers", y=0.985, fontsize=12.0)
+    fig.suptitle(
+        f"safety+math (Alpaca-CoT GSM8K): Safety–Utility Curves Across 3 Harm Classifiers (VRR ≥ {vrr_min:.0f}%, α=0 near Utility Expert)",
+        y=0.985,
+        fontsize=11.5,
+    )
     if handles:
-        fig.legend(handles, labels, loc="upper center", bbox_to_anchor=(0.5, 0.93), ncol=4, frameon=False, fontsize=9.5)
-    fig.tight_layout(rect=(0, 0, 1, 0.87))
+        fig.legend(handles, labels, loc="upper center", bbox_to_anchor=(0.5, 0.935), ncol=4, frameon=False, fontsize=8.8)
+    fig.tight_layout(rect=(0, 0, 1, 0.84))
     fig.savefig(prepare_write_path(out_png), dpi=150, metadata={"Software": None})
     plt.close(fig)
 
@@ -409,7 +510,9 @@ def plot_all11_pareto(
     summary_rows: list[dict[str, Any]],
     pareto_set: set[tuple[str, float | None]],
     base_models: dict[str, dict[str, Any]],
+    base_safety: dict[str, dict[str, float | None]],
     out_png: Path,
+    vrr_min: float = 90.0,
 ) -> None:
     colors = {
         "fp32_sst_v5": "#d62728",
@@ -424,10 +527,20 @@ def plot_all11_pareto(
         "led_merging_v3": "#bcbd22",
         "mergealign_v3": "#333333",
     }
-    fig, ax = plt.subplots(figsize=(9.5, 6.2))
+    fig, ax = plt.subplots(figsize=(10.0, 6.4))
+    base_acc = base_models.get("Llama-2-7b-hf", {}).get("acc_pct")
     wm_acc = base_models.get("WizardMath-7B-V1.0", {}).get("acc_pct")
+    sf_acc = base_models.get("SafetyFT_seed42", {}).get("acc_pct")
+    if base_acc is not None:
+        ax.axvline(base_acc, color="#888888", linestyle="-.", linewidth=1.0, alpha=0.65, label=f"Base: Llama-2-7b-hf ({base_acc:.1f}%)")
     if wm_acc is not None:
-        ax.axvline(wm_acc, color="#444444", linestyle="--", linewidth=1.0, alpha=0.6, label=f"WizardMath-7B standalone ({wm_acc:.1f}%)")
+        ax.axvline(wm_acc, color="#444444", linestyle="--", linewidth=1.0, alpha=0.55)
+        wm_hb = (base_safety.get("WizardMath-7B-V1.0") or {}).get("cond_hb")
+        if wm_hb is not None:
+            ax.scatter([wm_acc], [wm_hb], marker="*", s=180, color="#222222", zorder=6, label=f"Utility: WizardMath-7B ({wm_acc:.1f}%, HB {wm_hb:.1f}%)")
+    if sf_acc is not None:
+        sf_hb = (base_safety.get("SafetyFT") or {}).get("cond_hb", 0.0)
+        ax.scatter([sf_acc], [sf_hb], marker="P", s=130, color="#117733", zorder=6, label=f"Safety: SafetyFT ({sf_acc:.1f}%, HB {sf_hb:.1f}%)")
 
     for m in ALL_METHODS:
         pts = [
@@ -435,7 +548,7 @@ def plot_all11_pareto(
             if r["method"] == m
             and r["gsm8k_alpaca"]["mean"] is not None
             and r["cond_hb"]["mean"] is not None
-            and (r["vrr_ext"]["mean"] or 0.0) >= 80.0
+            and (r["vrr_ext"]["mean"] or 0.0) >= vrr_min
         ]
         if not pts:
             continue
@@ -446,9 +559,8 @@ def plot_all11_pareto(
         if len(pts) > 1:
             ax.plot(xs, ys, marker="o", linewidth=1.6, markersize=5.5, color=c, label=METHOD_LABELS[m], alpha=0.88)
         else:
-            ax.scatter(xs, ys, marker="*", s=140, color=c, label=METHOD_LABELS[m], zorder=5)
+            ax.scatter(xs, ys, marker="D", s=95, color=c, label=METHOD_LABELS[m], zorder=5)
 
-    # Pareto フロンティアを強調線で結ぶ
     front_pts = sorted(
         (r for r in summary_rows if (r["method"], r["alpha"]) in pareto_set),
         key=lambda r: r["gsm8k_alpaca"]["mean"],
@@ -456,7 +568,7 @@ def plot_all11_pareto(
     if front_pts:
         fxs = [p["gsm8k_alpaca"]["mean"] for p in front_pts]
         fys = [p["cond_hb"]["mean"] for p in front_pts]
-        ax.plot(fxs, fys, color="black", linestyle="-", linewidth=2.4, alpha=0.55, label="Pareto Frontier (VRR ≥ 80%)", zorder=4)
+        ax.plot(fxs, fys, color="black", linestyle="-", linewidth=2.4, alpha=0.55, label=f"Pareto Frontier (VRR ≥ {vrr_min:.0f}%)", zorder=4)
         for idx, p in enumerate(front_pts):
             tag = f"{p['method'].replace('_v3','').replace('_v5','')}({p['alpha']})" if p["alpha"] is not None else p["method"].replace("_v3", "")
             px = p["gsm8k_alpaca"]["mean"]
@@ -468,7 +580,6 @@ def plot_all11_pareto(
                 xytext = (-8, 6) if px >= 54.0 else (-8, -14)
                 ha = "right"
             else:
-                # 中間域の密集を避けるため交互に上下オフセット
                 xytext = (9, -11 if idx % 2 == 0 else 4)
                 ha = "left"
             ax.annotate(
@@ -484,18 +595,20 @@ def plot_all11_pareto(
 
     ax.set_xlabel("GSM8K Accuracy — WizardMath Alpaca-CoT (%, higher is better)")
     ax.set_ylabel("Conditional ASR — HarmBench 4-bench avg (%, lower is safer)")
-    ax.set_title("safety+math: All 11 Methods Validity-Constrained Pareto Frontier (VRR ≥ 80%)")
+    ax.set_title(
+        f"safety+math: Validity-Constrained Pareto Frontier\n(Combined VRR ≥ {vrr_min:.0f}%, α=0 near Utility Expert)",
+        fontsize=11.0,
+    )
     ax.set_xlim(0, 64)
     ax.set_ylim(-3.5, 42)
     ax.grid(True, alpha=0.3)
-    ax.legend(bbox_to_anchor=(1.02, 1.0), loc="upper left", fontsize=8.5, frameon=True)
+    ax.legend(bbox_to_anchor=(1.02, 1.0), loc="upper left", fontsize=8.0, frameon=True)
     fig.tight_layout()
     fig.savefig(prepare_write_path(out_png), dpi=150, metadata={"Software": None})
     plt.close(fig)
 
 
 def plot_before_after_prompt(summary_rows: list[dict[str, Any]], out_png: Path) -> None:
-    """α=0.6 主結果における旧プロンプト GSM8K (v3) vs 新 Alpaca-CoT GSM8K (v5) 比較棒グラフ。"""
     sub = [r for r in summary_rows if (r["alpha"] is None or abs(r["alpha"] - 0.6) < 1e-9) and r["gsm8k_alpaca"]["mean"] is not None]
     sub.sort(key=lambda r: -(r["gsm8k_alpaca"]["mean"] or 0.0))
     labels = [r["method"].replace("_v3", "").replace("_v5", "") for r in sub]
@@ -531,20 +644,35 @@ def _fci(d: dict[str, Any] | None) -> str:
     return f"{d['mean_diff']:+.2f} [{d['ci95_low']:+.2f}, {d['ci95_high']:+.2f}]"
 
 
+def _finterp(v: float | None) -> str:
+    return f"{v:.2f}" if v is not None else "到達せず"
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--run-dir", type=Path, default=None, help="指示書 v2 第 1 節準拠のランフォルダ（RUN.md 必須）")
     ap.add_argument("--alpaca-root", type=Path, default=V5_ROOT / "results" / "math_alpaca_cot")
     ap.add_argument("--v3-results-root", type=Path, default=V3_ROOT / "results" / "vllm" / "debug_limit320")
     ap.add_argument("--v5-fp32-root", type=Path, default=V5_ROOT / "results" / "fp32_sst_math")
-    ap.add_argument("--out-dir", type=Path, default=V5_ROOT / "outputs" / "sok_math_alpaca")
+    ap.add_argument("--out-dir", type=Path, default=None, help="直接出力先（--run-dir 未指定時のみ）")
+    ap.add_argument("--vrr-min", type=float, default=90.0, help="妥当性下限 VRR (%)、既定 90.0（safetybench compare.py と統一）")
     ap.add_argument("--n-boot", type=int, default=1000)
     ap.add_argument("--boot-seed", type=int, default=20261124)
     args = ap.parse_args()
 
+    if args.run_dir is not None:
+        if not (args.run_dir / "RUN.md").is_file():
+            raise FileNotFoundError(f"RUN.md が存在しません（指示書 v2 §1.4）: {args.run_dir}")
+        out_dir = args.run_dir / "outputs"
+        summary_json_path = args.run_dir / "summary.json"
+    else:
+        out_dir = args.out_dir or (V5_ROOT / "outputs" / "sok_math_alpaca")
+        summary_json_path = None
+
     base_models, alpaca_map = load_alpaca_results(args.alpaca_root)
+    base_safety = load_base_safety(args.v3_results_root)
     safety_map, old_gsm8k = load_safety_and_old_gsm8k(args.v3_results_root, args.v5_fp32_root)
 
-    # (method, alpha) ごとに seed 集計
     ma_seeds: dict[tuple[str, float | None], set[int]] = defaultdict(set)
     for (m, a, s) in alpaca_map:
         ma_seeds[(m, a)].add(s)
@@ -564,6 +692,8 @@ def main() -> int:
                 "gsm8k_alpaca": mean_std([alpaca_map[(m, a, s)]["acc_pct"] for s in seeds]),
                 "gsm8k_old": mean_std([old_gsm8k.get((m, a, s)) for s in seeds]),
                 "vrr_ext": mean_std([safety_map.get((m, a, s), {}).get("vrr_ext") for s in seeds]),
+                "vrr_rule": mean_std([safety_map.get((m, a, s), {}).get("vrr_rule") for s in seeds]),
+                "vrr_ext_only": mean_std([safety_map.get((m, a, s), {}).get("vrr_ext_only") for s in seeds]),
                 "cond_hb": mean_std([safety_map.get((m, a, s), {}).get("cond_hb") for s in seeds]),
                 "cond_wg": mean_std([safety_map.get((m, a, s), {}).get("cond_wg") for s in seeds]),
                 "cond_sr": mean_std([safety_map.get((m, a, s), {}).get("cond_sr") for s in seeds]),
@@ -571,9 +701,83 @@ def main() -> int:
             }
             summary_rows.append(row)
 
-    pareto_set = compute_pareto_front(summary_rows, vrr_min=80.0)
+    pareto_hb = compute_pareto_front(summary_rows, vrr_min=args.vrr_min, asr_key="cond_hb")
+    pareto_wg = compute_pareto_front(summary_rows, vrr_min=args.vrr_min, asr_key="cond_wg")
+    pareto_sr = compute_pareto_front(summary_rows, vrr_min=args.vrr_min, asr_key="cond_sr")
 
-    # 1) 同一 α ブートストラップ
+    # 判定器ごとの線形補間（目標 ASR における GSM8K 有用性、VRR >= vrr_min 制約付き）
+    interp_specs = [
+        ("cond_hb", "HarmBench Classifier (4-bench avg)", [0.0, 5.0, 10.0, 15.0, 30.0]),
+        ("cond_wg", "WildGuard (JBB + WJB avg)", [0.0, 5.0, 15.0, 30.0, 60.0]),
+        ("cond_sr", "StrongREJECT (SR only)", [0.0, 5.0, 30.0, 75.0]),
+    ]
+    interp_tables: dict[str, dict[str, Any]] = {}
+    for asr_key, cls_label, targets in interp_specs:
+        method_rows = []
+        for m in ALL_METHODS:
+            pts = sorted(
+                (
+                    r for r in summary_rows
+                    if r["method"] == m
+                    and r["gsm8k_alpaca"]["mean"] is not None
+                    and r[asr_key]["mean"] is not None
+                    and (r["vrr_ext"]["mean"] or 0.0) >= args.vrr_min
+                ),
+                key=lambda r: -1.0 if r["alpha"] is None else r["alpha"],
+            )
+            xy = [(r[asr_key]["mean"], r["gsm8k_alpaca"]["mean"]) for r in pts]
+            vals = {f"{t:.0f}%": interpolate_utility_at_asr(xy, t) for t in targets}
+            method_rows.append({"method": m, "label": METHOD_LABELS[m], "min_asr": min((x for x, _ in xy), default=None), "targets": vals})
+        interp_tables[asr_key] = {"label": cls_label, "targets": targets, "rows": method_rows}
+
+    # 判定器ごとに安全性を揃えたブートストラップ比較（3 判定器別）
+    matched_by_classifier_specs: dict[str, list[tuple[str, tuple[str, float | None], tuple[str, float | None]]]] = {
+        "harmbench": [
+            ("HB~15-17%: fp32_sst(α=0.8) - fp16_sst(α=0.6)", ("fp32_sst_v5", 0.8), ("fp16_sst_v3", 0.6)),
+            ("HB~15-17%: fp32_sst(α=0.8) - TA(α=0.4)", ("fp32_sst_v5", 0.8), ("task_arithmetic_v3", 0.4)),
+            ("HB~15-17%: fp16_sst(α=0.6) - TA(α=0.4)", ("fp16_sst_v3", 0.6), ("task_arithmetic_v3", 0.4)),
+            ("HB~13-16%: fp32_sst(α=0.8) - data_free_sst(α=0.6)", ("fp32_sst_v5", 0.8), ("data_free_sst_v3", 0.6)),
+            ("HB~2-8%: fp32_sst(α=1.0) - fp16_sst(α=0.8)", ("fp32_sst_v5", 1.0), ("fp16_sst_v3", 0.8)),
+            ("HB~2-8%: fp32_sst(α=1.0) - TA(α=0.6)", ("fp32_sst_v5", 1.0), ("task_arithmetic_v3", 0.6)),
+            ("HB~1-4%: fp16_sst(α=0.8) - TA(α=0.6)", ("fp16_sst_v3", 0.8), ("task_arithmetic_v3", 0.6)),
+            ("HB~1-4%: dare(α=0.6) - TA(α=0.6)", ("dare_v3", 0.6), ("task_arithmetic_v3", 0.6)),
+            ("HB=0%: fp16_sst(α=1.0) - TA(α=0.8)", ("fp16_sst_v3", 1.0), ("task_arithmetic_v3", 0.8)),
+        ],
+        "wildguard": [
+            ("WG~25-31%: fp32_sst(α=0.8) - fp16_sst(α=0.6)", ("fp32_sst_v5", 0.8), ("fp16_sst_v3", 0.6)),
+            ("WG~25-28%: fp32_sst(α=0.8) - TA(α=0.4)", ("fp32_sst_v5", 0.8), ("task_arithmetic_v3", 0.4)),
+            ("WG~25-27%: fp32_sst(α=0.8) - data_free_sst(α=0.6)", ("fp32_sst_v5", 0.8), ("data_free_sst_v3", 0.6)),
+            ("WG~27%: fp32_sst(α=0.8) - ties(α=0.2)", ("fp32_sst_v5", 0.8), ("ties_v3", 0.2)),
+            ("WG~11%: fp32_sst(α=1.0) - dare(α=0.6)", ("fp32_sst_v5", 1.0), ("dare_v3", 0.6)),
+            ("WG~11%: fp32_sst(α=1.0) - ties(α=0.6)", ("fp32_sst_v5", 1.0), ("ties_v3", 0.6)),
+            ("WG~5-11%: fp32_sst(α=1.0) - fp16_sst(α=0.8)", ("fp32_sst_v5", 1.0), ("fp16_sst_v3", 0.8)),
+            ("WG~1-5%: fp16_sst(α=0.8) - TA(α=0.6)", ("fp16_sst_v3", 0.8), ("task_arithmetic_v3", 0.6)),
+            ("WG=0%: fp16_sst(α=1.0) - TA(α=0.8)", ("fp16_sst_v3", 1.0), ("task_arithmetic_v3", 0.8)),
+            ("WG~0-1%: ties(α=0.8) - TA(α=0.6)", ("ties_v3", 0.8), ("task_arithmetic_v3", 0.6)),
+        ],
+        "strongreject": [
+            ("SR~25-39%: fp32_sst(α=0.8) - fp16_sst(α=0.6)", ("fp32_sst_v5", 0.8), ("fp16_sst_v3", 0.6)),
+            ("SR~25-31%: fp32_sst(α=0.8) - data_free_sst(α=0.6)", ("fp32_sst_v5", 0.8), ("data_free_sst_v3", 0.6)),
+            ("SR~25-39%: fp32_sst(α=0.8) - TA(α=0.4)", ("fp32_sst_v5", 0.8), ("task_arithmetic_v3", 0.4)),
+            ("SR~25%: fp32_sst(α=0.8) - dare(α=0.2)", ("fp32_sst_v5", 0.8), ("dare_v3", 0.2)),
+            ("SR~0-2%: fp32_sst(α=1.0) - fp16_sst(α=0.8)", ("fp32_sst_v5", 1.0), ("fp16_sst_v3", 0.8)),
+            ("SR~0-1%: fp32_sst(α=1.0) - TA(α=0.6)", ("fp32_sst_v5", 1.0), ("task_arithmetic_v3", 0.6)),
+            ("SR~0-1%: fp32_sst(α=1.0) - dare(α=0.6)", ("fp32_sst_v5", 1.0), ("dare_v3", 0.6)),
+            ("SR~0-1%: data_free_sst(α=0.8) - TA(α=0.6)", ("data_free_sst_v3", 0.8), ("task_arithmetic_v3", 0.6)),
+            ("SR=0%: fp16_sst(α=1.0) - TA(α=0.8)", ("fp16_sst_v3", 1.0), ("task_arithmetic_v3", 0.8)),
+        ],
+    }
+
+    matched_boot_by_cls: dict[str, list[dict[str, Any]]] = {}
+    for c_idx, (cname, specs) in enumerate(matched_by_classifier_specs.items()):
+        rows_b = []
+        for idx, (label, ma, mb) in enumerate(specs):
+            b_res = bootstrap_pair(alpaca_map, safety_map, ma, mb, args.n_boot, args.boot_seed + 1000 * (c_idx + 1) + idx)
+            if b_res["n_seeds"] > 0:
+                rows_b.append({"comparison": label, **b_res})
+        matched_boot_by_cls[cname] = rows_b
+
+    # 同一名目 α（P3 の実例として並べる）
     same_alpha_boot = []
     for p_idx, (label, ma_m, mb_m) in enumerate([
         ("fp32_sst - fp16_sst", "fp32_sst_v5", "fp16_sst_v3"),
@@ -586,83 +790,122 @@ def main() -> int:
             if b_res["n_seeds"] > 0:
                 same_alpha_boot.append({"pair": label, "alpha": a, **b_res})
 
-    # 2) 同等安全性水準（P3 曲線比較）ブートストラップ
-    matched_safety_specs = [
-        ("HB~15-17%: fp32_sst(α=0.8) - fp16_sst(α=0.6)", ("fp32_sst_v5", 0.8), ("fp16_sst_v3", 0.6)),
-        ("HB~15-17%: fp32_sst(α=0.8) - TA(α=0.4)", ("fp32_sst_v5", 0.8), ("task_arithmetic_v3", 0.4)),
-        ("HB~15-17%: fp16_sst(α=0.6) - TA(α=0.4)", ("fp16_sst_v3", 0.6), ("task_arithmetic_v3", 0.4)),
-        ("HB~2-8%: fp32_sst(α=1.0) - fp16_sst(α=0.8)", ("fp32_sst_v5", 1.0), ("fp16_sst_v3", 0.8)),
-        ("HB~2-8%: fp32_sst(α=1.0) - TA(α=0.6)", ("fp32_sst_v5", 1.0), ("task_arithmetic_v3", 0.6)),
-        ("HB~2-3%: fp16_sst(α=0.8) - TA(α=0.6)", ("fp16_sst_v3", 0.8), ("task_arithmetic_v3", 0.6)),
-        ("HB=0%: fp16_sst(α=1.0) - TA(α=0.8)", ("fp16_sst_v3", 1.0), ("task_arithmetic_v3", 0.8)),
-    ]
-    matched_safety_boot = []
-    for idx, (label, ma, mb) in enumerate(matched_safety_specs):
-        b_res = bootstrap_pair(alpaca_map, safety_map, ma, mb, args.n_boot, args.boot_seed + 900 + idx)
-        if b_res["n_seeds"] > 0:
-            matched_safety_boot.append({"comparison": label, **b_res})
-
     # 図の出力
-    out_dir = args.out_dir
-    plot_p5_curves_3classifiers(summary_rows, base_models, out_dir / "math_alpaca_p5_curve_3classifiers.png")
-    plot_all11_pareto(summary_rows, pareto_set, base_models, out_dir / "math_alpaca_all11_pareto.png")
+    plot_p5_curves_3classifiers(summary_rows, base_models, base_safety, out_dir / "math_alpaca_p5_curve_3classifiers.png", vrr_min=args.vrr_min)
+    plot_all11_pareto(summary_rows, pareto_hb, base_models, base_safety, out_dir / "math_alpaca_all11_pareto.png", vrr_min=args.vrr_min)
     plot_before_after_prompt(summary_rows, out_dir / "math_prompt_before_after_alpha06.png")
 
     # Markdown レポート
     n_total_completed = len(alpaca_map)
+    sf_safety = base_safety.get("SafetyFT", {})
+    wm_safety = base_safety.get("WizardMath-7B-V1.0", {})
     md = [
-        "# SoK `safety+math` 最終集計: WizardMath 公式 Alpaca-CoT GSM8K × 安全性（3 分類器・拡張妥当性）",
+        "# SoK `safety+math` 集計: WizardMath 公式 Alpaca-CoT GSM8K × 安全性（3 分類器個別・結合 VRR ≥ 90%）",
         "",
-        f"- 完了モデル数: `{n_total_completed} / 138`（全 3 seed 揃っていれば 138/138）",
-        "- 単体参照モデル（GSM8K Alpaca-CoT）: "
-        + ", ".join(f"**{k}**=`{v['acc_pct']:.2f}%` ({v['n_correct']}/{v['n_total']})" for k, v in sorted(base_models.items())),
+        f"- **完了モデル数**: `{n_total_completed} / 138`（全 3 seed 揃っていれば `138/138`）",
+        f"- **妥当性 (VRR) の定義と下限**: 従来規則（`is_gibberish`）と拡張規則（文字化け検出）の**どちらか一方でも**崩壊と判定された応答を無効とする「結合 VRR」を主指標とし、下限は `safetybench/compare.py` と同一の **`VRR ≥ {args.vrr_min:.0f}%`** とした（従来 VRR・拡張単独 VRR も別列で併記）。",
+        "- **単体参照モデル（GSM8K Alpaca-CoT / 安全性）**: "
+        + ", ".join(f"**{k}**=`{v['acc_pct']:.2f}%` ({v['n_correct']}/{v['n_total']})" for k, v in sorted(base_models.items()))
+        + (
+            f" ｜ **SafetyFT (3-seed avg)**: HB=`{sf_safety['cond_hb']:.2f}%`, WG=`{sf_safety['cond_wg']:.2f}%`, SR=`{sf_safety['cond_sr']:.2f}%`"
+            if sf_safety else ""
+        )
+        + (
+            f" ｜ **WizardMath-7B**: HB=`{wm_safety['cond_hb']:.2f}%`, WG=`{wm_safety['cond_wg']:.2f}%`, SR=`{wm_safety['cond_sr']:.2f}%`"
+            if wm_safety else ""
+        ),
+        "- **係数の意味の違い（P3 注記）**: 実環境トラック（非対称補間）では `α=0` が分野専門モデル（WizardMath-7B）に近く、`α=1` が安全モデル（SafetyFT）に近い。したがって主比較は第 2 節・第 3 節の「**判定器ごとに同じ安全性の水準で揃えた有用性比較**」とし、同一名目 `α` の表（第 4 節・第 5 節）は P3 の実例として並べる。",
         "",
-        "## 1. α=0.6 主結果（および単発 4 手法）: 旧プロンプト vs 新 Alpaca-CoT 比較",
+        "## 1. 判定器ごとの「同じ有害率での GSM8K 有用性」（線形補間・VRR ≥ 90%、指示書 v2 §4.1）",
         "",
-        "| Method | α | 旧 GSM8K (v3, %) | **新 GSM8K (Alpaca-CoT, %)** | 拡張 VRR (%) | Cond.ASR HB (%) | Cond.ASR WG (%) | Cond.ASR SR (%) | Pareto |",
-        "|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|",
+        "> SafetyFT 単体の条件付き ASR は 3 判定器すべて `0.00%`（したがって 2 倍基準も `0.00%`）のため、`0%`（完全防御）を含む複数の固定有害率水準での線形補間有用性を 3 判定器ごとに示す。曲線がその有害率に届かない手法は「到達せず」と記載。",
+        "",
+    ]
+    for asr_key, cls_label, targets in interp_specs:
+        tbl = interp_tables[asr_key]
+        t_headers = " | ".join(f"ASR ≤ {t:.0f}%" for t in targets)
+        t_align = " | ".join("---:" for _ in targets)
+        md += [
+            f"### 1.{interp_specs.index((asr_key, cls_label, targets)) + 1} {cls_label}",
+            "",
+            f"| Method | 到達最小 ASR (%) | {t_headers} |",
+            f"|:---|---:|{t_align}|",
+        ]
+        for r in tbl["rows"]:
+            min_s = f"{r['min_asr']:.2f}" if r["min_asr"] is not None else "VRR<90%"
+            vals_s = " | ".join(_finterp(r["targets"][f"{t:.0f}%"]) for t in targets)
+            md.append(f"| {r['label']} | {min_s} | {vals_s} |")
+        md.append("")
+
+    md += [
+        "## 2. 判定器ごとに安全性を揃えたペアード・ブートストラップ比較（プロンプト単位 95% CI、1,000 回）",
+        "",
+        "> 同じ 2 手法であっても、**どの判定器で安全性を揃えるかによって比較点と優劣の結論が変わる（P2 の実例）**ことを示すため、HarmBench / WildGuard / StrongREJECT の 3 判定器それぞれで安全性を揃えた比較を独立に出力した。",
+        "",
+    ]
+    cls_titles = [
+        ("harmbench", "### 2.1 HarmBench 分類器で安全性を揃えた比較"),
+        ("wildguard", "### 2.2 WildGuard（JBB + WJB）で安全性を揃えた比較"),
+        ("strongreject", "### 2.3 StrongREJECT で安全性を揃えた比較"),
+    ]
+    for cname, heading in cls_titles:
+        md += [
+            heading,
+            "",
+            "| 比較（A − B） | seeds | Δ GSM8K Alpaca-CoT (pp) | Δ Cond.ASR HB (pp) | Δ Cond.ASR WG (pp) | Δ Cond.ASR SR (pp) |",
+            "|:---|:---:|:---:|:---:|:---:|:---:|",
+        ]
+        for r in matched_boot_by_cls[cname]:
+            md.append(
+                f"| {r['comparison']} | {r['n_seeds']} | **{_fci(r['gsm8k'])}** "
+                f"| {_fci(r['cond_hb'])} | {_fci(r['cond_wg'])} | {_fci(r['cond_sr'])} |"
+            )
+        md.append("")
+
+    md += [
+        "## 3. α=0.6 主結果（および単発 4 手法）: 旧プロンプト vs 新 Alpaca-CoT 比較（P3・P6 参考表）",
+        "",
+        "| Method | α | 旧 GSM8K (v3, %) | **新 GSM8K (Alpaca-CoT, %)** | 従来 VRR (%) | 拡張単独 VRR (%) | **結合 VRR (%)** | Cond.ASR HB (%) | Cond.ASR WG (%) | Cond.ASR SR (%) | Pareto (HB/WG/SR) |",
+        "|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|",
     ]
     for r in summary_rows:
         if r["alpha"] is not None and abs(r["alpha"] - 0.6) > 1e-9:
             continue
-        is_p = "★" if (r["method"], r["alpha"]) in pareto_set else ""
+        ptags = "/".join([
+            "HB" if (r["method"], r["alpha"]) in pareto_hb else "-",
+            "WG" if (r["method"], r["alpha"]) in pareto_wg else "-",
+            "SR" if (r["method"], r["alpha"]) in pareto_sr else "-",
+        ])
         a_str = f"{r['alpha']:.1f}" if r["alpha"] is not None else "N/A"
         md.append(
             f"| {r['label']} | {a_str} | {_fms(r['gsm8k_old'])} | **{_fms(r['gsm8k_alpaca'])}** "
-            f"| {_fms(r['vrr_ext'])} | {_fms(r['cond_hb'])} | {_fms(r['cond_wg'])} | {_fms(r['cond_sr'])} | {is_p} |"
+            f"| {_fms(r['vrr_rule'])} | {_fms(r['vrr_ext_only'])} | **{_fms(r['vrr_ext'])}** "
+            f"| {_fms(r['cond_hb'])} | {_fms(r['cond_wg'])} | {_fms(r['cond_sr'])} | `{ptags}` |"
         )
 
     md += [
         "",
-        "## 2. 全 11 手法 × 全 α 一覧（拡張妥当性・3 分類器別）",
+        "## 4. 全 11 手法 × 全 α 一覧（3 種 VRR・3 判定器別・Pareto VRR ≥ 90%）",
         "",
-        "| Method | α | **GSM8K Alpaca-CoT (%)** | 拡張 VRR (%) | Cond.ASR HB (%) | Cond.ASR WG (%) | Cond.ASR SR (%) | VSR HB (%) | Pareto |",
-        "|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|",
+        "| Method | α | **GSM8K Alpaca-CoT (%)** | 従来 VRR (%) | 拡張単独 VRR (%) | **結合 VRR (%)** | Cond.ASR HB (%) | Cond.ASR WG (%) | Cond.ASR SR (%) | VSR HB (%) | Pareto (HB/WG/SR) |",
+        "|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|",
     ]
     for r in summary_rows:
-        is_p = "★" if (r["method"], r["alpha"]) in pareto_set else ""
+        ptags = "/".join([
+            "HB" if (r["method"], r["alpha"]) in pareto_hb else "-",
+            "WG" if (r["method"], r["alpha"]) in pareto_wg else "-",
+            "SR" if (r["method"], r["alpha"]) in pareto_sr else "-",
+        ])
         a_str = f"{r['alpha']:.1f}" if r["alpha"] is not None else "N/A"
         md.append(
-            f"| {r['label']} | {a_str} | {_fms(r['gsm8k_alpaca'])} | {_fms(r['vrr_ext'])} "
-            f"| {_fms(r['cond_hb'])} | {_fms(r['cond_wg'])} | {_fms(r['cond_sr'])} | {_fms(r['vsr_hb'])} | {is_p} |"
+            f"| {r['label']} | {a_str} | {_fms(r['gsm8k_alpaca'])} "
+            f"| {_fms(r['vrr_rule'])} | {_fms(r['vrr_ext_only'])} | {_fms(r['vrr_ext'])} "
+            f"| {_fms(r['cond_hb'])} | {_fms(r['cond_wg'])} | {_fms(r['cond_sr'])} | {_fms(r['vsr_hb'])} | `{ptags}` |"
         )
 
     md += [
         "",
-        "## 3. 同等安全性水準での曲線比較（プロンプト単位ブートストラップ 95% CI、1,000 回）",
-        "",
-        "| 比較（A − B） | seeds | Δ GSM8K Alpaca-CoT (pp) | Δ Cond.ASR HB (pp) | Δ Cond.ASR WG (pp) | Δ Cond.ASR SR (pp) |",
-        "|:---|:---:|:---:|:---:|:---:|:---:|",
-    ]
-    for r in matched_safety_boot:
-        md.append(
-            f"| {r['comparison']} | {r['n_seeds']} | **{_fci(r['gsm8k'])}** "
-            f"| {_fci(r['cond_hb'])} | {_fci(r['cond_wg'])} | {_fci(r['cond_sr'])} |"
-        )
-
-    md += [
-        "",
-        "## 4. 同一名目 α でのブートストラップ比較（95% CI、1,000 回）",
+        "## 5. 同一名目 α でのブートストラップ比較（P3 の実例として並記、95% CI・1,000 回）",
         "",
         "| 比較ペア | α | seeds | Δ GSM8K Alpaca-CoT (pp) | Δ Cond.ASR HB (pp) | Δ Cond.ASR WG (pp) | Δ Cond.ASR SR (pp) |",
         "|:---|:---:|:---:|:---:|:---:|:---:|:---:|",
@@ -675,27 +918,36 @@ def main() -> int:
 
     md += [
         "",
-        "## 5. 出力図",
+        "## 6. 出力図",
         "",
-        "- `math_alpaca_p5_curve_3classifiers.png`（3 分類器別 安全性–有用性曲線）",
-        "- `math_alpaca_all11_pareto.png`（全 11 手法 妥当性制約付き Pareto フロンティア）",
+        "- `math_alpaca_p5_curve_3classifiers.png`（3 分類器別 安全性–有用性曲線、参照点 3 種・結合 VRR ≥ 90%）",
+        "- `math_alpaca_all11_pareto.png`（全 11 手法 妥当性制約付き Pareto フロンティア、結合 VRR ≥ 90%）",
         "- `math_prompt_before_after_alpha06.png`（旧プロンプト vs 新 Alpaca-CoT 比較棒グラフ）",
     ]
 
-    write_text(out_dir / "math_alpaca_analysis.md", "\n".join(md) + "\n")
-    write_json(
-        out_dir / "math_alpaca_analysis.json",
-        {
-            "timestamp_utc": datetime.now(timezone.utc).isoformat(),
-            "n_completed_models": n_total_completed,
-            "base_models": {k: {kk: vv for kk, vv in v.items() if kk != "arr"} for k, v in base_models.items()},
-            "pareto_frontier": [{"method": m, "alpha": a} for (m, a) in sorted(pareto_set, key=lambda x: (x[0], -1.0 if x[1] is None else x[1]))],
-            "summary_rows": summary_rows,
-            "matched_safety_bootstrap": matched_safety_boot,
-            "same_alpha_bootstrap": same_alpha_boot,
+    payload = {
+        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+        "n_completed_models": n_total_completed,
+        "vrr_min": args.vrr_min,
+        "vrr_definition": "either_rule_or_extended_collapse_is_invalid",
+        "base_models": {k: {kk: vv for kk, vv in v.items() if kk != "arr"} for k, v in base_models.items()},
+        "base_safety": base_safety,
+        "pareto_frontier": {
+            "harmbench": [{"method": m, "alpha": a} for (m, a) in sorted(pareto_hb, key=lambda x: (x[0], -1.0 if x[1] is None else x[1]))],
+            "wildguard": [{"method": m, "alpha": a} for (m, a) in sorted(pareto_wg, key=lambda x: (x[0], -1.0 if x[1] is None else x[1]))],
+            "strongreject": [{"method": m, "alpha": a} for (m, a) in sorted(pareto_sr, key=lambda x: (x[0], -1.0 if x[1] is None else x[1]))],
         },
-    )
-    print(f"保存完了: {out_dir / 'math_alpaca_analysis.md'} (完了モデル {n_total_completed}/138)")
+        "interpolated_utility_at_asr": interp_tables,
+        "matched_safety_bootstrap_by_classifier": matched_boot_by_cls,
+        "same_alpha_bootstrap": same_alpha_boot,
+        "summary_rows": summary_rows,
+    }
+
+    write_text(out_dir / "math_alpaca_analysis.md", "\n".join(md) + "\n")
+    write_json(out_dir / "math_alpaca_analysis.json", payload)
+    if summary_json_path is not None:
+        write_json(summary_json_path, payload)
+    print(f"保存完了: {out_dir / 'math_alpaca_analysis.md'} (完了モデル {n_total_completed}/138, VRR>={args.vrr_min:.0f}%)")
     return 0
 
 
