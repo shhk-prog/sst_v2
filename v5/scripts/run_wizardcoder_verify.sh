@@ -32,18 +32,19 @@ export VLLM_WORKER_MULTIPROC_METHOD=spawn
 echo "=== WizardCoder HumanEval Gate Start: $(date -Iseconds) | Host: $(hostname) | CVD=${CUDA_VISIBLE_DEVICES:-unset} ===" | tee -a "$RUN_DIR/logs/run.log"
 nvidia-smi --query-gpu=index,name,uuid,memory.total,memory.used --format=csv | tee -a "$RUN_DIR/logs/run.log"
 
+PROMPT_VARIANT="${PROMPT_VARIANT:-official_tab_nl}"
 run_one() {
   local mpath="$1"
   local mname="$2"
   shift 2
-  local cmd=("$V3_PY" "$SCRIPT" --run-dir "$RUN_DIR" --model-path "$mpath" --model-name "$mname" --gpu-memory-utilization "$GPU_MEM_UTIL" "$@")
+  local cmd=("$V3_PY" "$SCRIPT" --run-dir "$RUN_DIR" --model-path "$mpath" --model-name "$mname" --prompt-variant "$PROMPT_VARIANT" --gpu-memory-utilization "$GPU_MEM_UTIL" "$@")
   printf '%q ' "${cmd[@]}" >> "$RUN_DIR/commands.sh"
   echo "" >> "$RUN_DIR/commands.sh"
   "${cmd[@]}" 2>&1 | tee -a "$RUN_DIR/logs/run.log"
 }
 
 run_one "meta-llama/Llama-2-7b-hf" "Llama-2-7b-hf"
-BASE_PASS1=$("$V3_PY" -c "import json; print(json.load(open('$RUN_DIR/outputs/Llama-2-7b-hf_humaneval_official.json'))['humaneval_pass1_pct'])")
+BASE_PASS1=$("$V3_PY" -c "import json; print(json.load(open('$RUN_DIR/outputs/Llama-2-7b-hf_humaneval_${PROMPT_VARIANT}.json'))['humaneval_pass1_pct'])")
 run_one "/mnt/nas/home/hiromi/src/sst_v2/v3/models/temp_safety_full_seed42" "SafetyFT_seed42" --base-pass1 "$BASE_PASS1"
 run_one "vanillaOVO/WizardCoder-Python-7B-V1.0" "WizardCoder-Python-7B-V1.0" --official-value 55.5 --base-pass1 "$BASE_PASS1"
 

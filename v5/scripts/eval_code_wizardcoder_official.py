@@ -36,29 +36,48 @@ sys.path.insert(0, str(V5_ROOT / "src"))
 from v5lib.safeio import write_json, write_text  # noqa: E402
 
 # WizardCoder 公式 HumanEval プロンプト（WizardLM/WizardCoder src/humaneval_gen.py）
-WIZARDCODER_HUMANEVAL_TEMPLATE = (
-    "Below is an instruction that describes a task. "
-    "Write a response that appropriately completes the request.\n\n"
-    "### Instruction:\n"
-    "Create a Python script for this problem:\n"
-    "{prompt}\n\n"
-    "### Response:"
-)
+WIZARDCODER_PROMPTS = {
+    "official_tab_nl": (
+        "Below is an instruction that describes a task. "
+        "Write a response that appropriately completes the request.\n\n\n"
+        "### Instruction:\n"
+        "Create a Python script for this problem:\n"
+        "{prompt}\n\n"
+        "### Response:\n"
+    ),
+    "official_spaces_nl": (
+        "Below is an instruction that describes a task. "
+        "Write a response that appropriately completes the request.\n\n"
+        "### Instruction:\n"
+        "Create a Python script for this problem:\n"
+        "{prompt}\n\n"
+        "### Response:\n"
+    ),
+    "alpaca_direct_nl": (
+        "Below is an instruction that describes a task. "
+        "Write a response that appropriately completes the request.\n\n"
+        "### Instruction:\n"
+        "{prompt}\n\n"
+        "### Response:\n"
+    ),
+}
 
 _CODE_FENCE_RE = re.compile(r"```(?:python|py)?\s*\n(.*?)```", re.DOTALL | re.IGNORECASE)
 
 
-def build_wizardcoder_prompt(humaneval_prompt: str) -> str:
-    return WIZARDCODER_HUMANEVAL_TEMPLATE.format(prompt=humaneval_prompt.replace("    ", "\t") if False else humaneval_prompt)
+def build_wizardcoder_prompt(humaneval_prompt: str, variant: str = "official_tab_nl") -> str:
+    tpl = WIZARDCODER_PROMPTS[variant]
+    p = humaneval_prompt.replace("    ", "\t") if variant == "official_tab_nl" else humaneval_prompt
+    return tpl.format(prompt=p)
 
 
 def extract_python_solution(raw_response: str, humaneval_prompt: str, entry_point: str) -> tuple[str | None, str]:
-    """WizardCoder の応答から実行可能な Python 関数定義コードを抽出する。
+    """WizardCoder の応答から実行可能な Python 関数定義コードを抽出する（補助関数・import 保持対応）。
 
     Returns:
       (full_executable_code_or_None, extractor_mode)
     """
-    text = (raw_response or "").strip()
+    text = (raw_response or "").replace("\r\n", "\n").replace("\r", "\n").strip()
     if not text:
         return None, "empty"
 
@@ -68,38 +87,53 @@ def extract_python_solution(raw_response: str, humaneval_prompt: str, entry_poin
         body = m.group(1).strip()
         mode = "code_fence"
     else:
-        # 2) フェンスなしでも `def <entry_point>` または `from ` / `import ` がある場合
-        idx_def = text.find(f"def {entry_point}")
-        if idx_def != -1:
-            # 直前の import 文があれば含める
-            prefix = text[:idx_def]
-            imp_lines = [ln for ln in prefix.splitlines() if ln.strip().startswith(("import ", "from "))]
-            body = ("\n".join(imp_lines) + "\n" if imp_lines else "") + text[idx_def:]
+        # 2) フェンスなしの場合: 最初の def / import / from / class 行から開始し、
+        #    entry_point より前に定義された補助関数（is_prime, encode_cyclic 等）を保持する。
+        lines = text.splitlines()
+        start = None
+        for i, ln in enumerate(lines):
+            s = ln.strip()
+            if s.startswith(("def ", "import ", "from ", "class ")):
+                start = i
+                break
+        if start is not None:
+            kept: list[str] = []
+            seen_entry = False
+            for ln in lines[start:]:
+                s = ln.strip()
+                if s.startswith(("if __name__", "# Example", "# Test", "assert ", "print(")):
+                    break
+                if f"def {entry_point}" in s:
+                    seen_entry = True
+                if seen_entry and ln and not ln[0].isspace() and not s.startswith(("def ", "import ", "from ", "class ", "@", "#", ")", "]", "}")):
+                    # 関数定義後に続く自然言語解説文で終了
+                    break
+                kept.append(ln)
+            body = "\n".join(kept).rstrip()
             mode = "raw_def"
-        elif "return " in text or "\n    " in text:
-            # 関数本体だけの継続生成だった場合は prompt と連結
+        elif "return " in text or "\n    " in text or "\n\t" in text:
             indented = text if text.startswith((" ", "\t")) else "\n".join("    " + ln if ln.strip() else "" for ln in text.splitlines())
             return humaneval_prompt + "\n" + indented + "\n", "body_continuation"
         else:
             return None, "no_code_found"
 
-    # テストコードや末尾解説が混ざった場合は `if __name__` や `print(` テスト例以前で切る
+    # テストコードや末尾解説が混ざった場合は切る
     cut_markers = ("\nif __name__", "\n# Example", "\n# Test", "\nassert ")
     for mk in cut_markers:
         pos = body.find(mk)
         if pos != -1:
             body = body[:pos].rstrip()
 
-    # prompt 側の import 群を補完（重複していても Python 上は安全）
-    prompt_imports = [
-        ln for ln in humaneval_prompt.splitlines()
-        if ln.strip().startswith(("import ", "from "))
-    ]
+    # タブインデントを 4 スペースへ正規化（混在による TabError 回避）
+    body = body.replace("\t", "    ")
+
+    # prompt 側で entry_point より前に定義された import や補助関数（例: poly, encode_cyclic）を前置き
+    idx_entry = humaneval_prompt.find(f"def {entry_point}")
+    prompt_prefix = humaneval_prompt[:idx_entry].rstrip() if idx_entry > 0 else ""
     if f"def {entry_point}" in body:
-        header = "\n".join(prompt_imports) + "\n\n" if prompt_imports else ""
+        header = (prompt_prefix + "\n\n") if prompt_prefix else ""
         return header + body + "\n", mode
 
-    # フェンス内が関数本体のみ（def なし）だった場合
     indented = body if body.startswith((" ", "\t")) else "\n".join("    " + ln if ln.strip() else "" for ln in body.splitlines())
     return humaneval_prompt + "\n" + indented + "\n", f"{mode}_continuation"
 
@@ -203,7 +237,8 @@ def main() -> int:
     ap.add_argument("--run-dir", type=Path, required=True, help="指示書 v2 第 1 節準拠のランフォルダ（RUN.md 必須）")
     ap.add_argument("--model-path", type=str, required=True)
     ap.add_argument("--model-name", type=str, required=True)
-    ap.add_argument("--max-tokens", type=int, default=1024)
+    ap.add_argument("--max-tokens", type=int, default=2048)
+    ap.add_argument("--prompt-variant", choices=tuple(WIZARDCODER_PROMPTS.keys()), default="official_tab_nl")
     ap.add_argument("--gpu-memory-utilization", type=float, default=0.85)
     ap.add_argument("--official-value", type=float, default=None, help="公式 HumanEval pass@1 (%)。WizardCoder は 55.5")
     ap.add_argument("--base-pass1", type=float, default=None, help="ベースモデルの pass@1 (%)")
@@ -214,14 +249,14 @@ def main() -> int:
         raise FileNotFoundError(f"RUN.md が存在しません（指示書 v2 §1.4）: {args.run_dir}")
 
     out_dir = args.run_dir / "outputs"
-    out_json = out_dir / f"{args.model_name}_humaneval_official.json"
+    out_json = out_dir / f"{args.model_name}_humaneval_{args.prompt_variant}.json"
 
     from datasets import load_dataset
     from vllm import LLM, SamplingParams
 
     ds = load_dataset("openai_humaneval", split="test")
     items = [dict(ds[i]) for i in range(min(args.limit, len(ds)))]
-    prompts = [build_wizardcoder_prompt(it["prompt"]) for it in items]
+    prompts = [build_wizardcoder_prompt(it["prompt"], variant=args.prompt_variant) for it in items]
 
     t0 = time.time()
     llm = LLM(
@@ -288,7 +323,7 @@ def main() -> int:
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
         "model_name": args.model_name,
         "model_path": args.model_path,
-        "prompt_template": "WizardCoder_Official_Alpaca_Code",
+        "prompt_template": f"WizardCoder_{args.prompt_variant}",
         "n_total": n_total,
         "n_pass": n_pass,
         "humaneval_pass1_pct": pass1_pct,
@@ -299,7 +334,7 @@ def main() -> int:
         "results": results,
     }
     write_json(out_json, payload)
-    write_samples_review(results, out_dir / f"{args.model_name}_samples_review.md", args.model_name)
+    write_samples_review(results, out_dir / f"{args.model_name}_{args.prompt_variant}_samples_review.md", f"{args.model_name} ({args.prompt_variant})")
     print(
         f"[DONE] {args.model_name}: HumanEval pass@1 = {pass1_pct:.2f}% ({n_pass}/{n_total}), "
         f"ext_fail={ext_fail_pct:.2f}%, skew={mode_skew_pct:.2f}%, gate_pass={gate['all_auto_checks_pass']}"

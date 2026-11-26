@@ -45,12 +45,16 @@ experts:
     extractor: "```python ... ``` コードブロック抽出（失敗時は def 文以降を抽出）。関数シグネチャ重複連結を避け、prompt の import 群＋生成関数本体で評価"
     generation:
       temperature: 0.0
-      max_tokens: 1024
+      max_tokens: 2048
+      prompt_variant: "official_tab_nl"
       stop: ["</s>", "### Instruction:", "### Response:"]
       n_samples_full: 164
     official_value: 55.5
-    official_source: "WizardCoder-Python-7B-V1.0 公式モデルカード / WizardCoder paper (HumanEval pass@1 greedy)"
-    gate_status: "pending_gpu_verification"
+    official_source: "WizardCoder-Python-7B-V1.0 公式モデルカード / WizardCoder paper (HumanEval pass@1)"
+    gate_status: "auto_gate_passed_pending_human_review"
+    verified_value: 50.61
+    verified_run: "20261126-1413_wizardcoder-humaneval-gate-v2"
+    samples_review_path: "v5/results/runs/20261126-1413_wizardcoder-humaneval-gate-v2/outputs/WizardCoder-Python-7B-V1.0_official_tab_nl_samples_review.md"
     legacy_broken_value: 5.49
     legacy_broken_note: "v3 eval_utility.py では ### Instruction: で包んだ応答を lm-eval が prompt+response 連結したため def 重複・途中で切断され 5.49%（MBPP 36.56%, Avg 21.03%）に崩壊"
 

@@ -69,6 +69,20 @@ def test_wizardcoder_extract_and_gate() -> None:
     assert "from typing import List" in code
     assert code.count("def add_one") == 1
 
+    # フェンスなし＋補助関数あり（HumanEval/39, 143 パターン）の回帰テスト
+    raw_helper = (
+        "Here's the solution:\r\n\r\n"
+        "def is_prime(n):\r\n    return n > 1\r\n\r\n"
+        "def prime_fib(n):\r\n    return 2 if is_prime(2) else 0\r\n\r\n"
+        "This code checks primes first.\r\n"
+    )
+    code_h, mode_h = extract_python_solution(raw_helper, "def prime_fib(n: int):\n    pass\n", "prime_fib")
+    assert mode_h == "raw_def"
+    assert code_h is not None
+    assert "def is_prime(n):" in code_h
+    assert "def prime_fib(n):" in code_h
+    assert "This code checks" not in code_h
+
     g_pass = evaluate_gate(
         model_name="wc",
         pass1_pct=53.0,
