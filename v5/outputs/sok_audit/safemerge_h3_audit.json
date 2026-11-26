@@ -1,0 +1,274 @@
+{
+  "timestamp_utc": "2026-11-25T13:29:57.753285+00:00",
+  "layer_weights_json_summary": [
+    {
+      "pattern": "safety+math",
+      "seed": 42,
+      "threshold": 0.35,
+      "default_merge_ratio": 0.2,
+      "n_projections": 224,
+      "n_merged_projections": 224,
+      "n_unmerged_projections": 0,
+      "n_total_transformer_layers": 32,
+      "n_merged_transformer_layers": 32,
+      "cosine_zero_count": 224,
+      "cosine_nonzero_count": 0,
+      "cosine_min": 0.0,
+      "cosine_max": 0.0,
+      "cosine_mean": 0.0,
+      "reasons": {
+        "cosine_threshold": 224
+      },
+      "ft_weight_counts": {
+        "0.8": 224
+      },
+      "safe_weight_counts": {
+        "0.2": 224
+      }
+    },
+    {
+      "pattern": "safety+math",
+      "seed": 43,
+      "threshold": 0.35,
+      "default_merge_ratio": 0.2,
+      "n_projections": 224,
+      "n_merged_projections": 224,
+      "n_unmerged_projections": 0,
+      "n_total_transformer_layers": 32,
+      "n_merged_transformer_layers": 32,
+      "cosine_zero_count": 224,
+      "cosine_nonzero_count": 0,
+      "cosine_min": 0.0,
+      "cosine_max": 0.0,
+      "cosine_mean": 0.0,
+      "reasons": {
+        "cosine_threshold": 224
+      },
+      "ft_weight_counts": {
+        "0.8": 224
+      },
+      "safe_weight_counts": {
+        "0.2": 224
+      }
+    },
+    {
+      "pattern": "safety+math",
+      "seed": 44,
+      "threshold": 0.35,
+      "default_merge_ratio": 0.2,
+      "n_projections": 224,
+      "n_merged_projections": 224,
+      "n_unmerged_projections": 0,
+      "n_total_transformer_layers": 32,
+      "n_merged_transformer_layers": 32,
+      "cosine_zero_count": 224,
+      "cosine_nonzero_count": 0,
+      "cosine_min": 0.0,
+      "cosine_max": 0.0,
+      "cosine_mean": 0.0,
+      "reasons": {
+        "cosine_threshold": 224
+      },
+      "ft_weight_counts": {
+        "0.8": 224
+      },
+      "safe_weight_counts": {
+        "0.2": 224
+      }
+    },
+    {
+      "pattern": "safety+code",
+      "seed": 42,
+      "threshold": 0.35,
+      "default_merge_ratio": 0.2,
+      "n_projections": 224,
+      "n_merged_projections": 224,
+      "n_unmerged_projections": 0,
+      "n_total_transformer_layers": 32,
+      "n_merged_transformer_layers": 32,
+      "cosine_zero_count": 224,
+      "cosine_nonzero_count": 0,
+      "cosine_min": 0.0,
+      "cosine_max": 0.0,
+      "cosine_mean": 0.0,
+      "reasons": {
+        "cosine_threshold": 224
+      },
+      "ft_weight_counts": {
+        "0.8": 224
+      },
+      "safe_weight_counts": {
+        "0.2": 224
+      }
+    },
+    {
+      "pattern": "safety+code",
+      "seed": 43,
+      "threshold": 0.35,
+      "default_merge_ratio": 0.2,
+      "n_projections": 224,
+      "n_merged_projections": 224,
+      "n_unmerged_projections": 0,
+      "n_total_transformer_layers": 32,
+      "n_merged_transformer_layers": 32,
+      "cosine_zero_count": 224,
+      "cosine_nonzero_count": 0,
+      "cosine_min": 0.0,
+      "cosine_max": 0.0,
+      "cosine_mean": 0.0,
+      "reasons": {
+        "cosine_threshold": 224
+      },
+      "ft_weight_counts": {
+        "0.8": 224
+      },
+      "safe_weight_counts": {
+        "0.2": 224
+      }
+    },
+    {
+      "pattern": "safety+code",
+      "seed": 44,
+      "threshold": 0.35,
+      "default_merge_ratio": 0.2,
+      "n_projections": 224,
+      "n_merged_projections": 224,
+      "n_unmerged_projections": 0,
+      "n_total_transformer_layers": 32,
+      "n_merged_transformer_layers": 32,
+      "cosine_zero_count": 224,
+      "cosine_nonzero_count": 0,
+      "cosine_min": 0.0,
+      "cosine_max": 0.0,
+      "cosine_mean": 0.0,
+      "reasons": {
+        "cosine_threshold": 224
+      },
+      "ft_weight_counts": {
+        "0.8": 224
+      },
+      "safe_weight_counts": {
+        "0.2": 224
+      }
+    },
+    {
+      "pattern": "safety+medical",
+      "seed": 42,
+      "threshold": 0.35,
+      "default_merge_ratio": 0.2,
+      "n_projections": 224,
+      "n_merged_projections": 224,
+      "n_unmerged_projections": 0,
+      "n_total_transformer_layers": 32,
+      "n_merged_transformer_layers": 32,
+      "cosine_zero_count": 224,
+      "cosine_nonzero_count": 0,
+      "cosine_min": 0.0,
+      "cosine_max": 0.0,
+      "cosine_mean": 0.0,
+      "reasons": {
+        "cosine_threshold": 224
+      },
+      "ft_weight_counts": {
+        "0.8": 224
+      },
+      "safe_weight_counts": {
+        "0.2": 224
+      }
+    },
+    {
+      "pattern": "safety+medical",
+      "seed": 43,
+      "threshold": 0.35,
+      "default_merge_ratio": 0.2,
+      "n_projections": 224,
+      "n_merged_projections": 224,
+      "n_unmerged_projections": 0,
+      "n_total_transformer_layers": 32,
+      "n_merged_transformer_layers": 32,
+      "cosine_zero_count": 224,
+      "cosine_nonzero_count": 0,
+      "cosine_min": 0.0,
+      "cosine_max": 0.0,
+      "cosine_mean": 0.0,
+      "reasons": {
+        "cosine_threshold": 224
+      },
+      "ft_weight_counts": {
+        "0.8": 224
+      },
+      "safe_weight_counts": {
+        "0.2": 224
+      }
+    },
+    {
+      "pattern": "safety+medical",
+      "seed": 44,
+      "threshold": 0.35,
+      "default_merge_ratio": 0.2,
+      "n_projections": 224,
+      "n_merged_projections": 224,
+      "n_unmerged_projections": 0,
+      "n_total_transformer_layers": 32,
+      "n_merged_transformer_layers": 32,
+      "cosine_zero_count": 224,
+      "cosine_nonzero_count": 0,
+      "cosine_min": 0.0,
+      "cosine_max": 0.0,
+      "cosine_mean": 0.0,
+      "reasons": {
+        "cosine_threshold": 224
+      },
+      "ft_weight_counts": {
+        "0.8": 224
+      },
+      "safe_weight_counts": {
+        "0.2": 224
+      }
+    }
+  ],
+  "weight_diff_seed42": [
+    {
+      "pattern": "safety+math",
+      "seed": 42,
+      "changed_target_tensors": 224,
+      "total_target_tensors": 224,
+      "changed_norm_tensors": 0,
+      "total_norm_tensors": 65,
+      "median_rel_diff_safemerge_vs_base_target": 0.0044741995784137265,
+      "median_rel_diff_safemerge_vs_util_target": 0.027997567784599636,
+      "median_rel_diff_safemerge_vs_safe_target": 0.010114839785980753,
+      "median_rel_diff_util_vs_base_target": 0.027617739296092257,
+      "median_rel_diff_safemerge_vs_base_norm": 0.0,
+      "median_rel_diff_safemerge_vs_util_norm": 0.0014321656243177108
+    },
+    {
+      "pattern": "safety+code",
+      "seed": 42,
+      "changed_target_tensors": 224,
+      "total_target_tensors": 224,
+      "changed_norm_tensors": 0,
+      "total_norm_tensors": 65,
+      "median_rel_diff_safemerge_vs_base_target": 0.007127382963453931,
+      "median_rel_diff_safemerge_vs_util_target": 0.8931118326929576,
+      "median_rel_diff_safemerge_vs_safe_target": 0.008919611459784798,
+      "median_rel_diff_util_vs_base_target": 1.167976478528148,
+      "median_rel_diff_safemerge_vs_base_norm": 0.0,
+      "median_rel_diff_safemerge_vs_util_norm": 0.1646969051563776
+    },
+    {
+      "pattern": "safety+medical",
+      "seed": 42,
+      "changed_target_tensors": 224,
+      "total_target_tensors": 224,
+      "changed_norm_tensors": 0,
+      "total_norm_tensors": 65,
+      "median_rel_diff_safemerge_vs_base_target": 0.009626239766992489,
+      "median_rel_diff_safemerge_vs_util_target": 1.3016001667919954,
+      "median_rel_diff_safemerge_vs_safe_target": 0.008135874333107683,
+      "median_rel_diff_util_vs_base_target": 1.5622972387027863,
+      "median_rel_diff_safemerge_vs_base_norm": 0.0,
+      "median_rel_diff_safemerge_vs_util_norm": 0.112757716172684
+    }
+  ]
+}

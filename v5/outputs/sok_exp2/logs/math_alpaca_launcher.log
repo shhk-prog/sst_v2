@@ -1,0 +1,16 @@
+nohup: ignoring input
+==================================================
+Math Alpaca-CoT Launcher Start: 2026-11-25T23:47:28+09:00 | Host: iag-03
+GPUs (2 parallel): 1 2 | Seeds: 42 43 44
+index, name, uuid, pci.bus_id, memory.total [MiB], driver_version
+0, NVIDIA H100 NVL, GPU-810d2872-c303-89b7-8e3e-29429cf20e09, 00000000:3A:00.0, 95830 MiB, 580.159.04
+1, NVIDIA H100 NVL, GPU-5a40f41e-0873-bec4-40ed-63fc92dc70e7, 00000000:3C:00.0, 95830 MiB, 580.159.04
+2, NVIDIA H100 NVL, GPU-ad8e8391-84bc-386e-d409-139c18feb3f1, 00000000:AD:00.0, 95830 MiB, 580.159.04
+==================================================
+worker GPU 1 (seeds: 42 44) PID 988390 started at 2026-11-25T23:47:28+09:00
+[worker GPU 1] seed 42 start 2026-11-25T23:47:28+09:00
+worker GPU 2 (seeds: 43) PID 988393 started at 2026-11-25T23:47:28+09:00
+[worker GPU 2] seed 43 start 2026-11-25T23:47:28+09:00
+[worker GPU 2] seed 43 OK 2026-11-26T08:16:10+09:00
+[worker GPU 1] seed 42 OK 2026-11-26T08:29:36+09:00
+[worker GPU 1] seed 44 start 2026-11-26T08:29:36+09:00

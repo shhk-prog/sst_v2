@@ -1,0 +1,26 @@
+[
+  {
+    "key": "task_arithmetic_alpha0.6_seed42",
+    "src_dir": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_task_arithmetic_safety+code_alpha0.6_seed42",
+    "dst_dir": "/mnt/nas/home/hiromi/src/sst_v2/v5/models/rope_theta_ablation/rope1e6_safety+code_task_arithmetic_alpha0.6_seed42",
+    "old_rope_theta": 10000.0,
+    "new_rope_theta": 1000000.0,
+    "n_symlinks": 15
+  },
+  {
+    "key": "dare_alpha0.6_seed42",
+    "src_dir": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_dare_safety+code_alpha0.6_seed42",
+    "dst_dir": "/mnt/nas/home/hiromi/src/sst_v2/v5/models/rope_theta_ablation/rope1e6_safety+code_dare_alpha0.6_seed42",
+    "old_rope_theta": 10000.0,
+    "new_rope_theta": 1000000.0,
+    "n_symlinks": 15
+  },
+  {
+    "key": "diagonal_sst_alpha0.6_seed42",
+    "src_dir": "/mnt/nas/home/hiromi/src/sst_v2/v3/models/merged/sst_merge_v3_main_diagonal_sst_main_safety+code_alpha0.6_n500_k0.2_FhFb_interpolation_hardmask_nolayerwise_seed42",
+    "dst_dir": "/mnt/nas/home/hiromi/src/sst_v2/v5/models/rope_theta_ablation/rope1e6_safety+code_diagonal_sst_alpha0.6_seed42",
+    "old_rope_theta": 10000.0,
+    "new_rope_theta": 1000000.0,
+    "n_symlinks": 7
+  }
+]
